@@ -1,0 +1,42 @@
+<div eui-sidesheet-content>
+  <mat-card>
+    <form class="imx-form" [formGroup]="identityForm">
+      <mat-accordion>
+        <mat-expansion-panel data-imx-identifier="create-new-identity-expansion-personal"  *ngIf="cdrListPersonal.length > 0">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ '#LDS#Personal data' | translate }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <imx-cdr-editor *ngFor="let cdr of cdrListPersonal" (readOnlyChanged)=update(cdr,cdrListPersonal)  [cdr]="cdr" (controlCreated)="identityForm.addControl(cdr.column.ColumnName, $event)">
+          </imx-cdr-editor>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="cdrListOrganizational.length > 0" data-imx-identifier="create-new-identity-expansion-organisation" >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ '#LDS#Organizational information' | translate }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <imx-cdr-editor *ngFor="let cdr of cdrListOrganizational" [cdr]="cdr" (readOnlyChanged)=update(cdr,cdrListOrganizational) 
+            (controlCreated)="identityForm.addControl(cdr.column.ColumnName, $event)"> </imx-cdr-editor>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="cdrListLocality.length > 0" data-imx-identifier="create-new-identity-expansion-location" >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ '#LDS#Location information' | translate }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <imx-cdr-editor *ngFor="let cdr of cdrListLocality" [cdr]="cdr" (readOnlyChanged)=update(cdr,cdrListLocality) (controlCreated)="identityForm.addControl(cdr.column.ColumnName, $event)">
+          </imx-cdr-editor>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </form>
+  </mat-card>
+</div>
+<div eui-sidesheet-actions color="white">
+  <button data-imx-identifier="create-new-identity-button-save" (click)="submit()"
+    [disabled]="accountIsOff || identityForm.invalid || !identityForm.dirty" mat-raised-button type="button"
+    color="primary">
+    {{ '#LDS#Create' | translate }}
+  </button> 
+</div>

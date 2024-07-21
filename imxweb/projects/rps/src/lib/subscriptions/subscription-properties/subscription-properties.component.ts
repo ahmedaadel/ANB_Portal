@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,7 +29,11 @@
  */
 
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+=======
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+>>>>>>> oned/v92
 
 import { IClientProperty } from 'imx-qbm-dbts';
 import { ColumnDependentReference } from 'qbm';
@@ -40,13 +48,22 @@ export class SubscriptionPropertiesComponent implements OnInit, OnChanges {
 
   public cdrList: ColumnDependentReference[] = [];
   public parameterCdrList: ColumnDependentReference[] = [];
+<<<<<<< HEAD
   public readonly subscriptionPropertiesFormArray = new FormArray([]);
   public readonly subscriptionParameterFormArray = new FormArray([]);
+=======
+  public readonly subscriptionPropertiesFormArray = new UntypedFormArray([]);
+  public readonly subscriptionParameterFormArray = new UntypedFormArray([]);
+>>>>>>> oned/v92
 
   public withSeparateParameterList: boolean;
 
   @Input() public subscription: ReportSubscription;
+<<<<<<< HEAD
   @Input() public formGroup: FormGroup;
+=======
+  @Input() public formGroup: UntypedFormGroup;
+>>>>>>> oned/v92
   @Input() public withTitles = true;
   @Input() public displayedColumns: IClientProperty[] = [];
 
@@ -75,7 +92,11 @@ export class SubscriptionPropertiesComponent implements OnInit, OnChanges {
     }
   }
 
+<<<<<<< HEAD
   public addFormControl(array: FormArray, control: FormControl): void {
+=======
+  public addFormControl(array: UntypedFormArray, control: UntypedFormControl): void {
+>>>>>>> oned/v92
     setTimeout(() => {
       array.push(control);
     });

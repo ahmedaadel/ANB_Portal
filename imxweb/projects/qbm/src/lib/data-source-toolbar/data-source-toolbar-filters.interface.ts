@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -36,13 +40,29 @@ export interface DataSourceToolbarFilter extends DataModelFilter {
    * The initial value to be selected
    */
   InitialValue?: string;
+<<<<<<< HEAD
+=======
+
+  /**
+   * The column to filter over, if local filtering
+   */
+  Column?: string;
+}
+
+interface DataModelFilterOptionExtended extends DataModelFilterOption {
+  IsRegex?: boolean;
+>>>>>>> oned/v92
 }
 
 export interface DataSourceToolbarSelectedFilter {
   /**
    * The option that was selected
    */
+<<<<<<< HEAD
   selectedOption: DataModelFilterOption;
+=======
+  selectedOption: DataModelFilterOptionExtended;
+>>>>>>> oned/v92
   /**
    * The filter the value was selected for
    */

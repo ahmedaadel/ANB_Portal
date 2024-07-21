@@ -1,4 +1,8 @@
 @import 'variables.scss';
+<<<<<<< HEAD
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 ol
 {
@@ -80,4 +84,42 @@ $ConnectorReportsLeft: $ReportsMargin + $HalfPhotoSize;
   border-style: dotted;
   border-width: 0 0 0 $Imx_OrgChart_BorderWidth;
   border-color: gray;
+<<<<<<< HEAD
 }
+=======
+}
+
+.eui-dark-theme {
+  :host {
+    .border-container
+    {
+      border-color: $color-gray-5;
+    }
+
+    .connector-reports {
+      border-color: $color-gray-5;
+    }
+
+    .border-container-reports {
+      border-color: $color-gray-5;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .border-container
+    {
+      border-color: $color-gray-0;
+    }
+
+    .connector-reports {
+      border-color: $color-gray-0;
+    }
+
+    .border-container-reports {
+      border-color: $color-gray-0;
+    }
+  }
+}
+>>>>>>> oned/v92

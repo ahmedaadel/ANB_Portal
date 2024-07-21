@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -37,7 +41,11 @@ import { IssueItem } from './service-issues.models';
 })
 export class ServiceIssuesComponent implements OnInit, OnDestroy {
 
+<<<<<<< HEAD
   constructor( private service: ServiceIssuesService, private appConfigService: AppConfigService) {}
+=======
+  constructor( public service: ServiceIssuesService, private appConfigService: AppConfigService) {}
+>>>>>>> oned/v92
 
   public ngOnInit(): void {
     this.service.subscribe(this.appConfigService.Config.NotificationUpdateInterval);

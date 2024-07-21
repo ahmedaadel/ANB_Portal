@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -26,7 +30,11 @@
 
 import { ChangeDetectorRef, EventEmitter, ViewChild } from '@angular/core';
 import { Component, Input, Output } from '@angular/core';
+<<<<<<< HEAD
 import { FormGroup } from '@angular/forms';
+=======
+import { UntypedFormGroup } from '@angular/forms';
+>>>>>>> oned/v92
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { MatSelectChange } from '@angular/material/select';
 
@@ -40,10 +48,17 @@ import { FilterElementModel } from '../editors/filter-element-model';
 })
 export class PolicyFilterElementComponent {
 
+<<<<<<< HEAD
   @Input() public formGroup: FormGroup;
   @Input() public idForTest: string;
 
   @Output() public deleteFilter = new EventEmitter<FormGroup>();
+=======
+  @Input() public formGroup: UntypedFormGroup;
+  @Input() public idForTest: string;
+
+  @Output() public deleteFilter = new EventEmitter<UntypedFormGroup>();
+>>>>>>> oned/v92
   @Output() public conditionTypeChanged = new EventEmitter<FilterElementModel>();
   @Output() public parameterChanged = new EventEmitter<FilterElementModel>();
 

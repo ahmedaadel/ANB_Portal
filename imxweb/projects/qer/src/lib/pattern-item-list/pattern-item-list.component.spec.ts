@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,6 +28,7 @@
  *
  */
 
+<<<<<<< HEAD
 import { Component, Input, Output } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { EuiLoadingService } from '@elemental-ui/core';
@@ -160,15 +165,47 @@ xdescribe('PatternItemListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PatternItemListComponent);
     component = fixture.componentInstance;
+=======
+import { PortalItshopPatternRequestable } from 'imx-api-qer';
+import { MockBuilder, MockedComponentFixture, MockRender } from 'ng-mocks';
+import { clearStylesFromDOM } from 'qbm';
+
+import { PatternItemListComponent } from './pattern-item-list.component';
+import { PatternItemService } from './pattern-item.service';
+import { PatternItemsModule } from './pattern-items.module';
+
+describe('PatternItemListComponent', () => {
+  let component: PatternItemListComponent;
+  let fixture: MockedComponentFixture<PatternItemListComponent>;
+
+  beforeEach(() => {
+    return MockBuilder(PatternItemListComponent)
+      .mock(PatternItemsModule)
+      .mock(PatternItemService, {
+        PortalShopPatternRequestableSchema: PortalItshopPatternRequestable.GetEntitySchema(),
+        get: jasmine.createSpy('get'),
+      } as unknown);
+  });
+
+  beforeEach(() => {
+    fixture = MockRender(PatternItemListComponent);
+    component = fixture.point.componentInstance;
+>>>>>>> oned/v92
   });
 
   afterAll(() => {
     clearStylesFromDOM();
   });
 
+<<<<<<< HEAD
   it('should create', fakeAsync(() => {
     fixture.detectChanges();
     tick();
     // expect(component.dstSettings).toBeDefined();
   }));
+=======
+  it('should create', () => {
+    expect(component).toEqual(jasmine.any(PatternItemListComponent));
+  });
+>>>>>>> oned/v92
 });

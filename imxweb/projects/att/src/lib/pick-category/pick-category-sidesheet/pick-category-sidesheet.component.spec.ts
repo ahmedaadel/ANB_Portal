@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,6 +33,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EuiSidesheetService, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+<<<<<<< HEAD
+=======
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+>>>>>>> oned/v92
 
 import { IClientProperty } from 'imx-qbm-dbts';
 import { ClassloggerService, ConfirmationService } from 'qbm';
@@ -69,7 +77,12 @@ describe('PickCategorySidesheetComponent', () => {
       ],
       imports: [
         FormsModule,
+<<<<<<< HEAD
         ReactiveFormsModule
+=======
+        ReactiveFormsModule,
+        MatSnackBarModule
+>>>>>>> oned/v92
       ],
       providers: [
         {
@@ -130,7 +143,11 @@ describe('PickCategorySidesheetComponent', () => {
           expect(deletePickedItemsSpy).toHaveBeenCalled();
         } else {
           expect(deletePickedItemsSpy).not.toHaveBeenCalled();
+<<<<<<< HEAD
         }  
+=======
+        }
+>>>>>>> oned/v92
       });
     }
   });

@@ -3,7 +3,11 @@ var data = require(path);
 var anyChanges = false;
 for (const name of [
 
+<<<<<<< HEAD
   // these are the local packages that should be included in package-lock.json.
+=======
+  // these are the local packages that must not be included in package-lock.json.
+>>>>>>> oned/v92
   // This script removes the entries in the package-lock dependencies object
   // for these packages.
 
@@ -15,6 +19,10 @@ for (const name of [
   'imx-api-dpr',
   'imx-api-tsb',
   'imx-api-aob',
+<<<<<<< HEAD
+=======
+  'imx-api-apc',
+>>>>>>> oned/v92
   'imx-api-qer',
   'imx-api-rps',
   'imx-api-sac',

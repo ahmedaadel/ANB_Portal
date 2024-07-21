@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,6 +29,7 @@
  */
 
 import { HttpClientModule } from '@angular/common/http';
+<<<<<<< HEAD
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, APP_INITIALIZER, ErrorHandler } from '@angular/core';
@@ -44,10 +49,35 @@ import {
   QbmModule,
   AuthenticationModule
 } from 'qbm';
+=======
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
+import { MissingTranslationHandler, TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+
+import { APP_BASE_HREF } from '@angular/common';
+import {
+  AuthenticationModule,
+  CustomThemeModule,
+  GlobalErrorHandler,
+  ImxMissingTranslationHandler,
+  ImxTranslateLoader,
+  LdsReplacePipe,
+  MastHeadModule,
+  MenuModule,
+  Paginator,
+  SqlWizardApiService,
+  UserMessageModule,
+} from 'qbm';
+import { environment } from '../environments/environment';
+>>>>>>> oned/v92
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 import { MatPaginatorIntl } from '@angular/material/paginator';
+<<<<<<< HEAD
 import {
   PasswordModule,
   QaLoginModule,
@@ -60,6 +90,18 @@ import appConfigJson from '../appconfig.json';
   declarations: [
     AppComponent
   ],
+=======
+import { PasswordModule, QaLoginModule, PasscodeLoginModule, ProfileModule, QerModule } from 'qer';
+import appConfigJson from '../appconfig.json';
+import { PwdSqlWizardApiService } from './pwd-sql-wizard-api.service';
+
+export const HEADLESS_BASEHREF = '/headless';
+export function getBaseHref(): string {
+  return location.href.includes('headless') ? HEADLESS_BASEHREF : '';
+}
+@NgModule({
+  declarations: [AppComponent],
+>>>>>>> oned/v92
   imports: [
     AppRoutingModule,
     AuthenticationModule,
@@ -72,6 +114,7 @@ import appConfigJson from '../appconfig.json';
     MastHeadModule,
     MenuModule,
     QaLoginModule,
+<<<<<<< HEAD
     QbmModule,
     PasscodeLoginModule,
     PasswordModule,
@@ -86,6 +129,24 @@ import appConfigJson from '../appconfig.json';
       }
     }),
     UserMessageModule
+=======
+    QerModule,
+    PasscodeLoginModule,
+    PasswordModule,
+    CustomThemeModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useClass: ImxTranslateLoader,
+      },
+      missingTranslationHandler: {
+        provide: MissingTranslationHandler,
+        useClass: ImxMissingTranslationHandler,
+      },
+    }),
+    UserMessageModule,
+    ProfileModule,
+>>>>>>> oned/v92
   ],
   providers: [
     { provide: 'environment', useValue: environment },
@@ -94,15 +155,24 @@ import appConfigJson from '../appconfig.json';
       provide: APP_INITIALIZER,
       useFactory: AppService.init,
       deps: [AppService],
+<<<<<<< HEAD
       multi: true
     },
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandler
+=======
+      multi: true,
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
+>>>>>>> oned/v92
     },
     {
       provide: MatPaginatorIntl,
       useFactory: Paginator.Create,
+<<<<<<< HEAD
       deps: [
         TranslateService,
         LdsReplacePipe
@@ -112,3 +182,19 @@ import appConfigJson from '../appconfig.json';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+=======
+      deps: [TranslateService, LdsReplacePipe],
+    },
+    {
+      provide: APP_BASE_HREF,
+      useValue: getBaseHref(),
+    },
+    {
+      provide: SqlWizardApiService,
+      useClass: PwdSqlWizardApiService,
+    },
+  ],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+>>>>>>> oned/v92

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,7 +29,11 @@
  */
 
 import { Component, Inject, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+=======
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+>>>>>>> oned/v92
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { IWriteValue } from 'imx-qbm-dbts';
@@ -43,6 +51,7 @@ export interface AadUserCreateDialogData {
 })
 export class AadUserCreateDialogComponent implements OnInit {
 
+<<<<<<< HEAD
   public readonly detailsFormGroup: FormGroup;
   public cdrList: ColumnDependentReference[] = [];
 
@@ -56,6 +65,21 @@ export class AadUserCreateDialogComponent implements OnInit {
 
   get formArray(): FormArray {
     return this.detailsFormGroup.get('formArray') as FormArray;
+=======
+  public readonly detailsFormGroup: UntypedFormGroup;
+  public cdrList: ColumnDependentReference[] = [];
+
+  constructor(
+    formBuilder: UntypedFormBuilder,
+    public dialogRef: MatDialogRef<AadUserCreateDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: AadUserCreateDialogData
+  ) {
+    this.detailsFormGroup = new UntypedFormGroup({ formArray: formBuilder.array([]) });
+  }
+
+  get formArray(): UntypedFormArray {
+    return this.detailsFormGroup.get('formArray') as UntypedFormArray;
+>>>>>>> oned/v92
   }
 
   public ngOnInit(): void {

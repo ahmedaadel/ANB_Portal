@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,10 +29,16 @@
  */
 
 import { CommonModule } from '@angular/common';
+<<<<<<< HEAD
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule, Routes } from '@angular/router';
+=======
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+>>>>>>> oned/v92
 import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -37,9 +47,17 @@ import {
   ClassloggerService,
   DataSourceToolbarModule,
   DataTableModule,
+<<<<<<< HEAD
   MenuItem,
   MenuService,
   RouteGuardService
+=======
+  HelpContextualModule,
+  ExtModule,
+  MenuItem,
+  MenuService,
+  SelectedElementsModule
+>>>>>>> oned/v92
 } from 'qbm';
 import { RulesViolationsComponent } from './rules-violations.component';
 import { RulesViolationsDetailsComponent } from './rules-violations-details/rules-violations-details.component';
@@ -50,6 +68,7 @@ import { RulesViolationsSingleActionComponent } from './rules-violations-action/
 import { ResolveComponent } from './resolve/resolve.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { isExceptionAdmin } from '../rules/admin/permissions-helper';
+<<<<<<< HEAD
 import { RuleViolationsGuardService } from '../guards/rule-violations-guard.service';
 const routes: Routes = [
   {
@@ -59,6 +78,13 @@ const routes: Routes = [
     resolve: [RouteGuardService]
   }
 ];
+=======
+import { MitigatingControlsPersonComponent } from './mitigating-controls-person/mitigating-controls-person.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MitigatingControlContainerModule } from '../mitigating-control-container/mitigating-control-container.module';
+import { ProjectConfig } from 'imx-api-qer';
+
+>>>>>>> oned/v92
 
 @NgModule({
   declarations: [
@@ -67,7 +93,12 @@ const routes: Routes = [
     RulesViolationsDetailsComponent,
     RulesViolationsActionComponent,
     RulesViolationsMultiActionComponent,
+<<<<<<< HEAD
     RulesViolationsSingleActionComponent
+=======
+    RulesViolationsSingleActionComponent,
+    MitigatingControlsPersonComponent
+>>>>>>> oned/v92
   ],
   imports: [
     CdrModule,
@@ -76,14 +107,30 @@ const routes: Routes = [
     DataTableModule,
     EuiCoreModule,
     EuiMaterialModule,
+<<<<<<< HEAD
+=======
+    ExtModule,
+>>>>>>> oned/v92
     FormsModule,
     JustificationModule,
     MatCardModule,
     MatStepperModule,
+<<<<<<< HEAD
     ReactiveFormsModule,
     TranslateModule,
     RouterModule.forChild(routes),
   ]
+=======
+    MatExpansionModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    SelectedElementsModule,
+    MitigatingControlContainerModule,
+    HelpContextualModule,
+  ],
+  exports:[MitigatingControlsPersonComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+>>>>>>> oned/v92
 })
 export class RulesViolationsModule {
 
@@ -91,13 +138,21 @@ export class RulesViolationsModule {
     private readonly menuService: MenuService,
     logger: ClassloggerService
   ) {
+<<<<<<< HEAD
     logger.info(this, '▶️ RulesViolationsnModule loaded');
+=======
+    logger.info(this, '▶︝ RulesViolationsnModule loaded');
+>>>>>>> oned/v92
     this.setupMenu();
   }
 
   private setupMenu(): void {
     this.menuService.addMenuFactories(
+<<<<<<< HEAD
       (preProps: string[], groups: string[]) => {
+=======
+      (preProps: string[], features: string[], projectConfig: ProjectConfig, groups: string[]) => {
+>>>>>>> oned/v92
 
         const items: MenuItem[] = [];
 

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -26,7 +30,11 @@
 
 
 import { IConnectorProvider, ConnectorProvider } from './connector-provider';
+<<<<<<< HEAD
 import { toPixelString, HvElement, HvCell, Size, HyperViewLayout } from './hyperview-types';
+=======
+import { toPixelString, HvElement, HvCell, Size, HyperViewLayout, LayoutResult } from './hyperview-types';
+>>>>>>> oned/v92
 import { ClassloggerService } from '../classlogger/classlogger.service';
 
 /**
@@ -76,7 +84,11 @@ export class HyperviewLayoutHierarchical implements HyperViewLayout {
   /**
    * layouting the hyperview according to positions of each shape.
    */
+<<<<<<< HEAD
   public layout(): void {
+=======
+  public layout(): LayoutResult {
+>>>>>>> oned/v92
     this.clearVLayoutElements();
     const elems = this.vLayoutElements;
 
@@ -90,7 +102,11 @@ export class HyperviewLayoutHierarchical implements HyperViewLayout {
       elems[this.positions[pos]].elements.push(element);
     }
 
+<<<<<<< HEAD
     // calculate and set the sizes of each element
+=======
+    // calculate and set the size of each element
+>>>>>>> oned/v92
     for (const position of this.positions) {
       elems[position].size = this.getMaxSizeOfElements(elems[position].elements);
     }
@@ -104,6 +120,16 @@ export class HyperviewLayoutHierarchical implements HyperViewLayout {
 
     // normalize the view
     this.normalize();
+<<<<<<< HEAD
+=======
+
+    const finalSize = this.getSumSizeOfElements(this.elements);
+
+    return {
+      size: finalSize
+    };
+
+>>>>>>> oned/v92
   }
 
   /**
@@ -184,8 +210,13 @@ export class HyperviewLayoutHierarchical implements HyperViewLayout {
     }
 
     // negate to better understand the movement
+<<<<<<< HEAD
     minx = -minx + 16;
     miny = -miny + 16;
+=======
+    minx = -minx;
+    miny = -miny;
+>>>>>>> oned/v92
 
     minx = Math.max(minx, clientcenter.X);
     miny = Math.max(miny, clientcenter.Y * 3 / 5);
@@ -246,11 +277,19 @@ export class HyperviewLayoutHierarchical implements HyperViewLayout {
 
     for (const regElement of regElements.elements) {
       if (dx < 0) {
+<<<<<<< HEAD
         cX -= regSize.width + padding;
       }
 
       if (dy < 0) {
         cY -= regSize.height + padding;
+=======
+        cX -= regElement.element.offsetWidth + padding;
+      }
+
+      if (dy < 0) {
+        cY -= regElement.element.offsetHeight + padding;
+>>>>>>> oned/v92
       }
 
       regElement.element.style.left = toPixelString((cX - (bX ? regSize.width / 2 : 0)));
@@ -296,4 +335,24 @@ export class HyperviewLayoutHierarchical implements HyperViewLayout {
 
     return layoutSize;
   }
+<<<<<<< HEAD
+=======
+
+  private getSumSizeOfElements(vElements: HvElement[]): Size {
+    let layoutSize: Size = {
+      width: 0,
+      height: 0
+    };
+
+    for (const node of vElements) {
+      const shape = node.element;
+      layoutSize = {
+        width: Math.max(layoutSize.width, shape.offsetLeft + shape.offsetWidth),
+        height: Math.max(layoutSize.height, shape.offsetTop + shape.offsetHeight)
+      };
+    }
+
+    return layoutSize;
+  }
+>>>>>>> oned/v92
 }

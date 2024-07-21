@@ -1,5 +1,10 @@
 @use '@angular/material' as mat;
+<<<<<<< HEAD
 @import '@elemental-ui/core/src/styles/_palette.scss';
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import '../../../../../shared/assets/variables.scss';
+>>>>>>> oned/v92
 
 $imx-component-height: calc(100vh - 180px);
 
@@ -10,6 +15,7 @@ $imx-component-height: calc(100vh - 180px);
   height: 100%;
 }
 
+<<<<<<< HEAD
 
 :host ::ng-deep .mat-tab-body-wrapper{
     .mat-tab-body-content{
@@ -21,12 +27,26 @@ $imx-component-height: calc(100vh - 180px);
 
 .imx-application-details {
   display: flex;
+=======
+:host ::ng-deep .mat-tab-body-wrapper {
+  .mat-tab-body-content {
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+  }
+}
+
+.imx-application-details {
+  display: flex;
+  overflow-x: hidden;
+>>>>>>> oned/v92
 }
 
 .imx-application-content {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
+<<<<<<< HEAD
   background-color: $white;
   height: $imx-component-height;
   overflow: hidden;
@@ -35,6 +55,10 @@ $imx-component-height: calc(100vh - 180px);
     background-color: mat.get-color-from-palette($asher-gray-palette, 100);
     overflow-x: auto;
   }
+=======
+  height: $imx-component-height;
+  overflow: hidden;
+>>>>>>> oned/v92
 }
 
 .imx-application-content-no-app {
@@ -42,10 +66,13 @@ $imx-component-height: calc(100vh - 180px);
   flex-direction: column;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
 
   > .eui-icon {
     color: $black-b;
   }
+=======
+>>>>>>> oned/v92
 }
 
 .imx-application-content-no-app-description {
@@ -100,8 +127,17 @@ $imx-component-height: calc(100vh - 180px);
   grid-row-end: 1;
   font-weight: 400;
   font-size: 24px;
+<<<<<<< HEAD
   margin: 0 15px 0 10px;
   @include textOverflowEllipsis;
+=======
+  min-height: 40px;
+  margin: 0 15px 0 10px;
+  @include textOverflowEllipsis;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+>>>>>>> oned/v92
 }
 
 .imx-application-details-subtitle {
@@ -111,7 +147,10 @@ $imx-component-height: calc(100vh - 180px);
   grid-row-end: 2;
   font-size: 14px;
   margin: 0 15px 0 10px;
+<<<<<<< HEAD
   color: $black-7;
+=======
+>>>>>>> oned/v92
   @include textOverflowEllipsis;
 }
 
@@ -126,6 +165,15 @@ $imx-component-height: calc(100vh - 180px);
   height: 100%;
 }
 
+<<<<<<< HEAD
+=======
+imx-application-hyperview {
+  overflow: auto;
+  flex-grow: 1;
+  padding: 1em;
+}
+
+>>>>>>> oned/v92
 // TODO: .mat-tab-body-wrapper does not pass information of the height to its child nodes,
 // because it does not stretch to the height of its parent container (which is a mat-tab-group).
 // Right now the only fix is to use the ng-deep selector.
@@ -136,3 +184,77 @@ $imx-component-height: calc(100vh - 180px);
     overflow: visible;
   }
 }
+<<<<<<< HEAD
+=======
+
+:host {
+  ::ng-deep .mat-tab-body-content {
+    background-color: rgba($color-gray-10, 0.1);
+  }
+  .imx-application-content {
+    background-color: $color-gray-0;
+  }
+
+  .imx-application-content-no-app {
+    > .eui-icon {
+      color: $color-gray-30;
+    }
+  }
+  .imx-application-details-subtitle {
+    color: $color-gray-70;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    ::ng-deep .mat-tab-labels {
+      
+      background-color:$color-gray-70;
+    }
+    .imx-application-content {
+      background-color:$color-gray-70;
+    }
+
+    ::ng-deep .mat-tab-body-content {
+      background-color:rgba($color-gray-70, 0.55);
+    }
+
+    
+    .imx-application-content-no-app {
+      .imx-application-content-no-app-text,
+      .imx-application-content-no-app-description {
+        color: $color-gray-20;
+      }
+      > .eui-icon {
+        color: $color-gray-60;
+      }
+    }
+    .imx-application-details-subtitle {
+      color: $color-gray-50;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    ::ng-deep .mat-tab-labels {
+      background-color: $color-gray-100;
+    }
+
+    ::ng-deep .mat-tab-body-content {
+      background-color: $color-gray-100;
+    }
+    .imx-application-content {
+      background-color: $color-gray-100;
+    }
+    .imx-application-content-no-app {
+      > .eui-icon {
+        color: $color-gray-90;
+      }
+    }
+    .imx-application-details-subtitle {
+      color: $color-gray-50;
+    }
+  }
+}
+>>>>>>> oned/v92

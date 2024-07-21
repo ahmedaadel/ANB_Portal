@@ -1,18 +1,31 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
+<<<<<<< HEAD
 
 .imx-tab-content-body {
   flex: 1;
   padding: 32px;
+=======
+@import "@elemental-ui/core/src/styles/_eui_palette.scss";
+
+.imx-tab-content-body {
+  flex: 1;
+  padding: 20px;
+>>>>>>> oned/v92
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
+<<<<<<< HEAD
 .imx-action-buttons {
+=======
+.eui-sidesheet-actions {
+>>>>>>> oned/v92
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
+<<<<<<< HEAD
   background-color: $white;
   padding: 16px 27px 11px 32px;
   margin: 16px 32px;
@@ -29,5 +42,34 @@
 
   .imx-menu-spacer {
     flex-grow: 1;
+=======
+
+  > * {
+    margin-right: 5px;
+  }
+}
+.imx-selected-items {
+  justify-self: flex-start;
+  margin: 0;
+  line-height: 36px;
+}
+.imx-menu-spacer {
+  flex-grow: 1;
+}
+
+.eui-dark-theme {
+  :host {
+    .eui-sidesheet-actions {
+      background-color: $color-gray-70;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .eui-sidesheet-actions {
+      background-color: $color-gray-90;
+    }
+>>>>>>> oned/v92
   }
 }

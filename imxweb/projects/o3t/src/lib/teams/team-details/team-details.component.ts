@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,8 +29,14 @@
  */
 
 import { Component, Inject, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { EuiSidesheetService, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+=======
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { EuiSidesheetRef, EuiSidesheetService, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+import { TranslateService } from '@ngx-translate/core';
+>>>>>>> oned/v92
 import { PortalTargetsystemTeams } from 'imx-api-o3t';
 import { BaseCdr, ColumnDependentReference, SnackBarService } from 'qbm';
 import { GroupSidesheetComponent, GroupSidesheetData, GroupsService } from 'tsb';
@@ -37,6 +47,7 @@ import { TeamsService } from '../teams.service';
   templateUrl: './team-details.component.html'
 })
 export class TeamDetailsComponent implements OnInit {
+<<<<<<< HEAD
   public readonly formGroup: FormGroup;
   public cdrList: ColumnDependentReference[] = [];
 
@@ -53,6 +64,26 @@ export class TeamDetailsComponent implements OnInit {
 
   get formArray(): FormArray {
     return this.formGroup.get('formArray') as FormArray;
+=======
+  public readonly formGroup: UntypedFormGroup;
+  public cdrList: ColumnDependentReference[] = [];
+
+  constructor(
+    formBuilder: UntypedFormBuilder,
+    @Inject(EUI_SIDESHEET_DATA) public team: PortalTargetsystemTeams,
+    private teamsService: TeamsService,
+    private readonly sidesheet: EuiSidesheetService,
+    private readonly sidesheetRef: EuiSidesheetRef,
+    private readonly groupsService: GroupsService,
+    private readonly snackbar: SnackBarService,
+    private readonly translate: TranslateService
+  ) {
+    this.formGroup = new UntypedFormGroup({ formArray: formBuilder.array([]) });
+  }
+
+  get formArray(): UntypedFormArray {
+    return this.formGroup.get('formArray') as UntypedFormArray;
+>>>>>>> oned/v92
   }
 
   get teamId(): string {
@@ -75,7 +106,11 @@ export class TeamDetailsComponent implements OnInit {
   }
 
   public cancel(): void {
+<<<<<<< HEAD
     this.sidesheet.close();
+=======
+    this.sidesheetRef.close();
+>>>>>>> oned/v92
   }
 
   public async viewGroup(): Promise<void> {
@@ -98,6 +133,7 @@ export class TeamDetailsComponent implements OnInit {
       this.teamsService.handleCloseLoader();
     }
 
+<<<<<<< HEAD
     this.openGroupSidesheet(this.team.GetEntity().GetDisplay(), data);
   }
 
@@ -108,6 +144,19 @@ export class TeamDetailsComponent implements OnInit {
       padding: '0px',
       width: 'max(650px, 60%)',
       icon: 'usergroup',
+=======
+    this.openGroupSidesheet(data);
+  }
+
+  private async openGroupSidesheet(data: GroupSidesheetData): Promise<void> {
+    this.sidesheet.open(GroupSidesheetComponent, {
+      title: await this.translate.get('#LDS#Heading Edit System Entitlement').toPromise(),
+      subTitle: this.team.GetEntity().GetDisplay(),
+      padding: '0px',
+      width: 'max(650px, 60%)',
+      icon: 'usergroup',
+      testId: 'teams-details-view-group-details',
+>>>>>>> oned/v92
       data
     });
   }

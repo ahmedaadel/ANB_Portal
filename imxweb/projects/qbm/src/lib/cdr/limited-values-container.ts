@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -26,6 +26,7 @@
 
 import { LimitedValueData, IValueMetadata, ValType } from 'imx-qbm-dbts';
 
+<<<<<<< HEAD
 export class LimitedValuesContainer {
     public get values(): ReadonlyArray<LimitedValueData> {
         return this.metadata ? this.metadata.GetLimitedValues() : undefined;
@@ -55,4 +56,49 @@ export class LimitedValuesContainer {
     private contains(value: string | number): boolean {
         return this.values && this.values.filter(v => `${v.Value}` === `${value}`).length > 0;
     }
+=======
+/**
+ * A wrapper, that encapsules limited value property functions.
+ */
+export class LimitedValuesContainer {
+  /**
+   * A read-only list of a possible limited values.
+   */
+  public get values(): ReadonlyArray<LimitedValueData> {
+    return this.metadata ? this.metadata.GetLimitedValues() : undefined;
+  }
+
+  constructor(private metadata: IValueMetadata) {}
+
+  /**
+   * Determines, whether the limited value collection allows a null option.
+   */
+  public hasNullOption(): boolean {
+    return this.metadata.GetMinLength() === 0 && !this.contains(this.getNullValue());
+  }
+
+  /**
+   * Determines, whether the value is part of the limited value range or not.
+   */
+  public isNotInLimitedValueRange(value: string | number): boolean {
+    return !((value || '') === (this.getNullValue() || '')) && !this.contains(value);
+  }
+
+  /**
+   * Gets the value representing 'null'.
+   * @returns the value that is used as 'null'.
+   */
+  private getNullValue(): string {
+    return this.metadata.GetType() === ValType.String ? null : '0';
+  }
+
+  /**
+   * Checks, if a value is part of the limited value list
+   * @param value The value to be checked.
+   * @returns
+   */
+  private contains(value: string | number): boolean {
+    return this.values && this.values.filter((v) => `${v.Value}` === `${value}`).length > 0;
+  }
+>>>>>>> oned/v92
 }

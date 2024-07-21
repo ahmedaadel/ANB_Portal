@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -45,7 +49,14 @@ import {
   ClassloggerService,
   MenuService,
   MenuItem,
+<<<<<<< HEAD
   DataTreeWrapperModule
+=======
+  DataTreeWrapperModule,
+  HelpContextualModule,
+  SelectedElementsModule,
+  HELP_CONTEXTUAL
+>>>>>>> oned/v92
 } from 'qbm';
 import { ProductSelectionComponent } from './product-selection.component';
 import { ServiceCategoryListComponent } from './servicecategory-list/servicecategory-list.component';
@@ -59,20 +70,42 @@ import { RoleMembershipsComponent } from './role-memberships/role-memberships.co
 import { RequestsFeatureGuardService } from '../requests-feature-guard.service';
 import { ProductDetailsSidesheetComponent } from './product-details-sidesheet/product-details-sidesheet.component';
 import { PatternDetailsSidesheetComponent } from './pattern-details-sidesheet/pattern-details-sidesheet.component';
+<<<<<<< HEAD
 import { ProductEntitlementsComponent } from '../itshop/request-info/service-item-detail//product-entitlements/product-entitlements.component';
 import { PatternItemsModule } from '../pattern-item-list/pattern-items.module';
 import { OptionalItemsSidesheetComponent } from './optional-items-sidesheet/optional-items-sidesheet.component';
 
+=======
+import { PatternItemsModule } from '../pattern-item-list/pattern-items.module';
+import { OptionalItemsSidesheetComponent } from './optional-items-sidesheet/optional-items-sidesheet.component';
+
+// const routes: Routes = [
+//   {
+//     path: 'productselection',
+//     component: ProductSelectionComponent,
+//     canActivate: [RouteGuardService, RequestsFeatureGuardService],
+//     resolve: [RouteGuardService]
+//   }
+// ];
+>>>>>>> oned/v92
 const routes: Routes = [
   {
     path: 'productselection',
     component: ProductSelectionComponent,
     canActivate: [RouteGuardService, RequestsFeatureGuardService],
+<<<<<<< HEAD
     resolve: [RouteGuardService]
+=======
+    resolve: [RouteGuardService],
+    data:{
+      contextId: HELP_CONTEXTUAL.NewRequest
+    }
+>>>>>>> oned/v92
   }
 ];
 
 @NgModule({
+<<<<<<< HEAD
   imports: [
     CommonModule,
     CdrModule,
@@ -115,18 +148,71 @@ const routes: Routes = [
   ]
 })
 
+=======
+    imports: [
+        CommonModule,
+        CdrModule,
+        ClassloggerModule,
+        DataSourceToolbarModule,
+        DataTableModule,
+        DataTilesModule,
+        DataTreeWrapperModule,
+        DisableControlModule,
+        EuiCoreModule,
+        EuiMaterialModule,
+        FormsModule,
+        LdsReplaceModule,
+        ReactiveFormsModule,
+        // RouterModule.forChild(routes),
+        QbmModule,
+        TranslateModule,
+        ItshopModule,
+        ServiceItemsModule,
+        PatternItemsModule,
+        UserModule,
+        BulkPropertyEditorModule,
+        HelpContextualModule,
+        SelectedElementsModule
+    ],
+    declarations: [
+        ProductSelectionComponent,
+        ServiceCategoryListComponent,
+        CategoryTreeComponent,
+        ServiceItemEditComponent,
+        RoleMembershipsComponent,
+        ProductDetailsSidesheetComponent,
+        PatternDetailsSidesheetComponent,
+        OptionalItemsSidesheetComponent
+    ],
+    providers: [
+        ProductSelectionService
+    ]
+})
+
+/**
+ * @deprecated Use NewRequestModule
+ */
+>>>>>>> oned/v92
 export class ProductSelectionModule {
   constructor(
     private readonly menuService: MenuService,
     logger: ClassloggerService
   ) {
     logger.info(this, '▶️ ProductSelectionModule loaded');
+<<<<<<< HEAD
     this.setupMenu();
+=======
+    // this.setupMenu();
+>>>>>>> oned/v92
   }
 
   private setupMenu(): void {
     this.menuService.addMenuFactories(
+<<<<<<< HEAD
       (preProps: string[], groups: string[]) => {
+=======
+      (preProps: string[], features: string[]) => {
+>>>>>>> oned/v92
 
         const items: MenuItem[] = [];
 

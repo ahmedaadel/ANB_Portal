@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -37,10 +41,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
+<<<<<<< HEAD
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 import { DataSourceToolbarModule, DataTableModule, JobQueueOverviewModule, LdsReplaceModule, QbmModule } from 'qbm';
+=======
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
+
+import { BusyIndicatorModule, DataSourceToolbarModule, DataTableModule, JobQueueOverviewModule, LdsReplaceModule, ObjectHistoryModule, QbmModule } from 'qbm';
+>>>>>>> oned/v92
 import { FrozenJobsComponent } from './frozen-jobs/frozen-jobs.component';
 import { SingleFrozenJobComponent } from './frozen-jobs/single-frozen-job.component';
 import { JobChainsComponent } from './job-chains/job-chains.component';
@@ -54,6 +65,17 @@ import { JobPerformanceQueuesService } from './job-performance/job-performance-q
 import { JobPerformanceService } from './job-performance/job-performance.service';
 import { QueueJobsService } from './jobs/queue-jobs.service';
 import { MatRadioModule } from '@angular/material/radio';
+<<<<<<< HEAD
+=======
+import { ObjectsByIdComponent } from './objects-by-id/objects-by-id.component';
+import { ObjectByIdService } from './objects-by-id/object-by-id.service';
+import { JobHistoryComponent } from './job-history/job-history.component';
+import { ErrorMessageSidesheetComponent } from './error-message-sidesheet/error-message-sidesheet.component';
+import { ChangeOperationSidesheetComponent } from './objects-by-id/change-operation-sidesheet/change-operation-sidesheet.component';
+import { ChangeOperationTableComponent } from './objects-by-id/change-operation-table.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+>>>>>>> oned/v92
 
 
 @NgModule({
@@ -64,6 +86,14 @@ import { MatRadioModule } from '@angular/material/radio';
     JobsGridviewComponent,
     JobsComponent,
     JobPerformanceComponent,
+<<<<<<< HEAD
+=======
+    ObjectsByIdComponent,
+    JobHistoryComponent,
+    ErrorMessageSidesheetComponent,
+    ChangeOperationSidesheetComponent,
+    ChangeOperationTableComponent,
+>>>>>>> oned/v92
   ],
   imports: [
     CommonModule,
@@ -85,8 +115,17 @@ import { MatRadioModule } from '@angular/material/radio';
     MatCardModule,
     MatMenuModule,
     FormsModule,
+<<<<<<< HEAD
     MatSlideToggleModule,
     JobQueueOverviewModule
+=======
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatSlideToggleModule,
+    JobQueueOverviewModule,
+    ObjectHistoryModule,
+    BusyIndicatorModule
+>>>>>>> oned/v92
   ],
   providers: [
     QueueTreeService,
@@ -95,6 +134,10 @@ import { MatRadioModule } from '@angular/material/radio';
     JobPerformanceQueuesService,
     JobPerformanceService,
     FrozenJobsService,
+<<<<<<< HEAD
+=======
+    ObjectByIdService
+>>>>>>> oned/v92
   ]
 })
 export class ProcessesModule { }

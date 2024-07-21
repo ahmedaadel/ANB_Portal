@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @import '@elemental-ui/core/src/styles/_palette.scss';
+=======
+@import "@elemental-ui/core/src/styles/_eui_palette.scss";
+>>>>>>> oned/v92
 
 @mixin imx-flex-row-container {
   display: flex;
@@ -21,8 +25,28 @@
   }
 }
 
+<<<<<<< HEAD
 .mat-expansion-panel {
   margin-bottom: 20px;
+=======
+.mat-card-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 17px;
+}
+
+.mat-expansion-panel {
+  margin-bottom: 20px;
+
+  &-header-title {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  ::ng-deep .eui-alert {
+    width: auto;
+  }
+>>>>>>> oned/v92
 }
 
 .eui-badge {
@@ -30,6 +54,7 @@
 }
 
 .imx-container > * {
+<<<<<<< HEAD
   margin-bottom: 20px;
 }
 .imx-label {
@@ -42,6 +67,21 @@
 }
 
 .imx-risk-reduction-item {
+=======
+  margin-bottom: 10px;
+}
+.imx-label {
+  color: $color-gray-40;
+  font-size: 80%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.imx-entitlement-subtitle, .imx-source-subtitle {
+  color: $color-gray-40;
+}
+
+.imx-risk-reduction-item, .imx-source-item {
+>>>>>>> oned/v92
   list-style-type: circle;
   margin-left: 20px;
 }

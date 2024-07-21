@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,6 +29,10 @@
  */
 
 import { EntitySchema, IClientProperty, IEntity } from 'imx-qbm-dbts';
+<<<<<<< HEAD
+=======
+import { ColumnDependentReference } from 'qbm';
+>>>>>>> oned/v92
 import { Approval } from '../approval';
 import { WorkflowActionParameters } from './workflow-action-parameters.interface';
 
@@ -37,6 +45,12 @@ export interface WorkflowActionEdit {
    */
   actionParameters: WorkflowActionParameters;
 
+<<<<<<< HEAD
+=======
+  /**Additional information, that should be shown on the sidesheet */
+  additionalInfo?: ColumnDependentReference[];
+
+>>>>>>> oned/v92
   /**
    * The requests to make a decision for.
    */
@@ -53,6 +67,15 @@ export interface WorkflowActionEdit {
   description?: string;
 
   /**
+<<<<<<< HEAD
+=======
+   * Whether or not the decision shows the decision guidance tab
+   */
+  withGuidance?:boolean;
+
+
+  /**
+>>>>>>> oned/v92
    * Information about the workflow so far.
    */
   workflow?: {

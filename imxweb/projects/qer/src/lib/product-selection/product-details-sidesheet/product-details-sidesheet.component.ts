@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,7 +33,11 @@ import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 
 import { PortalShopServiceitems, QerProjectConfig } from 'imx-api-qer';
 import { DisplayColumns } from 'imx-qbm-dbts';
+<<<<<<< HEAD
 import { BaseReadonlyCdr, ColumnDependentReference, TabControlHelper } from 'qbm';
+=======
+import { BaseReadonlyCdr, ColumnDependentReference } from 'qbm';
+>>>>>>> oned/v92
 
 @Component({
   selector: 'imx-product-details-sidesheet',
@@ -48,10 +56,13 @@ export class ProductDetailsSidesheetComponent implements OnInit {
       projectConfig: QerProjectConfig
     }
   ) {
+<<<<<<< HEAD
     setTimeout(() => {
       TabControlHelper.triggerResizeEvent();
     });
 
+=======
+>>>>>>> oned/v92
     this.isRoleAssignment = ['ESet', 'QERAssign'].includes(data.item.TableName.value);
   }
 

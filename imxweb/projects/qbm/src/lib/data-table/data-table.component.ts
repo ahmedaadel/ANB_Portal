@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -26,7 +26,6 @@
 
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { SelectionChange } from '@angular/cdk/collections';
-import { OverlayRef } from '@angular/cdk/overlay';
 import {
   Component,
   ViewChild,
@@ -39,20 +38,14 @@ import {
   QueryList,
   OnDestroy,
   AfterViewInit,
-  OnInit
+  OnInit,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatColumnDef, MatTableDataSource } from '@angular/material/table';
-import { EuiLoadingService } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
 
-import {
-  TypedEntity,
-  IClientProperty,
-  EntitySchema,
-  CollectionLoadParameters,
-  GroupInfo
-} from 'imx-qbm-dbts';
+import { TypedEntity, IClientProperty, EntitySchema, CollectionLoadParameters, GroupInfo, GroupInfoData } from 'imx-qbm-dbts';
 import { ImxTranslationProviderService } from '../translation/imx-translation-provider.service';
 import { DataTableColumnComponent } from './data-table-column.component';
 import { DataTableGenericColumnComponent } from './data-table-generic-column.component';
@@ -60,6 +53,11 @@ import { DataSourceToolbarComponent } from '../data-source-toolbar/data-source-t
 import { DataSourceToolbarSettings } from '../data-source-toolbar/data-source-toolbar-settings';
 import { DataTableGroupedData } from './data-table-groups.interface';
 import { RowHighlight } from './data-table-row-highlight.interface';
+import { GroupPaginatorInformation } from './group-paginator/group-paginator.component';
+import { EuiLoadingService } from '@elemental-ui/core';
+import { OverlayRef } from '@angular/cdk/overlay';
+import { debounce } from 'lodash';
+import { ColumnOptions } from '../data-source-toolbar/column-options';
 
 /**
  * A data table component with a detail view specialized on typed entities.
@@ -89,12 +87,16 @@ import { RowHighlight } from './data-table-row-highlight.interface';
       state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
-  ]
+  ],
 })
 export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, OnDestroy {
-  public get numOfSelectedItems(): number { return this.dst.numOfSelectedItems; }
+  public get numOfSelectedItems(): number {
+    return this.dst.numOfSelectedItems;
+  }
 
-  public get numOfSelectableRows(): number { return this.dst.numOfSelectableItems; }
+  public get numOfSelectableRows(): number {
+    return this.dst?.numOfSelectableItems;
+  }
 
   /**
    * @ignore Used internally in components template.
@@ -114,6 +116,12 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
    * The internal mat table datasource bound to the mat table.
    */
   public groupedDataSource: MatTableDataSource<GroupInfo> = new MatTableDataSource<GroupInfo>([]);
+
+  /**
+   *  @ignore Used internally in components template.
+   * Information for the group paginator (containing {@link GroupInfoData|Data table component} for the selected group and the navigation state)
+   */
+  public groupPaginatorInformation: GroupPaginatorInformation;
 
   /**
    * @ignore Used internally in components template.
@@ -222,7 +230,7 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
    * This text will be displayed when a search or filter is applied but there is no data as a result
    * Defaults to a generic message when not supplied
    */
-  @Input() public noMatchingDataText = '#LDS#No matching data';
+  @Input() public noMatchingDataText = '#LDS#There is no data matching your search.';
 
   /**
    * This icon will be displayed along with the 'noMatchingDataTranslationKey' text when a search or filter
@@ -249,10 +257,19 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
   @Input() public highlightRowFilter?: RowHighlight;
 
   /**
+   * Shows/hides grouped data table paginator.
+   */
+  @Input() public showGroupPaginator = true;
+
+  /**
    * An emitted event that contains information on the group that was selected/interacted with
    */
   @Output() public groupDataChanged = new EventEmitter<string>();
 
+  /**
+   * Used to prevent unintended multiple signal firing
+   */
+  public debouncedHighlightRow = debounce((entity, event?) => this.highlightRow(entity, event), 250);
   /**
    * An emitted event that contains the highlighted typed entity after a user has selected a row in the table.
    */
@@ -279,6 +296,12 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
 
   /**
    * @ignore Used internally.
+   * returns whether a busy indicator should be shown or not
+   *    */
+  public isLoading: boolean = true;
+
+  /**
+   * @ignore Used internally.
    * Definitions of internally used mat columns.
    */
   private columnDefs: MatColumnDef[];
@@ -298,8 +321,9 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
   constructor(
     public translateProvider: ImxTranslationProviderService,
     public dialog: MatDialog,
-    private readonly busyService: EuiLoadingService
-  ) { }
+    private readonly busyService: EuiLoadingService,
+    private readonly changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   public get isGroupingApplied(): boolean {
     let result = false;
@@ -310,9 +334,9 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
   }
 
   /**
- * @ignore Used internally.
- * Does most of the initializing stuff.
- */
+   * @ignore Used internally.
+   * Does most of the initializing stuff.
+   */
   public ngOnInit(): void {
     this.ishighlightedEntityChangedUsed = this.highlightedEntityChanged.observers.length > 0;
   }
@@ -323,10 +347,7 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
    */
   public ngAfterViewInit(): void {
     setTimeout(async () => {
-
       if (this.dst && this.dst.settings) {
-
-
         this.settings = this.dst.settings;
         await this.dstHasChanged();
       }
@@ -339,31 +360,49 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
    * Listens for changes of data table inputs e.g. checks it the datasource has changed.
    */
   public async ngOnChanges(changes: SimpleChanges): Promise<void> {
-
     if (changes['mode'] && changes['mode'].currentValue) {
       if (this.mode === 'auto') {
         if (this.dst.dataSourceChanged && this.columnDefs) {
-          this.columnDefs.forEach(colDef => this.table.removeColumnDef(colDef));
+          this.columnDefs.forEach((colDef) => this.table.removeColumnDef(colDef));
         }
       }
     }
 
     if (changes['dst'] && changes['dst'].currentValue) {
+      this.subscriptions.push(
+        this.dst.settingsChanged.subscribe(async (value: DataSourceToolbarSettings) => {
+          if (this.dst.dataSourceHasChanged) {
+            this.settings = value;
+            await this.dstHasChanged();
+          }
+        })
+      );
 
-      this.subscriptions.push(this.dst.settingsChanged.subscribe(async (value: DataSourceToolbarSettings) => {
-        if (this.dst.dataSourceHasChanged) {
-          this.settings = value;
-          await this.dstHasChanged();
-        }
-      }));
+      this.subscriptions.push(
+        this.dst.selectionChanged.subscribe((event: SelectionChange<TypedEntity>) => {
+          if (event && event.source) {
+            this.selectionChanged.emit(event.source.selected);
+          }
+        })
+      );
 
-      this.subscriptions.push(this.dst.selectionChanged.subscribe((event: SelectionChange<TypedEntity>) =>
-        this.selectionChanged.emit(event.source.selected)
-      ));
+      this.subscriptions.push(
+        this.dst.shownColumnsSelectionChanged.subscribe(async (value) => {
+          if (!!this.settings) {
+            await this.dstHasChanged();
+          }
+        })
+      );
 
-      this.subscriptions.push(this.dst.shownColumnsSelectionChanged.subscribe(async value => {
-        await this.dstHasChanged();
-      }));
+      if (this.dst.busyService) {
+        this.subscriptions.push(
+          this.dst.busyService.busyStateChanged.subscribe((busy: boolean) => {
+            this.isLoading = busy;
+            this.changeDetectorRef.detectChanges();
+          })
+        );
+      }
+      this.isLoading = this.dst?.busyService?.isBusy ?? false;
     }
   }
 
@@ -372,7 +411,7 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
    * Unsubscribes all listeners.
    */
   public ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   public isSelectable(item: TypedEntity): boolean {
@@ -384,13 +423,6 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
    */
   public clearSelection(): void {
     this.dst.clearSelection();
-  }
-  /**
-   * @ignore Used internally in components template.
-   * Open the selection dialog
-   */
-  public onOpenSelectionDialog(): void {
-    this.dst.showSelectedItems();
   }
 
   public numOfSelectedItemsOnPage(): number {
@@ -421,7 +453,7 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
     let displayedColumnNames = [];
 
     if (this.displayedColumns && this.displayedColumns.length > 0) {
-      displayedColumnNames = this.displayedColumns.map(item => item.ColumnName);
+      displayedColumnNames = this.displayedColumns.map((item) => item.ColumnName);
     }
 
     if (this.selectable) {
@@ -435,12 +467,32 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
    * @ignore Used internally in components template.
    * Highlights (selects) the current row and emits an event.
    */
-  public highlightRow(entity: TypedEntity): void {
+  public highlightRow(entity: TypedEntity, event?: MouseEvent): void {
     if (entity !== this.highlightedEntity) {
       this.highlightedEntity = entity;
     }
 
-    // Always emit a changed event (even if the same row was selected), to allow any listners to decide whether to act or not
+    // Prevent emission for certain cases
+    if (event) {
+      // Make sure we aren't selecting text
+      if (event.view.getSelection().type === 'Range') {
+        return;
+      }
+
+      // Prevent button clicks from propogating as row clicks, Walk up node chain until we hit table looking if we are a button
+      let target = event.target as HTMLElement;
+      while (target) {
+        if (target.tagName === 'BUTTON') {
+          return;
+        }
+        if (target.tagName === 'TABLE') {
+          break;
+        }
+        target = target.parentElement;
+      }
+    }
+
+    // Emit a changed event (even if the same row was selected), to allow any listners to decide whether to act or not
     this.highlightedEntityChanged.emit(this.highlightedEntity);
   }
 
@@ -496,14 +548,16 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
         this.groupData[groupingDisplay] = {
           data: undefined,
           settings: undefined,
-          navigationState: undefined
+          navigationState: undefined,
         };
       }
       const groupData = this.groupData[groupingDisplay];
       if (!groupData.navigationState) {
         groupData.navigationState = {
-          PageSize: 25, StartIndex: 0, filter: group.Filters, withProperties:
-            this.dst?.settings?.navigationState?.withProperties
+          PageSize: 25,
+          StartIndex: 0,
+          filter: group.Filters,
+          withProperties: this.dst?.settings?.navigationState?.withProperties,
         };
       }
 
@@ -526,8 +580,8 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
 
     setTimeout(() => {
       if (groupingData.selected) {
-        groupingData.selected.forEach(selectedItem => {
-          if (!items.find(item => this.getId(item) === this.getId(selectedItem))) {
+        groupingData.selected.forEach((selectedItem) => {
+          if (!items.find((item) => this.getId(item) === this.getId(selectedItem))) {
             this.unChecked(selectedItem);
           }
         });
@@ -535,7 +589,7 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
 
       groupingData.selected = [];
 
-      items.forEach(item => {
+      items.forEach((item) => {
         groupingData.selected.push(item);
         this.checked(item);
       });
@@ -555,6 +609,40 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
   }
 
   /**
+   * @ignore Used internally in components template
+   * Occurs when the navigation state for grouping has changed
+   * e.g. users clicks on the next page button.
+   *
+   */
+  public async overallGroupingStateChanged(newState: CollectionLoadParameters): Promise<void> {
+    return this.updateGroupingState(this.settings?.groupData?.currentGrouping, newState);
+  }
+
+  /**
+   * @ignore Used internally.
+   * updated the navigation state for the current grouping and loads its content
+   */
+  private async updateGroupingState(currentGrouping: any, newState?: CollectionLoadParameters): Promise<void> {
+    let busyIndicator: OverlayRef;
+    setTimeout(() => (busyIndicator = this.busyService.show()));
+
+    try {
+      if (newState) {
+        currentGrouping.navigationState = newState;
+      }
+
+      this.groupPaginatorInformation = {
+        currentData: await currentGrouping.getData(currentGrouping.navigationState),
+        navigationState: currentGrouping.navigationState,
+      };
+
+      this.groupedDataSource = new MatTableDataSource<GroupInfo>(this.groupPaginatorInformation.currentData.Groups);
+    } finally {
+      setTimeout(() => this.busyService.hide(busyIndicator));
+    }
+  }
+
+  /**
    * @ignore Used internally.
    * Some settings of DST has changed. Check changes.
    */
@@ -562,12 +650,19 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
     // TODO: hier die additional columns berücksichtigen?
     if (this.settings && this.settings.entitySchema) {
       this.entitySchema = this.settings.entitySchema;
-      this.manualColumns.forEach((item: DataTableColumnComponent<any>) => {
+      //update schema with additionals
+      this.parentAdditionals.concat(this.additional).forEach((element) => {
+        const key = ColumnOptions.findKey(element.ColumnName, this.entitySchema);
+        (this.entitySchema.Columns[key] as any) = element;
+      });
+      this.manualColumns?.forEach((item: DataTableColumnComponent<any>) => {
         item.entitySchema = this.entitySchema;
       });
     }
 
     if (this.settings && this.settings.dataSource) {
+      //Apply schema to elements
+      this.settings.dataSource.Data.forEach((elem) => elem.GetEntity().ApplySchema(this.entitySchema));
       this.dataSource = new MatTableDataSource<TypedEntity>(this.settings.dataSource.Data);
     }
 
@@ -586,19 +681,13 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
       // Apply any search/filters from group container table to the inner grouped by data states
       this.propagateNavigationSettingsToGroups(false, groupByChanged);
 
-      let busyIndicator: OverlayRef;
-      setTimeout(() => busyIndicator = this.busyService.show());
-
-      try {
-        this.groupedDataSource = new MatTableDataSource<GroupInfo>(await currentGrouping.getData());
-      } finally {
-        setTimeout(() => this.busyService.hide(busyIndicator));
-      }
+      this.updateGroupingState(currentGrouping, { ...this.settings.navigationState, ...{ StartIndex: 0 } });
     }
 
     this.highlightedEntity = null;
 
     if (this.columnDefs) {
+<<<<<<< HEAD
       this.columnDefs.forEach(colDef => this.table.removeColumnDef(colDef));
     }
 
@@ -608,6 +697,18 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
       this.additional = (this.dst == null || this.dst.additionalColumns?.length === 0)
         ? this.parentAdditionals : this.dst.additionalColumns;
 
+=======
+      this.columnDefs.forEach((colDef) => this.table.removeColumnDef(colDef));
+    }
+
+    if (this.dst.dataSourceChanged || this.dst.shownColumnsSelectionChanged) {
+      this.displayedColumns = [];
+      this.additional = this.dst == null || this.dst.additionalColumns?.length === 0 ? this.parentAdditionals : this.dst.additionalColumns;
+      // filter additionals for columns, that are already set in the DataSourceToolbarSettings
+      this.additional = this.additional.filter((elem) =>
+        this.settings?.displayedColumns?.every((disp) => disp.ColumnName !== elem.ColumnName)
+      );
+>>>>>>> oned/v92
       if (this.manualColumns == null && this.manualGenericColumns == null) {
         return;
       }
@@ -615,12 +716,19 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
       this.columnDefs = [];
 
       if (this.manualColumns && this.table) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> oned/v92
         let mcolumns = this.manualColumns;
         if (mcolumns.length === 0 && this.parentManualColumns) {
           mcolumns = this.parentManualColumns;
         }
+<<<<<<< HEAD
         mcolumns.forEach(column => {
+=======
+        mcolumns.forEach((column) => {
+>>>>>>> oned/v92
           this.table.addColumnDef(column.columnDef);
           this.columnDefs.push(column.columnDef);
         });
@@ -631,11 +739,16 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
         if (gcolumns.length === 0 && this.parentManualGenericColumns) {
           gcolumns = this.parentManualGenericColumns;
         }
+<<<<<<< HEAD
         gcolumns.forEach(column => {
+=======
+        gcolumns.forEach((column) => {
+>>>>>>> oned/v92
           this.table.addColumnDef(column.columnDef);
           this.columnDefs.push(column.columnDef);
         });
       }
+<<<<<<< HEAD
 
     }
 
@@ -645,14 +758,29 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
       if (this.settings && this.settings.displayedColumns) {
         this.displayedColumns = this.settings.displayedColumns
           .concat(this.additional);
+=======
+    }
+
+    if (this.dst && this.dst.shownClientProperties?.filter((elem) => elem != null)?.length > 0 && !this.nested) {
+      this.displayedColumns = this.dst.shownClientProperties.filter((elem) => elem != null);
+    } else {
+      if (this.settings && this.settings.displayedColumns) {
+        this.displayedColumns = this.settings.displayedColumns.concat(this.additional);
+>>>>>>> oned/v92
       }
     }
 
     if ((this.displayedColumns == null || this.displayedColumns.length === 0) && this.entitySchema) {
       this.displayedColumns = [];
+<<<<<<< HEAD
       for (const key in this.entitySchema.Columns) {
         if (this.entitySchema.Columns.hasOwnProperty(key)) {
           const element = this.entitySchema.Columns[key];
+=======
+      for (const key in this.entitySchema?.Columns) {
+        if (this.entitySchema?.Columns?.hasOwnProperty(key)) {
+          const element = this.entitySchema?.Columns[key];
+>>>>>>> oned/v92
           this.displayedColumns.push(element);
         }
       }
@@ -679,7 +807,11 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
         if (groupByChanged) {
           grouping.isExpanded = false;
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> oned/v92
         if (grouping.isExpanded || skipNavigationChange) {
           const preservedGroupingFilter = grouping.navigationState.filter;
           grouping.navigationState = JSON.parse(JSON.stringify(this.settings.navigationState));

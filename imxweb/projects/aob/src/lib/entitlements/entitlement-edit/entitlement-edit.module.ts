@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,9 +32,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+<<<<<<< HEAD
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+=======
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { EuiCoreModule } from '@elemental-ui/core';
+>>>>>>> oned/v92
 import { TranslateModule } from '@ngx-translate/core';
 
 import { EntitlementEditComponent } from './entitlement-edit.component';
@@ -47,8 +59,15 @@ import { ServiceItemTagsModule } from 'qer';
   imports: [
     CdrModule,
     CommonModule,
+<<<<<<< HEAD
     FormsModule,
     MatButtonModule,
+=======
+    EuiCoreModule,
+    FormsModule,
+    MatButtonModule,
+    MatCardModule,
+>>>>>>> oned/v92
     MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,

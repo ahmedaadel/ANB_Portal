@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 @use '@angular/material' as mat;
 @import "variables.scss";
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 .imx-loginInput {
   margin: auto 12px;
@@ -7,7 +11,10 @@
   ::ng-deep {
     input {
       box-sizing: content-box;
+<<<<<<< HEAD
       border: 1px solid mat.get-color-from-palette($asher-gray-palette, 900);
+=======
+>>>>>>> oned/v92
       margin-bottom: 9px;
       height: 30px;
       width: calc(40vw - 6px);
@@ -17,15 +24,20 @@
   .alert-container {
     width: calc(40vw - 6px);
     margin-bottom: 1em;
+<<<<<<< HEAD
   }
 
   eui-alert span {
     color: $QBM_Primary_Black;
+=======
+    color: $color-gray-80;
+>>>>>>> oned/v92
   }
 }
 
 .buttonbar {
   margin-top: 1.5em;
+<<<<<<< HEAD
   text-align: center;
 
   .imx-next-button {
@@ -36,6 +48,11 @@
   .imx-next-button.mat-button-disabled {
     background-color: $black-c;
   }
+=======
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+>>>>>>> oned/v92
 
 }
 
@@ -57,3 +74,14 @@
   margin-top: 1em;
   margin-bottom: 1em;
 }
+<<<<<<< HEAD
+=======
+
+.eui-dark-theme, .eui-contrast-theme {
+  :host {
+    .alert-container {
+      color: $color-gray-0;
+    }
+  }
+}
+>>>>>>> oned/v92

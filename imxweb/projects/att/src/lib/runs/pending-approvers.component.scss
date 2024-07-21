@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @import '@elemental-ui/core/src/styles/_palette.scss';
+=======
+@import "@elemental-ui/core/src/styles/_eui_palette.scss";
+>>>>>>> oned/v92
 
 :host {
   display: flex;
@@ -19,6 +23,7 @@
   overflow-y: auto;
 }
 
+<<<<<<< HEAD
 .imx-button-bar {
   display: flex;
   justify-content: flex-end;
@@ -27,6 +32,14 @@
   padding: 0px 20px 20px 8px;
   margin: 0;
   background-color: $white;
+=======
+.eui-sidesheet-actions {
+  display: flex;
+  justify-content: flex-end;
+  overflow-y: inherit;
+  padding: 0px 20px 20px 8px;
+  margin: 0;
+>>>>>>> oned/v92
   > * {
     margin-left: 10px;
     margin-top: 20px;
@@ -41,3 +54,28 @@
     display: block;
   }
 }
+<<<<<<< HEAD
+=======
+
+.imx-pending-approvers-container{
+  display: flex;
+  flex-direction: column;
+  height:100%;
+}
+
+.eui-dark-theme {
+  :host {
+    .imx-button-bar {
+      background-color: $color-gray-70;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-button-bar {
+      background-color: $color-gray-90;
+    }
+  }
+}
+>>>>>>> oned/v92

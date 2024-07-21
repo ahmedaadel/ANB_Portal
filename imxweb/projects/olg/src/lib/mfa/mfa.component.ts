@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,6 +28,7 @@
  *
  */
 
+<<<<<<< HEAD
 import { AfterContentChecked, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { EuiLoadingService, EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
@@ -32,10 +37,32 @@ import { ValType } from 'imx-qbm-dbts';
 import { BaseCdr, ColumnDependentReference, EntityService } from 'qbm';
 import { PortalMfaService } from './portal-mfa.service';
 
+=======
+import { ChangeDetectorRef, Component, Inject, OnDestroy } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+import { Subscription } from 'rxjs';
+
+import { BusyService } from 'qbm';
+
+/**
+ * Form information for the typed authetification form
+ */
+interface AuthForm {
+  authenticator: FormControl<boolean>;
+}
+
+/**
+ * Component, that provides a list of OneLogin authentication factors
+ *
+ * Can be displayed in a side sheet, that will be closed, if one authentication method was successful
+ */
+>>>>>>> oned/v92
 @Component({
   templateUrl: './mfa.component.html',
   styleUrls: ['./mfa.component.scss'],
 })
+<<<<<<< HEAD
 export class MfaComponent implements OnInit, AfterContentChecked {
   public formGroup: FormGroup;
 
@@ -55,10 +82,29 @@ export class MfaComponent implements OnInit, AfterContentChecked {
 
     private readonly mfa: PortalMfaService,
     private readonly entityService: EntityService,
+=======
+export class MfaComponent implements OnDestroy {
+  public authForm = new FormGroup<AuthForm>({
+    authenticator: new FormControl<boolean>(false),
+  });
+  /** Indicates whether the user has authenticators defined or not */
+  public hasAuthenticators: boolean = false;
+
+  /** Indicates whether the control is loading or not */
+  public isLoading: boolean = false;
+
+  /** busy service used in the authentication control and its sub controls */
+  public busyService: BusyService = new BusyService();
+
+  private subscriptions: Subscription[] = [];
+
+  constructor(
+>>>>>>> oned/v92
     @Inject(EUI_SIDESHEET_DATA)
     public readonly data: {
       workflowActionId: string;
     },
+<<<<<<< HEAD
     private readonly sideSheetRef: EuiSidesheetRef
   ) {
     this.workflowActionId = data.workflowActionId;
@@ -191,5 +237,30 @@ export class MfaComponent implements OnInit, AfterContentChecked {
     } finally {
       this.checkingPoll = false;
     }
+=======
+    sideSheetRef: EuiSidesheetRef,
+    change: ChangeDetectorRef
+  ) {
+    this.subscriptions.push(
+      this.busyService.busyStateChanged.subscribe((state) => {
+        this.isLoading = state;
+        change.detectChanges();
+      })
+    );
+    this.subscriptions.push(
+      this.authForm.controls.authenticator.valueChanges.subscribe((value) => {
+        if (!!value) {
+          sideSheetRef.close(true);
+        }
+      })
+    );
+  }
+
+  /**
+   * unsubscribes all subscriptions, when the component is destroyed
+   */
+  public ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
+>>>>>>> oned/v92
   }
 }

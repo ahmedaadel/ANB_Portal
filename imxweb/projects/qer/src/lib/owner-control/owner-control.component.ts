@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,7 +29,11 @@
  */
 
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
+<<<<<<< HEAD
 import { AbstractControl, FormControl } from '@angular/forms';
+=======
+import { AbstractControl, UntypedFormControl } from '@angular/forms';
+>>>>>>> oned/v92
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -48,7 +56,11 @@ export class OwnerControlComponent implements OnChanges, OnDestroy {
   public ownerCandidateOptions = OwnerCandidateOptions;
   public productOwnerCdr: BaseCdr;
   public productOwnerPersonCdr: BaseCdr;
+<<<<<<< HEAD
   public ownerSelectionCtrl = new FormControl(this.ownerCandidateOptions.roles);
+=======
+  public ownerSelectionCtrl = new UntypedFormControl(this.ownerCandidateOptions.roles);
+>>>>>>> oned/v92
 
   public get uidPersonSelected(): string {
     return this.productOwnerPersonCdr ? this.productOwnerPersonCdr.column.GetValue() : undefined;

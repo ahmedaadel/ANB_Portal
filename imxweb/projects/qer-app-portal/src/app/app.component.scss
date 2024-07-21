@@ -1,4 +1,8 @@
 @import "variables.scss";
+<<<<<<< HEAD
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 .page {
   display: flex;
@@ -34,3 +38,45 @@
     }
   }
 }
+<<<<<<< HEAD
+=======
+
+@media only screen and (max-width: 768px) {
+
+  .eui-top-navigation-mobile {
+    .eui-top-navigation-mobile-footer {
+      .mat-button {
+        &.imx-masthead--icon-button {
+          width: 100%;
+
+          .mat-button-wrapper span {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
+
+.eui-dark-theme {
+  .page {
+    color: $color-gray-5;
+    background-color: $color-gray-80;
+  }
+  .pageContent {
+    color: $color-gray-5;
+    background-color: $color-gray-80;
+  }
+}
+
+.eui-contrast-theme {
+  .page {
+    color: $color-gray-0;
+    background-color: $color-gray-80;
+  }
+  .pageContent {
+    color: $color-gray-0;
+    background-color: $color-gray-80;
+  }
+}
+>>>>>>> oned/v92

@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 @use '@angular/material' as mat;
 @import '@elemental-ui/core/src/styles/_palette.scss';
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 @import "../../../../../qbm/src/lib/tile/tile-variables.scss";
 
 :host {
@@ -19,7 +23,10 @@
   padding: 0.2em 0;
   transition-property: all;
   transition-duration: 0.15s;
+<<<<<<< HEAD
   color: $black-6;
+=======
+>>>>>>> oned/v92
   cursor: pointer;
 }
 
@@ -31,7 +38,10 @@
 .imx-valuelist a:focus,
 .imx-valuelist a:hover {
   text-decoration: none;
+<<<<<<< HEAD
   background-color: mat.get-color-from-palette($asher-gray-palette, 900);
+=======
+>>>>>>> oned/v92
 }
 
 .imx-tile-content {
@@ -71,7 +81,10 @@
 }
 
 .imx-generic-tile-caption h1 > :last-child {
+<<<<<<< HEAD
   color: $black-9;
+=======
+>>>>>>> oned/v92
   margin-left: 1ex;
 }
 
@@ -84,7 +97,10 @@
   font-size: small;
   line-height: 1.2em;
   margin-top: -8px;
+<<<<<<< HEAD
   color: $black-9;
+=======
+>>>>>>> oned/v92
 }
 
 .imx-col {
@@ -133,7 +149,10 @@
     text-align: left;
     overflow: auto;
     overflow-x: hidden;
+<<<<<<< HEAD
     color: $black-9;
+=======
+>>>>>>> oned/v92
     margin-bottom: 0;
   }
   
@@ -150,3 +169,57 @@
   }
 }
 
+<<<<<<< HEAD
+=======
+// Theming
+:host {
+  .imx-valuelist a {
+    color: $color-gray-60;
+  }
+
+  .imx-valuelist a:focus,
+  .imx-valuelist a:hover {
+    background-color: $color-gray-10;
+  }
+
+  .imx-generic-tile-caption h1 > :last-child {
+    color: $color-gray-40;
+  }
+
+  .imx-generic-tile-caption h4 {
+    color: $color-gray-40;
+  }
+
+  .mat-card-subtitle {
+    color: $color-gray-40;
+  }
+  
+}
+
+
+.eui-dark-theme {
+  :host {
+    .imx-valuelist a {
+      color: $color-blue-40;
+    }
+
+    .imx-valuelist a:focus,
+    .imx-valuelist a:hover {
+      background-color: $color-gray-80;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-valuelist a {
+      color: $color-blue-40;
+    }
+
+    .imx-valuelist a:focus,
+    .imx-valuelist a:hover {
+      background-color: $color-gray-90;
+    }
+  }
+}
+>>>>>>> oned/v92

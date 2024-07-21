@@ -1,8 +1,43 @@
+<<<<<<< HEAD
 :host {
   display: flex;
   flex-direction: column;
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+
+
+  .mat-card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    margin: 3px;
+  }
+>>>>>>> oned/v92
 }
 
 .imx-helper-alert {
   margin-bottom: 15px;
 }
+<<<<<<< HEAD
+=======
+
+.eui-dark-theme {
+  :host {
+    .imx-helper-alert {
+      color: $color-gray-2;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-helper-alert {
+      color: $color-gray-0;
+    }
+  }
+}
+>>>>>>> oned/v92

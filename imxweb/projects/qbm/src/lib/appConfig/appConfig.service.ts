@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -26,6 +26,7 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
+<<<<<<< HEAD
 import { Subject } from 'rxjs';
 
 import { AppConfig } from './appconfig.interface';
@@ -34,6 +35,16 @@ import { V2Client, ImxConfig } from 'imx-api-qbm';
 import { ClassloggerService } from '../classlogger/classlogger.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ApiClient } from 'imx-qbm-dbts';
+=======
+
+import { AppConfig } from './appconfig.interface';
+import { ApiClientFetch } from '../api-client/api-client-fetch';
+import { V2Client } from 'imx-api-qbm';
+import { ClassloggerService } from '../classlogger/classlogger.service';
+import { TranslateService } from '@ngx-translate/core';
+import { ApiClient } from 'imx-qbm-dbts';
+import { Subject } from 'rxjs';
+>>>>>>> oned/v92
 
 // @dynamic
 @Injectable()
@@ -52,13 +63,22 @@ export class AppConfigService {
   private config: AppConfig;
   private baseUrl: string;
 
+<<<<<<< HEAD
+=======
+  public initializedSubject: Subject<any> = new Subject();
+>>>>>>> oned/v92
   public onConfigTitleUpdated = new Subject();
 
   constructor(
     private readonly httpClient: HttpClient,
     private readonly logger: ClassloggerService,
     private readonly injector: Injector
+<<<<<<< HEAD
   ) { }
+=======
+  ) {
+  }
+>>>>>>> oned/v92
 
   public async init(apiServerUrl: string): Promise<void> {
     this.config = (await this.httpClient.get('appconfig.json').toPromise()) as AppConfig;
@@ -89,6 +109,7 @@ export class AppConfigService {
     const translation = this.injector.get(TranslateService);
     this._apiClient = new ApiClientFetch(this.baseUrl, this.logger, translation);
     this._v2client = new V2Client(this._apiClient);
+<<<<<<< HEAD
   }
 
  
@@ -100,5 +121,8 @@ export class AppConfigService {
       return this._imxConfig;
     this._imxConfig = this.client.imx_config_get();
     return this._imxConfig;
+=======
+    this.initializedSubject.next();
+>>>>>>> oned/v92
   }
 }

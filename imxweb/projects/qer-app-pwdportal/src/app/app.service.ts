@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -37,7 +41,12 @@ import {
   ImxTranslationProviderService,
   ClassloggerService,
   PluginLoaderService,
+<<<<<<< HEAD
   SplashService
+=======
+  SplashService,
+  SystemInfoService
+>>>>>>> oned/v92
 } from 'qbm';
 import { environment } from '../environments/environment';
 import { TypedClient } from 'imx-api-qbm';
@@ -56,6 +65,10 @@ export class AppService {
     public readonly registry: CdrRegistryService,
     private readonly logger: ClassloggerService,
     private readonly config: AppConfigService,
+<<<<<<< HEAD
+=======
+    private readonly systemInfoService: SystemInfoService,
+>>>>>>> oned/v92
     private readonly translateService: TranslateService,
     private readonly session: imx_SessionService,
     private readonly translationProvider: ImxTranslationProviderService,
@@ -75,8 +88,11 @@ export class AppService {
     this.translateService.setDefaultLang(browserCulture);
     await this.translateService.use(browserCulture).toPromise();
 
+<<<<<<< HEAD
     this.authentication.onSessionResponse.subscribe(sessionState => this.translationProvider.init(sessionState?.culture));
 
+=======
+>>>>>>> oned/v92
     this.translateService.onLangChange.subscribe(() => {
       this.setTitle();
     });
@@ -91,7 +107,11 @@ export class AppService {
   }
 
   private async setTitle(): Promise<void> {
+<<<<<<< HEAD
     const imxConfig = await this.config.getImxConfig();
+=======
+    const imxConfig = await this.systemInfoService.getImxConfig();
+>>>>>>> oned/v92
     const name = imxConfig.ProductName || Globals.QIM_ProductNameFull;
     this.config.Config.Title = await this.translateService.get('#LDS#Heading Password Reset Portal').toPromise();
     const title = `${name} ${this.config.Config.Title}`;

@@ -31,7 +31,13 @@
       "o3t": ["dist/o3t"],
       "o3t/*": ["dist/o3t/*"],
       "aad": ["dist/aad"],
+<<<<<<< HEAD
       "aad/*": ["dist/aad/*"]
+=======
+      "aad/*": ["dist/aad/*"],
+      "apc": ["dist/apc"],
+      "apc/*": ["dist/apc/*"]
+>>>>>>> oned/v92
     },
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
@@ -41,7 +47,11 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+<<<<<<< HEAD
     "target": "es2017",
+=======
+    "target": "es2020",
+>>>>>>> oned/v92
     "module": "es2020",
     "lib": [
       "es2020",
@@ -54,6 +64,9 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": false,
     "strictNullInputTypes": false,
+<<<<<<< HEAD
     "enableIvy": false
+=======
+>>>>>>> oned/v92
   }
 }

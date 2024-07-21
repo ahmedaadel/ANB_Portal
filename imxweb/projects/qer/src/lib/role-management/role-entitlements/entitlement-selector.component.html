@@ -1,14 +1,22 @@
 <ng-container *ngIf="types">
   <div eui-sidesheet-content>
     <mat-form-field class="request-entitlement-type-selector">
+<<<<<<< HEAD
       <mat-label>{{'#LDS#Select the type of entitlement to add' | translate}}</mat-label>
       <mat-select (selectionChange)="optionSelected($event.value)" [(ngModel)]="selectedType">
         <mat-option *ngFor="let pr of types" [value]="pr">
           {{pr.TableDisplay}}
+=======
+      <mat-label>{{ '#LDS#Select the type of entitlement to add' | translate }}</mat-label>
+      <mat-select (selectionChange)="optionSelected($event.value)" [(ngModel)]="selectedType">
+        <mat-option *ngFor="let pr of types" [value]="pr">
+          {{ pr.TableDisplay }}
+>>>>>>> oned/v92
         </mat-option>
       </mat-select>
     </mat-form-field>
 
+<<<<<<< HEAD
     <imx-fk-candidates #fkSelector [data]="data" (itemPicked)="applySelection($event)"
       [noDataText]="GetLdsNoData() | translate"
       (selectionChanged)="selectionChanged($event)"></imx-fk-candidates>
@@ -29,9 +37,46 @@
     </button>
     <button *ngIf="data?.isMultiValue" mat-raised-button color="primary" [disabled]="selectedItems?.length === 0"
       (click)="applySelection()" data-imx-identifier="requests-selector-apply-selection">
+=======
+    <mat-card>
+      <imx-fk-candidates
+        #fkSelector
+        [data]="data"
+        (itemPicked)="applySelection($event)"
+        [noDataText]="GetLdsNoData() | translate"
+        (selectionChanged)="selectionChanged($event)"
+      ></imx-fk-candidates>
+    </mat-card>
+  </div>
+
+  <div eui-sidesheet-actions>
+    <div class="imx-menu-spacer"></div>
+    <button
+      class="imx-clear-button"
+      [disabled]="selectedItems?.length === 0"
+      mat-stroked-button
+      type="button"
+      (click)="fkSelector.clearSelection()"
+      data-imx-identifier="requests-selector-clear-selection"
+    >
+      <span translate>#LDS#Clear selection</span>
+    </button>
+    <button
+      *ngIf="data?.isMultiValue"
+      mat-raised-button
+      color="primary"
+      [disabled]="selectedItems?.length === 0"
+      (click)="applySelection()"
+      data-imx-identifier="requests-selector-apply-selection"
+    >
+>>>>>>> oned/v92
       <span translate>#LDS#Apply</span>
     </button>
 
     <!--  -->
   </div>
+<<<<<<< HEAD
 </ng-container>
+=======
+</ng-container>
+>>>>>>> oned/v92

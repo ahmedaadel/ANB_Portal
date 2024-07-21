@@ -1,11 +1,22 @@
-<imx-date
+<imx-date *ngIf="columnContainer?.canEdit; else isReadonly"
   [control]="control"
   [display]="columnContainer?.display"
   [isReadonly]="!columnContainer?.canEdit"
   [min]="columnContainer?.valueConstraint?.MinValue"
   [max]="columnContainer?.valueConstraint?.MaxValue"
+  <!--cust-->
   [isValueRequired]="columnContainer.CCC_isValueRequired"
   [withTime]="withTime"
   [isLoading]="isBusy"
   [imxIdentifierSuffix]="'-cdr-' + columnContainer?.name">
 </imx-date>
+
+<!-- template for read only elements-->
+<ng-template #isReadonly>
+  <imx-view-property
+    [columnContainer]="columnContainer"
+    defaultValue="#LDS#Not set"
+  >
+  </imx-view-property>
+</ng-template>
+

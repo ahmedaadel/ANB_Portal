@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -26,7 +30,11 @@
 
 import { Injectable } from '@angular/core';
 
+<<<<<<< HEAD
 import { EntityColumnData, FkProviderItem, IClientProperty, IEntityColumn, LocalEntityColumn } from 'imx-qbm-dbts';
+=======
+import { EntityColumnData, IClientProperty, FkCandidateProvider, FkProviderItem, IEntityColumn, LocalEntityColumn } from 'imx-qbm-dbts';
+>>>>>>> oned/v92
 import { ImxTranslationProviderService } from '../translation/imx-translation-provider.service';
 
 @Injectable({
@@ -41,6 +49,12 @@ export class EntityService {
     data: EntityColumnData = {},
     putValueDelegate: (oldValue: any, newValue: any) => Promise<void> = () => Promise.resolve()
   ): IEntityColumn {
+<<<<<<< HEAD
     return new LocalEntityColumn(property, this.translator, fkProviderItems, data, ((z, x, y) => putValueDelegate(x, y)));
+=======
+
+    var fkProvider = fkProviderItems ? new FkCandidateProvider(fkProviderItems) : undefined;
+    return new LocalEntityColumn(property, this.translator, fkProvider, data, ((z, x, y) => putValueDelegate(x, y)));
+>>>>>>> oned/v92
   }
 }

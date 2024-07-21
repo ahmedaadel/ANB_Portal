@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -33,7 +37,11 @@ import { Subscription } from 'rxjs';
 import { ITShopConfig, PortalServicecategories, PortalShopServiceitems } from 'imx-api-qer';
 import { IEntity } from 'imx-qbm-dbts';
 
+<<<<<<< HEAD
 import { isIE, SettingsService, SnackBarService } from 'qbm';
+=======
+import { SettingsService, SnackBarService, HelpContextualComponent, HelpContextualService, HELP_CONTEXTUAL } from 'qbm';
+>>>>>>> oned/v92
 import { ServiceCategoriesService } from './service-categories.service';
 import { ServiceCategoryTreeDatabase } from './service-category-tree-database';
 import { ServiceCategoryChangedType } from './service-category-changed.enum';
@@ -62,13 +70,22 @@ export class ServiceCategoriesComponent implements OnDestroy {
   constructor(
     private readonly serviceCategoriesProvider: ServiceCategoriesService,
     private readonly serviceItemsService: ServiceItemsService,
+<<<<<<< HEAD
     private readonly busyService: EuiLoadingService,
+=======
+    private readonly euiBusyService: EuiLoadingService,
+>>>>>>> oned/v92
     private readonly projectConfig: ProjectConfigurationService,
     private readonly sidesheet: EuiSidesheetService,
     private readonly translate: TranslateService,
     private readonly settingsService: SettingsService,
     private readonly snackBar: SnackBarService,
+<<<<<<< HEAD
     private readonly errorHandler: ErrorHandler
+=======
+    private readonly errorHandler: ErrorHandler,
+    private readonly helpContextualService: HelpContextualService
+>>>>>>> oned/v92
   ) {
     this.initializeTree();
   }
@@ -82,7 +99,11 @@ export class ServiceCategoriesComponent implements OnDestroy {
     let serviceItemsInitialSelection: PortalShopServiceitems[];
 
     let overlayRef: OverlayRef;
+<<<<<<< HEAD
     setTimeout(() => overlayRef = this.busyService.show());
+=======
+    setTimeout(() => overlayRef = this.euiBusyService.show());
+>>>>>>> oned/v92
     try {
       const key = selectedEntity.GetKeys()[0];
 
@@ -90,7 +111,11 @@ export class ServiceCategoriesComponent implements OnDestroy {
 
       serviceItemsInitialSelection = (await this.serviceItemsService.get({ UID_AccProductGroup: key }))?.Data;
     } finally {
+<<<<<<< HEAD
       setTimeout(() => this.busyService.hide(overlayRef));
+=======
+      setTimeout(() => this.euiBusyService.hide(overlayRef));
+>>>>>>> oned/v92
     }
 
     if (serviceCategory) {
@@ -104,12 +129,20 @@ export class ServiceCategoriesComponent implements OnDestroy {
   }
 
   private initializeTree(): void {
+<<<<<<< HEAD
     this.treeDatabase = new ServiceCategoryTreeDatabase(this.busyService, this.settingsService, this.serviceCategoriesProvider);
+=======
+    this.treeDatabase = new ServiceCategoryTreeDatabase(this.euiBusyService, this.settingsService, this.serviceCategoriesProvider);
+>>>>>>> oned/v92
 
     this.subscriptions.push(this.treeDatabase.initialized.subscribe(async () => {
       if (this.config == null) {
         let overlayRef: OverlayRef;
+<<<<<<< HEAD
         setTimeout(() => overlayRef = this.busyService.show());
+=======
+        setTimeout(() => overlayRef = this.euiBusyService.show());
+>>>>>>> oned/v92
         try {
           const config = await this.projectConfig.getConfig();
           this.config = {
@@ -118,7 +151,11 @@ export class ServiceCategoriesComponent implements OnDestroy {
             hasAccproductparamcategoryCandidates: await this.serviceCategoriesProvider.hasAccproductparamcategoryCandidates()
           };
         } finally {
+<<<<<<< HEAD
           setTimeout(() => this.busyService.hide(overlayRef));
+=======
+          setTimeout(() => this.euiBusyService.hide(overlayRef));
+>>>>>>> oned/v92
         }
       }
 
@@ -132,6 +169,7 @@ export class ServiceCategoriesComponent implements OnDestroy {
     const parentCategoryId = serviceCategory.UID_AccProductGroupParent.value;
 
     const serviceItemData = {
+<<<<<<< HEAD
       title: '#LDS#Heading Service Items',
       display: '#LDS#Service items',
       selected: serviceItemsInitialSelection?.slice(),
@@ -140,21 +178,44 @@ export class ServiceCategoriesComponent implements OnDestroy {
 
     const state = await this.sidesheet.open(
       ServiceCategoryComponent,
+=======
+      title: '#LDS#Heading Select Service Items',
+      display: '#LDS#Service items',
+      selected: serviceItemsInitialSelection?.slice(),
+      parent: serviceCategory,
+      getTyped: parameters => this.serviceItemsService.get(parameters),
+    };
+    this.helpContextualService.setHelpContextId(editMode ? HELP_CONTEXTUAL.ServiceCategoriesEdit : HELP_CONTEXTUAL.ServiceCategoriesCreate);
+    const state = await this.sidesheet.open(ServiceCategoryComponent,
+>>>>>>> oned/v92
       {
         title: await this.translate.get(
           editMode ? '#LDS#Heading Edit Service Category' : '#LDS#Heading Create Service Category'
         ).toPromise(),
+<<<<<<< HEAD
         headerColour: 'iris-blue',
         padding: '0px',
         width: isIE() ? '60%' : 'max(600px, 60%)',
         disableClose: true,
+=======
+        subTitle: editMode ? serviceCategory.GetEntity().GetDisplay() : '',
+        padding: '0px',
+        width: 'max(600px, 60%)',
+        disableClose: true,
+        testId: editMode ? 'edit-service-category' : 'create-service-category',
+>>>>>>> oned/v92
         data: {
           editMode,
           serviceCategory,
           serviceCategoryEditableFields: this.config?.serviceCategoryEditableFields,
           hasAccproductparamcategoryCandidates: this.config?.hasAccproductparamcategoryCandidates,
           serviceItemData
+<<<<<<< HEAD
         }
+=======
+        },
+        headerComponent: HelpContextualComponent
+>>>>>>> oned/v92
       }
     ).afterClosed().toPromise();
 
@@ -185,7 +246,11 @@ export class ServiceCategoriesComponent implements OnDestroy {
     parentChanged: boolean
   ): Promise<void> {
     let overlayRef: OverlayRef;
+<<<<<<< HEAD
     setTimeout(() => (overlayRef = this.busyService.show()));
+=======
+    setTimeout(() => (overlayRef = this.euiBusyService.show()));
+>>>>>>> oned/v92
 
     try {
       if (!editMode) {
@@ -218,13 +283,21 @@ export class ServiceCategoriesComponent implements OnDestroy {
     } catch (error) {
       this.errorHandler.handleError(error);
     } finally {
+<<<<<<< HEAD
       setTimeout(() => this.busyService.hide(overlayRef));
+=======
+      setTimeout(() => this.euiBusyService.hide(overlayRef));
+>>>>>>> oned/v92
     }
   }
 
   private async delete(serviceCategory: PortalServicecategories): Promise<void> {
     let overlayRef: OverlayRef;
+<<<<<<< HEAD
     setTimeout(() => (overlayRef = this.busyService.show()));
+=======
+    setTimeout(() => (overlayRef = this.euiBusyService.show()));
+>>>>>>> oned/v92
 
     try {
       await this.serviceCategoriesProvider.delete(serviceCategory.GetEntity().GetKeys()[0]);
@@ -234,7 +307,11 @@ export class ServiceCategoriesComponent implements OnDestroy {
     } catch (error) {
       this.errorHandler.handleError(error);
     } finally {
+<<<<<<< HEAD
       setTimeout(() => this.busyService.hide(overlayRef));
+=======
+      setTimeout(() => this.euiBusyService.hide(overlayRef));
+>>>>>>> oned/v92
     }
   }
 }

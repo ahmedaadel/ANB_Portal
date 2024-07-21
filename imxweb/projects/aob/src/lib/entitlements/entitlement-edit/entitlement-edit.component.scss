@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import '@elemental-ui/core/src/styles/_palette.scss';
 
 :host {
@@ -36,5 +37,16 @@
 
   .justify-start {
     margin-right: auto;
+=======
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .eui-sidesheet-content {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+>>>>>>> oned/v92
   }
 }

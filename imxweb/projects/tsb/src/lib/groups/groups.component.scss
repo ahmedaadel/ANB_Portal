@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 :host {
   overflow: auto;
+=======
+@import '../../../../../shared/scss/common-table.scss';
+:host {
+  overflow: hidden;
+>>>>>>> oned/v92
 }
 
 .data-explorer--groups > :nth-child(2) {
@@ -19,6 +25,7 @@
   > :first-child {
     flex: 1 1 auto;
   }
+<<<<<<< HEAD
 
 }
 
@@ -30,3 +37,39 @@
 .imx-spacer {
   flex: 1 1 auto;
 }
+=======
+}
+
+.imx-tab-card {
+  margin: 20px;
+  flex: 1 1 auto;
+}
+
+.eui-sidesheet-actions {
+  .imx-spacer {
+    flex: 1 1 auto;
+  }
+}
+
+.data-explorer-bottom-button-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-top: 15px;
+
+  .mat-stroked-button{
+    @include imx-icon-for-image-button();
+  }
+
+  .imx-spacer {
+    flex: 1 1 auto;
+  }
+}
+.hidden {
+  display: none;
+}
+
+imx-selected-elements {
+  margin-left: 10px;
+}
+>>>>>>> oned/v92

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -32,6 +36,10 @@ export { PolConfigModule } from './lib/pol-config.module';
 export { ApiService } from './lib/api.service';
 export { PolicyViolationsModule } from './lib/policy-violations/policy-violations.module';
 export { PolicyViolationsComponent } from './lib/policy-violations/policy-violations.component';
+<<<<<<< HEAD
 export { PolicyViolationApproverGuardService } from './lib/guards/policy-violation-approver-guard.service';
+=======
+export { PolicyAdminGuardService } from './lib/guards/policy-admin-guard.service';
+>>>>>>> oned/v92
 export { PermissionsService } from './lib/admin/permissions.service';
 

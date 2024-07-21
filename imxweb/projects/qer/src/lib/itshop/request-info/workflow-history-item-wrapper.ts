@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -73,8 +77,19 @@ export class WorkflowHistoryItemWrapper {
     ];
 
     const customDisplays = {
+<<<<<<< HEAD
       UID_PersonRelated: historyItem.DecisionType.value === 'AddInsteadOf' ? '#LDS#Delegated approver' :
         ['Query', 'AddAdditional'].includes(historyItem.DecisionType.value) ? '#LDS#Recipient' : undefined
+=======
+      UID_PersonRelated:
+        historyItem.DecisionType.value === 'AddInsteadOf'
+          ? '#LDS#Delegated approver'
+          : historyItem.DecisionType.value === 'AddAdditional'
+          ? '#LDS#Additional approver'
+          : historyItem.DecisionType.value === 'Query'
+          ? '#LDS#Recipient'
+          : undefined,
+>>>>>>> oned/v92
     };
 
     return properties.filter(property => this.isToView(property)).map(property =>

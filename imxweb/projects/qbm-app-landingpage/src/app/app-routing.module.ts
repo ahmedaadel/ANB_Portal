@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,19 +32,27 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationGuardService, LoginComponent, RouteGuardService } from 'qbm';
 import { StartComponent } from './start/start.component';
+<<<<<<< HEAD
 import { SwaggerComponent } from './swagger/swagger.component';
+=======
+>>>>>>> oned/v92
 import { AdminRoutes } from 'qbm';
 
 const routes: Routes = [
   ...AdminRoutes,
   {
     path: '',
+<<<<<<< HEAD
     component: StartComponent
+=======
+    component: StartComponent,
+>>>>>>> oned/v92
   },
   {
     path: 'login',
     component: LoginComponent,
     canActivate: [AuthenticationGuardService],
+<<<<<<< HEAD
     resolve: [RouteGuardService]
   },
   {
@@ -48,10 +60,18 @@ const routes: Routes = [
     component: SwaggerComponent
   },
   { path: '**', redirectTo: '' }
+=======
+    resolve: [RouteGuardService],
+  },
+>>>>>>> oned/v92
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true, relativeLinkResolution: 'legacy' })],
+<<<<<<< HEAD
   exports: [RouterModule]
+=======
+  exports: [RouterModule],
+>>>>>>> oned/v92
 })
 export class AppRoutingModule {}

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,8 +34,23 @@ import { DashboardComponent } from "./dashboard.component";
 
 export const AdminRoutes: Routes = [
     {
+<<<<<<< HEAD
         path: 'dashboard',
         component: DashboardComponent,
         canActivate: [RouteGuardService]
     },
 ];
+=======
+        path: 'admin',
+        component: DashboardComponent,
+        canActivate: [RouteGuardService],
+        resolve: [RouteGuardService]
+      },
+      {
+        path: 'admin/:tab',
+        component: DashboardComponent,
+        canActivate: [RouteGuardService],
+        resolve: [RouteGuardService]
+    },
+];
+>>>>>>> oned/v92

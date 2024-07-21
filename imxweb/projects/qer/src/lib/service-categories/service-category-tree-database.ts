@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -37,7 +41,11 @@ import { ServiceCategoriesService } from './service-categories.service';
 export class ServiceCategoryTreeDatabase extends TreeDatabase {
 
   constructor(
+<<<<<<< HEAD
     private readonly busyService: EuiLoadingService,
+=======
+    private readonly loadingServiceElemental: EuiLoadingService,
+>>>>>>> oned/v92
     private readonly settings: SettingsService,
     private readonly serviceCategoriesProvider: ServiceCategoriesService
   ) {
@@ -51,7 +59,11 @@ export class ServiceCategoryTreeDatabase extends TreeDatabase {
     let entities: TreeNodeResultParameter;
     let overlayRef: OverlayRef;
     if (showLoading) {
+<<<<<<< HEAD
       setTimeout(() => overlayRef = this.busyService.show());
+=======
+      setTimeout(() => overlayRef = this.loadingServiceElemental.show());
+>>>>>>> oned/v92
     }
     try {
       const opts = {
@@ -69,7 +81,11 @@ export class ServiceCategoryTreeDatabase extends TreeDatabase {
       };
     } finally {
       if (showLoading) {
+<<<<<<< HEAD
         setTimeout(() => this.busyService.hide(overlayRef));
+=======
+        setTimeout(() => this.loadingServiceElemental.hide(overlayRef));
+>>>>>>> oned/v92
       }
     }
     return entities;

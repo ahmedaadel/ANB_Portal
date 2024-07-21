@@ -1,4 +1,5 @@
 :host {
+<<<<<<< HEAD
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -6,6 +7,15 @@
 
 .imx-terms-of-use-accept-button-container {
     margin-top: 20px;
+=======
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.imx-terms-of-use-accept-button-container {
+  margin-top: 20px;
+>>>>>>> oned/v92
 }
 
 .heading-wrapper {
@@ -23,6 +33,28 @@
   }
 }
 
+<<<<<<< HEAD
+=======
+.hidden {
+  display: none;
+}
+
+imx-busy-indicator {
+  align-self: center;
+  justify-self: center;
+}
+
+eui-alert,
+.imx-success-message {
+  margin-bottom: 20px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+>>>>>>> oned/v92
 .eui-sidesheet-actions {
   padding: 16px;
   .justify-start {

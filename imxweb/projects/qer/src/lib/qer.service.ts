@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -26,33 +30,48 @@
 
 import { Injectable } from '@angular/core';
 
+<<<<<<< HEAD
 import { TwoFactorAuthenticationService, ExtService, MenuService } from 'qbm';
 
 import { ObjectOverviewPersonComponent } from './ops/objectOverviewPerson.component';
 import { ObjectsheetPersonComponent } from './objectsheet-person/objectsheet-person.component';
+=======
+import { ExtService } from 'qbm';
+
+import { ObjectOverviewPersonComponent } from './ops/objectOverviewPerson.component';
+>>>>>>> oned/v92
 import { ShoppingCartValidationDetailService } from './shopping-cart-validation-detail/shopping-cart-validation-detail.service';
 import { ExclusionCheckComponent } from './shopping-cart-validation-detail/exclusion-check/exclusion-check.component';
 import { DuplicateCheckComponent } from './shopping-cart-validation-detail/duplicate-check/duplicate-check.component';
 // tslint:disable-next-line: max-line-length
 import { ProductDependencyCheckComponent } from './shopping-cart-validation-detail/product-dependency-check/product-dependency-check.component';
+<<<<<<< HEAD
 import { ObjectSheetService } from './object-sheet/object-sheet.service';
+=======
+>>>>>>> oned/v92
 
 @Injectable({
   providedIn: 'root'
 })
 export class QerService {
   constructor(
+<<<<<<< HEAD
     private authService: TwoFactorAuthenticationService,
     private extService: ExtService,
     private objectsheetService: ObjectSheetService,
     private readonly validationDetailService: ShoppingCartValidationDetailService,
     private readonly menuService: MenuService
+=======
+    private extService: ExtService,
+    private readonly validationDetailService: ShoppingCartValidationDetailService,
+>>>>>>> oned/v92
   ) { }
 
   public init(): void {
 
     this.extService.register('QBM_ops_ObjectOverview_Actions', { instance: ObjectOverviewPersonComponent });
 
+<<<<<<< HEAD
     this.objectsheetService.register('Person', ObjectsheetPersonComponent);
 
     this.validationDetailService.register(ExclusionCheckComponent, 'ExclusionCheck');
@@ -79,5 +98,10 @@ export class QerService {
     //     };
     //   }
     // );
+=======
+    this.validationDetailService.register(ExclusionCheckComponent, 'ExclusionCheck');
+    this.validationDetailService.register(DuplicateCheckComponent, 'DuplicateCheck');
+    this.validationDetailService.register(ProductDependencyCheckComponent, 'ProductDependencyCheck');
+>>>>>>> oned/v92
   }
 }

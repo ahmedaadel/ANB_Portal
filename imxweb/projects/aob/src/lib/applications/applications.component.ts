@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -26,7 +30,11 @@
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+<<<<<<< HEAD
 import { Subscription } from 'rxjs';
+=======
+import { Subject, Subscription } from 'rxjs';
+>>>>>>> oned/v92
 
 import { EuiLoadingService } from '@elemental-ui/core';
 import { PortalApplication } from 'imx-api-aob';
@@ -49,6 +57,10 @@ export class ApplicationsComponent implements OnDestroy, OnInit {
   private applicationNavigation: ApplicationNavigationComponent;
   private applicationContent: ApplicationContent;
   private subscriptions: Subscription[] = [];
+<<<<<<< HEAD
+=======
+  private loadingSubject = new Subject<boolean>();
+>>>>>>> oned/v92
 
   constructor(
     private readonly logger: ClassloggerService,
@@ -122,6 +134,10 @@ export class ApplicationsComponent implements OnDestroy, OnInit {
     this.logger.trace(this, 'Initializing Application Navigation View', componentRef);
 
     this.applicationNavigation = componentRef;
+<<<<<<< HEAD
+=======
+    this.applicationNavigation.loadingSubject = this.loadingSubject;
+>>>>>>> oned/v92
 
     this.subscriptions.push(
       this.applicationNavigation.applicationSelected.subscribe((uidApplication: string) =>
@@ -141,6 +157,10 @@ export class ApplicationsComponent implements OnDestroy, OnInit {
 
   public async onActivateContentOutlet(applicationContent: any): Promise<void> {
     this.applicationContent = applicationContent;
+<<<<<<< HEAD
+=======
+    this.applicationContent.loadingSubject = this.loadingSubject;
+>>>>>>> oned/v92
     this.logger.trace(this, 'Initializing Application Content View', this.applicationContent);
 
     if (this.selectedApplication == null) {
@@ -166,9 +186,16 @@ export class ApplicationsComponent implements OnDestroy, OnInit {
 
   private async redirectToAppDetails(uidApplication: string): Promise<boolean> {
     this.logger.trace(this, 'Redirecting to details view.');
+<<<<<<< HEAD
     return this.router.navigate(
       ['applications', { outlets: { content: ['detail'] } }],
       uidApplication ? { queryParams: { id: uidApplication } } : undefined
     );
+=======
+
+     return this.router.navigate(
+        ['applications', { outlets: { content: ['detail'] } }],
+        uidApplication ? { queryParams: { id: uidApplication } } : undefined)
+>>>>>>> oned/v92
   }
 }

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -27,9 +31,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+<<<<<<< HEAD
 import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { DataSourceToolbarModule, DataTableModule } from 'qbm';
+=======
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { DataSourceToolbarModule, DataTableModule, SelectedElementsModule, LdsReplaceModule } from 'qbm';
+>>>>>>> oned/v92
 import { DependenciesComponent } from './dependencies.component';
 import { OutstandingComponent } from './outstanding.component';
 import { OutstandingService } from './outstanding.service';
@@ -43,7 +55,15 @@ import { SelectedItemsComponent } from './selected-items/selected-items.componen
     EuiCoreModule,
     FormsModule,
     EuiMaterialModule,
+<<<<<<< HEAD
     TranslateModule,
+=======
+    MatProgressSpinnerModule,
+    MatTooltipModule,
+    TranslateModule,
+    SelectedElementsModule,
+    LdsReplaceModule,
+>>>>>>> oned/v92
   ],
   providers: [
     OutstandingService

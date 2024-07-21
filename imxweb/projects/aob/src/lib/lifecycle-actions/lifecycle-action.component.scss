@@ -1,4 +1,8 @@
 @import '@elemental-ui/core/src/styles/_palette.scss';
+<<<<<<< HEAD
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 :host {
   display: flex;
@@ -141,3 +145,24 @@ div[imxActionsLabel] {
     color: $black-4;
   }
 }
+<<<<<<< HEAD
+=======
+
+.eui-dark-theme {
+  :host {
+    .mat-card-avatar {
+      background-color: $color-gray-60;
+      color: $color-gray-80;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .mat-card-avatar {
+      background-color: $color-gray-80;
+      color: $color-gray-100;
+    }
+  }
+}
+>>>>>>> oned/v92

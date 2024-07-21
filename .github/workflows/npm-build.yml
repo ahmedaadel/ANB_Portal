@@ -4,7 +4,8 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master, v82, v90, v91 ]
+
+    branches: [ master, v82, v90, v92 ]
 
 jobs:
   build:
@@ -106,4 +107,9 @@ jobs:
     - name: Build qer-app-pwdportal    
       working-directory: ./imxweb
       run: npm run build qer-app-pwdportal
+
+    - name: Build custom-app
+      working-directory: ./imxweb
+      run: npm run build custom-app
+
 

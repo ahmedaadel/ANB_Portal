@@ -1,5 +1,9 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
+<<<<<<< HEAD
 
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 :host {
   display: flex;
   flex-direction: column;
@@ -144,7 +148,14 @@ li.imx-event {
   display: block;
 }
 
+<<<<<<< HEAD
 div[step]{
+=======
+div[step] {
+  margin-bottom: 16px;
+}
+div[step-caption]{
+>>>>>>> oned/v92
   margin-bottom: 10px;
   span[caption]{
     font-weight: 600;
@@ -154,4 +165,24 @@ div[step]{
 
 div[approver] {
   margin-left: 10px;
+<<<<<<< HEAD
 }
+=======
+}
+
+.eui-dark-theme {
+  :host {
+    li.imx-event.imx-info::before , li.imx-event.imx-pending::before, li.imx-event.imx-question::before, li.imx-event.imx-positive::before , li.imx-event.imx-negative::before, li.imx-event.imx-info::before{
+      background-color: $color-gray-70;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    li.imx-event.imx-info::before , li.imx-event.imx-pending::before, li.imx-event.imx-question::before, li.imx-event.imx-positive::before , li.imx-event.imx-negative::before, li.imx-event.imx-info::before{
+      background-color: $color-gray-90;
+    }
+  }
+}
+>>>>>>> oned/v92

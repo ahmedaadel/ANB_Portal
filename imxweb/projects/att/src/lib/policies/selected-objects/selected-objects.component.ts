@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -26,10 +30,17 @@
 
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
+<<<<<<< HEAD
 import { BehaviorSubject, Subscription } from 'rxjs';
 
 import { PolicyFilter } from 'imx-api-att';
 import { ClassloggerService, isIE } from 'qbm';
+=======
+import { BehaviorSubject } from 'rxjs';
+
+import { PolicyFilter } from 'imx-api-att';
+import { ClassloggerService } from 'qbm';
+>>>>>>> oned/v92
 import { SelectecObjectsInfo } from './selected-objects-info.interface';
 import { PolicyService } from '../policy.service';
 import { AttestationCasesComponentParameter } from '../attestation-cases/attestation-cases-component-parameter.interface';
@@ -94,12 +105,20 @@ export class SelectedObjectsComponent implements OnInit, OnDestroy {
     };
     this.sideSheet.open(AttestationCasesComponent, {
       title: this.popupTitle,
+<<<<<<< HEAD
       headerColour: 'iris-blue',
       bodyColour: 'asher-gray',
       padding: '0px',
       width: 'max(600px, 60%)',
       data,
       testId: 'selected-objects-showmatching-sidesheet'
+=======
+      subTitle: this.popupSubtitle,
+      padding: '0px',
+      width: 'max(600px, 60%)',
+      testId: 'selected-objects-showmatching-sidesheet',
+      data,
+>>>>>>> oned/v92
     });
   }
 

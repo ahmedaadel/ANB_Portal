@@ -1,4 +1,5 @@
 <div class="imx-entitlements-site">
+<<<<<<< HEAD
   <ng-container
     *ngIf="dstSettings && dstSettings.dataSource && dstSettings.dataSource.totalCount > 0; else nonExisting">
 
@@ -8,14 +9,41 @@
       [alwaysVisible]="true"
       [options]="['custom']"
       [itemStatus]="status">
+=======
+  <ng-container *ngIf="(dstSettings && dstSettings.dataSource && dstSettings.dataSource.totalCount > 0) || isLoading; else nonExisting">
+    <!-- Datasource Toolbar -->
+    <imx-data-source-toolbar
+      #dst
+      [settings]="dstSettings"
+      (navigationStateChanged)="getData(false, $event)"
+      (groupingChanged)="onGroupingChanged($event)"
+      [alwaysVisible]="true"
+      [options]="['custom']"
+      [busyService]="busyService"
+      [itemStatus]="status"
+    >
+>>>>>>> oned/v92
       <imx-data-source-toolbar-custom [customContentTemplate]="customToolbarTemplate"></imx-data-source-toolbar-custom>
     </imx-data-source-toolbar>
 
     <!-- Data Table -->
     <ng-container>
+<<<<<<< HEAD
       <imx-data-table #table [dst]="dst" [selectable]="true" (highlightedEntityChanged)="editEntitlement($event)"
         (selectionChanged)="onSelectionChanged($event)" mode="manual" class="mat-elevation-z2 imx-aob-data-container"
         [detailViewVisible]="false">
+=======
+      <imx-data-table
+        #table
+        [dst]="dst"
+        [selectable]="true"
+        (highlightedEntityChanged)="editEntitlement($event)"
+        (selectionChanged)="onSelectionChanged($event)"
+        mode="manual"
+        class="mat-elevation-z2 imx-aob-data-container"
+        [detailViewVisible]="false"
+      >
+>>>>>>> oned/v92
         <imx-data-table-column [entityColumn]="entitySchema?.Columns['Ident_AOBEntitlement']">
           <ng-template let-data>
             <div>{{ data.Ident_AOBEntitlement.Column.GetDisplayValue() }}</div>
@@ -24,6 +52,7 @@
         </imx-data-table-column>
         <imx-data-table-generic-column columnName="badges" columnLabel="">
           <ng-template let-data>
+<<<<<<< HEAD
             <eui-badge *ngIf="data.IsDynamic.value">{{'#LDS#Dynamic' | translate}}</eui-badge>
           </ng-template>
         </imx-data-table-generic-column>
@@ -37,11 +66,36 @@
         <imx-data-table-column [entityColumn]="entitySchema?.Columns['UID_AERoleOwner']">
         </imx-data-table-column>
         <imx-data-table-generic-column columnName="assigned" columnLabel="{{'#LDS#Assigned' | translate }}">
+=======
+            <div class="imx-badge-container">
+              <div color="primary" *ngIf="data.IsDynamic.value">
+                <eui-badge>{{  '#LDS#Automatic' | translate  }}</eui-badge>
+              </div>
+              <div *ngIf="data.IsOutlierAssignment.value">
+                <imx-info-badge color="warn" [badgeText]="'#LDS#Wrong service category' | translate" [templateRef]="infoContent" [title]="'#LDS#Heading Wrong Service Category' | translate"></imx-info-badge>
+              </div>
+            </div>
+          </ng-template>
+        </imx-data-table-generic-column>
+        <imx-data-table-generic-column columnName="type" columnLabel="{{ '#LDS#Type' | translate }}">
+          <ng-template let-data>
+            <div>
+              {{ getType(data) }}
+            </div>
+          </ng-template>
+        </imx-data-table-generic-column>
+        <imx-data-table-column [entityColumn]="entitySchema?.Columns['UID_AERoleOwner']"> </imx-data-table-column>
+        <imx-data-table-generic-column columnName="assigned" columnLabel="{{ '#LDS#Assigned' | translate }}">
+>>>>>>> oned/v92
           <ng-template let-data>
             {{ data.XDateInserted.Column.GetDisplayValue() }}
           </ng-template>
         </imx-data-table-generic-column>
+<<<<<<< HEAD
         <imx-data-table-generic-column columnName="status" columnLabel="{{'#LDS#Status' | translate }}">
+=======
+        <imx-data-table-generic-column columnName="status" columnLabel="{{ '#LDS#Status' | translate }}">
+>>>>>>> oned/v92
           <ng-template let-data>
             <div *ngIf="filter.notPublished(data)">{{ '#LDS#Not published' | translate }}</div>
             <div *ngIf="filter.willPublish(data)">
@@ -50,7 +104,11 @@
             </div>
             <div *ngIf="filter.published(data)">
               <div>{{ '#LDS#Published' | translate }}</div>
+<<<<<<< HEAD
               <div subtitle *ngIf="application.IsInActive.value">{{'#LDS#(not yet requestable)' | translate}}</div>
+=======
+              <div subtitle *ngIf="application.IsInActive.value">{{ '#LDS#(not yet requestable)' | translate }}</div>
+>>>>>>> oned/v92
             </div>
           </ng-template>
         </imx-data-table-generic-column>
@@ -62,6 +120,7 @@
 
 <!-- Custom toolbar template with publish, unpublish and unassign buttons -->
 <ng-template #customToolbarTemplate>
+<<<<<<< HEAD
   <button mat-raised-button color="primary" [disabled]="publishDisabled" (click)="publish()"
     data-imx-identifier="imx-entitlements-publish">{{ '#LDS#Publish' |
     translate }}</button>
@@ -92,6 +151,31 @@
   <button mat-stroked-button [disabled]="unassignedDisabled" (click)="unassign()"
     data-imx-identifier="imx-entitlements-unassign">{{ '#LDS#Unassign' | translate
     }}</button>
+=======
+  <ng-container *ngIf="!isLoading">
+    <button mat-raised-button color="primary" [disabled]="publishDisabled" (click)="publish()" data-imx-identifier="imx-entitlements-publish">
+      {{ '#LDS#Publish' | translate }}
+    </button>
+    <button mat-stroked-button [disabled]="unpublishDisabled" (click)="unpublish()" data-imx-identifier="imx-entitlements-unpublish">{{ '#LDS#Unpublish' | translate }}</button>
+    <button mat-stroked-button data-imx-identifier="imx-entitlements-assign-mode-button" [matMenuTriggerFor]="actionsMenu">
+      <span>{{ '#LDS#Assign more' | translate }}</span>
+      <eui-icon icon="collapsedown"></eui-icon>
+    </button>
+    <mat-menu data-imx-identifier="entitlements-assign-more-actions-menu" #actionsMenu="matMenu">
+      <button mat-menu-item data-imx-identifier="imx-entitlements-assign-manually" (click)="addNewElement()">
+        {{ '#LDS#Assign manually' | translate }}
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item data-imx-identifier="imx-entitlements-updateCondition" [disabled]="!application.extendedDataRead" (click)="editConditionForDynamicAssignments()">
+        {{ (hasConditionForDynamicAssignment ? '#LDS#Edit automatic assignment' : '#LDS#Assign automatically') | translate }}
+      </button>
+      <button mat-menu-item data-imx-identifier="imx-entitlements-apply-mapping" [disabled]="!hasConditionForDynamicAssignment" (click)="applyMappingForDynamicAssignments()">
+        {{ '#LDS#Check for new automatic assignments' | translate }}
+      </button>
+    </mat-menu>
+    <button mat-stroked-button [disabled]="unassignedDisabled" (click)="unassign()" data-imx-identifier="imx-entitlements-unassign">{{ '#LDS#Unassign' | translate }}</button>
+  </ng-container>
+>>>>>>> oned/v92
 </ng-template>
 
 <!-- Template for non existing entitlements -->
@@ -107,6 +191,7 @@
       </span>
     </div>
     <div class="imx-aob-entitlements-empty-actions">
+<<<<<<< HEAD
       <button mat-raised-button color="primary" (click)="addNewElement()"
         data-imx-identifier="entitlements-add-unsGroup">
         {{'#LDS#Assign application entitlements' | translate}}
@@ -114,6 +199,13 @@
       <button mat-stroked-button data-imx-identifier="imx-entitlements-assign" [disabled]="!application.extendedDataRead"
         (click)="editConditionForDynamicAssignments()">
         {{'#LDS#Edit dynamic assignment condition' | translate}}
+=======
+      <button mat-raised-button color="primary" (click)="addNewElement()" data-imx-identifier="entitlements-add-unsGroup">
+        {{ '#LDS#Assign application entitlements' | translate }}
+      </button>
+      <button mat-stroked-button data-imx-identifier="imx-entitlements-assign" [disabled]="!application.extendedDataRead" (click)="editConditionForDynamicAssignments()">
+        {{ '#LDS#Create automatic assignment' | translate }}
+>>>>>>> oned/v92
       </button>
     </div>
   </div>
@@ -121,6 +213,16 @@
 
 <!-- Tile content template -->
 <ng-template #cardContentTemplate let-entitlement>
+<<<<<<< HEAD
   <imx-user [uid]='entitlement.UID_AERoleOwner' role="{{ '#LDS#Application entitlement owner' | translate }}">
   </imx-user>
+=======
+  <imx-user [uid]="entitlement.UID_AERoleOwner" role="{{ '#LDS#Application entitlement owner' | translate }}"> </imx-user>
+</ng-template>
+
+<ng-template #infoContent>
+  <p [translate]="'#LDS#This application entitlement is not assigned to the root service category of this application nor to any of its child service categories.'">
+    
+  </p>
+>>>>>>> oned/v92
 </ng-template>

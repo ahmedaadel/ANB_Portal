@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,6 +28,7 @@
  *
  */
 
+<<<<<<< HEAD
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
@@ -73,10 +78,35 @@ describe('OwnerControlComponent', () => {
     })
   });
 
+=======
+import { UntypedFormControl } from '@angular/forms';
+import { MockBuilder, MockRender } from 'ng-mocks';
+
+import { clearStylesFromDOM, CdrEditorComponent } from 'qbm';
+import { OwnerCandidateOptions } from './owner.model';
+import { OwnerControlComponent } from './owner-control.component';
+import { OwnerControlModule } from './owner-control.module';
+import { OwnerControlService } from './owner-control.service';
+
+describe('OwnerControlComponent', () => {
+  let component: OwnerControlComponent;
+
+  beforeEach(() =>{
+    return MockBuilder(OwnerControlComponent, OwnerControlModule)
+    .mock(CdrEditorComponent)
+    .mock(OwnerControlService);
+  });
+
+  beforeEach(()=>{
+    component = MockRender(OwnerControlComponent).point.componentInstance;
+  })
+
+>>>>>>> oned/v92
   afterAll(() => {
     clearStylesFromDOM();
   });
 
+<<<<<<< HEAD
   beforeEach(() => {
     fixture = TestBed.createComponent(OwnerControlComponent);
     component = fixture.componentInstance;
@@ -103,4 +133,25 @@ describe('OwnerControlComponent', () => {
     });  
   }
   
+=======
+  it('should be created', () => {
+    expect(component).toEqual(jasmine.any(OwnerControlComponent));
+  });
+
+  for (const testcase of [
+    { options: OwnerCandidateOptions.people, createHandler: true },
+    { options: OwnerCandidateOptions.people, createHandler: false },
+    { options: OwnerCandidateOptions.roles, createHandler: true },
+    { options: OwnerCandidateOptions.roles, createHandler: false },
+  ]) {
+    it('calls right editor', () => {
+      const control = new UntypedFormControl('');
+      component.onFormControlCreated(control, testcase.options, testcase.createHandler);
+
+      expect(() => {
+        component.onFormControlCreated(control, testcase.options, testcase.createHandler);
+      }).not.toThrowError();
+    });
+  }
+>>>>>>> oned/v92
 });

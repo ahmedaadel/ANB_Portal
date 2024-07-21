@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,6 +29,7 @@
  */
 
 import { CommonModule } from '@angular/common';
+<<<<<<< HEAD
 import { NgModule, APP_INITIALIZER, Inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
@@ -62,6 +67,39 @@ import { TilesModule } from './tiles/tiles.module';
 import { UserModule } from './user/user.module';
 import { ShoppingCartValidationDetailModule } from './shopping-cart-validation-detail/shopping-cart-validation-detail.module';
 import { RoleMembershipsModule } from './role-management/role-memberships/role-memberships.module';
+=======
+import { APP_INITIALIZER, Inject, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
+import { TranslateModule } from '@ngx-translate/core';
+import {
+  AppConfigService,
+  BusyIndicatorModule,
+  CdrModule,
+  ClassloggerService,
+  DataSourceToolbarModule,
+  DataTableModule,
+  DataTilesModule,
+  DataTreeModule,
+  FkAdvancedPickerModule,
+  LdsReplaceModule,
+  QbmModule,
+  TileModule,
+} from 'qbm';
+
+
+import { PatternItemService } from './pattern-item-list/pattern-item.service';
+import { PatternItemsModule } from './pattern-item-list/pattern-items.module';
+import { QerService } from './qer.service';
+import { ServiceItemsModule } from './service-items/service-items.module';
+import { ServiceItemsService } from './service-items/service-items.service';
+import { SettingsComponent } from './settings/settings.component';
+import { ShoppingCartValidationDetailModule } from './shopping-cart-validation-detail/shopping-cart-validation-detail.module';
+import { TilesModule } from './tiles/tiles.module';
+import { UserModule } from './user/user.module';
+import { BusinessOwnerChartSummaryComponent } from './wport/businessowner-chartsummary/businessowner-chartsummary.component';
+import { StartComponent } from './wport/start/start.component';
+>>>>>>> oned/v92
 
 export function initConfig(config: QerService): () => Promise<any> {
   return () =>
@@ -73,6 +111,7 @@ export function initConfig(config: QerService): () => Promise<any> {
     });
 }
 
+<<<<<<< HEAD
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -91,6 +130,17 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+=======
+// @dynamic
+@NgModule({
+  declarations: [
+    BusinessOwnerChartSummaryComponent, 
+    StartComponent, 
+    SettingsComponent,
+  ],
+  imports: [
+    CommonModule,
+>>>>>>> oned/v92
     QbmModule,
     CdrModule,
     TranslateModule,
@@ -104,10 +154,15 @@ const routes: Routes = [
     TilesModule,
     UserModule,
     LdsReplaceModule,
+<<<<<<< HEAD
+=======
+    BusyIndicatorModule,
+>>>>>>> oned/v92
     DataSourceToolbarModule,
     DataTableModule,
     DataTilesModule,
     DataTreeModule,
+<<<<<<< HEAD
     SourceDetectiveModule,
     RoleMembershipsModule,
     ShoppingCartValidationDetailModule,
@@ -116,6 +171,11 @@ const routes: Routes = [
     DataExplorerViewModule,
   ],
   exports: [PasscodeViewerComponent, ObjectOverviewPersonComponent],
+=======
+    ShoppingCartValidationDetailModule,
+    FkAdvancedPickerModule,
+  ],
+>>>>>>> oned/v92
   providers: [
     {
       provide: APP_INITIALIZER,
@@ -125,7 +185,10 @@ const routes: Routes = [
     },
     ServiceItemsService,
     PatternItemService,
+<<<<<<< HEAD
     imx_SessionService
+=======
+>>>>>>> oned/v92
   ],
 })
 export class QerModule {
@@ -136,6 +199,7 @@ export class QerModule {
     @Inject('appConfigJson') private readonly appConfigJson
   ) {
     logger.info(this, '▶️ QerModule loaded');
+<<<<<<< HEAD
 
     if (this.environment.appName === 'arc-app-certaccess') {
       this.config.initSynchronous(this.environment.clientUrl, this.appConfigJson);
@@ -144,5 +208,7 @@ export class QerModule {
         await this.config.loadSchema();
       })();
     }
+=======
+>>>>>>> oned/v92
   }
 }

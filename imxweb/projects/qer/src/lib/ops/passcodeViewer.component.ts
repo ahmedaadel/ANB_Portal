@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -45,4 +49,9 @@ export class PasscodeViewerComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public passcodeParameter: PasscodeParameter,
   ) { }
+<<<<<<< HEAD
+=======
+
+  public LdsExplanation = '#LDS#The passcode could not be created. No manager could be found for this identity. Please assign a manager to the identity or deactivate the two-person principle of passcode assignment and try again.';
+>>>>>>> oned/v92
 }

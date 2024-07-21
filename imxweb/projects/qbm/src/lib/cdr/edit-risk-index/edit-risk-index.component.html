@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <mat-form-field appearance="outline" [ngClass]="{ 'mat-focused': sliderFocused }">
+=======
+<mat-form-field appearance="outline" [ngClass]="{ 'mat-focused': sliderFocused }" *ngIf="columnContainer?.canEdit; else isReadonly">
+>>>>>>> oned/v92
   <mat-label class="slider-label__main">{{ columnContainer?.display | translate }}</mat-label>
   <input matInput hidden value=" ">
   <div class="slider-container">
@@ -12,4 +16,18 @@
   <div matSuffix class="imx-suffix-container">
     <mat-spinner diameter="30" *ngIf="isBusy"></mat-spinner>
   </div>
+<<<<<<< HEAD
 </mat-form-field>
+=======
+</mat-form-field>
+
+
+<!-- template for read only elements-->
+<ng-template #isReadonly>
+  <imx-view-property
+    [columnContainer]="columnContainer"
+    defaultValue="#LDS#Not set"
+  >
+  </imx-view-property>
+</ng-template>
+>>>>>>> oned/v92

@@ -3,10 +3,22 @@
 .pageContent h1.mat-headline {
   margin: 0 0 40px;
   font-size: 26px;
+<<<<<<< HEAD
+=======
+  display: flex;
+  align-items: center;
+  span{
+    white-space: nowrap;
+  }
+>>>>>>> oned/v92
   @media #{$IMX_Mediaquery_Smartphone} {
     margin: 0 0 10px;
   }
   @media #{$IMX_Mediaquery_SmallDesktops} {
     margin: 0 0 20px;
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> oned/v92

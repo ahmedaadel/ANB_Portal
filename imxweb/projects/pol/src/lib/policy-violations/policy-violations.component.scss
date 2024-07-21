@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import '../../../../../shared/scss/common-table.scss';
+
+:host {
+  .imx-main-column {
+    flex-direction: column;
+  }
+}
+
+>>>>>>> oned/v92
 @mixin imx-flex-column-container {
   display: flex;
   flex-direction: column;
@@ -40,11 +52,25 @@
   background-color: inherit;
   @include imx-flex-column-container();
   overflow: hidden;
+<<<<<<< HEAD
+=======
+  display: flex;
+  height: 100%;
+
+  .mat-card {
+    @include imx-flex-fill-control-hidden-overflow();
+    margin-right: 3px;
+  }
+>>>>>>> oned/v92
 
   div.imx-table-container {
     @include imx-flex-column-container();
     overflow: hidden;
     height: inherit;
+<<<<<<< HEAD
+=======
+    flex: 1 1 auto;
+>>>>>>> oned/v92
 
     .imx-policyviolation-table {
       flex-grow: 1;
@@ -56,17 +82,24 @@
       }
 
       .imx-decision {
+<<<<<<< HEAD
         min-width: 210px;
         > * {
           margin-bottom: 3px;
           margin-top: 3px;
           margin-left: 10px;
+=======
+        @include imx-button-column-right();
+        > button:not(:last-of-type) {
+          margin-right: 5px;
+>>>>>>> oned/v92
         }
       }
     }
   }
 
   .imx-button-bar {
+<<<<<<< HEAD
     @include imx-flex-row-container();
     margin-top: 20px;
     flex: 0 0 auto;
@@ -92,6 +125,9 @@
     .imx-menu-spacer {
       flex-grow: 1;
     }
+=======
+    @include imx-button-bar;
+>>>>>>> oned/v92
   }
 }
 
@@ -108,9 +144,23 @@
   }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> oned/v92
 @media only screen and (max-width: 1024px) {
   ::ng-deep .mat-column-decision {
     display: none;
   }
+<<<<<<< HEAD
 }
+=======
+}
+.eui-dark-theme {
+  :host {
+    .imx-button-bar {
+      color: $color-gray-30;
+    }
+  }
+}
+>>>>>>> oned/v92

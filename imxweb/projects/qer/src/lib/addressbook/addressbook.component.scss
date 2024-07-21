@@ -1,8 +1,21 @@
+<<<<<<< HEAD
 :host {
   display: flex;
   flex-direction: column;
   overflow: hidden;
   height: 100%;
+=======
+@import '../../../../../shared/scss/common-table.scss';
+:host {
+  @include imx-flex-fill-control-hidden-overflow();
+  height: 100%;
+
+  .mat-card {
+    @include imx-flex-fill-control-hidden-overflow();
+    margin-right: 3px;
+    margin-bottom: 3px;
+  }
+>>>>>>> oned/v92
 }
 
 .imx-addressbook-table {

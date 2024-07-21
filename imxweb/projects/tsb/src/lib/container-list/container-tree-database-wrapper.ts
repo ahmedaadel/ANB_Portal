@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,10 +28,15 @@
  *
  */
 
+<<<<<<< HEAD
 import { EuiLoadingService } from '@elemental-ui/core';
 
 import { CollectionLoadParameters, IEntity } from 'imx-qbm-dbts';
 import { EntityTreeDatabase } from 'qbm';
+=======
+import { CollectionLoadParameters, IEntity } from 'imx-qbm-dbts';
+import { BusyService, EntityTreeDatabase } from 'qbm';
+>>>>>>> oned/v92
 import { DeHelperService } from '../de-helper.service';
 
 export class ContainerTreeDatabaseWrapper {
@@ -51,7 +60,11 @@ export class ContainerTreeDatabaseWrapper {
   private system: string;
 
   constructor(
+<<<<<<< HEAD
     private readonly busyService: EuiLoadingService,
+=======
+    private readonly busyService: BusyService,
+>>>>>>> oned/v92
     private readonly dataHelper: DeHelperService
   ) {
     this.entityTreeDatabase = new EntityTreeDatabase(

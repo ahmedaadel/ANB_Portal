@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -36,10 +40,18 @@ export class PermissionsService {
   constructor(private readonly userService: UserModelService) { }
 
   public async canSeeAttestationPolicies(): Promise<boolean> {
+<<<<<<< HEAD
     return canSeeAttestationPolicies((await this.userService.getGroups()).map(group => group.Name));
   }
 
   public async isAttestationAdmin(): Promise<boolean> {
     return isAttestationAdmin((await this.userService.getGroups()).map(group => group.Name));
+=======
+    return canSeeAttestationPolicies((await this.userService.getFeatures()).Features);
+  }
+
+  public async isAttestationAdmin(): Promise<boolean> {
+    return isAttestationAdmin((await this.userService.getFeatures()).Features);
+>>>>>>> oned/v92
   }
 }

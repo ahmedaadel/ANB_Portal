@@ -1,4 +1,8 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
+<<<<<<< HEAD
+=======
+@import "../../../shared/assets/variables.scss";
+>>>>>>> oned/v92
 
 :host {
   display: flex;
@@ -7,8 +11,32 @@
   height: 100%;
 }
 
+<<<<<<< HEAD
 :host ::ng-deep .mat-tab-body {
   margin: 30px 0px;
+=======
+.sub-headline {
+  font-style: italic;
+  font-weight: lighter;
+  margin-top: -2em;
+  margin-bottom: .5em;
+
+  @media #{$IMX_Mediaquery_Smartphone} {
+    margin-top: -0.5em;
+  }
+  @media #{$IMX_Mediaquery_SmallDesktops} {
+    margin-top: -0.5em;
+  }
+}
+
+:host ::ng-deep .mat-tab-body {
+  margin: 30px 0px;
+
+  .mat-tab-body-content {
+    display: flex;
+    flex-direction: column;
+  }
+>>>>>>> oned/v92
 }
 
 .imx-job-queue-div {
@@ -17,11 +45,14 @@
   margin-bottom: 30px;
 }
 
+<<<<<<< HEAD
 .imx-object-overview-tab-header {
   font-weight: 600;
   font-size: large;
 }
 
+=======
+>>>>>>> oned/v92
 .imx-object-overview-tab-text {
   font-size: medium;
 }
@@ -52,7 +83,10 @@
 
 .imx-table-container {
   margin-right: 30px;
+<<<<<<< HEAD
   margin-top: -30px;
+=======
+>>>>>>> oned/v92
   max-height: 500px;
   overflow: hidden;
   display: flex;
@@ -62,6 +96,7 @@
 .imx-refresh-button {
   margin-right: 5px;
   height: 50px;
+<<<<<<< HEAD
 }
 
 
@@ -97,3 +132,6 @@
 }
 
 
+=======
+}
+>>>>>>> oned/v92

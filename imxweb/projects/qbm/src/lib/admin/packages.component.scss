@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .flex-container {
   position: absolute;
   top: 32px;
@@ -11,4 +12,28 @@
 
 .fingerprint {
   font-family: monospace;
+=======
+
+:host{
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+
+  .content-container {
+    padding: 0.5em 0.5em 0.5em 0;
+    overflow: auto;
+
+    &.loading{
+      justify-content: center;
+      flex: 1;
+      align-content: center;
+      align-items: center;
+      display: flex;
+    }
+  }
+
+  .fingerprint {
+    font-family: monospace;
+  }
+>>>>>>> oned/v92
 }

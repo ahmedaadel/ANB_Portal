@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,6 +33,10 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ValType } from 'imx-qbm-dbts';
 import { EntityColumnContainer } from '../entity-column-container';
+<<<<<<< HEAD
+=======
+import { ImxTranslationProviderService } from '../../translation/imx-translation-provider.service';
+>>>>>>> oned/v92
 
 @Component({
   selector: 'imx-view-property',
@@ -39,7 +47,11 @@ export class ViewPropertyComponent {
   @Input() public columnContainer: EntityColumnContainer;
   @Input() public defaultValue: string;
 
+<<<<<<< HEAD
   constructor(private translate: TranslateService) {}
+=======
+  constructor(private translationProviderService: ImxTranslationProviderService) {}
+>>>>>>> oned/v92
 
   public get displayedValue(): string {
     if (this.columnContainer?.type === ValType.Date) {
@@ -47,7 +59,11 @@ export class ViewPropertyComponent {
         return this.defaultValue;
       }
       const date: Date = new Date(this.columnContainer.value);
+<<<<<<< HEAD
       return date.getDate() ? date.toLocaleString(this.translate.currentLang) : this.defaultValue;
+=======
+      return date.getDate() ? date.toLocaleString(this.translationProviderService.CultureFormat) : this.defaultValue;
+>>>>>>> oned/v92
     }
     return this.columnContainer?.displayValue || this.columnContainer?.value || this.defaultValue;
   }

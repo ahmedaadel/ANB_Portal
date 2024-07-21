@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,17 +28,28 @@
  *
  */
 
+<<<<<<< HEAD
 import { Component, Inject } from '@angular/core';
 import { EuiDownloadOptions, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+=======
+import { Component, Inject, OnDestroy } from '@angular/core';
+import { EuiDownloadOptions, EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+import { Subscription } from 'rxjs';
+>>>>>>> oned/v92
 
 import { PortalRules } from 'imx-api-cpl';
 import { DisplayColumns } from 'imx-qbm-dbts';
 import { BaseReadonlyCdr, ColumnDependentReference, ElementalUiConfigService } from 'qbm';
+<<<<<<< HEAD
+=======
+import { RulesMitigatingControls } from '../mitigating-controls-rules/rules-mitigating-controls';
+>>>>>>> oned/v92
 import { RulesService } from '../rules.service';
 
 @Component({
   selector: 'imx-rules-sidesheet',
   templateUrl: './rules-sidesheet.component.html',
+<<<<<<< HEAD
   styleUrls: ['./rules-sidesheet.component.scss']
 })
 export class RulesSidesheetComponent {
@@ -49,11 +64,39 @@ export class RulesSidesheetComponent {
     private readonly rulesProvider: RulesService,
     elementalUiConfigService: ElementalUiConfigService,
   ) {
+=======
+  styleUrls: ['./rules-sidesheet.component.scss'],
+})
+export class RulesSidesheetComponent implements OnDestroy {
+  public reportDownload: EuiDownloadOptions;
+  public cdrList: ColumnDependentReference[];
+  public uidNonCompliance: string;
+  public uidCompliance: string;
+
+  public subscriptions$: Subscription[] = [];
+
+  constructor(
+    @Inject(EUI_SIDESHEET_DATA)
+    public data: {
+      selectedRule: PortalRules;
+      isMControlPerViolation: boolean;
+      hasRiskIndex: boolean;
+      mControls: RulesMitigatingControls[];
+      canEdit: boolean;
+    },
+    public sidesheetRef: EuiSidesheetRef,
+    private readonly rulesProvider: RulesService,
+    elementalUiConfigService: ElementalUiConfigService
+  ) {
+    this.uidNonCompliance = data.selectedRule.GetEntity().GetColumn('UID_NonCompliance').GetValue();
+    this.uidCompliance = data.selectedRule.GetEntity().GetKeys().join(',');
+>>>>>>> oned/v92
     this.cdrList = [
       new BaseReadonlyCdr(this.data.selectedRule.GetEntity().GetColumn(DisplayColumns.DISPLAY_PROPERTYNAME)),
       new BaseReadonlyCdr(this.data.selectedRule.Description.Column),
       new BaseReadonlyCdr(this.data.selectedRule.RuleNumber.Column),
       data.hasRiskIndex ? new BaseReadonlyCdr(this.data.selectedRule.RiskIndex.Column) : null,
+<<<<<<< HEAD
       data.hasRiskIndex && this.data.selectedRule.RiskIndex.value !== this.data.selectedRule.RiskIndexReduced.value ?
         new BaseReadonlyCdr(this.data.selectedRule.RiskIndexReduced.Column) : null,
       new BaseReadonlyCdr(this.data.selectedRule.IsInActive.Column),
@@ -66,4 +109,31 @@ export class RulesSidesheetComponent {
       url: this.rulesProvider.ruleReport(data.selectedRule.GetEntity().GetKeys()[0]),
     };
   }
+=======
+      data.hasRiskIndex && this.data.selectedRule.RiskIndex.value !== this.data.selectedRule.RiskIndexReduced.value
+        ? new BaseReadonlyCdr(this.data.selectedRule.RiskIndexReduced.Column)
+        : null,
+      new BaseReadonlyCdr(this.data.selectedRule.IsInActive.Column),
+      new BaseReadonlyCdr(this.data.selectedRule.CountOpen.Column),
+      new BaseReadonlyCdr(this.data.selectedRule.CountClosed.Column),
+    ].filter((elem) => elem != null);
+
+    this.reportDownload = {
+      ...elementalUiConfigService.Config.downloadOptions,
+      url: this.rulesProvider.ruleReport(this.uidCompliance),
+    };
+  }
+
+  public get objectType(): string {
+    return this.data.selectedRule.GetEntity().TypeName;
+  }
+
+  public get objectUid(): string {
+    return this.data.selectedRule.GetEntity().GetKeys().join(',');
+  }
+
+  public ngOnDestroy(): void {
+    this.subscriptions$.map((sub) => sub.unsubscribe());
+  }
+>>>>>>> oned/v92
 }

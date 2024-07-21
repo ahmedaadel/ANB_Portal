@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -27,15 +31,37 @@
 import { NgModule, InjectionToken } from '@angular/core';
 import { Routes, RouterModule, ActivatedRouteSnapshot, Router } from '@angular/router';
 
+<<<<<<< HEAD
 import { LoginComponent, RouteGuardService } from 'qbm';
 import {
   PasswordQueryComponent
+=======
+import { AuthenticationGuardService, LoginComponent, RouteGuardService } from 'qbm';
+import {
+  PasswordQueryComponent,
+  StartComponent
+>>>>>>> oned/v92
 } from 'qer';
 
 const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 
 const routes: Routes = [
   {
+<<<<<<< HEAD
+=======
+    path: '',
+    component: LoginComponent,
+    canActivate: [AuthenticationGuardService],
+    resolve: [RouteGuardService],
+  },
+  {
+    path: 'dashboard',
+    component: StartComponent,
+    canActivate: [RouteGuardService],
+    resolve: [RouteGuardService],
+  },
+  {
+>>>>>>> oned/v92
     path: 'externalRedirect',
     // We need a component here because we cannot define the route otherwise
     component: LoginComponent,

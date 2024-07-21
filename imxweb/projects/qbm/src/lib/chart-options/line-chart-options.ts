@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,12 +28,19 @@
  *
  */
 
+<<<<<<< HEAD
 import { ChartOptions, LineOptions, ChartTypes, areaSpline, area, spline, line, zoom } from 'billboard.js';
+=======
+import { ChartOptions, ChartTypes, GridLineOptions, area, areaSpline, line, spline } from 'billboard.js';
+>>>>>>> oned/v92
 import { XAxisInformation } from './x-axis-information';
 import { YAxisInformation } from './y-axis-information';
 
 export class LineChartOptions {
+<<<<<<< HEAD
 
+=======
+>>>>>>> oned/v92
   /**
    * Gets or sets the visibiliy of the points
    */
@@ -49,7 +60,11 @@ export class LineChartOptions {
    * Gets or sets an array of additional Lines, that should be shown on the chart
    * (like a threshhold or an average value)
    */
+<<<<<<< HEAD
   public additionalLines: LineOptions[];
+=======
+  public additionalLines: GridLineOptions[];
+>>>>>>> oned/v92
 
   /**
    * Gets or sets whether the chart should use curved or streight lines
@@ -61,12 +76,20 @@ export class LineChartOptions {
    */
   public colorArea = true;
 
+<<<<<<< HEAD
   public size: {width: number, height: number};
+=======
+  public size: { width: number; height: number };
+>>>>>>> oned/v92
 
   /**
    * Set padding as a constant for timeseries
    */
+<<<<<<< HEAD
   public padding: { left: number, right: number, unit?: string}
+=======
+  public padding: { top?: number; bottom?: number; left: number; right: number; unit?: string };
+>>>>>>> oned/v92
 
   /**
    * An optional function for getting a tooltip
@@ -94,7 +117,11 @@ export class LineChartOptions {
   public get options(): ChartOptions {
     const col: any[] = [];
     col.push(this.xAxisInformation.getAxisData());
+<<<<<<< HEAD
     this.yAxisInformation.series.forEach(element => {
+=======
+    this.yAxisInformation.series.forEach((element) => {
+>>>>>>> oned/v92
       col.push(element.getSerie());
     });
     return {
@@ -104,12 +131,17 @@ export class LineChartOptions {
         columns: col,
         names: this.yAxisInformation.getNames(),
         type: this.getType(),
+<<<<<<< HEAD
         colors: this.yAxisInformation.getColors()
+=======
+        colors: this.yAxisInformation.getColors(),
+>>>>>>> oned/v92
       },
       tooltip: {
         contents: this.tooltip,
       },
       spline: { interpolation: { type: 'monotone-x' } },
+<<<<<<< HEAD
       zoom: { enabled: this.canZoom, type: 'drag'},
       point: { show: this.showPoints },
       axis: {
@@ -123,10 +155,29 @@ export class LineChartOptions {
         }
       },
       padding: this.padding
+=======
+      zoom: { enabled: this.canZoom, type: 'drag' },
+      point: { show: this.showPoints },
+      axis: {
+        x: this.xAxisInformation.getAxisConfiguration(),
+        y: this.yAxisInformation.getAxisConfiguration(),
+      },
+      legend: { hide: this.hideLegend, item: { onclick() {} } },
+      grid: {
+        y: {
+          lines: this.additionalLines,
+        },
+      },
+      padding: this.padding,
+>>>>>>> oned/v92
     };
   }
 
   private getType(): ChartTypes {
+<<<<<<< HEAD
     return this.colorArea ? (this.useCurvedLines ? areaSpline() : area()) : (this.useCurvedLines ? spline() : line());
+=======
+    return this.colorArea ? (this.useCurvedLines ? areaSpline() : area()) : this.useCurvedLines ? spline() : line();
+>>>>>>> oned/v92
   }
 }

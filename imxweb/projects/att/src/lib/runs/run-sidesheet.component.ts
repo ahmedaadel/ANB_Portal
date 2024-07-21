@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,7 +29,11 @@
  */
 
 import { OverlayRef } from '@angular/cdk/overlay';
+<<<<<<< HEAD
 import { AfterContentInit, Component, Inject } from '@angular/core';
+=======
+import { Component, Inject } from '@angular/core';
+>>>>>>> oned/v92
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { EuiLoadingService, EuiSidesheetRef, EuiSidesheetService, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -34,7 +42,11 @@ import { Subscription } from 'rxjs';
 
 import { CompareOperator, FilterType, TypedEntityCollectionData } from 'imx-qbm-dbts';
 import { PortalAttestationRun, PortalAttestationRunApprovers, RunStatisticsConfig } from 'imx-api-att';
+<<<<<<< HEAD
 import { SnackBarService, TabControlHelper } from 'qbm';
+=======
+import { SnackBarService } from 'qbm';
+>>>>>>> oned/v92
 
 import { RunsService } from './runs.service';
 import { percentage } from './helpers';
@@ -48,7 +60,11 @@ import { HelperAlertContent } from 'qer';
   templateUrl: './run-sidesheet.component.html',
   styleUrls: ['./run-sidesheet.component.scss']
 })
+<<<<<<< HEAD
 export class RunSidesheetComponent implements AfterContentInit {
+=======
+export class RunSidesheetComponent {
+>>>>>>> oned/v92
   public readonly run: PortalAttestationRun;
   public readonly attestationRunConfig: RunStatisticsConfig;
   public readonly reportDownload: EuiDownloadOptions;
@@ -134,6 +150,7 @@ export class RunSidesheetComponent implements AfterContentInit {
     };
   }
 
+<<<<<<< HEAD
   /**
    * Resolve an issue where the mat-tab navigation arrows could appear on first load
    */
@@ -143,6 +160,8 @@ export class RunSidesheetComponent implements AfterContentInit {
     });
   }
 
+=======
+>>>>>>> oned/v92
   public async extendAttestationRun(): Promise<void> {
     const data = {
       ProlongateUntil: this.run.DueDate.value,
@@ -153,7 +172,11 @@ export class RunSidesheetComponent implements AfterContentInit {
       RunExtendComponent,
       {
         title: await this.translate.get('#LDS#Heading Extend Attestation Run').toPromise(),
+<<<<<<< HEAD
         headerColour: 'iris-blue',
+=======
+        subTitle: this.run.GetEntity().GetDisplay(),
+>>>>>>> oned/v92
         padding: '0px',
         width: '600px',
         testId: 'attestationruns-extendrun-sidesheet',

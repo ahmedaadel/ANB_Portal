@@ -1,5 +1,9 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
+<<<<<<< HEAD
 
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 :host {
   display: flex;
   flex-direction: column;
@@ -36,8 +40,11 @@
     }
 
   }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> oned/v92
 }
 
 .beneath-checkbox {
@@ -59,3 +66,32 @@ mat-card {
   }
 }
 
+<<<<<<< HEAD
+=======
+.eui-dark-theme{
+  :host{
+    background-color: $color-gray-70;
+    .eui-sidesheet-actions{
+      background-color: $color-gray-70;
+    }
+  }
+}
+
+div {
+  button {
+    eui-icon {
+      font-size: 14px;
+      margin-right: 4px;
+    }
+  }
+}
+
+.eui-contrast-theme{
+  :host{
+    background-color: $color-gray-90;
+    .eui-sidesheet-actions{
+      background-color: $color-gray-90;
+    }
+  }
+}
+>>>>>>> oned/v92

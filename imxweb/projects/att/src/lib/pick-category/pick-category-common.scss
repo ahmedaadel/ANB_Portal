@@ -15,6 +15,10 @@
 .heading-wrapper {
   @include imx-flex-row-container();
   flex: 0 0 auto;
+<<<<<<< HEAD
+=======
+  align-items: flex-start;
+>>>>>>> oned/v92
 
   .helper-alert {
     display: flex;

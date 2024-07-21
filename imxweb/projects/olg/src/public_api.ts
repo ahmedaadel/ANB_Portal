@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -27,4 +31,8 @@
 export { OlgConfigModule } from './lib/olg-config.module';
 export { MfaComponent } from './lib/mfa/mfa.component';
 export { PortalMfaService } from './lib/mfa/portal-mfa.service';
+<<<<<<< HEAD
+=======
+export { MfaFormControlComponent } from './lib/mfa-form-control/mfa-form-control.component';
+>>>>>>> oned/v92
 

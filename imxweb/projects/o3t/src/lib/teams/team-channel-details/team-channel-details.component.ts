@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,8 +29,13 @@
  */
 
 import { Component, Inject, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { EuiSidesheetService, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+=======
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+>>>>>>> oned/v92
 import { PortalTargetsystemTeamsChannels } from 'imx-api-o3t';
 import { BaseCdr, ColumnDependentReference, SnackBarService } from 'qbm';
 import { TeamsService } from '../teams.service';
@@ -37,6 +46,7 @@ import { TeamsService } from '../teams.service';
 })
 export class TeamChannelDetailsComponent implements OnInit {
 
+<<<<<<< HEAD
   public readonly formGroup: FormGroup;
   public cdrList: ColumnDependentReference[] = [];
 
@@ -52,6 +62,23 @@ export class TeamChannelDetailsComponent implements OnInit {
 
   get formArray(): FormArray {
     return this.formGroup.get('formArray') as FormArray;
+=======
+  public readonly formGroup: UntypedFormGroup;
+  public cdrList: ColumnDependentReference[] = [];
+
+  constructor(
+    formBuilder: UntypedFormBuilder,
+    @Inject(EUI_SIDESHEET_DATA) public teamChannel: PortalTargetsystemTeamsChannels,
+    private teamsService: TeamsService,
+    private readonly sidesheetRef: EuiSidesheetRef,
+    private readonly snackbar: SnackBarService,
+  ) {
+    this.formGroup = new UntypedFormGroup({ formArray: formBuilder.array([]) });
+  }
+
+  get formArray(): UntypedFormArray {
+    return this.formGroup.get('formArray') as UntypedFormArray;
+>>>>>>> oned/v92
   }
 
   public ngOnInit(): void {
@@ -70,7 +97,11 @@ export class TeamChannelDetailsComponent implements OnInit {
   }
 
   public cancel(): void {
+<<<<<<< HEAD
     this.sidesheet.close();
+=======
+    this.sidesheetRef.close();
+>>>>>>> oned/v92
   }
 
   private setup(): void {

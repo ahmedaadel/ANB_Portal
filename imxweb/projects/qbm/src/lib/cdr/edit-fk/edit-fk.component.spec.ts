@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,116 +24,71 @@
  *
  */
 
-import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
-import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableModule } from '@angular/material/table';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { discardPeriodicTasks, fakeAsync, tick } from '@angular/core/testing';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { configureTestSuite } from 'ng-bullet';
-import { LoggerTestingModule } from 'ngx-logger/testing';
-import { Subject } from 'rxjs';
-import { ScrollingModule } from '@angular/cdk/scrolling';
-import { Component, Input, Pipe, PipeTransform } from '@angular/core';
-import { EuiCoreModule, EuiSidesheetService } from '@elemental-ui/core';
+import { EuiSidesheetService } from '@elemental-ui/core';
 
 import { EditFkComponent } from './edit-fk.component';
 import { IForeignKeyInfo, IValueMetadata, IEntityColumn, ValueStruct, EntityCollectionData } from 'imx-qbm-dbts';
 import { EntityColumnStub } from '../../testing/entity-column-stub.spec';
 import { clearStylesFromDOM } from '../../testing/clear-styles.spec';
 import { MetadataService } from '../../base/metadata.service';
+import { MockBuilder, MockedComponentFixture, MockRender } from 'ng-mocks';
+import { CdrModule } from '../cdr.module';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { QbmDefaultMocks } from '../../../default-mocks.spec';
+import { LdsReplacePipe } from '../../lds-replace/lds-replace.pipe';
+import { ViewPropertyComponent } from '../view-property/view-property.component';
+import { ChangeDetectorRef } from '@angular/core';
 
-@Component({
-  selector: 'imx-view-property',
-  template: '<p>MockViewProperty</p>',
-})
-class MockViewProperty {
-  @Input() columnContainer: any;
-  @Input() defaultValue: any;
-}
+function createColumnStub(
+  value: ValueStruct<string>,
+  canEdit = true,
+  candidateCollections?: EntityCollectionData[],
+  minLength = 0,
+): IEntityColumn {
+  const getFki = (c) => ({ Get: (_) => Promise.resolve(c) }) as IForeignKeyInfo;
 
-function createColumnStub(value: ValueStruct<string>, canEdit = true, candidateCollections?: EntityCollectionData[], minLength = 0): IEntityColumn {
-  const getFki = c => ({ Get: _ => Promise.resolve(c) } as IForeignKeyInfo);
-
-  return new EntityColumnStub(
-    value.DataValue,
-    value.DisplayValue,
-    {
-      GetFkRelations: () => (
-        candidateCollections ?
-          candidateCollections.map(c => getFki(c))
-          : [getFki({ Entities: [] })]
-      ) as ReadonlyArray<IForeignKeyInfo>,
-      CanEdit: () => canEdit,
-      GetLimitedValues: () => undefined,
-      GetMinLength: () => minLength,
-      GetDisplay: () => 'display'
-    } as IValueMetadata
-  );
-}
-
-@Pipe({ name: 'ldsReplace' })
-class MockLdsReplacePipe implements PipeTransform {
-  transform() { }
+  return new EntityColumnStub(value.DataValue, value.DisplayValue, {
+    GetFkRelations: () =>
+      (candidateCollections ? candidateCollections.map((c) => getFki(c)) : [getFki({ Entities: [] })]) as ReadonlyArray<IForeignKeyInfo>,
+    CanEdit: () => canEdit,
+    GetLimitedValues: () => undefined,
+    GetMinLength: () => minLength,
+    GetDisplay: () => 'display',
+  } as IValueMetadata);
 }
 
 describe('EditFkComponent', () => {
   let component: EditFkComponent;
-  let fixture: ComponentFixture<EditFkComponent>;
-
-  const afterClosedSubject = new Subject<any>();
-
-  const matDialogStub = {
-    open: jasmine.createSpy('open').and.returnValue({ afterClosed: () => afterClosedSubject })
-  };
+  let fixture: MockedComponentFixture<EditFkComponent>;
 
   const metadataServiceStub = {
-    update: jasmine.createSpy('update')
+    updateNonExisting: jasmine.createSpy('updateNonExisting'),
+    tables: [],
+  } as any;
+
+  const detectorstub = {
+    detectChanges: jasmine.createSpy('detectChanges'),
   };
 
-  configureTestSuite(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        MatAutocompleteModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatTableModule,
-        MatPaginatorModule,
-        ScrollingModule,
-        NoopAnimationsModule,
-        LoggerTestingModule,
-        ReactiveFormsModule,
-        EuiCoreModule
-      ],
-      declarations: [
-        EditFkComponent,
-        MockLdsReplacePipe,
-        MockViewProperty
-      ],
-      providers: [
-        {
-          provide: EuiSidesheetService,
-          useValue: matDialogStub
-        },
-        {
-          provide: MetadataService,
-          useValue: metadataServiceStub
-        }
-      ]
-    });
+  beforeEach(() => {
+    return MockBuilder([EditFkComponent, TranslateModule.forRoot(), FormsModule, ReactiveFormsModule])
+      .mock(CdrModule)
+      .keep(LdsReplacePipe)
+      .mock(ViewPropertyComponent)
+      .mock(EuiSidesheetService)
+      .mock(MetadataService, metadataServiceStub)
+      .mock(ChangeDetectorRef, detectorstub)
+      .keep(TranslateService);
   });
 
-  beforeEach(waitForAsync(() => {
-    matDialogStub.open.calls.reset();
-    metadataServiceStub.update.calls.reset();
-  }));
-
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditFkComponent);
-    component = fixture.componentInstance;
+    fixture = MockRender(EditFkComponent);
+    component = fixture.point.componentInstance;
+    QbmDefaultMocks.sidesheetServiceStub.open.calls.reset();
+    metadataServiceStub.updateNonExisting.calls.reset();
   });
 
   afterAll(() => {
@@ -147,29 +102,30 @@ describe('EditFkComponent', () => {
   [
     { input: { isReadonly: false }, expected: { canEdit: true } },
     { input: { isReadonly: true }, expected: { canEdit: false } },
-  ].forEach(testcase =>
-  it('should bind the object to this component' + testcase.input.isReadonly, () => {
-    // Arrange
-    const metadataMinLength = 5;
-    const columnStub = new EntityColumnStub<any>('value', 'display', {
-      CanEdit: () => !testcase.input.isReadonly,
-      GetMinLength: () => metadataMinLength,
-      GetFkRelations: () => [{} as IForeignKeyInfo] as ReadonlyArray<IForeignKeyInfo>,
-      GetLimitedValues: () => undefined
-    } as IValueMetadata);
+  ].forEach((testcase) =>
+    it('should bind the object to this component' + testcase.input.isReadonly, () => {
+      // Arrange
+      const metadataMinLength = 5;
+      const columnStub = new EntityColumnStub<any>('value', 'display', {
+        CanEdit: () => !testcase.input.isReadonly,
+        GetMinLength: () => metadataMinLength,
+        GetFkRelations: () => [{} as IForeignKeyInfo] as ReadonlyArray<IForeignKeyInfo>,
+        GetLimitedValues: () => undefined,
+      } as IValueMetadata);
 
-    // Act
-    component.bind({
-      column: columnStub,
-      isReadOnly: () => testcase.input.isReadonly
-    });
+      // Act
+      component.bind({
+        column: columnStub,
+        isReadOnly: () => testcase.input.isReadonly,
+      });
 
-    // Assert
-    expect(component.columnContainer.displayValue).toBe(columnStub.GetDisplayValue());
-    expect(component.columnContainer.value).toEqual(columnStub.GetValue());
-    expect(component.columnContainer.canEdit).toEqual(testcase.expected.canEdit, 'canEdit');
-    expect(metadataServiceStub.update).toHaveBeenCalled();
-  }));
+      // Assert
+      expect(component.columnContainer.displayValue).toBe(columnStub.GetDisplayValue());
+      expect(component.columnContainer.value).toEqual(columnStub.GetValue());
+      expect(component.columnContainer.canEdit).toEqual(testcase.expected.canEdit, 'canEdit');
+      expect(metadataServiceStub.updateNonExisting).toHaveBeenCalled();
+    }),
+  );
 
   it('is readonly when the cdr is missing', () => {
     // Act/Assert
@@ -178,71 +134,76 @@ describe('EditFkComponent', () => {
 
   [
     {
-      valueStructs: [{
-        DataValue: 'val1',
-        DisplayValue: 'displayValue'
-      }],
-      canEdit: true
+      valueStructs: [
+        {
+          DataValue: 'val1',
+          DisplayValue: 'displayValue',
+        },
+      ],
+      canEdit: true,
     },
     {
       valueStructs: [],
-      canEdit: true
+      canEdit: true,
     },
     {
       valueStructs: [],
-      canEdit: false
-    }
-  ].forEach(testcase =>
-  it('should change the assignment', fakeAsync(() => {
-    const fakeDelay = 1000;
-    const start = {
-      DataValue: 'val0',
-      DisplayValue: 'display0'
-    };
-    const column = createColumnStub(start, testcase.canEdit);
-    component.bind({
-      column,
-      isReadOnly: () => false
-    });
+      canEdit: false,
+    },
+  ].forEach((testcase) =>
+    it('should change the assignment', fakeAsync(() => {
+      const fakeDelay = 1000;
+      const start = {
+        DataValue: 'val0',
+        DisplayValue: 'display0',
+      };
+      const column = createColumnStub(start, testcase.canEdit);
+      component.bind({
+        column,
+        isReadOnly: () => false,
+      });
 
-    component.editAssignment();
+      tick(fakeDelay);
 
-    tick(fakeDelay);
+      component.editAssignment();
 
-    afterClosedSubject.subscribe(_ =>
-      expect(matDialogStub.open).toHaveBeenCalled()
-    );
+      tick(fakeDelay);
 
-    afterClosedSubject.next({ table: {}, candidates: testcase.valueStructs });
+      QbmDefaultMocks.afterClosedSubject.subscribe((_) => expect(QbmDefaultMocks.sidesheetServiceStub.open).toHaveBeenCalled());
 
-    tick(fakeDelay);
+      QbmDefaultMocks.afterClosedSubject.next({ table: {}, candidates: testcase.valueStructs });
 
-    if (testcase.canEdit) {
-      if (testcase.valueStructs && testcase.valueStructs.length > 0) {
-        expect(component.columnContainer.displayValue).toBe(testcase.valueStructs[0].DisplayValue);
-        expect(component.control.value).toEqual(testcase.valueStructs[0]);
-        expect(component.columnContainer.value).toEqual(testcase.valueStructs[0].DataValue);
+      tick(fakeDelay);
+
+      discardPeriodicTasks();
+
+      if (testcase.canEdit) {
+        if (testcase.valueStructs && testcase.valueStructs.length > 0) {
+          expect(component.columnContainer.displayValue).toBe(testcase.valueStructs[0].DisplayValue);
+          expect(component.control.value).toEqual(testcase.valueStructs[0]);
+          expect(component.columnContainer.value).toEqual(testcase.valueStructs[0].DataValue);
+        } else {
+          expect(component.columnContainer.displayValue).toBeUndefined();
+          expect(component.control.value).toBeUndefined();
+          expect(component.columnContainer.value).toBeUndefined();
+        }
       } else {
-        expect(component.columnContainer.displayValue).toBeUndefined();
-        expect(component.control.value).toBeUndefined();
-        expect(component.columnContainer.value).toBeUndefined();
+        expect(component.columnContainer.displayValue).toBe(start.DisplayValue);
+        expect(component.control.value).toEqual(start);
+        expect(component.columnContainer.value).toEqual(start.DataValue);
       }
-    } else {
-      expect(component.columnContainer.displayValue).toBe(start.DisplayValue);
-      expect(component.control.value).toEqual(start);
-      expect(component.columnContainer.value).toEqual(start.DataValue);
-    }
-  })));
+    })),
+  );
 
   it('should revert to previous value if leaving autocomplete', () => {
     const start = {
       DataValue: 'val0',
-      DisplayValue: 'display0'
+      DisplayValue: 'display0',
     };
     const column = createColumnStub(start);
     component.bind({
       column,
-      isReadOnly: () => false
+      isReadOnly: () => false,
     });
 
     component.control.setValue('some string', { emitEvent: false });
@@ -255,16 +216,16 @@ describe('EditFkComponent', () => {
   it('should remove the assignment', async () => {
     const start = {
       DataValue: 'val0',
-      DisplayValue: 'display0'
+      DisplayValue: 'display0',
     };
     const column = createColumnStub(start);
     component.bind({
       column,
+<<<<<<< HEAD
       isReadOnly: () => false
-    });
-
+=======
+      isReadOnly: () => false,
     await component.removeAssignment();
-
     expect(component.columnContainer.displayValue).toBeUndefined();
     expect(component.control.value).toBeUndefined();
     expect(component.columnContainer.value).toBeUndefined();
@@ -273,12 +234,20 @@ describe('EditFkComponent', () => {
   it('should update the entity upon autocomplete option selection', async () => {
     const start = {
       DataValue: 'val0',
+<<<<<<< HEAD
       DisplayValue: 'display0'
+=======
+      DisplayValue: 'display0',
+>>>>>>> oned/v92
     };
     const column = createColumnStub(start);
     component.bind({
       column,
+<<<<<<< HEAD
       isReadOnly: () => false
+=======
+      isReadOnly: () => false,
+>>>>>>> oned/v92
     });
 
     const value = { DataValue: 'val1', DisplayValue: 'display1' };
@@ -307,6 +276,7 @@ describe('EditFkComponent', () => {
       },
       {
         DataValue: 'val1',
+<<<<<<< HEAD
         DisplayValue: 'display1'
       }
     ];
@@ -316,10 +286,22 @@ describe('EditFkComponent', () => {
         Columns: { XObjectKey: { Value: createKey(e.DataValue) } }
       })),
       TotalCount: mockValues.length
+=======
+        DisplayValue: 'display1',
+      },
+    ];
+    const candidateCollection = {
+      Entities: mockValues.map((e) => ({
+        Display: e.DisplayValue,
+        Columns: { XObjectKey: { Value: createKey(e.DataValue) } },
+      })),
+      TotalCount: mockValues.length,
+>>>>>>> oned/v92
     };
     const column = createColumnStub(
       {
         DataValue: createKey(mockValues[0].DataValue),
+<<<<<<< HEAD
         DisplayValue: mockValues[0].DisplayValue
       },
       true,
@@ -331,6 +313,19 @@ describe('EditFkComponent', () => {
     });
 
     spyOn((component as any).changeDetectorRef , 'detectChanges');
+=======
+        DisplayValue: mockValues[0].DisplayValue,
+      },
+      true,
+      [candidateCollection, { Entities: [], TotalCount: 0 }],
+    );
+    component.bind({
+      column,
+      isReadOnly: () => false,
+    });
+
+    spyOn((component as any).changeDetectorRef, 'detectChanges');
+>>>>>>> oned/v92
     await component.ngOnInit();
 
     expect(component.candidates[0].DataValue).toEqual(candidateCollection.Entities[0].Columns.XObjectKey.Value);
@@ -340,6 +335,7 @@ describe('EditFkComponent', () => {
 
   [
     { description: '= 0', minLength: 0, expectedError: false },
+<<<<<<< HEAD
     { description: '> 0', minLength: 1, expectedError: true }
   ].forEach(testcase =>
   it('should set error.required to ' + testcase.expectedError +
@@ -363,4 +359,29 @@ describe('EditFkComponent', () => {
       expect(component.control.errors).toBeNull();
     }
   }));
+=======
+    { description: '> 0', minLength: 1, expectedError: true },
+  ].forEach((testcase) =>
+    it('should set error.required to ' + testcase.expectedError + ' if minLength ' + testcase.description + ' and value is not set', () => {
+      const start = {
+        DataValue: null,
+      };
+      const column = createColumnStub(start, true, undefined, testcase.minLength);
+      component.bind({
+        column,
+        isReadOnly: () => false,
+      });
+
+      component.control.markAsTouched();
+      component.control.updateValueAndValidity({ onlySelf: true, emitEvent: false });
+
+      expect(component.control.value).toBeUndefined();
+      if (testcase.expectedError) {
+        expect(component.control.errors.required).toBeTruthy();
+      } else {
+        expect(component.control.errors).toBeNull();
+      }
+    }),
+  );
+>>>>>>> oned/v92
 });

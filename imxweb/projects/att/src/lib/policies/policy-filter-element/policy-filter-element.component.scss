@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 @import "@elemental-ui/core/src/styles/_palette.scss";
+=======
+@import "@elemental-ui/core/src/styles/_eui_palette.scss";
+
+>>>>>>> oned/v92
 
 :host ::ng-deep .mat-expansion-panel-body {
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   background-color: $asher-gray;
+=======
+  background-color: $color-gray-2;
+>>>>>>> oned/v92
   padding-top: 10px;
 }
 
@@ -31,5 +40,25 @@
 }
 
 .eui-icon {
+<<<<<<< HEAD
   color: $black-7;
+=======
+  color: $color-gray-50;
+}
+
+.eui-dark-theme {
+  :host {
+    ::ng-deep .mat-expansion-panel-body{
+      background-color: $color-gray-80;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    ::ng-deep .mat-expansion-panel-body{
+      background-color: $color-gray-100;
+    }
+  }
+>>>>>>> oned/v92
 }

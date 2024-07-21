@@ -1,4 +1,8 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
+<<<<<<< HEAD
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 :host {
   width: 100%;
@@ -58,3 +62,22 @@
   margin-bottom: 20px;
   display: block;
 }
+<<<<<<< HEAD
+=======
+
+.eui-dark-theme {
+  :host {
+    .eui-sidesheet-actions.mat-card {
+      background-color: $color-gray-70;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .eui-sidesheet-actions.mat-card {
+      background-color: $color-gray-90;
+    }
+  }
+}
+>>>>>>> oned/v92

@@ -2,14 +2,44 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+<<<<<<< HEAD
   height: calc(100% - 60px);
   margin: 30px;
 }
 
+=======
+}
+
+.imx-title-card {
+  margin: 20px;
+}
+
+.eui-sidesheet-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0px;
+}
+
+.eui-sidesheet-actions{
+  display: flex;
+  flex-direction: row;
+  margin: 0px;
+  }
+
+>>>>>>> oned/v92
 .imx-runs-grid {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+<<<<<<< HEAD
+=======
+  flex: 1 1 auto;
+
+  ::ng-deep .imx-table-card{
+    margin: 0px 20px;
+  }
+>>>>>>> oned/v92
 }
 
 .mat-card-content {

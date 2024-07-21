@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,13 +24,14 @@
  *
  */
 
-import { ViewContainerRef, ComponentRef, ComponentFactoryResolver } from '@angular/core';
+import { ViewContainerRef, ComponentRef, Type } from '@angular/core';
 
 import { CdrEditorProvider } from './cdr-editor-provider.interface';
 import { ColumnDependentReference } from './column-dependent-reference.interface';
 import { CdrEditor } from './cdr-editor.interface';
 import { EditFkComponent } from './edit-fk/edit-fk.component';
 import { EditFkMultiComponent } from './edit-fk/edit-fk-multi.component';
+<<<<<<< HEAD
 import { ViewPropertyDefaultComponent } from './view-property-default/view-property-default.component';
 
 export class FkCdrEditorProvider implements CdrEditorProvider {
@@ -47,18 +48,62 @@ export class FkCdrEditorProvider implements CdrEditorProvider {
           this.createBound(EditFkMultiComponent, parent, cdref) :
           this.createBound(EditFkComponent, parent, cdref);
       }
+=======
+
+/**
+ * A special provider for foreign key columns.
+ * The provider determines, if the column has foreign key information attached.
+ * If that's the case, it creates an CdrEditor for a single or a multi foreign key.
+ * If no such information is given, it returns null
+ *  */
+export class FkCdrEditorProvider implements CdrEditorProvider {
+  constructor() {}
+
+  /**
+   * Creates a CDR editor for single and multi foreign key columns and binds it to the column
+   * @param parent The view container used for rendering the editor into.
+   * @param cdref  A column dependent reference that contains the data for the editor.
+   * @returns An instance of {@link CdrEditor}, that can be used or editing data, or null, if no foreign key information is given.
+   */
+  public createEditor(parent: ViewContainerRef, cdref: ColumnDependentReference): ComponentRef<CdrEditor> {
+    if (this.hasFkRelations(cdref)) {
+      return cdref.column.GetMetadata().IsMultiValue()
+        ? this.createBound(EditFkMultiComponent, parent, cdref)
+        : this.createBound(EditFkComponent, parent, cdref);
+>>>>>>> oned/v92
     }
 
     return null;
   }
 
+<<<<<<< HEAD
   private createBound<T extends CdrEditor>(tCtor: new (...args: any[]) => T, parent: ViewContainerRef, cdref: ColumnDependentReference)
     : ComponentRef<CdrEditor> {
     const result = parent.createComponent(this.componentFactoryResolver.resolveComponentFactory(tCtor));
+=======
+  /**
+   * @ignore only used internally.
+   * Creates the component and binds its value.
+   */
+  private createBound<T extends CdrEditor>(
+    type: Type<T>,
+    parent: ViewContainerRef,
+    cdref: ColumnDependentReference
+  ): ComponentRef<CdrEditor> {
+    const result = parent.createComponent(type);
+>>>>>>> oned/v92
     result.instance.bind(cdref);
     return result;
   }
 
+<<<<<<< HEAD
+=======
+  /**
+   * Determines, if there are fk relations present or not.
+   * @param cdref The column dependent reference, that needs to be checked
+   * @returns 
+   */
+>>>>>>> oned/v92
   private hasFkRelations(cdref: ColumnDependentReference): boolean {
     const fkRelations = cdref.column.GetMetadata().GetFkRelations();
     if (fkRelations == null) {

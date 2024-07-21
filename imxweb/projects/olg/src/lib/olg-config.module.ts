@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -36,12 +40,20 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Routes, RouterModule } from '@angular/router';
 import { EuiCoreModule } from '@elemental-ui/core';
 import { TranslateModule } from '@ngx-translate/core';
+<<<<<<< HEAD
 import { CdrModule, ClassloggerService } from 'qbm';
+=======
+import { BusyIndicatorModule, CdrModule, ClassloggerService } from 'qbm';
+>>>>>>> oned/v92
 import { InitService } from './init.service';
 
 import { MfaComponent } from './mfa/mfa.component';
 import { MfaService } from './mfa/mfa.service';
 import { PortalMfaService } from './mfa/portal-mfa.service';
+<<<<<<< HEAD
+=======
+import { MfaFormControlComponent } from './mfa-form-control/mfa-form-control.component';
+>>>>>>> oned/v92
 
 const routes: Routes = [
 ];
@@ -60,6 +72,7 @@ const routes: Routes = [
     TranslateModule,
     EuiCoreModule,
     CdrModule,
+<<<<<<< HEAD
     MatProgressSpinnerModule
   ],
   declarations: [
@@ -67,6 +80,20 @@ const routes: Routes = [
   ],
   providers: [
     PortalMfaService
+=======
+    BusyIndicatorModule,
+    MatProgressSpinnerModule
+  ],
+  declarations: [
+    MfaComponent,
+    MfaFormControlComponent
+  ],
+  providers: [
+    PortalMfaService
+  ],
+  exports: [
+    MfaFormControlComponent
+>>>>>>> oned/v92
   ]
 })
 export class OlgConfigModule {

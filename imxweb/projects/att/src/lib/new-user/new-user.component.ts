@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -26,14 +30,22 @@
 
 import { OverlayRef } from '@angular/cdk/overlay';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { FormBuilder, FormGroup } from '@angular/forms';
+=======
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+>>>>>>> oned/v92
 import { MatDialog } from '@angular/material/dialog';
 import { EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { RegisterPerson } from 'imx-api-att';
+<<<<<<< HEAD
 import { BaseCdr, CaptchaService, ColumnDependentReference, ConfirmationService, ErrorService, ParameterizedText, UserMessageService } from 'qbm';
+=======
+import { CaptchaService, ColumnDependentReference, ConfirmationService, ErrorService, ParameterizedText, UserMessageService, CdrFactoryService } from 'qbm';
+>>>>>>> oned/v92
 
 import { ApiService } from '../api.service';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
@@ -44,7 +56,11 @@ import { ConfirmDialogComponent } from './confirm-dialog.component';
 })
 export class NewUserComponent implements OnInit, OnDestroy {
 
+<<<<<<< HEAD
   public readonly profileForm: FormGroup;
+=======
+  public readonly profileForm: UntypedFormGroup;
+>>>>>>> oned/v92
   public busy = false;
   public person: RegisterPerson;
 
@@ -65,11 +81,20 @@ export class NewUserComponent implements OnInit, OnDestroy {
     private readonly sidesheetRef: EuiSidesheetRef,
     private readonly messageSvc: UserMessageService,
     private readonly translate: TranslateService,
+<<<<<<< HEAD
     errorService: ErrorService,
     formBuilder: FormBuilder,
     confirmation: ConfirmationService
   ) {
     this.profileForm = new FormGroup({ formArray: formBuilder.array([]) });
+=======
+    private readonly cdrFactoryService: CdrFactoryService,
+    errorService: ErrorService,
+    formBuilder: UntypedFormBuilder,
+    confirmation: ConfirmationService
+  ) {
+    this.profileForm = new UntypedFormGroup({ formArray: formBuilder.array([]) });
+>>>>>>> oned/v92
     this.disposable = errorService.setTarget('sidesheet');
 
     this.subscriptions.push(this.sidesheetRef.closeClicked().subscribe(async (result) => {
@@ -93,8 +118,12 @@ export class NewUserComponent implements OnInit, OnDestroy {
 
     try {
       const data = await this.attApiClient.client.register_config_get();
+<<<<<<< HEAD
       this.cdrList = data.WritablePropertiesForUnregisteredUsers
         .map(colName => new BaseCdr(this.person.GetEntity().GetColumn(colName)));
+=======
+      this.cdrList =this.cdrFactoryService.buildCdrFromColumnList(this.person.GetEntity(),data.WritablePropertiesForUnregisteredUsers);
+>>>>>>> oned/v92
     } finally {
       this.busy = false;
       this.cd.detectChanges();

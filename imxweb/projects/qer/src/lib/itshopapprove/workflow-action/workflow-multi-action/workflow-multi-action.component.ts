@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,8 +29,14 @@
  */
 
 import { Component, Input, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { FormGroup } from '@angular/forms';
 import { BaseCdr, BaseReadonlyCdr, BulkItem, BulkItemStatus } from 'qbm';
+=======
+import { UntypedFormGroup } from '@angular/forms';
+import { BaseCdr, BaseReadonlyCdr, BulkItem, BulkItemStatus } from 'qbm';
+import { DecisionStepSevice } from '../../decision-step.service';
+>>>>>>> oned/v92
 import { WorkflowActionEdit } from '../workflow-action-edit.interface';
 
 /**
@@ -38,10 +48,16 @@ import { WorkflowActionEdit } from '../workflow-action-edit.interface';
 @Component({
   selector: 'imx-workflow-multi-action',
   templateUrl: './workflow-multi-action.component.html',
+<<<<<<< HEAD
   styleUrls: ['./workflow-multi-action.component.scss']
 })
 export class WorkflowMultiActionComponent implements OnInit {
 
+=======
+  styleUrls: ['./workflow-multi-action.component.scss'],
+})
+export class WorkflowMultiActionComponent implements OnInit {
+>>>>>>> oned/v92
   /**
    * @ignore since this is only an internal component.
    *
@@ -54,7 +70,11 @@ export class WorkflowMultiActionComponent implements OnInit {
    *
    * The form group to which the necessary form fields will be added.
    */
+<<<<<<< HEAD
   @Input() public formGroup: FormGroup;
+=======
+  @Input() public formGroup: UntypedFormGroup;
+>>>>>>> oned/v92
 
   /**
    * @ignore since this is only public because of databinding to the template
@@ -66,18 +86,31 @@ export class WorkflowMultiActionComponent implements OnInit {
    */
   public requests: BulkItem[];
 
+<<<<<<< HEAD
+=======
+  constructor(private readonly stepService: DecisionStepSevice) {}
+
+>>>>>>> oned/v92
   /**
    * @ignore since this is only an internal component
    *
    * Sets up during OnInit lifecycle hook the bulk items and their {@link columns} to be displayed/edited for the requests.
    */
   public ngOnInit(): void {
+<<<<<<< HEAD
     this.requests = this.data.requests.map(item => {
+=======
+    this.requests = this.data.requests.map((item) => {
+>>>>>>> oned/v92
       const bulkItem: BulkItem = {
         entity: item,
         additionalInfo: item.OrderState.Column.GetDisplayValue(),
         properties: [],
+<<<<<<< HEAD
         status: BulkItemStatus.valid
+=======
+        status: BulkItemStatus.valid,
+>>>>>>> oned/v92
       };
 
       if (this.data.showValidDate) {
@@ -89,11 +122,21 @@ export class WorkflowMultiActionComponent implements OnInit {
         }
       }
 
+<<<<<<< HEAD
       item.parameterColumns.forEach(column =>
+=======
+      const step = this.stepService.getCurrentStepCdr(item, item.pwoData, '#LDS#Current approval step');
+      if (step != null) {
+        bulkItem.properties.unshift(step);
+      }
+
+      item.parameterColumns.forEach((column) =>
+>>>>>>> oned/v92
         bulkItem.properties.push(this.data.approve ? new BaseCdr(column) : new BaseReadonlyCdr(column))
       );
 
       if (this.data.workflow) {
+<<<<<<< HEAD
         bulkItem.customSelectProperties = [{
           title: this.data.workflow.title,
           placeholder: this.data.workflow.placeholder,
@@ -104,6 +147,20 @@ export class WorkflowMultiActionComponent implements OnInit {
             }
           }
         }];
+=======
+        bulkItem.customSelectProperties = [
+          {
+            title: this.data.workflow.title,
+            placeholder: this.data.workflow.placeholder,
+            entities: this.data.workflow.data[item.key],
+            selectionChange: (entity) => {
+              if (item.updateDirectDecisionTarget) {
+                item.updateDirectDecisionTarget(entity);
+              }
+            },
+          },
+        ];
+>>>>>>> oned/v92
       }
 
       return bulkItem;
@@ -121,5 +178,8 @@ export class WorkflowMultiActionComponent implements OnInit {
   public validateItem(bulkItem: BulkItem): void {
     bulkItem.status = bulkItem.valid ? BulkItemStatus.valid : BulkItemStatus.unknown;
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> oned/v92
 }

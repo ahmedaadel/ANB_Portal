@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,14 +28,22 @@
  *
  */
 
+<<<<<<< HEAD
 import { Component } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfigSettingType } from 'imx-api-qbm';
+=======
+import { Component, OnInit, Input } from '@angular/core';
+import { EuiSidesheetService } from '@elemental-ui/core';
+import { TranslateService } from '@ngx-translate/core';
+import { ConfigSettingType, MethodSetInfo } from 'imx-api-qbm';
+>>>>>>> oned/v92
 import { AppConfigService } from '../appConfig/appConfig.service';
 import { DataSourceToolbarSettings } from '../data-source-toolbar/data-source-toolbar-settings';
 import { AddConfigSidesheetComponent } from './add-config-sidesheet.component';
 import { ApplyConfigSidesheetComponent } from './apply-config-sidesheet.component';
+<<<<<<< HEAD
 import { KeyData } from './config-section';
 import { ConfigService } from './config.service';
 import { ConvertConfigSidesheetComponent } from './convert-config-sidesheet.component';
@@ -44,26 +56,61 @@ import { ConvertConfigSidesheetComponent } from './convert-config-sidesheet.comp
 export class ConfigComponent {
 
   constructor(private readonly appConfigSvc: AppConfigService,
+=======
+import { ConfigSection, KeyData } from './config-section';
+import { ConfigService } from './config.service';
+import { ConvertConfigSidesheetComponent } from './convert-config-sidesheet.component';
+import { DeleteConfigSidesheetComponent } from './delete-config-sidesheet.component';
+import { SideNavigationComponent } from '../side-navigation-view/side-navigation-view-interfaces';
+
+@Component({
+  templateUrl: './config.component.html',
+  styleUrls: ['./config.component.scss'],
+  selector: 'imx-config',
+})
+export class ConfigComponent implements OnInit, SideNavigationComponent {
+  @Input() public isAdmin: boolean;
+
+  constructor(
+    private readonly appConfigSvc: AppConfigService,
+>>>>>>> oned/v92
     public readonly configSvc: ConfigService,
     private readonly translator: TranslateService,
     private readonly sidesheet: EuiSidesheetService,
     private readonly translate: TranslateService
+<<<<<<< HEAD
   ) { }
+=======
+  ) {}
+>>>>>>> oned/v92
 
   public dstSettings: DataSourceToolbarSettings;
 
   /** expose the enum type to the template */
   ConfigSettingType = ConfigSettingType;
 
+<<<<<<< HEAD
   apiProjects: string[];
+=======
+  apiProjects: MethodSetInfo[];
+>>>>>>> oned/v92
 
   loading: boolean = true;
 
   async ngOnInit() {
+<<<<<<< HEAD
+=======
+    const filter = {
+      Description: 'Customized',
+      Name: 'customized',
+      Options: [],
+    };
+>>>>>>> oned/v92
 
     this.dstSettings = {
       dataSource: {
         Data: [],
+<<<<<<< HEAD
         totalCount: 0
       },
       entitySchema: { Columns: {} },
@@ -90,21 +137,56 @@ export class ConfigComponent {
     this.apiProjects = (await this.appConfigSvc.client.admin_projects_get()).map(x => x.AppId);
     if (this.apiProjects.length > 0) {
       this.optionSelected(this.apiProjects[0]);
+=======
+        totalCount: 0,
+      },
+      entitySchema: { Columns: {} },
+      filters: [filter],
+      displayedColumns: [],
+      navigationState: {
+        StartIndex: 0,
+      },
+    };
+
+    // add async filter only after dstSettings has been assigned
+    filter.Options.push({
+      Display: await this.translator.get('#LDS#Customized settings').toPromise(),
+      Value: '1',
+    });
+
+    this.configSvc.filter.keywords = null;
+
+    this.apiProjects = await this.appConfigSvc.client.admin_projects_get();
+    if (this.apiProjects.length > 0) {
+      this.optionSelected(this.apiProjects[0].AppId);
+>>>>>>> oned/v92
     }
   }
 
   public onSearch(keywords: string): Promise<void> {
+<<<<<<< HEAD
     this.configSvc.filter.keywords = keywords?.toLowerCase();
+=======
+    this.updateConfigServiceFilter();
+>>>>>>> oned/v92
     return this.configSvc.search();
   }
 
   public getData(filter): Promise<void> {
+<<<<<<< HEAD
     this.configSvc.filter.customized = filter?.customized == "1";
+=======
+    this.updateConfigServiceFilter();
+    this.configSvc.filter.customized = filter?.customized == '1';
+>>>>>>> oned/v92
     return this.configSvc.search();
   }
 
   public async optionSelected(projectId: string): Promise<void> {
+<<<<<<< HEAD
 
+=======
+>>>>>>> oned/v92
     this.loading = true;
     this.configSvc.appId = projectId;
     try {
@@ -115,7 +197,11 @@ export class ConfigComponent {
   }
 
   public isBoolean(conf: KeyData): boolean {
+<<<<<<< HEAD
     return typeof (conf.Value) == "boolean";
+=======
+    return conf.Type != ConfigSettingType.LimitedValues && typeof conf.Value == 'boolean';
+>>>>>>> oned/v92
   }
 
   public isArray(conf: KeyData): boolean {
@@ -123,9 +209,14 @@ export class ConfigComponent {
   }
 
   public getValuePreview(conf: KeyData): string {
+<<<<<<< HEAD
     var d = conf.Value + "";
     if (d.length > 30)
       d = d.substring(0, 30) + "...";
+=======
+    var d = conf.Value + '';
+    if (d.length > 30) d = d.substring(0, 30) + '...';
+>>>>>>> oned/v92
     return d;
   }
 
@@ -144,17 +235,25 @@ export class ConfigComponent {
   public async openConvertSidesheet(): Promise<void> {
     this.sidesheet.open(ConvertConfigSidesheetComponent, {
       title: await this.translate.get('#LDS#Heading Convert Locally Customized Settings to Global Settings').toPromise(),
+<<<<<<< HEAD
       headerColour: 'iris-blue',
       panelClass: 'imx-sidesheet',
       padding: '0',
       width: '600px',
       testId: 'admin-congert-config-sidesheet'
+=======
+      panelClass: 'imx-sidesheet',
+      padding: '0',
+      width: '600px',
+      testId: 'admin-convert-config-sidesheet',
+>>>>>>> oned/v92
     });
   }
 
   public async openApplySidesheet(): Promise<void> {
     this.sidesheet.open(ApplyConfigSidesheetComponent, {
       title: await this.translate.get('#LDS#Heading Apply Configuration').toPromise(),
+<<<<<<< HEAD
       headerColour: 'iris-blue',
       panelClass: 'imx-sidesheet',
       padding: '0',
@@ -162,11 +261,19 @@ export class ConfigComponent {
       testId: 'admin-apply-config-sidesheet'
     });
 
+=======
+      panelClass: 'imx-sidesheet',
+      padding: '0',
+      width: '600px',
+      testId: 'admin-apply-config-sidesheet',
+    });
+>>>>>>> oned/v92
   }
 
   public async add(): Promise<void> {
     this.sidesheet.open(AddConfigSidesheetComponent, {
       title: await this.translate.get('#LDS#Heading Create Configuration Key').toPromise(),
+<<<<<<< HEAD
       headerColour: 'iris-blue',
       panelClass: 'imx-sidesheet',
       bodyColour: 'asher-gray',
@@ -176,3 +283,37 @@ export class ConfigComponent {
     });
   }
 }
+=======
+      panelClass: 'imx-sidesheet',
+      padding: '0',
+      width: '600px',
+      testId: 'admin-add-config-sidesheet',
+    });
+  }
+
+  public async openDeleteSidesheet(): Promise<void> {
+    this.sidesheet.open(DeleteConfigSidesheetComponent, {
+      title: await this.translate.get('#LDS#Heading Delete Configuration Key').toPromise(),
+      panelClass: 'imx-sidesheet',
+      padding: '0',
+      width: '600px',
+      testId: 'admin-delete-config-sidesheet',
+    });
+  }
+  public sectionTrackByFn(index: number, item: ConfigSection) {
+    return index;
+  }
+
+  public confTrackByFn(index: number, item: KeyData) {
+    return item.Key;
+  }
+
+  private updateConfigServiceFilter():void{
+    let keywords = this.dstSettings.navigationState.filter?.map(filter => filter.Value1) || [];
+    if(this.dstSettings.navigationState.search){
+      keywords.push(this.dstSettings.navigationState.search)
+    }
+    this.configSvc.filter.keywords = keywords;
+  }
+}
+>>>>>>> oned/v92

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -36,15 +40,24 @@ import {
   ValType,
   FilterData,
   DataModel,
+<<<<<<< HEAD
   GroupInfo,
   EntitySchema
+=======
+  GroupInfoData,
+  EntitySchema,
+>>>>>>> oned/v92
 } from 'imx-qbm-dbts';
 import { PortalPersonAll, PortalPersonMasterdata, PortalPersonUid } from 'imx-api-qer';
 import { QerApiService } from '../qer-api-client.service';
 import { PersonAllLoadParameters } from './person-all-load-parameters.interface';
 
 @Injectable({
+<<<<<<< HEAD
   providedIn: 'root'
+=======
+  providedIn: 'root',
+>>>>>>> oned/v92
 })
 export class PersonService {
   public get schemaPersonUid(): EntitySchema {
@@ -55,7 +68,11 @@ export class PersonService {
     return this.qerClient.typedClient.PortalPersonAll.GetSchema();
   }
 
+<<<<<<< HEAD
   constructor(private readonly qerClient: QerApiService, private readonly entityService: EntityService) { }
+=======
+  constructor(private readonly qerClient: QerApiService, private readonly entityService: EntityService) {}
+>>>>>>> oned/v92
 
   public async getMasterdataInteractive(uid: string): Promise<TypedEntityCollectionData<PortalPersonMasterdata>> {
     return this.qerClient.typedClient.PortalPersonMasterdataInteractive.Get_byid(uid);
@@ -77,10 +94,18 @@ export class PersonService {
     return this.qerClient.client.portal_person_all_datamodel_get({ filter: filter });
   }
 
+<<<<<<< HEAD
   public async getGroupInfo(parameters: PersonAllLoadParameters = {}): Promise<GroupInfo[]> {
     return this.qerClient.v2Client.portal_person_all_group_get({
       ...parameters,
       withcount: true
+=======
+  public getGroupInfo(parameters: PersonAllLoadParameters = {}): Promise<GroupInfoData> {
+    const { withProperties, OrderBy, search, ...params } = parameters;
+    return this.qerClient.v2Client.portal_person_all_group_get({
+      ...params,
+      withcount: true,
+>>>>>>> oned/v92
     });
   }
 
@@ -89,7 +114,11 @@ export class PersonService {
       ChildColumnName: 'UID_Person',
       IsMemberRelation: false,
       ParentTableName: 'Person',
+<<<<<<< HEAD
       ParentColumnName: 'UID_Person'
+=======
+      ParentColumnName: 'UID_Person',
+>>>>>>> oned/v92
     };
 
     return this.entityService.createLocalEntityColumn(
@@ -97,12 +126,17 @@ export class PersonService {
         ColumnName: fkRelation.ChildColumnName,
         Type: ValType.String,
         MinLen: 1,
+<<<<<<< HEAD
         FkRelation: fkRelation
+=======
+        FkRelation: fkRelation,
+>>>>>>> oned/v92
       },
       [this.createFkProviderItem(fkRelation)]
     );
   }
 
+<<<<<<< HEAD
   public createFkProviderItem(fkRelation: MetaTableRelationData): FkProviderItem {
     return {
       columnName: fkRelation.ChildColumnName,
@@ -119,6 +153,17 @@ export class PersonService {
         this.qerClient.v2Client.portal_person_active_get(parameters),
       getDataModel: async () => ({}),
       getFilterTree: async () => ({Elements: []})
+=======
+  public createFkProviderItem(fkRelation: MetaTableRelationData, filter?: FilterData[]): FkProviderItem {
+    return {
+      columnName: fkRelation.ChildColumnName,
+      fkTableName: fkRelation.ParentTableName,
+      parameterNames: ['OrderBy', 'StartIndex', 'PageSize', 'filter', 'withProperties', 'search'],
+      load: async (_, parameters: CollectionLoadParameters = {}) =>
+        this.qerClient.v2Client.portal_person_active_get({ ...parameters, filter }),
+      getDataModel: async () => ({}),
+      getFilterTree: async () => ({ Elements: [] }),
+>>>>>>> oned/v92
     };
   }
 }

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,11 +28,25 @@
  *
  */
 
+<<<<<<< HEAD
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { AppConfigService, AuthenticationService, ISessionState, SplashService } from 'qbm';
+=======
+import { Component, ErrorHandler, OnDestroy, OnInit } from '@angular/core';
+import { EventType, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
+import { Subscription } from 'rxjs';
+
+import { AppConfigService, AuthenticationService, ISessionState, ImxTranslationProviderService, SplashService } from 'qbm';
+import { MatDialog } from '@angular/material/dialog';
+import { QerApiService, SettingsComponent } from 'qer';
+import { EuiLoadingService, EuiTheme, EuiThemeService } from '@elemental-ui/core';
+import { ProfileSettings } from 'imx-api-qer';
+import { getBaseHref, HEADLESS_BASEHREF } from './app.module';
+import { TranslateService } from '@ngx-translate/core';
+>>>>>>> oned/v92
 
 @Component({
   selector: 'imx-root',
@@ -39,14 +57,28 @@ export class AppComponent implements OnInit, OnDestroy {
   public isLoggedIn = false;
   public hideUserMessage = false;
   public showPageContent = true;
+<<<<<<< HEAD
 
+=======
+  private routerStatus: EventType;
+>>>>>>> oned/v92
   private readonly subscriptions: Subscription[] = [];
 
   constructor(
     private readonly authentication: AuthenticationService,
     private readonly router: Router,
     private readonly splash: SplashService,
+<<<<<<< HEAD
     private readonly config: AppConfigService
+=======
+    private readonly config: AppConfigService,
+    private dialog: MatDialog,
+    private qerClient: QerApiService,
+    private readonly themeService: EuiThemeService,
+    private readonly errorHandler: ErrorHandler,
+    private readonly translationProvider: ImxTranslationProviderService,
+    private readonly translateService: TranslateService
+>>>>>>> oned/v92
   ) {
     this.subscriptions.push(
       this.authentication.onSessionResponse.subscribe(async (sessionState: ISessionState) => {
@@ -54,16 +86,36 @@ export class AppComponent implements OnInit, OnDestroy {
           // Needs to close here when there is an error on sessionState
           this.splash.close();
         } else {
+<<<<<<< HEAD
           if (sessionState.IsLoggedOut && !this.isOnUserActivation()) {
+=======
+          if (sessionState.IsLoggedOut && !this.isOnUserActivation() && this.routerStatus !== EventType.NavigationEnd) {
+>>>>>>> oned/v92
             this.showPageContent = false;
           }
         }
 
         this.isLoggedIn = sessionState.IsLoggedIn;
         if (this.isLoggedIn) {
+<<<<<<< HEAD
           // Close the splash screen that opened in app service initialisation
           // Needs to close here when running in containers (auth skipped)
           this.splash.close();
+=======
+          const isUseProfileLangChecked = (await this.qerClient.v2Client.passwordreset_profile_get()).UseProfileLanguage ?? false;
+          // Set session culture if isUseProfileLangChecked is true, set browser culture otherwise
+          if (isUseProfileLangChecked) {
+            await this.translationProvider.init(sessionState.culture, sessionState.cultureFormat);
+          } else {
+            const browserCulture = this.translateService.getBrowserCultureLang();
+            await this.translationProvider.init(browserCulture);
+          }
+
+          // Close the splash screen that opened in app service initialisation
+          // Needs to close here when running in containers (auth skipped)
+          this.splash.close();
+          this.applyProfileSettings();
+>>>>>>> oned/v92
         }
       })
     );
@@ -79,6 +131,17 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
+<<<<<<< HEAD
+=======
+  public async openSettingsDialog(): Promise<void> {
+    this.dialog.open(SettingsComponent, { minWidth: '600px' });
+  }
+
+  public get isPageHeadless(): boolean {
+    return getBaseHref() === HEADLESS_BASEHREF;
+  }
+
+>>>>>>> oned/v92
   private isOnUserActivation(): boolean {
     return this.router.url.startsWith('/useractivation');
   }
@@ -87,6 +150,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.router.events.subscribe((event: RouterEvent) => {
       if (event instanceof NavigationStart) {
         this.hideUserMessage = true;
+<<<<<<< HEAD
+=======
+        this.routerStatus = event.type;
+>>>>>>> oned/v92
         if (this.isLoggedIn) {
           if (event.url === '/') {
             // show the splash screen, when the user logs out!
@@ -100,16 +167,42 @@ export class AppComponent implements OnInit, OnDestroy {
 
       if (event instanceof NavigationCancel) {
         this.hideUserMessage = false;
+<<<<<<< HEAD
+=======
+        this.routerStatus = event.type;
+>>>>>>> oned/v92
       }
 
       if (event instanceof NavigationEnd) {
         this.hideUserMessage = false;
         this.showPageContent = true;
+<<<<<<< HEAD
+=======
+        this.routerStatus = event.type;
+>>>>>>> oned/v92
       }
 
       if (event instanceof NavigationError) {
         this.hideUserMessage = false;
+<<<<<<< HEAD
       }
     });
   }
+=======
+        this.routerStatus = event.type;
+      }
+    });
+  }
+
+  private async applyProfileSettings() {
+    try {
+      let profileSettings: ProfileSettings = await this.qerClient.client.passwordreset_profile_get();
+      if (profileSettings?.PreferredAppThemes) {
+        this.themeService.setTheme(<EuiTheme>profileSettings.PreferredAppThemes);
+      }
+    } catch (error) {
+      this.errorHandler.handleError(error);
+    }
+  }
+>>>>>>> oned/v92
 }

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -37,6 +41,10 @@ export class IconTileComponent {
   @Input() public caption: string;
   @Input() public subtitle: string;
   @Input() public identifier: string;
+<<<<<<< HEAD
+=======
+  @Input() public loadingState: boolean = false;
+>>>>>>> oned/v92
 
   @ContentChild('ActionTemplate', { static: true }) public actionTemplate: TemplateRef<ElementRef>;
 }

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -38,4 +42,11 @@ export class ComplianceViolationService {
   public async getRequestViolations(pwoId: string): Promise<ComplianceViolation[]> {
     return await this.api.client.portal_itshop_requests_compliance_get(pwoId);
   }
+<<<<<<< HEAD
+=======
+
+  public async getMitigatingControlsPerViolation(): Promise<boolean>{
+    return (await this.api.client.portal_compliance_config_get()).MitigatingControlsPerViolation;
+  }
+>>>>>>> oned/v92
 }

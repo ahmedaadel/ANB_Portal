@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 @import '@elemental-ui/core/src/styles/_palette.scss';
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 :host {
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   height: inherit;
 }
 
@@ -34,5 +39,39 @@
 
   button {
     margin-left: 10px;
+=======
+  height: 100%;
+
+  .mat-card {
+    margin: 0 -10px;
+    flex: 1;
+  }
+
+  .mat-dialog-actions {
+    gap: 10px;
+  }
+}
+
+// Theming
+:host {
+  .mat-card {
+    background-color: $color-gray-10;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    .mat-card {
+      background-color: $color-gray-80;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .mat-card {
+      background-color: $color-gray-90;
+    }
+>>>>>>> oned/v92
   }
 }

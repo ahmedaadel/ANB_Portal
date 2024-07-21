@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,7 +34,11 @@ import { EuiDownloadOptions } from '@elemental-ui/core';
 import {
   CollectionLoadParameters,
   EntityCollectionData,
+<<<<<<< HEAD
   GroupInfo,
+=======
+  GroupInfoData,
+>>>>>>> oned/v92
   DataModel,
   MethodDefinition,
   TypedEntity,
@@ -39,6 +47,10 @@ import {
   EntitySchema,
   IReadValue,
   FilterTreeData,
+<<<<<<< HEAD
+=======
+  MethodDescriptor,
+>>>>>>> oned/v92
 } from 'imx-qbm-dbts';
 import {
   ApiClientMethodFactory,
@@ -50,12 +62,22 @@ import {
   OtherApproverInput,
   PortalAttestationApprove,
   PortalAttestationCaseHistory,
+<<<<<<< HEAD
   ReasonInput,
+=======
+  PwoQueryInput,
+  ReasonInput,
+  V2ApiClientMethodFactory,
+>>>>>>> oned/v92
 } from 'imx-api-att';
 import { ApiService } from '../api.service';
 import { AttestationCase } from './attestation-case';
 import { ParameterDataService, ParameterDataLoadParameters, ApproverContainer } from 'qer';
+<<<<<<< HEAD
 import { AppConfigService, ElementalUiConfigService, ParameterizedTextComponent } from 'qbm';
+=======
+import { AppConfigService, DataSourceToolbarExportMethod, ElementalUiConfigService, ParameterizedTextComponent } from 'qbm';
+>>>>>>> oned/v92
 import { AttestationDecisionLoadParameters } from './attestation-decision-load-parameters';
 import { Approvers } from './approvers.interface';
 import { AttestationCaseLoadParameters } from '../attestation-history/attestation-case-load-parameters.interface';
@@ -83,8 +105,16 @@ export class AttestationCasesService {
     return this.attClient.typedClient.PortalAttestationCase.GetSchema();
   }
 
+<<<<<<< HEAD
   public async get(attDecisionParameters?: AttestationDecisionLoadParameters): Promise<TypedEntityCollectionData<AttestationCase>> {
     const collection = await this.attClient.typedClient.PortalAttestationApprove.Get(attDecisionParameters);
+=======
+  public async get(attDecisionParameters?: AttestationDecisionLoadParameters, isUserEscalationApprover= false): Promise<TypedEntityCollectionData<AttestationCase>> {
+
+    const navigationState = { ...attDecisionParameters, Escalation: (attDecisionParameters.uid_attestationcase !== '' && isUserEscalationApprover) || attDecisionParameters.Escalation  };
+   
+    const collection = await this.attClient.typedClient.PortalAttestationApprove.Get(navigationState);
+>>>>>>> oned/v92
     return {
       tableName: collection.tableName,
       totalCount: collection.totalCount,
@@ -101,6 +131,24 @@ export class AttestationCasesService {
     };
   }
 
+<<<<<<< HEAD
+=======
+  public exportData(attDecisionParameters: AttestationDecisionLoadParameters): DataSourceToolbarExportMethod {
+    const factory = new V2ApiClientMethodFactory();
+    return {
+      getMethod: (withProperties: string, PageSize?: number) => {
+        let method: MethodDescriptor<EntityCollectionData>;
+        if (PageSize) {
+          method = factory.portal_attestation_approve_get({...attDecisionParameters, withProperties, PageSize, StartIndex: 0})
+        } else {
+          method = factory.portal_attestation_approve_get({...attDecisionParameters, withProperties})
+        }
+        return new MethodDefinition(method);
+      }
+    }
+  }
+
+>>>>>>> oned/v92
   public async getNumberOfPending(parameters: AttestationCaseLoadParameters): Promise<number> {
     const pendingAttestations = await this.attClient.typedClient.PortalAttestationApprove.Get({
       ...parameters,
@@ -114,12 +162,18 @@ export class AttestationCasesService {
     return this.attClient.client.portal_attestation_approve_datamodel_get({ Escalation: this.isChiefApproval });
   }
 
+<<<<<<< HEAD
   public async getGroupInfo(parameters: { by?: string; def?: string } & CollectionLoadParameters = {}): Promise<GroupInfo[]> {
     return this.attClient.client.portal_attestation_approve_group_get({
       ...parameters,
       withcount: true,
       Escalation: this.isChiefApproval,
     });
+=======
+  public getGroupInfo(parameters: { by?: string; def?: string } & CollectionLoadParameters = {}): Promise<GroupInfoData> {
+    const { withProperties, OrderBy, search, ...params } = parameters;
+    return this.attClient.client.portal_attestation_approve_group_get({ ...params, withcount: true, Escalation: this.isChiefApproval });
+>>>>>>> oned/v92
   }
 
   public async getApprovers(
@@ -210,16 +264,47 @@ export class AttestationCasesService {
    * @param attestationCase The attestation case
    * @param input reason and/or standard reason
    */
+<<<<<<< HEAD
    public async revokeDelegation(attestationCase: TypedEntity, input: ReasonInput): Promise<any> {
     return this.attClient.client.portal_attestation_revokedelegation_post(this.getKey(attestationCase), input);
   }
 
+=======
+  public async revokeDelegation(attestationCase: TypedEntity, input: ReasonInput): Promise<any> {
+    return this.attClient.client.portal_attestation_revokedelegation_post(this.getKey(attestationCase), input);
+  }
+
+  public async askForHelp(attestationCase: PortalAttestationApprove, para: PwoQueryInput): Promise<void> {
+    await this.attClient.client.portal_attestation_query_post(this.getKey(attestationCase), para);
+  }
+
+  public async recallInquiry(attestationCase: PortalAttestationApprove, reason: ReasonInput): Promise<void> {
+    return this.attClient.client.portal_attestation_recallquery_post(this.getKey(attestationCase), reason);
+  }
+  public async resetReservation(attestationCase: PortalAttestationApprove, reason: ReasonInput): Promise<void> {
+    return this.attClient.client.portal_attestation_resetreservation_post(this.getKey(attestationCase), reason);
+  }
+
+  /**
+   *
+   * @param attestation The case which should be answered to
+   * @param answerInput the text for reasoning
+   */
+  public async answerQuestion(attestation: PortalAttestationApprove, answerInput: string): Promise<void> {
+    return this.attClient.client.portal_attestation_answerquery_post(this.getKey(attestation), { Reason: answerInput });
+  }
+
+>>>>>>> oned/v92
   /**
    * Zurücknehmen von AddAdditional oder AddInsteadOf
    * @param attestationCase The attestation case
    * @param input reason and/or standard reason
    */
+<<<<<<< HEAD
    public async revokeAdditional(attestationCase: TypedEntity, input: ReasonInput): Promise<any> {
+=======
+  public async revokeAdditional(attestationCase: TypedEntity, input: ReasonInput): Promise<any> {
+>>>>>>> oned/v92
     return this.attClient.client.portal_attestation_revokeadditional_post(this.getKey(attestationCase), input);
   }
 

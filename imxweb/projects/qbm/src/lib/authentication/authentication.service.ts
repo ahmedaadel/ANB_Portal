@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,7 +24,11 @@
  *
  */
 
+<<<<<<< HEAD
 import { Injectable, ErrorHandler } from '@angular/core';
+=======
+import { ErrorHandler, Injectable, NgZone } from '@angular/core';
+>>>>>>> oned/v92
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
@@ -61,7 +65,12 @@ export class AuthenticationService {
     private readonly snackbar: SnackBarService,
     private readonly redirectService: RedirectService,
     private readonly appConfig: AppConfigService,
+<<<<<<< HEAD
     private readonly router: Router
+=======
+    private readonly router: Router,
+    private readonly zone: NgZone
+>>>>>>> oned/v92
   ) { }
 
   public async update(): Promise<void> {
@@ -102,7 +111,11 @@ export class AuthenticationService {
         } else {
           this.snackbar.open({ key: '#LDS#You have successfully logged out.' }, '#LDS#Close');
           if (this.appConfig.Config.routeConfig) {
+<<<<<<< HEAD
             this.router.navigate([this.appConfig.Config.routeConfig.login], { queryParams: {} });
+=======
+            this.zone.run(() => this.router.navigate([this.appConfig.Config.routeConfig.login], { queryParams: {} }));
+>>>>>>> oned/v92
           }
         }
       }

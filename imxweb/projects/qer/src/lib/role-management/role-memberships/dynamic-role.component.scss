@@ -3,6 +3,7 @@
   flex-direction: column;
   flex: 1 1 auto;
   overflow: hidden;
+<<<<<<< HEAD
 }
 .button-bar {
   display: flex;
@@ -10,12 +11,22 @@
 
   button:not(:last-child) {
     margin-right: 1em;
+=======
+
+  .imx-tab-content-body {
+    padding: 0;
+    gap: 20px;
+>>>>>>> oned/v92
   }
 }
 
 .helper-alert {
   display: flex;
+<<<<<<< HEAD
   margin-bottom: 20px;
+=======
+  margin: 20px 20px 0 20px;
+>>>>>>> oned/v92
 }
 
 .margin {
@@ -29,6 +40,7 @@ imx-sqlwizard {
   overflow: auto;
 }
 
+<<<<<<< HEAD
 .imx-mat-card-container {
   flex: 1 1 auto;
   overflow: hidden;
@@ -42,6 +54,28 @@ imx-sqlwizard {
 
     :first-child {
       overflow: auto;
+=======
+.imx-main-content{
+  flex: 1 1 auto;
+  overflow:auto;
+  display: flex;
+  flex-direction: column;
+
+  .mat-card {
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px 20px 20px;
+  }
+
+  div {
+    button {
+      eui-icon {
+        font-size: 14px;
+        margin-right: 4px;
+      }
+>>>>>>> oned/v92
     }
   }
 }

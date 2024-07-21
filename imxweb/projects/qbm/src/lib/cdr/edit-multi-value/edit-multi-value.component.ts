@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,7 +25,7 @@
  */
 
 import { Component, EventEmitter, OnDestroy } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { ColumnDependentReference } from '../column-dependent-reference.interface';
@@ -35,31 +35,47 @@ import { CdrEditor, ValueHasChangedEventArg } from '../cdr-editor.interface';
 import { MultiValueService } from '../../multi-value/multi-value.service';
 
 /**
- * A component for viewing / editing multi value columns
+ * Provides a {@link CdrEditor | CDR editor} for editing / viewing multi valued columns.
+ * 
+ * To change its value, it uses a text area. Each line represents a part of the multi value.
+ * When set to read-only, it uses a {@link ViewPropertyComponent | view property component} to display the content.
  */
 @Component({
   selector: 'imx-edit-multi-value',
   templateUrl: './edit-multi-value.component.html',
-  styleUrls: ['./edit-multi-value.component.scss']
+  styleUrls: ['./edit-multi-value.component.scss'],
 })
 export class EditMultiValueComponent implements CdrEditor, OnDestroy {
-  public readonly control = new FormControl(undefined, { updateOn: 'blur' });
+  /**
+   * The form control associated with the editor.
+   */
+  public readonly control = new UntypedFormControl(undefined, { updateOn: 'blur' });
 
+  /**
+   * The container that wraps the column functionality.
+   */
   public readonly columnContainer = new EntityColumnContainer<string>();
 
+  /**
+   * Event that is emitted, after a value has been changed.
+   */
   public readonly valueHasChanged = new EventEmitter<ValueHasChangedEventArg>();
 
   private readonly subscribers: Subscription[] = [];
   private isWriting = false;
 
-  constructor(private readonly logger: ClassloggerService, private readonly multiValueProvider: MultiValueService) { }
+  constructor(private readonly logger: ClassloggerService, private readonly multiValueProvider: MultiValueService) {}
 
+  /**
+   * Unsubscribes all events, after the 'OnDestroy' hook is triggered.
+   */
   public ngOnDestroy(): void {
-    this.subscribers.forEach(subscriber => subscriber.unsubscribe());
+    this.subscribers.forEach((subscriber) => subscriber.unsubscribe());
   }
 
   /**
-   * Binds a column dependent reference to the component
+   * Binds a column dependent reference to the component.
+   * Subscribes to subjects from the column dependent reference and its container.
    * @param cdref a column dependent reference
    */
   public bind(cdref: ColumnDependentReference): void {
@@ -70,14 +86,32 @@ export class EditMultiValueComponent implements CdrEditor, OnDestroy {
         this.logger.debug(this, 'value is required');
         this.control.setValidators(Validators.required);
       }
-      this.subscribers.push(this.columnContainer.subscribe(() => {
-        if (!this.isWriting) { return; }
-        if (this.control.value !== this.columnContainer.value) {
-          this.control.setValue(this.columnContainer.value);
-        }
-        this.valueHasChanged.emit({value: this.control.value});
-      }));
-      this.subscribers.push(this.control.valueChanges.subscribe(async value => this.writeValue(this.fromTextArea(value))));
+
+      if (cdref.minlengthSubject) {
+        this.subscribers.push(
+          cdref.minlengthSubject.subscribe(() => {
+            if (this.columnContainer.isValueRequired && this.columnContainer.canEdit) {
+              this.logger.debug(this, 'value is required');
+              this.control.setValidators(Validators.required);
+            } else {
+              this.control.setValidators(null);
+            }
+          })
+        );
+      }
+
+      this.subscribers.push(
+        this.columnContainer.subscribe(() => {
+          if (!this.isWriting) {
+            return;
+          }
+          if (this.control.value !== this.columnContainer.value) {
+            this.control.setValue(this.columnContainer.value);
+          }
+          this.valueHasChanged.emit({ value: this.control.value });
+        })
+      );
+      this.subscribers.push(this.control.valueChanges.subscribe(async (value) => this.writeValue(this.fromTextArea(value))));
       this.logger.trace(this, 'Control initialized');
     } else {
       this.logger.error(this, 'The Column Dependent Reference is undefined');
@@ -85,8 +119,8 @@ export class EditMultiValueComponent implements CdrEditor, OnDestroy {
   }
 
   /**
-   * updates the value for the CDR
-   * @param values the new value
+   * Updates the value for the CDR.
+   * @param values The values, that will be used as a new value.
    */
   private async writeValue(value: string): Promise<void> {
     this.logger.debug(this, 'writeValue called with value', value);
@@ -109,7 +143,7 @@ export class EditMultiValueComponent implements CdrEditor, OnDestroy {
       }
     }
 
-    this.valueHasChanged.emit({value, forceEmit: true});
+    this.valueHasChanged.emit({ value, forceEmit: true });
   }
 
   private toTextArea(value: string): string {

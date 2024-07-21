@@ -1,4 +1,8 @@
 @import "variables.scss";
+<<<<<<< HEAD
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 :host {
   display: block;
@@ -59,3 +63,18 @@
   left: 60px;
   top: 0.5em;
 }
+<<<<<<< HEAD
+=======
+
+.eui-dark-theme {
+  :host {
+    background-color: $color-gray-70;
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    background-color: $color-gray-90;
+  }
+}
+>>>>>>> oned/v92

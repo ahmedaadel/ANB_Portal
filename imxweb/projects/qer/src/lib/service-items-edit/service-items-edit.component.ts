@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -32,23 +36,36 @@ import { PortalServiceitems } from 'imx-api-qer';
 
 import { CollectionLoadParameters, DisplayColumns, ValType } from 'imx-qbm-dbts';
 
+<<<<<<< HEAD
 import {
   DataSourceToolbarSettings,
   UserMessageService,
   DataSourceWrapper,
 } from 'qbm';
+=======
+import { DataSourceToolbarSettings, UserMessageService, DataSourceWrapper, BusyService } from 'qbm';
+>>>>>>> oned/v92
 import { ServiceItemsEditSidesheetComponent } from './service-items-edit-sidesheet/service-items-edit-sidesheet.component';
 import { ServiceItemsEditService } from './service-items-edit.service';
 
 @Component({
   selector: 'imx-service-items-edit',
   templateUrl: './service-items-edit.component.html',
+<<<<<<< HEAD
   styleUrls: ['./service-items-edit.component.scss']
 })
 export class ServiceItemsEditComponent implements OnInit {
 
   public readonly dstWrapper: DataSourceWrapper<PortalServiceitems>;
   public dstSettings: DataSourceToolbarSettings;
+=======
+  styleUrls: ['./service-items-edit.component.scss'],
+})
+export class ServiceItemsEditComponent implements OnInit {
+  public readonly dstWrapper: DataSourceWrapper<PortalServiceitems>;
+  public dstSettings: DataSourceToolbarSettings;
+  public busyService = new BusyService();
+>>>>>>> oned/v92
 
   @Input() public isAdmin: boolean;
 
@@ -57,24 +74,38 @@ export class ServiceItemsEditComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly sideSheet: EuiSidesheetService,
     private readonly translate: TranslateService,
+<<<<<<< HEAD
     private readonly messageService: UserMessageService
+=======
+    private readonly messageService: UserMessageService,
+>>>>>>> oned/v92
   ) {
     this.isAdmin = this.route.snapshot.url[0].path === 'admin';
     const entitySchema = this.serviceItemsEditService.serviceitemsSchema;
 
     this.dstWrapper = new DataSourceWrapper(
+<<<<<<< HEAD
       state => this.serviceItemsEditService.get(state),
+=======
+      (state) => this.serviceItemsEditService.get(state),
+>>>>>>> oned/v92
       [
         entitySchema.Columns[DisplayColumns.DISPLAY_PROPERTYNAME],
         {
           ColumnName: 'Requestable',
           Type: ValType.String,
+<<<<<<< HEAD
           afterAdditionals: true
         },
         {
           ColumnName: 'viewDetailsButton',
           Type: ValType.String
         }
+=======
+          afterAdditionals: true,
+          untranslatedDisplay: '#LDS#Requestable',
+        },
+>>>>>>> oned/v92
       ],
       entitySchema,
       undefined,
@@ -86,6 +117,7 @@ export class ServiceItemsEditComponent implements OnInit {
     await this.getData();
   }
 
+<<<<<<< HEAD
 
   public async getData(newState?: CollectionLoadParameters): Promise<void> {
     this.serviceItemsEditService.handleOpenLoader();
@@ -113,10 +145,43 @@ export class ServiceItemsEditComponent implements OnInit {
         testId: 'srcItems-details-sidesheet',
         data: serviceItemInteractive
       }).afterClosed().toPromise();
+=======
+  public async getData(newState?: CollectionLoadParameters): Promise<void> {
+    const isBusy = this.busyService.beginBusy();
+    try {
+      this.dstSettings = await this.dstWrapper.getDstSettings(newState);
+    } finally {
+      isBusy.endBusy();
+    }
+  }
+
+  public async onHighlightedEntityChanged(selectedItem: PortalServiceitems): Promise<void> {
+    await this.viewDetails(selectedItem);
+  }
+
+  private async viewDetails(serviceItem: PortalServiceitems): Promise<void> {
+    if (serviceItem) {
+      const key = serviceItem.GetEntity().GetKeys().join(',');
+      const serviceItemInteractive = await this.serviceItemsEditService.getServiceItem(key);
+
+      const result = await this.sideSheet
+        .open(ServiceItemsEditSidesheetComponent, {
+          title: await this.translate.get('#LDS#Heading Edit Service Item').toPromise(),
+          subTitle: serviceItem.GetEntity().GetDisplay(),
+          padding: '0',
+          width: 'max(600px, 60%)',
+          disableClose: true,
+          testId: 'serviceItems-details-sidesheet',
+          data: serviceItemInteractive,
+        })
+        .afterClosed()
+        .toPromise();
+>>>>>>> oned/v92
 
       if (result) {
         this.getData();
       }
+<<<<<<< HEAD
     }
     else {
       this.messageService.subject.next({
@@ -128,4 +193,12 @@ export class ServiceItemsEditComponent implements OnInit {
 
 
 
+=======
+    } else {
+      this.messageService.subject.next({
+        text: '#LDS#You cannot edit the service item. The service item does not exist (anymore). Please reload the page.',
+      });
+    }
+  }
+>>>>>>> oned/v92
 }

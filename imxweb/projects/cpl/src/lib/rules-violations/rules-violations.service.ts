@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,10 +33,29 @@ import { Injectable } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
+<<<<<<< HEAD
 import { ComplianceFeatureConfig, PortalRulesViolations } from 'imx-api-cpl';
 import { CollectionLoadParameters, DataModel, EntitySchema, ExtendedTypedEntityCollection, FilterData, GroupInfo } from 'imx-qbm-dbts';
 
 import { ClassloggerService, SettingsService, SystemInfoService } from 'qbm';
+=======
+import { ComplianceFeatureConfig, PortalRules, PortalRulesViolations, V2ApiClientMethodFactory } from 'imx-api-cpl';
+import {
+  CollectionLoadParameters,
+  CompareOperator,
+  DataModel,
+  EntityCollectionData,
+  EntitySchema,
+  ExtendedTypedEntityCollection,
+  FilterData,
+  FilterType,
+  GroupInfoData,
+  MethodDefinition,
+  MethodDescriptor,
+} from 'imx-qbm-dbts';
+
+import { ClassloggerService, DataSourceToolbarExportMethod, SystemInfoService } from 'qbm';
+>>>>>>> oned/v92
 import { ApiService } from '../api.service';
 import { RulesViolationsApproval } from './rules-violations-approval';
 import { RulesViolationsLoadParameters } from './rules-violations-load-parameters.interface';
@@ -52,8 +75,12 @@ export class RulesViolationsService {
     private readonly logger: ClassloggerService,
     private readonly busyService: EuiLoadingService,
     private readonly translate: TranslateService,
+<<<<<<< HEAD
     private readonly systemInfoService: SystemInfoService,
     private readonly settingsService: SettingsService
+=======
+    private readonly systemInfoService: SystemInfoService
+>>>>>>> oned/v92
   ) {}
 
   public async featureConfig(): Promise<ComplianceFeatureConfig> {
@@ -78,10 +105,17 @@ export class RulesViolationsService {
   /**
    * Provides the GroupInfo of {@link PortalRulesViolations}.
    */
+<<<<<<< HEAD
   public async getGroupInfo(parameters: RulesViolationsLoadParameters = {}): Promise<GroupInfo[]> {
     return this.cplClient.client.portal_rules_violations_group_get({
       ...parameters,
       PageSize: this.settingsService.PageSizeForAllElements,
+=======
+  public getGroupInfo(parameters: RulesViolationsLoadParameters = {}): Promise<GroupInfoData> {
+    const { withProperties, OrderBy, search, ...params } = parameters;
+    return this.cplClient.client.portal_rules_violations_group_get({
+      ...params,
+>>>>>>> oned/v92
       withcount: true,
       approvable: true,
     });
@@ -102,11 +136,34 @@ export class RulesViolationsService {
       ...parameters,
     });
 
+<<<<<<< HEAD
     const hasRiskIndex = (await this.systemInfoService.get()).PreProps.includes("RISKINDEX");
     return {
       tableName: collection.tableName,
       totalCount: collection.totalCount,
       Data: collection.Data.map((item: PortalRulesViolations, index: number) => new RulesViolationsApproval(item, hasRiskIndex, this.translate))
+=======
+    const hasRiskIndex = (await this.systemInfoService.get()).PreProps.includes('RISKINDEX');
+    return {
+      tableName: collection.tableName,
+      totalCount: collection.totalCount,
+      Data: collection.Data.map((item: PortalRulesViolations) => new RulesViolationsApproval(item, hasRiskIndex, this.translate)),
+    };
+  }
+
+  public exportRulesViolations(parameters: CollectionLoadParameters): DataSourceToolbarExportMethod {
+    const factory = new V2ApiClientMethodFactory();
+    return {
+      getMethod: (withProperties: string, PageSize?: number) => {
+        let method: MethodDescriptor<EntityCollectionData>;
+        if (PageSize) {
+          method = factory.portal_rules_violations_get({ ...parameters, withProperties, PageSize, StartIndex: 0 });
+        } else {
+          method = factory.portal_rules_violations_get({ ...parameters, withProperties });
+        }
+        return new MethodDefinition(method);
+      },
+>>>>>>> oned/v92
     };
   }
 
@@ -132,4 +189,18 @@ export class RulesViolationsService {
     }
     this.busyIndicatorCounter--;
   }
+<<<<<<< HEAD
+=======
+
+  public async getComplianceRuleByUId(rulesViolationsApproval: RulesViolationsApproval): Promise<PortalRules> {
+    const uidNonCompliance = rulesViolationsApproval.GetEntity().GetColumn('UID_NonCompliance').GetValue();
+    const call = await this.cplClient.typedClient.PortalRules.Get({
+      filter: [
+        { ColumnName: 'UID_NonCompliance', CompareOp: CompareOperator.Equal, Type: FilterType.Compare, Value1: uidNonCompliance },
+        { ColumnName: 'isWorkingcopy', CompareOp: CompareOperator.Equal, Type: FilterType.Compare, Value1: false },
+      ],
+    });
+    return call.Data[0];
+  }
+>>>>>>> oned/v92
 }

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -27,8 +31,13 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { EuiLoadingService, EuiSidesheetRef, EUI_SIDESHEET_DATA } from "@elemental-ui/core";
 import { ContributingEntitlement, UiActionData } from "imx-api-cpl";
+<<<<<<< HEAD
 import { MetadataService, SnackBarService } from "qbm";
 import { DbObjectKey } from "imx-qbm-dbts";
+=======
+import { BaseCdr, EntityService, MetadataService, SnackBarService } from "qbm";
+import { DbObjectKey, ValType } from "imx-qbm-dbts";
+>>>>>>> oned/v92
 import { ApiService } from "../../api.service";
 import { StepperSelectionEvent } from "@angular/cdk/stepper";
 
@@ -45,6 +54,10 @@ export class ResolveComponent implements OnInit {
 		private readonly cplApi: ApiService,
 		private readonly busySvc: EuiLoadingService,
 		private readonly metadata: MetadataService,
+<<<<<<< HEAD
+=======
+		private readonly entityService: EntityService,
+>>>>>>> oned/v92
 		@Inject(EUI_SIDESHEET_DATA) private readonly data: {
 			uidPerson: string,
 			uidNonCompliance: string
@@ -59,8 +72,24 @@ export class ResolveComponent implements OnInit {
 	public entitlementsLoseAlso: ExtendedEntitlement[] = [];
 	public selectedEntitlements: string[] = [];
 	public uidActions: string[] = [];
+<<<<<<< HEAD
 
 	public async ngOnInit(): Promise<void> {
+=======
+	private reasonCdr: BaseCdr;
+	public cdrs: BaseCdr[];
+
+	public async ngOnInit(): Promise<void> {
+
+		this.reasonCdr = new BaseCdr(
+			this.entityService.createLocalEntityColumn({
+				ColumnName: 'ReasonHead',
+				Type: ValType.Text,
+				IsMultiLine: true
+			}),
+			'#LDS#Reason for unsubscribing'
+		);
+>>>>>>> oned/v92
 		this.busy = true;
 		// load entitlements contributing to the rule violation
 		this.selectedEntitlements = [];
@@ -105,6 +134,19 @@ export class ResolveComponent implements OnInit {
 				ObjectKeys: this.selectedEntitlements
 			});
 			this.uidActions = this.actions.filter(a => a.IsActive).map(a => a.Id);
+<<<<<<< HEAD
+=======
+
+			// do we have any unsubscribe actions?
+			if (this.actions.filter(a => a.Id.endsWith(".Unsubscribe")).length > 0) {
+				// allow the user to enter a reason
+				this.cdrs = [this.reasonCdr];
+			}
+			else {
+				this.cdrs = [];
+			}
+
+>>>>>>> oned/v92
 		} finally {
 			this.busy = false;
 		}
@@ -129,6 +171,10 @@ export class ResolveComponent implements OnInit {
 		const b = this.busySvc.show();
 		try {
 			await this.cplApi.client.portal_rules_violations_result_post(this.data.uidPerson, this.data.uidNonCompliance, {
+<<<<<<< HEAD
+=======
+				ReasonText: this.reasonCdr.column.GetValue(),
+>>>>>>> oned/v92
 				ObjectKeys: this.selectedEntitlements,
 				ActionIds: this.uidActions
 			});
@@ -141,6 +187,7 @@ export class ResolveComponent implements OnInit {
 		}
 	}
 
+<<<<<<< HEAD
 	public LdsChangesQueued = '#LDS#The changes are now queued for execution.';
 
 	public LdsLoseEntitlements = '#LDS#The employee will lose the following entitlements when the selected actions take effect. Review the list to avoid unintentional loss of access. Go back to the previous page to change the selection.';
@@ -152,4 +199,18 @@ export class ResolveComponent implements OnInit {
 	public LdsNoLoseAdditional = '#LDS#The employee will not lose any additional entitlements.';
 
 	public LdsActionList = '#LDS#The following actions will be taken to remove the permissions that contribute to the rule violation.';
+=======
+
+	public LdsChangesQueued = '#LDS#Your changes have been successfully saved. It may take some time for the changes to take effect.';
+
+	public LdsLoseEntitlements = '#LDS#The identity will lose the following entitlements when the selected actions take effect. Check the list to avoid unintentional loss of access. To change the selection, go back to the previous page.';
+
+	public LdsNoPermissions = '#LDS#No entitlements were found. The cause for the violation may has already been resolved. You may close this wizard.';
+
+	public LdsContributingPermissions = '#LDS#The following entitlements contribute to this rule violation. Select the entitlements to be removed from the identity.';
+
+	public LdsNoLoseAdditional = '#LDS#The identity will not lose any additional entitlements.';
+
+	public LdsActionList = '#LDS#The following actions will be performed to remove the selected entitlements from the identity.';
+>>>>>>> oned/v92
 }

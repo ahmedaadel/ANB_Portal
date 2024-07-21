@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,7 +25,7 @@
  */
 
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ColumnDependentReference } from '../column-dependent-reference.interface';
@@ -33,27 +33,36 @@ import { CdrEditor } from '../cdr-editor.interface';
 import { EntityColumnContainer } from '../entity-column-container';
 
 /**
- * A component for viewing / editing binary columns
+ * Provides a {@link CdrEditor | CDR editor} for editing / viewing binary value columns.
+ * 
+ * It renders an input field for adding data.
+ * When set to read-only, it uses a {@link ViewPropertyComponent | view property component} to display the content.
  */
 @Component({
   selector: 'imx-edit-binary',
   templateUrl: './edit-binary.component.html',
-  styleUrls: ['./edit-binary.component.scss']
+  styleUrls: ['./edit-binary.component.scss'],
 })
 export class EditBinaryComponent implements CdrEditor {
-  public readonly control = new FormControl({ value: undefined, disabled: true });
+  /**
+   * The form control associated with the editor.
+   */
+  public readonly control = new UntypedFormControl({ value: undefined, disabled: true });
   // TODO: TFS 806165 "imx-web: Editor für Binärdaten verbessern" umsetzen
 
+  /**
+   * The container that wraps the column functionality.
+   */
   public readonly columnContainer = new EntityColumnContainer<string>();
 
   private message: string;
 
   constructor(translationProvider: TranslateService) {
-    translationProvider.get('#LDS#This property cannot be displayed.').subscribe(value => this.message = value);
+    translationProvider.get('#LDS#This property cannot be displayed.').subscribe((value) => (this.message = value));
   }
 
   /**
-   * Binds a column dependent reference to the component
+   * Binds a column dependent reference to the component.
    * @param cdref a column dependent reference
    */
   public bind(cdref: ColumnDependentReference): void {

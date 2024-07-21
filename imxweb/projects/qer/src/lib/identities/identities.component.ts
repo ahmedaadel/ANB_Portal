@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,51 +24,50 @@
  *
  */
 
-import { OverlayRef } from '@angular/cdk/overlay';
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { MatDialog, throwMatDialogContentAlreadyAttachedError } from '@angular/material/dialog';
-import { EuiSidesheetService, EuiLoadingService, EuiDownloadOptions } from '@elemental-ui/core';
+import { Component, OnInit, OnDestroy, Input, ViewChild, ViewContainerRef } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { DataExplorerRegistryService } from '../data-explorer-view/data-explorer-registry.service';
+
+import { PortalAdminPerson, PortalPersonAll, PortalPersonReports, ProjectConfig, ViewConfigData } from 'imx-api-qer';
+import { CollectionLoadParameters, DataModel, DataModelProperty, DisplayColumns, EntitySchema, IClientProperty } from 'imx-qbm-dbts';
 import {
+  AuthenticationService,
+  BusyService,
   ClassloggerService,
-  DataSourceToolbarSettings,
-  ImxTranslationProviderService,
+  DataSourceToolbarExportMethod,
   DataSourceToolbarFilter,
   DataSourceToolbarGroupData,
+  DataSourceToolbarSettings,
+  DataSourceToolbarViewConfig,
   DataTableGroupedData,
-  SettingsService,
+  ExtService,
+  HelpContextualValues,
+  IExtension,
+  ImxTranslationProviderService,
   MessageDialogComponent,
-  AuthenticationService,
-  ElementalUiConfigService,
-  imx_SessionService
+  SettingsService,
+  SideNavigationComponent,
 } from 'qbm';
-import { CollectionLoadParameters, IClientProperty, DisplayColumns, DataModelProperty, EntitySchema, DataModel, CompareOperator, FilterType, TypedEntityCollectionData } from 'imx-qbm-dbts';
-import { IdentitiesService } from './identities.service';
-import {
-  PortalAdminPerson,
-  PortalPersonReports,
-  PortalPersonReportsInteractive,
-  PortalPersonAll,
-  ProjectConfig,
-  
-} from 'imx-api-qer';
-import { ProjectConfigurationService } from '../project-configuration/project-configuration.service';
-import { IdentitySidesheetComponent } from './identity-sidesheet/identity-sidesheet.component';
-import { IDataExplorerComponent } from '../data-explorer-view/data-explorer-extension';
-import { IdentitiesReportsService } from './identities-reports.service';
 import { QerPermissionsService } from '../admin/qer-permissions.service';
+import { ProjectConfigurationService } from '../project-configuration/project-configuration.service';
+import { ViewConfigService } from '../view-config/view-config.service';
 import { CreateNewIdentityComponent } from './create-new-identity/create-new-identity.component';
+import { IdentitiesReportsService } from './identities-reports.service';
+import { IdentitiesService } from './identities.service';
+import { IdentitySidesheetComponent } from './identity-sidesheet/identity-sidesheet.component';
+// cust
 import { OutsourceIdentityComponent } from './outsource-identity/outsource-identity.component';
 import { CCC_isHROutsourceAdmin, CCC_isOutsourceAdmin } from '../admin/qer-permissions-helper';
+import { imx_SessionService } from '../../../../qbm/src/lib/session/imx-session.service';
 
 @Component({
   selector: 'imx-data-explorer-identities',
   templateUrl: './identities.component.html',
   styleUrls: ['./identities.component.scss'],
 })
-export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, IDataExplorerComponent {
+export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, SideNavigationComponent {
   @Input() public applyIssuesFilter = false;
 
   /**
@@ -80,12 +79,12 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, IData
    * Sets the admin mode to show all identities
    */
   @Input() public isAdmin = false;
+  @Input() public contextId: HelpContextualValues;
 
   /**
    * Settings needed by the DataSourceToolbarComponent
    */
   public dstSettings: DataSourceToolbarSettings;
-
 
   /**
    * Page size, start index, search and filtering options etc.
@@ -102,12 +101,9 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, IData
    */
   public selectedPersonDetail: PortalAdminPerson | PortalPersonReports;
 
-  public downloadOptions: EuiDownloadOptions;
   public currentUser: string;
 
-  public readonly entitySchemaPersonReports: EntitySchema;
-  public readonly entitySchemaPerson: EntitySchema;
-  public readonly entitySchemaAdminPerson: EntitySchema;
+  public entitySchemaPersonReports: EntitySchema;
   public readonly DisplayColumns = DisplayColumns;
   public filterOptions: DataSourceToolbarFilter[] = [];
   public groupingOptions: DataModelProperty[] = [];
@@ -115,52 +111,51 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, IData
 
   public groupData: { [key: string]: DataTableGroupedData } = {};
   public isManagerForPersons: boolean;
+  public isPersonAdmin: boolean;
+  public isAuditor: boolean;
+  public extensions: IExtension[] = [];
 
   private projectConfig: ProjectConfig;
   private displayedColumns: IClientProperty[] = [];
   private authorityDataDeleted$: Subscription;
   private sessionResponse$: Subscription;
 
+  public busyService = new BusyService();
   private displayedInnerColumns: IClientProperty[] = [];
   private groupingInfo: DataSourceToolbarGroupData;
   private dataModel: DataModel;
+  private viewConfig: DataSourceToolbarViewConfig;
+  private get viewConfigPath(): string {
+    return this.isAdmin ? 'admin/person' : 'person/reports';
+  }
+  @ViewChild('dynamicReport', { static: true, read: ViewContainerRef }) dynamicReport: ViewContainerRef;
 
   constructor(
-    private qerPersmission: QerPermissionsService ,
+    //cust
     public readonly session: imx_SessionService,
     public translateProvider: ImxTranslationProviderService,
     private readonly sideSheet: EuiSidesheetService,
-    private readonly busyService: EuiLoadingService,
+    private readonly busyServiceElemental: EuiLoadingService,
     private readonly logger: ClassloggerService,
     private readonly configService: ProjectConfigurationService,
     private readonly dialog: MatDialog,
     private readonly identitiesService: IdentitiesService,
+    private viewConfigService: ViewConfigService,
     private readonly translate: TranslateService,
     private readonly authService: AuthenticationService,
     qerPermissionService: QerPermissionsService,
-    elementalUiConfigService: ElementalUiConfigService,
-    identityReports: IdentitiesReportsService,
+    private identityReports: IdentitiesReportsService,
     settingsService: SettingsService,
+    private extService: ExtService
   ) {
     this.navigationState = { PageSize: settingsService.DefaultPageSize, StartIndex: 0 };
-    this.entitySchemaPersonReports = identitiesService.personReportsSchema;
-    this.entitySchemaPerson = identitiesService.personSchema;
-    this.entitySchemaAdminPerson = identitiesService.adminPersonSchema;
     this.authorityDataDeleted$ = this.identitiesService.authorityDataDeleted.subscribe(() => this.navigate());
 
-    this.sessionResponse$ = this.authService.onSessionResponse.subscribe(async session => {
+    this.sessionResponse$ = this.authService.onSessionResponse.subscribe(async (session) => {
       if (session.IsLoggedIn) {
-        this.currentUser = session.UserUid;
-        const overlay = this.busyService.show();
-        try {
-          this.isManagerForPersons = await qerPermissionService.isPersonManager();
-        } finally {
-          this.busyService.hide(overlay);
-        }
-        this.downloadOptions = {
-          ...elementalUiConfigService.Config.downloadOptions,
-          url: identityReports.personsManagedReport(30, session.UserUid)
-        };
+        (this.currentUser = session.UserUid), (this.isManagerForPersons = await qerPermissionService.isPersonManager());
+        this.isPersonAdmin = await qerPermissionService.isPersonAdmin();
+        this.isAuditor = await qerPermissionService.isAuditor();
       }
     });
   }
@@ -170,6 +165,7 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, IData
   }
 
   public async ngOnInit(): Promise<void> {
+    this.getDynamicMenuItems();
     await this.init();
   }
 
@@ -183,6 +179,26 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, IData
     }
   }
 
+  public getDynamicMenuItems(): void {
+    if (this.isAdmin) {
+      this.extensions = this.extService.Registry['identityReports'];
+    } else {
+      this.extensions = this.extService.Registry['identityReportsManager'];
+    }
+  }
+
+  // !!TODO - Fix mat menu dynamic report components
+  // Create dynamic report components and call viewReport function
+  public async showDynamicReport(extension: IExtension): Promise<void> {
+    const dynamicReportComponent = this.dynamicReport.createComponent(extension.instance, { index: 0 });
+    dynamicReportComponent.instance.referrer = this.currentUser;
+    dynamicReportComponent.instance.inputData = extension.inputData;
+    await dynamicReportComponent.instance.ngOnInit();
+    if (dynamicReportComponent.instance.viewReport) {
+      dynamicReportComponent.instance.viewReport();
+    }
+  }
+
   /**
    * Occurs when the navigation state has changed - e.g. users clicks on the next page button.
    *
@@ -192,13 +208,17 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, IData
     await this.navigate();
   }
 
+  public async personsManagedReport(): Promise<void> {
+    this.identityReports.personsManagedReport(this.currentUser, '#LDS#Download report on identities you are directly responsible for');
+  }
+
   /**
    * Occurs when user selects an identity.
    *
    * @param identity Selected identity.
    */
   public async onIdentityChanged(identity: PortalPersonAll | PortalPersonReports): Promise<void> {
-    const overlayRef = this.busyService.show();
+    const overlayRef = this.busyServiceElemental.show();
 
     try {
       this.logger.debug(this, `Selected identity changed`);
@@ -211,9 +231,11 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, IData
           data: {
             ShowOk: true,
             Title: await this.translate.get('#LDS#Heading Load Object').toPromise(),
-            Message: await this.translate.get('#LDS#The object cannot be loaded. The displayed data may differ from the actual state. The data will now be reloaded.').toPromise()
+            Message: await this.translate
+              .get('#LDS#The object cannot be loaded. The displayed data may differ from the actual state. The data will now be reloaded.')
+              .toPromise(),
           },
-          panelClass: 'imx-messageDialog'
+          panelClass: 'imx-messageDialog',
         });
 
         await dialogRef.afterClosed().toPromise();
@@ -222,7 +244,7 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, IData
       }
       await this.viewIdentity(this.selectedPersonDetail);
     } finally {
-      this.busyService.hide(overlayRef);
+      this.busyServiceElemental.hide(overlayRef);
     }
   }
 
@@ -239,8 +261,7 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, IData
   }
 
   public async onGroupingChange(groupKey: string): Promise<void> {
-    let overlayRef: OverlayRef;
-    setTimeout(() => (overlayRef = this.busyService.show()));
+    const isBusy = this.busyService.beginBusy();
 
     try {
       const groupData = this.groupData[groupKey];
@@ -253,32 +274,32 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, IData
         entitySchema: this.entitySchemaPersonReports,
         navigationState: groupData.navigationState,
         dataModel: this.dataModel,
-        identifierForSessionStore: 'identities-grouped'
       };
     } finally {
-      setTimeout(() => this.busyService.hide(overlayRef));
+      isBusy.endBusy();
     }
   }
 
   public async createNewIdentity(): Promise<void> {
-    await this.sideSheet.open(CreateNewIdentityComponent, {
-      title: await this.translate.get('#LDS#Heading Create Identity').toPromise(),
-      headerColour: 'iris-blue',
-      bodyColour: 'asher-gray',
-      padding: '0px',
-      width: 'max(650px, 65%)',
-      disableClose: true,
-      testId: 'create-new-identity-sidesheet',
-      icon: 'contactinfo',
-      data: {
-        selectedIdentity: await this.identitiesService.createEmptyEntity(),
-        projectConfig: this.projectConfig
-      }
-    }).afterClosed().toPromise();
+    await this.sideSheet
+      .open(CreateNewIdentityComponent, {
+        title: await this.translate.get('#LDS#Heading Create Identity').toPromise(),
+        padding: '0px',
+        width: 'max(650px, 65%)',
+        disableClose: true,
+        testId: 'create-new-identity-sidesheet',
+        icon: 'contactinfo',
+        data: {
+          selectedIdentity: await this.identitiesService.createEmptyEntity(),
+          projectConfig: this.projectConfig,
+        },
+      })
+      .afterClosed()
+      .toPromise();
 
     return this.navigate();
   }
-
+  
   public async CCC_createNewOutsourceIdentity(): Promise<void> {
     await this.sideSheet.open(OutsourceIdentityComponent, {
       title: await this.translate.get('#LDS#Create Outsource Identity').toPromise(),
@@ -295,90 +316,91 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, IData
         
       }
     }).afterClosed().toPromise();
-
     return this.navigate();
   }
 
   private async init(): Promise<void> {
-    this.projectConfig = await this.configService.getConfig();
-    this.displayedColumns = [
-      this.entitySchemaPersonReports.Columns[DisplayColumns.DISPLAY_PROPERTYNAME],
-      this.entitySchemaPersonReports.Columns.IsSecurityIncident,
-      this.entitySchemaPersonReports.Columns.UID_Department,
-    ];
+    const isBusy = this.busyService.beginBusy();
 
-    if (!this.isAdmin) {
-      this.displayedColumns.push(
-        this.entitySchemaPersonReports.Columns.IdentityType,
-        this.entitySchemaPersonReports.Columns.EmployeeType,
-        this.entitySchemaPersonReports.Columns.IsExternal
-      );
-    }
-
-    // Ensure this column is always added last
-    this.displayedColumns.push(this.entitySchemaPersonReports.Columns.XMarkedForDeletion);
-
-    this.displayedInnerColumns = [
-      this.entitySchemaPersonReports.Columns[DisplayColumns.DISPLAY_PROPERTYNAME],
-    ];
-
-    let overlayRef: OverlayRef;
-    setTimeout(() => (overlayRef = this.busyService.show()));
-
+    this.entitySchemaPersonReports = this.identitiesService.personReportsSchema;
     try {
-      this.dataModel = this.isAdmin
-        ? await this.identitiesService.getDataModelAdmin()
-        : await this.identitiesService.getDataModelReport();
+      this.projectConfig = await this.configService.getConfig();
+      this.displayedColumns = [
+        this.entitySchemaPersonReports.Columns[DisplayColumns.DISPLAY_PROPERTYNAME],
+        this.entitySchemaPersonReports.Columns.IsSecurityIncident,
+        this.entitySchemaPersonReports.Columns.UID_Department,
+      ];
+
+      if (!this.isAdmin) {
+        this.displayedColumns.push(
+          this.entitySchemaPersonReports.Columns.IdentityType,
+          this.entitySchemaPersonReports.Columns.EmployeeType,
+          this.entitySchemaPersonReports.Columns.IsExternal
+        );
+      }
+
+      // Ensure this column is always added last
+      this.displayedColumns.push(this.entitySchemaPersonReports.Columns.XMarkedForDeletion);
+
+      this.displayedInnerColumns = [this.entitySchemaPersonReports.Columns[DisplayColumns.DISPLAY_PROPERTYNAME]];
+
+      this.dataModel = this.isAdmin ? await this.identitiesService.getDataModelAdmin() : await this.identitiesService.getDataModelReport();
+      this.filterOptions = this.dataModel.Filters;
+      this.groupingOptions = this.getGroupableProperties(this.dataModel.Properties);
+
+      if (!this.isAdmin) {
+        const indexActive = this.filterOptions.findIndex((elem) => elem.Name === 'isinactive');
+        if (indexActive > -1) {
+          this.filterOptions[indexActive].InitialValue = '0';
+        }
+        const reports = this.filterOptions.findIndex((elem) => elem.Name === 'reports');
+        if (reports > -1) {
+          this.filterOptions[reports].InitialValue = '0';
+        }
+      }
+
+      if (this.applyIssuesFilter) {
+        const indexWithManagerFilter = this.filterOptions.findIndex((elem) => elem.Name === 'withmanager');
+        if (indexWithManagerFilter > -1) {
+          this.filterOptions[indexWithManagerFilter].InitialValue = '0';
+        }
+      }
+      this.viewConfig = await this.viewConfigService.getInitialDSTExtension(this.dataModel, this.viewConfigPath);
+      await this.navigate();
     } finally {
-      setTimeout(() => (this.busyService.hide(overlayRef)));
+      isBusy.endBusy();
     }
-    this.filterOptions = this.dataModel.Filters;
-    this.groupingOptions = this.getGroupableProperties(this.dataModel.Properties);
-
-    if (!this.isAdmin) {
-      const indexActive = this.filterOptions.findIndex(elem => elem.Name === 'isinactive');
-      if (indexActive > -1) {
-        this.filterOptions[indexActive].InitialValue = '0';
-      }
-      const reports = this.filterOptions.findIndex(elem => elem.Name === 'reports');
-      if (reports > -1) {
-        this.filterOptions[reports].InitialValue = '0';
-      }
-    }
-
-    if (this.applyIssuesFilter) {
-      const indexWithManagerFilter = this.filterOptions.findIndex(elem => elem.Name === 'withmanager');
-      if (indexWithManagerFilter > -1) {
-        this.filterOptions[indexWithManagerFilter].InitialValue = '0';
-      }
-    }
-    await this.navigate();
   }
 
   private async navigate(): Promise<void> {
-    let overlayRef: OverlayRef;
-    setTimeout(() => (overlayRef = this.busyService.show()));
-
+    const isBusy = this.busyService.beginBusy();
     try {
       this.logger.debug(this, `Retrieving person list`);
       this.logger.trace('Navigation settings', this.navigationState);
-      if (!this.groupingInfo && this.groupingOptions.length > 0)
-       {
+      // cust
+      if (!this.groupingInfo && this.groupingOptions.length > 0) {
         // this.groupingInfo = {
-        //   groups: [{
-        //     property: this.groupingOptions[0],
-        //     getData: async () => (await this.identitiesService.getGroupedAllPerson(
-        //       'IdentityType',
-        //       { PageSize: this.navigationState.PageSize, StartIndex: 0, withProperties: this.navigationState.withProperties }
-        //     )).filter(item => item.Count > 0)
-        //   }]
+        //   groups: [
+          
+        //     {
+        //       property: this.groupingOptions[0],
+        //       getData: async () => {
+        //         return this.identitiesService.getGroupedAllPerson('IdentityType', {
+        //           PageSize: this.navigationState.PageSize,
+        //           StartIndex: 0,
+        //           withProperties: this.navigationState.withProperties,
+        //         });
+        //       },
+        //     },
+        //   ],
         // };
       }
 
-    /** * apply different filter based on permission group */
+      // cust
+      /** * apply different filter based on permission group */
    let sessionState = await this.session.getSessionState();
-   let IsOutsourceStaff:boolean = await this.qerPersmission.CCC_isOutsourceAdmin()
-   let IsOutsourceHR:boolean = await this.qerPersmission.CCC_isHROutsourceAdmin()
+   let IsOutsourceStaff:boolean = await this.qerPermissionService.CCC_isOutsourceAdmin()
+   let IsOutsourceHR:boolean = await this.qerPermissionService.CCC_isHROutsourceAdmin()
 
       if (IsOutsourceHR ){
         this.navigationState.filter=[
@@ -420,12 +442,16 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, IData
            },
      ];
       }
-     /***** */
+      
+      this.entitySchemaPersonReports = this.identitiesService.personReportsSchema;
       const data = this.isAdmin
-      ? await this.identitiesService.getAllPersonAdmin(this.navigationState)
-      : await this.identitiesService.getReportsOfManager(this.navigationState);
+        ? await this.identitiesService.getAllPersonAdmin(this.navigationState)
+        : await this.identitiesService.getReportsOfManager(this.navigationState);
+      const exportMethod: DataSourceToolbarExportMethod = this.isAdmin
+        ? this.identitiesService.exportAdminPerson(this.navigationState)
+        : this.identitiesService.exportPerson(this.navigationState);
+      exportMethod.initialColumns = this.displayedColumns.map((col) => col.ColumnName);
 
-    
       this.dstSettings = {
         displayedColumns: this.displayedColumns,
         dataSource: data,
@@ -434,48 +460,61 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, IData
         filters: this.filterOptions,
         groupData: this.groupingInfo,
         dataModel: this.dataModel,
-        identifierForSessionStore: 'identities' + (this.isAdmin ? 'admin' : 'resp')
+        viewConfig: this.viewConfig,
+        exportMethod,
       };
       this.logger.debug(this, `Head at ${data.Data.length + this.navigationState.StartIndex} of ${data.totalCount} item(s)`);
     } finally {
-      setTimeout(() => this.busyService.hide(overlayRef));
+      isBusy.endBusy();
     }
   }
 
-  private async getPersonDetails(id: string): Promise<PortalAdminPerson | PortalPersonReportsInteractive> {
+  public async updateConfig(config: ViewConfigData): Promise<void> {
+    await this.viewConfigService.putViewConfig(config);
+    this.viewConfig = await this.viewConfigService.getDSTExtensionChanges(this.viewConfigPath);
+    this.dstSettings.viewConfig = this.viewConfig;
+  }
+
+  public async deleteConfigById(id: string): Promise<void> {
+    await this.viewConfigService.deleteViewConfig(id);
+    this.viewConfig = await this.viewConfigService.getDSTExtensionChanges(this.viewConfigPath);
+    this.dstSettings.viewConfig = this.viewConfig;
+  }
+
+  private async getPersonDetails(id: string): Promise<PortalAdminPerson | PortalPersonReports> {
     if (id == null || id.length <= 0) {
       return null;
     }
     this.logger.debug(this, `Retrieving details for admin person with id ${id}`);
 
-    return this.isAdmin
-      ? this.identitiesService.getAdminPerson(id)
-      : (await this.identitiesService.getPersonInteractive(id)).Data[0];
+    return this.isAdmin ? this.identitiesService.getAdminPerson(id) : (await this.identitiesService.getPersonInteractive(id)).Data[0];
   }
 
-  private async viewIdentity(identity: PortalAdminPerson | PortalPersonReportsInteractive): Promise<void> {
-    await this.sideSheet.open(IdentitySidesheetComponent, {
-      title: await this.translate.get('#LDS#Heading Edit Identity').toPromise(),
-      headerColour: 'blue',
-      padding: '0px',
-      disableClose: true,
-      width: 'max(700px, 70%)',
-      icon: 'contactinfo',
-      data: {
-        isAdmin: this.isAdmin,
-        projectConfig: this.projectConfig,
-        selectedIdentity: identity,
-      }
-    }).afterClosed().toPromise();
+  private async viewIdentity(identity: PortalAdminPerson | PortalPersonReports): Promise<void> {
+    await this.sideSheet
+      .open(IdentitySidesheetComponent, {
+        title: await this.translate.get('#LDS#Heading Edit Identity').toPromise(),
+        subTitle: identity.GetEntity().GetDisplay(),
+        padding: '0px',
+        disableClose: true,
+        width: 'max(768px, 70%)',
+        icon: 'contactinfo',
+        data: {
+          isAdmin: this.isAdmin,
+          projectConfig: this.projectConfig,
+          selectedIdentity: identity,
+          canEdit: this.isPersonAdmin || this.isManagerForPersons,
+        },
+        testId: 'identities-view-identity-sidesheet',
+      })
+      .afterClosed()
+      .toPromise();
     return this.navigate();
   }
 
   private getGroupableProperties(identityProperties: DataModelProperty[]): DataModelProperty[] {
     let groupable: DataModelProperty[] = [];
-    groupable = identityProperties.filter(item => item.IsGroupable);
+    groupable = identityProperties.filter((item) => item.IsGroupable);
     return groupable;
   }
-
-
-  
 }

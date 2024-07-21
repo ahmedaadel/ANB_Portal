@@ -1,10 +1,31 @@
 /* You can add styles to this file, and also import other style files */
+<<<<<<< HEAD
 @import '@elemental-ui/core/src/styles/_palette.scss';
 
 :host {
   display: flex;
   flex-wrap: wrap;
   overflow-y: auto;
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  flex: auto;
+}
+
+.imx-data-container{
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
+.hidden {
+  display:none;
+>>>>>>> oned/v92
 }
 
 .imx-data-tiles-no-results {
@@ -14,12 +35,20 @@
 
   .eui-icon {
     font-size: 100px;
+<<<<<<< HEAD
     color: rgba($black-c, 0.55);
+=======
+    color: rgba($color-gray-20, 0.55);
+>>>>>>> oned/v92
   }
 
   p {
     margin: 0;
     font-size: 18px;
+<<<<<<< HEAD
     color: $black-9;
+=======
+    color: $color-gray-40;
+>>>>>>> oned/v92
   }
 }

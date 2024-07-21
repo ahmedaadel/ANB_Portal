@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -31,6 +31,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { CollectionLoadParameters, IEntity } from 'imx-qbm-dbts';
 import { ClassloggerService } from '../../classlogger/classlogger.service';
 import { TreeDatabase } from '../tree-database';
+import { SettingsService} from '../../settings/settings-service';
 
 @Component({
   selector: 'imx-data-tree-search-results',
@@ -50,7 +51,7 @@ export class DataTreeSearchResultsComponent implements OnChanges {
    * This text will be displayed when a search or filter is applied but there is no data as a result
    * Defaults to a generic message when not supplied
    */
-  @Input() public noMatchingDataText = '#LDS#No matching data';
+  @Input() public noMatchingDataText = '#LDS#There is no data matching your search.';
 
   /**
    * This icon will be displayed along with the 'noMatchingDataTranslationKey' text when a search or filter
@@ -78,7 +79,7 @@ export class DataTreeSearchResultsComponent implements OnChanges {
   public paginatorLength: number;
 
   /** @ignore the pagesiuze for the paginator */
-  public paginatorPageSize = 25;
+  public paginatorPageSize;
 
   public loading = true;
   public selectedEntity: IEntity;
@@ -92,7 +93,9 @@ export class DataTreeSearchResultsComponent implements OnChanges {
   /** event, that fires, after the checked nodes list has been updated */
   @Output() public checkedNodesChanged = new EventEmitter();
 
-  constructor(private readonly logger: ClassloggerService) { }
+  constructor(private readonly logger: ClassloggerService, private readonly settings: SettingsService) {
+    this.paginatorPageSize = this.settings?.DefaultPageSize ?? 25;
+  }
 
   public async ngOnChanges(changes: SimpleChanges): Promise<void> {
     if (changes['navigationState']) {
@@ -178,7 +181,7 @@ export class DataTreeSearchResultsComponent implements OnChanges {
   }
 
   private getId(entity: IEntity): string {
-    return this.database ?  this.database.getId(entity) : entity.GetKeys()[0];
+    return TreeDatabase.getId(entity);
    }
 
 }

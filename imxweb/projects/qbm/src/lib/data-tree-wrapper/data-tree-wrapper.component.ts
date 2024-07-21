@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -26,20 +30,34 @@
 
 import { Component, ContentChild, EventEmitter, Input, OnChanges, Output, TemplateRef, ViewChild } from '@angular/core';
 
+<<<<<<< HEAD
 import { CollectionLoadParameters, EntitySchema, FilterTreeData, IEntity } from 'imx-qbm-dbts';
+=======
+import { CollectionLoadParameters, EntitySchema, FilterData, IEntity } from 'imx-qbm-dbts';
+>>>>>>> oned/v92
 import { FilterTreeParameter } from '../data-source-toolbar/data-model/filter-tree-parameter';
 import { DataSourceToolbarFilter } from '../data-source-toolbar/data-source-toolbar-filters.interface';
 import { DataSourceToolbarSettings } from '../data-source-toolbar/data-source-toolbar-settings';
 import { DataTreeComponent } from '../data-tree/data-tree.component';
 import { TreeDatabase } from '../data-tree/tree-database';
+<<<<<<< HEAD
+=======
+import { TreeNodeInfo } from '../data-tree/tree-node';
+>>>>>>> oned/v92
 
 @Component({
   selector: 'imx-data-tree-wrapper',
   templateUrl: './data-tree-wrapper.component.html',
+<<<<<<< HEAD
   styleUrls: ['./data-tree-wrapper.component.scss']
 })
 export class DataTreeWrapperComponent implements OnChanges {
 
+=======
+  styleUrls: ['./data-tree-wrapper.component.scss'],
+})
+export class DataTreeWrapperComponent implements OnChanges {
+>>>>>>> oned/v92
   public dstSettings: DataSourceToolbarSettings;
 
   @Input() public database: TreeDatabase;
@@ -52,6 +70,11 @@ export class DataTreeWrapperComponent implements OnChanges {
   @Input() public withMultiSelect: boolean;
   @Input() public withSelectedNodeHighlight = true;
   @Input() public filterTree: FilterTreeParameter;
+<<<<<<< HEAD
+=======
+  @Input() public hideSelection = false;
+  @Input() public isNodeSelectable = true;
+>>>>>>> oned/v92
 
   @ViewChild('tree') public treeControl: DataTreeComponent;
 
@@ -59,6 +82,11 @@ export class DataTreeWrapperComponent implements OnChanges {
 
   @Output() public nodeSelected = new EventEmitter<IEntity>();
   @Output() public checkedNodesChanged = new EventEmitter();
+<<<<<<< HEAD
+=======
+  /** Event, that fires, after the tree is rendered */
+  @Output() public treeRendered = new EventEmitter();
+>>>>>>> oned/v92
 
   public navigationStateTree: CollectionLoadParameters = {};
 
@@ -68,7 +96,11 @@ export class DataTreeWrapperComponent implements OnChanges {
       entitySchema: this.entitySchema,
       navigationState: this.navigationStateTree,
       filters: this.filters,
+<<<<<<< HEAD
       filterTree: this.filterTree
+=======
+      filterTree: this.filterTree,
+>>>>>>> oned/v92
     };
   }
 
@@ -85,10 +117,24 @@ export class DataTreeWrapperComponent implements OnChanges {
     this.treeControl?.reload();
   }
 
+<<<<<<< HEAD
   public onTreeSearch(keywords: string): void {
     this.navigationStateTree = {
       ...this.navigationStateTree,
       ...{ StartIndex: 0, search: keywords }
+=======
+  public filterByTree(filters: FilterData[]): void {
+    this.navigationStateTree.filter = filters;
+
+    this.database.reloadData();
+    this.treeControl?.reload();
+  }
+
+  public onTreeSearch(keywords: string): void {
+    this.navigationStateTree = {
+      ...this.navigationStateTree,
+      ...{ StartIndex: 0, search: keywords },
+>>>>>>> oned/v92
     };
 
     if (this.dstSettings) {
@@ -98,6 +144,13 @@ export class DataTreeWrapperComponent implements OnChanges {
     this.treeControl?.reload();
   }
 
+<<<<<<< HEAD
+=======
+  public hasChildren(entity: IEntity): boolean {
+    return this.treeControl?.hasChildren(entity);
+  }
+
+>>>>>>> oned/v92
   public reload(): void {
     this.treeControl?.reload();
   }
@@ -107,5 +160,49 @@ export class DataTreeWrapperComponent implements OnChanges {
     this.treeControl?.clearSelection();
   }
 
+<<<<<<< HEAD
 
+=======
+  public isExpanded(entity: IEntity): boolean {
+    return this.treeControl?.isExpanded(entity);
+  }
+
+  /**
+   * Expands a node identified by its entity
+   * @param entity entity, for identifying the node
+   */
+  public expandNode(entity: IEntity): void {
+    this.treeControl?.expandNode(entity);
+  }
+
+  /**
+   * Adds a child entity to a parent, identified by the parents uid
+   * @param childEntity new entity to be added to the tree
+   * @param uidParent uid for the parent
+   */
+  public add(childEntity: IEntity, uidParent: string) {
+    this.treeControl?.add(childEntity, uidParent);
+  }
+
+  /**
+   *
+   * @param entity entity, for identifying the node
+   * @param newNodeInfo new information for the node
+   */
+  public updateNode(entity: IEntity, newNodeInfo: TreeNodeInfo) {
+    this.treeControl?.updateNode(entity, newNodeInfo);
+  }
+
+  /**
+   * Deletes a node identified by its identity
+   * @param entity entity, for identifying the node
+   */
+  public deleteNode(entity: IEntity, withDescendants: boolean) {
+    this.treeControl.deleteNode(entity,withDescendants);
+  }
+
+  public getEntityById(id: string): IEntity {
+    return this.treeControl.getEntityById(id);
+  }
+>>>>>>> oned/v92
 }

@@ -1,5 +1,9 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
+<<<<<<< HEAD
 
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 .riskanalysis-sidesheet {
   background-color: $asher-gray;
   padding: 2em;
@@ -8,3 +12,22 @@
   flex-direction: column;
   overflow: auto;
 }
+<<<<<<< HEAD
+=======
+
+.eui-dark-theme{
+  :host{
+    .riskanalysis-sidesheet{
+      background-color: $color-gray-80;
+    }
+  }
+}
+
+.eui-contrast-theme{
+  :host{
+    .riskanalysis-sidesheet{
+      background-color: $color-gray-100;
+    }
+  }
+}
+>>>>>>> oned/v92

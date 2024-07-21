@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import '@elemental-ui/core/src/styles/_palette.scss';
 
 :host {
@@ -5,12 +6,36 @@
     flex-direction: column;
     overflow: hidden;
     height: inherit;
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import '../../../../../../shared/scss/common-table.scss';
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: inherit;
+
+  ::ng-deep imx-data-table .mat-header-row .mat-header-cell {
+    font-weight: 600;
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  ::ng-deep imx-data-table .mat-row .mat-cell {
+    padding: 0 10px;
+  }
+
+  ::ng-deep eui-sidesheet .eui-sidesheet__content {
+    display: flex;
+    flex-direction: column;
+>>>>>>> oned/v92
   }
 
   imx-data-table {
     flex-grow: 2;
   }
 
+<<<<<<< HEAD
   :host ::ng-deep imx-data-table .mat-header-row .mat-header-cell {
     font-weight: 600;
     font-size: 14px;
@@ -23,6 +48,18 @@
 
   .imx-separate-menu-item {
     border-top: 1px solid $black-c;
+=======
+  div[subtitle-long] {
+    font-size: smaller;
+    color: $color-gray-40;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .imx-separate-menu-item {
+    border-top: 1px solid $color-gray-20;
+>>>>>>> oned/v92
   }
 
   .imx-table-container {
@@ -30,6 +67,10 @@
     flex-direction: column;
     overflow: hidden;
     height: inherit;
+<<<<<<< HEAD
+=======
+    flex: 1 1 auto;
+>>>>>>> oned/v92
   }
 
   .imx-policy-footer {
@@ -37,6 +78,7 @@
     flex-direction: row;
     align-items: center;
     padding: 10px;
+<<<<<<< HEAD
     border: 1px solid $black-c;
     min-height: 50px;
   }
@@ -46,10 +88,17 @@
     flex-direction: column;
   }
 
+=======
+    border: 1px solid $color-gray-20;
+    min-height: 50px;
+  }
+
+>>>>>>> oned/v92
   .mat-raised-button {
     align-self: flex-end;
   }
 
+<<<<<<< HEAD
 .mat-toolbar {
   background-color: inherit;
   margin-left: 25px;
@@ -90,5 +139,79 @@
 
   > *:not(:last-child) {
     margin-right: 5px;
+=======
+  .mat-toolbar {
+    background-color: inherit;
+    margin-left: 25px;
+    margin-right: 0;
+    margin-bottom: 40px;
+    padding-right: 0;
+  }
+
+  .mat-toolbar > button {
+    margin-left: 5px;
+  }
+
+  .mat-toolbar > mat-button {
+    color: $color-gray-100;
+  }
+
+  .imx-toolbar-spacer {
+    flex: 1 1 auto;
+  }
+
+  .mat-slide-toggle {
+    font-size: 16px;
+  }
+
+  .button-row {
+    @include imx-button-bar();
+  }
+
+  .imx-button-column {
+    @include imx-button-column-right();
+  }
+
+  .imx-content-card {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    margin: 3px;
+    overflow: hidden;
+  }
+}
+
+.imx-menu-with-spinner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 16px;
+
+  .mat-progress-spinner {
+    overflow: visible;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    .mat-toolbar > mat-button {
+      color: $color-gray-10;
+    }
+
+    div[subtitle-long] {
+      color: $color-gray-60;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .mat-toolbar > mat-button {
+      color: $color-gray-0;
+    }
+    div[subtitle-long] {
+      color: $color-gray-80;
+    }
+>>>>>>> oned/v92
   }
 }

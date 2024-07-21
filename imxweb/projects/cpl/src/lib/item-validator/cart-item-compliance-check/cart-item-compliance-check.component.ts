@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -39,16 +43,29 @@ import { ComplianceViolationDetailsComponent } from '../../request/compliance-vi
 export class CartItemComplianceCheckComponent {
   public check: ICartItemCheck;
 
+<<<<<<< HEAD
   constructor(private readonly sidesheetService: EuiSidesheetService, private readonly translateService: TranslateService) {}
+=======
+  constructor(
+    private readonly sidesheetService: EuiSidesheetService, 
+    private readonly translateService: TranslateService
+  ) {}
+>>>>>>> oned/v92
 
   public async onOpenDetails(): Promise<void> {
     this.sidesheetService.open(ComplianceViolationDetailsComponent, {
       title: await this.translateService.get('#LDS#Heading View Rule Violation Details').toPromise(),
       width: 'max(550px,50%)',
+<<<<<<< HEAD
       bodyColour: 'asher-gray',
       headerColour: 'iris-blue',
       data: this.check,
       testId: 'violation-details',
+=======
+      padding: '0px',
+      data: this.check,
+      testId: 'cart-item-compliance-violation-details',
+>>>>>>> oned/v92
     });
   }
 }

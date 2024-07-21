@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -36,6 +40,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { EuiCoreModule } from '@elemental-ui/core';
 import { TranslateModule } from '@ngx-translate/core';
 
+<<<<<<< HEAD
 import { AuthenticationModule } from 'qbm';
 import { TermsOfUseAcceptComponent } from './terms-of-use-accept.component';
 import { TermsOfUseListComponent } from './terms-of-use-list.component';
@@ -44,6 +49,17 @@ import { TermsOfUseListComponent } from './terms-of-use-list.component';
   declarations: [
     TermsOfUseAcceptComponent,
     TermsOfUseListComponent
+=======
+import { AuthenticationModule, BusyIndicatorModule } from 'qbm';
+import { TermsOfUseAcceptComponent } from './terms-of-use-accept.component';
+import { TermsOfUseListComponent } from './terms-of-use-list.component';
+import { TermsOfUseViewerComponent } from './terms-of-use-viewer/terms-of-use-viewer.component';
+@NgModule({
+  declarations: [
+    TermsOfUseAcceptComponent,
+    TermsOfUseListComponent,
+    TermsOfUseViewerComponent
+>>>>>>> oned/v92
   ],
   imports: [
     AuthenticationModule,
@@ -57,7 +73,15 @@ import { TermsOfUseListComponent } from './terms-of-use-list.component';
     MatInputModule,
     MatStepperModule,
     ReactiveFormsModule,
+<<<<<<< HEAD
     TranslateModule
+=======
+    TranslateModule,
+    BusyIndicatorModule
+  ],
+  exports: [
+    TermsOfUseViewerComponent
+>>>>>>> oned/v92
   ]
 })
 export class TermsOfUseModule { }

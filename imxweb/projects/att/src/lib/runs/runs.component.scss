@@ -7,6 +7,10 @@
 
 .heading-wrapper {
   display: flex;
+<<<<<<< HEAD
+=======
+  align-items: flex-start;
+>>>>>>> oned/v92
 
   .helper-alert {
     display: flex;
@@ -24,4 +28,12 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+<<<<<<< HEAD
+=======
+  flex: 1 1 auto;
+
+  ::ng-deep .eui-sidesheet-actions{
+    background-color: transparent;
+  }
+>>>>>>> oned/v92
 }

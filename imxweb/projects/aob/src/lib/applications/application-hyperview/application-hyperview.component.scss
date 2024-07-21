@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @use '@angular/material' as mat;
 @import '@elemental-ui/core/src/styles/_palette.scss';
 
@@ -6,4 +7,28 @@
   display: flex;
   flex-direction: column;
   background-color: mat.get-color-from-palette($asher-gray-palette, 100);
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+:host {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+
+  imx-busy-service {
+    justify-self: center;
+    align-self: center;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    background-color: transparent;
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    background-color: $color-gray-100;
+  }
+>>>>>>> oned/v92
 }

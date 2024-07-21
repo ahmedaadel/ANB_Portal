@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,6 +28,7 @@
  *
  */
 
+<<<<<<< HEAD
 import { CUSTOM_ELEMENTS_SCHEMA, EventEmitter } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -200,6 +205,33 @@ describe('ItshopPatternAddProductsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ItshopPatternAddProductsComponent);
     component = fixture.componentInstance;
+=======
+import { EuiSidesheetRef } from '@elemental-ui/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { MockBuilder, MockedComponentFixture, MockRender } from 'ng-mocks';
+import { of } from 'rxjs';
+
+import { clearStylesFromDOM } from 'qbm';
+import { ItshopPatternAddProductsComponent } from './itshop-pattern-add-products.component';
+import { ItshopPatternModule } from '../itshop-pattern.module';
+
+describe('ItshopPatternAddProductsComponent', () => {
+  let component: ItshopPatternAddProductsComponent;
+  let fixture: MockedComponentFixture<ItshopPatternAddProductsComponent>;
+
+  beforeEach(() => {
+    return MockBuilder([ItshopPatternAddProductsComponent, TranslateModule.forRoot()])
+    .mock(ItshopPatternModule)
+      .mock(EuiSidesheetRef, {
+        close: jasmine.createSpy('close'),
+        closeClicked: jasmine.createSpy('closeClicked').and.returnValue(of(undefined)),
+      })
+  });
+
+  beforeEach(() => {
+    fixture = MockRender(ItshopPatternAddProductsComponent);
+    component = fixture.point.componentInstance;
+>>>>>>> oned/v92
     fixture.detectChanges();
   });
 

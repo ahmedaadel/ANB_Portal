@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -27,7 +31,19 @@
 import { Injectable } from '@angular/core';
 
 import { DateFormat, DbObjectKey, FkCandidateBuilder, FkCandidateRouteDto, ValType } from 'imx-qbm-dbts';
+<<<<<<< HEAD
 import { MergeActionList, MergeActions, RoleCompareItems, UiActionResultData } from 'imx-api-qer';
+=======
+import {
+  HistoryComparisonData,
+  HistoryRollbackActionList,
+  MergeActionList,
+  MergeActions,
+  RoleCompareItems,
+  UiActionData,
+  UiActionResultData,
+} from 'imx-api-qer';
+>>>>>>> oned/v92
 import { BaseCdr, ColumnDependentReference, EntityService } from 'qbm';
 import { QerApiService } from '../../qer-api-client.service';
 
@@ -44,7 +60,11 @@ export class RollebackService {
           ColumnName: 'ComparisonDate',
           Type: ValType.Date,
           MinLen: 1,
+<<<<<<< HEAD
           DateFormat: DateFormat.Date
+=======
+          DateFormat: DateFormat.Date,
+>>>>>>> oned/v92
         },
         undefined,
         { ValueConstraint: { MaxValue: new Date() } }
@@ -52,4 +72,40 @@ export class RollebackService {
       '#LDS#Comparison date'
     );
   }
+<<<<<<< HEAD
+=======
+
+  public async getHistoryComparison(
+    table: string,
+    uid: string,
+    options?: {
+      CompareDate?: Date;
+    }
+  ): Promise<HistoryComparisonData[]> {
+    return this.apiService.client.portal_history_comparison_get(table, uid, options);
+  }
+
+  public async getRollbackActions(
+    tablename: string,
+    uid: string,
+    options?: {
+      CompareDate?: Date;
+      CompareId?: string;
+    }
+  ): Promise<UiActionData[]> {
+    return this.apiService.client.portal_history_rollback_get(tablename, uid, options);
+  }
+
+  public async rollback(
+    tablename: string,
+    uid: string,
+    action: HistoryRollbackActionList,
+    options?: {
+      CompareDate?: Date;
+      CompareId?: string;
+    }
+  ): Promise<UiActionResultData[]> {
+    return this.apiService.client.portal_history_rollback_post(tablename, uid, action, options);
+  }
+>>>>>>> oned/v92
 }

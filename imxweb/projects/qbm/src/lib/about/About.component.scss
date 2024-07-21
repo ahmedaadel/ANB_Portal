@@ -1,4 +1,8 @@
 @import "variables.scss";
+<<<<<<< HEAD
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 ::ng-deep {
   .imx-AboutPanel {
@@ -62,7 +66,11 @@
   }
 
   ::ng-deep .mat-tab-label {
+<<<<<<< HEAD
     background-color: $white !important;
+=======
+    background-color: $white;
+>>>>>>> oned/v92
   }
 
   .paragraphLargeMargin {
@@ -129,3 +137,22 @@
     height: 100%;
   }
 }
+<<<<<<< HEAD
+=======
+
+.eui-dark-theme {
+  :host {
+    ::ng-deep .mat-tab-label {
+      background-color: $color-gray-80;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    ::ng-deep .mat-tab-label {
+      background-color: $color-gray-100;
+    }
+  }
+}
+>>>>>>> oned/v92

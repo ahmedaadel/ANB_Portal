@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -26,8 +30,13 @@
 
 import { ListRange } from '@angular/cdk/collections';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+<<<<<<< HEAD
 import { AfterViewInit, ChangeDetectorRef, Component, forwardRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+=======
+import { AfterViewInit, ChangeDetectorRef, Component, forwardRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ControlValueAccessor, UntypedFormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+>>>>>>> oned/v92
 import { MatSelectionListChange } from '@angular/material/list';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -46,10 +55,16 @@ import { SettingsService } from 'qbm';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ReportSelectorComponent),
       multi: true,
+<<<<<<< HEAD
     }
   ]
 })
 
+=======
+    },
+  ],
+})
+>>>>>>> oned/v92
 export class ReportSelectorComponent implements ControlValueAccessor, OnInit, OnDestroy, AfterViewInit {
   public candidatesTotalCount: number;
   public loading = false;
@@ -58,27 +73,45 @@ export class ReportSelectorComponent implements ControlValueAccessor, OnInit, On
   public onChange: (event: string) => void;
   public onTouch: (event: string) => void;
 
+<<<<<<< HEAD
   public searchControl = new FormControl();
+=======
+  public searchControl = new UntypedFormControl();
+>>>>>>> oned/v92
 
   public uidReport: string;
   private parameters: CollectionLoadParameters;
   private readonly subscribers: Subscription[] = [];
 
+<<<<<<< HEAD
   @ViewChild('viewport') private viewport: CdkVirtualScrollViewport;
+=======
+  @Input() controlHeigth = 200;
+>>>>>>> oned/v92
 
   constructor(
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly settings: SettingsService,
     private readonly reportSubscriptionService: ReportSubscriptionService
+<<<<<<< HEAD
   ) { }
+=======
+  ) {}
+>>>>>>> oned/v92
 
   public async ngOnInit(): Promise<void> {
     this.initSearchControl();
     await this.loadReports({
       StartIndex: 0,
+<<<<<<< HEAD
       PageSize: this.settings.DefaultPageSize,
       filter: undefined,
       search: undefined
+=======
+      PageSize: this.settings.PageSizeForAllElements,
+      filter: undefined,
+      search: undefined,
+>>>>>>> oned/v92
     });
 
     this.changeDetectorRef.detectChanges();
@@ -97,6 +130,7 @@ export class ReportSelectorComponent implements ControlValueAccessor, OnInit, On
   }
 
   public async ngAfterViewInit(): Promise<void> {
+<<<<<<< HEAD
     this.parameters = { PageSize: this.settings.DefaultPageSize, StartIndex: 0 };
 
     this.subscribers.push(this.viewport.renderedRangeStream.subscribe(async (range: ListRange) => {
@@ -124,6 +158,27 @@ export class ReportSelectorComponent implements ControlValueAccessor, OnInit, On
   private async loadReports(newState?: CollectionLoadParameters): Promise<void> {
     try {
       setTimeout(() => this.loading = true);
+=======
+    this.parameters = { PageSize: this.settings.PageSizeForAllElements, StartIndex: 0 };
+    await this.loadReports(this.parameters);
+  }
+
+  public ngOnDestroy(): void {
+    this.subscribers.forEach((s) => s.unsubscribe());
+  }
+
+  public updateSelected(elem: MatSelectionListChange): void {
+    // Only one can be selected
+    const chosenElem = elem.options.find((ele) => ele.selected);
+    this.writeValue(chosenElem.value.GetEntity().GetKeys()[0]);
+    this.onChange(chosenElem.value.GetEntity().GetKeys()[0]);
+  }
+
+  private async loadReports(newState?: CollectionLoadParameters): Promise<void> {
+    this.loading = true;
+
+    try {
+>>>>>>> oned/v92
       this.parameters = { ...this.parameters, ...newState };
       this.candidates = (await this.reportSubscriptionService.getReportCandidates(this.parameters)).Data;
     } finally {
@@ -133,11 +188,20 @@ export class ReportSelectorComponent implements ControlValueAccessor, OnInit, On
 
   private initSearchControl(): void {
     this.searchControl.setValue('');
+<<<<<<< HEAD
     this.subscribers.push(this.searchControl.valueChanges
       .pipe(distinctUntilChanged(), debounceTime(300)).subscribe(async (value) => {
         await this.loadReports({ StartIndex: 0, PageSize: this.settings.DefaultPageSize, search: value });
         this.viewport.scrollToIndex(0);
         this.changeDetectorRef.detectChanges();
       }));
+=======
+    this.subscribers.push(
+      this.searchControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe(async (value) => {
+        await this.loadReports({ StartIndex: 0, PageSize: this.settings.PageSizeForAllElements, search: value });
+        this.changeDetectorRef.detectChanges();
+      })
+    );
+>>>>>>> oned/v92
   }
 }

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -41,6 +45,7 @@ import { FkAdvancedPickerComponent } from './fk-advanced-picker.component';
 import { FkSelectorComponent } from './fk-selector.component';
 import { ConfirmationModule } from '../confirmation/confirmation.module';
 import { FkCandidatesComponent } from './fk-candidates/fk-candidates.component';
+<<<<<<< HEAD
 
 @NgModule({
   declarations: [
@@ -48,6 +53,12 @@ import { FkCandidatesComponent } from './fk-candidates/fk-candidates.component';
     FkSelectorComponent,
     FkCandidatesComponent
   ],
+=======
+import { SelectedElementsModule } from '../selected-elements/selected-elements.module';
+
+@NgModule({
+  declarations: [FkAdvancedPickerComponent, FkSelectorComponent, FkCandidatesComponent],
+>>>>>>> oned/v92
   imports: [
     CommonModule,
     MatSelectModule,
@@ -60,6 +71,7 @@ import { FkCandidatesComponent } from './fk-candidates/fk-candidates.component';
     TranslateModule,
     DataTableModule,
     EuiCoreModule,
+<<<<<<< HEAD
     ConfirmationModule
   ],
   exports: [
@@ -69,3 +81,11 @@ import { FkCandidatesComponent } from './fk-candidates/fk-candidates.component';
   ]
 })
 export class FkAdvancedPickerModule { }
+=======
+    ConfirmationModule,
+    SelectedElementsModule,
+  ],
+  exports: [FkAdvancedPickerComponent, FkSelectorComponent, FkCandidatesComponent],
+})
+export class FkAdvancedPickerModule {}
+>>>>>>> oned/v92

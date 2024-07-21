@@ -1,4 +1,8 @@
 @import '@elemental-ui/core/src/styles/_palette.scss';
+<<<<<<< HEAD
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 .imx-user-properties {
   overflow: hidden;
@@ -9,3 +13,26 @@
     color: $black-6;
   }
 }
+<<<<<<< HEAD
+=======
+
+.eui-dark-theme {
+  :host {
+    .imx-user-properties {
+      >span {
+        color: $color-gray-10;
+      }
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-user-properties {
+      >span {
+        color: $color-gray-0;
+      }
+    }
+  }
+}
+>>>>>>> oned/v92

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,7 +29,10 @@
  */
 
 import { Component, Input } from '@angular/core';
+<<<<<<< HEAD
 import { AppConfigService } from 'qbm';
+=======
+>>>>>>> oned/v92
 
 @Component({
   selector: 'imx-data-explorer-no-data',
@@ -34,6 +41,7 @@ import { AppConfigService } from 'qbm';
 })
 export class DataExplorerNoDataComponent {
   @Input() public mode: string;
+<<<<<<< HEAD
 
   public webApp: string;
 
@@ -42,4 +50,6 @@ export class DataExplorerNoDataComponent {
   ) {
     this.webApp = appConfigService.Config.WebAppIdentifier.toLocaleLowerCase();
   }
+=======
+>>>>>>> oned/v92
 }

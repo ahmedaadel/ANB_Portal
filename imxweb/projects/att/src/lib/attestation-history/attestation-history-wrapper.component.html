@@ -1,4 +1,5 @@
 <h1 class="mat-headline">
+<<<<<<< HEAD
   {{ '#LDS#Heading Attestation History' | translate }}
 </h1>
 <imx-attestation-history (selectionChanged)="onSelectionChanged($event)"></imx-attestation-history>
@@ -6,6 +7,21 @@
   <button mat-stroked-button data-imx-identifier="attestation-history-button-actions"
     title="{{ '#LDS#Actions' | translate }}" [matMenuTriggerFor]="actionsMenu" [disabled]="!canPerformActions">
     <eui-icon icon='ellipsisvertical'></eui-icon>
+=======
+  <span>{{ '#LDS#Heading Attestation History' | translate }}</span>
+  <imx-help-contextual></imx-help-contextual>
+</h1>
+<mat-card class="imx-history-card">
+  <imx-attestation-history (selectionChanged)="onSelectionChanged($event)"></imx-attestation-history>
+</mat-card>
+<div class="imx-button-bar">
+  <imx-selected-elements [selectedElements]="selectedCases"></imx-selected-elements>
+  <div class="imx-menu-spacer"></div>
+  <button mat-stroked-button data-imx-identifier="attestation-history-button-actions"
+    title="{{ '#LDS#Actions' | translate }}" [matMenuTriggerFor]="actionsMenu" [disabled]="!canPerformActions">
+    <eui-icon icon='ellipsisvertical'></eui-icon>
+    {{'#LDS#Actions' | translate}}
+>>>>>>> oned/v92
   </button>
   <mat-menu yPosition="above" xPosition="before" data-imx-identifier="attestation-history-actions-menu" #actionsMenu="matMenu">
     <button *ngIf="canRecallDecision" mat-menu-item data-imx-identifier="attestation-history-recall-decision"
@@ -17,4 +33,8 @@
       {{'#LDS#Withdraw additional attestor' | translate}}
     </button>
   </mat-menu>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> oned/v92

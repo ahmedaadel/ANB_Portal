@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -26,9 +30,15 @@
 
 import { Injectable } from '@angular/core';
 
+<<<<<<< HEAD
 import { ITShopConfig, PortalShopServiceitems, V2ApiClientMethodFactory } from 'imx-api-qer';
 import { MethodDefinition, MethodDescriptor } from 'imx-qbm-dbts';
 import { AppConfigService } from 'qbm';
+=======
+import { ITShopConfig, PortalItshopPattern, PortalItshopPatternItem, PortalServicecategories, PortalShopServiceitems, V2ApiClientMethodFactory } from 'imx-api-qer';
+import { MethodDefinition, MethodDescriptor } from 'imx-qbm-dbts';
+import { AppConfigService, CdrFactoryService } from 'qbm';
+>>>>>>> oned/v92
 import { QerApiService } from '../qer-api-client.service';
 
 @Injectable({
@@ -38,13 +48,23 @@ export class ImageService {
   private readonly methodFactory = new V2ApiClientMethodFactory();
 
   constructor(
+<<<<<<< HEAD
     private readonly api: QerApiService,   
+=======
+    private readonly api: QerApiService,
+>>>>>>> oned/v92
     private readonly config: AppConfigService,
   ) { }
 
   /** Returns the URL to the image for the specified service item. */
+<<<<<<< HEAD
   public getPath(serviceItem: PortalShopServiceitems): string {
     const tokens = serviceItem.ImageRef.value?.split('/');
+=======
+  public getPath(item: PortalShopServiceitems | PortalServicecategories | PortalItshopPatternItem): string {
+    const imageValue = item.ImageRef?.value ?? CdrFactoryService.tryGetColumn(item.GetEntity(), 'ImageRef')?.GetValue();
+    const tokens = imageValue?.split('/');
+>>>>>>> oned/v92
     if (tokens?.length > 1) {
       let path: MethodDescriptor<any>;
       if (tokens[0] === 'category') {

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,6 +33,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
+<<<<<<< HEAD
 import {
   CollectionLoadParameters,
   DisplayColumns,
@@ -37,6 +42,9 @@ import {
   TypedEntity,
   XOrigin,
 } from 'imx-qbm-dbts';
+=======
+import { CollectionLoadParameters, DisplayColumns, EntitySchema, IClientProperty, TypedEntity, XOrigin } from 'imx-qbm-dbts';
+>>>>>>> oned/v92
 
 import { ConfirmationService, DataSourceItemStatus, DataSourceToolbarSettings, DataTableComponent, SnackBarService } from 'qbm';
 import { SourceDetectiveSidesheetData } from '../../sourcedetective/sourcedetective-sidesheet.component';
@@ -62,9 +70,20 @@ export class SecondaryMembershipsComponent implements OnInit {
     enabled: (item: TypedEntity) => true,
   };
 
+<<<<<<< HEAD
   @ViewChild('dataTable') public dataTable: DataTableComponent<TypedEntity>;
 
   private selectedEntities: TypedEntity[] = [];
+=======
+  public canEdit: boolean;
+  public secondaryAlert: string;
+
+  public showHelperAlert = true;
+
+  @ViewChild('dataTable') public dataTable: DataTableComponent<TypedEntity>;
+
+  public selectedEntities: TypedEntity[] = [];
+>>>>>>> oned/v92
 
   constructor(
     private readonly sidesheet: EuiSidesheetService,
@@ -74,7 +93,15 @@ export class SecondaryMembershipsComponent implements OnInit {
     private readonly translate: TranslateService,
     private readonly confirmation: ConfirmationService,
     private readonly snackbar: SnackBarService
+<<<<<<< HEAD
     ) {
+=======
+  ) {
+    this.canEdit = roleService.canEdit;
+    this.secondaryAlert = this.canEdit
+      ? '#LDS#Here you can manage the memberships of the object. You can request and remove memberships and view the assignment analysis for each membership.'
+      : '#LDS#Here you can get an overview of the memberships of the object. Additionally, you can view the assignment analysis for each membership.';
+>>>>>>> oned/v92
     this.navigationState = {};
   }
 
@@ -121,7 +148,11 @@ export class SecondaryMembershipsComponent implements OnInit {
       );
     });
 
+<<<<<<< HEAD
     const nonDeletableMemberships = this.selectedEntities.filter(item => deletableMemberships.indexOf(item) < 0);
+=======
+    const nonDeletableMemberships = this.selectedEntities.filter((item) => deletableMemberships.indexOf(item) < 0);
+>>>>>>> oned/v92
     const countDynamic = this.getCount(deletableMemberships, XOrigin.Dynamic);
     const countRequested = deletableMemberships.filter((e) => {
       return e.GetEntity().GetColumn('IsRequestCancellable').GetValue();
@@ -132,7 +163,10 @@ export class SecondaryMembershipsComponent implements OnInit {
       const result = await this.sidesheet.open(RemoveMembershipComponent, {
         title: await this.translate.get('#LDS#Heading Remove Memberships').toPromise(),
         width: '650px',
+<<<<<<< HEAD
         headerColour: 'warn',
+=======
+>>>>>>> oned/v92
         padding: '0px',
         disableClose: false,
         testId: 'role-membership-remove',
@@ -148,9 +182,20 @@ export class SecondaryMembershipsComponent implements OnInit {
       if (result) {
         this.dataTable.clearSelection();
         this.navigate();
+<<<<<<< HEAD
       };
     } else {
       if (await this.confirmation.confirmDelete('#LDS#Heading Remove Memberships','#LDS#Are you sure you want to remove the selected memberships?')) {
+=======
+      }
+    } else {
+      if (
+        await this.confirmation.confirmDelete(
+          '#LDS#Heading Remove Memberships',
+          '#LDS#Are you sure you want to remove the selected memberships?'
+        )
+      ) {
+>>>>>>> oned/v92
         const directs = deletableMemberships.filter((elem) => this.hasBit(elem, XOrigin.Direct));
         this.busyService.show();
         try {
@@ -170,8 +215,13 @@ export class SecondaryMembershipsComponent implements OnInit {
 
   public async onSelectIdentities(): Promise<void> {
     this.sidesheet.open(MembershipsChooseIdentitiesComponent, {
+<<<<<<< HEAD
       title: await this.translate.get('#LDS#Heading Select Identities').toPromise(),
       headerColour: 'blue',
+=======
+      title: await this.translate.get('#LDS#Heading Request Memberships').toPromise(),
+      subTitle: this.dataManagementService.entityInteractive.GetEntity().GetDisplay(),
+>>>>>>> oned/v92
       padding: '0px',
       width: '800px',
       disableClose: false,
@@ -188,9 +238,19 @@ export class SecondaryMembershipsComponent implements OnInit {
     return validUntil.toLocaleDateString();
   }
 
+<<<<<<< HEAD
   public async onShowDetails(): Promise<void> {
     const uidPerson = this.roleService.getUidPerson( this.selectedEntities[0]);
     const uidRole = this.roleService.getUidRole(this.selectedEntities[0]);
+=======
+  public async onHighlightedEntityChanged(selectedItem: TypedEntity): Promise<void> {
+    await this.onShowDetails(selectedItem);
+  }
+
+  public async onShowDetails(selectedEntity: TypedEntity): Promise<void> {
+    const uidPerson = this.roleService.getUidPerson(selectedEntity);
+    const uidRole = this.roleService.getUidRole(selectedEntity);
+>>>>>>> oned/v92
 
     const data: SourceDetectiveSidesheetData = {
       UID_Person: uidPerson,
@@ -200,11 +260,19 @@ export class SecondaryMembershipsComponent implements OnInit {
     };
     this.sidesheet.open(SourceDetectiveSidesheetComponent, {
       title: await this.translate.get('#LDS#Heading View Assignment Analysis').toPromise(),
+<<<<<<< HEAD
       headerColour: 'orange',
       padding: '0px',
       width: '800px',
       disableClose: false,
       testId: 'role-membership-details',
+=======
+      subTitle: this.dataManagementService.entityInteractive.GetEntity().GetDisplay(),
+      padding: '0px',
+      width: '800px',
+      disableClose: false,
+      testId: 'role-membership-assingment-analysis',
+>>>>>>> oned/v92
       data,
     });
   }
@@ -223,7 +291,11 @@ export class SecondaryMembershipsComponent implements OnInit {
       this.dstSettings = {
         dataSource: await this.roleService.getMemberships({
           id: this.dataManagementService.entityInteractive.GetEntity().GetKeys().join(','),
+<<<<<<< HEAD
           navigationState: this.navigationState
+=======
+          navigationState: this.navigationState,
+>>>>>>> oned/v92
         }),
         entitySchema: this.entitySchema,
         navigationState: this.navigationState,
@@ -243,5 +315,8 @@ export class SecondaryMembershipsComponent implements OnInit {
   private hasBit(e: TypedEntity, xorigin: XOrigin): boolean {
     return (e.GetEntity().GetColumn('XOrigin').GetValue() & xorigin) > 0;
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> oned/v92
 }

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,6 +28,7 @@
  *
  */
 
+<<<<<<< HEAD
 import { Component, ComponentFactoryResolver, HostListener, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -38,11 +43,19 @@ export interface SideNavItem {
   translationKey: string;
   icon: string;
 }
+=======
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+
+import { HELP_CONTEXTUAL, SideNavigationExtension, SystemInfoService } from 'qbm';
+import { UserModelService } from '../user/user-model.service';
+import { DataExplorerRegistryService } from './data-explorer-registry.service';
+>>>>>>> oned/v92
 
 @Component({
   templateUrl: './data-explorer-view.component.html',
   styleUrls: ['./data-explorer-view.component.scss'],
 })
+<<<<<<< HEAD
 export class DataExplorerViewComponent implements OnInit, OnDestroy {
 
   get isMobile(): boolean {
@@ -111,10 +124,30 @@ export class DataExplorerViewComponent implements OnInit, OnDestroy {
     if (this.isMobile) {
       this.toggleMobileExpand();
     }
+=======
+export class DataExplorerViewComponent implements OnInit {
+  public isAdmin = true;
+  public baseUrl = 'admin/dataexplorer';
+  public componentName = 'data-explorer-view';
+  public componentTitle = '#LDS#Heading Data Explorer';
+  public contextId = HELP_CONTEXTUAL.DataExplorer;
+  public navItems: SideNavigationExtension[] = [];
+
+  constructor(
+    private readonly systemInfoService: SystemInfoService,
+    private readonly userModelService: UserModelService,
+    private readonly dataExplorerRegistryService: DataExplorerRegistryService,
+    private cdref: ChangeDetectorRef
+  ) {}
+
+  public async ngOnInit(): Promise<void> {
+    await this.loadNavItems();
+>>>>>>> oned/v92
   }
 
   private async loadNavItems(): Promise<void> {
     const systemInfo = await this.systemInfoService.get();
+<<<<<<< HEAD
     const groups = (await this.userModelService.getGroups()).map(group => group.Name);
     this.navItems = this.dataExplorerRegistryService.getNavItems(systemInfo.PreProps, groups);
   }
@@ -169,5 +202,11 @@ export class DataExplorerViewComponent implements OnInit, OnDestroy {
     await this.loadNavItems();
     const tab = this.route.snapshot.paramMap.get('tab');
     this.selectedPage = tab ? tab : this.navItems[0].name;
+=======
+    const features = (await this.userModelService.getFeatures()).Features;
+    const groups = (await this.userModelService.getGroups()).map((group) => group.Name || '');
+    this.navItems = this.dataExplorerRegistryService.getNavItems(systemInfo.PreProps, features, undefined, groups);
+    this.cdref.detectChanges();
+>>>>>>> oned/v92
   }
 }

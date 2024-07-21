@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,18 +25,24 @@
  */
 
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 import { EditorBase } from '../editor-base';
 
 /**
- * A component for viewing / editing boolean columns
+ * Provides a {@link CdrEditor | CDR editor} for editing  / viewing boolean value columns, by extending {@link EditorBase}.
+ * 
+ * It renders a checkbox for updating the value.
+ * When set to read-only, it uses a {@link ViewPropertyComponent | view property component} to display the content.
  */
 @Component({
   selector: 'imx-checkbox-editor',
   templateUrl: './edit-boolean.component.html',
-  styleUrls: ['./edit-boolean.component.scss']
+  styleUrls: ['./edit-boolean.component.scss'],
 })
 export class EditBooleanComponent extends EditorBase<boolean> {
-  public readonly control = new FormControl();
+  /**
+   * The form control associated with the editor.
+   */
+  public readonly control = new UntypedFormControl();
 }

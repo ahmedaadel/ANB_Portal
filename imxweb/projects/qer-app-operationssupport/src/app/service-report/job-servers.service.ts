@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -49,4 +53,15 @@ export class JobServersService {
     return this.session.TypedClient.OpsupportJobservers.Get(parameters);
   }
 
+<<<<<<< HEAD
+=======
+  public async checkServerConnection(uid){
+    return this.session.Client.opsupport_jobservers_check_post(uid);
+  }
+
+  public async getProjectConfig(){
+    return this.session.Client.opsupport_projectconfig_get();
+  }
+
+>>>>>>> oned/v92
 }

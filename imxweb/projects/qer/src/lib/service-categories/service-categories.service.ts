@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,7 +32,11 @@ import { Injectable } from '@angular/core';
 
 import { ApiClientService } from 'qbm';
 import { CollectionLoadParameters, EntityCollectionData, TypedEntityCollectionData } from 'imx-qbm-dbts';
+<<<<<<< HEAD
 import { PortalServicecategories, PortalServicecategoriesInteractive } from 'imx-api-qer';
+=======
+import { PortalServicecategories } from 'imx-api-qer';
+>>>>>>> oned/v92
 import { QerApiService } from '../qer-api-client.service';
 
 @Injectable({
@@ -49,7 +57,11 @@ export class ServiceCategoriesService {
     );
   }
 
+<<<<<<< HEAD
   public async getById(uidAccProductGroup: string): Promise<TypedEntityCollectionData<PortalServicecategoriesInteractive>> {
+=======
+  public async getById(uidAccProductGroup: string): Promise<TypedEntityCollectionData<PortalServicecategories>> {
+>>>>>>> oned/v92
     return this.apiClient.typedClient.PortalServicecategoriesInteractive.Get_byid(uidAccProductGroup);
   }
 

@@ -1,9 +1,26 @@
+<<<<<<< HEAD
 @import "@elemental-ui/core/src/styles/_palette.scss";
+=======
+@import '../../../../../shared/scss/common-table.scss';
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 :host {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+<<<<<<< HEAD
+=======
+  flex: 1 1 auto;
+}
+
+.imx-button-bar {
+  @include imx-button-bar();
+}
+
+.imx-request-table-card {
+ @include imx-flex-fill-control-hidden-overflow();
+>>>>>>> oned/v92
 }
 
 imx-data-table {
@@ -23,6 +40,7 @@ imx-data-table {
 
 .imx-subtext {
   font-size: smaller;
+<<<<<<< HEAD
   color: $black-b;
 }
 
@@ -30,23 +48,45 @@ imx-data-table {
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
+=======
+  color: $color-gray-30;
+>>>>>>> oned/v92
 }
 
 /* Priority=low */
 .imx-priority-100 {
+<<<<<<< HEAD
   color: $aspen-green;
+=======
+  color: $color-green-60;
+>>>>>>> oned/v92
 }
 
 /* Priority=medium */
 .imx-priority-200 {
+<<<<<<< HEAD
   color: $corbin-orange;
+=======
+  color: $color-orange-60;
+>>>>>>> oned/v92
 }
 
 /* Priority=high */
 .imx-priority-300 {
+<<<<<<< HEAD
   color: $phoenix-red;
+=======
+  color: $color-red-60;
+>>>>>>> oned/v92
 }
 
 .imx-badge-container {
   margin: 5px 5px 5px 0;
 }
+<<<<<<< HEAD
+=======
+
+.hidden {
+  display: none;
+}
+>>>>>>> oned/v92

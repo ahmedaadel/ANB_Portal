@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -45,4 +49,11 @@ export class StartComponent implements OnInit {
     this.apps = await this.appcontainerService.getAppContainers();
     this.loaded = true;
   }
+<<<<<<< HEAD
+=======
+
+  public get hasServerAdministrationApp() {
+    return this.appcontainerService.hasServerAdministrationApp;
+  }
+>>>>>>> oned/v92
 }

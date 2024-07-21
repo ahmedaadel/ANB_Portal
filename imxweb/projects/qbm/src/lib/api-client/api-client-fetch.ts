@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,11 +24,21 @@
  *
  */
 
+<<<<<<< HEAD
 import { MethodDefinition, MethodDescriptor, ApiClient } from 'imx-qbm-dbts';
+=======
+import { MethodDefinition, MethodDescriptor, ApiClient, Globals } from 'imx-qbm-dbts';
+>>>>>>> oned/v92
 import { ServerExceptionError } from '../base/server-exception-error';
 import { ServerError } from '../base/server-error';
 import { ClassloggerService } from '../classlogger/classlogger.service';
 import { TranslateService } from '@ngx-translate/core';
+<<<<<<< HEAD
+=======
+import { defer, of, throwError } from 'rxjs';
+import { delay, concatMap, retryWhen } from 'rxjs/operators';
+import { isDevMode } from '@angular/core';
+>>>>>>> oned/v92
 
 export class ApiClientFetch implements ApiClient {
     constructor(
@@ -37,6 +47,7 @@ export class ApiClientFetch implements ApiClient {
         private readonly translation: TranslateService,
         private readonly http: { fetch(input: RequestInfo, init?: RequestInit): Promise<Response> } = window) {
     }
+<<<<<<< HEAD
 
     public async processRequest<T>(methodDescriptor: MethodDescriptor<T>): Promise<T> {
         const method = new MethodDefinition(methodDescriptor);
@@ -53,11 +64,67 @@ export class ApiClientFetch implements ApiClient {
                 body: method.body
             });
         } catch (e) {
+=======
+    private readonly maxRetries = 5;
+    private readonly delayMilli = 1000;
+
+    public async processRequest<T>(methodDescriptor: MethodDescriptor<T>,
+         opts: { signal?: AbortSignal } = {}): Promise<T> {
+        const method = new MethodDefinition(methodDescriptor);
+        const headers = new Headers(method.headers);
+
+        if (isDevMode()) {
+          headers.set("X-FORWARDED-PROTO", 'https');
+        }
+
+        this.addXsrfProtectionHeader<T>(headers, method);
+        this.addVersionHeader(headers);
+
+        const observable = defer(() => {
+            return this.http.fetch(this.baseUrl + method.path, {
+                method: method.httpMethod,
+                credentials: method.credentials,
+                headers: headers,
+                signal: opts?.signal,
+                body: method.body
+            });
+        }).pipe(
+            retryWhen(error =>
+                error.pipe(
+                    concatMap((error, count) => {
+                        if (count <= this.maxRetries &&
+                            (error.status == 0 /* connection error */
+                                || error.status == 503 /* service unavailable */)) {
+                            return of(error);
+                        }
+                        return throwError(error);
+                    }),
+                    delay(this.delayMilli)
+                )
+            )
+        );
+
+        var response: Response;
+        try {
+            response = await observable.toPromise();
+        } catch (e) {
+          if (opts?.signal?.aborted) {
+            this.logger.info(this, 'Request was aborted', opts.signal);
+            return;
+          }
+>>>>>>> oned/v92
             throw new ServerError(await this.GetUnexpectedErrorText());
         }
 
         if (response) {
 
+<<<<<<< HEAD
+=======
+            if (response.status == 0) {
+                // server API connection error
+            }
+
+>>>>>>> oned/v92
             // empty response, but success
             if (response.status === 204) {
                 return null;
@@ -67,7 +134,11 @@ export class ApiClientFetch implements ApiClient {
 
             function getFirstContentType() { return actualContentType.split(';')[0]; }
 
+<<<<<<< HEAD
             if (response.status === 200) {
+=======
+            if (response.status >= 200 && response.status <= 299) {
+>>>>>>> oned/v92
                 if (method.responseType === 'blob')
                     return <any>response.blob();
 
@@ -113,6 +184,15 @@ export class ApiClientFetch implements ApiClient {
                 headers.set("X-XSRF-TOKEN", token);
             }
         }
+    }
+
+    private addVersionHeader(headers: Headers) {
+        // The (.NET assembly) version is added as a request header
+        // so that the server can verify that the client and server
+        // versions match.
+
+        headers.set("imx-version", Globals.AssemblyVersion);
+
     }
 
     private getCookie(name) {

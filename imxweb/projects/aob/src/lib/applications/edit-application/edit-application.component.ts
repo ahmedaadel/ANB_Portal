@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,7 +29,11 @@
  */
 
 import { Component, Output, EventEmitter, ErrorHandler, Inject } from '@angular/core';
+<<<<<<< HEAD
 import { FormGroup } from '@angular/forms';
+=======
+import { UntypedFormGroup } from '@angular/forms';
+>>>>>>> oned/v92
 import { EuiLoadingService, EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -38,10 +46,19 @@ import {
   SnackBarService,
   TypedEntitySelectionData,
   ConfirmationService,
+<<<<<<< HEAD
   LdsReplacePipe
 } from 'qbm';
 import { SelectionContainer } from './selection-container';
 import { ApplicationContent } from '../application-content.interface';
+=======
+  LdsReplacePipe,
+  TranslationEditorComponent
+} from 'qbm';
+import { SelectionContainer } from './selection-container';
+import { ApplicationContent } from '../application-content.interface';
+import { MatDialog } from '@angular/material/dialog';
+>>>>>>> oned/v92
 
 @Component({
   selector: 'imx-edit-application',
@@ -50,7 +67,11 @@ import { ApplicationContent } from '../application-content.interface';
 })
 
 export class EditApplicationComponent implements ApplicationContent {
+<<<<<<< HEAD
   public readonly applicationForm = new FormGroup({});
+=======
+  public readonly applicationForm = new UntypedFormGroup({});
+>>>>>>> oned/v92
 
   public shopsData: TypedEntitySelectionData;
   public accountsData: TypedEntitySelectionData;
@@ -71,7 +92,12 @@ export class EditApplicationComponent implements ApplicationContent {
     private readonly confirmation: ConfirmationService,
     private readonly translate: TranslateService,
     private readonly ldsReplace: LdsReplacePipe,
+<<<<<<< HEAD
     @Inject(EUI_SIDESHEET_DATA) public application: PortalApplication
+=======
+    @Inject(EUI_SIDESHEET_DATA) public application: PortalApplication,
+    private readonly dialog: MatDialog
+>>>>>>> oned/v92
   ) {
     this.sidesheetRef.closeClicked().subscribe(async () => {
       if (!this.hasUnsavedChanges()) {
@@ -135,6 +161,17 @@ export class EditApplicationComponent implements ApplicationContent {
     this.sidesheetRef.close();
   }
 
+<<<<<<< HEAD
+=======
+  public editTranslation(){
+      const dialogConfig = {
+        data: this.application,
+        width: '600px'
+      }
+      this.dialog.open(TranslationEditorComponent,dialogConfig);
+  }
+
+>>>>>>> oned/v92
   private getShopsData(): TypedEntitySelectionData {
     return {
       title: '#LDS#Heading Edit IT Shop Structures',

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -79,7 +83,11 @@ export class PasswordResetComponent implements OnInit {
     private readonly busy: EuiLoadingService,
     private readonly metadataSvc: MetadataService,
     private passwordSvc: PasswordService,
+<<<<<<< HEAD
     private translate: TranslateService
+=======
+    private translate: TranslateService,
+>>>>>>> oned/v92
   ) {
     this.addColumnDef({
       id: 'display',
@@ -108,7 +116,13 @@ export class PasswordResetComponent implements OnInit {
 
   public getDateDisplay(row: PasswordItem): string {
     const pls = row.dataItem.PasswordLastSet;
+<<<<<<< HEAD
     if (!pls) { return ''; }
+=======
+    if (!pls) {
+      return '';
+    }
+>>>>>>> oned/v92
     const date = pls instanceof Date ? pls : new Date(pls);
     return date.toLocaleDateString(this.translate.currentLang);
   }
@@ -123,7 +137,11 @@ export class PasswordResetComponent implements OnInit {
       setTimeout(() => this.busy.hide(overlayRef));
     }
 
+<<<<<<< HEAD
     await this.metadataSvc.update(this.passwordItems.map((elem) => elem.tableName));
+=======
+    await this.metadataSvc.updateNonExisting(this.passwordItems.map((elem) => elem.tableName));
+>>>>>>> oned/v92
     for (const p of this.passwordItems) {
       p.tableDisplay = this.metadataSvc.tables[p.tableName].DisplaySingular;
     }
@@ -135,12 +153,19 @@ export class PasswordResetComponent implements OnInit {
     this.passwordHelper.selectItem(item);
     this.sideSheet.open(CheckPasswordsComponent, {
       title: await this.translate.get('#LDS#Heading Set New Password').toPromise(),
+<<<<<<< HEAD
       headerColour: 'iris-blue',
+=======
+>>>>>>> oned/v92
       padding: '0px',
       width: '50%',
       icon: 'password',
       disableClose: true,
+<<<<<<< HEAD
       testId: 'password-sidesheet',
+=======
+      testId: 'set-new-password-sidesheet',
+>>>>>>> oned/v92
       data: this.passwordHelper,
     });
   }

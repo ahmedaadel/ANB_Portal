@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -26,7 +30,11 @@
 
 import { Injectable } from '@angular/core';
 
+<<<<<<< HEAD
 import { PortalPersonAccounts } from 'imx-api-tsb';
+=======
+import { PortalPersonAccounts, portal_person_accounts_get_args } from 'imx-api-tsb';
+>>>>>>> oned/v92
 import { EntitySchema, ExtendedTypedEntityCollection } from 'imx-qbm-dbts';
 import { TsbApiService } from '../../tsb-api-client.service';
 
@@ -39,8 +47,13 @@ export class AccountsExtService {
     return this.apiService.typedClient.PortalPersonAccounts.GetSchema();
   }
 
+<<<<<<< HEAD
   public getAccounts(uid: string): Promise<ExtendedTypedEntityCollection<PortalPersonAccounts, unknown>> {
     return this.apiService.typedClient.PortalPersonAccounts.Get(uid);
+=======
+  public getAccounts(uid: string, parameters?: portal_person_accounts_get_args): Promise<ExtendedTypedEntityCollection<PortalPersonAccounts, unknown>> {
+    return this.apiService.typedClient.PortalPersonAccounts.Get(uid, parameters);
+>>>>>>> oned/v92
   }
 
 }

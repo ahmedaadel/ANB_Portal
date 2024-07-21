@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,6 +29,7 @@
  */
 
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
+<<<<<<< HEAD
 import { Component, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -40,6 +45,18 @@ import { AuthenticationService, clearStylesFromDOM, LdsReplaceModule } from 'qbm
 import { PersonService } from 'qer';
 import { ClaimDeviceComponent } from './claim-device.component';
 import { ClaimDeviceService } from './claim-device.service';
+=======
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
+import { MatRadioChange } from '@angular/material/radio';
+import { EuiLoadingService } from '@elemental-ui/core';
+import { BehaviorSubject } from 'rxjs';
+
+import { AuthenticationService, clearStylesFromDOM, ISessionState, LdsReplaceModule } from 'qbm';
+import { PersonService } from 'qer';
+import { ClaimDeviceComponent } from './claim-device.component';
+import { ClaimDeviceService } from './claim-device.service';
+import { MockBuilder, MockedComponentFixture, MockRender } from 'ng-mocks';
+>>>>>>> oned/v92
 
 @Component({
   selector: 'imx-cdr-editor',
@@ -51,7 +68,11 @@ class MockCdrEditor {
 
 describe('ClaimDeviceComponent', () => {
   let component: ClaimDeviceComponent;
+<<<<<<< HEAD
   let fixture: ComponentFixture<ClaimDeviceComponent>;
+=======
+  let fixture: MockedComponentFixture<ClaimDeviceComponent>;
+>>>>>>> oned/v92
 
   const claimGroupServiceStub = new class {
     numberOfSuggestedOwners = 0;
@@ -87,6 +108,7 @@ describe('ClaimDeviceComponent', () => {
     })
   };
 
+<<<<<<< HEAD
   configureTestSuite(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -127,13 +149,43 @@ describe('ClaimDeviceComponent', () => {
       ]
     });
   });
+=======
+  const authStub = {
+    onSessionResponse: new BehaviorSubject<ISessionState>({
+      UserUid: "",
+      Username: ""
+    })
+  }
+
+  beforeEach(() => {
+    return MockBuilder(ClaimDeviceComponent)
+      .mock(ClaimDeviceService, claimGroupServiceStub)
+      .mock(PersonService, personServiceStub)
+      .mock(EuiLoadingService)
+      .mock(AuthenticationService, authStub)
+      .beforeCompileComponents(testBed => {
+        testBed.configureTestingModule({
+          declarations: [
+            ClaimDeviceComponent,
+            MockCdrEditor
+          ],
+          schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      });
+    });
+  })
+>>>>>>> oned/v92
 
   beforeEach(() => {
     claimGroupServiceStub.reset();
     personServiceStub.createColumnCandidatesPerson.calls.reset();
 
+<<<<<<< HEAD
     fixture = TestBed.createComponent(ClaimDeviceComponent);
     component = fixture.componentInstance;
+=======
+    fixture = MockRender(ClaimDeviceComponent);
+    component = fixture.point.componentInstance;
+>>>>>>> oned/v92
     fixture.detectChanges();
   });
 

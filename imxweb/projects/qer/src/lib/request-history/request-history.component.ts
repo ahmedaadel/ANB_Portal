@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,14 +28,21 @@
  *
  */
 
+<<<<<<< HEAD
 import { Component, Input } from '@angular/core';
 
 import { RequestHistoryLoadParameters } from './request-history-load-parameters.interface';
+=======
+import { Component, OnInit } from '@angular/core';
+import { QerPermissionsService } from  '../admin/qer-permissions.service';
+import { HELP_CONTEXTUAL, HelpContextualValues } from 'qbm';
+>>>>>>> oned/v92
 
 @Component({
   templateUrl: './request-history.component.html',
   styleUrls: ['./request-history.component.scss']
 })
+<<<<<<< HEAD
 export class RequestHistoryComponent {
   public filter: RequestHistoryLoadParameters = {};
 
@@ -45,5 +56,24 @@ export class RequestHistoryComponent {
         data: { // TODO }
     });
     */
+=======
+export class RequestHistoryComponent implements OnInit {
+
+  public auditMode = false;
+  contextId: HelpContextualValues;
+
+  constructor(
+    private readonly qerPermissionService: QerPermissionsService,
+  ) {}
+
+  public async ngOnInit(): Promise<void> {
+    this.auditMode = await this.qerPermissionService.isShopStatistics();
+    if(this.auditMode){
+      this.contextId = HELP_CONTEXTUAL.RequestHistoryAuditor;
+    }else{
+      this.contextId = HELP_CONTEXTUAL.RequestHistory;
+    }
+    
+>>>>>>> oned/v92
   }
 }

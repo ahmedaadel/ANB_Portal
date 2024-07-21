@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,15 +28,21 @@
  *
  */
 
+<<<<<<< HEAD
 import { Component, Input, Output } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { configureTestSuite } from 'ng-bullet';
+=======
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { MockBuilder } from 'ng-mocks';
+>>>>>>> oned/v92
 
 import { ServiceitemListComponent } from './serviceitem-list.component';
 import { ServiceItemsService } from '../service-items.service';
 import { clearStylesFromDOM } from 'qbm';
+<<<<<<< HEAD
 import { ImageService } from '../../itshop/image.service';
 import { ProjectConfigurationService } from '../../project-configuration/project-configuration.service';
 import { PortalShopServiceitems } from 'imx-api-qer';
@@ -119,6 +129,10 @@ class MockDataTilesComponent {
   @Input() public subtitleObject: any;
   @Input() public contentTemplate: any;
 }
+=======
+import { PortalShopServiceitems } from 'imx-api-qer';
+import {ServiceItemsModule} from '../service-items.module';
+>>>>>>> oned/v92
 
 describe('ServiceitemListComponent', () => {
   let component: ServiceitemListComponent;
@@ -128,6 +142,7 @@ describe('ServiceitemListComponent', () => {
     extendedData: { PeerGroupSize: 1 }
   };
 
+<<<<<<< HEAD
   configureTestSuite(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -174,6 +189,16 @@ describe('ServiceitemListComponent', () => {
         }
       ]
     });
+=======
+  beforeEach(()=>{
+    return MockBuilder(ServiceitemListComponent)
+    .mock(ServiceItemsModule)
+    .mock(ServiceItemsService,{
+                PortalShopServiceItemsSchema: PortalShopServiceitems.GetEntitySchema(),
+                get: jasmine.createSpy('get').and.returnValue(Promise.resolve(serviceItems)),
+                getDataModel: jasmine.createSpy('getDataModel').and.returnValue(Promise.resolve({}))
+              })
+>>>>>>> oned/v92
   });
 
   beforeEach(() => {

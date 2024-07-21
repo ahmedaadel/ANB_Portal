@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -36,6 +40,10 @@ import { QbmModule } from 'qbm';
 import { ServiceIssueComponent } from './service-issue.component';
 import { ServiceIssuesComponent } from './service-issues.component';
 import { ServiceIssuesService } from './service-issues.service';
+<<<<<<< HEAD
+=======
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+>>>>>>> oned/v92
 
 
 
@@ -46,6 +54,10 @@ import { ServiceIssuesService } from './service-issues.service';
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
+<<<<<<< HEAD
+=======
+    MatProgressSpinnerModule,
+>>>>>>> oned/v92
     QbmModule,
     EuiCoreModule,
     TranslateModule

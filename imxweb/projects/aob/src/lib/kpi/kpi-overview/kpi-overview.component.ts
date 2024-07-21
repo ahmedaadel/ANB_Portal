@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,6 +28,7 @@
  *
  */
 
+<<<<<<< HEAD
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Component, OnChanges, Input, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -32,6 +37,14 @@ import { ChartOptions } from 'billboard.js';
 import { TranslateService } from '@ngx-translate/core';
 
 import { XAxisInformation, LineChartOptions, YAxisInformation, SeriesInformation, ClassloggerService } from 'qbm';
+=======
+import { Component, OnChanges, Input, TemplateRef, ViewChild, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ChartOptions } from 'billboard.js';
+import { TranslateService } from '@ngx-translate/core';
+
+import { XAxisInformation, LineChartOptions, YAxisInformation, SeriesInformation, ClassloggerService, BusyService } from 'qbm';
+>>>>>>> oned/v92
 import { ChartDto, PortalApplication, ChartDataPoint } from 'imx-api-aob';
 import { KpiOverviewService } from './kpi-overview.service';
 
@@ -44,7 +57,11 @@ import { KpiOverviewService } from './kpi-overview.service';
 @Component({
   selector: 'imx-kpi-overview',
   templateUrl: './kpi-overview.component.html',
+<<<<<<< HEAD
   styleUrls: ['./kpi-overview.component.scss']
+=======
+  styleUrls: ['./kpi-overview.component.scss'],
+>>>>>>> oned/v92
 })
 export class KpiOverviewComponent implements OnChanges {
   /**
@@ -74,20 +91,34 @@ export class KpiOverviewComponent implements OnChanges {
 
   private errorThreshhold: string;
 
+<<<<<<< HEAD
+=======
+  public busyService = new BusyService();
+  public isLoading = false;
+
+>>>>>>> oned/v92
   constructor(
     readonly translateService: TranslateService,
     private kpiOverviewProvider: KpiOverviewService,
     private logger: ClassloggerService,
+<<<<<<< HEAD
     private readonly busyService: EuiLoadingService,
     private matDialog: MatDialog,
   ) {
     translateService.get('#LDS#Error threshold')
       .subscribe((trans: string) => this.errorThreshhold = trans);
+=======
+    private matDialog: MatDialog
+  ) {
+    translateService.get('#LDS#Error threshold').subscribe((trans: string) => (this.errorThreshhold = trans));
+    this.busyService.busyStateChanged.subscribe((elem) => (this.isLoading = elem));
+>>>>>>> oned/v92
   }
 
   /**
    * Displays a busyIndicator and initializes the data, when the OnChanges life cycle hook is called
    */
+<<<<<<< HEAD
   public async ngOnChanges(): Promise<void> {
     let overlayRef: OverlayRef;
     setTimeout(() => overlayRef = this.busyService.show());
@@ -96,11 +127,29 @@ export class KpiOverviewComponent implements OnChanges {
       if (data) {
         this.chartDataPass = data.filter(kpi => kpi.Data.length > 0 && kpi.Data[0].Points[0].Value < kpi.ErrorThreshold);
         this.chartDataFail = data.filter(kpi => kpi.Data.length > 0 && kpi.Data[0].Points[0].Value >= kpi.ErrorThreshold);
+=======
+  public async ngOnChanges(changes: SimpleChanges): Promise<void> {
+
+    if (changes.application?.currentValue?.UID_AOBApplication.value === changes.application?.previousValue?.UID_AOBApplication.value) {
+      return;
+    } 
+    
+    const isBusy = this.busyService.beginBusy();
+    try {
+      const data = await this.kpiOverviewProvider.get(this.application.UID_AOBApplication.value);
+      if (data) {
+        this.chartDataPass = data.filter((kpi) => kpi.Data.length > 0 && kpi.Data[0].Points[0].Value < kpi.ErrorThreshold);
+        this.chartDataFail = data.filter((kpi) => kpi.Data.length > 0 && kpi.Data[0].Points[0].Value >= kpi.ErrorThreshold);
+>>>>>>> oned/v92
       } else {
         this.logger.error(this, 'ChartDto[] is undefined');
       }
     } finally {
+<<<<<<< HEAD
       setTimeout(() => this.busyService.hide(overlayRef));
+=======
+      isBusy.endBusy();
+>>>>>>> oned/v92
     }
   }
 
@@ -126,8 +175,12 @@ export class KpiOverviewComponent implements OnChanges {
    * @returns true, if there are failed or passed KPIs else it returns false
    */
   public hasKpis(): boolean {
+<<<<<<< HEAD
     return (this.chartDataFail != null && this.chartDataFail.length > 0)
       || (this.chartDataPass != null && this.chartDataPass.length > 0);
+=======
+    return (this.chartDataFail != null && this.chartDataFail.length > 0) || (this.chartDataPass != null && this.chartDataPass.length > 0);
+>>>>>>> oned/v92
   }
 
   /**
@@ -153,7 +206,11 @@ export class KpiOverviewComponent implements OnChanges {
    * @param chart the data of a single chart
    * @returns a dictionary, that can be display on the details dialog
    */
+<<<<<<< HEAD
   private getChartData(chart: ChartDto): { [id: string]: any; } {
+=======
+  private getChartData(chart: ChartDto): { [id: string]: any } {
+>>>>>>> oned/v92
     return { display: chart.Display, description: chart.Description, options: this.buildOptions(chart) };
   }
 
@@ -163,6 +220,7 @@ export class KpiOverviewComponent implements OnChanges {
    * @returns a ChartOptions object, that can be used by billboard.js
    */
   private buildOptions(chart: ChartDto): ChartOptions {
+<<<<<<< HEAD
     const yAxis = new YAxisInformation(chart.Data.map(serie =>
       new SeriesInformation(chart.Display,
         serie.Points.map((point: ChartDataPoint) => point.Value)
@@ -178,6 +236,31 @@ export class KpiOverviewComponent implements OnChanges {
         count: 6,
         format: (d: Date) => d.toLocaleDateString(browserCulture)
       }),
+=======
+    const yAxis = new YAxisInformation(
+      chart.Data.map(
+        (serie) =>
+          new SeriesInformation(
+            chart.Display,
+            serie.Points.map((point: ChartDataPoint) => point.Value)
+          )
+      )
+    );
+
+    const browserCulture = this.translateService.currentLang;
+
+    yAxis.tickConfiguration = { format: (d) => d.toLocaleString(browserCulture), values: this.accumulateTicks(chart) };
+
+    const lineChartOptions = new LineChartOptions(
+      new XAxisInformation(
+        'date',
+        chart.Data[0].Points.map((point: ChartDataPoint) => new Date(point.Date)),
+        {
+          count: 6,
+          format: (d: Date) => d.toLocaleDateString(browserCulture),
+        }
+      ),
+>>>>>>> oned/v92
       yAxis
     );
     lineChartOptions.useCurvedLines = false;
@@ -186,8 +269,13 @@ export class KpiOverviewComponent implements OnChanges {
     lineChartOptions.additionalLines = [
       {
         value: chart.ErrorThreshold,
+<<<<<<< HEAD
         text: this.errorThreshhold
       }
+=======
+        text: this.errorThreshhold,
+      },
+>>>>>>> oned/v92
     ];
     lineChartOptions.size = {
       height: 400,
@@ -199,11 +287,24 @@ export class KpiOverviewComponent implements OnChanges {
 
   private accumulateTicks(chart: ChartDto): number[] {
     const ret = [];
+<<<<<<< HEAD
     const max = Math.max.apply(Math, chart.Data[0].Points.map(o => o.Value));
     const steps = Math.max(1, Math.trunc(max / 10)) + 1;
 
     ret.push(0);
     if (max <= 0) {return ret; }
+=======
+    const max = Math.max.apply(
+      Math,
+      chart.Data[0].Points.map((o) => o.Value)
+    );
+    const steps = Math.max(1, Math.trunc(max / 10)) + 1;
+
+    ret.push(0);
+    if (max <= 0) {
+      return ret;
+    }
+>>>>>>> oned/v92
 
     for (let index = 1; index <= 10; index++) {
       ret.push(index * steps);

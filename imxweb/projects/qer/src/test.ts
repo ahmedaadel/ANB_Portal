@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,20 +34,37 @@ import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
 import 'zone.js/dist/zone-testing';
 import { getTestBed } from '@angular/core/testing';
+<<<<<<< HEAD
 import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing';
 import { TestHelperModule } from 'qbm';
+=======
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
+import { TestHelperModule } from 'qbm';
+import { QerDefaultMocks } from './default-mocks.spec';
+
+>>>>>>> oned/v92
 
 declare const require: any;
 
 // First, initialize the Angular testing environment.
+<<<<<<< HEAD
 getTestBed().initTestEnvironment(
   [BrowserDynamicTestingModule, TestHelperModule],
   platformBrowserDynamicTesting()
 );
+=======
+getTestBed().initTestEnvironment([BrowserDynamicTestingModule, TestHelperModule], platformBrowserDynamicTesting());
+>>>>>>> oned/v92
 // Then we find all the tests.
 const context = require.context('./', true, /\.spec\.ts$/);
 // And load the modules.
 context.keys().map(context);
+<<<<<<< HEAD
+=======
+
+
+QerDefaultMocks.registerDefaultMocks();
+>>>>>>> oned/v92

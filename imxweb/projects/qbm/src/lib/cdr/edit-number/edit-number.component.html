@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <mat-form-field appearance="outline">
+=======
+<mat-form-field appearance="outline"  *ngIf="columnContainer?.canEdit; else isReadonly">
+>>>>>>> oned/v92
     <mat-label>
         {{ columnContainer?.display | translate }}
     </mat-label>
@@ -19,3 +23,14 @@
         </mat-error>
 </mat-form-field>
 
+<<<<<<< HEAD
+=======
+<!-- template for read only elements-->
+<ng-template #isReadonly>
+  <imx-view-property
+    [columnContainer]="columnContainer"
+    defaultValue="#LDS#Not set"
+  >
+  </imx-view-property>
+</ng-template>
+>>>>>>> oned/v92

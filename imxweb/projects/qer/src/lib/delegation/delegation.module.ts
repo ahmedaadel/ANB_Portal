@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -37,17 +41,33 @@ import { TranslateModule } from '@ngx-translate/core';
 import { EuiCoreModule } from '@elemental-ui/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
+<<<<<<< HEAD
 import { DataTableModule, RouteGuardService, ClassloggerService, CdrModule, LdsReplaceModule, MenuService, MenuItem } from 'qbm';
 import { DelegationComponent } from './delegation.component';
 import { DelegationService } from './delegation.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+=======
+import { DataTableModule, RouteGuardService, ClassloggerService, CdrModule, LdsReplaceModule, MenuService, MenuItem, HELP_CONTEXTUAL, HelpContextualModule, BusyIndicatorModule, SelectedElementsModule } from 'qbm';
+import { DelegationComponent } from './delegation.component';
+import { DelegationService } from './delegation.service';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
+>>>>>>> oned/v92
 
 const routes: Routes = [
   {
     path: 'delegation',
     component: DelegationComponent,
     canActivate: [RouteGuardService],
+<<<<<<< HEAD
     resolve: [RouteGuardService]
+=======
+    resolve: [RouteGuardService],
+    data:{
+      contextId: HELP_CONTEXTUAL.Delegation
+    }
+>>>>>>> oned/v92
   }
 ];
 
@@ -65,10 +85,23 @@ const routes: Routes = [
     DataTableModule,
     RouterModule.forChild(routes),
     MatButtonModule,
+<<<<<<< HEAD
     MatListModule,
     MatFormFieldModule,
     MatPaginatorModule,
     EuiCoreModule
+=======
+    MatProgressSpinnerModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatCardModule,
+    EuiCoreModule,
+    SelectedElementsModule,
+    HelpContextualModule,
+    BusyIndicatorModule,
+    SelectedElementsModule
+>>>>>>> oned/v92
   ],
   declarations: [
     DelegationComponent
@@ -86,7 +119,11 @@ export class DelegationModule {
 
   private setupMenu(): void {
     this.menuService.addMenuFactories(
+<<<<<<< HEAD
       (preProps: string[], groups: string[]) => {
+=======
+      (preProps: string[], features: string[]) => {
+>>>>>>> oned/v92
 
         const items: MenuItem[] = [];
 
@@ -113,4 +150,8 @@ export class DelegationModule {
       },
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> oned/v92

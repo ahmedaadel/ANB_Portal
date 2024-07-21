@@ -62,9 +62,17 @@
  }
 }
 
+<<<<<<< HEAD
 .imx-accordion .mat-expansion-panel-header-title,
 .imx-accordion .mat-expansion-panel-header-description {
   flex-basis: 0;
+=======
+.imx-accordion .mat-expansion-panel-header-title{
+  flex-basis: 70%;
+}
+.imx-accordion .mat-expansion-panel-header-description {
+  flex-basis: 30%;
+>>>>>>> oned/v92
 }
 
 .imx-accordion .mat-expansion-panel-header-title{

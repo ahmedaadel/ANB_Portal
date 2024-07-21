@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,7 +28,11 @@
  *
  */
 
+<<<<<<< HEAD
 import { Component, Input, OnInit } from '@angular/core';
+=======
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+>>>>>>> oned/v92
 
 import { ParameterizedText } from './parameterized-text.interface';
 import { ParameterizedTextService } from './parameterized-text.service';
@@ -39,10 +47,18 @@ export class ParameterizedTextComponent implements OnInit {
   public textTokens: TextToken[];
 
   @Input() parameterizedText: ParameterizedText;
+<<<<<<< HEAD
+=======
+  @Output() textReady = new EventEmitter<TextToken[]>();
+>>>>>>> oned/v92
 
   constructor(private readonly service: ParameterizedTextService) { }
 
   public ngOnInit(): void {
     this.textTokens = this.service.createTextTokens(this.parameterizedText);
+<<<<<<< HEAD
+=======
+    this.textReady.emit(this.textTokens);
+>>>>>>> oned/v92
   }
 }

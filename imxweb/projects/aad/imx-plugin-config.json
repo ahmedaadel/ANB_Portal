@@ -4,6 +4,7 @@
             "Container": "aad",
             "Name": "AadConfigModule"
         }
+<<<<<<< HEAD
     ],
     "arc-app-certaccess": [
       {
@@ -11,4 +12,7 @@
           "Name": "AttConfigModule"
       }
   ]
+=======
+    ]
+>>>>>>> oned/v92
 }

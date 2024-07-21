@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,12 +28,19 @@
  *
  */
 
+<<<<<<< HEAD
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EuiLoadingService } from '@elemental-ui/core';
 
 import { PendingItemsType, UserModelService } from 'qer';
+=======
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { DashboardService, PendingItemsType, UserModelService } from 'qer';
+>>>>>>> oned/v92
 
 @Component({
   templateUrl: './dashboard-plugin.component.html'
@@ -40,19 +51,31 @@ export class DashboardPluginComponent implements OnInit {
 
   constructor(
     public readonly router: Router,
+<<<<<<< HEAD
     private readonly busyService: EuiLoadingService,
+=======
+    private readonly dashboardService: DashboardService,
+>>>>>>> oned/v92
     private readonly userModelSvc: UserModelService
   ) { }
 
   public async ngOnInit(): Promise<void> {
 
+<<<<<<< HEAD
     let overlayRef: OverlayRef;
     setTimeout(() => overlayRef = this.busyService.show());
+=======
+    const busy = this.dashboardService.beginBusy();
+>>>>>>> oned/v92
 
     try {
       this.pendingItems = await this.userModelSvc.getPendingItems();
     } finally {
+<<<<<<< HEAD
       setTimeout(() => this.busyService.hide(overlayRef));
+=======
+      busy.endBusy();
+>>>>>>> oned/v92
     }
   }
 }

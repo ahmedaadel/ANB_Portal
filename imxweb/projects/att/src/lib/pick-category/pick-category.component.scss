@@ -1,9 +1,18 @@
+<<<<<<< HEAD
+=======
+@import '../../../../../shared/scss/common-table.scss';
+>>>>>>> oned/v92
 @import 'pick-category-common.scss';
 
 :host {
   @include imx-flex-column-container();
   overflow: hidden;
   height: inherit;
+<<<<<<< HEAD
+=======
+  display: flex;
+  flex-direction: column;
+>>>>>>> oned/v92
   max-width: 100%;
 }
 
@@ -11,15 +20,27 @@
   background-color: inherit;
   @include imx-flex-column-container();
   overflow: hidden;
+<<<<<<< HEAD
+=======
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+>>>>>>> oned/v92
 
   div.imx-table-container {
     @include imx-flex-column-container();
     overflow: hidden;
     height: inherit;
+<<<<<<< HEAD
 
     imx-data-source-toolbar {
       margin-bottom: 20px;
     }
+=======
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+>>>>>>> oned/v92
 
     .imx-pickcategory-table {
       flex-grow: 1;
@@ -28,6 +49,7 @@
   }
 
   .imx-button-bar {
+<<<<<<< HEAD
     @include imx-flex-row-container();
     margin-top: 20px;
     flex: 0 0 auto;
@@ -53,6 +75,13 @@
     .imx-menu-spacer {
       flex-grow: 1;
     }
+=======
+    @include imx-button-bar();
+  }
+
+  .mat-card {
+   @include imx-flex-fill-control-hidden-overflow();
+>>>>>>> oned/v92
   }
 }
 

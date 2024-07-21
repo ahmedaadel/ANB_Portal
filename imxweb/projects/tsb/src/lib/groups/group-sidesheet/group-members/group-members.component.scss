@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @import '@elemental-ui/core/src/styles/_palette.scss';
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 :host {
   display: flex;
@@ -10,7 +14,11 @@
   margin-bottom: 10px;
 
   .mat-button-toggle-checked {
+<<<<<<< HEAD
     background-color: $corbin-pastel;
+=======
+    background-color: $color-orange-20;
+>>>>>>> oned/v92
   }
 }
 
@@ -18,8 +26,29 @@
   cursor: not-allowed;
 }
 
+<<<<<<< HEAD
+=======
+
+.helper-alert  {
+  margin: 20px 2px;
+}
+
+>>>>>>> oned/v92
 @media screen and (max-width: 768px) {
   .mat-button-toggle-group {
     width: 100%;
   }
 }
+<<<<<<< HEAD
+=======
+
+.eui-dark-theme {
+  :host {
+    ::ng-deep.mat-button-toggle-group {
+      .mat-button-toggle-checked {
+        background-color: $color-gray-60;
+      }
+    }
+  }
+}
+>>>>>>> oned/v92

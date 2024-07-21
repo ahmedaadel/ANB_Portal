@@ -24,6 +24,18 @@
 .imx-card {
   margin: 0;
   margin-bottom: -16px;
+<<<<<<< HEAD
+=======
+
+  .governance-sidesheet-action-buttons {
+    .justify-start {
+      eui-icon {
+        font-size: 14px;
+        margin-right: 4px;
+      }
+    }
+  }
+>>>>>>> oned/v92
 }
 
 @media screen and (max-width: 480px) {

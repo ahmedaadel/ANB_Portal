@@ -17,8 +17,12 @@
     "@ngx-translate/core",
     "@ngx-translate/http-loader",
     "applicationinsights-js",
+<<<<<<< HEAD
     "billboard.js",
     "chap-timeline"
+=======
+    "billboard.js"
+>>>>>>> oned/v92
   ],
   "dest": "../../html/o3t",
   "lib": {

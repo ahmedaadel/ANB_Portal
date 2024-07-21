@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,9 +29,16 @@
  */
 
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
+<<<<<<< HEAD
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { EuiSidesheetService, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+=======
+import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { UntypedFormGroup } from '@angular/forms';
+import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+import { Subscription } from 'rxjs';
+>>>>>>> oned/v92
 
 import { PortalPickcategory, PortalPickcategoryItems } from 'imx-api-qer';
 import { DisplayColumns } from 'imx-qbm-dbts';
@@ -35,6 +46,10 @@ import { DisplayColumns } from 'imx-qbm-dbts';
 import {
   BaseCdr,
   ColumnDependentReference,
+<<<<<<< HEAD
+=======
+  ConfirmationService,
+>>>>>>> oned/v92
   DataSourceToolbarSettings,
   DataSourceWrapper,
 } from 'qbm';
@@ -46,9 +61,15 @@ import { PickCategoryService } from '../pick-category.service';
   templateUrl: './pick-category-create.component.html',
   styleUrls: ['./pick-category-create.component.scss']
 })
+<<<<<<< HEAD
 export class PickCategoryCreateComponent implements OnInit {
 
   public readonly displayNameForm = new FormGroup({});
+=======
+export class PickCategoryCreateComponent implements OnInit, OnDestroy {
+
+  public readonly displayNameForm = new UntypedFormGroup({});
+>>>>>>> oned/v92
 
   public readonly dstWrapper: DataSourceWrapper<PortalPickcategoryItems>;
   public dstSettings: DataSourceToolbarSettings;
@@ -57,6 +78,11 @@ export class PickCategoryCreateComponent implements OnInit {
 
   public displayNameCdr: ColumnDependentReference;
   public displayNameReadonlyCdr: ColumnDependentReference;
+<<<<<<< HEAD
+=======
+  
+  private readonly subscriptions: Subscription[] = [];
+>>>>>>> oned/v92
 
   @ViewChild(PickCategorySelectIdentitiesComponent) public selectIndentities: PickCategorySelectIdentitiesComponent;
 
@@ -64,8 +90,14 @@ export class PickCategoryCreateComponent implements OnInit {
     @Inject(EUI_SIDESHEET_DATA) public data: {
       pickCategory: PortalPickcategory
     },
+<<<<<<< HEAD
     private readonly sidesheet: EuiSidesheetService,
     readonly pickCategoryService: PickCategoryService
+=======
+    private readonly sidesheetRef: EuiSidesheetRef,
+    readonly pickCategoryService: PickCategoryService,    
+    confirmation: ConfirmationService
+>>>>>>> oned/v92
   ) {
     const entitySchema = pickCategoryService.pickcategoryItemsSchema;
 
@@ -77,6 +109,17 @@ export class PickCategoryCreateComponent implements OnInit {
       [entitySchema.Columns[DisplayColumns.DISPLAY_PROPERTYNAME]],
       entitySchema
     );
+<<<<<<< HEAD
+=======
+
+    this.subscriptions.push(sidesheetRef.closeClicked().subscribe(async () => {
+      if (!this.displayNameForm.pristine && !(await confirmation.confirmLeaveWithUnsavedChanges())) {
+        return;
+      }
+
+      sidesheetRef.close(false);
+    }));
+>>>>>>> oned/v92
   }
 
   public async ngOnInit(): Promise<void> {
@@ -85,6 +128,13 @@ export class PickCategoryCreateComponent implements OnInit {
     this.displayNameReadonlyCdr = new BaseCdr(this.data.pickCategory.GetEntity().GetColumn(DisplayColumns.DISPLAY_PROPERTYNAME));
   }
 
+<<<<<<< HEAD
+=======
+  public ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
+  }
+
+>>>>>>> oned/v92
   public async stepChange(change: StepperSelectionEvent): Promise<void> {
     switch (change.selectedIndex) {
       case 2:
@@ -97,7 +147,11 @@ export class PickCategoryCreateComponent implements OnInit {
   }
 
   public closeSidesheet(): void {
+<<<<<<< HEAD
     this.sidesheet.close({
+=======
+    this.sidesheetRef.close({
+>>>>>>> oned/v92
       create: true,
       pickCategory: this.data.pickCategory,
       pickedItems: this.selectIndentities?.selection

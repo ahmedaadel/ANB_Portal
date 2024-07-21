@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -27,9 +31,17 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+<<<<<<< HEAD
 import { EuiSidesheetService, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { PortalPickcategoryItems } from 'imx-api-qer';
 
+=======
+import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+import { of } from 'rxjs';
+import { PortalPickcategoryItems } from 'imx-api-qer';
+
+import { ConfirmationService } from 'qbm';
+>>>>>>> oned/v92
 import { PickCategoryService } from '../pick-category.service';
 import { PickCategoryCreateComponent } from './pick-category-create.component';
 
@@ -37,6 +49,16 @@ describe('PickCategoryCreateComponent', () => {
   let component: PickCategoryCreateComponent;
   let fixture: ComponentFixture<PickCategoryCreateComponent>;
 
+<<<<<<< HEAD
+=======
+  
+  let confirm = true;
+  const mockConfirmationService = {
+    confirm: jasmine.createSpy('confirm')
+      .and.callFake(() => Promise.resolve(confirm))
+  }
+
+>>>>>>> oned/v92
   const sidesheetData = {
     pickCategory: {
       DisplayName: { Column: { GetDisplayValue: () => 'DisplayName' } },
@@ -66,8 +88,20 @@ describe('PickCategoryCreateComponent', () => {
           useValue: sidesheetData,
         },
         {
+<<<<<<< HEAD
           provide: EuiSidesheetService,
           useValue: {}
+=======
+          provide: EuiSidesheetRef,
+          useValue: {
+            close: jasmine.createSpy('close'),            
+            closeClicked: jasmine.createSpy('closeClicked').and.returnValue(of(undefined)),
+          }
+        },
+        {
+          provide: ConfirmationService,
+          useValue: mockConfirmationService
+>>>>>>> oned/v92
         },
         {
           provide: PickCategoryService,

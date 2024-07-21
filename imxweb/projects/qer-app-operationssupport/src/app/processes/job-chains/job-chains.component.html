@@ -1,5 +1,9 @@
 <h1  class="mat-headline">
+<<<<<<< HEAD
   {{'#LDS#Process steps per queue' | translate}}
+=======
+  {{'#LDS#Heading Process Steps per Process' | translate}}
+>>>>>>> oned/v92
 </h1>
 <div class="imx-table-container">
   <imx-data-source-toolbar [alwaysVisible]="true" #dst [settings]="dstSettings" [options]="['filter', 'groupBy']">
@@ -11,7 +15,11 @@
         {{ data.JobChainName.Column.GetDisplayValue() }}
       </ng-template>
     </imx-data-table-column>
+<<<<<<< HEAD
     <imx-data-table-column [entityColumn]="entitySchemaJobChains?.Columns.Count">
+=======
+    <imx-data-table-column [entityColumn]="entitySchemaJobChains?.Columns.Count" [align]="'center'" [columnLabel]="'#LDS#Process steps' | translate">
+>>>>>>> oned/v92
     <ng-template let-data>
       {{ data.Count.Column.GetDisplayValue() }}
     </ng-template>

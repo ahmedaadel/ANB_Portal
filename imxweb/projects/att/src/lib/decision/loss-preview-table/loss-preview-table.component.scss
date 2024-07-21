@@ -1,14 +1,19 @@
+<<<<<<< HEAD
 @import '@elemental-ui/core/src/styles/_palette.scss';
 
 @mixin imx-flex-row-container {
   display: flex;
   flex-direction: row;
 }
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 :host {
   overflow-y: auto;
   flex-grow: 1;
   height: 100%;
+<<<<<<< HEAD
   background-color: $white;
 }
 
@@ -19,6 +24,35 @@
   .helper-alert {
     display: flex;
     margin-bottom: 15px;
+=======
+  display: flex;
+  flex-direction: column;
+
+  .imx-spinner-center {
+    display: inherit;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .imx-data-no-results {
+    display: inherit;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.heading-wrapper {
+  display: flex;
+  flex: 0 0 auto;
+  margin-top: 15px;
+  align-items: center;
+
+  .helper-alert {
+    display: flex;
+>>>>>>> oned/v92
   }
 
   .alert-wrapper {
@@ -26,30 +60,82 @@
     margin: 0 0 0 auto;
     align-self: flex-end;
   }
+<<<<<<< HEAD
+=======
+
+  .alert-wrapper--shortened {
+    width: 70%;
+  }
+>>>>>>> oned/v92
 }
 
 th.mat-header-cell:not(:last-child), td.mat-cell:not(:last-child) {
   padding-right: 10px;
 }
 
+<<<<<<< HEAD
 tr.mat-row {
   cursor: default;
 }
 
+=======
+>>>>>>> oned/v92
 table.mat-table {
   box-shadow: none;
   padding: 1px;
 }
 .table-row-tall {
+<<<<<<< HEAD
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
 .table-subtitle {
   color: $black-4;
+=======
+  padding: 5px 0;
+}
+
+.table-subtitle {
+>>>>>>> oned/v92
   font-size: 80%;
 }
 
 .imx-attestation-case-loss-preview {
+<<<<<<< HEAD
   padding: 0;
+=======
+  margin: 15px 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+// Theming
+:host {
+  .table-subtitle {
+    color: $color-gray-40;
+  }
+
+  .imx-data-no-results {
+    color: $color-gray-20;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    .table-subtitle {
+      color: $color-gray-20;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .table-subtitle {
+      color: $color-gray-10;
+    }
+  }
+>>>>>>> oned/v92
 }

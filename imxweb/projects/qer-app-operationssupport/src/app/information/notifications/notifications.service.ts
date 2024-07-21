@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -35,17 +39,27 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class NotificationsService extends SubscriptionService<NotificationIssueItem[]> {
+<<<<<<< HEAD
+=======
+  public isLoading: boolean;
+>>>>>>> oned/v92
   constructor(
     private session: imx_SessionService,
     private translate: TranslateService,
     private ldsreplace: LdsReplacePipe,
+<<<<<<< HEAD
     private router: Router) {
+=======
+    private router: Router
+  ) {
+>>>>>>> oned/v92
     super();
     this.itemsInternal = [];
   }
 
   // TODO PBI 278888 Laden irgendwie anzeigen
   public async updateItems(): Promise<void> {
+<<<<<<< HEAD
     await this.checkFrozenJobsLast24Hours();
     await this.checkJournal();
   }
@@ -54,6 +68,20 @@ export class NotificationsService extends SubscriptionService<NotificationIssueI
 
     const frozenJobs = await this.session.TypedClient.OpsupportQueueFrozenjobs.Get({
       PageSize: -1
+=======
+    this.isLoading = true;
+    try {
+      await this.checkFrozenJobsLast24Hours();
+      await this.checkJournal();
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  private async checkFrozenJobsLast24Hours(): Promise<void> {
+    const frozenJobs = await this.session.TypedClient.OpsupportQueueFrozenjobs.Get({
+      PageSize: -1,
+>>>>>>> oned/v92
     });
     const type = NotificationIssueType.FrozenJobsSinceYesterday;
     if (frozenJobs && frozenJobs.totalCount > 0) {
@@ -64,13 +92,20 @@ export class NotificationsService extends SubscriptionService<NotificationIssueI
         'reboot',
         {
           caption: '#LDS#View',
+<<<<<<< HEAD
           action: () => this.router.navigate(['/Jobs'], {queryParams: { failed: true }})
+=======
+          action: () => this.router.navigate(['/Jobs'], { queryParams: { failed: true } }),
+>>>>>>> oned/v92
         }
       );
     } else {
       this.remove(type);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> oned/v92
   }
 
   private async checkJournal(): Promise<void> {
@@ -84,13 +119,20 @@ export class NotificationsService extends SubscriptionService<NotificationIssueI
         'reports',
         {
           caption: '#LDS#View',
+<<<<<<< HEAD
           action: () => this.router.navigate(['/journal'])
+=======
+          action: () => this.router.navigate(['/journal']),
+>>>>>>> oned/v92
         }
       );
     } else {
       this.remove(type);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> oned/v92
   }
 
   private async update(
@@ -100,9 +142,13 @@ export class NotificationsService extends SubscriptionService<NotificationIssueI
     icon: string,
     action?: IssueAction
   ): Promise<void> {
+<<<<<<< HEAD
     let issueItem: NotificationIssueItem = this.itemsInternal.find(
       item => item.type === notificationType
     );
+=======
+    let issueItem: NotificationIssueItem = this.itemsInternal.find((item) => item.type === notificationType);
+>>>>>>> oned/v92
 
     if (issueItem == null) {
       issueItem = new NotificationIssueItem();
@@ -116,16 +162,31 @@ export class NotificationsService extends SubscriptionService<NotificationIssueI
     issueItem.action.caption = await this.translate.get(action.caption).toPromise();
     const tranlatedKey = await this.translate.get(text.key).toPromise();
     // workaround, weil er aus text.parameters[0], text.parameters[1] aus irgendeinem Grund "text.parameters[0], text.parameters[1]" macht
+<<<<<<< HEAD
     issueItem.text = this.ldsreplace.transform(tranlatedKey,
       text.parameters?.length > 0 ? text.parameters[0] : '',
       text.parameters?.length > 1 ? text.parameters[1] : '');
+=======
+    issueItem.text = this.ldsreplace.transform(
+      tranlatedKey,
+      text.parameters?.length > 0 ? text.parameters[0] : '',
+      text.parameters?.length > 1 ? text.parameters[1] : ''
+    );
+>>>>>>> oned/v92
   }
 
   private remove(type: NotificationIssueType): void {
     this.itemsInternal
+<<<<<<< HEAD
       .filter(item => item.type === type)
       .map(item => this.itemsInternal.indexOf(item))
       .filter(index => index > -1)
       .forEach(index => this.itemsInternal.splice(index, 1));
+=======
+      .filter((item) => item.type === type)
+      .map((item) => this.itemsInternal.indexOf(item))
+      .filter((index) => index > -1)
+      .forEach((index) => this.itemsInternal.splice(index, 1));
+>>>>>>> oned/v92
   }
 }

@@ -6,6 +6,10 @@
   },
   "routeConfig": {
     "login": "login",
+<<<<<<< HEAD
     "start": "dashboard"
+=======
+    "start": "admin"
+>>>>>>> oned/v92
   }
 }

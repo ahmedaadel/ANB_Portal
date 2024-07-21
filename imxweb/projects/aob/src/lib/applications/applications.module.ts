@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -64,7 +68,16 @@ import {
   ImageModule,
   CdrModule,
   DataTableModule,
+<<<<<<< HEAD
   DateModule
+=======
+  DateModule,
+  InfoModalDialogModule,
+  HelpContextualModule,
+  BusyIndicatorModule,
+  DataTreeModule,
+  DataTreeWrapperModule
+>>>>>>> oned/v92
 } from 'qbm';
 import { AobUserModule } from '../user/user.module';
 import { ApplicationPropertyModule } from '../application-property/application-property.module';
@@ -74,6 +87,12 @@ import { ImageSelectorDialogComponent } from './application-image-select/image-s
 import { AuthenticationRootComponent } from './edit-application/authentication-root/authentication-root.component';
 import { IdentitiesComponent } from './identities/identities.component';
 import { IdentityDetailComponent } from './identities/identity-detail/identity-detail.component';
+<<<<<<< HEAD
+=======
+import { ServiceCategoryComponent } from './edit-application/service-category/service-category.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { EditServiceCategoryInformationComponent } from './edit-application/service-category/edit-service-category-information/edit-service-category-information.component';
+>>>>>>> oned/v92
 
 @NgModule({
   declarations: [
@@ -87,7 +106,13 @@ import { IdentityDetailComponent } from './identities/identity-detail/identity-d
     ImageSelectorDialogComponent,
     AuthenticationRootComponent,
     IdentitiesComponent,
+<<<<<<< HEAD
     IdentityDetailComponent
+=======
+    IdentityDetailComponent,
+    ServiceCategoryComponent,
+    EditServiceCategoryInformationComponent
+>>>>>>> oned/v92
   ],
   imports: [
     CommonModule,
@@ -111,6 +136,10 @@ import { IdentityDetailComponent } from './identities/identity-detail/identity-d
     MatTabsModule,
     SelectModule,
     MatDialogModule,
+<<<<<<< HEAD
+=======
+    MatTooltipModule,
+>>>>>>> oned/v92
     QbmModule,
     DateModule,
     ReactiveFormsModule,
@@ -119,13 +148,25 @@ import { IdentityDetailComponent } from './identities/identity-detail/identity-d
     DataSourceToolbarModule,
     DataTableModule,
     DataTilesModule,
+<<<<<<< HEAD
+=======
+    DataTreeModule,
+    DataTreeWrapperModule,
+>>>>>>> oned/v92
     RouterModule,
     OverlayModule,
     PortalModule,
     FkAdvancedPickerModule,
     EntityModule,
     ImageModule,
+<<<<<<< HEAD
     CdrModule
+=======
+    CdrModule,
+    InfoModalDialogModule,
+    HelpContextualModule,
+    BusyIndicatorModule,
+>>>>>>> oned/v92
   ],
   providers: [
     ApplicationsService

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -87,7 +91,11 @@ export class UserActivationComponent implements OnDestroy {
     this.subscription?.unsubscribe();
   }
 
+<<<<<<< HEAD
   public async ReSendMail(): Promise<void> {
+=======
+  public async resendMail(): Promise<void> {
+>>>>>>> oned/v92
     const overlayRef = this.busyService.show();
     try {
       await this.attApiService.client.passwordreset_activation_resendemail_post();
@@ -99,19 +107,32 @@ export class UserActivationComponent implements OnDestroy {
     }
   }
 
+<<<<<<< HEAD
   public async ConfirmEMail(): Promise<void> {
+=======
+  public async confirmEMail(): Promise<void> {
+>>>>>>> oned/v92
     const overlayRef = this.busyService.show();
     try {
       await this.authService.processLogin(async () => {
         const s = await this.attApiService.client.passwordreset_activation_confirm_post({
           PassCode: this.passcode,
         });
+<<<<<<< HEAD
         return new SessionState(s);
       });
       this.snackbar.open({ key: '#LDS#Your account has been successfully activated.' }, '#LDS#Close');
 
       // forward to main page
       this.router.navigate(['']);
+=======
+        this.snackbar.open({ key: '#LDS#Your account has been successfully activated.' }, '#LDS#Close');
+
+        // forward to main page
+        this.router.navigate(['']);
+        return new SessionState(s);
+      });
+>>>>>>> oned/v92
     } finally {
       this.busyService.hide(overlayRef);
     }
@@ -129,9 +150,19 @@ export class UserActivationComponent implements OnDestroy {
           this.ldsText =
             '#LDS#Confirm your email address and activate your account or send the confirmation email again (if the passcode has expired) by clicking one of the following buttons.';
           break;
+<<<<<<< HEAD
         case 3:
           this.ldsText = '#LDS#Your registration was denied.';
           break;
+=======
+        // What happened to case 2?? Defined by the api and not here
+        case 3:
+          this.ldsText = '#LDS#Your registration was denied.';
+          break;
+        default:
+          this.ldsText =
+            '#LDS#There was an unexpected error. Please try again.';
+>>>>>>> oned/v92
       }
       return;
     }

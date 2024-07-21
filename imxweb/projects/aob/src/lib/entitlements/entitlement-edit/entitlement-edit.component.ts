@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,14 +29,25 @@
  */
 
 import { Component, Input, ErrorHandler, OnChanges, SimpleChanges, OnInit, Output, EventEmitter } from '@angular/core';
+<<<<<<< HEAD
 import { FormGroup, AbstractControl } from '@angular/forms';
+=======
+import { UntypedFormGroup, AbstractControl } from '@angular/forms';
+>>>>>>> oned/v92
 import { OverlayRef } from '@angular/cdk/overlay';
 import { EuiLoadingService } from '@elemental-ui/core';
 
 import { PortalEntitlement, PortalEntitlementServiceitem } from 'imx-api-aob';
+<<<<<<< HEAD
 import { ClassloggerService } from 'qbm';
 import { TypedEntity } from 'imx-qbm-dbts';
 import { ServiceItemTagsService } from 'qer';
+=======
+import { CdrFactoryService, ClassloggerService, ColumnDependentReference } from 'qbm';
+import { DbObjectKey, TypedEntity } from 'imx-qbm-dbts';
+import { ServiceItemTagsService } from 'qer';
+import { Router } from '@angular/router';
+>>>>>>> oned/v92
 
 /**
  * A component that provides a form for viewing and editing entitlements/roles.
@@ -43,11 +58,21 @@ import { ServiceItemTagsService } from 'qer';
   styleUrls: ['./entitlement-edit.component.scss']
 })
 export class EntitlementEditComponent implements OnChanges, OnInit {
+<<<<<<< HEAD
   public readonly form = new FormGroup({});
+=======
+  public readonly form = new UntypedFormGroup({});
+>>>>>>> oned/v92
 
   public productTagsInitial: string[] = [];
   public productTagsSelected: string[];
   public loadingTags: boolean;
+<<<<<<< HEAD
+=======
+  
+  public cdrList: ColumnDependentReference[] = [];
+  public cdrListServiceItem: ColumnDependentReference[] = [];
+>>>>>>> oned/v92
 
   @Input() public entitlement: PortalEntitlement;
   @Input() public serviceItem: PortalEntitlementServiceitem;
@@ -58,12 +83,41 @@ export class EntitlementEditComponent implements OnChanges, OnInit {
   constructor(
     private readonly tagProvider: ServiceItemTagsService,
     private readonly logger: ClassloggerService,
+<<<<<<< HEAD
     private readonly errorHandler: ErrorHandler,
+=======
+    private readonly router: Router,
+    private readonly errorHandler: ErrorHandler,
+    private readonly cdrFactoryService: CdrFactoryService,
+>>>>>>> oned/v92
     private readonly busyService: EuiLoadingService
   ) { }
 
   public ngOnInit(): void {
     this.controlCreated.emit(this.form);
+<<<<<<< HEAD
+=======
+
+    const entitlementColumns = [
+      'Ident_AOBEntitlement', 
+      'Description', 
+      'ObjectKeyAdditionalApprover'
+    ];    
+    this.cdrList = this.cdrFactoryService.buildCdrFromColumnList(this.entitlement.GetEntity(), entitlementColumns);
+        
+    if (this.serviceItem) {
+      const serviceIemColumns = [
+        'UID_OrgRuler', 
+        'UID_PWODecisionMethod', 
+        'UID_QERTermsOfUse', 
+        'UID_AccProductParamCategory', 
+        'UID_AccProductGroup',
+        'ProductURL', 
+        'IsApproveRequiresMfa'
+      ];
+      this.cdrListServiceItem = this.cdrFactoryService.buildCdrFromColumnList(this.serviceItem.GetEntity(), serviceIemColumns);
+    }
+>>>>>>> oned/v92
   }
 
   public async ngOnChanges(changes: SimpleChanges): Promise<void> {
@@ -147,4 +201,17 @@ export class EntitlementEditComponent implements OnChanges, OnInit {
       remove: this.productTagsInitial.filter(elem => this.productTagsSelected.indexOf(elem) < 0)
     };
   }
+<<<<<<< HEAD
+=======
+
+  public get isEditableEntitlement() {
+    // TODO: only if IsOwnerOrAdmin is set
+    return DbObjectKey.FromXml(this.entitlement.ObjectKeyElement.value).TableName == "ESet";
+  }
+
+  public manageEntitlement() {
+    this.saved.emit(false);
+    this.router.navigate(['/myresponsibilities/ESet']);
+  }
+>>>>>>> oned/v92
 }

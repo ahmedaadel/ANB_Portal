@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,7 +29,11 @@
  */
 
 import { Component, Inject } from '@angular/core';
+<<<<<<< HEAD
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+=======
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+>>>>>>> oned/v92
 import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { PersonForProduct, ShelfObject, ShelfSelectionObject } from './shelf-selection-sidesheet.model';
 
@@ -40,7 +48,11 @@ export class ShelfSelectionComponent {
 
 
   public shelfSelectionObjects: ShelfSelectionObject[] = [];
+<<<<<<< HEAD
   public formGroup: FormGroup;
+=======
+  public formGroup: UntypedFormGroup;
+>>>>>>> oned/v92
 
   public shelfObjects: ShelfObject[];
 
@@ -51,7 +63,11 @@ export class ShelfSelectionComponent {
   }
 
   public optionSelected(uidItShopOrg: string, uidAccproduct: string): void {
+<<<<<<< HEAD
     const group = this.formGroup.get(uidAccproduct) as FormGroup;
+=======
+    const group = this.formGroup.get(uidAccproduct) as UntypedFormGroup;
+>>>>>>> oned/v92
     const persons = this.shelfSelectionObjects.find(elem => elem.uidAccproduct === uidAccproduct);
     persons.personsForProduct.forEach(person => {
       const control = group.get(person.uidPerson);
@@ -72,8 +88,13 @@ export class ShelfSelectionComponent {
   }
 
 
+<<<<<<< HEAD
   public getFormControl(shelfSelectionObject: ShelfSelectionObject, personForProduct: PersonForProduct): FormControl {
     return (this.formGroup.get(shelfSelectionObject.uidAccproduct) as FormGroup).get(personForProduct.uidPerson) as FormControl;
+=======
+  public getFormControl(shelfSelectionObject: ShelfSelectionObject, personForProduct: PersonForProduct): UntypedFormControl {
+    return (this.formGroup.get(shelfSelectionObject.uidAccproduct) as UntypedFormGroup).get(personForProduct.uidPerson) as UntypedFormControl;
+>>>>>>> oned/v92
   }
 
   public submit(): void {
@@ -90,11 +111,19 @@ export class ShelfSelectionComponent {
   private setup(): void {
     this.shelfSelectionObjects = this.data;
 
+<<<<<<< HEAD
     this.formGroup = new FormGroup({});
     this.shelfSelectionObjects.forEach(element => {
       const personGroup = new FormGroup({});
       element.personsForProduct.filter(elem => elem.shelfsObjects.length > 1).forEach(person =>
         personGroup.addControl(person.uidPerson, new FormControl(person.uidItShopOrg, Validators.required))
+=======
+    this.formGroup = new UntypedFormGroup({});
+    this.shelfSelectionObjects.forEach(element => {
+      const personGroup = new UntypedFormGroup({});
+      element.personsForProduct.filter(elem => elem.shelfsObjects.length > 1).forEach(person =>
+        personGroup.addControl(person.uidPerson, new UntypedFormControl(person.uidItShopOrg, Validators.required))
+>>>>>>> oned/v92
       );
       this.formGroup.addControl(element.uidAccproduct, personGroup);
     });

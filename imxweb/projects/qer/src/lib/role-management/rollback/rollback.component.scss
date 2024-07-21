@@ -1,5 +1,9 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
+<<<<<<< HEAD
 
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 eui-alert {
   margin-bottom: 1em;
   display: block;
@@ -40,3 +44,24 @@ eui-alert {
   display: block;
   margin: 1em 0;
 }
+<<<<<<< HEAD
+=======
+
+.eui-dark-theme{
+  :host{
+    background-color: $color-gray-70;
+    .mat-input-element, ::ng-deep .eui-alert .eui-alert-header{
+      color: $color-blue-40;
+    }
+  }
+}
+
+.eui-contrast-theme{
+  :host{
+    background-color: $color-gray-90;
+    .mat-input-element, ::ng-deep .eui-alert .eui-alert-header{
+      color: $color-blue-40;
+    }
+  }
+}
+>>>>>>> oned/v92

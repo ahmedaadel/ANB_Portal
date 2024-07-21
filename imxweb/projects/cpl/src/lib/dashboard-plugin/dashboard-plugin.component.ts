@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,12 +28,20 @@
  *
  */
 
+<<<<<<< HEAD
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EuiLoadingService } from '@elemental-ui/core';
 
 import { PendingItemsType, UserModelService } from 'qer';
+=======
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { DashboardService, PendingItemsType, UserModelService } from 'qer';
+import { CplPermissionsService } from '../rules/admin/cpl-permissions.service';
+>>>>>>> oned/v92
 
 @Component({
   templateUrl: './dashboard-plugin.component.html'
@@ -38,14 +50,24 @@ export class DashboardPluginComponent implements OnInit {
 
   public pendingItems: PendingItemsType;
 
+<<<<<<< HEAD
   constructor(
     public readonly router: Router,
     private readonly busyService: EuiLoadingService,
+=======
+  public isExceptionAdmin = false;
+
+  constructor(
+    public readonly router: Router,
+    private readonly dashboardService: DashboardService,
+    private readonly permissionService: CplPermissionsService,
+>>>>>>> oned/v92
     private readonly userModelSvc: UserModelService
   ) { }
 
   public async ngOnInit(): Promise<void> {
 
+<<<<<<< HEAD
     let overlayRef: OverlayRef;
     setTimeout(() => overlayRef = this.busyService.show());
 
@@ -53,6 +75,17 @@ export class DashboardPluginComponent implements OnInit {
       this.pendingItems = await this.userModelSvc.getPendingItems();
     } finally {
       setTimeout(() => this.busyService.hide(overlayRef));
+=======
+    const busy = this.dashboardService.beginBusy();
+
+    try {
+      this.isExceptionAdmin = await this.permissionService.isExceptionAdmin();
+      if (this.isExceptionAdmin) {
+        this.pendingItems = await this.userModelSvc.getPendingItems();
+      }
+    } finally {
+      busy.endBusy();
+>>>>>>> oned/v92
     }
   }
 }

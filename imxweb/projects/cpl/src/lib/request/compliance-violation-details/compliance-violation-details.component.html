@@ -2,6 +2,7 @@
   <ng-container *ngIf="request == null || request?.UiOrderState.value === 'OrderProduct'">
     <eui-alert *ngIf="request != null" type="info" [condensed]="true" [colored]="true" [dismissable]="false">
       {{
+<<<<<<< HEAD
         (rules.length > 1
           ? '#LDS#Here you can get an overview of the rule violations this request may cause.'
           : '#LDS#Here you can see the rule violation this request may cause.'
@@ -16,6 +17,14 @@
     </mat-card>
 
     <div *ngIf="rules.length > 1" class="imx-content-container">
+=======
+        (rules.length > 1 ? '#LDS#Here you can get an overview of the rule violations this request may cause.' : '#LDS#Here you can see the rule violation this request may cause.')
+          | translate
+      }}
+    </eui-alert>
+
+    <div *ngIf="rules.length > 0" class="imx-content-container">
+>>>>>>> oned/v92
       <mat-accordion class="imx-accordion" multi>
         <mat-expansion-panel *ngFor="let item of rules; let isFirst = first" [expanded]="isFirst">
           <mat-expansion-panel-header>
@@ -27,6 +36,19 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <ng-container *ngTemplateOutlet="ruleViolationTemplate; context: { $implicit: item }"></ng-container>
+<<<<<<< HEAD
+=======
+          <mat-action-row *ngIf="item.violationDetail?.IsExceptionApprover && isApproval && mitigatingControlsPerViolation">
+            <button mat-button color="primary" (click)="addMitigationControls(item)" data-imx-identifier="compliance-violation-datails-edit-mitigating-controls">
+              {{ '#LDS#Assign mitigating controls' | translate }}
+            </button>
+          </mat-action-row>
+          <mat-action-row *ngIf="!isApproval && mitigatingControlsPerViolation">
+            <button mat-button color="primary" (click)="addMitigationControls(item)" data-imx-identifier="compliance-violation-datails-view-mitigating-controls">
+              {{ '#LDS#View mitigating controls' | translate }}
+            </button>
+          </mat-action-row>
+>>>>>>> oned/v92
         </mat-expansion-panel>
       </mat-accordion>
     </div>
@@ -53,8 +75,13 @@
   ></imx-workflow-violation-details>
 </div>
 
+<<<<<<< HEAD
 
 <ng-template #ruleViolationTemplate let-item>
+=======
+<ng-template #ruleViolationTemplate let-item>
+  <imx-cdr-editor *ngIf="cdrRuleDisplay" [cdr]="cdrRuleDisplay"></imx-cdr-editor>
+>>>>>>> oned/v92
   <imx-cdr-editor *ngFor="let cdr of item?.cdrLists.common" [cdr]="cdr"> </imx-cdr-editor>
 
   <ng-container *ngIf="item?.cdrLists?.sources?.length > 0">

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,7 +29,11 @@
  */
 
 import { Component, EventEmitter, OnDestroy } from '@angular/core';
+<<<<<<< HEAD
 import { FormControl, Validators } from '@angular/forms';
+=======
+import { UntypedFormControl, Validators } from '@angular/forms';
+>>>>>>> oned/v92
 import { Subscription } from 'rxjs';
 
 import { UrlValidatorService } from './url-validator.service';
@@ -33,6 +41,7 @@ import { CdrEditor, ValueHasChangedEventArg } from '../cdr-editor.interface';
 import { ColumnDependentReference } from '../column-dependent-reference.interface';
 import { EntityColumnContainer } from '../entity-column-container';
 
+<<<<<<< HEAD
 @Component({
   selector: 'imx-edit-url',
   templateUrl: './edit-url.component.html',
@@ -42,17 +51,64 @@ export class EditUrlComponent implements CdrEditor, OnDestroy {
   public readonly control = new FormControl('', { updateOn: 'blur' });
 
   public readonly columnContainer = new EntityColumnContainer<string>();
+=======
+/**
+ * Provides a {@link CdrEditor | CDR editor} for editing / viewing url columns.
+ * 
+ * To change its value, it uses the input type 'url'.
+ * When set to read-only, it uses a {@link ViewPropertyComponent | view property component} to display the content.
+ */
+@Component({
+  selector: 'imx-edit-url',
+  templateUrl: './edit-url.component.html',
+  styleUrls: ['./edit-url.component.scss'],
+})
+export class EditUrlComponent implements CdrEditor, OnDestroy {
+  /**
+   * The form control associated with the editor.
+   */
+  public readonly control = new UntypedFormControl('', { updateOn: 'blur' });
+
+  /**
+   * The container that wraps the column functionality.
+   */
+  public readonly columnContainer = new EntityColumnContainer<string>();
+  /**
+   * Event that is emitted, after a value has been changed.
+   */
+>>>>>>> oned/v92
   public readonly valueHasChanged = new EventEmitter<ValueHasChangedEventArg>();
 
   private readonly subscribers: Subscription[] = [];
   private isWriting = false;
 
+<<<<<<< HEAD
   constructor(private readonly urlValidator: UrlValidatorService) { }
 
   public ngOnDestroy(): void {
     this.subscribers.forEach(s => s.unsubscribe());
   }
 
+=======
+  /**   *
+   * Creates a new EditUrlComponent
+   * @param urlValidator The {@link UrlValidatorService} used for validation.
+   */
+  constructor(private readonly urlValidator: UrlValidatorService) {}
+
+  /**
+   * Unsubscribes all events, after the 'OnDestroy' hook is triggered.
+   */
+  public ngOnDestroy(): void {
+    this.subscribers.forEach((s) => s.unsubscribe());
+  }
+
+  /**
+   * Binds a column dependent reference to the component.
+   * Subscribes to subjects from the column dependent reference and its container.
+   * @param cdref a column dependent reference
+   */
+>>>>>>> oned/v92
   public bind(cdref: ColumnDependentReference): void {
     if (cdref && cdref.column) {
       this.columnContainer.init(cdref);
@@ -64,6 +120,7 @@ export class EditUrlComponent implements CdrEditor, OnDestroy {
         validators.push(Validators.required);
       }
 
+<<<<<<< HEAD
       this.subscribers.push(this.columnContainer.subscribe(() => {
         if (this.isWriting) { return; }
         if (this.control.value !== this.columnContainer.value) {
@@ -75,6 +132,36 @@ export class EditUrlComponent implements CdrEditor, OnDestroy {
       this.control.setValidators(validators);
 
       this.subscribers.push(this.control.valueChanges.subscribe(async value => this.writeValue(value)));
+=======
+      if (cdref.minlengthSubject) {
+        this.subscribers.push(
+          cdref.minlengthSubject.subscribe((elem) => {
+            const validators = this.urlValidator.validators.slice();
+
+            if (this.columnContainer.isValueRequired && this.columnContainer.canEdit) {
+              validators.push(Validators.required);
+            }
+            this.control.setValidators(validators);
+          })
+        );
+      }
+
+      this.subscribers.push(
+        this.columnContainer.subscribe(() => {
+          if (this.isWriting) {
+            return;
+          }
+          if (this.control.value !== this.columnContainer.value) {
+            this.control.setValue(this.columnContainer.value, { emitEvent: false });
+          }
+          this.valueHasChanged.emit({ value: this.control.value });
+        })
+      );
+
+      this.control.setValidators(validators);
+
+      this.subscribers.push(this.control.valueChanges.subscribe(async (value) => this.writeValue(value)));
+>>>>>>> oned/v92
     }
   }
 

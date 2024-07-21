@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,6 +32,7 @@ import { ComponentType } from '@angular/cdk/portal';
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
+<<<<<<< HEAD
 import { PortalShopConfigStructure } from 'imx-api-qer';
 import { CollectionLoadParameters, IClientProperty, DisplayColumns, EntitySchema } from 'imx-qbm-dbts';
 import { DataSourceToolbarSettings, DataSourceToolbarFilter, ClassloggerService, StorageService, HELPER_ALERT_KEY_PREFIX, SettingsService } from 'qbm';
@@ -43,6 +48,31 @@ const helperAlertKey = `${HELPER_ALERT_KEY_PREFIX}_requestShopShelves`;
 })
 export class RequestShelvesComponent implements OnInit {
 
+=======
+
+import { PortalShopConfigStructure } from 'imx-api-qer';
+import { CollectionLoadParameters, IClientProperty, DisplayColumns, EntitySchema } from 'imx-qbm-dbts';
+import {
+  DataSourceToolbarSettings,
+  DataSourceToolbarFilter,
+  ClassloggerService,
+  HELPER_ALERT_KEY_PREFIX,
+  SettingsService,
+  BusyService,
+  HelpContextualComponent,
+  HelpContextualService,
+  HELP_CONTEXTUAL
+} from 'qbm';
+import { RequestsService } from '../requests.service';
+import { CREATE_SHELF_TOKEN } from './request-shelf-token';
+
+@Component({
+  selector: 'imx-request-shelves',
+  templateUrl: './request-shelves.component.html',
+  styleUrls: ['../request-config-sidesheet-common.scss'],
+})
+export class RequestShelvesComponent implements OnInit {
+>>>>>>> oned/v92
   @Input() public requestConfigId: string;
   @Output() public shelfCountUpdated = new EventEmitter<number>();
 
@@ -51,6 +81,11 @@ export class RequestShelvesComponent implements OnInit {
   public dstSettings: DataSourceToolbarSettings;
   public navigationState: CollectionLoadParameters;
   public filterOptions: DataSourceToolbarFilter[] = [];
+<<<<<<< HEAD
+=======
+  public busyService= new BusyService();
+  public shelvesContextIds = HELP_CONTEXTUAL.ConfigurationRequestsShelves;
+>>>>>>> oned/v92
 
   private displayedColumns: IClientProperty[] = [];
 
@@ -61,12 +96,17 @@ export class RequestShelvesComponent implements OnInit {
     private readonly translate: TranslateService,
     public readonly requestsService: RequestsService,
     private readonly settingsService: SettingsService,
+<<<<<<< HEAD
     private readonly storageService: StorageService
+=======
+    private readonly helpContextualService: HelpContextualService
+>>>>>>> oned/v92
   ) {
     this.navigationState = { PageSize: this.settingsService.DefaultPageSize, StartIndex: 0 };
     this.entitySchemaShopStructure = requestsService.shopStructureSchema;
   }
 
+<<<<<<< HEAD
   get showHelperAlert(): boolean {
     return !this.storageService.isHelperAlertDismissed(helperAlertKey);
   }
@@ -75,6 +115,12 @@ export class RequestShelvesComponent implements OnInit {
     this.displayedColumns = [
       this.entitySchemaShopStructure.Columns[DisplayColumns.DISPLAY_PROPERTYNAME],
       this.entitySchemaShopStructure.Columns.UID_OrgAttestator
+=======
+  public async ngOnInit(): Promise<void> {
+    this.displayedColumns = [
+      this.entitySchemaShopStructure.Columns[DisplayColumns.DISPLAY_PROPERTYNAME],
+      this.entitySchemaShopStructure.Columns.UID_OrgAttestator,
+>>>>>>> oned/v92
     ];
 
     await this.navigate();
@@ -111,6 +157,7 @@ export class RequestShelvesComponent implements OnInit {
     this.viewRequestShelf(newRequestShelf, true);
   }
 
+<<<<<<< HEAD
   public onHelperDismissed(): void {
     this.storageService.storeHelperAlertDismissal(helperAlertKey);
   }
@@ -135,6 +182,36 @@ export class RequestShelvesComponent implements OnInit {
 
   private async navigate(): Promise<void> {
     this.requestsService.handleOpenLoader();
+=======
+  private async viewRequestShelf(requestConfig: PortalShopConfigStructure, isNew: boolean = false): Promise<void> {
+    const header = await this.translate.get(isNew ? '#LDS#Heading Create Shelf' : '#LDS#Heading Edit Shelf').toPromise();
+    if(isNew){
+      this.helpContextualService.setHelpContextId(HELP_CONTEXTUAL.ConfigurationRequestsShelvesCreate);
+    }
+    const result = await this.sideSheet
+      .open(this.shelfComponent, {
+        title: header,
+        subTitle: isNew ? '' : requestConfig.GetEntity().GetDisplay(),
+        padding: '0px',
+        disableClose: true,
+        width: '55%',
+        testId: isNew ? 'request-shelves-create-shelf-sidesheet' : 'request-shelves-edit-shelf-sidesheet',
+        data: {
+          requestConfig,
+          isNew,
+        },
+        headerComponent: isNew ? HelpContextualComponent : undefined
+      })
+      .afterClosed()
+      .toPromise();
+    if (result) {
+      this.navigate();
+    }
+  }
+
+  private async navigate(): Promise<void> {
+    const isBusy = this.busyService.beginBusy();
+>>>>>>> oned/v92
     const getParams: any = this.navigationState;
 
     try {
@@ -152,7 +229,11 @@ export class RequestShelvesComponent implements OnInit {
       };
       this.logger.debug(this, `Head at ${data.Data.length + this.navigationState.StartIndex} of ${data.totalCount} item(s)`);
     } finally {
+<<<<<<< HEAD
       this.requestsService.handleCloseLoader();
+=======
+      isBusy.endBusy();
+>>>>>>> oned/v92
     }
   }
 }

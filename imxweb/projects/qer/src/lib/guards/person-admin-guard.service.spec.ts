@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,6 +28,7 @@
  *
  */
 
+<<<<<<< HEAD
 import { Component } from '@angular/core';
 import { TestBed, fakeAsync, flush } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -94,6 +99,44 @@ describe('PersonAdminGuardService', () => {
 
   beforeEach(() => {
     service = TestBed.inject(PersonAdminGuardService);
+=======
+import { fakeAsync, flush } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { AppConfigService, AuthenticationService } from 'qbm';
+import { PersonAdminGuardService } from './person-admin-guard.service';
+import { QerPermissionsService } from '../admin/qer-permissions.service';
+import { MockBuilder, MockRender } from 'ng-mocks';
+import { Router, RouterModule } from '@angular/router';
+import { QbmDefaultMocks } from '../../../../qbm/src/default-mocks.spec';
+
+
+describe('PersonAdminGuardService', () => {
+  let service: PersonAdminGuardService;
+  let isPersonAdmin = false;
+
+  const qerPermissionsServiceStub = {
+    isPersonAdmin: jasmine.createSpy('isPersonAdmin').and.callFake(() => isPersonAdmin),
+  };
+
+  beforeEach(() => {
+    return MockBuilder([PersonAdminGuardService, RouterModule, RouterTestingModule.withRoutes([])])
+      .mock(AuthenticationService)
+      .mock(QerPermissionsService, qerPermissionsServiceStub)
+      .mock(Router, { export: true })
+      .mock(AppConfigService, {
+        Config: {
+          Title: '',
+          routeConfig: {
+            start: 'dashboard',
+          },
+        },
+      } as unknown);
+  });
+
+  beforeEach(() => {
+    service = MockRender(PersonAdminGuardService).point.componentInstance;
+>>>>>>> oned/v92
   });
 
   it('should be created', () => {
@@ -107,19 +150,31 @@ describe('PersonAdminGuardService', () => {
       expect(val).toEqual(true);
     });
 
+<<<<<<< HEAD
     authenticationServiceStub.onSessionResponse.next({ IsLoggedIn: true });
+=======
+    QbmDefaultMocks.authServiceStub.onSessionResponse.next({ IsLoggedIn: true });
+>>>>>>> oned/v92
 
     flush();
   }));
 
   it("canActivate() should return false if user doesn't have VI_4_PERSONADMIN group", fakeAsync(() => {
+<<<<<<< HEAD
     isPersonAdmin = false; 
+=======
+    isPersonAdmin = false;
+>>>>>>> oned/v92
 
     service.canActivate(undefined, null).subscribe((val: boolean) => {
       expect(val).toEqual(false);
     });
 
+<<<<<<< HEAD
     authenticationServiceStub.onSessionResponse.next({ IsLoggedIn: true });
+=======
+    QbmDefaultMocks.authServiceStub.onSessionResponse.next({ IsLoggedIn: true });
+>>>>>>> oned/v92
 
     flush();
   }));

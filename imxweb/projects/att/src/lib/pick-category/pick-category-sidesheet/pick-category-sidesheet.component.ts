@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -34,14 +38,25 @@ import { CollectionLoadParameters, DisplayColumns, TypedEntity } from 'imx-qbm-d
 import {
   BaseCdr,
   ClassloggerService,
+<<<<<<< HEAD
   ColumnDependentReference,
+=======
+>>>>>>> oned/v92
   ConfirmationService,
   DataSourceToolbarSettings,
   DataSourceWrapper,
   DataTableComponent,
+<<<<<<< HEAD
 } from 'qbm';
 import { PickCategorySelectIdentitiesComponent } from '../pick-category-select-identities/pick-category-select-identities.component';
 import { PickCategoryService } from '../pick-category.service';
+=======
+  SnackBarService,
+} from 'qbm';
+import { PickCategorySelectIdentitiesComponent } from '../pick-category-select-identities/pick-category-select-identities.component';
+import { PickCategoryService } from '../pick-category.service';
+import { UntypedFormGroup } from '@angular/forms';
+>>>>>>> oned/v92
 
 @Component({
   selector: 'imx-pick-category-sidesheet',
@@ -51,9 +66,16 @@ import { PickCategoryService } from '../pick-category.service';
 export class PickCategorySidesheetComponent implements OnInit {
 
   public readonly dstWrapper: DataSourceWrapper<PortalPickcategoryItems>;
+<<<<<<< HEAD
   public dstSettings: DataSourceToolbarSettings;
   public selectedPickedItems: PortalPickcategoryItems[] = [];
   public displayNameReadonlyCdr: ColumnDependentReference;
+=======
+  public readonly form = new UntypedFormGroup({});
+  public dstSettings: DataSourceToolbarSettings;
+  public selectedPickedItems: PortalPickcategoryItems[] = [];
+  public displayNameCdr: any;
+>>>>>>> oned/v92
 
   @ViewChild(DataTableComponent) private table: DataTableComponent<TypedEntity>;
 
@@ -64,6 +86,10 @@ export class PickCategorySidesheetComponent implements OnInit {
       pickCategory: PortalPickcategory
     },
     private readonly sidesheet: EuiSidesheetService,
+<<<<<<< HEAD
+=======
+    private readonly snackBar: SnackBarService,
+>>>>>>> oned/v92
     private readonly confirmationService: ConfirmationService,
     private readonly pickCategoryService: PickCategoryService,
     private readonly translate: TranslateService,
@@ -79,8 +105,14 @@ export class PickCategorySidesheetComponent implements OnInit {
   }
 
   public async ngOnInit(): Promise<void> {
+<<<<<<< HEAD
     this.displayNameReadonlyCdr = new BaseCdr(this.data.pickCategory.GetEntity().GetColumn(DisplayColumns.DISPLAY_PROPERTYNAME));
     this.uidPickCategory = this.data.pickCategory.GetEntity()?.GetKeys()?.join(',');
+=======
+    this.uidPickCategory = this.data.pickCategory.GetEntity()?.GetKeys()?.join(',');
+    this.displayNameCdr = new BaseCdr(this.data.pickCategory.DisplayName.Column, '#LDS#Display name');
+    this.displayNameCdr.minLength = 1;
+>>>>>>> oned/v92
     await this.getData();
   }
 
@@ -106,8 +138,13 @@ export class PickCategorySidesheetComponent implements OnInit {
 
   public async assignPickedItems(): Promise<void> {
     const selection = await this.sidesheet.open(PickCategorySelectIdentitiesComponent, {
+<<<<<<< HEAD
       title: await this.translate.get('#LDS#Heading Select Identities').toPromise(),
       headerColour: 'iris-blue',
+=======
+      title: await this.translate.get('#LDS#Heading Assign Identities').toPromise(),
+      subTitle: this.data.pickCategory.GetEntity().GetDisplay(),
+>>>>>>> oned/v92
       padding: '0px',
       width: '700px',
       disableClose: false,
@@ -132,4 +169,21 @@ export class PickCategorySidesheetComponent implements OnInit {
     }
   }
 
+<<<<<<< HEAD
+=======
+  public async saveChanges(): Promise<void> {
+    if (this.form.valid) {
+      this.pickCategoryService.handleOpenLoader();
+      let confirmMessage = '#LDS#The sample has been successfully saved.';
+      try {
+        this.data.pickCategory.GetEntity().Commit(false);
+        this.sidesheet.close(true);
+        this.snackBar.open({ key: confirmMessage });
+      } finally {
+        this.pickCategoryService.handleCloseLoader();
+      }
+    }
+  }
+
+>>>>>>> oned/v92
 }

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -27,7 +31,12 @@
 import { Injectable } from '@angular/core';
 import { Router, Route } from '@angular/router';
 
+<<<<<<< HEAD
 import { MenuService } from 'qbm';
+=======
+import { ExtService } from 'qbm';
+import { CallsComponent } from './calls/calls.component';
+>>>>>>> oned/v92
 
 
 @Injectable({ providedIn: 'root' })
@@ -35,13 +44,25 @@ export class InitService {
 
   constructor(
     private readonly router: Router,
+<<<<<<< HEAD
     private readonly menuService: MenuService,
+=======
+    private readonly extService: ExtService,
+>>>>>>> oned/v92
   ) { }
 
   public onInit(routes: Route[]): void {
     this.addRoutes(routes);
+<<<<<<< HEAD
 
     this.setupMenu();
+=======
+    this.extService.register('mastHead', { instance: CallsComponent, inputData: {
+      id: 'helpdeskTickets',
+      label: '#LDS#Menu Entry Help desk tickets',
+      url: 'help-desk-support/tickets'
+    }});
+>>>>>>> oned/v92
 
     /*
     this.dataExplorerRegistryService.registerFactory(
@@ -64,6 +85,7 @@ export class InitService {
     */
   }
 
+<<<<<<< HEAD
   private setupMenu(): void {
     /*
     this.menuService.addMenuFactories(
@@ -90,6 +112,8 @@ export class InitService {
       */
   }
 
+=======
+>>>>>>> oned/v92
   private addRoutes(routes: Route[]): void {
     const config = this.router.config;
     routes.forEach(route => {

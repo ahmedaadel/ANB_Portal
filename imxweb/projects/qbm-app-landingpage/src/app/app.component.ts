@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -104,7 +108,11 @@ export class AppComponent {
   }
 
   private async initTitles(): Promise<void> {
+<<<<<<< HEAD
     this.overviewTitle = await this.translate.get('#LDS#Heading Overview').toPromise();    
+=======
+    this.overviewTitle = await this.translate.get('#LDS#Heading Web Applications Overview').toPromise();    
+>>>>>>> oned/v92
     this.adminPortalTitle = await this.translate.get('#LDS#Heading Administration Portal').toPromise();
   }
 

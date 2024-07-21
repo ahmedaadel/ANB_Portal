@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 @import "variables.scss";
 @import "@angular/material/theming";
+=======
+@import 'variables.scss';
+>>>>>>> oned/v92
 
 :host {
   min-width: 800px;
@@ -61,7 +65,11 @@
 }
 
 .project-selector {
+<<<<<<< HEAD
   min-width: 300px;
+=======
+  min-width: 450px;
+>>>>>>> oned/v92
 }
 
 .wide-field {
@@ -70,9 +78,31 @@
 }
 
 .scroll-container {
+<<<<<<< HEAD
   padding-right: 2em; // allow room for scroll bars
   flex: 1 1 auto;
   overflow: auto;
+=======
+  padding: 0.5em 0.5em 0.5em 0;
+  flex: 1 1 auto;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &.loading {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    align-content: center;
+    flex-flow: wrap;
+  }
+>>>>>>> oned/v92
 }
 
 .no-results {
@@ -89,4 +119,15 @@
     font-size: 18px;
     color: $black-9;
   }
+<<<<<<< HEAD
 }
+=======
+}
+.mat-expansion-panel-header,
+.mat-expansion-panel-header.mat-expanded {
+  height: 50px;
+}
+.cdk-virtual-scroll-viewport {
+  flex-grow: 1;
+}
+>>>>>>> oned/v92

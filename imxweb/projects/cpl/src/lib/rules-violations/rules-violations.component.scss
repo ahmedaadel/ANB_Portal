@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+@import '../../../../../shared/scss/common-table.scss';
+
+>>>>>>> oned/v92
 @mixin imx-flex-column-container {
   display: flex;
   flex-direction: column;
@@ -20,12 +25,15 @@
     display: flex;
     margin-bottom: 15px;
   }
+<<<<<<< HEAD
 
   .alert-wrapper {
     margin: 0 0 0 auto;
     align-self: flex-end;
     width: 50%;
   }
+=======
+>>>>>>> oned/v92
 }
 
 :host {
@@ -39,27 +47,46 @@
   background-color: inherit;
   @include imx-flex-column-container();
   overflow: hidden;
+<<<<<<< HEAD
+=======
+  flex: 1 1 auto;
+
+  .mat-card {
+   @include imx-flex-fill-control-hidden-overflow();
+  }
+>>>>>>> oned/v92
 
   div.imx-table-container {
     @include imx-flex-column-container();
     overflow: hidden;
+<<<<<<< HEAD
     height: inherit;
+=======
+    flex: 1 1 auto;
+>>>>>>> oned/v92
 
     .imx-rules-violations-table {
       flex-grow: 1;
       overflow: auto;
 
       .imx-decision {
+<<<<<<< HEAD
         min-width: 210px;
         > * {
           margin-bottom: 3px;
           margin-top: 3px;
+=======
+        @include imx-button-column-right();
+        > button:not(:last-of-type) {
+          margin-right: 5px;
+>>>>>>> oned/v92
         }
       }
     }
   }
 
   .imx-button-bar {
+<<<<<<< HEAD
     @include imx-flex-row-container();
     margin-top: 20px;
     flex: 0 0 auto;
@@ -88,6 +115,16 @@
   }
 }
 
+=======
+    @include imx-button-bar;
+  }
+}
+
+.imx-margin-right {
+  margin-right: 10px;
+}
+
+>>>>>>> oned/v92
 @media screen and (max-width: 768px) {
   .imx-rules-violations-page {
     .heading-wrapper {
@@ -101,9 +138,16 @@
   }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> oned/v92
 @media only screen and (max-width: 1024px) {
   ::ng-deep .mat-column-decision {
     display: none;
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> oned/v92

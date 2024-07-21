@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,6 +28,7 @@
  *
  */
 
+<<<<<<< HEAD
 import { PortalPoliciesViolationsApprove } from 'imx-api-pol';
 import { BaseReadonlyCdr, ColumnDependentReference } from 'qbm';
 
@@ -32,22 +37,48 @@ export class PolicyViolation extends PortalPoliciesViolationsApprove {
   public properties: ColumnDependentReference[];
   /**
    * The color and the caption depending on the value of the state of a {@link PortalPoliciesViolationsApprove}.
+=======
+import { ObjectInfo, PortalPoliciesViolationslist } from 'imx-api-pol';
+import { BaseReadonlyCdr, ColumnDependentReference } from 'qbm';
+
+export class PolicyViolation extends PortalPoliciesViolationslist {
+
+  public properties: ColumnDependentReference[];
+  /**
+   * The color and the caption depending on the value of the state of a {@link PortalPoliciesViolationslist}.
+>>>>>>> oned/v92
    */
   public get stateBadge(): { color: 'blue' | 'orange' | 'green', caption: string } {
     return {
       color: this.stateBadgeColor,
       caption: this.stateCaption
     };
+<<<<<<< HEAD
   }
   private stateBadgeColor: 'blue' | 'orange' | 'green';
   private stateCaption: string;
 
   constructor(
     private readonly baseObject: PortalPoliciesViolationsApprove
+=======
+  };
+  public readonly data: ObjectInfo[];
+  private stateBadgeColor: 'blue' | 'orange' | 'green';
+  private stateCaption: string;
+
+
+  constructor(
+    private readonly baseObject: PortalPoliciesViolationslist,
+    extendedData:  ObjectInfo[]
+>>>>>>> oned/v92
   ) {
     super(baseObject.GetEntity());
     this.initPropertyInfo();
     this.initStateBadge();
+<<<<<<< HEAD
+=======
+    this.data = extendedData || [];
+>>>>>>> oned/v92
   }
 
   public get key(): string {
@@ -58,6 +89,10 @@ export class PolicyViolation extends PortalPoliciesViolationsApprove {
     const props: any[] =
       [
         this.UID_QERPolicy,
+<<<<<<< HEAD
+=======
+        this.Description,
+>>>>>>> oned/v92
         this.ObjectKey
       ];
 

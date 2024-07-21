@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -56,9 +56,9 @@ export class CdrRegistryService implements CdrEditorProviderRegistry {
 
   /**
    * Creates a new registry service for column dependent reference editor providers.
-   * @param componentFactoryResolver The resolver required for resolving the factory capable of creating an editor component
+   * @param componentFactoryResolver The resolver required for resolving the factory capable of creating an editor component.
    * @param errorHandler Required error handler to handle errors.
-   * @param logger The logger used for logging messages
+   * @param logger The logger used for logging messages.
    * @throws {Error} Throws an error if the given error handler is null or undefined.
    */
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
@@ -67,7 +67,7 @@ export class CdrRegistryService implements CdrEditorProviderRegistry {
   /**
    * Registers an editor provider for column dependent references.
    *
-   * @param provider The editor provider to register
+   * @param provider The editor provider to register.
    * @throws {Error} Throws an error if the given provider is null or undefined.
    * @throws {Error} Throws an error if the given provider has already been registered.
    */

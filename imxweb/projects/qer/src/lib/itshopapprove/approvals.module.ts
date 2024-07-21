@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,6 +34,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
+<<<<<<< HEAD
+=======
+import { MatTabsModule } from '@angular/material/tabs';
+>>>>>>> oned/v92
 
 import {
   BulkPropertyEditorModule,
@@ -42,7 +50,15 @@ import {
   LdsReplaceModule,
   MenuItem,
   MenuService,
+<<<<<<< HEAD
   RouteGuardService
+=======
+  BusyIndicatorModule,
+  RouteGuardService,
+  SelectedElementsModule,
+  HelpContextualModule,
+  HELP_CONTEXTUAL
+>>>>>>> oned/v92
 } from 'qbm';
 
 import { ApprovalsComponent } from './approvals.component';
@@ -58,6 +74,13 @@ import { JustificationModule } from '../justification/justification.module';
 import { WorkflowMultiActionComponent } from './workflow-action/workflow-multi-action/workflow-multi-action.component';
 import { WorkflowSingleActionComponent } from './workflow-action/workflow-single-action/workflow-single-action.component';
 import { RecommendationSidesheetComponent } from './recommendation-sidesheet/recommendation-sidesheet.component';
+<<<<<<< HEAD
+=======
+import { ApprovalHistoryComponent } from './workflow-action/approval-history/approval-history.component';
+import { HistoryFilterComponent } from './workflow-action/approval-history/history-filter/history-filter.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { InquiriesComponent } from './inquiries/inquiries.component'
+>>>>>>> oned/v92
 
 const routes: Routes = [
   {
@@ -77,10 +100,23 @@ const routes: Routes = [
     WorkflowActionComponent,
     WorkflowMultiActionComponent,
     WorkflowSingleActionComponent,
+<<<<<<< HEAD
     RecommendationSidesheetComponent
   ],
   imports: [
     BulkPropertyEditorModule,
+=======
+    RecommendationSidesheetComponent,
+    InquiriesComponent,
+    ApprovalHistoryComponent,
+    HistoryFilterComponent
+  ],
+  imports: [
+    BulkPropertyEditorModule,
+    BusyIndicatorModule,
+    MatCheckboxModule,
+    MatTabsModule,
+>>>>>>> oned/v92
     CdrModule,
     CommonModule,
     DataSourceToolbarModule,
@@ -96,11 +132,23 @@ const routes: Routes = [
     ReactiveFormsModule,
     RequestHistoryModule,
     RouterModule.forChild(routes),
+<<<<<<< HEAD
     TranslateModule
+=======
+    TranslateModule,
+    SelectedElementsModule,
+    HelpContextualModule,
+>>>>>>> oned/v92
   ],
   providers: [
     ApprovalsService
   ],
+<<<<<<< HEAD
+=======
+  exports: [
+    RecommendationSidesheetComponent
+  ]
+>>>>>>> oned/v92
 })
 export class ApprovalsModule {
   constructor(
@@ -113,7 +161,11 @@ export class ApprovalsModule {
 
   private setupMenu(): void {
     this.menuService.addMenuFactories(
+<<<<<<< HEAD
       (preProps: string[], groups: string[]) => {
+=======
+      (preProps: string[], features: string[]) => {
+>>>>>>> oned/v92
 
         const items: MenuItem[] = [];
 

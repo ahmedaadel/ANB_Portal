@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,7 +28,11 @@
  *
  */
 
+<<<<<<< HEAD
 import { HyperViewLayout, toPixelString, HvElement } from './hyperview-types';
+=======
+import { HyperViewLayout, toPixelString, HvElement, LayoutResult } from './hyperview-types';
+>>>>>>> oned/v92
 import { IConnectorProvider, ConnectorProvider } from './connector-provider';
 
 /**
@@ -41,7 +49,11 @@ export class HyperviewLayoutVertical implements HyperViewLayout {
   /**
    * layouting the hyperview according to positions of each shape.
    */
+<<<<<<< HEAD
   public layout(): void {
+=======
+  public layout(): LayoutResult {
+>>>>>>> oned/v92
     const es = this.elements;
     if (es.length > 0) {
 
@@ -61,6 +73,11 @@ export class HyperviewLayoutVertical implements HyperViewLayout {
           element.style.top = '0px';
         }
       });
+<<<<<<< HEAD
+=======
+
+      return { size: { width: maxw, height: 0 } };
+>>>>>>> oned/v92
     }
   }
 

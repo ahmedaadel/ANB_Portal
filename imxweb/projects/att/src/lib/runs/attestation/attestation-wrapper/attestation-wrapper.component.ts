@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -33,6 +37,10 @@ import { IdentityAttestationService } from '../../../identity-attestation.servic
 
 @Component({
   templateUrl: './attestation-wrapper.component.html',
+<<<<<<< HEAD
+=======
+  styleUrls: ['./attestation-wrapper.component.scss']
+>>>>>>> oned/v92
 })
 export class AttestationWrapperComponent implements OnInit, OnDestroy{
   public referrer: { objecttable: string; objectuid: string; };

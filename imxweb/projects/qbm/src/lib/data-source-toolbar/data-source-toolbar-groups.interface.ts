@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,7 +28,11 @@
  *
  */
 
+<<<<<<< HEAD
 import { DataModelFilterOption, DataModelGroupInfo, GroupInfo, IClientProperty } from 'imx-qbm-dbts';
+=======
+import { CollectionLoadParameters, DataModelFilterOption, DataModelGroupInfo, GroupInfoData, IClientProperty } from 'imx-qbm-dbts';
+>>>>>>> oned/v92
 
 export interface DataSourceToolbarGroupData {
   /**
@@ -42,12 +50,20 @@ export interface DataSourceToolbarGroupData {
    */
   currentGrouping?: {
     display: string;
+<<<<<<< HEAD
     getData: () => Promise<GroupInfo[]>;
+=======
+    getData: (parameter?: CollectionLoadParameters) => Promise<GroupInfoData>;
+    navigationState?: CollectionLoadParameters;
+>>>>>>> oned/v92
   };
 }
 
 export interface DataSourceToolBarGroup {
+<<<<<<< HEAD
 
+=======
+>>>>>>> oned/v92
   /**
    * A groupable property
    */
@@ -56,7 +72,16 @@ export interface DataSourceToolBarGroup {
   /**
    * Callback for getting the corresponding GroupInfo data for the property
    */
+<<<<<<< HEAD
   getData: () => Promise<GroupInfo[]>;
+=======
+  getData: (parameter?: CollectionLoadParameters) => Promise<GroupInfoData>;
+
+  /**
+   * The navigation state used, when loading the group elements for a grouping type
+   */
+  navigationState?: CollectionLoadParameters;
+>>>>>>> oned/v92
 }
 
 /**

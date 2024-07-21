@@ -1,4 +1,8 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
+<<<<<<< HEAD
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 .imx-db-icon {
   padding-top: 45px;
@@ -26,3 +30,40 @@ eui-icon {
   display: flex;
   flex-wrap: wrap;
 }
+<<<<<<< HEAD
+=======
+
+.eui-dark-theme {
+  :host {
+    .issueTitle {
+      color: $color-gray-5;
+    }
+
+    .issueContent {
+      color: $color-gray-5;
+    }
+
+    .issueIconLine {
+      color: $color-gray-2;
+      background-color: $color-gray-60;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .issueTitle {
+      color: $color-gray-0;
+    }
+
+    .issueContent {
+      color: $color-gray-0;
+    }
+
+    .issueIconLine {
+      color: $color-gray-0;
+      background-color: $color-gray-80;
+    }
+  }
+}
+>>>>>>> oned/v92

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -73,7 +77,11 @@ export class ApproverContainer {
     const ret = [];
     const steps = [
       ...new Set(
+<<<<<<< HEAD
         this.request.pwoData.WorkflowSteps.Entities.sort((a, b) => a.Columns.LevelNumber.Value - b.Columns.LevelNumber.Value).map(
+=======
+        this.request.pwoData.WorkflowSteps?.Entities.sort((a, b) => a.Columns.LevelNumber.Value - b.Columns.LevelNumber.Value).map(
+>>>>>>> oned/v92
           (elem) =>
             elem.Columns.UID_QERWorkingStep.Value +
             MultiValueProperty.DefaultSeparator +
@@ -91,15 +99,28 @@ export class ApproverContainer {
         ? this.approverFuture?.filter(
             (workflowData, index, newArray) =>
               workflowData.Columns.UID_QERWorkingStep.Value === uid &&
+<<<<<<< HEAD
               newArray.findIndex((checkData) => checkData.Columns.UID_PersonHead.Value === workflowData.Columns.UID_PersonHead.Value) === index
+=======
+              newArray.findIndex((checkData) => checkData.Columns.UID_PersonHead.Value === workflowData.Columns.UID_PersonHead.Value) ===
+                index
+>>>>>>> oned/v92
           )
         : this.approverNow?.filter(
             (workflowData, index, newArray) =>
               workflowData.Columns.UID_QERWorkingStep.Value === uid &&
+<<<<<<< HEAD
               newArray.findIndex((checkData) => checkData.Columns.UID_PersonHead.Value === workflowData.Columns.UID_PersonHead.Value) === index
           );
 
       this.logger.trace(this, `analysing ${(future ? 'future': 'current')} step ${uid} (${display}):`, approver);
+=======
+              newArray.findIndex((checkData) => checkData.Columns.UID_PersonHead.Value === workflowData.Columns.UID_PersonHead.Value) ===
+                index
+          );
+
+      this.logger.trace(this, `analysing ${future ? 'future' : 'current'} step ${uid} (${display}):`, approver);
+>>>>>>> oned/v92
 
       if (approver?.length > 0) {
         ret.push({ display: display, data: approver });
@@ -119,6 +140,7 @@ export class ApproverContainer {
     this.logger?.trace(this, 'working steps with order', orderedWorkingSteps);
 
     if (canSeeCurrent) {
+<<<<<<< HEAD
       const currentStep = orderedWorkingSteps.find((step) => step.order === 1);
       this.logger?.trace(this, 'current step', currentStep);
 
@@ -129,6 +151,19 @@ export class ApproverContainer {
               (data) =>
                 data.Columns.UID_PersonHead.Value &&
                 data.Columns.UID_QERWorkingStep.Value === currentStep.uidWorkingStep &&
+=======
+      const currentSteps = orderedWorkingSteps.filter((step) => step.order === 1);
+      this.logger?.trace(this, 'current steps', currentSteps);
+
+      this.approverNow =
+        this.request == null || this.request.pwoData == null || this.request.pwoData.WorkflowData == null || currentSteps.length === 0
+          ? []
+          : this.request.pwoData.WorkflowData.Entities.filter(
+              (data) =>
+                !this.isDecided(data,this.request.pwoData.WorkflowData.Entities.filter((elem) => elem.Columns.Decision?.Value !== '')) &&
+                data.Columns.UID_PersonHead.Value &&
+                currentSteps.some((step) => data.Columns.UID_QERWorkingStep.Value === step.uidWorkingStep) &&
+>>>>>>> oned/v92
                 this.request.approvers.includes(data.Columns.UID_PersonHead.Value)
             ).sort((data1, data2) => data1.Columns.UID_PersonHead.DisplayValue.localeCompare(data2.Columns.UID_PersonHead.DisplayValue));
       this.logger?.trace(this, 'personWantsOrg should be approved by', this.approverNow);
@@ -139,7 +174,11 @@ export class ApproverContainer {
       this.logger?.trace(this, 'future steps', futureSteps);
 
       this.approverFuture =
+<<<<<<< HEAD
         this.request == null || this.request.pwoData == null || futureSteps == null
+=======
+        this.request == null || this.request.pwoData == null || this.request.pwoData.WorkflowData == null || futureSteps == null
+>>>>>>> oned/v92
           ? []
           : this.request.pwoData.WorkflowData.Entities.filter(
               (data) =>
@@ -150,8 +189,24 @@ export class ApproverContainer {
     }
   }
 
+<<<<<<< HEAD
   private buildOrderedWorkingSteps(): OrderedWorkingStep[] {
     if (this.request == null || this.request.pwoData == null) {
+=======
+  /*
+   *  Checks, if a workflowData item is already decided (by any person in the same sub step)
+   */
+  private isDecided(data: EntityData, decidedEntries:EntityData[]): boolean {
+    return decidedEntries.some(
+      (elem) =>
+        elem.Columns.LevelNumber.Value === data.Columns.LevelNumber.Value &&
+        elem.Columns.SubLevelNumber.Value === data.Columns.SubLevelNumber.Value
+    );
+  }
+
+  private buildOrderedWorkingSteps(): OrderedWorkingStep[] {
+    if (this.request == null || this.request.pwoData == null || this.request.pwoData.WorkflowSteps == null) {
+>>>>>>> oned/v92
       return [];
     }
 
@@ -164,14 +219,25 @@ export class ApproverContainer {
     );
     this.logger?.trace(this, `calculate steps for method ${workingMethod}`, stepsForWorkingMethod);
 
+<<<<<<< HEAD
     const startStep = stepsForWorkingMethod.find((elem) => elem.Columns.LevelNumber.Value === currentLevel);
     this.logger?.trace(this, 'starting with step', startStep);
 
     if (startStep == null) {
+=======
+    const startSteps = stepsForWorkingMethod.filter(
+      (n, i, arr) => arr.findIndex((elem) => elem.Keys[0] === n.Keys[0] && elem.Columns.LevelNumber.Value === currentLevel) === i
+    );
+
+    this.logger?.trace(this, 'starting with step', startSteps);
+
+    if (startSteps.length === 0) {
+>>>>>>> oned/v92
       this.logger?.debug(this, 'no steps to approve');
       return [];
     }
 
+<<<<<<< HEAD
     orderedSteps.push({
       uidWorkingStep: startStep.Keys[0],
       decisionLevel: currentLevel,
@@ -179,6 +245,18 @@ export class ApproverContainer {
       order: 1,
     });
     this.logger?.debug(this, 'first working step is added');
+=======
+    orderedSteps.push(
+      ...startSteps.map((elem) => ({
+        uidWorkingStep: elem.Keys[0],
+        decisionLevel: currentLevel,
+        positiveSteps: elem.Columns.PositiveSteps.Value,
+        order: 1,
+      }))
+    );
+
+    this.logger?.debug(this, 'first working steps are added');
+>>>>>>> oned/v92
 
     let goOn = true;
     while (goOn) {
@@ -208,7 +286,10 @@ export class ApproverContainer {
         this.logger?.trace(this, 'new step list', orderedSteps);
       }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> oned/v92
     return orderedSteps;
   }
 

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,11 +29,19 @@
  */
 
 import { Component, Input, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { AbstractControl, FormGroup } from '@angular/forms';
+=======
+import { AbstractControl, UntypedFormGroup } from '@angular/forms';
+>>>>>>> oned/v92
 import { IEntity } from 'imx-qbm-dbts';
 import { BaseCdr, BaseReadonlyCdr, ColumnDependentReference } from 'qbm';
 import { Approval } from '../../approval';
 import { WorkflowActionEdit } from '../workflow-action-edit.interface';
+<<<<<<< HEAD
+=======
+import { DecisionStepSevice } from '../../decision-step.service';
+>>>>>>> oned/v92
 
 /**
  * @ignore since this is only an internal component.
@@ -40,10 +52,16 @@ import { WorkflowActionEdit } from '../workflow-action-edit.interface';
 @Component({
   selector: 'imx-workflow-single-action',
   templateUrl: './workflow-single-action.component.html',
+<<<<<<< HEAD
   styleUrls: ['./workflow-single-action.component.scss']
 })
 export class WorkflowSingleActionComponent implements OnInit {
 
+=======
+  styleUrls: ['./workflow-single-action.component.scss'],
+})
+export class WorkflowSingleActionComponent implements OnInit {
+>>>>>>> oned/v92
   /**
    * @ignore since this is only an internal component.
    *
@@ -56,7 +74,11 @@ export class WorkflowSingleActionComponent implements OnInit {
    *
    * The form group to which the necessary form fields will be added.
    */
+<<<<<<< HEAD
   @Input() public formGroup: FormGroup;
+=======
+  @Input() public formGroup: UntypedFormGroup;
+>>>>>>> oned/v92
 
   /**
    * @ignore since this is only public because of databinding to the template
@@ -68,6 +90,15 @@ export class WorkflowSingleActionComponent implements OnInit {
 
   /**
    * @ignore since this is only public because of databinding to the template
+<<<<<<< HEAD
+=======
+   * the display value of the current step
+   */
+  public currentStepCdr: ColumnDependentReference;
+
+  /**
+   * @ignore since this is only public because of databinding to the template
+>>>>>>> oned/v92
    *
    * The references depending on the parameter of the request that are displayed/edited during the decision.
    *
@@ -81,6 +112,10 @@ export class WorkflowSingleActionComponent implements OnInit {
    */
   public request: Approval;
 
+<<<<<<< HEAD
+=======
+  constructor(private stepService: DecisionStepSevice) {}
+>>>>>>> oned/v92
 
   /**
    * @ignore since this is only an internal component
@@ -90,6 +125,11 @@ export class WorkflowSingleActionComponent implements OnInit {
   public ngOnInit(): void {
     this.request = this.data.requests[0];
 
+<<<<<<< HEAD
+=======
+    this.columns.push(new BaseReadonlyCdr(this.request.OrderState.Column));
+
+>>>>>>> oned/v92
     if (this.data.actionParameters.uidPerson) {
       this.columns.push(this.data.actionParameters.uidPerson);
     }
@@ -103,9 +143,18 @@ export class WorkflowSingleActionComponent implements OnInit {
     }
 
     if (this.request.parameterColumns) {
+<<<<<<< HEAD
       this.request.parameterColumns.forEach(pCol => 
         this.requestParameterColumns.push(this.data.approve ? new BaseCdr(pCol) : new BaseReadonlyCdr(pCol)));
     }
+=======
+      this.request.parameterColumns.forEach((pCol) =>
+        this.requestParameterColumns.push(this.data.approve ? new BaseCdr(pCol) : new BaseReadonlyCdr(pCol))
+      );
+    }
+
+    this.currentStepCdr = this.stepService.getCurrentStepCdr(this.request, this.request.pwoData, '#LDS#Current approval step');
+>>>>>>> oned/v92
   }
 
   /**
@@ -118,9 +167,13 @@ export class WorkflowSingleActionComponent implements OnInit {
    */
   public onFormControlCreated(name: string, control: AbstractControl): void {
     // use setTimeout to make addControl asynchronous in order to avoid "NG0100: Expression has changed after it was checked"
+<<<<<<< HEAD
     setTimeout(() =>
       this.formGroup.addControl(name, control)
     );
+=======
+    setTimeout(() => this.formGroup.addControl(name, control));
+>>>>>>> oned/v92
   }
 
   /**
@@ -136,6 +189,9 @@ export class WorkflowSingleActionComponent implements OnInit {
       this.request.updateDirectDecisionTarget(entity);
     }
   }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> oned/v92
 }

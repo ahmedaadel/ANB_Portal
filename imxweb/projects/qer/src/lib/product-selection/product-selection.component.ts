@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,7 +29,10 @@
  */
 
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+<<<<<<< HEAD
 import { MatDialog } from '@angular/material/dialog';
+=======
+>>>>>>> oned/v92
 import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
@@ -62,7 +69,10 @@ import { CartItemsService } from '../shopping-cart/cart-items.service';
 import { QerApiService } from '../qer-api-client.service';
 import { ServiceCategoryListComponent } from './servicecategory-list/servicecategory-list.component';
 import { ServiceitemListComponent } from '../service-items/serviceitem-list/serviceitem-list.component';
+<<<<<<< HEAD
 import { ProductSelectionService } from './product-selection.service';
+=======
+>>>>>>> oned/v92
 import { CategoryTreeComponent } from './servicecategory-list/category-tree.component';
 import { RoleMembershipsComponent } from './role-memberships/role-memberships.component';
 import { RecipientsWrapper } from './recipients-wrapper';
@@ -75,7 +85,14 @@ import { OptionalItemsSidesheetComponent } from './optional-items-sidesheet/opti
 import { ServiceItemOrder } from './service-item-order.interface';
 import { DependencyService } from './optional-items-sidesheet/dependency.service';
 
+<<<<<<< HEAD
 /** Main entry component for the product selection page. */
+=======
+/** 
+ * Main entry component for the product selection page. 
+ * @deprecated Use NewRequestComponent
+ */
+>>>>>>> oned/v92
 @Component({
   templateUrl: './product-selection.component.html',
   styleUrls: ['./product-selection.component.scss'],
@@ -113,18 +130,29 @@ export class ProductSelectionComponent implements OnInit, OnDestroy {
 
   public serviceItemActions: DataTileMenuItem[] = [
     {
+<<<<<<< HEAD
+=======
+      name: 'addToCart',
+      description: '#LDS#Add to cart',
+    },
+    {
+>>>>>>> oned/v92
       name: 'details',
       description: '#LDS#Details',
       useOnDisabledTile: true,
     },
+<<<<<<< HEAD
     {
       name: 'addToCart',
       description: '#LDS#Add to cart',
     },
+=======
+>>>>>>> oned/v92
   ];
 
   public patternItemActions: DataTileMenuItem[] = [
     {
+<<<<<<< HEAD
       name: 'details',
       description: '#LDS#Details',
     },
@@ -132,6 +160,15 @@ export class ProductSelectionComponent implements OnInit, OnDestroy {
       name: 'addTemplateToCart',
       description: '#LDS#Add to cart',
     },
+=======
+      name: 'addTemplateToCart',
+      description: '#LDS#Add to cart',
+    },
+    {
+      name: 'details',
+      description: '#LDS#Details',
+    },
+>>>>>>> oned/v92
   ];
 
   private authSubscription: Subscription;
@@ -144,7 +181,10 @@ export class ProductSelectionComponent implements OnInit, OnDestroy {
     private readonly translate: TranslateService,
     private qerClient: QerApiService,
     private router: Router,
+<<<<<<< HEAD
     private dialogService: MatDialog,
+=======
+>>>>>>> oned/v92
     public projectConfigService: ProjectConfigurationService,
     private userModelSvc: UserModelService,
     private activatedRoute: ActivatedRoute,
@@ -156,7 +196,10 @@ export class ProductSelectionComponent implements OnInit, OnDestroy {
     private readonly cartItemsProvider: CartItemsService,
     private readonly shelfService: ShelfService,
     private readonly sideSheetService: EuiSidesheetService,
+<<<<<<< HEAD
     private readonly productSelectionService: ProductSelectionService,
+=======
+>>>>>>> oned/v92
     private readonly entityService: EntityService,
     private readonly ldsReplace: LdsReplacePipe,
     private readonly snackbar: SnackBarService,
@@ -192,18 +235,28 @@ export class ProductSelectionComponent implements OnInit, OnDestroy {
     this.canRequestForSomebodyElse = (await this.userModelSvc.getUserConfig()).CanRequestForSomebodyElse;
 
     // TODO activatedRoute parameters may change, must subscribe to changes
+<<<<<<< HEAD
 
     this.uidaccproduct = this.activatedRoute.snapshot.paramMap.get('UID_AccProduct');
+=======
+    
+    this.uidaccproduct = this.activatedRoute.snapshot.queryParams.UID_AccProduct;
+>>>>>>> oned/v92
     if (this.uidaccproduct) {
       // TODO load all according to this.categoryModel.SelectedCategory
     }
 
+<<<<<<< HEAD
     this.searchString = this.activatedRoute.snapshot.paramMap.get('ProductSearchString');
 
     if (this.searchString) {
       /* user can pass product search string by URL parameter -> load the data with this search string
        */
     }
+=======
+    // the user can pass product search string by URL parameter -> load the data with this search string
+    this.searchString = this.activatedRoute.snapshot.queryParams.ProductSearchString;
+>>>>>>> oned/v92
 
     // preset recipient to the current user
     await this.recipients.Column.PutValueStruct({
@@ -229,18 +282,29 @@ export class ProductSelectionComponent implements OnInit, OnDestroy {
 
     this.cartItemRecipients = new BaseCdr(this.recipients.Column, '#LDS#Recipients');
 
+<<<<<<< HEAD
     this.cartItemRecipientsReadonly = new BaseReadonlyCdr(this.recipients.Column, '#LDS#Target identities');
+=======
+    this.cartItemRecipientsReadonly = new BaseReadonlyCdr(this.recipients.Column, '#LDS#Peer group of');
+>>>>>>> oned/v92
   }
 
   public ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
   }
 
+<<<<<<< HEAD
   public openCategoryTree(): void {
     const sidesheetRef = this.sideSheetService.open(CategoryTreeComponent, {
       title: this.productSelectionService.getServiceCategoryDisplaySingular(),
       width: '600px',
       headerColour: 'iris-blue',
+=======
+  public async openCategoryTree(): Promise<void> {
+    const sidesheetRef = this.sideSheetService.open(CategoryTreeComponent, {
+      title: await this.translate.get('#LDS#Heading Select Service Category').toPromise(),
+      width: '600px',
+>>>>>>> oned/v92
       testId: 'categorytree-sidesheet',
       data: {
         selectedServiceCategory: this.selectedCategory,
@@ -296,7 +360,10 @@ export class ProductSelectionComponent implements OnInit, OnDestroy {
         title: await this.translate.get('#LDS#Heading Select Reference User').toPromise(),
         padding: '0',
         width: '600px',
+<<<<<<< HEAD
         headerColour: 'iris-blue',
+=======
+>>>>>>> oned/v92
         testId: 'referenceUser-sidesheet',
         data: {
           displayValue: '',
@@ -390,7 +457,11 @@ export class ProductSelectionComponent implements OnInit, OnDestroy {
     patternItem?: PortalItshopPatternRequestable;
   }): Promise<void> {
     if (action.name === 'details' && action.serviceItems) {
+<<<<<<< HEAD
       this.requestTemplateDetails(action.serviceItems);
+=======
+      this.requestTemplateDetails(action.serviceItems, action.patternItem);
+>>>>>>> oned/v92
     }
     if (action.name === 'addTemplateToCart' && action.patternItem) {
       this.addTemplateToCart(action.patternItem);
@@ -420,11 +491,17 @@ export class ProductSelectionComponent implements OnInit, OnDestroy {
     if (serviceItemTree?.totalOptional && serviceItemTree?.totalOptional > 0) {
       const selectedOptionalOrder: ServiceItemOrder = await this.sideSheetService
         .open(OptionalItemsSidesheetComponent, {
+<<<<<<< HEAD
           title: this.translate.instant('#LDS#Heading Optional Products'),
           padding: '0px',
           width: 'max(700px, 60%)',
           headerColour: 'iris-blue',
           bodyColour: 'asher-gray',
+=======
+          title: this.translate.instant('#LDS#Heading Request Optional Products'),
+          padding: '0px',
+          width: 'max(700px, 60%)',
+>>>>>>> oned/v92
           testId: 'optional-items-sidesheet',
           disableClose: true,
           data: {
@@ -581,10 +658,16 @@ export class ProductSelectionComponent implements OnInit, OnDestroy {
     await this.sideSheetService
       .open(ProductDetailsSidesheetComponent, {
         title: this.translate.instant('#LDS#Heading View Product Details'),
+<<<<<<< HEAD
         padding: '0px',
         width: 'max(700px, 60%)',
         headerColour: 'iris-blue',
         bodyColour: 'asher-gray',
+=======
+        subTitle: item.GetEntity().GetDisplay(),
+        padding: '0px',
+        width: 'max(700px, 60%)',
+>>>>>>> oned/v92
         testId: 'product-details-sidesheet',
         data: {
           item,
@@ -595,6 +678,7 @@ export class ProductSelectionComponent implements OnInit, OnDestroy {
       .toPromise();
   }
 
+<<<<<<< HEAD
   private async requestTemplateDetails(items: PortalShopServiceitems[]): Promise<void> {
     await this.sideSheetService
       .open(PatternDetailsSidesheetComponent, {
@@ -603,6 +687,15 @@ export class ProductSelectionComponent implements OnInit, OnDestroy {
         width: 'max(700px, 60%)',
         headerColour: 'iris-blue',
         bodyColour: 'asher-gray',
+=======
+  private async requestTemplateDetails(items: PortalShopServiceitems[], patternItem: PortalItshopPatternRequestable): Promise<void> {
+    await this.sideSheetService
+      .open(PatternDetailsSidesheetComponent, {
+        title: this.translate.instant('#LDS#Heading View Product Bundle Details'),
+        subTitle: patternItem.GetEntity().GetDisplay(),
+        padding: '0px',
+        width: 'max(700px, 60%)',
+>>>>>>> oned/v92
         testId: 'template-details-sidesheet',
         data: {
           items,
@@ -635,7 +728,14 @@ export class ProductSelectionComponent implements OnInit, OnDestroy {
     roles?: PortalItshopPeergroupMemberships[]
   ): Promise<void> {
     if (!this.recipients) {
+<<<<<<< HEAD
       // We need recipients to continue, return early no dialog due to 91 release
+=======
+      // We need recipients to continue
+      this.snackbar.open({
+        key: '#LDS#You have not selected a recipient for this request. Select at least one recipient.'
+      });
+>>>>>>> oned/v92
       return;
     }
     const recipientsUids = MultiValue.FromString(this.recipients.value).GetValues();
@@ -722,11 +822,20 @@ export class ProductSelectionComponent implements OnInit, OnDestroy {
 
     if (savedItems !== possibleItems) {
       this.snackbar.open({
+<<<<<<< HEAD
         key: savedItems === 0 ? '#LDS#No item was added to your shopping cart' : '#LDS#{0} of {1} items could not be added to your shopping cart',
         parameters: [possibleItems - savedItems, possibleItems],
       });
     }
     if (savedItems > 0) {
+=======
+        key: savedItems === 0 ? '#LDS#No product could be added to your shopping cart.' : '#LDS#{0} of {1} products could not be added to your shopping cart.',
+        parameters: [possibleItems - savedItems, possibleItems],
+      });
+    }
+    if (savedItems > 0) {      
+      await this.userModelSvc.reloadPendingItems();
+>>>>>>> oned/v92
       this.router.navigate(['shoppingcart']);
     } else {
       this.onDeselectAll();

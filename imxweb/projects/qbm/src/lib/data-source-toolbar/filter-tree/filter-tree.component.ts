@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,35 +24,37 @@
  *
  */
 
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EuiLoadingService } from '@elemental-ui/core';
 
-import { IEntity } from 'imx-qbm-dbts';
+import { FilterTreeData, IEntity } from 'imx-qbm-dbts';
 import { DataTreeComponent } from '../../data-tree/data-tree.component';
 import { TreeDatabase } from '../../data-tree/tree-database';
 import { FilterTreeParameter } from '../data-model/filter-tree-parameter';
 import { FilterTreeDatabase } from './filter-tree-database';
 import { FilterTreeEntityWrapperService } from './filter-tree-entity-wrapper.service';
+import { FilterTreeDialogResultArg, FilterTreeSelectionArg } from './filter-tree-selection-arg.interface';
 
 @Component({
   selector: 'imx-filter-tree',
   templateUrl: './filter-tree.component.html',
-  styleUrls: ['./filter-tree.component.scss']
+  styleUrls: ['./filter-tree.component.scss'],
 })
 export class FilterTreeComponent implements OnInit {
-
   public database: TreeDatabase;
-  public currentlySelectedFilter: IEntity[];
-
+  public currentlySelectedFilter: FilterTreeSelectionArg[];
+  public currentlySelectedFilterEntities: IEntity[];
   @ViewChild('tree') private tree: DataTreeComponent;
 
   constructor(
     private busyService: EuiLoadingService,
-    @Inject(MAT_DIALOG_DATA) public readonly data: { filterTreeParameter: FilterTreeParameter, preselection: IEntity[], type:string },
+    @Inject(MAT_DIALOG_DATA)
+    public readonly data: { filterTreeParameter: FilterTreeParameter; preselection: FilterTreeSelectionArg[]; type: string },
     public dialogRef: MatDialogRef<FilterTreeComponent>,
-    private readonly entityWrapper: FilterTreeEntityWrapperService) {
-  }
+    public changeDetector: ChangeDetectorRef,
+    private readonly entityWrapper: FilterTreeEntityWrapperService
+  ) {}
 
   public async ngOnInit(): Promise<void> {
     if (this.data?.filterTreeParameter) {
@@ -62,6 +64,8 @@ export class FilterTreeComponent implements OnInit {
     }
     if (this.data?.preselection) {
       this.currentlySelectedFilter = this.data.preselection;
+      this.currentlySelectedFilterEntities = this.currentlySelectedFilter.map(elem=> elem.entity).filter(elem=>elem != null);
+      this.changeDetector.detectChanges();
     }
   }
 
@@ -71,6 +75,7 @@ export class FilterTreeComponent implements OnInit {
   }
 
   public onCheckedNodesChanged(): void {
+<<<<<<< HEAD
     if (!this.data.filterTreeParameter.multiSelect) { return; }
     this.currentlySelectedFilter = this.tree.selectedEntities;
   }
@@ -78,6 +83,19 @@ export class FilterTreeComponent implements OnInit {
   public onNodeSelected(entity: IEntity): void {
     if (this.data.filterTreeParameter.multiSelect) { return; }
     this.currentlySelectedFilter = entity ? [entity] : [];
+=======
+    if (!this.data.filterTreeParameter.multiSelect) {
+      return;
+    }
+    this.currentlySelectedFilter = this.tree.selectedEntities.map((elem) => new FilterTreeDialogResultArg(elem));
+  }
+
+  public onNodeSelected(entity: IEntity): void {
+    if (this.data.filterTreeParameter.multiSelect) {
+      return;
+    }
+    this.currentlySelectedFilter = entity ? [new FilterTreeDialogResultArg(entity)] : [];
+>>>>>>> oned/v92
     this.submitValues();
   }
 

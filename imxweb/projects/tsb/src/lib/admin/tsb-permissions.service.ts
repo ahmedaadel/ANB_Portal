@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -36,6 +40,10 @@ export class TsbPermissionsService {
   constructor(private readonly userService: UserModelService) { }
 
   public async isTsbNameSpaceAdminBase(): Promise<boolean> {
+<<<<<<< HEAD
     return isTsbNameSpaceAdminBase((await this.userService.getGroups()).map(group => group.Name));
+=======
+    return isTsbNameSpaceAdminBase((await this.userService.getGroups()).map(userGroupInfo => userGroupInfo.Name));
+>>>>>>> oned/v92
   }
 }

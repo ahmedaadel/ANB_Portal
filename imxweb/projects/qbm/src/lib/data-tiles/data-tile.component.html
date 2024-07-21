@@ -3,10 +3,17 @@
     <eui-icon icon="check" class="imx-selected-icon"></eui-icon>
   </div>
   <div class="badgeContainer" *ngIf="badges?.length > 0">
+<<<<<<< HEAD
     <eui-badge #badge *ngFor="let badge of badges" color="{{badge.color}}" class="imx-badge"
       (click)="onBadgeClick(badge)">{{badge.content | translate}}</eui-badge>
   </div>
   <mat-card [style.width]="width" [style.height]="height" [style]="selectedHint" (click)="toggleSelection()"
+=======
+    <eui-badge #badge *ngFor="let badge of badges" color="{{badge.color}}" [ngStyle]="{color: badge.textColor ?? 'white'}" class="imx-badge"
+      (click)="onBadgeClick(badge)">{{badge.content | translate}}</eui-badge>
+  </div>
+  <mat-card [style.width]="width" [style.height]="height" (click)="toggleSelection()"
+>>>>>>> oned/v92
     class="imx-data-tile-container" [class.mat-elevation-z8]="isSelected" [class.mat-elevation-z1]="!isSelected"
     [attr.data-imx-identifier]="'datatile-card-' + typedEntity?.GetEntity()?.GetDisplay()">
     <div *ngIf="!hasImage">
@@ -54,7 +61,11 @@
           </button>
         </mat-menu>
         <ng-container *ngIf="useActionMenu === false">
+<<<<<<< HEAD
           <button mat-button *ngFor="let action of filteredActions" color="primary" (click)="menuItemClicked(action, $event)">
+=======
+          <button mat-stroked-button *ngFor="let action of filteredActions" class="imx-margin-right" (click)="menuItemClicked(action, $event)">
+>>>>>>> oned/v92
             {{ action.description | translate }}
           </button>
         </ng-container>

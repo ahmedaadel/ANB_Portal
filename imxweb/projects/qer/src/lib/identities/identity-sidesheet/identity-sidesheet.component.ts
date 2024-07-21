@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,31 +29,54 @@
  */
 
 import { OverlayRef } from '@angular/cdk/overlay';
+<<<<<<< HEAD
 import { Component, OnDestroy, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
 import { EuiLoadingService, EuiSidesheetService, EUI_SIDESHEET_DATA, EuiDownloadOptions, EuiSidesheetRef } from '@elemental-ui/core';
+=======
+import { Component, OnDestroy, Inject, OnInit, ViewChild } from '@angular/core';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatTabGroup } from '@angular/material/tabs';
+import { Router } from '@angular/router';
+import { EuiLoadingService, EuiSidesheetService, EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
+>>>>>>> oned/v92
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 import { IdentitiesService } from '../identities.service';
+<<<<<<< HEAD
 import { FeatureConfig, PortalAdminPerson, PortalPersonReports, PortalPersonReportsInteractive, QerProjectConfig } from 'imx-api-qer';
+=======
+import { FeatureConfig, PortalAdminPerson, PortalPersonReports, QerProjectConfig } from 'imx-api-qer';
+>>>>>>> oned/v92
 import {
   ColumnDependentReference,
   ClassloggerService,
   BaseCdr,
+<<<<<<< HEAD
   TabControlHelper,
   SnackBarService,
   ElementalUiConfigService,
+=======
+  SnackBarService,
+>>>>>>> oned/v92
   AuthenticationService,
   SystemInfoService,
   ConfirmationService,
   TabItem,
   ExtService,
+<<<<<<< HEAD
   CCC_BaseCdr
 } from 'qbm';
 import { DbObjectKey, IEntity, IEntityColumn } from 'imx-qbm-dbts';
+=======
+  CdrFactoryService,
+} from 'qbm';
+import { DbObjectKey } from 'imx-qbm-dbts';
+>>>>>>> oned/v92
 import { IdentitiesReportsService } from '../identities-reports.service';
 import { PasscodeService } from '../../ops/passcode.service';
 import { QerApiService } from '../../qer-api-client.service';
@@ -62,18 +89,31 @@ import { FeatureConfigService } from '../../admin/feature-config.service';
   styleUrls: ['./identity-sidesheet.component.scss'],
 })
 export class IdentitySidesheetComponent implements OnInit, OnDestroy {
+<<<<<<< HEAD
   public readonly detailsFormGroup: FormGroup;
+=======
+  @ViewChild('tabs') public tabs: MatTabGroup;
+
+  public readonly detailsFormGroup: UntypedFormGroup;
+>>>>>>> oned/v92
   public cdrList: ColumnDependentReference[] = [];
   public cdrListPersonal: ColumnDependentReference[] = [];
   public cdrListOrganizational: ColumnDependentReference[] = [];
   public cdrListLocality: ColumnDependentReference[] = [];
   public valueChanges$: Subscription;
+<<<<<<< HEAD
   public reportDownload: EuiDownloadOptions;
   public managedReportDownload: EuiDownloadOptions;
   public readonly parameters: { objecttable: string; objectuid: string };
   public canAnalyzeRisk = false;
   public isActiveFormControl = new FormControl();
   public isSecurityIncidentFormControl = new FormControl();
+=======
+  public readonly parameters: { objecttable: string; objectuid: string };
+  public canAnalyzeRisk = false;
+  public isActiveFormControl = new UntypedFormControl();
+  public isSecurityIncidentFormControl = new UntypedFormControl();
+>>>>>>> oned/v92
   public dynamicTabs: TabItem[] = [];
 
   private readonly subscriptions: Subscription[] = [];
@@ -81,15 +121,24 @@ export class IdentitySidesheetComponent implements OnInit, OnDestroy {
   private featureConfig: FeatureConfig;
 
   constructor(
+<<<<<<< HEAD
     formBuilder: FormBuilder,
+=======
+>>>>>>> oned/v92
     @Inject(EUI_SIDESHEET_DATA)
     public data: {
       isAdmin: boolean;
       projectConfig: QerProjectConfig;
       selectedIdentity: PortalPersonReports | PortalAdminPerson;
+<<<<<<< HEAD
     },
     public identities: IdentitiesService,
     private readonly elementalUiConfigService: ElementalUiConfigService,
+=======
+      canEdit: boolean;
+    },
+    public identities: IdentitiesService,
+>>>>>>> oned/v92
     private readonly reports: IdentitiesReportsService,
     private readonly logger: ClassloggerService,
     private readonly busyService: EuiLoadingService,
@@ -102,8 +151,14 @@ export class IdentitySidesheetComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly systemInfoService: SystemInfoService,
     private readonly translate: TranslateService,
+<<<<<<< HEAD
     private readonly extService: ExtService,
     private readonly featureConfigService: FeatureConfigService,
+=======
+    private readonly extService: ExtService,    
+    private readonly featureConfigService: FeatureConfigService,
+    private readonly cdrFactoryService: CdrFactoryService,
+>>>>>>> oned/v92
     authentication: AuthenticationService,
     confirm: ConfirmationService
   ) {
@@ -122,6 +177,7 @@ export class IdentitySidesheetComponent implements OnInit, OnDestroy {
 
     this.subscriptions.push(authentication.onSessionResponse.subscribe((sessionState) => (this.currentUserUid = sessionState.UserUid)));
 
+<<<<<<< HEAD
     this.detailsFormGroup = new FormGroup({});
     this.reportDownload = {
       ...this.elementalUiConfigService.Config.downloadOptions,
@@ -135,6 +191,11 @@ export class IdentitySidesheetComponent implements OnInit, OnDestroy {
 
     this.parameters = {
       objecttable: PortalPersonReportsInteractive.GetEntitySchema().TypeName,
+=======
+    this.detailsFormGroup = new UntypedFormGroup({});
+    this.parameters = {
+      objecttable: PortalPersonReports.GetEntitySchema().TypeName,
+>>>>>>> oned/v92
       objectuid: data.selectedIdentity.GetEntity().GetKeys()[0],
     };
 
@@ -175,6 +236,20 @@ export class IdentitySidesheetComponent implements OnInit, OnDestroy {
     this.closeSidesheet();
   }
 
+<<<<<<< HEAD
+=======
+  public async personsManagedReport(): Promise<void> {
+    this.reports.personsManagedReport(
+      this.data.selectedIdentity.GetEntity().GetKeys()[0],
+      '#LDS#Download report on identities this identity is directly responsible for'
+    );
+  }
+
+  public async personsReport(): Promise<void> {
+    this.reports.personsReport(this.data.selectedIdentity);
+  }
+
+>>>>>>> oned/v92
   public async initiateDelete(): Promise<void> {
     if (
       await this.confirmationService.confirm({
@@ -241,9 +316,16 @@ export class IdentitySidesheetComponent implements OnInit, OnDestroy {
   public async analyzeRisk(): Promise<void> {
     this.sidesheet.open(RiskAnalysisSidesheetComponent, {
       title: await this.translate.get('#LDS#Heading Analyze Risk').toPromise(),
+<<<<<<< HEAD
       headerColour: 'blue',
       padding: '0px',
       width: '60%',
+=======
+      subTitle: this.data.selectedIdentity.GetEntity().GetDisplay(),
+      padding: '0px',
+      width: '60%',
+      testId: 'identity-sidesheet-analyze-risk-sidesheet',
+>>>>>>> oned/v92
       data: { objectKey: new DbObjectKey('Person', this.data.selectedIdentity.GetEntity().GetKeys()[0]).ToXmlString() },
     });
   }
@@ -299,6 +381,7 @@ export class IdentitySidesheetComponent implements OnInit, OnDestroy {
   }
 
   private closeSidesheet(): void {
+<<<<<<< HEAD
     this.sidesheet.close();
   }
 
@@ -335,6 +418,36 @@ export class IdentitySidesheetComponent implements OnInit, OnDestroy {
     this.cdrListLocality = localityColumns
       .map((col) => this.buildCdr(this.data.selectedIdentity.GetEntity(), col))
       .filter((cdr) => cdr != null);
+=======
+    this.sidesheetRef.close();
+  }
+
+  private async setup(): Promise<void> {
+    // Resolve an issue where the mat-tab navigation arrows could appear on first load
+    this.subscriptions.push(
+      this.sidesheetRef.componentInstance.onOpen().subscribe(() => {
+        // Recalculate header
+        this.tabs.updatePagination();
+      })
+    );
+
+    // Handle the IsInActive column outside the context of a CDR editor so the UI can invert the meaning to make more sense to the user
+    // This should be inversed on the api data response at some point, but until then we handle it in the UI
+    this.isActiveFormControl.setValue(!this.data.selectedIdentity.IsInActive.value);
+    this.detailsFormGroup.addControl(this.data.selectedIdentity.IsInActive.Column.ColumnName, this.isActiveFormControl);
+
+    const personalColumns = this.data.projectConfig.PersonConfig.VI_Employee_MasterData_Attributes;
+    this.cdrListPersonal = this.cdrFactoryService.buildCdrFromColumnList(this.data.selectedIdentity.GetEntity(), personalColumns, !this.data.canEdit);
+
+    const organizationalColumns = this.data.projectConfig.PersonConfig.VI_Employee_MasterData_OrganizationalAttributes;
+    this.cdrListOrganizational = this.cdrFactoryService.buildCdrFromColumnList(
+      this.data.selectedIdentity.GetEntity(),
+      organizationalColumns, !this.data.canEdit
+    );
+
+    const localityColumns = this.data.projectConfig.PersonConfig.VI_Employee_MasterData_LocalityAttributes;
+    this.cdrListLocality = this.cdrFactoryService.buildCdrFromColumnList(this.data.selectedIdentity.GetEntity(), localityColumns, !this.data.canEdit);
+>>>>>>> oned/v92
 
     this.isSecurityIncidentFormControl.setValue(this.data.selectedIdentity.IsSecurityIncident.value);
     this.detailsFormGroup.addControl(this.data.selectedIdentity.IsSecurityIncident.Column.ColumnName, this.isSecurityIncidentFormControl);
@@ -349,6 +462,7 @@ export class IdentitySidesheetComponent implements OnInit, OnDestroy {
       this.busyService.hide();
     }
   }
+<<<<<<< HEAD
 
   private buildCdr(entity: IEntity, name: string): ColumnDependentReference {
     const column = this.tryGetColumn(entity, name);
@@ -364,4 +478,6 @@ export class IdentitySidesheetComponent implements OnInit, OnDestroy {
       return undefined;
     }
   }
+=======
+>>>>>>> oned/v92
 }

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -27,6 +31,10 @@
 import { Injectable } from '@angular/core';
 import * as elementResizeDetector from 'element-resize-detector';
 
+<<<<<<< HEAD
+=======
+/** @deprecated This service is deprecated and will be removed in a future release.*/
+>>>>>>> oned/v92
 @Injectable()
 export class DeviceStateService {
 

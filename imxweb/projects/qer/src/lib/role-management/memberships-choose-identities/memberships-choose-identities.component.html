@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <imx-data-source-toolbar #dst
 data-imx-identifier="role-select-identities-dst"
 [settings]="dstSettings"
@@ -7,6 +8,22 @@ data-imx-identifier="role-select-identities-dst"
 (search)="onSearch($event)"></imx-data-source-toolbar>
 
 <imx-data-table #dataTable
+=======
+<imx-data-source-toolbar
+  #dst
+  data-imx-identifier="role-select-identities-dst"
+  [settings]="dstSettings"
+  [options]="['search', 'filter', 'groupBy', 'settings']"
+  [searchBoxText]="'#LDS#Search' | translate"
+  (navigationStateChanged)="onNavigationStateChanged($event)"
+  (updateConfig)="updateConfig($event)"
+  (deleteConfigById)="deleteConfigById($event)"
+  (search)="onSearch($event)"
+></imx-data-source-toolbar>
+
+<imx-data-table
+  #dataTable
+>>>>>>> oned/v92
   data-imx-identifier="role-select-identities-table"
   [dst]="dst"
   detailViewVisible="false"
@@ -14,15 +31,22 @@ data-imx-identifier="role-select-identities-dst"
   [selectable]="true"
   [showSelectionInfo]="false"
   [showSelectedItemsMenu]="false"
+<<<<<<< HEAD
   (selectionChanged)="onSelectionChanged($event)">
   <imx-data-table-column [entityColumn]="entitySchema?.Columns[DisplayColumns.DISPLAY_PROPERTYNAME]" 
   data-imx-identifier="role-select-identities-column-display">
+=======
+  (selectionChanged)="onSelectionChanged($event)"
+>
+  <imx-data-table-column [entityColumn]="entitySchema?.Columns[DisplayColumns.DISPLAY_PROPERTYNAME]" data-imx-identifier="role-select-identities-column-display">
+>>>>>>> oned/v92
     <ng-template let-item>
       <div data-imx-identifier="role-select-identities-datatable-display">{{ item.GetEntity().GetDisplay() }}</div>
       <div subtitle data-imx-identifier="role-select-identities-datatable-description">
         {{ getSubtitle(item, dst.additionalListElements) }}
       </div>
     </ng-template>
+<<<<<<< HEAD
 </imx-data-table-column>
 </imx-data-table>
 <imx-data-source-paginator data-imx-identifier="role-select-identities-paginator" [dst]="dst"></imx-data-source-paginator>
@@ -38,3 +62,21 @@ data-imx-identifier="role-select-identities-dst"
 </div>
 
 
+=======
+  </imx-data-table-column>
+</imx-data-table>
+<imx-data-source-paginator data-imx-identifier="role-select-identities-paginator" [dst]="dst"></imx-data-source-paginator>
+<div class="imx-button-bar">
+  <imx-selected-elements [selectedElements]="selection" [caption]="'#LDS#Selected identities' | translate" [dialogHeader]="'#LDS#Heading Selected Identities' | translate"></imx-selected-elements>
+  <div class="imx-menu-spacer"></div>
+  <button
+    data-imx-identifier="role-select-identities-apply-button"
+    mat-raised-button
+    color="primary"
+    [disabled]="dataTable.numOfSelectedItems === 0"
+    (click)="onRequestMemberships()"
+  >
+    {{ '#LDS#Request memberships' | translate }}
+  </button>
+</div>
+>>>>>>> oned/v92

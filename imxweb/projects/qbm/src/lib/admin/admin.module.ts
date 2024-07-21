@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,8 +29,15 @@
  */
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
+<<<<<<< HEAD
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+=======
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+>>>>>>> oned/v92
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -41,6 +52,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { DataSourceToolbarModule } from '../data-source-toolbar/data-source-toolbar.module';
+<<<<<<< HEAD
 import { LdsReplaceModule } from '../lds-replace/lds-replace.module';
 import { ConfigService } from './config.service';
 import { ConfigComponent } from './config.component';
@@ -95,3 +107,84 @@ import { ConvertConfigSidesheetComponent } from './convert-config-sidesheet.comp
 })
 export class AdminModule {
 }
+=======
+import { DateModule } from '../date/date.module';
+import { LdsReplaceModule } from '../lds-replace/lds-replace.module';
+import { AddConfigSidesheetComponent } from './add-config-sidesheet.component';
+import { ApplyConfigSidesheetComponent } from './apply-config-sidesheet.component';
+import { ConfigKeyPathComponent } from './config-key-path.component';
+import { ConfigComponent } from './config.component';
+import { ConfigService } from './config.service';
+import { ConvertConfigSidesheetComponent } from './convert-config-sidesheet.component';
+import { DashboardComponent } from './dashboard.component';
+import { DeleteConfigSidesheetComponent } from './delete-config-sidesheet.component';
+import { ListSettingComponent } from './list-setting.component';
+import { LogDetailsSidesheetComponent } from './log-details-sidesheet.component';
+import { LogsComponent } from './logs.component';
+import { PackagesComponent } from './packages.component';
+import { SelectValueComponent } from './select-value.component';
+import { StatusComponent } from './status.component';
+import { StatusService } from './status.service';
+import { SwaggerComponent } from './swagger/swagger.component';
+import { CacheComponent } from './cache.component';
+import { PluginsComponent } from './plugins.component';
+import { InfoModalDialogModule } from './../info-modal-dialog/info-modal-dialog.module';
+import { SqlWizardApiService } from '../sqlwizard/sqlwizard-api.service';
+import { QbmSqlWizardService } from '../base/qbm-sqlwizard.service';
+import { SideNavigationViewModule } from '../side-navigation-view/side-navigation-view.module';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    DataSourceToolbarModule,
+    DragDropModule,
+    EuiCoreModule,
+    EuiMaterialModule,
+    FormsModule,
+    LdsReplaceModule,
+    MatButtonModule,
+    MatBadgeModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatProgressSpinnerModule,
+    MatTreeModule,
+    TranslateModule,
+    DateModule,
+    ScrollingModule,
+    InfoModalDialogModule,
+    SideNavigationViewModule,
+  ],
+  providers: [
+    ConfigService,
+    StatusService,
+    {
+      provide: SqlWizardApiService,
+      useClass: QbmSqlWizardService,
+    },
+  ],
+  declarations: [
+    AddConfigSidesheetComponent,
+    ApplyConfigSidesheetComponent,
+    CacheComponent,
+    ConvertConfigSidesheetComponent,
+    ConfigComponent,
+    ConfigKeyPathComponent,
+    DeleteConfigSidesheetComponent,
+    ListSettingComponent,
+    DashboardComponent,
+    PackagesComponent,
+    PluginsComponent,
+    SelectValueComponent,
+    StatusComponent,
+    LogsComponent,
+    LogDetailsSidesheetComponent,
+    SwaggerComponent,
+  ],
+})
+export class AdminModule {}
+>>>>>>> oned/v92

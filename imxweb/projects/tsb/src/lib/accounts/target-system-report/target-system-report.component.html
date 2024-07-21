@@ -2,7 +2,11 @@
   <eui-alert *ngIf="showHelperAlert" class="imx-helper-alert" type="info" [condensed]="true" [colored]="true"
     [dismissable]="true" (dismissed)="onHelperDismissed()">
     <div translate>
+<<<<<<< HEAD
       #LDS#Please choose a target system for the report.
+=======
+      #LDS#Select a target system. All user accounts of this target system will be included in the report.
+>>>>>>> oned/v92
     </div>
   </eui-alert>
   <mat-card class="imx-content-card">
@@ -13,7 +17,11 @@
     </imx-data-tree>
   </mat-card>
 </div>
+<<<<<<< HEAD
 <div eui-sidesheet-actions color="white">
+=======
+<div eui-sidesheet-actions >
+>>>>>>> oned/v92
   <button [disabled]="selectedEntity == null" color="primary" mat-raised-button (click)="loadReport()">
     {{'#LDS#Download report' |translate}}
   </button>

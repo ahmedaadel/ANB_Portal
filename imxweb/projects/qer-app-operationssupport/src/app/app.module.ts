@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -31,6 +35,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+<<<<<<< HEAD
+=======
+import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
+>>>>>>> oned/v92
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 import {
@@ -44,9 +52,18 @@ import {
   MastHeadModule,
   UserMessageModule,
   AuthenticationModule,
+<<<<<<< HEAD
   RouteGuardService} from 'qbm';
 import { OutstandingModule } from 'dpr';
 import { ObjectSheetModule, QerModule } from 'qer';
+=======
+  RouteGuardService,
+  CustomThemeModule,
+  SqlWizardApiService,
+  SqlWizardModule,
+} from 'qbm';
+import { OutstandingModule } from 'dpr';
+>>>>>>> oned/v92
 import { AppRoutingModule } from './app-routing.module';
 import { SyncModule } from './sync/sync.module';
 import { ObjectOverviewModule } from './object-overview/object-overview.module';
@@ -61,6 +78,7 @@ import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 import { environment } from '../environments/environment';
 import appConfigJson from '../appconfig.json';
+<<<<<<< HEAD
 
 @NgModule({
   declarations: [
@@ -69,14 +87,30 @@ import appConfigJson from '../appconfig.json';
   imports: [
     QerModule,
     ObjectSheetModule,
+=======
+import { DataChangesModule } from './data-changes/data-changes.module';
+import { DbQueueModule } from './db-queue/db-queue.module';
+import { OpsSqlWizardApiService } from './base/ops-sql-wizard-api.service';
+import { QerModule } from 'qer';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+>>>>>>> oned/v92
     AppRoutingModule,
     AuthenticationModule,
     BrowserAnimationsModule,
     BrowserModule,
+<<<<<<< HEAD
+=======
+    EuiCoreModule,
+    EuiMaterialModule,
+>>>>>>> oned/v92
     HttpClientModule,
     LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.OFF }),
     MastHeadModule,
     MenuModule,
+<<<<<<< HEAD
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -87,6 +121,20 @@ import appConfigJson from '../appconfig.json';
         useClass: ImxMissingTranslationHandler
       }
     }),
+=======
+    DbQueueModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useClass: ImxTranslateLoader,
+      },
+      missingTranslationHandler: {
+        provide: MissingTranslationHandler,
+        useClass: ImxMissingTranslationHandler,
+      },
+    }),
+    CustomThemeModule,
+>>>>>>> oned/v92
     UserMessageModule,
     SyncModule,
     ObjectOverviewModule,
@@ -98,6 +146,12 @@ import appConfigJson from '../appconfig.json';
     SystemStatusModule,
     ProcessesModule,
     OutstandingModule,
+<<<<<<< HEAD
+=======
+    DataChangesModule,
+    QerModule,
+    SqlWizardModule
+>>>>>>> oned/v92
   ],
   providers: [
     { provide: 'environment', useValue: environment },
@@ -106,15 +160,24 @@ import appConfigJson from '../appconfig.json';
       provide: APP_INITIALIZER,
       useFactory: AppService.init,
       deps: [AppService],
+<<<<<<< HEAD
       multi: true
     },
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandler
+=======
+      multi: true,
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
+>>>>>>> oned/v92
     },
     {
       provide: MatPaginatorIntl,
       useFactory: Paginator.Create,
+<<<<<<< HEAD
       deps: [
         TranslateService,
         LdsReplacePipe
@@ -126,3 +189,17 @@ import appConfigJson from '../appconfig.json';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+=======
+      deps: [TranslateService, LdsReplacePipe],
+    },
+    RouteGuardService,
+    OpsupportDbObjectService,
+    {
+      provide: SqlWizardApiService,
+      useClass: OpsSqlWizardApiService,
+    },
+  ],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+>>>>>>> oned/v92

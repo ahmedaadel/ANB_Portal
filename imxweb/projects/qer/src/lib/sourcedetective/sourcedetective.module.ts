@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -35,7 +39,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
 import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
 
+<<<<<<< HEAD
 import { QbmModule, LdsReplaceModule, ParameterizedTextModule } from 'qbm';
+=======
+import { QbmModule, LdsReplaceModule, ParameterizedTextModule, BusyIndicatorModule } from 'qbm';
+>>>>>>> oned/v92
 import { SourceDetectiveComponent } from './sourcedetective.component';
 import { SourceDetectiveSidesheetComponent } from './sourcedetective-sidesheet.component';
 import { RequestHistoryModule } from '../request-history/request-history.module';
@@ -54,6 +62,10 @@ import { RequestHistoryModule } from '../request-history/request-history.module'
     FormsModule,
     LdsReplaceModule,
     MatIconModule,
+<<<<<<< HEAD
+=======
+    BusyIndicatorModule,
+>>>>>>> oned/v92
     MatTooltipModule,
     MatTreeModule,
     TranslateModule,

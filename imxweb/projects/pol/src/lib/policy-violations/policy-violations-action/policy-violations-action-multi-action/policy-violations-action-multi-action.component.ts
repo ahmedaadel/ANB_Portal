@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,7 +29,11 @@
  */
 
 import { Component, Input } from '@angular/core';
+<<<<<<< HEAD
 import { FormGroup } from '@angular/forms';
+=======
+import { UntypedFormGroup } from '@angular/forms';
+>>>>>>> oned/v92
 
 import { PolicyViolationsAction } from '../policy-violations-action.interface';
 
@@ -55,5 +63,9 @@ export class PolicyViolationsActionMultiActionComponent{
    *
    * The form group to which the necessary form fields will be added.
    */
+<<<<<<< HEAD
   @Input() public formGroup: FormGroup;
+=======
+  @Input() public formGroup: UntypedFormGroup;
+>>>>>>> oned/v92
 }

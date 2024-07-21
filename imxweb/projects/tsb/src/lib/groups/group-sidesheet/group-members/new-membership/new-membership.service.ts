@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -34,15 +38,22 @@ import { IForeignKeyInfo, TypedEntity, ValueStruct } from 'imx-qbm-dbts';
 import { ShelfService, QerApiService, UserModelService } from 'qer';
 
 @Injectable({
+<<<<<<< HEAD
   providedIn: 'root'
 })
 export class NewMembershipService {
 
+=======
+  providedIn: 'root',
+})
+export class NewMembershipService {
+>>>>>>> oned/v92
   constructor(
     private readonly itShop: ShelfService,
     private readonly qerClient: QerApiService,
     private readonly busyService: EuiLoadingService,
     private readonly userService: UserModelService
+<<<<<<< HEAD
   ) { }
 
   public async requestMembership(members: ValueStruct<string>[], product: PortalTargetsystemUnsGroupServiceitem): Promise<boolean> {
@@ -50,6 +61,15 @@ export class NewMembershipService {
     await this.itShop.setShops(items);
 
     if (items.every(elem => elem.UidITShopOrg == null || elem.UidITShopOrg === '')) {
+=======
+  ) {}
+
+  public async requestMembership(members: ValueStruct<string>[], product: PortalTargetsystemUnsGroupServiceitem): Promise<boolean> {
+    let items = this.getServiceItemsForPersons(product, members);
+    await this.itShop.setShops(items);
+
+    if (items.every((elem) => elem.UidITShopOrg == null || elem.UidITShopOrg === '')) {
+>>>>>>> oned/v92
       return false;
     }
 
@@ -57,6 +77,7 @@ export class NewMembershipService {
     setTimeout(() => (busyIndicator = this.busyService.show()));
 
     try {
+<<<<<<< HEAD
       await Promise.all( items.filter(elem => elem.UidITShopOrg != null && elem.UidITShopOrg !== '').map(item => {
         const entity = this.qerClient.typedClient.PortalCartitem.createEntity();
         entity.UID_ITShopOrg.value = item.UidITShopOrg;
@@ -66,6 +87,17 @@ export class NewMembershipService {
       
       await this.userService.reloadPendingItems();
 
+=======
+      items = items.filter((elem) => elem.UidITShopOrg != null && elem.UidITShopOrg !== '');
+
+      for (const item of items) {
+        const entity = this.qerClient.typedClient.PortalCartitem.createEntity();
+        entity.UID_ITShopOrg.value = item.UidITShopOrg;
+        entity.UID_PersonOrdered.value = item.UidPerson;
+        await this.qerClient.typedClient.PortalCartitem.Post(entity);
+      }
+      await this.userService.reloadPendingItems();
+>>>>>>> oned/v92
     } finally {
       setTimeout(() => {
         this.busyService.hide(busyIndicator);
@@ -79,11 +111,16 @@ export class NewMembershipService {
   }
 
   public async unsubscribeMembership(item: TypedEntity): Promise<void> {
+<<<<<<< HEAD
     await this.qerClient.client.portal_itshop_unsubscribe_post({UidPwo: [item.GetEntity().GetColumn('UID_PersonWantsOrg').GetValue()]});
+=======
+    await this.qerClient.client.portal_itshop_unsubscribe_post({ UidPwo: [item.GetEntity().GetColumn('UID_PersonWantsOrg').GetValue()] });
+>>>>>>> oned/v92
   }
 
   private getServiceItemsForPersons(
     serviceItem: PortalTargetsystemUnsGroupServiceitem,
+<<<<<<< HEAD
     recipients: ValueStruct<string>[],
   ): RequestableProductForPerson[] {
     return recipients.map(recipient => ({
@@ -93,5 +130,17 @@ export class NewMembershipService {
       DisplayRecipient: recipient.DisplayValue
     })
     ).reduce((a, b) => a.concat(b), []);
+=======
+    recipients: ValueStruct<string>[]
+  ): RequestableProductForPerson[] {
+    return recipients
+      .map((recipient) => ({
+        UidPerson: recipient.DataValue,
+        UidAccProduct: serviceItem.GetEntity().GetKeys()[0],
+        Display: serviceItem.GetEntity().GetDisplay(),
+        DisplayRecipient: recipient.DisplayValue,
+      }))
+      .reduce((a, b) => a.concat(b), []);
+>>>>>>> oned/v92
   }
 }

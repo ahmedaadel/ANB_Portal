@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,6 +29,7 @@
  */
 
 import { DisplayColumns, IEntityColumn, TypedEntity } from 'imx-qbm-dbts';
+<<<<<<< HEAD
 
 export class AccountTypedEntity extends TypedEntity {
 
@@ -42,4 +47,15 @@ export class AccountTypedEntity extends TypedEntity {
       return undefined;
     }
   }
+=======
+import { CdrFactoryService } from 'qbm';
+
+export class AccountTypedEntity extends TypedEntity {
+  // TODO fix this: we are in TSB, not ADS
+  public readonly displayColumn = this.GetEntity().GetColumn(DisplayColumns.DISPLAY_PROPERTYNAME);
+  public readonly isNeverConnectManualColumn = CdrFactoryService.tryGetColumn(this.GetEntity(), 'IsNeverConnectManual');
+  public readonly objectKeyManagerColumn = CdrFactoryService.tryGetColumn(this.GetEntity(), 'ObjectKeyManager');
+  public readonly uidPersonColumn = CdrFactoryService.tryGetColumn(this.GetEntity(), 'UID_Person');
+  public readonly uidADSDomain = CdrFactoryService.tryGetColumn(this.GetEntity(), 'UID_ADSDomain');
+>>>>>>> oned/v92
 }

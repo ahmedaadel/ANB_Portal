@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import '@elemental-ui/core/src/styles/_palette.scss';
 
 .membership-view-toggle {
@@ -15,13 +16,55 @@
     .request-config__content-main {
       &.no-top-padding {
         padding-top: 16px;
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  .membership-view-toggle {
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+// Theming section
+:host {
+  .membership-view-toggle {
+    .mat-button-toggle-group {
+      .mat-button-toggle-checked {
+        background-color: $color-orange-20;
+>>>>>>> oned/v92
       }
     }
   }
 }
 
+<<<<<<< HEAD
 @media screen and (max-width: 768px) {
   .mat-button-toggle-group {
     width: 100%;
+=======
+.eui-dark-theme {
+  :host {
+    .membership-view-toggle {
+      .mat-button-toggle-group {
+        .mat-button-toggle-checked {
+          background-color: $color-orange-80;
+        }
+      }
+    }
+  }
+}
+
+.eui-contrast-theme{
+  :host {
+    .membership-view-toggle {
+      .mat-button-toggle-group {
+        .mat-button-toggle-checked {
+          background-color: $color-orange-40;
+        }
+      }
+    }
+>>>>>>> oned/v92
   }
 }

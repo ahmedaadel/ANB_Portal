@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -39,11 +43,22 @@ import {
   DataSourceToolbarModule,
   DataTableModule,
   DateModule,
+<<<<<<< HEAD
+=======
+  InfoModalDialogModule,
+>>>>>>> oned/v92
   MenuItem,
   MenuService,
   ParameterizedTextModule,
   QbmModule,
+<<<<<<< HEAD
   RouteGuardService
+=======
+  BusyIndicatorModule,
+  RouteGuardService,
+  SelectedElementsModule,
+  HelpContextualModule
+>>>>>>> oned/v92
 } from 'qbm';
 
 import { DefaultRequestDisplayComponent } from './request-display/default-request-display.component';
@@ -58,6 +73,10 @@ import { RequestTableComponent } from './request-table.component';
 import { ItshopModule } from '../itshop/itshop.module';
 import { RequestsFeatureGuardService } from '../requests-feature-guard.service';
 import { JustificationModule } from '../justification/justification.module';
+<<<<<<< HEAD
+=======
+import { RequestHistoryFilterComponent } from './request-history-filter/request-history-filter.component';
+>>>>>>> oned/v92
 
 const routes: Routes = [
   {
@@ -78,13 +97,25 @@ const routes: Routes = [
     DateModule,
     EuiCoreModule,
     EuiMaterialModule,
+<<<<<<< HEAD
+=======
+    InfoModalDialogModule,
+>>>>>>> oned/v92
     ItshopModule,
     JustificationModule,
     QbmModule,
     ParameterizedTextModule,
     ReactiveFormsModule,
+<<<<<<< HEAD
     RouterModule.forChild(routes),
     TranslateModule
+=======
+    BusyIndicatorModule,
+    RouterModule.forChild(routes),
+    TranslateModule,
+    SelectedElementsModule,
+    HelpContextualModule,
+>>>>>>> oned/v92
   ],
   declarations: [
     DefaultRequestDisplayComponent,
@@ -93,10 +124,20 @@ const routes: Routes = [
     RequestDisplayComponent,
     RequestFilterComponent,
     RequestHistoryComponent,
+<<<<<<< HEAD
     RequestTableComponent
   ],
   exports: [
     RequestDisplayComponent
+=======
+    RequestHistoryFilterComponent,
+    RequestTableComponent,
+  ],
+  exports: [
+    RequestDisplayComponent,
+    RequestHistoryFilterComponent,
+    RequestTableComponent
+>>>>>>> oned/v92
   ],
   providers: [
     RequestDisplayService,
@@ -114,7 +155,11 @@ export class RequestHistoryModule {
 
   private setupMenu(): void {
     this.menuService.addMenuFactories(
+<<<<<<< HEAD
       (preProps: string[], groups: string[]) => {
+=======
+      (preProps: string[], features: string[]) => {
+>>>>>>> oned/v92
 
         const items: MenuItem[] = [];
 

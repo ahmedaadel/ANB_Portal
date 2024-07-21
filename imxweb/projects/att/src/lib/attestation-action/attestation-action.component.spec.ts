@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,6 +28,7 @@
  *
  */
 
+<<<<<<< HEAD
 import { Component, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -98,10 +103,24 @@ class MockBulkEditorComponent {
 describe('AttestationActionComponent', () => {
   let component: AttestationActionComponent;
   let fixture: ComponentFixture<AttestationActionComponent>;
+=======
+import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+import { MockBuilder, MockedComponentFixture, MockRender } from 'ng-mocks';
+
+import { clearStylesFromDOM } from 'qbm';
+import { DecisionStepSevice } from 'qer';
+import { AttestationDecisionModule } from '../decision/attestation-decision.module';
+import { AttestationActionComponent } from './attestation-action.component';
+
+describe('AttestationActionComponent', () => {
+  let component: AttestationActionComponent;
+  let fixture: MockedComponentFixture<AttestationActionComponent>;
+>>>>>>> oned/v92
 
   const mockSideSheetData = {
     description: 'some description',
     actionParameters: { reason: { column: {} } },
+<<<<<<< HEAD
     attestationCases: [{
       typedEntity: undefined,
       display: 'the attestation case',
@@ -143,6 +162,29 @@ describe('AttestationActionComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AttestationActionComponent);
     component = fixture.componentInstance;
+=======
+    attestationCases: [
+      {
+        typedEntity: undefined,
+        display: 'the attestation case',
+        propertiesForAction: [],
+        attestationParameters: [],
+        key: 'uid',
+      },
+    ],
+  };
+
+  beforeEach(() => {
+    return MockBuilder(AttestationActionComponent, AttestationDecisionModule)
+      .mock(EUI_SIDESHEET_DATA, mockSideSheetData,{export:true})
+      .mock(EuiSidesheetRef,{},{export:true})
+      .mock(DecisionStepSevice, {});
+  });
+
+  beforeEach(() => {
+    fixture = MockRender(AttestationActionComponent);
+    component = fixture.point.componentInstance;
+>>>>>>> oned/v92
   });
 
   afterAll(() => {

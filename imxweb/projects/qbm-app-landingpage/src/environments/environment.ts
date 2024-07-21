@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -33,7 +37,8 @@ import packageJson from '../../package.json';
 
 export const environment = {
   production: false,
+  //cust 
   clientUrl: 'http://localhost/ApiServer',
-  appName: 'qbm-app-landingpage',
+  appName: packageJson.name,
   appVersion: packageJson.version
 };

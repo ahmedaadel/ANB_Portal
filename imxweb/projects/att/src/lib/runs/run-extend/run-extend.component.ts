@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,7 +29,11 @@
  */
 
 import { Component, Inject, OnDestroy } from '@angular/core';
+<<<<<<< HEAD
 import { FormControl, FormGroup } from '@angular/forms';
+=======
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+>>>>>>> oned/v92
 import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
 
@@ -39,9 +47,15 @@ import { ColumnDependentReference } from 'qbm';
 export class RunExtendComponent implements OnDestroy {
   public showHelper = true;
 
+<<<<<<< HEAD
   public readonly form = new FormGroup({});
   public readonly tomorrow: Date;
   public readonly date: FormControl;
+=======
+  public readonly form = new UntypedFormGroup({});
+  public readonly tomorrow: Date;
+  public readonly date: UntypedFormControl;
+>>>>>>> oned/v92
   public readonly reason: ColumnDependentReference;
 
   private readonly subscriptions: Subscription[] = [];
@@ -52,7 +66,11 @@ export class RunExtendComponent implements OnDestroy {
   ) {
     this.tomorrow = new Date();
     this.tomorrow.setDate((new Date()).getDate() + 1);
+<<<<<<< HEAD
     this.date = new FormControl(data.ProlongateUntil, { updateOn: 'blur' });
+=======
+    this.date = new UntypedFormControl(data.ProlongateUntil, { updateOn: 'blur' });
+>>>>>>> oned/v92
     this.date.valueChanges.subscribe(value => data.ProlongateUntil = value);
     this.addControl('date', this.date);
     this.reason = data.reason;
@@ -66,7 +84,11 @@ export class RunExtendComponent implements OnDestroy {
     this.showHelper = false;
   }
 
+<<<<<<< HEAD
   public addControl(name: string, control: FormControl): void {
+=======
+  public addControl(name: string, control: UntypedFormControl): void {
+>>>>>>> oned/v92
     setTimeout(() =>
       this.form.addControl(name, control)
     );

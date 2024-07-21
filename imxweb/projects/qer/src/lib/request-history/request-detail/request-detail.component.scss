@@ -1,4 +1,8 @@
 @import '@elemental-ui/core/src/styles/_palette.scss';
+<<<<<<< HEAD
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 .imx-request-detail {
   display: flex;
@@ -7,6 +11,7 @@
   height: 100%;
 }
 
+<<<<<<< HEAD
 .imx-button-bar {
   display: flex;
   justify-content: flex-end;
@@ -34,4 +39,30 @@
     flex-direction: column;
   }
 
+=======
+.eui-sidesheet-actions {
+  button:not(:last-of-type) {
+    margin-right: 10px;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    .imx-request-detail {
+      background-color: $color-gray-80;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-request-detail {
+      background-color: $color-gray-100;
+    }
+    .imx-button-bar{
+      color: $color-gray-2;
+      background-color: $color-gray-90;
+    }
+  }
+>>>>>>> oned/v92
 }

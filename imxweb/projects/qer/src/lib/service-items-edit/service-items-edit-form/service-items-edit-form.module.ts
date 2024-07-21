@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,7 +34,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
 import { TranslateModule } from '@ngx-translate/core';
 
+<<<<<<< HEAD
 import { CdrModule } from 'qbm';
+=======
+import { CdrModule, ExtModule } from 'qbm';
+>>>>>>> oned/v92
 
 import { OwnerControlModule } from '../../owner-control/owner-control.module';
 import { ServiceItemsEditFormComponent } from './service-items-edit-form.component';
@@ -46,6 +54,10 @@ import { ServiceItemTagsModule } from '../../service-item-tags/service-item-tags
     CdrModule,
     EuiCoreModule,
     EuiMaterialModule,
+<<<<<<< HEAD
+=======
+    ExtModule,
+>>>>>>> oned/v92
     OwnerControlModule,
     ReactiveFormsModule,
     ServiceItemTagsModule,

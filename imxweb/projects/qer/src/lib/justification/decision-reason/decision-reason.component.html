@@ -1,9 +1,17 @@
 <imx-cdr-editor *ngIf="reasonStandard" [cdr]="reasonStandard"
   (controlCreated)="addReasonStandard($event)"
+<<<<<<< HEAD
   (valueChange)="checkReason($event)"
+=======
+  (valueChange)="updateMinLength()"
+>>>>>>> oned/v92
   data-imx-identifier="reason-decision-standard">
 </imx-cdr-editor>
 <imx-cdr-editor [cdr]="reasonFreetext"
   (controlCreated)="addReasonFreetext($event)"
+<<<<<<< HEAD
+=======
+  (valueChange)="updateMinLength()"
+>>>>>>> oned/v92
   data-imx-identifier="reason-decision-freetext">
 </imx-cdr-editor>

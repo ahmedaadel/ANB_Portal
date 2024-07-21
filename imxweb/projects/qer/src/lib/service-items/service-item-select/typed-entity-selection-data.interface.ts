@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -27,8 +31,15 @@
 import { CollectionLoadParameters, TypedEntity, TypedEntityCollectionData } from 'imx-qbm-dbts';
 
 export interface TypedEntitySelectionData {
+<<<<<<< HEAD
   title?: string;
   display: string;
   selected: TypedEntity[];
+=======
+  title: string;
+  display: string;
+  selected: TypedEntity[];
+  parent: TypedEntity;
+>>>>>>> oned/v92
   getTyped: (parameters: CollectionLoadParameters) => Promise<TypedEntityCollectionData<TypedEntity>>;
 }

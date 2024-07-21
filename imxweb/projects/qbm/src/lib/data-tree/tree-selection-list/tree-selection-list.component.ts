@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -27,8 +31,14 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 
+<<<<<<< HEAD
 import { DbObjectKey, IEntity, IEntityColumn } from 'imx-qbm-dbts';
 import { MetadataService } from '../../base/metadata.service';
+=======
+import { DbObjectKey, IEntity} from 'imx-qbm-dbts';
+import { MetadataService } from '../../base/metadata.service';
+import { CdrFactoryService } from '../../cdr/cdr-factory.service';
+>>>>>>> oned/v92
 
 @Component({
   templateUrl: './tree-selection-list.component.html',
@@ -54,7 +64,11 @@ export class TreeSelectionListComponent implements OnInit {
   }
 
   private getTableName(entity: IEntity): string {
+<<<<<<< HEAD
     const column = this.tryGetColumn(entity, 'XObjectKey');
+=======
+    const column = CdrFactoryService.tryGetColumn(entity, 'XObjectKey');
+>>>>>>> oned/v92
     if (!column || column.GetValue() === '') {
       return '';
     }
@@ -63,6 +77,7 @@ export class TreeSelectionListComponent implements OnInit {
     return this.metadataProvider.tables[tableName]?.DisplaySingular || tableName;
   }
 
+<<<<<<< HEAD
 
   private tryGetColumn(entity: IEntity, name: string): IEntityColumn {
     try {
@@ -73,4 +88,6 @@ export class TreeSelectionListComponent implements OnInit {
   }
 
 
+=======
+>>>>>>> oned/v92
 }

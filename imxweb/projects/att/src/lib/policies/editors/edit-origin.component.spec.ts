@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,6 +28,7 @@
  *
  */
 
+<<<<<<< HEAD
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,6 +42,15 @@ import { clearStylesFromDOM } from 'qbm';
 import { EditOriginComponent } from './edit-origin.component';
 import { FilterElementColumnService } from './filter-element-column.service';
 import { FilterElementModel } from './filter-element-model';
+=======
+import { ParmOpt } from 'imx-api-att';
+import { ClassloggerService, clearStylesFromDOM } from 'qbm';
+import { EditOriginComponent } from './edit-origin.component';
+import { FilterElementColumnService } from './filter-element-column.service';
+import { FilterElementModel } from './filter-element-model';
+import { MockBuilder, MockedComponentFixture, MockRender } from 'ng-mocks';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+>>>>>>> oned/v92
 
 
 function buildFilterModel(config: ParmOpt[], value: string): FilterElementModel {
@@ -51,6 +65,7 @@ function buildFilterModel(config: ParmOpt[], value: string): FilterElementModel 
 
 describe('EditOriginComponent', () => {
     let component: EditOriginComponent;
+<<<<<<< HEAD
     let fixture: ComponentFixture<EditOriginComponent>;
 
     configureTestSuite(() => {
@@ -71,6 +86,24 @@ describe('EditOriginComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(EditOriginComponent);
         component = fixture.componentInstance;
+=======
+    let fixture: MockedComponentFixture<EditOriginComponent>;
+
+    beforeEach(() => {
+      return MockBuilder(EditOriginComponent)
+        .mock(ClassloggerService)
+        .beforeCompileComponents(testbed => {
+          testbed.configureTestingModule({
+            schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
+          })
+        })
+    })
+
+
+    beforeEach(() => {
+        fixture = MockRender(EditOriginComponent)
+        component = fixture.point.componentInstance;
+>>>>>>> oned/v92
         fixture.detectChanges();
     });
 

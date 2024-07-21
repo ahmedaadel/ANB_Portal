@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -40,7 +44,10 @@ import {
 import { ACTION_DISMISS } from '../../itshop-config/requests.service';
 import { QerApiService } from '../../qer-api-client.service';
 import { DataManagementService } from '../data-management.service';
+<<<<<<< HEAD
 import { RoleService } from '../role.service';
+=======
+>>>>>>> oned/v92
 
 const helperAlertKey = `${HELPER_ALERT_KEY_PREFIX}_roleMembership`;
 const LdsMembersAdded = '#LDS#The members have been successfully assigned. It may take some time for the changes to take effect.';
@@ -62,7 +69,11 @@ export class ExcludedMembershipsComponent implements OnInit {
 
   public filterOptions: DataSourceToolbarFilter[] = [];
   public dstSettingsExcludedMembers: DataSourceToolbarSettings;
+<<<<<<< HEAD
   public navigationStateExcludedMembers: CollectionLoadParameters;
+=======
+  public navigationStateExcludedMembers: CollectionLoadParameters = {};
+>>>>>>> oned/v92
   public selectedExclusions: PortalRolesExclusions[] = [];
   public schema: EntitySchema;
 
@@ -110,8 +121,12 @@ export class ExcludedMembershipsComponent implements OnInit {
   }
 
   public async onSearchExcluded(keywords: string): Promise<void> {
+<<<<<<< HEAD
     this.navigationStateExcludedMembers.StartIndex = 0;
     this.navigationStateExcludedMembers.search = keywords;
+=======
+    this.navigationStateExcludedMembers = { ...this.navigationStateExcludedMembers , ...{StartIndex:0, search:keywords}};
+>>>>>>> oned/v92
     await this.navigateExcludedMembers();
   }
 

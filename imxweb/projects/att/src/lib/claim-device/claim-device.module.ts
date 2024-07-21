@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -33,7 +37,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EuiCoreModule } from '@elemental-ui/core';
 import { TranslateModule } from '@ngx-translate/core';
 
+<<<<<<< HEAD
 import { CdrModule, LdsReplaceModule } from 'qbm';
+=======
+import { CdrModule, HelpContextualModule, LdsReplaceModule } from 'qbm';
+>>>>>>> oned/v92
 import { ClaimDeviceComponent } from './claim-device.component';
 
 @NgModule({
@@ -50,7 +58,12 @@ import { ClaimDeviceComponent } from './claim-device.component';
     MatRadioModule,
     MatStepperModule,
     ReactiveFormsModule,
+<<<<<<< HEAD
     TranslateModule
+=======
+    TranslateModule,
+    HelpContextualModule,
+>>>>>>> oned/v92
   ]
 })
 export class ClaimDeviceModule {

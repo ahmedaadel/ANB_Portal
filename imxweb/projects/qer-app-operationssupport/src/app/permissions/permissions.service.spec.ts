@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,14 +28,22 @@
  *
  */
 
+<<<<<<< HEAD
 import { TestBed } from '@angular/core/testing';
 import { configureTestSuite } from 'ng-bullet';
 
 import { UserService } from '../user/user.service';
+=======
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MockBuilder, MockedComponentFixture, MockRender } from 'ng-mocks';
+
+import { OpSupportUserService } from 'qer';
+>>>>>>> oned/v92
 import { PermissionsService } from './permissions.service';
 
 describe('PermissionsService', () => {
   let service: PermissionsService;
+<<<<<<< HEAD
 
   const userModel = new class {
     userGroups = [];
@@ -48,6 +60,30 @@ describe('PermissionsService', () => {
       ]
     });
     service = TestBed.inject(PermissionsService);
+=======
+  let fixture: MockedComponentFixture<PermissionsService>;
+
+  let userGroups: {
+    Name: string;
+  }[] = [];
+
+  beforeEach(() => {
+    return MockBuilder([PermissionsService])
+      .mock(OpSupportUserService, {
+        getGroups: jasmine.createSpy('userGroups').and.callFake(() => userGroups),
+      })
+      .beforeCompileComponents(testBed => {
+        testBed.configureTestingModule({
+          schemas: [CUSTOM_ELEMENTS_SCHEMA]
+        });
+      });
+  });
+
+  beforeEach(() => {
+    fixture = MockRender(PermissionsService);
+    service = fixture.point.componentInstance;
+    fixture.detectChanges();
+>>>>>>> oned/v92
   });
 
   for (const testcase of [
@@ -56,7 +92,11 @@ describe('PermissionsService', () => {
     { userGroups: [{ Name: 'QER_4_ManageOutstanding' }], canSee: true },
   ]) {
     it('checks permissions for outstanding managers', async () => {
+<<<<<<< HEAD
       userModel.userGroups = testcase.userGroups;
+=======
+      userGroups = testcase.userGroups;
+>>>>>>> oned/v92
 
       expect(await service.isOutstandingManager()).toEqual(testcase.canSee);
     });

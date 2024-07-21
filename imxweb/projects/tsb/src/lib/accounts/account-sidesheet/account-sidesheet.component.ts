@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,11 +29,16 @@
  */
 
 import { Component, OnInit, Inject } from '@angular/core';
+<<<<<<< HEAD
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+=======
+import { UntypedFormBuilder, UntypedFormGroup, UntypedFormArray, UntypedFormControl } from '@angular/forms';
+>>>>>>> oned/v92
 import {
   ColumnDependentReference,
   BaseCdr,
   ClassloggerService,
+<<<<<<< HEAD
   TabControlHelper,
   SnackBarService,
   ElementalUiConfigService,
@@ -38,6 +47,16 @@ import {
 } from 'qbm';
 import { DbObjectKey } from 'imx-qbm-dbts';
 import { EuiLoadingService, EuiSidesheetService, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+=======
+  SnackBarService,
+  ElementalUiConfigService,
+  TabItem,
+  ExtService,
+  CdrFactoryService,
+} from 'qbm';
+import { DbObjectKey } from 'imx-qbm-dbts';
+import { EuiLoadingService, EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+>>>>>>> oned/v92
 import { AccountSidesheetData } from '../accounts.models';
 import { IdentitiesService, ProjectConfigurationService } from 'qer';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
@@ -52,12 +71,17 @@ import { AccountTypedEntity } from '../account-typed-entity';
   styleUrls: ['./account-sidesheet.component.scss'],
 })
 export class AccountSidesheetComponent implements OnInit {
+<<<<<<< HEAD
   public readonly detailsFormGroup: FormGroup;
+=======
+  public readonly detailsFormGroup: UntypedFormGroup;
+>>>>>>> oned/v92
   public cdrList: ColumnDependentReference[] = [];
   public linkedIdentitiesManager: DbObjectKey;
   public unsavedSyncChanges = false;
   public initialAccountManagerValue: string;
   public reportDownload: EuiDownloadOptions;
+<<<<<<< HEAD
   public neverConnectFormControl = new FormControl();
   public parameters: { objecttable: string; objectuid: string; };
 
@@ -66,16 +90,30 @@ export class AccountSidesheetComponent implements OnInit {
 
   constructor(
     formBuilder: FormBuilder,
+=======
+  public neverConnectFormControl = new UntypedFormControl();
+  public parameters: { objecttable: string; objectuid: string };
+
+  public dynamicTabs: TabItem[] = [];
+
+  constructor(
+    formBuilder: UntypedFormBuilder,
+>>>>>>> oned/v92
     @Inject(EUI_SIDESHEET_DATA) public readonly sidesheetData: AccountSidesheetData,
     private readonly logger: ClassloggerService,
     private readonly busyService: EuiLoadingService,
     private readonly snackbar: SnackBarService,
+<<<<<<< HEAD
     private readonly sidesheet: EuiSidesheetService,
+=======
+    private readonly sidesheetRef: EuiSidesheetRef,
+>>>>>>> oned/v92
     private readonly elementalUiConfigService: ElementalUiConfigService,
     private readonly configService: ProjectConfigurationService,
     private readonly identitiesService: IdentitiesService,
     private readonly accountsService: AccountsService,
     private readonly reports: AccountsReportsService,
+<<<<<<< HEAD
     private readonly tabService: ExtService
   ) {
     this.detailsFormGroup = new FormGroup({ formArray: formBuilder.array([]) });
@@ -87,6 +125,20 @@ export class AccountSidesheetComponent implements OnInit {
 
     this.reportDownload = {
       ... this.elementalUiConfigService.Config.downloadOptions,
+=======
+    private readonly tabService: ExtService,
+    private cdrFactory: CdrFactoryService
+  ) {
+    this.detailsFormGroup = new UntypedFormGroup({ formArray: formBuilder.array([]) });
+
+    this.parameters = {
+      objecttable: sidesheetData.unsDbObjectKey?.TableName,
+      objectuid: sidesheetData.unsDbObjectKey?.Keys.join(','),
+    };
+
+    this.reportDownload = {
+      ...this.elementalUiConfigService.Config.downloadOptions,
+>>>>>>> oned/v92
       url: this.reports.accountsReport(30, this.selectedAccount.GetEntity().GetKeys()[0], this.sidesheetData.tableName),
     };
   }
@@ -96,7 +148,11 @@ export class AccountSidesheetComponent implements OnInit {
   }
 
   public cancel(): void {
+<<<<<<< HEAD
     this.sidesheet.close();
+=======
+    this.sidesheetRef.close();
+>>>>>>> oned/v92
   }
 
   public async save(): Promise<void> {
@@ -107,7 +163,11 @@ export class AccountSidesheetComponent implements OnInit {
         await this.selectedAccount.GetEntity().Commit(true);
         this.detailsFormGroup.markAsPristine();
         this.snackbar.open({ key: '#LDS#The user account has been successfully saved.' });
+<<<<<<< HEAD
         this.sidesheet.close(true);
+=======
+        this.sidesheetRef.close(true);
+>>>>>>> oned/v92
       } finally {
         this.unsavedSyncChanges = false;
         this.busyService.hide(overlayRef);
@@ -119,8 +179,13 @@ export class AccountSidesheetComponent implements OnInit {
     return this.sidesheetData.selectedAccount;
   }
 
+<<<<<<< HEAD
   get formArray(): FormArray {
     return this.detailsFormGroup.get('formArray') as FormArray;
+=======
+  get formArray(): UntypedFormArray {
+    return this.detailsFormGroup.get('formArray') as UntypedFormArray;
+>>>>>>> oned/v92
   }
 
   get identityManagerMatchesAccountManager(): boolean {
@@ -128,10 +193,14 @@ export class AccountSidesheetComponent implements OnInit {
 
     const objectKeyManager = this.selectedAccount?.objectKeyManagerColumn?.GetValue();
 
+<<<<<<< HEAD
     if (
       this.linkedIdentitiesManager &&
       objectKeyManager?.length
     ) {
+=======
+    if (this.linkedIdentitiesManager && objectKeyManager?.length) {
+>>>>>>> oned/v92
       isMatch = objectKeyManager === this.linkedIdentitiesManager.ToXmlString();
     }
     return isMatch;
@@ -152,6 +221,7 @@ export class AccountSidesheetComponent implements OnInit {
   }
 
   private async setup(): Promise<void> {
+<<<<<<< HEAD
     /**
      * Resolve an issue where the mat-tab navigation arrows could appear on first load
      */
@@ -169,6 +239,15 @@ export class AccountSidesheetComponent implements OnInit {
     this.dynamicTabs = (await this.tabService.getFittingComponents<TabItem>('accountSidesheet',
     (ext) =>  ext.inputData.checkVisibility(this.parameters)))
     .sort((tab1: TabItem, tab2: TabItem) => tab1.sortOrder - tab2.sortOrder);
+=======
+    const cols = (await this.configService.getConfig()).OwnershipConfig.EditableFields[this.parameters.objecttable];
+
+    this.cdrList = this.cdrFactory.buildCdrFromColumnList(this.selectedAccount.GetEntity(), cols);
+
+    this.dynamicTabs = (
+      await this.tabService.getFittingComponents<TabItem>('accountSidesheet', (ext) => ext.inputData.checkVisibility(this.parameters))
+    ).sort((tab1: TabItem, tab2: TabItem) => tab1.sortOrder - tab2.sortOrder);
+>>>>>>> oned/v92
 
     this.setupIdentityManagerSync();
   }
@@ -177,10 +256,14 @@ export class AccountSidesheetComponent implements OnInit {
     this.initialAccountManagerValue = this.selectedAccount.objectKeyManagerColumn?.GetValue();
     const linkedIdentityId = this.selectedAccount.uidPersonColumn?.GetValue();
     if (linkedIdentityId) {
+<<<<<<< HEAD
       this.linkedIdentitiesManager = await this.getLinkedIdentitiesManager(
         linkedIdentityId,
         this.sidesheetData.unsDbObjectKey.TableName
       );
+=======
+      this.linkedIdentitiesManager = await this.getLinkedIdentitiesManager(linkedIdentityId, this.sidesheetData.unsDbObjectKey.TableName);
+>>>>>>> oned/v92
     }
   }
 
@@ -190,7 +273,11 @@ export class AccountSidesheetComponent implements OnInit {
       const managerAccountData = await this.accountsService.getAccount(
         {
           TableName: tableName,
+<<<<<<< HEAD
           Keys: [identityData.UID_PersonHead.value]
+=======
+          Keys: [identityData.UID_PersonHead.value],
+>>>>>>> oned/v92
         },
         'UID_Person'
       );
@@ -202,6 +289,7 @@ export class AccountSidesheetComponent implements OnInit {
 
     return undefined;
   }
+<<<<<<< HEAD
 
   private getCdr (column: string, entity: AccountTypedEntity): ColumnDependentReference{
     try{
@@ -210,4 +298,6 @@ export class AccountSidesheetComponent implements OnInit {
     } catch{ return undefined;} 
    }
 
+=======
+>>>>>>> oned/v92
 }

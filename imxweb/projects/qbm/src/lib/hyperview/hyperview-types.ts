@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -63,16 +67,31 @@ export interface HvCell {
  */
 export interface ShapeClickArgs {
   objectKey: string;
+<<<<<<< HEAD
+=======
+  caption: string;
+>>>>>>> oned/v92
 }
 
 /**
  * Defines a hyperview layout
  */
 export interface HyperViewLayout {
+<<<<<<< HEAD
   layout(): void;
   getConnectorProvider(): IConnectorProvider;
 }
 
+=======
+  layout(): LayoutResult;
+  getConnectorProvider(): IConnectorProvider;
+}
+
+export interface LayoutResult {
+  size: Size;
+}
+
+>>>>>>> oned/v92
 /**
  * Defines a hyperview element
  */
@@ -80,3 +99,25 @@ export interface HvSettings {
   enforceVerticalLayout: boolean;
   elements: HvElement[];
 }
+<<<<<<< HEAD
+=======
+
+/**
+ * Defines the hyperview navigation type.
+ */
+export enum HyperViewNavigationEnum {
+  First,
+  Back,
+  Forward,
+}
+
+/**
+ * Defines the hyperview navigation input params.
+ */
+export interface HyperViewNavigation {
+  first: boolean;
+  back: boolean;
+  forward: boolean;
+  navigation: boolean;
+}
+>>>>>>> oned/v92

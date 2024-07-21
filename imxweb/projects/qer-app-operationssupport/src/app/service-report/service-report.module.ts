@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -31,13 +35,24 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { EuiCoreModule } from '@elemental-ui/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
+<<<<<<< HEAD
 
 import { DataSourceToolbarModule, DataTableModule } from 'qbm';
+=======
+import { MatTabsModule } from '@angular/material/tabs';
+import { DataSourceToolbarModule, DataTableModule, CdrModule } from 'qbm';
+>>>>>>> oned/v92
 import { JobServersGridviewComponent } from './job-servers-gridview.component';
 import { ServiceAvailabilityComponent } from './service-availability.component';
 import { ServiceReportComponent } from './service-report.component';
 import { ServicesInactiveComponent } from './services-inactive.component';
 import { JobServersService } from './job-servers.service';
+<<<<<<< HEAD
+=======
+import { JobServersEditComponent } from './job-servers-edit/job-servers-edit.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JobServersDetailsComponent } from './job-servers-details/job-servers-details.component';
+>>>>>>> oned/v92
 
 @NgModule({
   declarations: [
@@ -45,8 +60,16 @@ import { JobServersService } from './job-servers.service';
     ServiceAvailabilityComponent,
     ServiceReportComponent,
     ServicesInactiveComponent,
+<<<<<<< HEAD
   ],
   imports: [
+=======
+    JobServersEditComponent,
+    JobServersDetailsComponent,
+  ],
+  imports: [
+    CdrModule,
+>>>>>>> oned/v92
     CommonModule,
     DataSourceToolbarModule,
     DataTableModule,
@@ -54,7 +77,14 @@ import { JobServersService } from './job-servers.service';
     TranslateModule,
     MatCardModule,
     MatButtonModule,
+<<<<<<< HEAD
     MatTooltipModule
+=======
+    MatTooltipModule,
+    FormsModule, 
+    ReactiveFormsModule,
+    MatTabsModule
+>>>>>>> oned/v92
   ],
   providers: [JobServersService],
   exports: [ServiceReportComponent]

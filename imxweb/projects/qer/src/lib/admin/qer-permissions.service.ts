@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -27,34 +27,86 @@
 import { Injectable } from '@angular/core';
 
 import { UserModelService } from '../user/user-model.service';
-import { CCC_isHROutsourceAdmin, CCC_isOutsourceAdmin, isPersonAdmin, isPersonManager, isShopAdmin, isStructAdmin } from './qer-permissions-helper';
+import {
+  CCC_isOutsourceAdmin,
+  CCC_isHROutsourceAdmin,
+  isCancelPwO,
+  isPasswordHelpdesk,
+  isPersonAdmin,
+  isPersonManager,
+  isResourceAdmin,
+  isRoleAdmin,
+  isRoleStatistics,
+  isRuleAdmin,
+  isShopAdmin,
+  isShopStatistics,
+  isStructAdmin,
+  isStructStatistics,
+  hasFeatures,
+  isAuditor,
+  isStatistics,
+  isTsbNameSpaceAdminBase,
+} from './qer-permissions-helper';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QerPermissionsService {
-  constructor(private readonly userService: UserModelService) { }
+  constructor(private readonly userService: UserModelService) {}
 
   public async isPersonAdmin(): Promise<boolean> {
-    return isPersonAdmin((await this.userService.getGroups()).map(group => group.Name));
+    return isPersonAdmin((await this.userService.getFeatures()).Features);
   }
-
   public async isPersonManager(): Promise<boolean> {
-    return isPersonManager((await this.userService.getGroups()).map(group => group.Name));
+    return isPersonManager((await this.userService.getFeatures()).Features);
   }
-
   public async isStructAdmin(): Promise<boolean> {
-    return isStructAdmin((await this.userService.getGroups()).map(group => group.Name));
+    return isStructAdmin((await this.userService.getFeatures()).Features);
   }
-
   public async isShopAdmin(): Promise<boolean> {
-    return isShopAdmin((await this.userService.getGroups()).map(group => group.Name));
+    return isShopAdmin((await this.userService.getFeatures()).Features);
   }
-
+  public async isRuleAdmin(): Promise<boolean> {
+    return isRuleAdmin((await this.userService.getFeatures()).Features);
+  }
+  public async isCancelPwO(): Promise<boolean> {
+    return isCancelPwO((await this.userService.getFeatures()).Features);
+  }
+  public async isResourceAdmin(): Promise<boolean> {
+    return isResourceAdmin((await this.userService.getFeatures()).Features);
+  }
+  public async isRoleAdmin(): Promise<boolean> {
+    return isRoleAdmin((await this.userService.getFeatures()).Features);
+  }
+  public async hasFeatures(features: string[]): Promise<boolean> {
+    return hasFeatures((await this.userService.getFeatures()).Features, features);
+  }
+  public async isRoleStatistics(): Promise<boolean> {
+    return isRoleStatistics((await this.userService.getFeatures()).Features);
+  }
+  public async isShopStatistics(): Promise<boolean> {
+    return isShopStatistics((await this.userService.getFeatures()).Features);
+  }
+  public async isStructStatistics(): Promise<boolean> {
+    return isStructStatistics((await this.userService.getFeatures()).Features);
+  }
+  public async isPasswordHelpdesk(): Promise<boolean> {
+    return isPasswordHelpdesk((await this.userService.getFeatures()).Features);
+  }
+  public async isStatistics(): Promise<boolean> {
+    return isStatistics((await this.userService.getFeatures()).Features);
+  }
+  public async isAuditor(): Promise<boolean> {
+    return isAuditor((await this.userService.getGroups()).map((group) => group.Name));
+  }
+  public async isTsbNameSpaceAdminBase(): Promise<boolean> {
+    return isTsbNameSpaceAdminBase((await this.userService.getGroups()).map((group) => group.Name));
+  }
+  // cust 
   public async CCC_isOutsourceAdmin(): Promise<boolean> {
     return CCC_isOutsourceAdmin((await this.userService.getGroups()).map(group => group.Name));
   }
   public async CCC_isHROutsourceAdmin(): Promise<boolean> {
     return CCC_isHROutsourceAdmin((await this.userService.getGroups()).map(group => group.Name));
-  }
+}
 }

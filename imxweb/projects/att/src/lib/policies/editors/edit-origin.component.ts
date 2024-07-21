@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,7 +29,11 @@
  */
 
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+<<<<<<< HEAD
 import { FormArray, FormControl } from '@angular/forms';
+=======
+import { UntypedFormArray, UntypedFormControl } from '@angular/forms';
+>>>>>>> oned/v92
 import { Subscription } from 'rxjs';
 
 import { ParmOpt } from 'imx-api-att';
@@ -41,7 +49,11 @@ import { FilterElementModel } from './filter-element-model';
 export class EditOriginComponent implements OnInit, OnDestroy {
 
   public candidates: ParmOpt[];
+<<<<<<< HEAD
   public readonly control = new FormArray([]);
+=======
+  public readonly control = new UntypedFormArray([]);
+>>>>>>> oned/v92
 
   @Input() public filterElementModel: FilterElementModel;
   @Input() public identifier: string;
@@ -64,7 +76,11 @@ export class EditOriginComponent implements OnInit, OnDestroy {
     this.selectedParameter = this.splitStringAndRemoveQuotes(this.filterElementModel?.parameterValue, ',');
 
     this.candidates.forEach(elem => {
+<<<<<<< HEAD
       this.control.push(new FormControl(this.isSelected(elem)));
+=======
+      this.control.push(new UntypedFormControl(this.isSelected(elem)));
+>>>>>>> oned/v92
       this.logger.trace(this, 'control added for candidate', elem);
     });
 

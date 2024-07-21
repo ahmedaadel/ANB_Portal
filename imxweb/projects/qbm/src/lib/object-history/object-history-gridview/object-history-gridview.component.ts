@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -63,6 +67,12 @@ function getLocalDataForPage<T>(allData: T[], state: { page: number, pageSize: n
   styleUrls: ['./object-history-gridview.component.scss']
 })
 export class ObjectHistoryGridviewComponent implements OnInit, OnChanges {
+<<<<<<< HEAD
+=======
+  @Input() public historyData: ObjectHistoryEvent[];
+  @ViewChild(MatPaginator) private paginator: MatPaginator;
+
+>>>>>>> oned/v92
   public get columns(): string[] {
     return this.columnDefs.map(c => c.id);
   }
@@ -77,17 +87,27 @@ export class ObjectHistoryGridviewComponent implements OnInit, OnChanges {
     hidden: false
   };
 
+<<<<<<< HEAD
   @Input() public historyData: ObjectHistoryEvent[];
 
   private displayChangeTypePropertyChange = 'PropertyChange';
   private stateCached: { page: number, pageSize: number, skip: number };
   private parameters: ObjectHistoryParameters;
   @ViewChild(MatPaginator) private paginator: MatPaginator;
+=======
+  private displayChangeTypePropertyChange = 'PropertyChange';
+  private stateCached: { page: number, pageSize: number, skip: number };
+  private parameters: ObjectHistoryParameters;
+>>>>>>> oned/v92
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private translationProvider: TranslateService,
+<<<<<<< HEAD
     settings: SettingsService
+=======
+    settings: SettingsService,
+>>>>>>> oned/v92
   ) {
     this.paginatorConfig.size = settings.DefaultPageSize;
   }

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,7 +29,11 @@
  */
 
 import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
+<<<<<<< HEAD
 import { AbstractControl, FormGroup } from '@angular/forms';
+=======
+import { AbstractControl, UntypedFormGroup } from '@angular/forms';
+>>>>>>> oned/v92
 
 import { BulkItem } from './bulk-item/bulk-item';
 import { BulkItemComponent } from './bulk-item/bulk-item.component';
@@ -36,7 +44,11 @@ import { BulkItemComponent } from './bulk-item/bulk-item.component';
   styleUrls: ['./bulk-property-editor.component.scss']
 })
 export class BulkPropertyEditorComponent implements OnInit {
+<<<<<<< HEAD
   public formGroup = new FormGroup({});
+=======
+  public formGroup = new UntypedFormGroup({});
+>>>>>>> oned/v92
 
   @Input() public entities: BulkItem[] = [];
   @Input() public hideButtons = false;

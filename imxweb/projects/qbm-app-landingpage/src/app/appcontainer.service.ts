@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -34,13 +38,32 @@ import { AppConfigService } from 'qbm';
 export class AppcontainerService {
   constructor(private readonly appConfigService: AppConfigService) { }
 
+<<<<<<< HEAD
+=======
+  /** Gets a flag indicating whether the user can log in to the 
+   * Server Administration app. */
+  public hasServerAdministrationApp = false;
+
+>>>>>>> oned/v92
   public async getAppContainers(): Promise<AppContainer[]> {
     return this.getHtmlAppContainers();
   }
 
   private async getHtmlAppContainers(): Promise<AppContainer[]> {
+<<<<<<< HEAD
     return (await this.appConfigService.client.imx_applications_get())
       .filter((appInfo: NodeAppInfo) => appInfo.Name !== environment.appName)
+=======
+    this.hasServerAdministrationApp = false;
+    return (await this.appConfigService.client.imx_applications_get())
+      .filter((appInfo: NodeAppInfo) => {
+        const isServerAdminApp = appInfo.Name == environment.appName;
+        if (isServerAdminApp) {
+          this.hasServerAdministrationApp = true;
+        }
+        return !isServerAdminApp;
+      })
+>>>>>>> oned/v92
       .map((appInfo: NodeAppInfo) => ({
         link: this.appConfigService.BaseUrl + '/html/' + appInfo.Name,
         app: appInfo

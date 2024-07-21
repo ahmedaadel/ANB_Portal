@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -33,7 +37,11 @@ import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ShelfSelectionComponent } from './shelf-selection.component';
+<<<<<<< HEAD
 import { CdrModule, DataSourceToolbarModule, DataTableModule, DateModule, ExtModule, LdsReplaceModule } from 'qbm';
+=======
+import { BusyIndicatorModule, CdrModule, DataSourceToolbarModule, DataTableModule, DateModule, ExtModule, LdsReplaceModule } from 'qbm';
+>>>>>>> oned/v92
 import { ItshopService } from './itshop.service';
 import { DecisionHistoryComponent } from './request-info/decision-history.component';
 import { RequestInfoComponent } from './request-info/request-info.component';
@@ -43,6 +51,10 @@ import { PeerGroupComponent } from './peer-group/peer-group.component';
 import { ShelfService } from './shelf.service';
 import { ServiceItemDetailComponent } from './request-info/service-item-detail/service-item-detail.component';
 import { ProductEntitlementsComponent } from './request-info/service-item-detail/product-entitlements/product-entitlements.component';
+<<<<<<< HEAD
+=======
+import { MatExpansionModule } from '@angular/material/expansion';
+>>>>>>> oned/v92
 @NgModule({
   declarations: [
     DecisionHistoryComponent,
@@ -60,12 +72,20 @@ import { ProductEntitlementsComponent } from './request-info/service-item-detail
     ProductEntitlementsComponent
   ],
   imports: [
+<<<<<<< HEAD
+=======
+    BusyIndicatorModule,
+>>>>>>> oned/v92
     CdrModule,
     CommonModule,
     LdsReplaceModule,
     MatButtonModule,
     MatCardModule,
     MatListModule,
+<<<<<<< HEAD
+=======
+    MatExpansionModule,
+>>>>>>> oned/v92
     TranslateModule,
     EuiCoreModule,
     EuiMaterialModule,

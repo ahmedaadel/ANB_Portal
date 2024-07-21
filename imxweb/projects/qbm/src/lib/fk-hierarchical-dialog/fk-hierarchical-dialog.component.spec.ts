@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,6 +28,7 @@
  *
  */
 
+<<<<<<< HEAD
 import { FormsModule } from '@angular/forms';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -38,11 +43,17 @@ import { LoggerTestingModule } from 'ngx-logger/testing';
 import { EuiLoadingService, EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { of } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
+=======
+import { EuiLoadingService, EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { MockBuilder, MockedComponentFixture, MockRender } from 'ng-mocks';
+>>>>>>> oned/v92
 
 import { MetadataService } from '../base/metadata.service';
 import { clearStylesFromDOM } from '../testing/clear-styles.spec';
 import { ConfirmationService } from '../confirmation/confirmation.service';
 import { FkHierarchicalDialogComponent } from './fk-hierarchical-dialog.component';
+<<<<<<< HEAD
 
 @Component({
   selector: 'imx-data-tree',
@@ -60,11 +71,19 @@ class MockDataTree {
 const fkInfo = [
   { TableName: 'testtable1', ColumnName: 'testcolumn1', Get: _ => undefined },
   { TableName: 'testtable2', ColumnName: 'testcolumn2', Get: _ => undefined }
+=======
+import { FkHierarchicalDialogModule } from './fk-hierarchical-dialog.module';
+
+const fkInfo = [
+  { TableName: 'testtable1', ColumnName: 'testcolumn1', Get: (_) => undefined ,GetDataModel: () =>undefined},
+  { TableName: 'testtable2', ColumnName: 'testcolumn2', Get: (_) => undefined, GetDataModel: () =>undefined },
+>>>>>>> oned/v92
 ];
 
 [
   { fkRelations: fkInfo, expectedMetadataCall: 1 },
   { fkRelations: [], expectedMetadataCall: 0 },
+<<<<<<< HEAD
   { fkRelations: undefined, expectedMetadataCall: 0 }
 ].forEach(testcase =>
   describe('FkHierarchicalDialogComponent', () => {
@@ -138,6 +157,36 @@ const fkInfo = [
     });
 
 
+=======
+  { fkRelations: undefined, expectedMetadataCall: 0 },
+].forEach((testcase) =>
+  describe('FkHierarchicalDialogComponent', () => {
+    let component: FkHierarchicalDialogComponent;
+    let fixture: MockedComponentFixture<FkHierarchicalDialogComponent>;
+
+    const metadataServiceStub = {
+      tables: {},
+      update: jasmine.createSpy('update'),
+    };
+
+    beforeEach(() => {
+      return MockBuilder([FkHierarchicalDialogComponent, TranslateModule.forRoot()])
+        .mock(FkHierarchicalDialogModule)
+        .mock(EuiSidesheetRef).mock(MetadataService,metadataServiceStub)
+        .mock(ConfirmationService)
+        .mock(EuiLoadingService)
+        .mock(EUI_SIDESHEET_DATA, {
+          fkRelations: testcase.fkRelations,
+          displayValue: 'some title',
+        });
+    });
+
+    beforeEach(() => {
+      fixture = MockRender(FkHierarchicalDialogComponent);
+      component = fixture.point.componentInstance;
+    });
+
+>>>>>>> oned/v92
     afterAll(() => {
       clearStylesFromDOM();
     });
@@ -145,5 +194,10 @@ const fkInfo = [
     it('should create', () => {
       expect(component).toBeTruthy();
     });
+<<<<<<< HEAD
 
   }));
+=======
+  })
+);
+>>>>>>> oned/v92

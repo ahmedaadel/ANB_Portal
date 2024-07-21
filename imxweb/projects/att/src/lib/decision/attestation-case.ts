@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,18 +34,44 @@ import { ParameterDataContainer, WorkflowDataWrapper } from 'qer';
 import { BaseCdr, ColumnDependentReference } from 'qbm';
 import { AttestationCaseAction } from '../attestation-action/attestation-case-action.interface';
 
+<<<<<<< HEAD
 export class AttestationCase extends PortalAttestationApprove implements AttestationCaseAction{
   public get decisionOffset(): number { return this.directDecisionTarget - this.DecisionLevel.value; }
   public get isOverdue(): boolean { return this.ToSolveTill.value && new Date().valueOf() > new Date(this.ToSolveTill.value).valueOf(); }
   public get attestationParameters(): IEntityColumn[] { return this.parameterDataContainer.columns; }
+=======
+export class AttestationCase extends PortalAttestationApprove implements AttestationCaseAction {
+  public get decisionOffset(): number {
+    return this.directDecisionTarget - this.DecisionLevel.value;
+  }
+  public get isOverdue(): boolean {
+    return this.ToSolveTill.value && new Date().valueOf() > new Date(this.ToSolveTill.value).valueOf();
+  }
+  public get attestationParameters(): IEntityColumn[] {
+    return this.parameterDataContainer.columns;
+  }
+  public get canAskAQuestion(): boolean {
+    return this.data.CanAskForHelp;
+  }
+>>>>>>> oned/v92
 
   public readonly propertyInfo: ColumnDependentReference[];
   public readonly key: string;
   public readonly data: AttestationCaseData;
+<<<<<<< HEAD
   public readonly typedEntity: TypedEntity;  // from interface AttestationAction
   public readonly propertiesForAction: IEntityColumn[]; // from interface AttestationAction
   public readonly uiData: AttestationCaseUiData;
 
+=======
+  public readonly typedEntity: TypedEntity; // from interface AttestationAction
+  public readonly propertiesForAction: IEntityColumn[]; // from interface AttestationAction
+  public readonly uiData: AttestationCaseUiData;
+
+  public get hasPolicyViolation() {
+    return this.data?.PolicyViolations?.length > 0;
+  }
+>>>>>>> oned/v92
   private directDecisionTarget = 0;
 
   private readonly workflowWrapper: WorkflowDataWrapper;
@@ -56,7 +86,11 @@ export class AttestationCase extends PortalAttestationApprove implements Attesta
 
     this.key = this.baseObject.GetEntity().GetKeys()[0];
     this.typedEntity = this;
+<<<<<<< HEAD
     this.propertiesForAction = [ this.ToSolveTill.Column, this.UID_AttestationPolicy.Column];
+=======
+    this.propertiesForAction = [this.ToSolveTill.Column, this.UID_AttestationPolicy.Column];
+>>>>>>> oned/v92
 
     const properties = [
       this.IsNotApprovedBefore,
@@ -69,7 +103,11 @@ export class AttestationCase extends PortalAttestationApprove implements Attesta
       this.PropertyInfo4,
       this.ToSolveTill,
       this.RiskIndex,
+<<<<<<< HEAD
       this.UID_AttestationPolicy
+=======
+      this.UID_AttestationPolicy,
+>>>>>>> oned/v92
     ];
 
     if (this.IsCrossFunctional.value === true) {
@@ -77,8 +115,13 @@ export class AttestationCase extends PortalAttestationApprove implements Attesta
     }
 
     this.propertyInfo = properties
+<<<<<<< HEAD
     .filter(property => property.value != null && property.value !== '')
     .map(property => new BaseCdr(property.Column, extendedCollectionData[property.Column.ColumnName]));
+=======
+      .filter((property) => property.value != null && property.value !== '')
+      .map((property) => new BaseCdr(property.Column, extendedCollectionData[property.Column.ColumnName]));
+>>>>>>> oned/v92
 
     this.data = extendedCollectionData.Data ? extendedCollectionData.Data[extendedCollectionData.index] : undefined;
     this.uiData = extendedCollectionData.UiData ? extendedCollectionData.UiData[extendedCollectionData.index] : undefined;
@@ -94,18 +137,30 @@ export class AttestationCase extends PortalAttestationApprove implements Attesta
 
   public async commit(reload = true): Promise<void> {
     this.baseObject.extendedData = this.parameterDataContainer.getEntityWriteDataColumns();
+<<<<<<< HEAD
     try {
       await this.baseObject.GetEntity().Commit(reload);
     } catch (error) {
       await this.baseObject.GetEntity().DiscardChanges();
       this.baseObject.extendedData = undefined;
       throw error;
+=======
+    if (this.baseObject.extendedData.DialogParameter[0].length > 0 || this.baseObject.GetEntity().GetDiffData().Data.length > 0) {
+      try {
+        await this.baseObject.GetEntity().Commit(reload);
+      } catch (error) {
+        await this.baseObject.GetEntity().DiscardChanges();
+        this.baseObject.extendedData = undefined;
+        throw error;
+      }
+>>>>>>> oned/v92
     }
   }
 
   public canDenyApproval(userUid: string): boolean {
     // TODO later: not(IsReadOnly())
 
+<<<<<<< HEAD
     return !this.IsReserved.value &&
     !this.isChiefApproval &&
     this.workflowWrapper?.canDenyDecision(userUid, this.DecisionLevel.value);
@@ -139,5 +194,36 @@ export class AttestationCase extends PortalAttestationApprove implements Attesta
 
   public canEscalateDecision(userUid: string): boolean {
     return  this.UID_PersonHead.value === userUid && this.workflowWrapper.canEscalateDecision(this.DecisionLevel.value);
+=======
+    return !this.IsReserved.value && !this.isChiefApproval && this.workflowWrapper?.canDenyDecision(userUid, this.DecisionLevel.value);
+  }
+
+  public getLevelNumbers(userUid: string): number[] {
+    return this.workflowWrapper?.getDirectSteps(userUid, this.DecisionLevel.value)?.map((step) => step + this.DecisionLevel.value);
+  }
+
+  public canRerouteDecision(userUid: string): boolean {
+    return !this.isChiefApproval && this.workflowWrapper?.getDirectSteps(userUid, this.DecisionLevel.value)?.some((value) => value !== 0);
+  }
+
+  public canAddApprover(userUid: string): boolean {
+    return !this.IsReserved.value && !this.isChiefApproval && this.workflowWrapper?.isAdditionalAllowed(userUid, this.DecisionLevel.value);
+  }
+
+  public canDelegateDecision(userUid: string): boolean {
+    return !this.IsReserved.value && !this.isChiefApproval && this.workflowWrapper?.isInsteadOfAllowed(userUid, this.DecisionLevel.value);
+  }
+
+  public hasAskedLastQuestion(userUid: string): boolean {
+    return this.workflowWrapper.userAskedLastQuestion(userUid, this.DecisionLevel.value);
+  }
+
+  public canWithdrawAddApprover(userUid: string): boolean {
+    return !this.isChiefApproval && this.workflowWrapper?.canRevokeAdditionalApprover(userUid, this.DecisionLevel.value);
+  }
+
+  public canEscalateDecision(userUid: string): boolean {
+    return this.UID_PersonHead.value === userUid && this.workflowWrapper.canEscalateDecision(this.DecisionLevel.value);
+>>>>>>> oned/v92
   }
 }

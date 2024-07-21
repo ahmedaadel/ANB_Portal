@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import "@elemental-ui/core/src/styles/_palette.scss";
 
 eui-alert {
@@ -17,5 +18,57 @@ eui-alert {
   margin-top: 10px;
   > *:not(:last-child) {
     margin-right: 10px;
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  eui-alert {
+    margin-bottom: 1em;
+    margin-top: 1em;
+    display: block;
+  }
+
+  .imx-busy {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .subtext {
+    font-size: small;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  .imx-step-button,
+  .imx-step-button-save {
+    margin-top: 10px;
+    > *:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+
+:host {
+  .subtext {
+    color: $color-gray-40;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    .subtext {
+      color: $color-gray-20;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .subtext {
+      color: $color-gray-0;
+    }
+>>>>>>> oned/v92
   }
 }

@@ -42,7 +42,11 @@
       <div class="beneath-checkbox" *ngIf="formExcludeDynamic.value">
         <mat-form-field appearance="outline">
           <input matInput formControlName="description" data-imx-identifier="remove-membership-input-dynamic-reason">
+<<<<<<< HEAD
           <mat-label translate>#LDS#Reason</mat-label>
+=======
+          <mat-label translate>#LDS#Reason for excluding the members</mat-label>
+>>>>>>> oned/v92
         </mat-form-field>
       </div>
     </mat-card>
@@ -54,8 +58,14 @@
     data-imx-identifier="remove-membership-button-cancel">
     <span translate>#LDS#Close</span>
   </button>
+<<<<<<< HEAD
   <button mat-raised-button color="primary" *ngIf="data.selectedEntities.length > 0" [disabled]="noneSelected"
     (click)="save()" data-imx-identifier="remove-membership-button-save">
+=======
+  <button mat-stroked-button color="warn" *ngIf="data.selectedEntities.length > 0" [disabled]="noneSelected"
+    (click)="save()" data-imx-identifier="remove-membership-button-save">
+    <eui-icon icon="delete"></eui-icon>
+>>>>>>> oned/v92
     <span translate>#LDS#Remove memberships</span>
   </button>
 </div>

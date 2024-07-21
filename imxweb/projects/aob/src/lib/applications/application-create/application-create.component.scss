@@ -1,4 +1,8 @@
 @import '@elemental-ui/core/src/styles/_palette.scss';
+<<<<<<< HEAD
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 :host {
   overflow-y: auto;
@@ -33,3 +37,24 @@
     margin-right: auto;
   }
 }
+<<<<<<< HEAD
+=======
+
+.eui-dark-theme {
+  :host {
+     background-color: $color-gray-80;
+    .imx-button-bar {
+      background-color: $color-gray-70;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+     background-color: $color-gray-100;
+    .imx-button-bar {
+      background-color: $color-gray-90;
+    }
+  }
+}
+>>>>>>> oned/v92

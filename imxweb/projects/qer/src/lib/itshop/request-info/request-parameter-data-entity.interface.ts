@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -38,6 +42,10 @@ export interface RequestParameterDataEntity {
   parameterColumns: IEntityColumn[];
   GetEntity: () => IEntity;
   complianceRuleViolation?: boolean;
+<<<<<<< HEAD
+=======
+  isArchived?: boolean;
+>>>>>>> oned/v92
   UID_AccProduct: IReadValue<string>;
   TableName: IReadValue<string>;
 }

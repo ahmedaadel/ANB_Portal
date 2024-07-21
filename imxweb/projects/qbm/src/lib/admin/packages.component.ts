@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,10 +28,18 @@
  *
  */
 
+<<<<<<< HEAD
 import { Component, OnInit } from "@angular/core";
 import { PackageInfo } from "imx-api-qbm";
 import { AppConfigService } from "../appConfig/appConfig.service";
 import { imx_SessionService } from "../session/imx-session.service";
+=======
+import { Component, OnInit, Input } from "@angular/core";
+import { PackageInfo } from "imx-api-qbm";
+import { AppConfigService } from "../appConfig/appConfig.service";
+import { imx_SessionService } from "../session/imx-session.service";
+import { SideNavigationComponent } from "../side-navigation-view/side-navigation-view-interfaces";
+>>>>>>> oned/v92
 
 type ExtendedPackageInfo = PackageInfo & { App?: string };
 
@@ -36,7 +48,12 @@ type ExtendedPackageInfo = PackageInfo & { App?: string };
   selector: 'imx-packages',
   styleUrls: ['./packages.component.scss']
 })
+<<<<<<< HEAD
 export class PackagesComponent implements OnInit {
+=======
+export class PackagesComponent implements OnInit, SideNavigationComponent {
+  @Input() public isAdmin: boolean;
+>>>>>>> oned/v92
 
   constructor(private readonly session: imx_SessionService,
     private readonly appConfigService: AppConfigService) {
@@ -66,4 +83,8 @@ export class PackagesComponent implements OnInit {
   public getAppHref(packageInfo: PackageInfo) {
     return this.appConfigService.BaseUrl + '/html/' + packageInfo.Name;
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> oned/v92

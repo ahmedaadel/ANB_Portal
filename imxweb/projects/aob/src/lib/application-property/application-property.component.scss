@@ -1,4 +1,8 @@
 @import '@elemental-ui/core/src/styles/_palette.scss';
+<<<<<<< HEAD
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 
 :host {
   display: flex;
@@ -33,3 +37,24 @@
     text-overflow: ellipsis;
   }
 }
+<<<<<<< HEAD
+=======
+
+.eui-dark-theme {
+  :host {
+    .imx-user-icon {
+      color: $color-gray-20;
+      background-color: $color-gray-80;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-user-icon {
+      color: $color-gray-10;
+      background-color: $color-gray-100;
+    }
+  }
+}
+>>>>>>> oned/v92

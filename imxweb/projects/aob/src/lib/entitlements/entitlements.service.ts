@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -27,12 +31,20 @@
 import { Injectable, ErrorHandler } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
+<<<<<<< HEAD
 import { CollectionLoadParameters, TypedEntityCollectionData, IWriteValue, FilterType, CompareOperator, EntitySchema, TypedEntity, DataModel, ExtendedTypedEntityCollection, FilterData } from 'imx-qbm-dbts';
+=======
+import { CollectionLoadParameters, TypedEntityCollectionData, IWriteValue, FilterType, CompareOperator, EntitySchema, TypedEntity, DataModel, ExtendedTypedEntityCollection, FilterData, FilterTreeData } from 'imx-qbm-dbts';
+>>>>>>> oned/v92
 import { DataTileBadge, ApiClientService, ClassloggerService } from 'qbm';
 import {
   PortalEntitlement,
   PortalApplication,
   EntitlementSystemRoleInput,
+<<<<<<< HEAD
+=======
+  portal_entitlementcandidates_UNSGroup_filtertree_get_args,
+>>>>>>> oned/v92
 } from 'imx-api-aob';
 import { EntitlementFilter } from './entitlement-filter';
 import { AobApiService } from '../aob-api-client.service';
@@ -239,6 +251,13 @@ export class EntitlementsService {
     return [];
   }
 
+<<<<<<< HEAD
+=======
+  public async getEntitlementsFilterTree(options: portal_entitlementcandidates_UNSGroup_filtertree_get_args): Promise<FilterTreeData>{
+    return this.aobClient.client.portal_entitlementcandidates_UNSGroup_filtertree_get(options);
+  }
+
+>>>>>>> oned/v92
   private async createNew(
     element: TypedEntity,
     uidAobApplication: IWriteValue<string>

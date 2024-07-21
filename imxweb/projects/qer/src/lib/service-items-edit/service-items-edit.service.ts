@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,7 +32,11 @@ import { OverlayRef } from '@angular/cdk/overlay';
 import { Injectable } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 
+<<<<<<< HEAD
 import { PortalServiceitems, PortalServiceitemsInteractive } from 'imx-api-qer';
+=======
+import { PortalServiceitems } from 'imx-api-qer';
+>>>>>>> oned/v92
 import { CollectionLoadParameters, ExtendedTypedEntityCollection, EntitySchema } from 'imx-qbm-dbts';
 import { DynamicMethodService, GenericTypedEntity } from 'qbm';
 import { QerApiService } from '../qer-api-client.service';
@@ -54,7 +62,11 @@ export class ServiceItemsEditService {
     return this.qerClient.typedClient.PortalServiceitems.Get(parameters);
   }
 
+<<<<<<< HEAD
   public async getServiceItem(serviceItemUid: string): Promise<PortalServiceitemsInteractive> {
+=======
+  public async getServiceItem(serviceItemUid: string): Promise<PortalServiceitems> {
+>>>>>>> oned/v92
     const serviceItemCollection = await this.qerClient.typedClient.PortalServiceitemsInteractive.Get_byid(serviceItemUid);
 
     if (serviceItemCollection == null || serviceItemCollection.Data == null || serviceItemCollection.Data.length === 0) {

@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -54,7 +58,11 @@ export class DecisionHistoryService {
       case 'Prolongate':
         return '#LDS#DisplayPersonHead_Prolongate';
       case 'Query':
+<<<<<<< HEAD
         return '#LDS#DisplayPersonHead_Query';
+=======
+        return '#LDS#Inquiry made by';
+>>>>>>> oned/v92
       case 'Reject':
         return '#LDS#DisplayPersonHead_Reject';
       case 'Grant':
@@ -88,7 +96,11 @@ export class DecisionHistoryService {
       case 'Reserve':
         return '#LDS#DisplayPersonHead_Reserve';
       case 'ResetReservation':
+<<<<<<< HEAD
         return '#LDS#DisplayPersonHead_ResetReservation';
+=======
+        return '#LDS#Reservation canceled by';
+>>>>>>> oned/v92
       case 'AddHistoryEntry':
         return '#LDS#DisplayPersonHead_AddHistoryEntry';
       case 'CreateOrder':

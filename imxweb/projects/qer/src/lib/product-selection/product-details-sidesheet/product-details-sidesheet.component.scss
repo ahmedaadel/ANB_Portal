@@ -1,5 +1,9 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
+<<<<<<< HEAD
 
+=======
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+>>>>>>> oned/v92
 :host {
   display: flex;
   flex-direction: column;
@@ -21,3 +25,30 @@
     }
   }
 }
+<<<<<<< HEAD
+=======
+
+.eui-dark-theme {
+  :host {
+    background-color: $color-gray-80;
+   .governance-sidesheet{
+      background-color: $color-gray-80;
+      ::ng-deep .mat-tab-group  .mat-tab-header {
+        background-color: $color-gray-80;
+      }
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    background-color: $color-gray-100;
+   .governance-sidesheet{
+      background-color: $color-gray-100;
+      ::ng-deep .mat-tab-group  .mat-tab-header {
+        background-color: $color-gray-100;
+      }
+    }
+  }
+}
+>>>>>>> oned/v92

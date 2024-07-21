@@ -1,7 +1,13 @@
 <div class="imx-request-detail">
+<<<<<<< HEAD
   <imx-requestinfo [isReadOnly]="data.isReadOnly" [request]="data.personWantsOrg" [userId]="data.userUid"></imx-requestinfo>
 
   <div *ngIf="allowedActionCount > 0" class="imx-button-bar">
+=======
+  <imx-requestinfo [isReadOnly]="data.isReadOnly" [isApproval]="false" [request]="data.personWantsOrg" [userId]="data.userUid"></imx-requestinfo>
+
+  <mat-card eui-sidesheet-actions *ngIf="!data.isReadOnly && allowedActionCount > 0">
+>>>>>>> oned/v92
     <!-- TODO later
     <button mat-stroked-button *ngIf="data.personWantsOrg.ResendRequestAllowed.value"
       data-imx-identifier="request-detail-submit-again" (click)="submitAgain()">
@@ -65,5 +71,16 @@
     {{'#LDS#Escalate approval' | translate}}
     </button>
 
+<<<<<<< HEAD
   </div>
+=======
+     <button mat-stroked-button *ngIf="data.personWantsOrg.canCopyItems" data-imx-identifier="request-detail-copy-request"
+      title="{{ '#LDS#Submit again' | translate }}"
+      (click)="actionService.copyItems([data.personWantsOrg])">
+    {{'#LDS#Submit again' | translate}}
+    </button>
+
+
+  </mat-card>
+>>>>>>> oned/v92
 </div>

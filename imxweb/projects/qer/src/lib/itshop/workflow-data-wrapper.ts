@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -27,6 +31,7 @@
 import { EntityCollectionData, EntityData, MultiValue } from 'imx-qbm-dbts';
 
 export class WorkflowDataWrapper {
+<<<<<<< HEAD
   constructor(private readonly data: {
     WorkflowHistory?: EntityCollectionData;
     WorkflowData?: EntityCollectionData;
@@ -38,15 +43,43 @@ export class WorkflowDataWrapper {
     const workflowStep = this.data?.WorkflowSteps?.Entities?.find(step =>
       step.Columns.LevelNumber.Value === decisionLevel
     )?.Columns;
+=======
+  constructor(
+    private readonly data: {
+      WorkflowHistory?: EntityCollectionData;
+      WorkflowData?: EntityCollectionData;
+      WorkflowSteps?: EntityCollectionData;
+      CanRevokeDelegation?: boolean;
+    }
+  ) {}
+
+  public canEscalateDecision(decisionLevel: number): boolean {
+    const workflowStep = this.data?.WorkflowSteps?.Entities?.find((step) => step.Columns.LevelNumber.Value === decisionLevel)?.Columns;
+>>>>>>> oned/v92
 
     return (workflowStep?.EscalationSteps?.Value ?? 0) !== 0;
   }
 
+<<<<<<< HEAD
+=======
+  public userAskedLastQuestion(userUid: string, decisionLevel: number): boolean {
+    const questionHistory = this.data.WorkflowHistory.Entities.filter(
+      (entityData) => entityData.Columns.DecisionLevel.Value === decisionLevel
+    ).sort((item1, item2) => this.ascendingDate(item1.Columns.XDateInserted?.Value, item2.Columns.XDateInserted?.Value));
+    return (
+      questionHistory.length > 0 &&
+      questionHistory[0].Columns.DecisionType.Value === 'Query' &&
+      questionHistory[0].Columns.UID_PersonHead.Value === userUid
+    );
+  }
+
+>>>>>>> oned/v92
   public canDenyDecision(userUid: string, decisionLevel: number): boolean {
     return this.getWorkflowDataItem(userUid, decisionLevel)?.Columns?.IsFromDelegation?.Value;
   }
 
   public canRevokeDelegatedApprover(userUid: string, decisionLevel: number): boolean {
+<<<<<<< HEAD
     return this.data.CanRevokeDelegation &&
     this.getWorkflowDataItem(userUid, decisionLevel)?.Columns?.UID_PersonInsteadOf?.Value?.length > 0;
   }
@@ -54,6 +87,17 @@ export class WorkflowDataWrapper {
   public canRevokeAdditionalApprover(userUid: string, decisionLevel: number): boolean {
     return this.data.CanRevokeDelegation &&
     this.getWorkflowDataItem(userUid, decisionLevel)?.Columns?.UID_PersonAdditional?.Value?.length > 0;
+=======
+    return (
+      this.data.CanRevokeDelegation && this.getWorkflowDataItem(userUid, decisionLevel)?.Columns?.UID_PersonInsteadOf?.Value?.length > 0
+    );
+  }
+
+  public canRevokeAdditionalApprover(userUid: string, decisionLevel: number): boolean {
+    return (
+      this.data.CanRevokeDelegation && this.getWorkflowDataItem(userUid, decisionLevel)?.Columns?.UID_PersonAdditional?.Value?.length > 0
+    );
+>>>>>>> oned/v92
   }
 
   public isInsteadOfAllowed(userUid: string, decisionLevel: number): boolean {
@@ -63,10 +107,19 @@ export class WorkflowDataWrapper {
       const workflowStep = this.getWorkflowStep(workflowDataItem);
 
       if (workflowStep) {
+<<<<<<< HEAD
         return !workflowDataItem.Columns.IsFromDelegation?.Value &&
         !workflowDataItem.Columns.UID_PersonAdditional?.Value?.length &&
         !workflowDataItem.Columns.UID_PersonInsteadOf?.Value?.length &&
         workflowStep.Columns.IsInsteadOfAllowed?.Value;
+=======
+        return (
+          !workflowDataItem.Columns.IsFromDelegation?.Value &&
+          !workflowDataItem.Columns.UID_PersonAdditional?.Value?.length &&
+          !workflowDataItem.Columns.UID_PersonInsteadOf?.Value?.length &&
+          workflowStep.Columns.IsInsteadOfAllowed?.Value
+        );
+>>>>>>> oned/v92
       }
     }
 
@@ -80,10 +133,19 @@ export class WorkflowDataWrapper {
       const workflowStep = this.getWorkflowStep(workflowDataItem);
 
       if (workflowStep) {
+<<<<<<< HEAD
         return !workflowDataItem.Columns.IsFromDelegation?.Value &&
         !workflowDataItem.Columns.UID_PersonAdditional?.Value?.length &&
         !workflowDataItem.Columns.UID_PersonInsteadOf?.Value?.length &&
         workflowStep.Columns.IsAdditionalAllowed?.Value;
+=======
+        return (
+          !workflowDataItem.Columns.IsFromDelegation?.Value &&
+          !workflowDataItem.Columns.UID_PersonAdditional?.Value?.length &&
+          !workflowDataItem.Columns.UID_PersonInsteadOf?.Value?.length &&
+          workflowStep.Columns.IsAdditionalAllowed?.Value
+        );
+>>>>>>> oned/v92
       }
     }
 
@@ -97,7 +159,13 @@ export class WorkflowDataWrapper {
       const workflowStep = this.getWorkflowStep(workflowDataItem);
 
       if (workflowStep) {
+<<<<<<< HEAD
         return MultiValue.FromString(workflowStep.Columns.DirectSteps.Value).GetValues().map(step => Number(step));
+=======
+        return MultiValue.FromString(workflowStep.Columns.DirectSteps.Value)
+          .GetValues()
+          .map((step) => Number(step));
+>>>>>>> oned/v92
       }
     }
 
@@ -105,6 +173,7 @@ export class WorkflowDataWrapper {
   }
 
   private getWorkflowDataItem(userUid: string, decisionLevel: number): EntityData {
+<<<<<<< HEAD
     return this.data.WorkflowData?.Entities.filter(item =>
       item.Columns.UID_PersonHead.Value === userUid &&
       item.Columns.LevelNumber.Value === decisionLevel
@@ -116,6 +185,18 @@ export class WorkflowDataWrapper {
   private getWorkflowStep(workflowDataItem: EntityData): EntityData {
     return this.data.WorkflowSteps?.Entities.filter(item =>
       item.Columns.UID_QERWorkingStep.Value === workflowDataItem.Columns.UID_QERWorkingStep.Value
+=======
+    return this.data.WorkflowData?.Entities.filter(
+      (item) => item.Columns.UID_PersonHead.Value === userUid && item.Columns.LevelNumber.Value === decisionLevel
+    )
+      .sort((item1, item2) => this.ascending(item1.Columns.SubLevelNumber?.Value, item2.Columns.SubLevelNumber?.Value))
+      .pop();
+  }
+
+  private getWorkflowStep(workflowDataItem: EntityData): EntityData {
+    return this.data.WorkflowSteps?.Entities.filter(
+      (item) => item.Columns.UID_QERWorkingStep.Value === workflowDataItem.Columns.UID_QERWorkingStep.Value
+>>>>>>> oned/v92
     ).pop();
   }
 
@@ -130,4 +211,19 @@ export class WorkflowDataWrapper {
 
     return 0;
   }
+<<<<<<< HEAD
+=======
+
+  private ascendingDate(value1: Date, value2: Date): number {
+    if (value1 < value2) {
+      return 1;
+    }
+
+    if (value1 > value2) {
+      return -1;
+    }
+
+    return 0;
+  }
+>>>>>>> oned/v92
 }

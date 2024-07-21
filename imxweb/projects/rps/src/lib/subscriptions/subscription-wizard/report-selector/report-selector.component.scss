@@ -6,11 +6,14 @@
   flex-direction: column;
 }
 
+<<<<<<< HEAD
 .imx-viewport {
   height: 200px;
   overflow-x: hidden;
 }
 
+=======
+>>>>>>> oned/v92
 .report-selector-eui-search {
   display: flex;
 
@@ -25,6 +28,7 @@
   }
 }
 
+<<<<<<< HEAD
 .imx-candidate-option {
   display: flex;
   height: auto;
@@ -52,6 +56,42 @@
   }
 }
 
+=======
+.imx-candidate {
+  &-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  &-option {
+    display: flex;
+    height: auto;
+    margin: 10px 0;
+  }
+
+  &-content {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  &-display {
+    font-size: 14px;
+    line-height: 17px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &-longdisplay {
+    color: $black-9;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 17px;
+  }
+}
+
+
+>>>>>>> oned/v92
 .imx-report-listing {
   flex: 1;
   display: grid;

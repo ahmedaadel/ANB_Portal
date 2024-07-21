@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -26,9 +30,15 @@
 
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
+=======
+import { EuiLoadingService } from '@elemental-ui/core';
+import { TranslateService } from '@ngx-translate/core';
+
+>>>>>>> oned/v92
 import { PortalRolesExclusions, PortalShopConfigMembers, PortalShopConfigStructure } from 'imx-api-qer';
 import {
   CollectionLoadParameters,
@@ -38,7 +48,11 @@ import {
   FilterType,
   TypedEntityCollectionData,
 } from 'imx-qbm-dbts';
+<<<<<<< HEAD
 import { ClassloggerService } from 'qbm';
+=======
+import { ClassloggerService, SnackBarService } from 'qbm';
+>>>>>>> oned/v92
 import { QerApiService } from '../qer-api-client.service';
 import { IRequestableEntitlementType } from './irequestable-entitlement-type';
 
@@ -51,21 +65,34 @@ export interface SelectedShopStructureData {
 }
 
 @Injectable({
+<<<<<<< HEAD
   providedIn: 'root'
 })
 export class RequestsService {
 
+=======
+  providedIn: 'root',
+})
+export class RequestsService {
+>>>>>>> oned/v92
   public shelvesBlockedDeleteStatus: { [shelfId: string]: boolean } = {};
   private busyIndicator: OverlayRef;
 
   constructor(
     private readonly qerApiClient: QerApiService,
     private readonly logger: ClassloggerService,
+<<<<<<< HEAD
     private readonly snackbar: MatSnackBar,
     private readonly translate: TranslateService,
     private readonly busyService: EuiLoadingService,
   ) { 
   }
+=======
+    private readonly snackbar: SnackBarService,
+    private readonly translate: TranslateService,
+    private readonly busyService: EuiLoadingService
+  ) {}
+>>>>>>> oned/v92
 
   public selectedEntitlementType: IRequestableEntitlementType;
 
@@ -81,19 +108,37 @@ export class RequestsService {
     return this.qerApiClient.typedClient.PortalRolesExclusions.GetSchema();
   }
 
+<<<<<<< HEAD
   public async getShopStructures(navigationState: CollectionLoadParameters, parentId: string = ''):
     Promise<TypedEntityCollectionData<PortalShopConfigStructure>> {
+=======
+  public async getShopStructures(
+    navigationState: CollectionLoadParameters,
+    parentId: string = ''
+  ): Promise<TypedEntityCollectionData<PortalShopConfigStructure>> {
+>>>>>>> oned/v92
     let params: any = navigationState;
     if (!params) {
       params = {};
     }
     if (parentId == '') {
+<<<<<<< HEAD
       params.filter = [{
         ColumnName: "ITShopInfo",
         CompareOp: CompareOperator.Equal,
         Type: FilterType.Compare,
         Value1: "SH"
       }];
+=======
+      params.filter = [
+        {
+          ColumnName: 'ITShopInfo',
+          CompareOp: CompareOperator.Equal,
+          Type: FilterType.Compare,
+          Value1: 'SH',
+        },
+      ];
+>>>>>>> oned/v92
     }
     params.ParentKey = parentId;
     this.logger.debug(this, `Retrieving shop config structures`);
@@ -113,14 +158,22 @@ export class RequestsService {
     return this.qerApiClient.client.portal_shop_config_structure_delete(id);
   }
 
+<<<<<<< HEAD
   public getRequestConfigMembers(customerNodeId: string, navigationState: CollectionLoadParameters):
     Promise<TypedEntityCollectionData<PortalShopConfigMembers>> {
+=======
+  public getRequestConfigMembers(
+    customerNodeId: string,
+    navigationState: CollectionLoadParameters
+  ): Promise<TypedEntityCollectionData<PortalShopConfigMembers>> {
+>>>>>>> oned/v92
     return this.qerApiClient.typedClient.PortalShopConfigMembers.Get(customerNodeId, navigationState);
   }
 
   public generateRequestConfigMemberEntity(customerNodeId: string): PortalShopConfigMembers {
     return this.qerApiClient.typedClient.PortalShopConfigMembers.createEntity({
       Columns: {
+<<<<<<< HEAD
         "UID_ITShopOrg": {
           Value: customerNodeId
         }
@@ -130,6 +183,19 @@ export class RequestsService {
 
   public createRequestConfigMember(customerNodeId: string, newMember: PortalShopConfigMembers):
     Promise<TypedEntityCollectionData<PortalShopConfigMembers>> {
+=======
+        UID_ITShopOrg: {
+          Value: customerNodeId,
+        },
+      },
+    });
+  }
+
+  public createRequestConfigMember(
+    customerNodeId: string,
+    newMember: PortalShopConfigMembers
+  ): Promise<TypedEntityCollectionData<PortalShopConfigMembers>> {
+>>>>>>> oned/v92
     return this.qerApiClient.typedClient.PortalShopConfigMembers.Post(customerNodeId, newMember);
   }
 
@@ -199,9 +265,13 @@ export class RequestsService {
   }
 
   public openSnackbar(message: string, action: string): void {
+<<<<<<< HEAD
     this.translate.get([message, action]).subscribe((translations: any[]) => {
       this.snackbar.open(translations[message], translations[action], { duration: 10000 });
     });
+=======
+    this.snackbar.open({ key: message }, action);
+>>>>>>> oned/v92
   }
 
   public handleOpenLoader(): void {
@@ -219,6 +289,7 @@ export class RequestsService {
     }
   }
 
+<<<<<<< HEAD
   public LdsSpecifyMembers = "#LDS#Here you can specify who can request the products assigned to the shop.";
  
   public LdsMembersByDynamicRole = "#LDS#Here you can see the members that are originally assigned to the shop by a dynamic role but have been excluded. Additionally, you can add these excluded members back to the shop by removing the exclusion.";
@@ -257,4 +328,41 @@ export class RequestsService {
  
   public LdsCreateShop = '#LDS#Create shop';
 
+=======
+  public LdsSpecifyMembers = '#LDS#Here you can specify who can request the products assigned to the shop.';
+
+  public LdsMembersByDynamicRole =
+    '#LDS#Here you can see the members that are originally assigned to the shop by a dynamic role but have been excluded. Additionally, you can add these excluded members back to the shop by removing the exclusion.';
+
+  public LdsMembersRemoved =
+    '#LDS#The members have been successfully removed from the shop. It may take some time for the changes to take effect.';
+
+  public LdsMembersAdded =
+    '#LDS#The members have been successfully added to the shop. It may take some time for the changes to take effect.';
+
+  public LdsMembersUpdated = '#LDS#The shop members have been successfully updated.';
+
+  public LdsDeleteShop = '#LDS#Delete shop';
+
+  public LdsShopHasBeenDeleted = '#LDS#The shop has been successfully deleted.';
+
+  public LdsShopHasBeenCreated = '#LDS#The shop has been successfully created.';
+
+  public LdsShopHasBeenSaved = '#LDS#The shop has been successfully saved.';
+
+  public LdsNoShops = '#LDS#There are currently no shops.';
+
+  public LdsNoMatchingShops = '#LDS#There are no shops matching your search.';
+
+  public LdsHeadingCreateShop = '#LDS#Heading Create Shop';
+
+  public LdsHeadingEditShop = '#LDS#Heading Edit Shop';
+
+  public LdsHeadingShops = '#LDS#Heading Shops';
+
+  public LdsShopExplanation =
+    '#LDS#A shop is the top element in the hierarchical structure required for requesting products. Here you can setup and manage shops. For each shop you can specify which products can be requested (through shelves) and who can request them.';
+
+  public LdsCreateShop = '#LDS#Create shop';
+>>>>>>> oned/v92
 }

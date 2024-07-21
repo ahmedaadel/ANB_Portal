@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -24,6 +28,7 @@
  *
  */
 
+<<<<<<< HEAD
 import { Component, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
@@ -66,6 +71,38 @@ describe('Approvals', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ApprovalsComponent);
     component = fixture.componentInstance;
+=======
+import { ActivatedRoute } from '@angular/router';
+import { EuiSidesheetService } from '@elemental-ui/core';
+import { MockBuilder, MockedComponentFixture, MockRender } from 'ng-mocks';
+
+import { clearStylesFromDOM } from 'qbm';
+import { from } from 'rxjs';
+import { UserModelService } from '../user/user-model.service';
+import { ApprovalsComponent } from './approvals.component';
+import { ApprovalsModule } from './approvals.module';
+
+describe('Approvals', () => {
+  let component: ApprovalsComponent;
+  let fixture: MockedComponentFixture<ApprovalsComponent>;
+
+  beforeEach(() => {
+    return MockBuilder(ApprovalsComponent, ApprovalsModule)
+      .mock(EuiSidesheetService)
+      .mock(UserModelService,{getPendingItems: jasmine.createSpy('getPendingItems').and.returnValue(Promise.resolve({}))},{export:true})
+      .mock(
+        ActivatedRoute,
+        {
+          queryParams: from([]),
+        },
+        { export: true }
+      );
+  });
+
+  beforeEach(() => {
+    fixture = MockRender(ApprovalsComponent);
+    component = fixture.point.componentInstance;
+>>>>>>> oned/v92
   });
 
   afterAll(() => {

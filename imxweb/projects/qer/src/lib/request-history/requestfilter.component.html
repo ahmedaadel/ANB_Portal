@@ -4,7 +4,11 @@
     <h1 mat-dialog-title>{{'#LDS#Advanced search' | translate}}</h1>
     <mat-dialog-content>
         <div data-imx-identifier="Container9" *ngIf="showaudit">
+<<<<<<< HEAD
             {{(showfor('Requester') ? '#LDS#Select employee' : '#LDS#Select approver') | translate}}:
+=======
+            {{(showfor('Requester') ? '#LDS#Select identity' : '#LDS#Select approver') | translate}}:
+>>>>>>> oned/v92
 
             <!-- picker for UID_PersonAudit,can be any person-->
         </div>

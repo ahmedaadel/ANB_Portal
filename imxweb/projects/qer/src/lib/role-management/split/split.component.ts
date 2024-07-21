@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,9 +34,15 @@ import { ProjectConfigurationService } from '../../project-configuration/project
 import { IRoleSplitItem, RoleExtendedDataWrite, UiActionData } from 'imx-api-qer';
 import { EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 import { RoleService } from '../role.service';
+<<<<<<< HEAD
 import { BaseCdr, ColumnDependentReference, MetadataService, SnackBarService } from 'qbm';
 import { TranslateService } from '@ngx-translate/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
+=======
+import { CdrFactoryService, ColumnDependentReference, MetadataService, SnackBarService } from 'qbm';
+import { TranslateService } from '@ngx-translate/core';
+import { AbstractControl, UntypedFormGroup } from '@angular/forms';
+>>>>>>> oned/v92
 import { DataManagementService } from '../data-management.service';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { SplitService } from './split.service';
@@ -60,7 +70,11 @@ export class SplitComponent implements OnInit {
   public cdrList: ColumnDependentReference[] = [];
   public uidActions: string[] = [];
   public types: string[] = [];
+<<<<<<< HEAD
   public readonly newRoleFormGroup = new FormGroup({});
+=======
+  public readonly newRoleFormGroup = new UntypedFormGroup({});
+>>>>>>> oned/v92
   public busy = false;
   public isLoading = false;
 
@@ -82,8 +96,14 @@ export class SplitComponent implements OnInit {
     private readonly snackbar: SnackBarService,
     private readonly sidesheetRef: EuiSidesheetRef,
     private readonly qerConfig: ProjectConfigurationService,
+<<<<<<< HEAD
     private readonly metadata: MetadataService
   ) { }
+=======
+    private readonly metadata: MetadataService,
+    private readonly cdrFactoryService: CdrFactoryService
+  ) {}
+>>>>>>> oned/v92
 
   public async ngOnInit(): Promise<void> {
     this.busy = true;
@@ -144,14 +164,25 @@ export class SplitComponent implements OnInit {
         },
       });
       this.newRole = this.typedEntity.GetEntity();
+<<<<<<< HEAD
       this.cdrList = (await this.roleService.getEditableFields(this.newRoleType, this.newRole, true))
         .map(columnName => new BaseCdr(this.newRole.GetColumn(columnName)));
+=======
+      this.cdrList = this.cdrFactoryService.buildCdrFromColumnList(
+        this.newRole,
+        await this.roleService.getEditableFields(this.newRoleType, this.newRole, true)
+      );
+>>>>>>> oned/v92
     } finally {
       this.busySvc.hide(b);
     }
   }
 
+<<<<<<< HEAD
   public addControl(group: FormGroup, name: string, control: AbstractControl): void {
+=======
+  public addControl(group: UntypedFormGroup, name: string, control: AbstractControl): void {
+>>>>>>> oned/v92
     group.addControl(name, control);
     this.cdref.detectChanges();
   }

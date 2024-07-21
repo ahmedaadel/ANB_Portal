@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,6 +34,7 @@ export class ParameterDataContainer {
   public readonly columns: IEntityColumn[] = [];
 
   constructor(private readonly parameterCategoryColumns: { [key: string]: IEntityColumn[] }) {
+<<<<<<< HEAD
     Object.keys(parameterCategoryColumns).forEach(key => parameterCategoryColumns[key].forEach(column => this.columns.push(column)));
   }
 
@@ -41,6 +46,23 @@ export class ParameterDataContainer {
         Name: column.ColumnName,
         Value: column.GetValue()
       }));
+=======
+    Object.keys(parameterCategoryColumns).forEach((key) => parameterCategoryColumns[key].forEach((column) => this.columns.push(column)));
+  }
+
+  public getEntityWriteDataColumns(): { [key: string]: EntityWriteDataColumn[][] } {
+    const extendedData: { [key: string]: EntityWriteDataColumn[][] } = {};
+    Object.keys(this.parameterCategoryColumns).forEach((key) => {
+      extendedData[key] = [[]];
+      this.parameterCategoryColumns[key]
+        .filter((elem) => elem.GetMetadata().CanEdit())
+        .forEach((column) =>
+          extendedData[key][0].push({
+            Name: column.ColumnName,
+            Value: column.GetValue(),
+          })
+        );
+>>>>>>> oned/v92
     });
     return extendedData;
   }

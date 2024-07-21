@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -27,7 +27,10 @@
 import { IClientProperty, IEntity } from 'imx-qbm-dbts';
 
 export function buildAdditionalElementsString(entity: IEntity, additionals: IClientProperty[], separator: string = '; '): string {
-  return additionals == null ? '' : additionals
-    .map(elem => `${elem?.Display || elem?.ColumnName}: ${entity.GetColumn(elem?.ColumnName)?.GetDisplayValue() || '-'}`)
-    .join(separator);
+  return additionals == null
+    ? ''
+    : additionals
+        .filter((elem) => entity.GetColumn(elem?.ColumnName)?.GetDisplayValue() !== '')
+        .map((elem) => `${elem?.Display || elem?.ColumnName}: ${entity.GetColumn(elem?.ColumnName)?.GetDisplayValue()}`)
+        .join(separator);
 }

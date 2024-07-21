@@ -19,9 +19,20 @@
     </div>
 
     <ng-container *ngIf="settings?.dataSource">
+<<<<<<< HEAD
       <imx-data-source-toolbar #dst [settings]="settings" (navigationStateChanged)="onNavigationStateChanged($event)"
         [options]="['search', 'filter']"
         (search)="onSearch($event)">
+=======
+      <imx-data-source-toolbar
+        #dst
+        [settings]="settings"
+        (navigationStateChanged)="onNavigationStateChanged($event)"
+        [options]="['search', 'filter', 'filterTree']"
+        (search)="onSearch($event)"
+        (filterTreeSelectionChanged)="onFilterByTree($event)"
+      >
+>>>>>>> oned/v92
       </imx-data-source-toolbar>
       <imx-data-table [dst]="dst" [selectable]="true" (selectionChanged)="onSelectionChanged($event)"
         (highlightedEntityChanged)="onHighlightedEntityChanged($event)" [detailViewVisible]="false" mode="manual">
@@ -47,13 +58,25 @@
     </ng-container>
   </mat-card>
 </div>
+<<<<<<< HEAD
 <div eui-sidesheet-actions color="white">
+=======
+<div eui-sidesheet-actions >
+>>>>>>> oned/v92
   <p class="imx-selected-entitlements">
     <eui-badge class="imx-badge" color="orange" data-imx-identifier="imx-entitlements-add-selected-items-badge">
       {{selections?.length || 0}}</eui-badge>
     <span>{{'#LDS#Selected application entitlements' | translate }}</span>
   </p>
   <button *ngIf="isSystemRolesEnabled"
+<<<<<<< HEAD
+=======
+    mat-raised-button (click)="onCreateRole()"
+    data-imx-identifier="imx-entitlements-create-role-button">
+    {{ '#LDS#Create new system role' | translate }}
+  </button>
+  <button *ngIf="isSystemRolesEnabled"
+>>>>>>> oned/v92
     mat-raised-button (click)="onAddToRole()" [disabled]="!selections || selections?.length === 0"
     data-imx-identifier="imx-entitlements-add-to-role-button">
     {{ '#LDS#Merge into system role' | translate }}

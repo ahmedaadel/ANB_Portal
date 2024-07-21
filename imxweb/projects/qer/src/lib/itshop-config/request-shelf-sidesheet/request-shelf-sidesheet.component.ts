@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,9 +29,16 @@
  */
 
 import { Component, Inject, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { EuiSidesheetService, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { BaseCdr, ClassloggerService, ColumnDependentReference, HELPER_ALERT_KEY_PREFIX, StorageService, TabControlHelper } from 'qbm';
+=======
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
+
+import { BaseCdr, ClassloggerService, ColumnDependentReference, ConfirmationService, HELPER_ALERT_KEY_PREFIX, StorageService, HELP_CONTEXTUAL } from 'qbm';
+>>>>>>> oned/v92
 import { RequestConfigSidesheetData } from '../request-config-sidesheet/request-config-sidesheet.component';
 import { EntitlementCountUpdateData } from '../request-shelf-entitlements/request-shelf-entitlements.component';
 import { ACTION_DISMISS, RequestsService } from '../requests.service';
@@ -37,6 +48,7 @@ const helperAlertKey = `${HELPER_ALERT_KEY_PREFIX}_requestShopShelfDetails`;
 @Component({
   selector: 'imx-request-shelf-sidesheet',
   templateUrl: './request-shelf-sidesheet.component.html',
+<<<<<<< HEAD
   styleUrls: ['../request-config-sidesheet-common.scss']
 })
 export class RequestShelfSidesheetComponent implements OnInit {
@@ -47,13 +59,39 @@ export class RequestShelfSidesheetComponent implements OnInit {
 
   constructor(
     formBuilder: FormBuilder,
+=======
+  styleUrls: ['../request-config-sidesheet-common.scss'],
+})
+export class RequestShelfSidesheetComponent implements OnInit {
+  public readonly detailsFormGroup: UntypedFormGroup;
+  public cdrList: ColumnDependentReference[] = [];
+  public detailsContextIds = HELP_CONTEXTUAL.ConfigurationRequestsShelvesDetail;
+  private entitlementCount: number;
+  private reload = false;
+
+  constructor(
+    formBuilder: UntypedFormBuilder,
+>>>>>>> oned/v92
     public requestsService: RequestsService,
     @Inject(EUI_SIDESHEET_DATA) public data: RequestConfigSidesheetData,
     private readonly logger: ClassloggerService,
     private readonly storageService: StorageService,
+<<<<<<< HEAD
     private readonly sidesheet: EuiSidesheetService,
   ) {
     this.detailsFormGroup = new FormGroup({ formArray: formBuilder.array([]) });
+=======
+    private readonly sidesheetRef: EuiSidesheetRef,
+    confirm: ConfirmationService
+  ) {
+    this.detailsFormGroup = new UntypedFormGroup({ formArray: formBuilder.array([]) });
+    sidesheetRef.closeClicked().subscribe(async () => {
+      if (this.detailsFormGroup.pristine || (await confirm.confirmLeaveWithUnsavedChanges())) {
+        this.data.requestConfig.GetEntity().DiscardChanges();
+        sidesheetRef.close(this.reload);
+      }
+    });
+>>>>>>> oned/v92
   }
 
   get selectedShelfId(): string {
@@ -79,8 +117,13 @@ export class RequestShelfSidesheetComponent implements OnInit {
     return !this.storageService.isHelperAlertDismissed(helperAlertKey);
   }
 
+<<<<<<< HEAD
   get formArray(): FormArray {
     return this.detailsFormGroup.get('formArray') as FormArray;
+=======
+  get formArray(): UntypedFormArray {
+    return this.detailsFormGroup.get('formArray') as UntypedFormArray;
+>>>>>>> oned/v92
   }
 
   get entitlementRecentlyDeleted(): boolean {
@@ -97,10 +140,13 @@ export class RequestShelfSidesheetComponent implements OnInit {
     this.setup();
   }
 
+<<<<<<< HEAD
   public cancel(): void {
     this.sidesheet.close();
   }
 
+=======
+>>>>>>> oned/v92
   public onEntitlementCountUpdated(updateData: EntitlementCountUpdateData): void {
     this.entitlementCount = updateData.count;
     if (updateData.recentDeleteAction && this.entitlementCount === 0) {
@@ -113,7 +159,11 @@ export class RequestShelfSidesheetComponent implements OnInit {
   public async delete(): Promise<void> {
     await this.requestsService.deleteRequestConfiguration(this.selectedShelfId);
     this.requestsService.openSnackbar('#LDS#The shelf has been successfully deleted.', ACTION_DISMISS);
+<<<<<<< HEAD
     this.sidesheet.close();
+=======
+    this.sidesheetRef.close(true);
+>>>>>>> oned/v92
   }
 
   public async saveShelf(): Promise<void> {
@@ -130,6 +180,10 @@ export class RequestShelfSidesheetComponent implements OnInit {
           this.requestsService.handleCloseLoader();
         }
       }
+<<<<<<< HEAD
+=======
+      this.reload = true;
+>>>>>>> oned/v92
     }
   }
 
@@ -162,6 +216,7 @@ export class RequestShelfSidesheetComponent implements OnInit {
   }
 
   private setup(): void {
+<<<<<<< HEAD
     /**
      * Resolve an issue where the mat-tab navigation arrows could appear on first load
      */
@@ -169,6 +224,8 @@ export class RequestShelfSidesheetComponent implements OnInit {
       TabControlHelper.triggerResizeEvent();
     });
 
+=======
+>>>>>>> oned/v92
     this.cdrList = [
       new BaseCdr(this.data.requestConfig.Ident_Org.Column),
       new BaseCdr(this.data.requestConfig.Description.Column),
@@ -178,5 +235,8 @@ export class RequestShelfSidesheetComponent implements OnInit {
       new BaseCdr(this.data.requestConfig.UID_PersonHeadSecond.Column),
     ];
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> oned/v92
 }

@@ -9,7 +9,7 @@
  * those terms.
  *
  *
- * Copyright 2022 One Identity LLC.
+ * Copyright 2023 One Identity LLC.
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,21 +25,22 @@
  */
 import { EventEmitter } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 import { ColumnDependentReference } from './column-dependent-reference.interface';
 
 /**
- * Interface for the argument, that it emitted in the CDR editor
+ * Interface for the argument, that it emitted in the CDR editor.
  */
 export interface ValueHasChangedEventArg {
     /**
-     * The new value of the editor
+     * The new value of the editor.
      */
     value: any;
 
     /**
      * A flag to show whether the emitting of a follow up event should be forced
-     * (evaluated by  {@link CdrEditorComponent|CdrEditorComponent})
+     * (evaluated by {@link CdrEditorComponent|CdrEditorComponent}).
      */
     forceEmit?: boolean;
 }
@@ -48,15 +49,30 @@ export interface ValueHasChangedEventArg {
  * Interface for an editor of a column dependent reference.
  */
 export interface CdrEditor {
-    control: AbstractControl;
+  /**
+   * The abstract control associated with the editor.
+   */
+  control: AbstractControl;
 
-    valueHasChanged?: EventEmitter<ValueHasChangedEventArg>;
+  /**
+   * An event, that is emitted, if the value of the cdr has changed.
+   */
+  valueHasChanged?: EventEmitter<ValueHasChangedEventArg>;
 
-    /**
-     * Binds a column dependent reference to the editor.
-     *
-     * @param cdref The column dependent reference.
-     */
-    bind(cdref: ColumnDependentReference): void;
+  /**
+   * An event, that is emitted, if the value of the cdr is pending.
+   */
+  pendingChanged?: EventEmitter<boolean>;
 
+  /**
+   * Binds a column dependent reference to the editor.
+   *
+   * @param cdref The column dependent reference.
+   */
+  bind(cdref: ColumnDependentReference): void;
+
+  /**
+   * A subject, that can be called, if the control needs to be updated.
+   */
+  updateRequested?: Subject<void>;
 }

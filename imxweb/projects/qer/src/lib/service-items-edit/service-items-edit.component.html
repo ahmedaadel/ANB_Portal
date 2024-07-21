@@ -1,6 +1,7 @@
 <div class="imx-service-items-page">
   <div class="heading-wrapper">
     <h1 class="mat-headline">
+<<<<<<< HEAD
       {{ '#LDS#Heading Service Items' | translate }}
     </h1>
     <div class="alert-wrapper">
@@ -13,13 +14,28 @@
   </div>
   <div class="imx-table-container" *ngIf="dstWrapper && dstSettings">
     <imx-data-source-toolbar #dst [options]="['search', 'settings']"
+=======
+      <span>{{ '#LDS#Heading Service Items' | translate }}</span>
+      <imx-help-contextual></imx-help-contextual>
+    </h1>
+  </div>
+  <mat-card class="imx-table-container">
+    <imx-data-source-toolbar #dst [options]="['search', 'settings']" [busyService]="busyService"
+>>>>>>> oned/v92
       [settings]="dstSettings" (search)="getData({ search: $event })" (navigationStateChanged)="getData($event)"
       data-imx-identifier="service-items-dst">
     </imx-data-source-toolbar>
     <imx-data-table #dataTable [dst]="dst" class="imx-pickcategory-table" [detailViewVisible]="false" mode="manual"
+<<<<<<< HEAD
       [showSelectedItemsMenu]="false" data-imx-identifier="service-items-datatable">
       <imx-data-table-column data-imx-identifier="service-items-table-column-display"
         [entityColumn]="dstWrapper.propertyDisplay">
+=======
+      [showSelectedItemsMenu]="false" data-imx-identifier="service-items-datatable"
+      (highlightedEntityChanged)="onHighlightedEntityChanged($event)">
+      <imx-data-table-column data-imx-identifier="service-items-table-column-display"
+        [entityColumn]="dstWrapper?.propertyDisplay">
+>>>>>>> oned/v92
       </imx-data-table-column>
       <imx-data-table-generic-column columnName="Requestable" [columnLabel]="'#LDS#Requestable' | translate"
         data-imx-identifier="service-items-table-column-IsInActive">
@@ -27,6 +43,7 @@
           {{ (item?.IsInActive?.Column?.GetValue() ? '#LDS#No' : '#LDS#Yes') | translate }}
         </ng-template>
       </imx-data-table-generic-column>
+<<<<<<< HEAD
       <imx-data-table-generic-column columnName="viewDetailsButton">
         <ng-template let-item>
           <button mat-button color="primary" (click)="viewDetails(item)"
@@ -39,4 +56,10 @@
     <imx-data-source-paginator data-imx-identifier="service-items-paginator" [dst]="dst">
     </imx-data-source-paginator>
   </div>
+=======
+    </imx-data-table>
+    <imx-data-source-paginator data-imx-identifier="service-items-paginator" [dst]="dst">
+    </imx-data-source-paginator>
+  </mat-card>
+>>>>>>> oned/v92
 </div>

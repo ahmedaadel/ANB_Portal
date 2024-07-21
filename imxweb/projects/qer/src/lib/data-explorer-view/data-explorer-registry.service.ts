@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -25,6 +29,7 @@
  */
 
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
 import { DataExplorerFactory, IDataExplorerExtension } from './data-explorer-extension';
 
 @Injectable({
@@ -42,6 +47,25 @@ export class DataExplorerRegistryService {
   }
 
   public registerFactory(...factories: DataExplorerFactory[]): void {
+=======
+import { ProjectConfig } from 'imx-api-qbm';
+import { SideNavigationExtension, SideNavigationFactory } from 'qbm';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class DataExplorerRegistryService {
+  private items: SideNavigationFactory[] = [];
+
+  public getNavItems(preProps: string[], features: string[], projectConfig?: ProjectConfig, groups?: string[]): SideNavigationExtension[] {
+    return this.items
+      .map((factory) => factory(preProps, features, projectConfig, groups))
+      .sort((a, b) => a.sortOrder - b.sortOrder)
+      .filter((item) => item !== undefined);
+  }
+
+  public registerFactory(...factories: SideNavigationFactory[]): void {
+>>>>>>> oned/v92
     this.items.push(...factories);
   }
 }

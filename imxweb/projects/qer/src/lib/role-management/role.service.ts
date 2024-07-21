@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -38,6 +42,11 @@ import {
   QerProjectConfig,
   RoleAssignmentData,
   RoleExtendedDataWrite,
+<<<<<<< HEAD
+=======
+  RoleRecommendationResult,
+  V2ApiClientMethodFactory,
+>>>>>>> oned/v92
 } from 'imx-api-qer';
 import {
   CollectionLoadParameters,
@@ -47,6 +56,11 @@ import {
   ExtendedTypedEntityCollection,
   FkCandidateRouteDto,
   IEntity,
+<<<<<<< HEAD
+=======
+  MethodDefinition,
+  MethodDescriptor,
+>>>>>>> oned/v92
   TypedEntity,
   TypedEntityBuilder,
   TypedEntityCollectionData,
@@ -54,6 +68,7 @@ import {
   XOrigin,
 } from 'imx-qbm-dbts';
 import { AERoleMembership, DepartmentMembership, LocalityMembership, ProfitCenterMembership } from './role-memberships/membership-handlers';
+<<<<<<< HEAD
 import { Subject } from 'rxjs';
 import { ProjectConfigurationService } from '../project-configuration/project-configuration.service';
 import { QerApiService } from '../qer-api-client.service';
@@ -62,6 +77,19 @@ import { DynamicMethodService, ImxTranslationProviderService, imx_SessionService
 import { BaseTreeEntitlement } from './role-entitlements/entitlement-handlers';
 import { BaseTreeRoleRestoreHandler } from './restore/restore-handler';
 
+=======
+import { ProjectConfigurationService } from '../project-configuration/project-configuration.service';
+import { QerApiService } from '../qer-api-client.service';
+import { RoleObjectInfo, RoleTranslateKeys } from './role-object-info';
+import { DataSourceToolbarExportMethod, DynamicMethodService, ImxTranslationProviderService, imx_SessionService } from 'qbm';
+import { BaseTreeEntitlement } from './role-entitlements/entitlement-handlers';
+import { BaseTreeRoleRestoreHandler } from './restore/restore-handler';
+
+export const RoleManagementLocalityTag = 'Locality';
+export const RoleManagementProfitCenterTag = 'ProfitCenter';
+export const RoleManagementDepartmentTag = 'Department';
+export const RoleManagementAERoleTag = 'AERole';
+>>>>>>> oned/v92
 @Injectable({
   providedIn: 'root',
 })
@@ -70,12 +98,22 @@ export class RoleService {
   public entity: IEntity;
   public ownershipInfo: OwnershipInformation;
   public isAdmin: boolean;
+<<<<<<< HEAD
 
   public readonly targetMap: Map<string, RoleObjectInfo> = new Map();
   protected readonly LocalityTag = 'Locality';
   protected readonly ProfitCenterTag = 'ProfitCenter';
   protected readonly DepartmentTag = 'Department';
   protected readonly AERoleTag = 'AERole';
+=======
+  public canEdit: boolean;
+
+  public readonly targetMap: Map<string, RoleObjectInfo> = new Map();
+  private readonly LocalityTag = RoleManagementLocalityTag;
+  private readonly ProfitCenterTag = RoleManagementProfitCenterTag;
+  private readonly DepartmentTag = RoleManagementDepartmentTag;
+  private readonly AERoleTag = RoleManagementAERoleTag;
+>>>>>>> oned/v92
   protected config: QerProjectConfig & ProjectConfig;
 
   private readonly targets = [this.LocalityTag, this.ProfitCenterTag, this.DepartmentTag, this.AERoleTag];
@@ -85,9 +123,16 @@ export class RoleService {
     public readonly session: imx_SessionService,
     public readonly translator: ImxTranslationProviderService,
     dynamicMethodSvc: DynamicMethodService,
+<<<<<<< HEAD
     protected readonly project: ProjectConfigurationService) {
     this.targets.forEach((target) => {
       this.targetMap.set(target, { table: target, canBeSplitTarget: false, canBeSplitSource: false });
+=======
+    protected readonly project: ProjectConfigurationService
+  ) {
+    this.targets.forEach((target) => {
+      this.targetMap.set(target, { table: target, canBeSplitTarget: false, canBeSplitSource: false, canHaveStatistics: false });
+>>>>>>> oned/v92
     });
 
     // Type of Role Objects
@@ -108,8 +153,13 @@ export class RoleService {
     this.targetMap.get(this.LocalityTag).restore = new BaseTreeRoleRestoreHandler(
       () => this.api.client.portal_roles_Locality_restore_get(),
       () => this.api.client.portal_resp_Locality_restore_get(),
+<<<<<<< HEAD
       uid => this.api.client.portal_roles_Locality_restore_byid_get(uid),
       uid => this.api.client.portal_resp_Locality_restore_byid_get(uid),
+=======
+      (uid) => this.api.client.portal_roles_Locality_restore_byid_get(uid),
+      (uid) => this.api.client.portal_resp_Locality_restore_byid_get(uid),
+>>>>>>> oned/v92
       (uidRole, actions) => this.api.client.portal_roles_Locality_restore_byid_post(uidRole, actions),
       (uidRole, actions) => this.api.client.portal_resp_Locality_restore_byid_post(uidRole, actions)
     );
@@ -117,8 +167,13 @@ export class RoleService {
     this.targetMap.get(this.ProfitCenterTag).restore = new BaseTreeRoleRestoreHandler(
       () => this.api.client.portal_roles_ProfitCenter_restore_get(),
       () => this.api.client.portal_resp_ProfitCenter_restore_get(),
+<<<<<<< HEAD
       uid => this.api.client.portal_roles_ProfitCenter_restore_byid_get(uid),
       uid => this.api.client.portal_resp_ProfitCenter_restore_byid_get(uid),
+=======
+      (uid) => this.api.client.portal_roles_ProfitCenter_restore_byid_get(uid),
+      (uid) => this.api.client.portal_resp_ProfitCenter_restore_byid_get(uid),
+>>>>>>> oned/v92
       (uidRole, actions) => this.api.client.portal_roles_ProfitCenter_restore_byid_post(uidRole, actions),
       (uidRole, actions) => this.api.client.portal_resp_ProfitCenter_restore_byid_post(uidRole, actions)
     );
@@ -126,8 +181,13 @@ export class RoleService {
     this.targetMap.get(this.DepartmentTag).restore = new BaseTreeRoleRestoreHandler(
       () => this.api.client.portal_roles_Department_restore_get(),
       () => this.api.client.portal_resp_Department_restore_get(),
+<<<<<<< HEAD
       uid => this.api.client.portal_roles_Department_restore_byid_get(uid),
       uid => this.api.client.portal_resp_Department_restore_byid_get(uid),
+=======
+      (uid) => this.api.client.portal_roles_Department_restore_byid_get(uid),
+      (uid) => this.api.client.portal_resp_Department_restore_byid_get(uid),
+>>>>>>> oned/v92
       (uidRole, actions) => this.api.client.portal_roles_Department_restore_byid_post(uidRole, actions),
       (uidRole, actions) => this.api.client.portal_resp_Department_restore_byid_post(uidRole, actions)
     );
@@ -140,6 +200,7 @@ export class RoleService {
     this.targetMap.get(this.ProfitCenterTag).canBeSplitSource = true;
     this.targetMap.get(this.DepartmentTag).canBeSplitSource = true;
 
+<<<<<<< HEAD
     // Role Objects for Admin (useable by tree)
     this.targetMap.get(this.LocalityTag).admin =
     {
@@ -153,12 +214,28 @@ export class RoleService {
     };
 
 
+=======
+    this.targetMap.get(this.DepartmentTag).canHaveStatistics = true;
+
+    // Role Objects for Admin (useable by tree)
+    this.targetMap.get(this.LocalityTag).admin = {
+      get: async (parameter: any) => this.api.client.portal_admin_role_locality_get(parameter),
+    };
+    this.targetMap.get(this.ProfitCenterTag).admin = {
+      get: async (parameter: any) => this.api.client.portal_admin_role_profitcenter_get(parameter),
+    };
+    this.targetMap.get(this.DepartmentTag).admin = {
+      get: async (parameter: any) => this.api.client.portal_admin_role_department_get(parameter),
+    };
+
+>>>>>>> oned/v92
     // Entity Schema for Admin
     this.targetMap.get(this.LocalityTag).adminSchema = this.api.typedClient.PortalAdminRoleLocality.GetSchema();
     this.targetMap.get(this.ProfitCenterTag).adminSchema = this.api.typedClient.PortalAdminRoleProfitcenter.GetSchema();
     this.targetMap.get(this.DepartmentTag).adminSchema = this.api.typedClient.PortalAdminRoleDepartment.GetSchema();
 
     // wrapper class for interactive methods
+<<<<<<< HEAD
     class ApiWrapper {
 
       constructor(private getApi: {
@@ -175,6 +252,29 @@ export class RoleService {
       GetSchema() { return this.getApi.GetSchema(); }
 
       Get_byid(id: string): Promise<ExtendedTypedEntityCollection<WriteExtTypedEntity<RoleExtendedDataWrite>, unknown>> {
+=======
+    // tslint:disable-next-line: max-classes-per-file
+    class ApiWrapper {
+      constructor(
+        private getApi: {
+          GetSchema(): EntitySchema;
+          Get(): Promise<ExtendedTypedEntityCollection<WriteExtTypedEntity<RoleExtendedDataWrite>, unknown>>;
+        },
+        private getByIdApi: {
+          Get_byid(id: string): Promise<ExtendedTypedEntityCollection<WriteExtTypedEntity<RoleExtendedDataWrite>, unknown>>;
+        }
+      ) {}
+
+      public Get(): Promise<ExtendedTypedEntityCollection<WriteExtTypedEntity<RoleExtendedDataWrite>, unknown>> {
+        return this.getApi.Get();
+      }
+
+      public GetSchema(): EntitySchema {
+        return this.getApi.GetSchema();
+      }
+
+      public Get_byid(id: string): Promise<ExtendedTypedEntityCollection<WriteExtTypedEntity<RoleExtendedDataWrite>, unknown>> {
+>>>>>>> oned/v92
         return this.getByIdApi.Get_byid(id);
       }
     }
@@ -182,6 +282,7 @@ export class RoleService {
     // Interactive Role Objects for Resp
     this.targetMap.get(this.LocalityTag).interactiveResp = new ApiWrapper(
       this.api.typedClient.PortalRespLocalityInteractive,
+<<<<<<< HEAD
       this.api.typedClient.PortalRespLocalityInteractive);
 
     this.targetMap.get(this.ProfitCenterTag).interactiveResp = new ApiWrapper(
@@ -195,10 +296,30 @@ export class RoleService {
     this.targetMap.get(this.AERoleTag).interactiveResp = new ApiWrapper(
       this.api.typedClient.PortalRespAeroleInteractive,
       this.api.typedClient.PortalRespAeroleInteractive);
+=======
+      this.api.typedClient.PortalRespLocalityInteractive
+    );
+
+    this.targetMap.get(this.ProfitCenterTag).interactiveResp = new ApiWrapper(
+      this.api.typedClient.PortalRespProfitcenterInteractive,
+      this.api.typedClient.PortalRespProfitcenterInteractive
+    );
+
+    this.targetMap.get(this.DepartmentTag).interactiveResp = new ApiWrapper(
+      this.api.typedClient.PortalRespDepartmentInteractive,
+      this.api.typedClient.PortalRespDepartmentInteractive
+    );
+
+    this.targetMap.get(this.AERoleTag).interactiveResp = new ApiWrapper(
+      this.api.typedClient.PortalRespAeroleInteractive,
+      this.api.typedClient.PortalRespAeroleInteractive
+    );
+>>>>>>> oned/v92
 
     // Interactive Role Objects for Admin
     this.targetMap.get(this.LocalityTag).interactiveAdmin = new ApiWrapper(
       this.api.typedClient.PortalAdminRoleLocalityInteractive,
+<<<<<<< HEAD
       this.api.typedClient.PortalAdminRoleLocalityInteractive);
 
     this.targetMap.get(this.ProfitCenterTag).interactiveAdmin = new ApiWrapper(
@@ -208,6 +329,20 @@ export class RoleService {
     this.targetMap.get(this.DepartmentTag).interactiveAdmin = new ApiWrapper(
       this.api.typedClient.PortalAdminRoleDepartmentInteractive,
       this.api.typedClient.PortalAdminRoleDepartmentInteractive);
+=======
+      this.api.typedClient.PortalAdminRoleLocalityInteractive
+    );
+
+    this.targetMap.get(this.ProfitCenterTag).interactiveAdmin = new ApiWrapper(
+      this.api.typedClient.PortalAdminRoleProfitcenterInteractive,
+      this.api.typedClient.PortalAdminRoleProfitcenterInteractive
+    );
+
+    this.targetMap.get(this.DepartmentTag).interactiveAdmin = new ApiWrapper(
+      this.api.typedClient.PortalAdminRoleDepartmentInteractive,
+      this.api.typedClient.PortalAdminRoleDepartmentInteractive
+    );
+>>>>>>> oned/v92
 
     // Role Membership Objects
     this.targetMap.get(this.LocalityTag).membership = new LocalityMembership(this.api, session, this.translator);
@@ -215,6 +350,7 @@ export class RoleService {
     this.targetMap.get(this.DepartmentTag).membership = new DepartmentMembership(this.api, this.session, this.translator);
     this.targetMap.get(this.AERoleTag).membership = new AERoleMembership(this.api, this.session, this.translator);
 
+<<<<<<< HEAD
     // Role Entitlement Objects
     this.targetMap.get(this.LocalityTag).entitlements = new BaseTreeEntitlement(this.api, this.session, dynamicMethodSvc, this.translator,
       'Locality', e => 'QER-V-Locality');
@@ -223,12 +359,155 @@ export class RoleService {
         'ProfitCenter', e => 'QER-V-ProfitCenter');
     this.targetMap.get(this.DepartmentTag).entitlements = new BaseTreeEntitlement(this.api, this.session, dynamicMethodSvc, this.translator,
       'Department', e => 'QER-V-Department');
+=======
+    // CreationAllowed
+    this.targetMap.get(this.LocalityTag).respCanCreate = true;
+    this.targetMap.get(this.ProfitCenterTag).respCanCreate = true;
+    this.targetMap.get(this.DepartmentTag).respCanCreate = true;
+    this.targetMap.get(this.AERoleTag).respCanCreate = true;
+
+    this.targetMap.get(this.LocalityTag).adminCanCreate = true;
+    this.targetMap.get(this.ProfitCenterTag).adminCanCreate = true;
+    this.targetMap.get(this.DepartmentTag).adminCanCreate = true;
+    this.targetMap.get(this.AERoleTag).adminCanCreate = true;
+
+    this.targetMap.get(this.LocalityTag).translateKeys = {
+      create: '#LDS#Create location',
+      createHeading: '#LDS#Heading Create Location',
+      editHeading: '#LDS#Heading Edit Location',
+      createSnackbar: '#LDS#The location has been successfully created.',
+      createChild: '#LDS#Create child location',
+    };
+    this.targetMap.get(this.ProfitCenterTag).translateKeys = {
+      create: '#LDS#Create cost center',
+      createHeading: '#LDS#Heading Create Cost Center',
+      editHeading: '#LDS#Heading Edit Cost Center',
+      createSnackbar: '#LDS#The cost center has been successfully created.',
+      createChild: '#LDS#Create child cost center',
+    };
+    this.targetMap.get(this.DepartmentTag).translateKeys = {
+      create: '#LDS#Create department',
+      createHeading: '#LDS#Heading Create Department',
+      editHeading: '#LDS#Heading Edit Department',
+      createSnackbar: '#LDS#The department has been successfully created.',
+      createChild: '#LDS#Create child department',
+    };
+    this.targetMap.get(this.AERoleTag).translateKeys = {
+      create: '#LDS#Create application role',
+      createHeading: '#LDS#Heading Create Application Role',
+      editHeading: '#LDS#Heading Edit Application Role',
+      createSnackbar: '#LDS#The application role has been successfully created.',
+    };
+
+    this.targetMap.get(this.LocalityTag).adminHasHierarchy = true;
+    this.targetMap.get(this.ProfitCenterTag).adminHasHierarchy = true;
+    this.targetMap.get(this.DepartmentTag).adminHasHierarchy = true;
+    this.targetMap.get(this.AERoleTag).adminHasHierarchy = true;
+
+    this.targetMap.get(this.LocalityTag).canUseRecommendations = true;
+    this.targetMap.get(this.ProfitCenterTag).canUseRecommendations = true;
+    this.targetMap.get(this.DepartmentTag).canUseRecommendations = true;
+    this.targetMap.get(this.AERoleTag).canUseRecommendations = true;
+
+    // Role Entitlement Objects
+    this.targetMap.get(this.LocalityTag).entitlements = new BaseTreeEntitlement(
+      this.api,
+      this.session,
+      dynamicMethodSvc,
+      this.translator,
+      'Locality',
+      (e) => 'QER-V-Locality'
+    );
+    this.targetMap.get(this.ProfitCenterTag).entitlements = new BaseTreeEntitlement(
+      this.api,
+      this.session,
+      dynamicMethodSvc,
+      this.translator,
+      'ProfitCenter',
+      (e) => 'QER-V-ProfitCenter'
+    );
+    this.targetMap.get(this.DepartmentTag).entitlements = new BaseTreeEntitlement(
+      this.api,
+      this.session,
+      dynamicMethodSvc,
+      this.translator,
+      'Department',
+      (e) => 'QER-V-Department'
+    );
+
+    // Add export methods to Dept, Loc, Bus for resp since
+    const factory = new V2ApiClientMethodFactory();
+
+    this.targetMap.get(this.DepartmentTag).exportMethod = (navigationState: CollectionLoadParameters) => {
+      return {
+        getMethod: (withProperties: string, PageSize?: number) => {
+          let method: MethodDescriptor<EntityCollectionData>;
+          if (PageSize) {
+            method = factory.portal_resp_department_get({ ...navigationState, withProperties, PageSize, StartIndex: 0 });
+          } else {
+            method = factory.portal_resp_department_get({ ...navigationState, withProperties });
+          }
+          return new MethodDefinition(method);
+        },
+      };
+    };
+
+    this.targetMap.get(this.ProfitCenterTag).exportMethod = (navigationState: CollectionLoadParameters) => {
+      return {
+        getMethod: (withProperties: string, PageSize?: number) => {
+          let method: MethodDescriptor<EntityCollectionData>;
+          if (PageSize) {
+            method = factory.portal_resp_profitcenter_get({ ...navigationState, withProperties, PageSize, StartIndex: 0 });
+          } else {
+            method = factory.portal_resp_profitcenter_get({ ...navigationState, withProperties });
+          }
+          return new MethodDefinition(method);
+        },
+      };
+    };
+
+    this.targetMap.get(this.LocalityTag).exportMethod = (navigationState: CollectionLoadParameters) => {
+      return {
+        getMethod: (withProperties: string, PageSize?: number) => {
+          let method: MethodDescriptor<EntityCollectionData>;
+          if (PageSize) {
+            method = factory.portal_resp_locality_get({ ...navigationState, withProperties, PageSize, StartIndex: 0 });
+          } else {
+            method = factory.portal_resp_locality_get({ ...navigationState, withProperties });
+          }
+          return new MethodDefinition(method);
+        },
+      };
+    };
+
+    this.targetMap.get(this.AERoleTag).exportMethod = (navigationState: CollectionLoadParameters) => {
+      return {
+        getMethod: (withProperties: string, PageSize?: number) => {
+          let method: MethodDescriptor<EntityCollectionData>;
+          if (PageSize) {
+            method = factory.portal_resp_aerole_get({ ...navigationState, withProperties, PageSize, StartIndex: 0 });
+          } else {
+            method = factory.portal_resp_aerole_get({ ...navigationState, withProperties });
+          }
+          return new MethodDefinition(method);
+        },
+      };
+    };
+>>>>>>> oned/v92
   }
 
   public getRoleTypeInfo(): RoleObjectInfo {
     return this.targetMap.get(this.ownershipInfo.TableName);
   }
 
+<<<<<<< HEAD
+=======
+  public hasHierarchy(tablename: string, isAdmin: boolean): boolean {
+    const table = this.targetMap.get(tablename);
+    return (isAdmin ? table?.adminHasHierarchy : table?.respHasHierarchiy) === true;
+  }
+
+>>>>>>> oned/v92
   public exists(tableName: string): boolean {
     return this.targetMap.has(tableName);
   }
@@ -239,13 +518,18 @@ export class RoleService {
     navigationState?: CollectionLoadParameters
   ): Promise<TypedEntityCollectionData<TypedEntity>> {
     if (this.exists(tableName)) {
+<<<<<<< HEAD
       return isAdmin
         ? await this.getEntities(tableName, navigationState)
         : await this.targetMap.get(tableName).resp.Get(navigationState);
+=======
+      return isAdmin ? await this.getEntities(tableName, navigationState) : await this.targetMap.get(tableName).resp.Get(navigationState);
+>>>>>>> oned/v92
     }
     return null;
   }
 
+<<<<<<< HEAD
   public setSidesheetData(args: {
     ownershipInfo: OwnershipInformation,
     entity: IEntity,
@@ -267,6 +551,29 @@ export class RoleService {
     navigationState: CollectionLoadParameters)
     : Promise<EntityCollectionData> {
     return this.targetMap.get(tableName).admin.get(navigationState);
+=======
+  public getExportMethod(tableName: string, isAdmin: boolean, navigationState: CollectionLoadParameters): DataSourceToolbarExportMethod {
+    return this.targetMap.get(tableName).exportMethod(navigationState, isAdmin);
+  }
+
+  public async getRecommendations(roletype: string, uidRole: string): Promise<RoleRecommendationResult> {
+    return this.api.client.portal_roles_recommendations_get(roletype, uidRole);
+  }
+
+  public setSidesheetData(args: { ownershipInfo: OwnershipInformation; entity: IEntity; isAdmin: boolean; canEdit: boolean }): void {
+    this.ownershipInfo = args.ownershipInfo;
+    this.isAdmin = args.isAdmin;
+    this.entity = args.entity;
+    this.canEdit = args.canEdit;
+  }
+
+  public getType(tableName: string, admin: boolean = false): any {
+    return admin ? this.targetMap.get(tableName).adminType : this.targetMap.get(tableName).respType;
+  }
+
+  public async getEntitiesForTree(tableName: string, navigationState: CollectionLoadParameters): Promise<EntityCollectionData> {
+    return this.targetMap.get(tableName).admin?.get(navigationState);
+>>>>>>> oned/v92
   }
 
   public async getInteractiveInternal(): Promise<TypedEntity> {
@@ -274,8 +581,13 @@ export class RoleService {
     if (this.exists(this.ownershipInfo.TableName)) {
       const id = this.entity.GetKeys().join(',');
       return this.isAdmin
+<<<<<<< HEAD
       ? (await this.targetMap.get(this.ownershipInfo.TableName).interactiveAdmin.Get_byid(id)).Data[0]
       : (await this.targetMap.get(this.ownershipInfo.TableName).interactiveResp.Get_byid(id)).Data[0];
+=======
+        ? (await this.targetMap.get(this.ownershipInfo.TableName).interactiveAdmin.Get_byid(id)).Data[0]
+        : (await this.targetMap.get(this.ownershipInfo.TableName).interactiveResp.Get_byid(id)).Data[0];
+>>>>>>> oned/v92
     } else {
       return null;
     }
@@ -301,13 +613,18 @@ export class RoleService {
     return null;
   }
 
+<<<<<<< HEAD
   public getRoleEntitySchema(tableName: string,
     interactive: boolean = false, isAdmin: boolean = false): EntitySchema {
+=======
+  public getRoleEntitySchema(tableName: string, interactive: boolean = false, isAdmin: boolean = false): EntitySchema {
+>>>>>>> oned/v92
     if (!this.exists(tableName)) {
       return null;
     }
 
     if (!interactive) {
+<<<<<<< HEAD
       return isAdmin
         ? this.targetMap.get(tableName).admin.GetSchema()
         : this.targetMap.get(tableName).resp.GetSchema();
@@ -321,15 +638,39 @@ export class RoleService {
   public getMembershipEntitySchema(
     key: string
   ): EntitySchema {
+=======
+      return isAdmin ? this.targetMap.get(tableName).admin.GetSchema() : this.targetMap.get(tableName).resp.GetSchema();
+    }
+
+    return isAdmin ? this.targetMap.get(tableName).interactiveAdmin.GetSchema() : this.targetMap.get(tableName).interactiveResp.GetSchema();
+  }
+
+  public getMembershipEntitySchema(key: string): EntitySchema {
+>>>>>>> oned/v92
     const membership = this.targetMap.get(this.ownershipInfo.TableName).membership;
     return membership.getSchema(key);
   }
 
   public async getDataModel(tableName: string, isAdmin: boolean): Promise<DataModel> {
+<<<<<<< HEAD
     const dataModel = this.targetMap.get(tableName).dataModel;
     return dataModel?.getModel(undefined, isAdmin);
   }
 
+=======
+    const dataModel = this.targetMap.get(tableName)?.dataModel;
+    return dataModel?.getModel(undefined, isAdmin);
+  }
+
+  public canCreate(tableName: string, isAdmin: boolean, userCanCreateAeRole: boolean): boolean {
+    if (tableName === this.AERoleTag && !userCanCreateAeRole) { // special case, that the user can't create application roles at all
+      return false;
+    } 
+
+    return isAdmin ? this.targetMap.get(tableName)?.adminCanCreate : this.targetMap.get(tableName).respCanCreate;
+  }
+
+>>>>>>> oned/v92
   public async getComparisonConfig(): Promise<FkCandidateRouteDto[]> {
     if (this.config == null) {
       this.config = await this.project.getConfig();
@@ -338,13 +679,21 @@ export class RoleService {
     // Configure role comparison
     // TODO 304148: this should not be hard-coded
     const url = 'roles/{roletype}/{uidrole}/compare/{compareroletype}/{uidcomparerole}';
+<<<<<<< HEAD
     const candidates = this.config.CandidateConfig[url].filter(d => d.ParameterName == 'uidcomparerole').map(d => d.Candidates);
+=======
+    const candidates = this.config.CandidateConfig[url].filter((d) => d.ParameterName == 'uidcomparerole').map((d) => d.Candidates);
+>>>>>>> oned/v92
     return candidates;
   }
 
   // Determine if any tables match, if so then we can compare
   public async canCompare(): Promise<boolean> {
+<<<<<<< HEAD
     return (await this.getComparisonConfig()).filter(x => x.FkParentTableName === this.ownershipInfo.TableName).length > 0;
+=======
+    return (await this.getComparisonConfig()).filter((x) => x.FkParentTableName === this.ownershipInfo.TableName).length > 0;
+>>>>>>> oned/v92
   }
 
   public async getEditableFields(objectType: string, entity: IEntity, primary: boolean = false): Promise<string[]> {
@@ -352,6 +701,7 @@ export class RoleService {
       this.config = await this.project.getConfig();
     }
 
+<<<<<<< HEAD
     const list = primary
       ? this.config.OwnershipConfig.PrimaryFields
       : this.config.OwnershipConfig.EditableFields;
@@ -362,6 +712,15 @@ export class RoleService {
   public async getMemberships(args: {
     id: string,
     navigationState?: CollectionLoadParameters
+=======
+    const list = primary ? this.config.OwnershipConfig.PrimaryFields : this.config.OwnershipConfig.EditableFields;
+    return list[objectType].filter((name) => entity.GetSchema().Columns[name]);
+  }
+
+  public async getMemberships(args: {
+    id: string;
+    navigationState?: CollectionLoadParameters;
+>>>>>>> oned/v92
   }): Promise<ExtendedTypedEntityCollection<TypedEntity, unknown>> {
     if (!this.exists(this.ownershipInfo.TableName)) {
       return null;
@@ -370,8 +729,13 @@ export class RoleService {
   }
 
   public async getPrimaryMemberships(args: {
+<<<<<<< HEAD
     id: string,
     navigationState?: CollectionLoadParameters
+=======
+    id: string;
+    navigationState?: CollectionLoadParameters;
+>>>>>>> oned/v92
   }): Promise<ExtendedTypedEntityCollection<TypedEntity, unknown>> {
     if (!this.exists(this.ownershipInfo.TableName)) {
       return null;
@@ -403,9 +767,13 @@ export class RoleService {
     return await this.targetMap.get(this.ownershipInfo.TableName).membership.getCandidates(id, navigationState);
   }
 
+<<<<<<< HEAD
   public async getCandidatesDataModel(
     id: string
   ): Promise<DataModel> {
+=======
+  public async getCandidatesDataModel(id: string): Promise<DataModel> {
+>>>>>>> oned/v92
     return this.targetMap.get(this.ownershipInfo.TableName).membership.getCandidatesDataModel(id);
   }
 
@@ -432,7 +800,14 @@ export class RoleService {
 
     const membership = this.targetMap.get(this.ownershipInfo.TableName).membership;
     // the UID_Person is 1 of 2 primary keys of the membership - the one that is not equal to the UID of the role
+<<<<<<< HEAD
     const uidPerson = item.GetEntity().GetKeys().filter(k => k !== role)[0];
+=======
+    const uidPerson = item
+      .GetEntity()
+      .GetKeys()
+      .filter((k) => k !== role)[0];
+>>>>>>> oned/v92
     await membership.delete(role, uidPerson);
   }
 
@@ -452,6 +827,17 @@ export class RoleService {
     return this.targetMap.get(this.ownershipInfo.TableName).membership ? true : false;
   }
 
+<<<<<<< HEAD
+=======
+  public canHaveStatistics(): boolean {
+    if (!this.exists(this.ownershipInfo.TableName)) {
+      return false;
+    }
+
+    return this.targetMap.get(this.ownershipInfo.TableName).canHaveStatistics;
+  }
+
+>>>>>>> oned/v92
   public canHaveEntitlements(): boolean {
     if (!this.exists(this.ownershipInfo.TableName)) {
       return false;
@@ -461,13 +847,23 @@ export class RoleService {
   }
 
   public async getEntitlements(args: {
+<<<<<<< HEAD
     id: string,
     navigationState?: CollectionLoadParameters
+=======
+    id: string;
+    navigationState?: CollectionLoadParameters;
+    objectKey?: string;
+>>>>>>> oned/v92
   }): Promise<ExtendedTypedEntityCollection<TypedEntity, unknown>> {
     if (!this.exists(this.ownershipInfo.TableName)) {
       return null;
     }
+<<<<<<< HEAD
     return await this.targetMap.get(this.ownershipInfo.TableName).entitlements.getCollection(args.id, args.navigationState);
+=======
+    return await this.targetMap.get(this.ownershipInfo.TableName).entitlements.getCollection(args.id, args.navigationState, args.objectKey);
+>>>>>>> oned/v92
   }
 
   public async getEntitlementTypes(role: IEntity): Promise<RoleAssignmentData[]> {
@@ -482,8 +878,12 @@ export class RoleService {
     return this.targetMap.get(this.ownershipInfo.TableName).entitlements.getEntitlementFkName();
   }
 
+<<<<<<< HEAD
   private async getEntities(tableName: string, navigationState: CollectionLoadParameters)
     : Promise<TypedEntityCollectionData<TypedEntity>> {
+=======
+  private async getEntities(tableName: string, navigationState: CollectionLoadParameters): Promise<TypedEntityCollectionData<TypedEntity>> {
+>>>>>>> oned/v92
     const builder = new TypedEntityBuilder(this.targetMap.get(tableName).adminType);
     const data = await this.targetMap.get(tableName).admin.get(navigationState);
 
@@ -491,6 +891,14 @@ export class RoleService {
   }
 
   public getSplitTargets(): string[] {
+<<<<<<< HEAD
     return [...this.targetMap].filter(m => m[1].canBeSplitTarget).map(m => m[0]);
+=======
+    return [...this.targetMap].filter((m) => m[1].canBeSplitTarget).map((m) => m[0]);
+  }
+
+  public getRoleTranslateKeys(tableName: string): RoleTranslateKeys {
+    return this.targetMap.get(tableName).translateKeys;
+>>>>>>> oned/v92
   }
 }

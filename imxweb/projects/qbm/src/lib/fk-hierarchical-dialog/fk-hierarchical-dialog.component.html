@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 <div class="imx-sidesheet-content">
   <mat-card class="imx-dialog-content">
     <mat-form-field *ngIf="data.fkRelations.length > 3" appearance="outline">
       <mat-label>{{'#LDS#Selected table' | translate}}</mat-label>
+=======
+<div eui-sidesheet-content>
+  <mat-card class="imx-dialog-content">
+    <mat-form-field *ngIf="data.fkRelations?.length > 3" appearance="outline">
+      <mat-label>{{'#LDS#Object type' | translate}}</mat-label>
+>>>>>>> oned/v92
       <mat-select [(ngModel)]="hierarchyService.fkTable" disableOptionCentering panelClass="imx-under"
         (selectionChange)="tableChanged()" data-imx-identifier="cdr-fkadvancedpicker-select-tables">
         <mat-option *ngFor="let item of data.fkRelations" [value]="item">
@@ -11,7 +18,11 @@
     </mat-form-field>
 
     <!-- if more than 1 candidate table -> show radio buttons -->
+<<<<<<< HEAD
     <mat-radio-group class="imx-fk-table-radio" *ngIf="data.fkRelations.length <= 3 && data.fkRelations.length > 1"
+=======
+    <mat-radio-group class="imx-fk-table-radio" *ngIf="data.fkRelations?.length <= 3 && data.fkRelations?.length > 1"
+>>>>>>> oned/v92
       [(ngModel)]="hierarchyService.fkTable" (change)="tableChanged()"
       data-imx-identifier="cdr-fkadvancedpicker-radiogroup-tables">
       <mat-radio-button *ngFor="let item of data.fkRelations" [value]="item"
@@ -20,13 +31,18 @@
       </mat-radio-button>
     </mat-radio-group>
 
+<<<<<<< HEAD
     <imx-data-tree-wrapper #fkTree [withMultiSelect]="data.isMultiValue" [selectedEntities]="selectedEntities"
+=======
+    <imx-data-tree-wrapper #fkTree [withMultiSelect]="data.isMultiValue" [selectedEntities]="selectedEntities" [hideSelection]="true"
+>>>>>>> oned/v92
     [database]="hierarchyService" [filters]="filters" [filterTree]="filterTree" (checkedNodesChanged)="selectedNodesChanged()"
      [entitySchema]="entitySchema" (nodeSelected)="onNodeSelected($event)">
     </imx-data-tree-wrapper>
   </mat-card>
 </div>
 
+<<<<<<< HEAD
 <div *ngIf="data.isMultiValue" class="imx-dialog-actions">
   <button class="justify-start" mat-stroked-button color="primary" type="button"
     [disabled]="selectedEntities.length === 0" (click)="clearSelection()"
@@ -34,6 +50,18 @@
     {{ '#LDS#Clear selection' | translate }}
   </button>
   <button [disabled]="data?.isRequired && selectedEntities.length < 1" mat-raised-button color="primary"
+=======
+<div eui-sidesheet-actions *ngIf="data.isMultiValue">
+  <div>
+   <imx-selected-elements [selectedElements]="selectedEntityCandidates" [tables]="tableNames"></imx-selected-elements>
+  </div>
+  <button class="justify-start" mat-stroked-button type="button"
+    [disabled]="selectedEntityCandidates?.length === 0" (click)="clearSelection()"
+    data-imx-identifier="cdr-fk-hierarchical-dialog-button-clear-selection">
+    {{ '#LDS#Clear selection' | translate }}
+  </button>
+  <button [disabled]="data?.isRequired && selectedEntityCandidates?.length < 1" mat-flat-button color="primary"
+>>>>>>> oned/v92
     (click)="applySelection()" data-imx-identifier="cdr-fk-hierarchical-dialog-button-apply-selection">
     {{ '#LDS#Apply' | translate }}
   </button>

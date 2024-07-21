@@ -9,7 +9,11 @@
  * those terms.
  *
  *
+<<<<<<< HEAD
  * Copyright 2022 One Identity LLC.
+=======
+ * Copyright 2023 One Identity LLC.
+>>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -40,7 +44,12 @@ import {
   LdsReplaceModule,
   MultiSelectFormcontrolModule,
   UserMessageModule,
+<<<<<<< HEAD
   RouteGuardService
+=======
+  RouteGuardService,
+  BusyIndicatorModule
+>>>>>>> oned/v92
 } from 'qbm';
 import { ReportSelectorComponent } from './subscription-wizard/report-selector/report-selector.component';
 import { ReportSubscriptionService } from './report-subscription/report-subscription.service';
@@ -51,8 +60,15 @@ import { SubscriptionsComponent } from './subscriptions.component';
 import { SubscriptionsService } from './subscriptions.service';
 import { SubscriptionWizardComponent } from './subscription-wizard/subscription-wizard.component';
 import { ReportViewConfigComponent } from './report-view-config/report-view-config.component';
+<<<<<<< HEAD
 import { HttpClientModule } from '@angular/common/http';
 import { OverlayModule } from '@angular/cdk/overlay';
+=======
+import { ListReportViewerModule } from '../list-report-viewer/list-report-viewer.module';
+import { HttpClientModule } from '@angular/common/http';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { ListReportViewerSidesheetComponent } from './list-report-viewer-sidesheet/list-report-viewer-sidesheet.component';
+>>>>>>> oned/v92
 
 
 const routes: Routes = [
@@ -72,7 +88,12 @@ const routes: Routes = [
     SubscriptionPropertiesComponent,
     SubscriptionOverviewComponent,
     SubscriptionWizardComponent,
+<<<<<<< HEAD
     SubscriptionsComponent
+=======
+    SubscriptionsComponent,
+    ListReportViewerSidesheetComponent,
+>>>>>>> oned/v92
   ],
   imports: [
     CdrModule,
@@ -91,6 +112,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ScrollingModule,
     TranslateModule,
+<<<<<<< HEAD
     UserMessageModule
   ],
   providers: [
@@ -99,3 +121,12 @@ const routes: Routes = [
   ]
 })
 export class SubscriptionsModule { }
+=======
+    UserMessageModule,
+    BusyIndicatorModule,
+    ListReportViewerModule,
+  ],
+  providers: [ReportSubscriptionService, SubscriptionsService],
+})
+export class SubscriptionsModule {}
+>>>>>>> oned/v92

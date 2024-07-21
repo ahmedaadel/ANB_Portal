@@ -1,116 +1,9 @@
-<<<<<<< HEAD
-**One Identity open source projects are supported through [One Identity GitHub issues](https://github.com/OneIdentity/IdentityManager.Imx/issues) and the [One Identity Community](https://www.oneidentity.com/community/). This includes all scripts, plugins, SDKs, modules, code snippets or other solutions. For assistance with any One Identity GitHub project, please raise a new Issue on the [One Identity GitHub project](https://github.com/OneIdentity/IdentityManager.Imx/issues) page. You may also visit the [One Identity Community](https://www.oneidentity.com/community/) to ask questions.  Requests for assistance made through official One Identity Support will be referred back to GitHub and the One Identity Community forums where those requests can benefit all users.**
-=======
 **One Identity open source projects are supported through [One Identity GitHub issues](https://github.com/OneIdentity/IdentityManager.Imx/issues) and the [One Identity Community](https://www.oneidentity.com/community/). This includes all scripts, plugins, SDKs, modules, code snippets or other solutions. For assistance with any One Identity GitHub project, please raise a new Issue on the [One Identity GitHub project](https://github.com/OneIdentity/IdentityManager.Imx/issues) page. You may also visit the [One Identity Community](https://www.oneidentity.com/community/) to ask questions. Requests for assistance made through official One Identity Support will be referred back to GitHub and the One Identity Community forums where those requests can benefit all users.**
->>>>>>> oned/v92
 
 # Identity Manager HTML5 applications
 
 ## Change log
 
-<<<<<<< HEAD
-### September 1, 2023
-
-The `v91` branch has been updated with fixes for the following issues.
-
-- 426598 The counter of selected optional products was sometimes showing an incorrect value
-- 427961/37144 Adding items to the shopping cart did not work
-- 426872 Policy violation was not using the correct set of standard justifications
-- 426767 Fixed UI layout in request approval sidesheet
-- 415340 Password Reset Portal was sometimes hanging at the loading screen
-- 424223 Refactoring of sidesheet closing (https://github.com/OneIdentity/IdentityManager.Imx/pull/65)
-- 419508 Application Governance KPIs were not correctly adapting to the screens ize
-- 423861/36856/423948 Fix UI when a manager has only indirect, but no direct reports
-- 421566 Fix LDS keys for product names
-
-### June 23, 2023
-
-This update addresses the following security issues.
-
-* 418453 The packages `karma` and `socket.io` have been updated to address security issue CVE-2023-32695.
-
-The `v91` branch has been updated with fixes for the following issues.
-
-* 416865 use string reduce to build comma-separated list of properties in `imxweb/projects/qer/src/lib/org-chart`
-* 410170 fixed accessibility of links on the dashboard
-* 416107 Data Explorer: error when showing department memberships (`Cannot read properties of undefined (reading 'markAsPristine')`)
-* 35861 Avoid unnecessary reload of attestation cases after approving them
-* 417211 New request: The dialog for request properties is cancelling the request when clicking by mistake outside the window
-* Fixes to `projects/rps/src/lib/reports/edit-report-sidesheet/edit-report-sidesheet.component.html`:
-  * Disabled save button, if the sidesheet is read only
-  * Removed placeholder string
-* 412957 Error when editing subscribable reports
-* 417337 Fix ordering of optional service items
-* 416793 Fixed validation of delegation requests
-
-### April 24, 2023
-
-- The branch `v91` is now up to date with the 9.1.1 release of Identity Manager.
-- This update addresses the following security issues.
-  - 410789 Updated Webpack to address security issue CVE-2023-28154.
-  - 403744 Updated `ua-parser-js` to address security issue CVE-2022-25927.
-- The repository has been updated with fixes for the following issues.
-  - 407356 The `deleteDestPath` option is now set for Angular projects. This avoids having to restart `ng serve` when re-compiling base libraries. See [this Angular issue](https://github.com/angular/angular-cli/issues/24791) for more details.
-  - 319131 Fixed a bug when adding a service item to a request template.
-  - 407514 Fixed the password profile tab selection on the profile page.
-  - 403575 Fixed a SCSS bug.
-  - 406544, 406542 Fixed app titles.
-  - 406002 Search was not working correctly for application entitlements.
-  - 358311, 405872 Fixed a bug when copying an attestation policy.
-  - 322939 Fixed a bug that caused the page to load infinitely when loading password profile questions.
-  - 395047 Fixed a bug on the password profile page.
-  - 36635 / 403650 Configuration of `EditableFields` was not being used for accounts in the Data Explorer.
-  - 394255 The API Documentation ("Swagger") page now submits XSRF protection tokens.
-  - 405669 History data was not being loaded from all objects.
-  - 278243 Add tags required to host the Password Reset Portal in the Password Manager Secure Password Extension.
-  - 367262 Fixed view bugs on the rule violations page.
-  - 305110 Fixed a bug when creating dynamic groups.
-  - 399901 Fixed a bug in the grouped view of attestation cases.
-  - 386166 Fixed the links on the Packages view of the Administration Portal.
-  - 366940 Fixed a bug when running the application without the `RISKINDEX` configuration parameter.
-  - 367251 Fixed a bug when approving policy violations.
-  - 36325 Fixed a bug that was causing the indirect reports view to only show direct reports.
-  - 389005 Fixed the view of attestation cases in the Data Explorer.
-  - 223697 Fixed an application name change bug
-  - 290031 Fixed a bug that was causing the chief approval team switch to be displayed after logging out and logging back in with a different user.
-  - 308537 Fixed a bug in the view to split a role.
-  - 393025 Fixed a bug in the [fk-hierarchical-dialog](./imxweb/projects/qbm/src/lib/fk-hierarchical-dialog/fk-hierarchical-dialog.component.ts) component.
-  - 393701 Fixed a bug when selecting an image for an application entitlement for the second time.
-  - 291061 The explanation for service category image inheritance was also shown when the inheritance itself is disabled.
-  - 310269 Fixed a bug when creating a request template with a name longer than 64 characters.
-  - 399839 The date in the history view was displayed in an incorrect format.
-  - 307558 The publication date of an application was displayed in an incorrect format.
-  - 393864 Fixed a bug in the grouped view of attestation runs.
-  - 388613 Fixed a missing scrollbar in the Pending Provisioning Processes view.
-  - 393524 The code to remove the local packages from `package-lock.json` has been moved to [remove-local-package-locks.js](imxweb/remove-local-package-locks.js).
-  - 324122 The unneccessary files `imx-project.json` and `placeholder.spec.ts` have been deleted.
-  - 387104 Fixed a line break in the "Cancel request" drop-down menu item.
-  - 331942 The rule violation details view now shows more information.
-  - 332087 Fixed OAuth login to the Server Administration app.
-
-### March 27, 2023
-
-- Added some [code samples](sdk_samples/README.md) with explanations.
-
-### December 21, 2022
-
-- The repository has been updated with fixes for the following issues.
-  - 323931 Role details sidesheet has stale data problems.
-  - 330766/36011 Members of the identity administrator roles cannot edit some identity data.
-  - 384912 Login errors were not being handled correctly.
-  - 332393/36057 Publishing of an application entitlement did not work correctly.
-  - 388710/36356 The detail sidesheet for a request template did not open corectly.
-  - 314291 The button to add a configuration setting was visible even when no setting could be added.
-  - 387119 Some tiles on the dashboard were overlapping on smaller resolutions.
-  - 386868/36143 Candidates for parameter values were not correctly reloaded.
-
-### November 8, 2022
-
-- The repository has been updated with fixes for the following issues.
-  - Dependency updates for CVE-2022-39353
-  - 35988: Report subscriptions fail if PDF is not a valid format for the report.
-  - Other minor stability and bug fixes
-=======
 ### July 3, 2024
 
 We have added a [list of changes from v91 to v92](imxweb/changes/changesFrom9.1.1To9.2.0.md).
@@ -317,7 +210,6 @@ The v92 branch has been updated with fixes for the following issues.
 ### October 15, 2022
 
 - There is a new application in the workspace called `custom-app`. This application is a template that provides the basic building blocks (such as Material integration, session handling, login, and the API client configuration) can be used as a starting point for building new applications. See [`readme.md`](./imxweb/projects/custom-app/readme.md) for more information.
->>>>>>> oned/v92
 
 ### September 27, 2022
 
@@ -345,11 +237,8 @@ This repository contains the source code for the HTML5 applications contained in
 
 It is a monorepo containing the Angular [workspace](https://angular.io/guide/workspace-config), which consists of apps and [libraries](https://angular.io/guide/libraries).
 
-<<<<<<< HEAD
-=======
 We strongly recommend to read the [HTML Development Guide](https://support.oneidentity.com/technical-documents/identity-manager/9.2/html5-development-guide) before starting to work with the code in this repository.
 
->>>>>>> oned/v92
 By forking this repository, you may create customized versions of the projects and add them to your Identity Manager deployment.
 
 ## Workspace overview
@@ -358,29 +247,6 @@ Each Angular library and app belongs to a folder in the `projects` directory. Th
 
 ### Angular libraries
 
-<<<<<<< HEAD
-|Name|Type|Dependencies inside the workspace|
-|-|-|-|
-|`qbm`|Angular library|none|
-|`qer`|Angular library|`qbm`|
-|`tsb`|Angular plugin library|`qbm`, `qer`|
-|`att`|Angular plugin library|`qbm`, `qer`|
-|`rms`|Angular plugin library|`qbm`, `qer`|
-|`rps`|Angular plugin library|`qbm`, `qer`|
-|`aad`|Angular plugin library|`qbm`, `qer`, `tsb`|
-|`aob`|Angular plugin library|`qbm`, `qer`|
-|`uci`|Angular plugin library|`qbm`, `qer`|
-|`cpl`|Angular plugin library|`qbm`, `qer`|
-|`hds`|Angular plugin library|`qbm`, `qer`|
-|`dpr`|Angular plugin library|`qbm`|
-|`o3t`|Angular plugin library|`qbm`, `qer`, `tsb`|
-|`olg`|Angular plugin library|`qbm`, `qer`|
-|`pol`|Angular plugin library|`qbm`, `qer`|
-
-Each Angular library belongs to the Identity Manager module of the same name.
-
-A (non-plugin) library acts like a regular compile-time dependency. A _plugin_ library is loaded dynamically at runtime, as determined by the plugins' `imx-plugin-config.json` files.
-=======
 | Name  | Type                   | Dependencies inside the workspace |
 | ----- | ---------------------- | --------------------------------- |
 | `qbm` | Angular library        | none                              |
@@ -402,24 +268,11 @@ A (non-plugin) library acts like a regular compile-time dependency. A _plugin_ l
 Each Angular library belongs to the Identity Manager module of the same name. You do not need to build Angular libraries for modules that are not part of your Identity Manager installation.
 
 A (non-plugin) library acts like a regular compile-time dependency. A _plugin_ library is loaded dynamically at runtime, as determined by each plugin's `imx-plugin-config.json` file.
->>>>>>> oned/v92
 
 For more information about each project, see the `readme.md` files in each project's folder.
 
 ### Angular apps
 
-<<<<<<< HEAD
-|Name|Description|Project type|Static dependencies|
-|-|-|-|-|
-|`qbm-app-landingpage`|API Server landing page and Server Administration|Angular app|`qbm`|
-|`qer-app-portal`|Portal|Angular app|`qbm`, `qer`|
-|`qer-app-operationssupport`|Operations Support Portal|Angular app|`qbm`, `qer`|
-|`qer-app-pwdportal`|Password Reset Portal|Angular app|`qbm`, `qer`|
-
-## Installing node.js
-
-Verify that you have installed the correct `node.js` version for your branch. The version used by the CI build is defined in the [`.github/workflows/npm-build.yml`](.github/workflows/npm-build.yml) file in the `node-version` property. Other versions of `node.js`, including newer versions, are not guaranteed to be compatible with other Angular versions.
-=======
 | Name                        | Description                                       | Project type | Static dependencies |
 | --------------------------- | ------------------------------------------------- | ------------ | ------------------- |
 | `qbm-app-landingpage`       | API Server landing page and Server Administration | Angular app  | `qbm`               |
@@ -431,17 +284,12 @@ Verify that you have installed the correct `node.js` version for your branch. Th
 ## Installing Node.js
 
 Verify that you have installed a compatible `node.js` version for your branch. The version used by the CI build is defined in the [`.github/workflows/npm-build.yml`](.github/workflows/npm-build.yml) file in the `node-version` property. Other versions of `node.js`, including newer versions, are not guaranteed to be compatible with other Angular versions. Please see the [version compatibility table](https://angular.io/guide/versions) on the official Angular site.
->>>>>>> oned/v92
 
 ## Building
 
 To install the required dependencies, run `npm install` in the root folder of the workspace.
 
 To build any library or app, run `npm build <name>`. Note that you must build each library in the correct order; along with any plugins that you want to include. For example, to build `qer-app-portal`, you need to build at least the following in this order:
-<<<<<<< HEAD
-=======
-
->>>>>>> oned/v92
 - `qbm`
 - `qer`
 - `qer-app-portal`
@@ -464,11 +312,7 @@ imxclient.exe run-apiserver -B
 
 The web apps will connect to the API Server using the URL defined in the application's `environment.ts` file. The default setting is `http://localhost:8182` which is the default URL that a local API Server will run on.
 
-<<<<<<< HEAD
-## More information
-=======
 ## Getting started
->>>>>>> oned/v92
 
 Please refer to the [HTML Development Guide](https://support.oneidentity.com/technical-documents/identity-manager/8.2.1/html5-development-guide#TOPIC-1801966) for step-by-step instructions on getting started.
 
@@ -476,17 +320,6 @@ Please refer to the [HTML Development Guide](https://support.oneidentity.com/tec
 
 The following table shows the branches in this repository corresponding to each product version.
 
-<<<<<<< HEAD
-|Branch|Product version|`node.js` version|
-|-|-|-|
-|`v91`|Identity Manager 9.1.x|14|
-|`v90`|Identity Manager 9.0|14|
-|`v82`|Identity Manager 8.2.x|14|
-|`master`|The `master` branch does not correspond to a supported version of Identity Manager. Do not use this branch for development purposes.||
-
-We plan to push updates for each minor and major product release, allowing developers to track source code changes from one version to the next. Occasionally we may also publish important bug fixes.
-
-=======
 | Branch   | Product version                                                                                                                      | Angular version |
 | -------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
 | `v92`    | Identity Manager 9.2.x                                                                                                               | 14              |
@@ -521,7 +354,6 @@ This method only works for `qbm`, `qer` and the applications.
 1. Navigate to _imxweb_.
 2. run `npm run doc:<projectname>`
 
->>>>>>> oned/v92
 ## Contributing
 
 We welcome and appreciate contributions. Here's how you can open a pull request to submit code changes.
@@ -533,14 +365,7 @@ We welcome and appreciate contributions. Here's how you can open a pull request 
 5. Open a pull request
 
 <!-- LICENSE -->
-<<<<<<< HEAD
-## License
-
-Distributed under the One Identity - Open Source License. See [LICENSE](LICENSE) for more information.
-
-=======
 
 ## License
 
 Distributed under the One Identity - Open Source License. See [LICENSE](LICENSE) for more information.
->>>>>>> oned/v92

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,17 +24,6 @@
  *
  */
 
-<<<<<<< HEAD
-export function checkMatchValidator(answer1: string, answer2: string) {
-  return function (frm) {
-    let answer1Value = frm.get(answer1).value;
-    let answer2Value = frm.get(answer2).value;
-
-    if (answer1Value !== '' && answer1Value !== answer2Value) {
-      return { match: `value ${answer1Value} is not equal to ${answer2Value}` };
-    }
-    return null;
-=======
 
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
@@ -48,6 +33,5 @@ export function checkMatchValidator(answer1: string, answer2: string) {
     let answer2Value = formGroup.get(answer2).value;
 
     return (answer1Value !== '' && answer1Value !== answer2Value) ? { matchFailed: true } : null;
->>>>>>> oned/v92
   };
 }

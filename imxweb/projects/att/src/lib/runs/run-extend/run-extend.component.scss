@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-@import '@elemental-ui/core/src/styles/_palette.scss';
-=======
 @import "@elemental-ui/core/src/styles/_eui_palette.scss";
->>>>>>> oned/v92
 
 :host {
   display: flex;
@@ -31,11 +27,7 @@
 .imx-button-bar {
   display: flex;
   justify-content: flex-end;
-<<<<<<< HEAD
-  border-top: $black-c 1px solid;
-=======
   border-top: $color-gray-20 1px solid;
->>>>>>> oned/v92
   padding: 0px 20px 20px 8px;
   > * {
     margin-left: 10px;

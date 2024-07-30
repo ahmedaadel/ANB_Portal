@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,11 +26,6 @@
 
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
-<<<<<<< HEAD
-import { MatDialog } from '@angular/material/dialog';
-import { PortalRolesExclusions, PortalShopConfigMembers } from 'imx-api-qer';
-import { CollectionLoadParameters, EntitySchema, IClientProperty, TypedEntity, TypedEntityCollectionData } from 'imx-qbm-dbts';
-=======
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -48,7 +39,6 @@ import {
   ValType,
 } from 'imx-qbm-dbts';
 
->>>>>>> oned/v92
 import {
   DataSourceToolbarSettings,
   DataSourceToolbarFilter,
@@ -56,13 +46,6 @@ import {
   DataTableComponent,
   HELPER_ALERT_KEY_PREFIX,
   StorageService,
-<<<<<<< HEAD
-  SettingsService
-} from 'qbm';
-import { DynamicExclusionDialogComponent } from '../../dynamic-exclusion-dialog/dynamic-exclusion-dialog.component';
-import { ACTION_DISMISS, RequestsService } from '../requests.service';
-import { MemberSelectorComponent } from './member-selector.component';
-=======
   SettingsService,
   HELP_CONTEXTUAL,
   BaseCdr,
@@ -75,28 +58,18 @@ import { JustificationType } from '../../justification/justification-type.enum';
 import { JustificationService } from '../../justification/justification.service';
 import { ReasonSidesheetComponent } from './reason-sidesheet/reason-sidesheet.component';
 
->>>>>>> oned/v92
 
 const helperAlertKey = `${HELPER_ALERT_KEY_PREFIX}_requestShopAccess`;
 
 @Component({
   selector: 'imx-request-config-members',
   templateUrl: './request-config-members.component.html',
-<<<<<<< HEAD
-  styleUrls: ['../request-config-common.scss', './request-config-members.component.scss']
-})
-export class RequestConfigMembersComponent implements OnInit {
-
-  @Input() public customerNodeId: string;
-  @Input() public requestDynamicGroup: string;
-=======
   styleUrls: ['../request-config-sidesheet-common.scss', './request-config-members.component.scss'],
 })
 export class RequestConfigMembersComponent implements OnInit {
   @Input() public customerNodeId: string;
   @Input() public requestDynamicGroup: string;
   @Input() public shopDisplay = '';
->>>>>>> oned/v92
   @Output() public memberCountUpdated = new EventEmitter<number>();
   @ViewChild('dataTable', { static: false }) public dataTable: DataTableComponent<PortalShopConfigMembers>;
   @ViewChild('dataTableExclusions', { static: false }) public dataTableExclusions: DataTableComponent<PortalRolesExclusions>;
@@ -108,19 +81,12 @@ export class RequestConfigMembersComponent implements OnInit {
   public filterOptions: DataSourceToolbarFilter[] = [];
   public selectedMembers: PortalShopConfigMembers[] = [];
   public selectedExclusions: PortalRolesExclusions[] = [];
-<<<<<<< HEAD
-=======
   public accessContextIds = HELP_CONTEXTUAL.ConfigurationRequestsAccess;
->>>>>>> oned/v92
 
   public readonly itemStatus = {
     enabled: (item: PortalShopConfigMembers): boolean => {
       return item.XOrigin?.value !== 4;
-<<<<<<< HEAD
-    }
-=======
     },
->>>>>>> oned/v92
   };
 
   private readonly entitySchemaShopConfigMembers: EntitySchema;
@@ -135,15 +101,11 @@ export class RequestConfigMembersComponent implements OnInit {
     public readonly requestsService: RequestsService,
     private readonly storageService: StorageService,
     settingsService: SettingsService,
-<<<<<<< HEAD
-    private readonly matDialog: MatDialog,
-=======
     private translate: TranslateService,
     private readonly sidesheet: EuiSidesheetService,
     private readonly justificationService: JustificationService,
     private readonly entityService: EntityService,
     private readonly confirmation: ConfirmationService,
->>>>>>> oned/v92
   ) {
     this.defaultPageSize = settingsService.DefaultPageSize;
     this.entitySchemaShopConfigMembers = this.requestsService.shopConfigMembersSchema;
@@ -156,13 +118,6 @@ export class RequestConfigMembersComponent implements OnInit {
     return document.body.offsetWidth <= 768;
   }
 
-<<<<<<< HEAD
-  get showHelperAlert(): boolean {
-    return !this.storageService.isHelperAlertDismissed(helperAlertKey);
-  }
-
-=======
->>>>>>> oned/v92
   get managedByDynamicGroup(): boolean {
     return !!this.requestDynamicGroup?.length;
   }
@@ -182,20 +137,10 @@ export class RequestConfigMembersComponent implements OnInit {
   }
 
   public async ngOnInit(): Promise<void> {
-<<<<<<< HEAD
-    this.displayedColumns = [
-      this.entitySchemaShopConfigMembers.Columns.UID_Person,
-      this.entitySchemaShopConfigMembers.Columns.XOrigin
-    ];
-    this.displayedColumnsExcluded = [
-      this.entitySchemaShopConfigExcludedMembers.Columns.UID_Person,
-      this.entitySchemaShopConfigExcludedMembers.Columns.Description
-=======
     this.displayedColumns = [this.entitySchemaShopConfigMembers.Columns.UID_Person, this.entitySchemaShopConfigMembers.Columns.XOrigin];
     this.displayedColumnsExcluded = [
       this.entitySchemaShopConfigExcludedMembers.Columns.UID_Person,
       this.entitySchemaShopConfigExcludedMembers.Columns.Description,
->>>>>>> oned/v92
     ];
     await this.navigate();
     if (this.managedByDynamicGroup) {
@@ -257,24 +202,6 @@ export class RequestConfigMembersComponent implements OnInit {
     await this.navigateExcludedMembers();
   }
 
-<<<<<<< HEAD
-  public openMemberSelector(): void {
-    const newMember = this.requestsService.generateRequestConfigMemberEntity(this.customerNodeId);
-    const property = this.entitySchemaShopConfigMembers.Columns.UID_Person;
-    const entity = newMember.GetEntity();
-    const fk = entity.GetFkCandidateProvider()
-      .getProviderItem(property.FkRelation.ParentColumnName, property.FkRelation.ParentTableName);
-
-    const dialogRef = this.matDialog.open(MemberSelectorComponent, {
-      width: this.isMobile ? '90vw' : '60vw',
-      maxWidth: this.isMobile ? '90vw' : '80vw',
-      minHeight: '60vh',
-      data: {
-        get: parameters => fk.load(entity, parameters),
-        GetFilterTree: parentkey => fk.getFilterTree(entity, parentkey),
-        isMultiValue: true
-      }
-=======
   public async openMemberSelector(): Promise<void> {
     const newMember = this.requestsService.generateRequestConfigMemberEntity(this.customerNodeId);
     const property = this.entitySchemaShopConfigMembers.Columns.UID_Person;
@@ -292,7 +219,6 @@ export class RequestConfigMembersComponent implements OnInit {
         GetFilterTree: (parentkey) => fk.getFilterTree(entity, parentkey),
         isMultiValue: true,
       },
->>>>>>> oned/v92
     });
     dialogRef.afterClosed().subscribe((selectedValues: string[]) => {
       if (selectedValues) {
@@ -301,43 +227,6 @@ export class RequestConfigMembersComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
-
-  public async removeMembers(): Promise<void> {
-    let reasonForExclusion = '';
-    if (this.managedByDynamicGroupSelected) {
-      const dialogRef = this.matDialog.open(DynamicExclusionDialogComponent, {
-        width: '500px',
-      });
-      const reason = await dialogRef.afterClosed().toPromise();
-      if (reason === undefined) {
-        // Handle the cancel case from dialog
-        return;
-      }
-      reasonForExclusion = reason;
-    }
-    try {
-      this.requestsService.handleOpenLoader();
-      await this.requestsService.removeRequestConfigMembers(
-        this.customerNodeId, this.requestDynamicGroup, this.selectedMembers, reasonForExclusion
-      );
-      await this.navigate();
-      // Remove any remaining items in memory that haven't yet been processed by backend
-      const data = this.removeSelectionsInMemory(this.selectedMembers, this.dstSettings.dataSource.Data);
-      this.dstSettings.dataSource.Data = data;
-      await this.navigate(this.dstSettings.dataSource);
-      if (this.managedByDynamicGroupSelected) {
-        // If adding an exclusion
-        this.requestsService.openSnackbar(
-          this.requestsService.LdsMembersRemoved, ACTION_DISMISS
-        );
-      }
-      // Reset table selections (removing references to now deleted members)
-      this.dataTable.clearSelection();
-    } finally {
-      this.requestsService.handleCloseLoader();
-    }
-=======
   /**
    * In case of a Dynamic Role origined member, it opens a sidesheet, where the user can enter a reason, why the user would like to remove the selected members and removes it.
    * In case of a Direct assignment origined member, it lets the user exclude the member without a reason.
@@ -398,7 +287,6 @@ export class RequestConfigMembersComponent implements OnInit {
 
     const reason = await sidesheetRef.afterClosed().toPromise();
     return reason;
->>>>>>> oned/v92
   }
 
   public async removeExclusions(): Promise<void> {
@@ -410,13 +298,7 @@ export class RequestConfigMembersComponent implements OnInit {
       const data = this.removeSelectionsInMemory(this.selectedExclusions, this.dstSettingsExcludedMembers.dataSource.Data);
       this.dstSettingsExcludedMembers.dataSource.Data = data;
       await this.navigateExcludedMembers(this.dstSettingsExcludedMembers.dataSource);
-<<<<<<< HEAD
-      this.requestsService.openSnackbar(
-        this.requestsService.LdsMembersAdded, ACTION_DISMISS
-      );
-=======
       this.requestsService.openSnackbar(this.requestsService.LdsMembersAdded, ACTION_DISMISS);
->>>>>>> oned/v92
       // Reset table selections (removing references to now deleted members)
       this.dataTableExclusions.clearSelection();
     } finally {
@@ -424,8 +306,6 @@ export class RequestConfigMembersComponent implements OnInit {
     }
   }
 
-<<<<<<< HEAD
-=======
   private createCdrReason(display?: string): BaseCdr {
     const column = this.entityService.createLocalEntityColumn({
       ColumnName: 'ReasonHead',
@@ -436,7 +316,6 @@ export class RequestConfigMembersComponent implements OnInit {
     return new BaseCdr(column, display || '#LDS#Reason for your decision');
   }
 
->>>>>>> oned/v92
   public onHelperDismissed(): void {
     this.storageService.storeHelperAlertDismissal(helperAlertKey);
   }

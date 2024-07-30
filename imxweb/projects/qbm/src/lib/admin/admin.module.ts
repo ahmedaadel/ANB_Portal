@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,15 +25,10 @@
  */
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
-<<<<<<< HEAD
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-=======
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
->>>>>>> oned/v92
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -52,62 +43,6 @@ import { MatTreeModule } from '@angular/material/tree';
 import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { DataSourceToolbarModule } from '../data-source-toolbar/data-source-toolbar.module';
-<<<<<<< HEAD
-import { LdsReplaceModule } from '../lds-replace/lds-replace.module';
-import { ConfigService } from './config.service';
-import { ConfigComponent } from './config.component';
-import { DashboardComponent } from './dashboard.component';
-import { ListSettingComponent } from './list-setting.component';
-import { StatusComponent } from './status.component';
-import { FormsModule } from '@angular/forms';
-import { SelectValueComponent } from './select-value.component';
-import { ApplyConfigSidesheetComponent } from './apply-config-sidesheet.component';
-import { ConfigKeyPathComponent } from './config-key-path.component';
-import { PackagesComponent } from './packages.component';
-import { AddConfigSidesheetComponent } from './add-config-sidesheet.component';
-import { ConvertConfigSidesheetComponent } from './convert-config-sidesheet.component';
-
-@NgModule({
-    imports: [
-        CommonModule,
-        DataSourceToolbarModule,
-        DragDropModule,
-        EuiCoreModule,
-        EuiMaterialModule,
-        FormsModule,
-        LdsReplaceModule,
-        MatButtonModule,
-        MatBadgeModule,
-        MatCheckboxModule,
-        MatDialogModule,
-        MatExpansionModule,
-        MatIconModule,
-        MatTooltipModule,
-        MatSelectModule,
-        MatSidenavModule,
-        MatProgressSpinnerModule,
-        MatTreeModule,
-        TranslateModule
-    ],
-    providers: [
-        ConfigService
-    ],
-    declarations: [
-        AddConfigSidesheetComponent,
-        ApplyConfigSidesheetComponent,
-        ConvertConfigSidesheetComponent,
-        ConfigComponent,
-        ConfigKeyPathComponent,
-        ListSettingComponent,
-        DashboardComponent,
-        PackagesComponent,
-        SelectValueComponent,
-        StatusComponent
-    ]
-})
-export class AdminModule {
-}
-=======
 import { DateModule } from '../date/date.module';
 import { LdsReplaceModule } from '../lds-replace/lds-replace.module';
 import { AddConfigSidesheetComponent } from './add-config-sidesheet.component';
@@ -187,4 +122,3 @@ import { SideNavigationViewModule } from '../side-navigation-view/side-navigatio
   ],
 })
 export class AdminModule {}
->>>>>>> oned/v92

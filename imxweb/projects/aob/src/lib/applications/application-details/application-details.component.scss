@@ -1,9 +1,5 @@
 @use '@angular/material' as mat;
-<<<<<<< HEAD
-@import '@elemental-ui/core/src/styles/_palette.scss';
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
->>>>>>> oned/v92
 
 :host {
   display: flex;
@@ -11,45 +7,6 @@
   overflow: hidden;
   flex: 1 1 auto;
   min-height: 100%;
-<<<<<<< HEAD
-  background-color: mat.get-color-from-palette($asher-gray-palette, 100);
-}
-
-
-.imx-application-details-content {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 16px 24px;
-  overflow: auto;
-
-  > .mat-card {
-    background-color: transparent;
-  }
-
-  .mat-card-title {
-    font-size: 18px;
-    line-height: 36px;
-  }
-
-  .mat-button {
-    vertical-align: middle;
-    padding: 0 2px;
-    min-width: 0;
-    margin-left: 5px;
-
-    ::ng-deep .mat-button-wrapper {
-      vertical-align: text-bottom;
-    }
-  }
-
-  .mat-button[hidden] {
-    display: none;
-  }
-
-  .mat-divider-horizontal {
-    width: 50px;
-    margin-bottom: 12px;
-=======
 
   .imx-application-details-content .imx-application-details-grid.hidden {
     display: none;
@@ -101,7 +58,6 @@
       width: 50px;
       margin-bottom: 12px;
     }
->>>>>>> oned/v92
   }
 }
 
@@ -115,47 +71,28 @@
     flex-direction: column;
     margin-bottom: -15px;
 
-<<<<<<< HEAD
-    >* {
-=======
     > * {
->>>>>>> oned/v92
       margin-bottom: 15px;
     }
   }
 }
 
-<<<<<<< HEAD
-.imx-button-area{
-=======
 .imx-button-area {
->>>>>>> oned/v92
   background-color: transparent;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 
-<<<<<<< HEAD
-
-  .justify-start{
-=======
   .justify-start {
->>>>>>> oned/v92
     margin-right: auto;
     justify-self: start;
   }
 
-<<<<<<< HEAD
-  .imx-additional-actions{
-=======
   .imx-additional-actions {
->>>>>>> oned/v92
     margin-right: 5px;
     margin-left: 5px;
   }
 
-<<<<<<< HEAD
-=======
   .mat-stroked-button,
   .mat-raised-button {
     eui-icon {
@@ -166,21 +103,14 @@
   > button:not(:last-of-type) {
     margin-right: 16px;
   }
->>>>>>> oned/v92
 }
 
 .imx-application-property-multi {
   display: flex;
   flex-direction: column;
 
-<<<<<<< HEAD
-  >span {
-    font-weight: 600;
-    color: $black-6;
-=======
   > span {
     font-weight: 600;
->>>>>>> oned/v92
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -204,11 +134,7 @@ li {
 
     > .imx-card-title {
       font-size: 16px;
-<<<<<<< HEAD
-      flex:1;
-=======
       flex: 1;
->>>>>>> oned/v92
       margin-left: 10px;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -217,11 +143,6 @@ li {
   }
 }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> oned/v92
 .mat-dialog-content {
   flex: 1;
   display: flex;
@@ -260,10 +181,6 @@ li {
     user-select: none;
   }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
   @mixin publish-state-style {
     font-weight: 600;
     font-size: 12px;
@@ -278,18 +195,10 @@ li {
 
   .imx-application-unpublished-state,
   .imx-application-willbepublished-state {
-<<<<<<< HEAD
-    color: $corbin-orange;
-=======
->>>>>>> oned/v92
     @include publish-state-style;
   }
 
   .imx-application-published-state {
-<<<<<<< HEAD
-    color: $aspen-green;
-=======
->>>>>>> oned/v92
     @include publish-state-style;
 
     .mat-icon {
@@ -321,10 +230,6 @@ li {
 
   .mat-icon {
     margin-right: 5px;
-<<<<<<< HEAD
-    color: $aspen-green;
-=======
->>>>>>> oned/v92
     font-size: 16px;
     width: 16px;
     height: 16px;
@@ -339,11 +244,7 @@ li {
     font-size: 14px;
   }
 
-<<<<<<< HEAD
-  .mat-card-content>div {
-=======
   .mat-card-content > div {
->>>>>>> oned/v92
     display: flex;
     align-items: center;
   }
@@ -368,13 +269,7 @@ li {
       min-width: 200px;
       padding-right: 21px;
     }
-<<<<<<< HEAD
-
   }
-
-=======
-  }
->>>>>>> oned/v92
 }
 
 .imx-multivalue-item {
@@ -382,11 +277,6 @@ li {
 }
 
 .mat-card-avatar {
-<<<<<<< HEAD
-  background-color: $black-b;
-  color: $white;
-=======
->>>>>>> oned/v92
   padding: 5px;
   height: 25px;
   width: 25px;
@@ -397,8 +287,6 @@ li {
   display: flex;
   flex-direction: column;
 }
-<<<<<<< HEAD
-=======
 
 //Themeing
 :host {
@@ -500,4 +388,3 @@ li {
     }
   }
 }
->>>>>>> oned/v92

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,20 +25,12 @@
  */
 
 import { RoleAssignmentData } from 'imx-api-qer';
-<<<<<<< HEAD
-import { CollectionLoadParameters, DbObjectKey, ExtendedTypedEntityCollection, IEntity, TypedEntity } from 'imx-qbm-dbts';
-=======
 import { CollectionLoadParameters, CompareOperator, DbObjectKey, ExtendedTypedEntityCollection, FilterType, IEntity, TypedEntity } from 'imx-qbm-dbts';
->>>>>>> oned/v92
 import { DynamicMethod, DynamicMethodService, GenericTypedEntity, ImxTranslationProviderService, imx_SessionService } from 'qbm';
 import { QerApiService } from '../../qer-api-client.service';
 
 export interface IRoleEntitlements {
-<<<<<<< HEAD
-  getCollection(id: string, navigationState?: CollectionLoadParameters): Promise<ExtendedTypedEntityCollection<TypedEntity, unknown>>;
-=======
   getCollection(id: string, navigationState?: CollectionLoadParameters, objectKeyForFiltering?: string): Promise<ExtendedTypedEntityCollection<TypedEntity, unknown>>;
->>>>>>> oned/v92
 
   getEntitlementTypes(role: IEntity): Promise<RoleAssignmentData[]>;
 
@@ -73,19 +61,6 @@ export class BaseTreeEntitlement implements IRoleEntitlements {
   }
 
   public getEntitlementFkName() {
-<<<<<<< HEAD
-    return "ObjectKeyElement"; // column name in QERVBaseTreeHasElement    
-  }
-
-  public async delete(id: string, entity: IEntity): Promise<void> {
-    const key = DbObjectKey.FromXml(entity.GetColumn("ObjectKeyElement").GetValue());
-    const entlType = key.TableName;
-    const uidEntitlement = key.Keys[0];
-    await this.dynamicMethodSvc.delete(this.api.apiClient, `/portal/roles/config/entitlements/${this.roletype}/${id}/${entlType}/${uidEntitlement}`, {});
-  }
-
-  public async getCollection(id: string, navigationState?: CollectionLoadParameters): Promise<ExtendedTypedEntityCollection<TypedEntity, unknown>> {
-=======
     return 'ObjectKeyElement'; // column name in QERVBaseTreeHasElement
   }
 
@@ -105,7 +80,6 @@ export class BaseTreeEntitlement implements IRoleEntitlements {
     navigationState?: CollectionLoadParameters,
     objectKeyForFiltering?: string
   ): Promise<ExtendedTypedEntityCollection<TypedEntity, unknown>> {
->>>>>>> oned/v92
     const api = new DynamicMethod(
       this.schemaPaths.get('get'),
       `/portal/roles/entitlements/${this.roletype}/${id}`,
@@ -114,23 +88,6 @@ export class BaseTreeEntitlement implements IRoleEntitlements {
       this.translator
     );
 
-<<<<<<< HEAD
-    return await api.Get(navigationState);
-  }
-
-  public createEntitlementAssignmentEntity(role: IEntity, entlType: RoleAssignmentData): IEntity {
-
-    const initialData = {};
-    const uidRole = role.GetKeys()[0];
-    initialData[entlType.RoleFk] = { Value: uidRole };
-    const entityColl = this.dynamicMethodSvc.createEntity(this.api.apiClient, {
-      path: '/portal/roles/config/entitlements/' + entlType.RoleTable + '/' + uidRole + '/' + entlType.TableName,
-      type: GenericTypedEntity,
-      schemaPath: 'portal/roles/config/entitlements/' + entlType.RoleTable + '/{' + entlType.RoleFk + '}/' + entlType.TableName,
-    }, {
-      Columns: initialData
-    });
-=======
     return await api.Get({
       ...navigationState,
       filter: objectKeyForFiltering
@@ -161,7 +118,6 @@ export class BaseTreeEntitlement implements IRoleEntitlements {
         Columns: initialData,
       }
     );
->>>>>>> oned/v92
     return entityColl.Data[0].GetEntity();
   }
 }

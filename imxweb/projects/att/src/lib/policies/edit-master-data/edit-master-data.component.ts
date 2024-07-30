@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,48 +24,20 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { FormGroup, FormArray, FormControl } from '@angular/forms';
-=======
 import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UntypedFormGroup, UntypedFormArray, UntypedFormControl } from '@angular/forms';
->>>>>>> oned/v92
 import { EuiLoadingService, EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { OverlayRef } from '@angular/cdk/overlay';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
-<<<<<<< HEAD
-import { ColumnDependentReference, BaseCdr, SnackBarService, ClassloggerService } from 'qbm';
-=======
 import { ColumnDependentReference, BaseCdr, SnackBarService, ClassloggerService, LdsReplacePipe } from 'qbm';
->>>>>>> oned/v92
 import { UserModelService } from 'qer';
 import { FilterModel } from '../policy-editor/filter-model';
 import { Policy } from '../policy.interface';
 import { PolicyService } from '../policy.service';
 import { FilterElementColumnService } from '../editors/filter-element-column.service';
 import { ConfirmDeactivationComponent } from '../confirm-deactivation/confirm-deactivation.component';
-<<<<<<< HEAD
-import { ConfirmationService } from 'qbm';
-import { EntitySchema } from 'imx-qbm-dbts';
-
-@Component({
-  templateUrl: './edit-master-data.component.html',
-  styleUrls: ['./edit-master-data.component.scss']
-})
-export class EditMasterDataComponent implements OnInit, OnDestroy {
-
-  public readonly formGroup: FormGroup;
-  public readonly schema: EntitySchema;
-  public objectProperties: { [key: string]: ({ cdr: ColumnDependentReference, formControl?: FormControl }) } = {};
-  public readonly formArray: FormArray;
-  public reload = false;
-  public filterModel: FilterModel;
-  public hasAttestations: boolean;
-=======
 import { ConfirmationService, HELP_CONTEXTUAL, HelpContextualValues } from 'qbm';
 import { EntitySchema } from 'imx-qbm-dbts';
 import { TranslateService } from '@ngx-translate/core';
@@ -90,15 +58,11 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
   public contextId: HelpContextualValues;
 
   @ViewChild('filterControl', { static: true }) policyEditor: PolicyEditorComponent;
->>>>>>> oned/v92
 
   private isPoliyEditorEnabled = true;
   private valueChangedSubscription: Subscription;
   private closeSubscription: Subscription;
-<<<<<<< HEAD
-=======
   private threshold = -1;
->>>>>>> oned/v92
 
   constructor(
     @Inject(EUI_SIDESHEET_DATA) public readonly policy: Policy,
@@ -110,21 +74,6 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
     private readonly columnService: FilterElementColumnService,
     private readonly logger: ClassloggerService,
     private readonly userService: UserModelService,
-<<<<<<< HEAD
-    private readonly confirmationService: ConfirmationService
-  ) {
-
-    this.schema = policyService.AttestationPolicyEditSchema;
-    this.initOrRefreshCdrDictionary();
-
-    this.formGroup = new FormGroup({
-      formArray: new FormArray([])
-    });
-    this.formArray = this.formGroup.get('formArray') as FormArray;
-    this.closeSubscription = this.sidesheetRef.closeClicked().subscribe(async () => {
-      if (!this.formGroup.dirty
-        || await confirmationService.confirmLeaveWithUnsavedChanges()) {
-=======
     private readonly confirmationService: ConfirmationService,
     private readonly translate: TranslateService,
     private readonly ldsReplace: LdsReplacePipe
@@ -138,7 +87,6 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
     this.formArray = this.formGroup.get('formArray') as UntypedFormArray;
     this.closeSubscription = this.sidesheetRef.closeClicked().subscribe(async () => {
       if (!this.formGroup.dirty || (await confirmationService.confirmLeaveWithUnsavedChanges())) {
->>>>>>> oned/v92
         this.sidesheetRef.close(this.reload);
       }
     });
@@ -157,13 +105,6 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
     }
   }
 
-<<<<<<< HEAD
-  public async ngOnInit(): Promise<void> {
-    let overlayRef: OverlayRef;
-    setTimeout(() => overlayRef = this.busyService.show());
-    try {
-      this.hasAttestations = (await this.policyService.getRunCountForPolicy(this.policy.policy.GetEntity().GetKeys()[0])) > 0;
-=======
   public get objectType(): string {
     return this.policy.policy.GetEntity().TypeName;
   }
@@ -178,7 +119,6 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
     try {
       this.hasAttestations = (await this.policyService.getRunCountForPolicy(this.policy.policy.GetEntity().GetKeys()[0])) > 0;
       this.threshold = await this.policyService.getCasesThreshold();
->>>>>>> oned/v92
     } finally {
       setTimeout(() => this.busyService.hide(overlayRef));
     }
@@ -186,13 +126,6 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
       this.formGroup.markAsDirty();
     }
     this.logger.trace('call isEnabledSubject with', this.policy.policy.UID_QERPickCategory.value == null);
-<<<<<<< HEAD
-    this.filterModel.isEnabledSubject.next(this.policy.policy.UID_QERPickCategory.value == null ||
-      this.policy.policy.UID_QERPickCategory.value === '');
-  }
-
-  public addControl(evt: FormControl, columnName: string): void {
-=======
     this.filterModel.isEnabledSubject.next(
       this.policy.policy.UID_QERPickCategory.value == null || this.policy.policy.UID_QERPickCategory.value === ''
     );
@@ -201,26 +134,17 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
   }
 
   public addControl(evt: UntypedFormControl, columnName: string): void {
->>>>>>> oned/v92
     setTimeout(() => {
       this.formGroup.removeControl(columnName);
       this.objectProperties[columnName].formControl = evt;
       this.formGroup.addControl(columnName, evt);
       this.logger.debug(this, 'new Control added to form group');
 
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
       if (columnName === 'IsInActive') {
         if (this.valueChangedSubscription) {
           this.valueChangedSubscription.unsubscribe();
         }
-<<<<<<< HEAD
-        this.valueChangedSubscription = evt.valueChanges.subscribe(value => {
-=======
         this.valueChangedSubscription = evt.valueChanges.subscribe((value) => {
->>>>>>> oned/v92
           this.confirmDeactivation(value);
         });
       }
@@ -233,11 +157,7 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
     this.policy.filterData = {
       IsReadOnly: this.policy?.filterData == null || this.policy?.filterData.IsReadOnly,
       Filter: { Elements: [] },
-<<<<<<< HEAD
-      InfoDisplay: []
-=======
       InfoDisplay: [],
->>>>>>> oned/v92
     };
     this.logger.debug(this, 'UID_PWODecisionMethod updated and filter removed');
   }
@@ -247,14 +167,6 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
     this.logger.debug(this, 'Attestator cdr updated');
   }
 
-<<<<<<< HEAD
-
-  public async updatePickCategory(): Promise<void> {
-    const showConfirmation =
-      this.isPoliyEditorEnabled
-      && this.filterModel.policyFilterData?.Filter.Elements.length
-      && (this.policy.policy.UID_QERPickCategory.value?.length > 0);
-=======
   public async updateReadOnlySchedule(){
     this.objectProperties.UID_DialogSchedule.cdr = new BaseCdr(this.policy.policy.UID_DialogSchedule.Column);
     this.logger.debug(this, 'UID_DialogSchedule cdr updated');
@@ -265,37 +177,24 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
       this.isPoliyEditorEnabled &&
       this.filterModel.policyFilterData?.Filter.Elements.length &&
       this.policy.policy.UID_QERPickCategory.value?.length > 0;
->>>>>>> oned/v92
 
     this.logger.debug(this, 'Checked for existing filters if sample data was changed from null to value', showConfirmation);
 
     if (showConfirmation) {
       const confirmed = await this.confirmationService.confirm({
         Title: '#LDS#Heading Use Sample Data',
-<<<<<<< HEAD
-        Message: '#LDS#Do you want to use the selected sample data instead of the specified conditions?'
-=======
         Message: '#LDS#Do you want to use the selected sample data instead of the specified conditions?',
->>>>>>> oned/v92
       });
       if (confirmed) {
         this.policy.filterData = {
           IsReadOnly: this.policy.filterData.IsReadOnly,
           Filter: { Elements: [] },
-<<<<<<< HEAD
-          InfoDisplay: []
-=======
           InfoDisplay: [],
->>>>>>> oned/v92
         };
         this.logger.debug(this, 'filter removed due to sample data seleted');
       } else {
         let overlayRef: OverlayRef;
-<<<<<<< HEAD
-        setTimeout(() => overlayRef = this.busyService.show());
-=======
         setTimeout(() => (overlayRef = this.busyService.show()));
->>>>>>> oned/v92
         try {
           await this.policy.policy.UID_QERPickCategory.Column.PutValue(undefined);
         } finally {
@@ -312,18 +211,6 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
   }
 
   public async submit(): Promise<void> {
-<<<<<<< HEAD
-    let overlayRef: OverlayRef;
-    setTimeout(() => overlayRef = this.busyService.show());
-    try {
-
-      const filter = this.filterModel.policyFilterData.Filter;
-
-      this.policy.policy.extendedData = [
-        (this.policy.policy.UID_QERPickCategory.value == null ||
-          this.policy.policy.UID_QERPickCategory.value === '')
-          ? filter : null];
-=======
     if (!(await this.confirmCreation())) {
       return;
     }
@@ -335,7 +222,6 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
       this.policy.policy.extendedData = [
         this.policy.policy.UID_QERPickCategory.value == null || this.policy.policy.UID_QERPickCategory.value === '' ? filter : null,
       ];
->>>>>>> oned/v92
       await this.policy.policy.GetEntity().Commit(false);
       this.logger.debug(this, 'data submitted');
 
@@ -344,12 +230,6 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
       setTimeout(() => this.busyService.hide(overlayRef));
     }
 
-<<<<<<< HEAD
-    this.snackBar.open({
-      key: '#LDS#The attestation policy "{0}" has been successfully saved.',
-      parameters: [this.policy.policy.GetEntity().GetDisplay()]
-    }, '#LDS#Close');
-=======
     this.snackBar.open(
       {
         key: '#LDS#The attestation policy "{0}" has been successfully saved.',
@@ -357,24 +237,10 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
       },
       '#LDS#Close'
     );
->>>>>>> oned/v92
     this.reload = true;
   }
 
   public async delete(): Promise<void> {
-<<<<<<< HEAD
-    if (await this.confirmationService.confirm({
-      Title: '#LDS#Heading Delete Attestation Policy',
-      Message: '#LDS#Are you sure you want to delete the attestation policy?'
-    })) {
-      await this.policyService.deleteAttestationPolicy(this.policy.policy.GetEntity().GetKeys()[0]);
-      this.logger.debug(this, 'policy is deleted');
-
-      this.snackBar.open({
-        key: '#LDS#The attestation policy "{0}" has been successfully deleted.',
-        parameters: [this.policy.policy.GetEntity().GetDisplay()]
-      }, '#LDS#Close');
-=======
     if (
       await this.confirmationService.confirm({
         Title: '#LDS#Heading Delete Attestation Policy',
@@ -391,13 +257,10 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
         },
         '#LDS#Close'
       );
->>>>>>> oned/v92
       this.sidesheetRef.close(true);
     }
   }
 
-<<<<<<< HEAD
-=======
   private async confirmCreation(): Promise<boolean> {
     if (!this.policyEditor?.showWarning) {
       return true;
@@ -416,7 +279,6 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
     });
   }
 
->>>>>>> oned/v92
   private async confirmDeactivation(deativate: boolean): Promise<void> {
     if (!deativate) {
       return;
@@ -432,11 +294,7 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
     const ref = this.dialog.open(ConfirmDeactivationComponent, {
       disableClose: true,
       autoFocus: false,
-<<<<<<< HEAD
-      panelClass: 'imx-messageDialog'
-=======
       panelClass: 'imx-messageDialog',
->>>>>>> oned/v92
     });
     const result = await ref.afterClosed().toPromise();
 
@@ -470,11 +328,7 @@ export class EditMasterDataComponent implements OnInit, OnDestroy {
       this.policy.policy.IsAutoCloseOldCases.Column,
       this.policy.policy.LimitOfOldCases.Column,
       this.policy.policy.IsApproveRequiresMfa.Column,
-<<<<<<< HEAD
-      this.policy.policy.UID_QERPickCategory.Column
-=======
       this.policy.policy.UID_QERPickCategory.Column,
->>>>>>> oned/v92
     ];
 
     for (const column of columns) {

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -36,12 +32,6 @@ import {
   DataModelFilter,
   EntitySchema,
   FilterTreeData,
-<<<<<<< HEAD
-  DataModel
-} from 'imx-qbm-dbts';
-import { TsbApiService } from '../tsb-api-client.service';
-import { PortalTargetsystemUnsAccount } from 'imx-api-tsb';
-=======
   DataModel,
   EntityCollectionData,
   MethodDescriptor,
@@ -49,15 +39,11 @@ import { PortalTargetsystemUnsAccount } from 'imx-api-tsb';
 } from 'imx-qbm-dbts';
 import { TsbApiService } from '../tsb-api-client.service';
 import { PortalTargetsystemUnsAccount, V2ApiClientMethodFactory } from 'imx-api-tsb';
->>>>>>> oned/v92
 import { TargetSystemDynamicMethodService } from '../target-system/target-system-dynamic-method.service';
 import { AccountTypedEntity } from './account-typed-entity';
 import { DbObjectKeyBase } from '../target-system/db-object-key-wrapper.interface';
 import { AcountsFilterTreeParameters as AccountsFilterTreeParameters } from './accounts.models';
-<<<<<<< HEAD
-=======
 import { DataSourceToolbarExportMethod } from 'qbm';
->>>>>>> oned/v92
 
 @Injectable({ providedIn: 'root' })
 export class AccountsService {
@@ -81,8 +67,6 @@ export class AccountsService {
     return this.tsbClient.typedClient.PortalTargetsystemUnsAccount.Get(navigationState);
   }
 
-<<<<<<< HEAD
-=======
   public exportAccounts(navigationState: CollectionLoadParameters): DataSourceToolbarExportMethod {
     const factory = new V2ApiClientMethodFactory();
     return {
@@ -98,7 +82,6 @@ export class AccountsService {
     }
   }
 
->>>>>>> oned/v92
   public async getAccount(dbObjectKey: DbObjectKeyBase, columnName?: string): Promise<AccountTypedEntity> {
     return this.dynamicMethod.get(AccountTypedEntity, { dbObjectKey, columnName });
   }

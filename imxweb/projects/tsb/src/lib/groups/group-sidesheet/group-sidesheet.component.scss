@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-@import '@elemental-ui/core/src/styles/_palette.scss';
-=======
 @import "@elemental-ui/core/src/styles/_palette.scss";
 @import "@elemental-ui/core/src/styles/_eui_palette.scss";
->>>>>>> oned/v92
 
 .product-owner-datasource-container {
   margin: 10px 0 25px;
@@ -34,12 +30,6 @@
   }
 }
 
-<<<<<<< HEAD
-:host ::ng-deep .mat-badge-small.mat-badge-overlap.mat-badge-after {
-  .mat-badge-content {
-    right: -16px;
-    background: $corbin-orange;
-=======
 :host {
   ::ng-deep .mat-badge-small.mat-badge-overlap.mat-badge-after {
     .mat-badge-content {
@@ -65,7 +55,6 @@
     .imx-edit-fk-open-picker {
       display: none;
     }
->>>>>>> oned/v92
   }
 }
 
@@ -81,27 +70,18 @@
   overflow: hidden;
   > .governance-sidesheet__tab-content-body {
     flex: 1 1 auto;
-<<<<<<< HEAD
-    overflow: hidden;
-
-    > :first-child {
-      overflow: auto;
-=======
     overflow: auto;
     padding: 20px;
 
     > :first-child {
       overflow: auto;
 
->>>>>>> oned/v92
     }
 
     > .imx-ext {
       overflow: hidden;
     }
   }
-<<<<<<< HEAD
-=======
 
   .imx-flex-child {
     ng-container {
@@ -114,7 +94,6 @@
     font-size: 14px;
     margin-right: 4px;
   }
->>>>>>> oned/v92
 }
 
 .mat-tab-body-content {
@@ -127,24 +106,6 @@
   color: $corbin_orange;
 }
 
-<<<<<<< HEAD
-::ng-deep .mat-tab-group {
-  height: 100%;
-  flex-grow: 1;
-  overflow: auto;
-
-  .mat-tab-header {
-    padding: 0 32px;
-    background-color: $white;
-  }
-
-  ::ng-deep .mat-tab-body-wrapper {
-    height: 100%;
-  }
-
-  .imx-edit-fk-open-picker {
-    display: none;
-=======
 .eui-sidesheet-content:not(.imx-hyperview-sidesheet) {
   padding: 0;
 
@@ -161,7 +122,6 @@
 
   button:not(:last-of-type):not(.justify-start) {
     margin-right: 10px;
->>>>>>> oned/v92
   }
 }
 
@@ -180,8 +140,6 @@
     margin-top: 10px;
   }
 }
-<<<<<<< HEAD
-=======
 
 .eui-dark-theme {
   :host {
@@ -214,4 +172,3 @@
     }
   }
 }
->>>>>>> oned/v92

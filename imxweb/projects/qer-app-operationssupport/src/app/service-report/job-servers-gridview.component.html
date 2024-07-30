@@ -1,13 +1,4 @@
 <div class="imx-table-container" *ngIf="dstSettings">
-<<<<<<< HEAD
-  <imx-data-source-toolbar [alwaysVisible]="withRefresh" #dst [settings]="dstSettings" (search)="onSearch($event)" [options]="['search', 'filter', 'groupBy']"
-    (navigationStateChanged)="navigationStateChanged($event)">
-    <imx-data-source-toolbar-custom *ngIf="withRefresh" [customContentTemplate]="customToolbarTemplate"></imx-data-source-toolbar-custom>
-  </imx-data-source-toolbar>
-  <imx-data-table [dst]="dst" detailViewVisible="false" mode="manual">
-    <imx-data-table-column [entityColumn]="dstSettings.entitySchema.Columns.Ident_Server">
-    </imx-data-table-column>
-=======
   <imx-data-source-toolbar
     [alwaysVisible]="withRefresh"
     #dst
@@ -20,28 +11,17 @@
   </imx-data-source-toolbar>
   <imx-data-table [dst]="dst" detailViewVisible="false" mode="manual" (highlightedEntityChanged)="edit($event)">
     <imx-data-table-column [entityColumn]="dstSettings.entitySchema.Columns.Ident_Server"> </imx-data-table-column>
->>>>>>> oned/v92
     <imx-data-table-column [entityColumn]="dstSettings.entitySchema.Columns.Connection">
       <ng-template let-data>
         {{ data.Connection.Column.GetDisplayValue() + ' ms' }}
       </ng-template>
     </imx-data-table-column>
-<<<<<<< HEAD
-    <imx-data-table-column [entityColumn]="dstSettings.entitySchema.Columns.LastJobFetchTime">
-    </imx-data-table-column>
-=======
     <imx-data-table-column [entityColumn]="dstSettings.entitySchema.Columns.LastJobFetchTime"> </imx-data-table-column>
->>>>>>> oned/v92
     <imx-data-table-column [entityColumn]="dstSettings.entitySchema.Columns.ServerWebUrl">
       <ng-template let-data>
         <a [href]="data.ServerWebUrl.value">{{ data.ServerWebUrl.Column.GetDisplayValue() }}</a>
       </ng-template>
     </imx-data-table-column>
-<<<<<<< HEAD
-    <imx-data-table-column [entityColumn]="dstSettings.entitySchema.Columns.PhysicalServerName">
-    </imx-data-table-column>
-    <imx-data-table-column [entityColumn]="dstSettings.entitySchema.Columns.IPV4">
-=======
     <imx-data-table-column [entityColumn]="dstSettings.entitySchema.Columns.PhysicalServerName"> </imx-data-table-column>
     <imx-data-table-column [entityColumn]="dstSettings.entitySchema.Columns.IPV4"> </imx-data-table-column>
 
@@ -82,7 +62,6 @@
           </button>
         </div>
       </ng-template>
->>>>>>> oned/v92
     </imx-data-table-column>
   </imx-data-table>
   <imx-data-source-paginator [dst]="dst"></imx-data-source-paginator>

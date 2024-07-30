@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -35,11 +31,8 @@ import { DbObjectKey } from 'imx-qbm-dbts';
 
 /**
  * Service for navigation between elements of an object sheet.
-<<<<<<< HEAD
-=======
  * 
  * @deprecated This service is deprecated and will be removed in a future version.
->>>>>>> oned/v92
  */
 @Injectable({
   providedIn: 'root'

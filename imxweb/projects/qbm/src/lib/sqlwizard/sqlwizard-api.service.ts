@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -35,9 +31,6 @@ export abstract class SqlWizardApiService {
   public abstract getFilterProperties(table: string): Promise<FilterProperty[]>;
 
   public abstract getCandidates(parentTable: string, options?: CollectionLoadParameters): Promise<EntityCollectionData>;
-<<<<<<< HEAD
-=======
 
   public implemented?: boolean = true;
->>>>>>> oned/v92
 }

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -34,12 +30,8 @@ import { AobPermissionsService } from '../../permissions/aob-permissions.service
 
 @Component({
   selector: 'imx-kpi-tile',
-<<<<<<< HEAD
-  templateUrl: './kpi-tile.component.html'
-=======
   templateUrl: './kpi-tile.component.html',
   styleUrls: ['./kpi-tile.component.scss'],
->>>>>>> oned/v92
 })
 export class KpiTileComponent {
 

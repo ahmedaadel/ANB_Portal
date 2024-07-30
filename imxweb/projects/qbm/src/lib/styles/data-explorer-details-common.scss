@@ -1,9 +1,6 @@
 @import '@elemental-ui/core/src/styles/_palette.scss';
-<<<<<<< HEAD
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 
->>>>>>> oned/v92
 
 .governance-sidesheet {
   background-color: $asher-gray;
@@ -29,15 +26,10 @@
 
   &__tab-content-body {
     flex: 1;
-<<<<<<< HEAD
-    padding: 32px;
-    overflow: auto;
-=======
     padding: 20px;
     overflow: auto;
     display: flex;
     flex-direction: column;
->>>>>>> oned/v92
   }
 
   .imx-attestation-status {
@@ -105,8 +97,6 @@
     }
   }
 }
-<<<<<<< HEAD
-=======
 
 .eui-dark-theme {
   :host {
@@ -127,4 +117,3 @@
     }
   }
 }
->>>>>>> oned/v92

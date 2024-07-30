@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -32,63 +28,40 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
-<<<<<<< HEAD
-import { ListReportDefinitionRead, PortalReports, PortalReportsEditInteractive } from 'imx-api-rps';
-import { CollectionLoadParameters, DisplayColumns, ExtendedTypedEntityCollection, ValType } from 'imx-qbm-dbts';
-
-import {
-=======
 import { ListReportDefinitionRead, PortalReports, PortalReportsEdit } from 'imx-api-rps';
 import { CollectionLoadParameters, DisplayColumns, ExtendedTypedEntityCollection } from 'imx-qbm-dbts';
 
 import {
   BusyService,
->>>>>>> oned/v92
   ConfirmationService,
   DataSourceToolbarSettings,
   DataSourceWrapper,
   DataTableComponent,
   SnackBarService,
-<<<<<<< HEAD
-=======
   HelpContextualComponent,
   HelpContextualService,
   HELP_CONTEXTUAL
->>>>>>> oned/v92
 } from 'qbm';
 import { Subscription } from 'rxjs';
 import { EditReportSidesheetComponent } from './edit-report-sidesheet/edit-report-sidesheet.component';
 import { EditReportService } from './edit-report.service';
-<<<<<<< HEAD
-
-@Component({
-  selector: 'imx-edit-report',
-=======
 import { QerPermissionsService } from 'qer';
 import { RpsPermissionsService } from '../admin/rps-permissions.service';
 
 @Component({
->>>>>>> oned/v92
   templateUrl: './edit-report.component.html',
   styleUrls: ['./edit-report.component.scss'],
 })
 export class EditReportComponent implements OnInit, OnDestroy {
-<<<<<<< HEAD
-  public readonly dstWrapper: DataSourceWrapper<PortalReports>;
-=======
   public readonly DisplayColumns = DisplayColumns;
   public dstWrapper: DataSourceWrapper<PortalReports>;
->>>>>>> oned/v92
   @ViewChild('dataTable') private reportsTable: DataTableComponent<any>;
   public dstSettings: DataSourceToolbarSettings;
   public selectedReports: PortalReports[] = [];
 
-<<<<<<< HEAD
-=======
   public busyService = new BusyService();
   public entitySchema = this.reportService.reportSchema;
 
->>>>>>> oned/v92
   private readonly subscriptions: Subscription[] = [];
 
   constructor(
@@ -97,26 +70,6 @@ export class EditReportComponent implements OnInit, OnDestroy {
     private readonly sidesheet: EuiSidesheetService,
     private readonly translate: TranslateService,
     private readonly confirmationService: ConfirmationService,
-<<<<<<< HEAD
-    private readonly snackBarService: SnackBarService
-  ) {
-    const entitySchema = this.reportService.reportSchema;
-    this.dstWrapper = new DataSourceWrapper(
-      (state) => this.reportService.getReportsOwnedByUser(state),
-      [
-        entitySchema.Columns[DisplayColumns.DISPLAY_PROPERTYNAME],
-        {
-          ColumnName: 'actions',
-          Type: ValType.String,
-          afterAdditionals: true,
-        },
-      ],
-      entitySchema
-    );
-  }
-
-  public async ngOnInit(): Promise<void> {
-=======
     private readonly rpsPermissionService: RpsPermissionsService,
     private readonly snackBarService: SnackBarService,
     private readonly helpContextualService: HelpContextualService
@@ -130,7 +83,6 @@ export class EditReportComponent implements OnInit, OnDestroy {
       this.entitySchema
     );
 
->>>>>>> oned/v92
     await this.getData();
   }
 
@@ -139,22 +91,14 @@ export class EditReportComponent implements OnInit, OnDestroy {
   }
 
   public async getData(parameter?: CollectionLoadParameters): Promise<void> {
-<<<<<<< HEAD
-    const overlay = this.busy.show();
-=======
     const isBusy = this.busyService.beginBusy();
->>>>>>> oned/v92
     try {
       const parameters = {
         ...parameter,
       };
       this.dstSettings = await this.dstWrapper.getDstSettings(parameters);
     } finally {
-<<<<<<< HEAD
-      this.busy.hide(overlay);
-=======
       isBusy.endBusy();
->>>>>>> oned/v92
     }
   }
 
@@ -172,11 +116,7 @@ export class EditReportComponent implements OnInit, OnDestroy {
     }
 
     if (report) {
-<<<<<<< HEAD
-      await this.openSidesheet(report, true, false);
-=======
       await this.openSidesheet(report, true,false);
->>>>>>> oned/v92
     }
   }
 
@@ -189,27 +129,13 @@ export class EditReportComponent implements OnInit, OnDestroy {
       this.busy.hide(overlay);
     }
 
-<<<<<<< HEAD
-    if (report) {
-      await this.openSidesheet(report, false, selectedReport.IsOob.value);
-=======
 
     if (report) {
       await this.openSidesheet(report, false,selectedReport.IsOob.value);
->>>>>>> oned/v92
     }
   }
 
   private async openSidesheet(
-<<<<<<< HEAD
-    report: ExtendedTypedEntityCollection<PortalReportsEditInteractive, ListReportDefinitionRead>,
-    isNew: boolean,
-    isReadonly: boolean
-  ): Promise<void> {
-    const result = await this.sidesheet
-      .open(EditReportSidesheetComponent, {
-        title: await this.translate.get(isNew ? '#LDS#Heading Create Report' : '#LDS#Heading Edit Report').toPromise(),
-=======
     report: ExtendedTypedEntityCollection<PortalReportsEdit, ListReportDefinitionRead>,
     isNew: boolean,
     isReadonly: boolean
@@ -219,7 +145,6 @@ export class EditReportComponent implements OnInit, OnDestroy {
       .open(EditReportSidesheetComponent, {
         title: await this.translate.get(isNew ? '#LDS#Heading Create Report' : '#LDS#Heading Edit Report').toPromise(),
         subTitle: isNew ? '' : report.Data[0].GetEntity().GetDisplay(),
->>>>>>> oned/v92
         panelClass: 'imx-sidesheet',
         disableClose: true,
         padding: '0',
@@ -228,14 +153,9 @@ export class EditReportComponent implements OnInit, OnDestroy {
         data: {
           report,
           isNew,
-<<<<<<< HEAD
-          isReadonly,
-        },
-=======
           isReadonly
         },
         headerComponent: HelpContextualComponent
->>>>>>> oned/v92
       })
       .afterClosed()
       .toPromise();

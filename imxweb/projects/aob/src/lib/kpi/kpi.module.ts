@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -38,11 +34,7 @@ import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
 
 import { KpiOverviewComponent } from './kpi-overview/kpi-overview.component';
 import { KpiOverviewService } from './kpi-overview/kpi-overview.service';
-<<<<<<< HEAD
-import { ClassloggerModule } from 'qbm';
-=======
 import { ClassloggerModule, BusyIndicatorModule } from 'qbm';
->>>>>>> oned/v92
 
 @NgModule({
   imports: [
@@ -53,15 +45,6 @@ import { ClassloggerModule, BusyIndicatorModule } from 'qbm';
     MatTooltipModule,
     EuiCoreModule,
     EuiMaterialModule,
-<<<<<<< HEAD
-    ClassloggerModule
-  ],
-  declarations: [KpiOverviewComponent],
-  providers: [ KpiOverviewService],
-  exports: [KpiOverviewComponent]
-})
-export class KpiModule { }
-=======
     ClassloggerModule,
     BusyIndicatorModule,
   ],
@@ -70,4 +53,3 @@ export class KpiModule { }
   exports: [KpiOverviewComponent],
 })
 export class KpiModule {}
->>>>>>> oned/v92

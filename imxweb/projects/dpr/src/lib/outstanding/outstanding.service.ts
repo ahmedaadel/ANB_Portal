@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -56,15 +52,6 @@ export class OutstandingService {
       values);
   }
 
-<<<<<<< HEAD
-  public async getOutstandingTable(tableName: string, namespace: string): Promise<OutstandingObject[]> {
-    return this.apiService.client.opsupport_outstanding_table_get(tableName, { namespace: namespace });
-  }
-
-
-  public getOutstandingNamespace(namespace: string): Promise<OutstandingObject[]> {
-    return this.apiService.client.opsupport_outstanding_namespace_get(namespace);
-=======
   public async getOutstandingTable(tableName: string, namespace: string, actionfilter: string): Promise<OutstandingObject[]> {
     return this.apiService.client.opsupport_outstanding_table_get(tableName, {
       namespace: namespace,
@@ -75,7 +62,6 @@ export class OutstandingService {
 
   public getOutstandingNamespace(namespace: string, actionfilter: string): Promise<OutstandingObject[]> {
     return this.apiService.client.opsupport_outstanding_namespace_get(namespace, { actionfilter: actionfilter });
->>>>>>> oned/v92
   }
 
   public processObjects(action: OutstandingAction, bulk: boolean, objects: string[]): Promise<any> {

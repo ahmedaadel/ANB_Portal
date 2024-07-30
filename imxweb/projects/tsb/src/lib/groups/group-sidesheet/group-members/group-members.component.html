@@ -8,17 +8,12 @@
 </div>
 
 <ng-container *ngIf="membershipView === 'direct'">
-<<<<<<< HEAD
-  <eui-alert *ngIf="showUnsubscribeWarning" type="warning" [condensed]="true" [colored]="true" [dismissable]="true"
-    (dismissed)="onWarningDismissed()">{{LdsNotUnsubscribableHint | translate}}</eui-alert>
-=======
   <eui-alert class="helper-alert" condensed="true" [colored]="true" type="info" [dismissable]="false" >
     {{ '#LDS#Here you can manage the memberships of the system entitlement. You can request and remove memberships and view the assignment analysis for each membership.' | translate }}
     </eui-alert>
   <eui-alert *ngIf="showUnsubscribeWarning" type="warning" [condensed]="true" [colored]="true" [dismissable]="true"
     (dismissed)="onWarningDismissed()">{{LdsNotUnsubscribableHint | translate}}</eui-alert>
     
->>>>>>> oned/v92
   <imx-data-source-toolbar #dstDirect [settings]="dstSettings"
     [hiddenFilters]="['namespace']"
     [itemStatus]="itemStatus" (navigationStateChanged)="onDirectNavigationStateChanged($event)"
@@ -27,10 +22,7 @@
 
   <imx-data-table #membersTable [dst]="dstDirect" mode="manual" detailViewVisible="false"
     noDataText="#LDS#There are currently no direct memberships." [selectable]="true"
-<<<<<<< HEAD
-=======
     (highlightedEntityChanged)="onShowDetails($event)"
->>>>>>> oned/v92
     (selectionChanged)="onSelectionChanged($event)">
     <imx-data-table-column [entityColumn]="entitySchemaGroupDirectMemberships?.Columns.UID_Person">
     </imx-data-table-column>
@@ -52,17 +44,6 @@
         </div>
       </ng-template>
     </imx-data-table-generic-column>
-<<<<<<< HEAD
-    <imx-data-table-generic-column columnName="details">
-      <ng-template let-item>
-        <button data-imx-identifier="group-memberships-details-button" mat-button color="primary"
-          [disabled]="!item.UID_Person.value" matTooltip="{{'#LDS#Opens the assignment analysis for the selected membership' | translate }}"
-          (click)="onShowDetails(item)">{{'#LDS#View assignment analysis' |
-          translate }}</button>
-      </ng-template>
-    </imx-data-table-generic-column>
-=======
->>>>>>> oned/v92
   </imx-data-table>
 
 
@@ -70,22 +51,16 @@
 </ng-container>
 
 <ng-container *ngIf="membershipView === 'nested'">
-<<<<<<< HEAD
-=======
   <eui-alert class="helper-alert" condensed="true" [colored]="true" type="info" [dismissable]="false" >
     {{ '#LDS#Here you can get an overview of the memberships of the system entitlement. Additionally, you can view the assignment analysis for each membership.' | translate }}
     </eui-alert>
->>>>>>> oned/v92
   <imx-data-source-toolbar #dstNested [settings]="dstNestedGroupSettings"
     [hiddenFilters]="['namespace']"
     (navigationStateChanged)="onNestedNavigationStateChanged($event)" [searchBoxText]="'#LDS#Search' | translate">
   </imx-data-source-toolbar>
 
   <imx-data-table #membersTable [dst]="dstNested" mode="manual" detailViewVisible="false"
-<<<<<<< HEAD
-=======
   (highlightedEntityChanged)="onShowDetails($event)"
->>>>>>> oned/v92
     noDataText="#LDS#There are currently no inherited memberships.">
     <imx-data-table-column [entityColumn]="entitySchemaGroupNestedMemberships?.Columns.UID_Person">
     </imx-data-table-column>
@@ -99,17 +74,6 @@
         </div>
       </ng-template>
     </imx-data-table-generic-column>
-<<<<<<< HEAD
-    <imx-data-table-generic-column columnName="details">
-      <ng-template let-item>
-        <button data-imx-identifier="group-nested-memberships-details-button" mat-button color="primary"
-          [disabled]="!item.UID_Person.value" matTooltip="{{'#LDS#Opens the assignment analysis for the selected membership' | translate }}"
-          (click)="onShowDetails(item)">{{'#LDS#View assignment analysis' |
-          translate }}</button>
-      </ng-template>
-    </imx-data-table-generic-column>
-=======
->>>>>>> oned/v92
   </imx-data-table>
   <imx-data-source-paginator [dst]="dstNested"></imx-data-source-paginator>
 </ng-container>

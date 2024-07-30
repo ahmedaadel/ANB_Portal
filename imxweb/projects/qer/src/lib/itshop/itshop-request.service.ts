@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -32,25 +28,13 @@ import { Injectable } from '@angular/core';
 
 import { PwoData } from 'imx-api-qer';
 import { IEntity, IEntityColumn, ParameterData, WriteExtTypedEntity } from 'imx-qbm-dbts';
-<<<<<<< HEAD
-=======
 import { AuthenticationService } from 'qbm';
->>>>>>> oned/v92
 import { Approval } from '../itshopapprove/approval';
 import { ExtendedCollectionData } from '../parameter-data/extended-collection-data.interface';
 import { ParameterDataService } from '../parameter-data/parameter-data.service';
 import { ItshopService } from './itshop.service';
 
 @Injectable({
-<<<<<<< HEAD
-  providedIn: 'root'
-})
-export class ItshopRequestService {
-  constructor(
-    private readonly parameterDataService: ParameterDataService,
-    private readonly itshopService: ItshopService
-  ) { }
-=======
   providedIn: 'root',
 })
 export class ItshopRequestService {
@@ -62,28 +46,18 @@ export class ItshopRequestService {
   ) {
     authentication.onSessionResponse.subscribe((session) => (this.currentUser = session.UserUid));
   }
->>>>>>> oned/v92
 
   public createParameterColumns(entity: IEntity, parameters: ParameterData[]): IEntityColumn[] {
     return this.parameterDataService.createParameterColumns(
       entity,
       parameters,
-<<<<<<< HEAD
-      loadParameters => this.itshopService.getRequestParameterCandidates(loadParameters),
-      treeParameters => this.itshopService.getRequestParameterFilterTree(treeParameters)
-=======
       (loadParameters) => this.itshopService.getRequestParameterCandidates(loadParameters),
       (treeParameters) => this.itshopService.getRequestParameterFilterTree(treeParameters)
->>>>>>> oned/v92
     );
   }
 
   public isChiefApproval: boolean = false;
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> oned/v92
   public createRequestApprovalItem(
     typedEntity: WriteExtTypedEntity<any>,
     extendedCollectionData: ExtendedCollectionData<PwoData>
@@ -93,21 +67,13 @@ export class ItshopRequestService {
     const extendedDataWrapper = this.parameterDataService.createExtendedDataWrapper(
       entity,
       extendedCollectionData,
-<<<<<<< HEAD
-      loadParameters => this.itshopService.getRequestParameterCandidates(loadParameters),
-      treeParameters => this.itshopService.getRequestParameterFilterTree(treeParameters)
-=======
       (loadParameters) => this.itshopService.getRequestParameterCandidates(loadParameters),
       (treeParameters) => this.itshopService.getRequestParameterFilterTree(treeParameters)
->>>>>>> oned/v92
     );
 
     return new Approval({
       entity,
-<<<<<<< HEAD
-=======
       uidCurrentUser: this.currentUser,
->>>>>>> oned/v92
       isChiefApproval: this.itshopService.isChiefApproval,
       pwoData: extendedDataWrapper.data,
       parameterColumns: extendedDataWrapper.parameterWrapper.columns,
@@ -120,11 +86,7 @@ export class ItshopRequestService {
           typedEntity.extendedData = undefined;
           throw error;
         }
-<<<<<<< HEAD
-      }
-=======
       },
->>>>>>> oned/v92
     });
   }
 }

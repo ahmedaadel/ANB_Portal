@@ -1,24 +1,10 @@
-<<<<<<< HEAD
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 @import '../../../../../shared/scss/common-table.scss';
->>>>>>> oned/v92
 :host {
   display: flex;
   flex-direction: column;
   overflow: hidden;
   height: 100%;
-<<<<<<< HEAD
-}
-
-.imx-table-container {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  height: inherit;
-}
-
-=======
 
   .imx-cases-content {
     flex: 1 1 auto;
@@ -66,53 +52,18 @@
     font-size: 24px;
   }
 }
->>>>>>> oned/v92
 .imx-attestationcase-table {
   flex-grow: 1;
   overflow: auto;
 }
 
 .imx-decision {
-<<<<<<< HEAD
-  display: flex;
-  flex-direction: row;
-
-  > * {
-=======
   @include imx-button-column-right();
   > button:not(:last-of-type) {
->>>>>>> oned/v92
     margin-right: 5px;
   }
 }
 
-<<<<<<< HEAD
-.imx-button-bar {
-  display: flex;
-  flex-direction: row;
-  margin-top: 15px;
-
-  > button {
-    margin-left: 5px;
-  }
-
-  .imx-spacer {
-    flex: 1 1 auto;
-  }
-}
-
-.imx-badge-container {
-  > div {
-    display: table-cell;
-
-    > .eui-badge {
-      margin: 0 5px;
-
-      ::ng-deep .eui-badge-content {
-        white-space: nowrap;
-      }
-    }
-=======
 .recommendation-wrapper {
   display: flex;
   align-items: center;
@@ -162,7 +113,6 @@
     .eui-icon {
       padding-right: 6px;
     }
->>>>>>> oned/v92
   }
 }
 
@@ -175,8 +125,6 @@
     display: none;
   }
 }
-<<<<<<< HEAD
-=======
 
 // Theming
 :host {
@@ -256,4 +204,3 @@
     }
   }
 }
->>>>>>> oned/v92

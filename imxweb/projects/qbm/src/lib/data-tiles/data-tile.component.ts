@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -75,11 +71,6 @@ export class DataTileComponent implements OnInit {
 
   public imageUrl: SafeUrl;
 
-<<<<<<< HEAD
-  public selectedHint = '';
-
-=======
->>>>>>> oned/v92
   /**
    * The typed entity, that serves as the datasource.
    */
@@ -168,12 +159,9 @@ export class DataTileComponent implements OnInit {
    */
   @Output() public selectionChanged = new EventEmitter<TypedEntity>();
 
-<<<<<<< HEAD
-=======
   //When tile is unselected and if the below event exists on the consumer this event will be emitted.
   @Output() public selected = new EventEmitter();
 
->>>>>>> oned/v92
   // TODO: Check Upgrade
   @Output() public badgeClicked = new EventEmitter<{ entity: TypedEntity, badge: DataTileBadge }>();
 
@@ -192,13 +180,6 @@ export class DataTileComponent implements OnInit {
   constructor(private readonly base64ImageService: Base64ImageService) { }
 
   public async ngOnInit(): Promise<void> {
-<<<<<<< HEAD
-    if (!this.enabled) {
-      this.selectedHint = 'background-color: #F2F2F2;'
-    }
-
-=======
->>>>>>> oned/v92
     if (this.status?.getImagePath) {
       this.isLoadingImage = true;
       this.imageUrl = await this.status.getImagePath(this.typedEntity);
@@ -240,13 +221,10 @@ export class DataTileComponent implements OnInit {
     if (this.isSelectable) {
       this.isSelected = !this.isSelected;
       this.selectionChanged.emit(this.typedEntity);
-<<<<<<< HEAD
-=======
       //tile selection
       if(!this.isSelected){
         this.selected.emit(this.isSelected);
       }
->>>>>>> oned/v92
     }
   }
 

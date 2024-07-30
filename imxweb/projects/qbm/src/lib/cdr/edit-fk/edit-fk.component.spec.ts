@@ -221,9 +221,6 @@ describe('EditFkComponent', () => {
     const column = createColumnStub(start);
     component.bind({
       column,
-<<<<<<< HEAD
-      isReadOnly: () => false
-=======
       isReadOnly: () => false,
     await component.removeAssignment();
     expect(component.columnContainer.displayValue).toBeUndefined();
@@ -234,20 +231,12 @@ describe('EditFkComponent', () => {
   it('should update the entity upon autocomplete option selection', async () => {
     const start = {
       DataValue: 'val0',
-<<<<<<< HEAD
-      DisplayValue: 'display0'
-=======
       DisplayValue: 'display0',
->>>>>>> oned/v92
     };
     const column = createColumnStub(start);
     component.bind({
       column,
-<<<<<<< HEAD
-      isReadOnly: () => false
-=======
       isReadOnly: () => false,
->>>>>>> oned/v92
     });
 
     const value = { DataValue: 'val1', DisplayValue: 'display1' };
@@ -276,17 +265,6 @@ describe('EditFkComponent', () => {
       },
       {
         DataValue: 'val1',
-<<<<<<< HEAD
-        DisplayValue: 'display1'
-      }
-    ];
-    const candidateCollection = {
-      Entities: mockValues.map(e => ({
-        Display: e.DisplayValue,
-        Columns: { XObjectKey: { Value: createKey(e.DataValue) } }
-      })),
-      TotalCount: mockValues.length
-=======
         DisplayValue: 'display1',
       },
     ];
@@ -296,24 +274,10 @@ describe('EditFkComponent', () => {
         Columns: { XObjectKey: { Value: createKey(e.DataValue) } },
       })),
       TotalCount: mockValues.length,
->>>>>>> oned/v92
     };
     const column = createColumnStub(
       {
         DataValue: createKey(mockValues[0].DataValue),
-<<<<<<< HEAD
-        DisplayValue: mockValues[0].DisplayValue
-      },
-      true,
-      [candidateCollection, { Entities: [], TotalCount: 0 }]
-    );
-    component.bind({
-      column,
-      isReadOnly: () => false
-    });
-
-    spyOn((component as any).changeDetectorRef , 'detectChanges');
-=======
         DisplayValue: mockValues[0].DisplayValue,
       },
       true,
@@ -325,7 +289,6 @@ describe('EditFkComponent', () => {
     });
 
     spyOn((component as any).changeDetectorRef, 'detectChanges');
->>>>>>> oned/v92
     await component.ngOnInit();
 
     expect(component.candidates[0].DataValue).toEqual(candidateCollection.Entities[0].Columns.XObjectKey.Value);
@@ -335,31 +298,6 @@ describe('EditFkComponent', () => {
 
   [
     { description: '= 0', minLength: 0, expectedError: false },
-<<<<<<< HEAD
-    { description: '> 0', minLength: 1, expectedError: true }
-  ].forEach(testcase =>
-  it('should set error.required to ' + testcase.expectedError +
-     ' if minLength ' + testcase.description + ' and value is not set', () => {
-    const start = {
-      DataValue: null
-    };
-    const column = createColumnStub(start, true, undefined, testcase.minLength);
-    component.bind({
-      column,
-      isReadOnly: () => false
-    });
-
-    component.control.markAsTouched();
-    component.control.updateValueAndValidity({ onlySelf: true, emitEvent: false });
-
-    expect(component.control.value).toBeUndefined();
-    if (testcase.expectedError) {
-      expect(component.control.errors.required).toBeTruthy();
-    } else {
-      expect(component.control.errors).toBeNull();
-    }
-  }));
-=======
     { description: '> 0', minLength: 1, expectedError: true },
   ].forEach((testcase) =>
     it('should set error.required to ' + testcase.expectedError + ' if minLength ' + testcase.description + ' and value is not set', () => {
@@ -383,5 +321,4 @@ describe('EditFkComponent', () => {
       }
     }),
   );
->>>>>>> oned/v92
 });

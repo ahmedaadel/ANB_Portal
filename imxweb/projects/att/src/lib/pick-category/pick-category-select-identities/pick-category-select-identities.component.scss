@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-@import "@elemental-ui/core/src/styles/_palette.scss";
-@import '../pick-category-common.scss';
-
-:host {
-  background-color: $asher-gray;
-=======
 @import "../pick-category-common.scss";
 @import "@elemental-ui/core/src/styles/_eui_palette.scss";
 
 :host {
   background-color: $color-gray-2;
->>>>>>> oned/v92
 
   ::ng-deep .cdk-column-select {
     width: 50px;
@@ -37,8 +29,6 @@
     margin-left: 10px;
   }
 }
-<<<<<<< HEAD
-=======
 
 .eui-dark-theme {
   :host {
@@ -51,4 +41,3 @@
     background-color: $color-gray-100;
   }
 }
->>>>>>> oned/v92

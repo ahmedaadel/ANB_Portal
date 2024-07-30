@@ -1,28 +1,10 @@
-<<<<<<< HEAD
-@import "@elemental-ui/core/src/styles/_palette.scss";
-=======
 @import "@elemental-ui/core/src/styles/_eui_palette.scss";
->>>>>>> oned/v92
 
 :host {
   display: flex;
   flex-direction: column;
   overflow: hidden;
   flex-grow: 1;
-<<<<<<< HEAD
-
-  ::ng-deep .mat-tab-labels {
-    background-color: $white;
-  }
-}
-
-imx-approvals-table {
-  margin: 10px 0;
-}
-
-.imx-description {
-  margin: 0;
-=======
 }
 
 .imx-approvals-content {
@@ -90,5 +72,4 @@ imx-approvals-table {
       }
     }
   }
->>>>>>> oned/v92
 }

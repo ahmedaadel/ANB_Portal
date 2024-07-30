@@ -1,23 +1,15 @@
-<<<<<<< HEAD
-@import "@elemental-ui/core/src/styles/_palette.scss";
-
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 @import '../../../../../shared/scss/common-table.scss';
->>>>>>> oned/v92
 :host {
   display: flex;
   flex-direction: column;
   overflow: hidden;
   height: 100%;
-<<<<<<< HEAD
-=======
 
   .imx-mail-description {
     font-size: smaller;
     font-style: italic;
   }
->>>>>>> oned/v92
 }
 
 .mat-tab-group {
@@ -28,13 +20,6 @@
     flex: 1 1 auto;
   }
 
-<<<<<<< HEAD
-  .mat-card {
-    display: flex;
-    flex-direction: column;
-    height: inherit;
-    overflow: hidden;
-=======
   ::ng-deep .mat-tab-body-content {
     height: 100%;
     overflow: hidden;
@@ -44,34 +29,21 @@
 
   .mat-card {
    @include imx-flex-fill-control-hidden-overflow();
->>>>>>> oned/v92
 
     .mat-card-content {
       overflow-y: auto;
       overflow-x: hidden;
     }
-<<<<<<< HEAD
-
-=======
     .mat-card-content.profile-hyperview {
       overflow-y: hidden;
       padding: 0 1em;
     }
     
->>>>>>> oned/v92
     .mat-card-actions {
       display: flex;
       justify-content: flex-end;
     }
   }
-<<<<<<< HEAD
-}
-
-.imx-mail-description {
-  font-size: smaller;
-  font-style: italic;
-  color: $black_9;
-=======
 
   .no-grow {
     flex-grow: 0;
@@ -80,7 +52,6 @@
 
 .mat-radio-button {
   margin-right: 2em;
->>>>>>> oned/v92
 }
 
 .imx-mail-info {
@@ -95,8 +66,6 @@
 imx-ext {
   height: 100%;
 }
-<<<<<<< HEAD
-=======
 
 .imx-button-bar {
   @include imx-button-bar();
@@ -123,4 +92,3 @@ imx-ext {
     }
   }
 }
->>>>>>> oned/v92

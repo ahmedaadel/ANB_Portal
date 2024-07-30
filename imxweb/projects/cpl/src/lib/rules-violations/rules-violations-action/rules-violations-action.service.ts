@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -35,15 +31,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 
 import { NonComplianceDecisionInput } from 'imx-api-cpl';
-<<<<<<< HEAD
-import { IReadValue, ValType } from 'imx-qbm-dbts';
-import { SnackBarService, EntityService, ColumnDependentReference, BaseCdr } from 'qbm';
-import { JustificationService, JustificationType } from 'qer';
-=======
 import { ValType } from 'imx-qbm-dbts';
 import { SnackBarService, EntityService, ColumnDependentReference, BaseCdr } from 'qbm';
 import { JustificationService, JustificationType, UserModelService } from 'qer';
->>>>>>> oned/v92
 import { ApiService } from '../../api.service';
 import { RulesViolationsApproval } from '../rules-violations-approval';
 import { RulesViolationsActionComponent } from './rules-violations-action.component';
@@ -66,10 +56,7 @@ export class RulesViolationsActionService {
     private readonly busyService: EuiLoadingService,
     private readonly translate: TranslateService,
     private readonly snackBar: SnackBarService,
-<<<<<<< HEAD
-=======
     private readonly userService: UserModelService,
->>>>>>> oned/v92
     private readonly entityService: EntityService
   ) { }
 
@@ -91,18 +78,10 @@ export class RulesViolationsActionService {
     return this.makeDecisions(rulesViolations, false);
   }
 
-<<<<<<< HEAD
-  public async resolve(ruleViolation: { UID_Person: IReadValue<string>, UID_NonCompliance: IReadValue<string>}): Promise<void> {
-    const sidesheetRef = this.sidesheet.open(ResolveComponent, {
-      title: await this.translate.get('#LDS#Heading Resolve Rule Violation').toPromise(),
-      headerColour: 'iris-blue',
-      bodyColour: 'asher-gray',
-=======
   public async resolve(ruleViolation: RulesViolationsApproval): Promise<void> {
     const sidesheetRef = this.sidesheet.open(ResolveComponent, {
       title: await this.translate.get('#LDS#Heading Resolve Rule Violation').toPromise(),
       subTitle: ruleViolation.GetEntity().GetDisplay(),
->>>>>>> oned/v92
       padding: '0px',
       width: 'max(600px, 60%)',
       testId: 'rulesviolations-resolve-sidesheet',
@@ -150,10 +129,6 @@ export class RulesViolationsActionService {
 
     return this.editAction({
       title: sidesheetTitle,
-<<<<<<< HEAD
-      headerColour: approve ? 'aspen-green' : 'corbin-orange',
-=======
->>>>>>> oned/v92
       data: { rulesViolationsApprovals, actionParameters, approve, },
       message: approve
         ? '#LDS#Exceptions have been successfully granted for {0} rule violations.'
@@ -171,23 +146,11 @@ export class RulesViolationsActionService {
   /**
    * Opens the RulesViolationsActionComponent there the user can set the reason and/or standard reason
    * and the ExceptionValidUntil in the approve contest.
-<<<<<<< HEAD
-   * @param config the configuration for the sidesheet (title, headerColour) and the corresponding rules violations data
-=======
    * @param config the configuration for the sidesheet (title) and the corresponding rules violations data
->>>>>>> oned/v92
    */
   private async editAction(config: any): Promise<void> {
     const result = await this.sidesheet.open(RulesViolationsActionComponent, {
       title: await this.translate.get(config.title).toPromise(),
-<<<<<<< HEAD
-      headerColour: config.headerColour ?? 'iris-blue',
-      bodyColour: 'asher-gray',
-      panelClass: 'imx-sidesheet',
-      padding: '0',
-      width: '600px',
-      testId: 'rulesvioalations-action-sidesheet',
-=======
       subTitle: config.data.rulesViolationsApprovals.length == 1  
         ? config.data.rulesViolationsApprovals[0].GetEntity().GetDisplay() 
         : '',
@@ -195,7 +158,6 @@ export class RulesViolationsActionService {
       padding: '0',
       width: '600px',
       testId: `rulesvioalations-action-sidesheet-${config.data.approve ? 'approve' : 'deny'}`,
->>>>>>> oned/v92
       data: config.data
     }).afterClosed().toPromise();
 
@@ -208,12 +170,8 @@ export class RulesViolationsActionService {
         for (const rulesViolation of config.data.rulesViolationsApprovals) {
           await config.apply(rulesViolation);
         }
-<<<<<<< HEAD
-        success = true;
-=======
         success = true; 
         await this.userService.reloadPendingItems();
->>>>>>> oned/v92
       } finally {
         setTimeout(() => this.busyService.hide(busyIndicator));
       }

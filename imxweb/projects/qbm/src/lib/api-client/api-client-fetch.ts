@@ -24,21 +24,14 @@
  *
  */
 
-<<<<<<< HEAD
-import { MethodDefinition, MethodDescriptor, ApiClient } from 'imx-qbm-dbts';
-=======
 import { MethodDefinition, MethodDescriptor, ApiClient, Globals } from 'imx-qbm-dbts';
->>>>>>> oned/v92
 import { ServerExceptionError } from '../base/server-exception-error';
 import { ServerError } from '../base/server-error';
 import { ClassloggerService } from '../classlogger/classlogger.service';
 import { TranslateService } from '@ngx-translate/core';
-<<<<<<< HEAD
-=======
 import { defer, of, throwError } from 'rxjs';
 import { delay, concatMap, retryWhen } from 'rxjs/operators';
 import { isDevMode } from '@angular/core';
->>>>>>> oned/v92
 
 export class ApiClientFetch implements ApiClient {
     constructor(
@@ -47,24 +40,6 @@ export class ApiClientFetch implements ApiClient {
         private readonly translation: TranslateService,
         private readonly http: { fetch(input: RequestInfo, init?: RequestInit): Promise<Response> } = window) {
     }
-<<<<<<< HEAD
-
-    public async processRequest<T>(methodDescriptor: MethodDescriptor<T>): Promise<T> {
-        const method = new MethodDefinition(methodDescriptor);
-        const headers = new Headers(method.headers);
-
-        this.addXsrfProtectionHeader<T>(headers, method);
-
-        var response: Response;
-        try {
-            response = await this.http.fetch(this.baseUrl + method.path, {
-                method: method.httpMethod,
-                credentials: method.credentials,
-                headers: headers,
-                body: method.body
-            });
-        } catch (e) {
-=======
     private readonly maxRetries = 5;
     private readonly delayMilli = 1000;
 
@@ -112,19 +87,15 @@ export class ApiClientFetch implements ApiClient {
             this.logger.info(this, 'Request was aborted', opts.signal);
             return;
           }
->>>>>>> oned/v92
             throw new ServerError(await this.GetUnexpectedErrorText());
         }
 
         if (response) {
 
-<<<<<<< HEAD
-=======
             if (response.status == 0) {
                 // server API connection error
             }
 
->>>>>>> oned/v92
             // empty response, but success
             if (response.status === 204) {
                 return null;
@@ -134,11 +105,7 @@ export class ApiClientFetch implements ApiClient {
 
             function getFirstContentType() { return actualContentType.split(';')[0]; }
 
-<<<<<<< HEAD
-            if (response.status === 200) {
-=======
             if (response.status >= 200 && response.status <= 299) {
->>>>>>> oned/v92
                 if (method.responseType === 'blob')
                     return <any>response.blob();
 

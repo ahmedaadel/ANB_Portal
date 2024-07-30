@@ -1,14 +1,9 @@
 <h1 class="mat-headline">{{ '#LDS#Welcome' | translate }}</h1>
 
-<<<<<<< HEAD
-<ng-container *ngIf="viewReady">
-  <div class="imx-flexible-tile-row">
-=======
 <imx-busy-indicator *ngIf="!viewReady"></imx-busy-indicator>
 
 <ng-container>
   <div [ngClass]="{ hidden: !viewReady, 'imx-flexible-tile-row': true}">
->>>>>>> oned/v92
     <imx-badge-tile
       data-imx-identifier="start-tile-shopping-cart"
       [caption]="'#LDS#Heading Products in Shopping Cart' | translate"
@@ -71,16 +66,10 @@
 
     <imx-ext class="imx-flexible-tile-row" id="Dashboard-SmallTiles" [referrer]="this"></imx-ext>
   </div>
-<<<<<<< HEAD
-  <div class="imx-flexible-tile-row">
-    <!-- update here "ShowPasswordTile()"  -->
-    <imx-icon-tile
-       *ngIf= false               
-=======
   <div [ngClass]="{ hidden: !viewReady, 'imx-flexible-tile-row': true}">
-    <imx-icon-tile
+    <!-- cust -->
+    <!-- <imx-icon-tile
       *ngIf="viewReady && ShowPasswordTile()"
->>>>>>> oned/v92
       data-imx-identifier="start-tile-no-password-query-and-answer-set"
       [caption]="'#LDS#Heading Password Questions' | translate"
       [subtitle]="
@@ -97,17 +86,13 @@
           <eui-icon size="m" icon="forward"></eui-icon>
         </button>
       </ng-template>
-    </imx-icon-tile>
+    </imx-icon-tile> -->
 
     <imx-notification-tile data-imx-identifier="start-noficationtile-enable-notifications" *ngIf="projectConfig?.VI_Common_EnableNotifications"> </imx-notification-tile>
 
     <imx-icon-tile
       data-imx-identifier="start-tile-password-manager"
-<<<<<<< HEAD
-      *ngIf="ShowQpmIntegration()"
-=======
       *ngIf="viewReady && ShowQpmIntegration()"
->>>>>>> oned/v92
       [caption]="'#LDS#Heading Password Manager' | translate"
       [subtitle]="'#LDS#Use Password Manager to manage passwords and your question and answer profile.' | translate"
       [identifier]="'password-manager-link'"
@@ -123,11 +108,7 @@
 
     <imx-icon-tile
       data-imx-identifier="start-tile-manage-passwords"
-<<<<<<< HEAD
-      *ngIf="ShowPasswordMgmtTile()"
-=======
       *ngIf="viewReady && ShowPasswordMgmtTile()"
->>>>>>> oned/v92
       [caption]="'#LDS#Heading Passwords' | translate"
       [subtitle]="'#LDS#Create and manage passwords, password questions, and security keys.' | translate"
       [identifier]="'reset-password-web-link'"

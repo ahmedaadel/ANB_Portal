@@ -1,77 +1,3 @@
-<<<<<<< HEAD
-<imx-data-source-toolbar #dst [options]="['search', 'filter', 'settings']" [settings]="dstSettings"
-  (search)="onSearch($event)" (navigationStateChanged)="getData($event)" data-imx-identifier="requests-history-dst">
-</imx-data-source-toolbar>
-<imx-data-table
-  [dst]="dst"
-  [detailViewVisible]="false"
-  mode="manual"
-  [selectable]="true"
-  (selectionChanged)="onSelectionChanged($event)"
-  data-imx-identifier="requests-history-datatable"
->
-  <imx-data-table-column [entityColumn]="entitySchema?.Columns.DisplayOrg" [columnLabel]="'#LDS#Product' | translate">
-    <ng-template let-pwo>
-      <div class="imx-display-column">
-        <div class="imx-placeholder" *ngIf="pwo.UID_PersonWantsOrgParent.value"></div>
-        <div>
-          <div *ngIf="pwo.UID_AccProduct.value">
-            <imx-request-display [additionalText]="getAdditionalText(pwo,dst.additionalListElements)" [personWantsOrg]="pwo" [isReadOnly]="isReadOnly"
-              data-imx-identifier="imx-request-display">
-            </imx-request-display>
-          </div>
-          <div *ngIf="!pwo.UID_AccProduct.value">
-            {{ pwo.DisplayOrg.Column.GetDisplayValue() }}
-          </div>
-          <div class="imx-subtext" *ngIf="pwo.UID_PersonWantsOrgParent.value">
-            {{ (pwo.IsOptionalChild.value ? '#LDS#Optional product' : '#LDS#Mandatory product') | translate }}
-          </div>
-        </div>
-      </div>
-    </ng-template>
-  </imx-data-table-column>
-  <imx-data-table-generic-column columnName="badges">
-    <ng-template let-pwo>
-      <div *ngIf="pwo.ValidUntil.value" class="imx-badge-container">
-        <eui-badge>
-          {{ translateProvider.GetColumnDisplay('ValidUntil', entitySchema) + ': ' + (pwo.ValidUntil.value | shortDate) }}
-        </eui-badge>
-      </div>
-      <div *ngIf="pwo.complianceRuleViolation" class="imx-badge-container">
-        <eui-badge>
-          {{ '#LDS#Compliance violation' | translate }}
-        </eui-badge>
-      </div>
-    </ng-template>
-  </imx-data-table-generic-column>
-  <imx-data-table-column [entityColumn]="entitySchema?.Columns.UiOrderState">
-    <ng-template let-pwo>
-      <ng-container *ngIf="['OrderProduct', 'OrderProlongate'].includes(pwo.UiOrderState.value); else defaultDisplay">
-        {{
-          pwo.UiOrderState.value === 'OrderProlongate'
-            ? ('#LDS#Renewed' | translate) +
-              ' ' +
-              (pwo.ValidUntilProlongation.value ? ('#LDS#until' | translate) + ' ' + (pwo.ValidUntilProlongation.value | shortDate) : ('#LDS#unlimited' | translate))
-            : ('#LDS#Requested' | translate)
-        }}
-      </ng-container>
-      <ng-template #defaultDisplay>
-        <span>{{ pwo.UiOrderState.Column.GetDisplayValue() }}</span>
-      </ng-template>
-    </ng-template>
-  </imx-data-table-column>
-  <imx-data-table-column [entityColumn]="entitySchema?.Columns.OrderDate"> </imx-data-table-column>
-  <imx-data-table-generic-column columnName="viewDetailsButton">
-    <ng-template let-prod>
-      <button mat-button color="primary" (click)="viewDetails(prod)" data-imx-identifier="requests-history-button-view-details">
-        {{ '#LDS#Details' | translate }}
-      </button>
-    </ng-template>
-  </imx-data-table-generic-column>
-</imx-data-table>
-<imx-data-source-paginator data-imx-identifier="requests-history-paginator" [dst]="dst"></imx-data-source-paginator>
-<div class="imx-button-bar" *ngIf="!isReadOnly">
-=======
 <mat-card class="imx-request-table-card">
   <imx-data-source-toolbar
     #dst
@@ -160,7 +86,6 @@
 <div class="imx-button-bar" *ngIf="!isReadOnly && !isArchivedRequests">
   <imx-selected-elements [selectedElements]="selectedItems"></imx-selected-elements>
  <div class="imx-menu-spacer"></div>
->>>>>>> oned/v92
   <button
     mat-stroked-button
     data-imx-identifier="requests-history-button-actions"
@@ -169,10 +94,7 @@
     [disabled]="!canPerformActions"
   >
     <eui-icon icon="ellipsisvertical"></eui-icon>
-<<<<<<< HEAD
-=======
     {{'#LDS#Actions' | translate}}
->>>>>>> oned/v92
   </button>
   <mat-menu yPosition="above" xPosition="before" data-imx-identifier="requests-history-actions-menu" #actionsMenu="matMenu">
     <button mat-menu-item *ngIf="canProlongateRequest" data-imx-identifier="request-menu-renew-request" (click)="actionService.prolongate(selectedItems)">
@@ -221,13 +143,6 @@
       {{ '#LDS#Revoke hold status' | translate }}
     </button>
 
-<<<<<<< HEAD
-    <button mat-menu-item *ngIf="canEscalateDecision" data-imx-identifier="request-detail-escalate-approval"
-      (click)="actionService.escalateDecisions(selectedItems)">
-      {{'#LDS#Escalate approval' | translate}}
-    </button>
-
-=======
     <button mat-menu-item *ngIf="canEscalateDecision" data-imx-identifier="request-detail-escalate-approval" (click)="actionService.escalateDecisions(selectedItems)">
       {{ '#LDS#Escalate approval' | translate }}
     </button>
@@ -235,6 +150,5 @@
     <button mat-menu-item *ngIf="canCopyItems" data-imx-identifier="request-detail-copy-items" (click)="actionService.copyItems(selectedItems)">
       {{ '#LDS#Submit again' | translate }}
     </button>
->>>>>>> oned/v92
   </mat-menu>
 </div>

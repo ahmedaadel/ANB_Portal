@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-@import "@elemental-ui/core/src/styles/_palette.scss";
-=======
 @import "@elemental-ui/core/src/styles/_eui_palette.scss";
->>>>>>> oned/v92
 
 :host {
   display: flex;
@@ -23,15 +19,6 @@
     display: flex;
     flex-direction: column;
   }
-<<<<<<< HEAD
-}
-.mat-tab-group {
-  overflow-y: auto;
-}
-
-::ng-deep .mat-tab-labels {
-  background-color: $white;
-=======
 
   .mat-expansion-panel {
     margin-bottom: 10px;
@@ -40,22 +27,18 @@
 .mat-tab-group {
   overflow-y: auto;
   height: 100%;
->>>>>>> oned/v92
 }
 
 .imx-mat-tab-container {
   padding: 20px;
 }
 
-<<<<<<< HEAD
-=======
 .imx-mat-tab-container-full {
   height: 100%;
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
 }
->>>>>>> oned/v92
 
 .imx-attestation-case-information,
 .imx-attestation-case-workflow,
@@ -70,8 +53,6 @@
     margin: 10px;
   }
 }
-<<<<<<< HEAD
-=======
 .imx-attestation-case-hyperview{
   display: flex;
   flex-direction: column;
@@ -79,7 +60,6 @@
 .imx-attestation-case-loss-preview {
   margin: 0 15px;
 }
->>>>>>> oned/v92
 
 .imx-helper-alert {
   width: 100%;
@@ -89,19 +69,6 @@
   }
 }
 
-<<<<<<< HEAD
-.imx-button-bar {
-  background-color: $white;
-  display: flex;
-  justify-content: flex-end;
-  border-top: $black-c 1px solid;
-  padding: 0px 20px 20px 8px;
-  flex-wrap: wrap;
-
-  > * {
-    margin-left: 10px;
-    margin-top: 20px;
-=======
 .eui-sidesheet-actions {
   button:not(.imx-justify-right) {
     margin-left: 16px;
@@ -143,6 +110,5 @@
     .imx-button-bar {
       background-color: $color-gray-90;
     }
->>>>>>> oned/v92
   }
 }

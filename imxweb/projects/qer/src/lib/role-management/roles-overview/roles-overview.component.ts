@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,19 +24,11 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
-import { TranslateService } from '@ngx-translate/core';
-import { OwnershipInformation } from 'imx-api-qer';
-=======
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { OwnershipInformation, ViewConfigData } from 'imx-api-qer';
->>>>>>> oned/v92
 import {
   CollectionLoadParameters,
   DataModel,
@@ -53,17 +41,6 @@ import {
 } from 'imx-qbm-dbts';
 import {
   AppConfigService,
-<<<<<<< HEAD
-  ClassloggerService,
-  DataSourceToolbarFilter,
-  LdsReplacePipe,
-  DataSourceToolbarSettings,
-  MetadataService,
-  SettingsService
-} from 'qbm';
-import { IDataExplorerComponent } from '../../data-explorer-view/data-explorer-extension';
-import { DataManagementService } from '../data-management.service';
-=======
   BusyService,
   CdrFactoryService,
   ClassloggerService,
@@ -80,33 +57,23 @@ import { DataManagementService } from '../data-management.service';
 import { QerPermissionsService } from '../../admin/qer-permissions.service';
 import { DataManagementService } from '../data-management.service';
 import { NewRoleComponent } from '../new-role/new-role.component';
->>>>>>> oned/v92
 import { IRoleRestoreHandler } from '../restore/restore-handler';
 import { RestoreComponent } from '../restore/restore.component';
 import { RoleDetailComponent } from '../role-detail/role-detail.component';
 import { RoleService } from '../role.service';
 import { TreeDatabaseAdaptorService } from './tree-database-adaptor.service';
-<<<<<<< HEAD
-=======
 import { ViewConfigService } from '../../view-config/view-config.service';
 import { Subscription } from 'rxjs';
 import { UserModelService } from '../../user/user-model.service';
->>>>>>> oned/v92
 
 @Component({
   selector: 'imx-roles-overview',
   templateUrl: './roles-overview.component.html',
   styleUrls: ['./roles-overview.component.scss'],
 })
-<<<<<<< HEAD
-export class RolesOverviewComponent implements OnInit, IDataExplorerComponent {
-
-  @Input() public data: OwnershipInformation;
-=======
 export class RolesOverviewComponent implements OnInit, OnDestroy, SideNavigationComponent {
   @Input() public data: OwnershipInformation;
   @Input() public contextId: HelpContextualValues;
->>>>>>> oned/v92
   public dstSettings: DataSourceToolbarSettings;
   public navigationState: CollectionLoadParameters = {};
   public ownershipInfo: OwnershipInformation;
@@ -114,23 +81,12 @@ export class RolesOverviewComponent implements OnInit, OnDestroy, SideNavigation
   public DisplayColumns = DisplayColumns;
   public displayColumns: IClientProperty[];
   public isAdmin = false;
-<<<<<<< HEAD
-=======
   public viewConfig: DataSourceToolbarViewConfig;
   public viewConfigPath: string;
->>>>>>> oned/v92
   public useTree = false;
   public ValType = ValType;
   public treeDatabase: TreeDatabaseAdaptorService;
   public filterOptions: DataSourceToolbarFilter[] = [];
-<<<<<<< HEAD
-
-  private dataModel: DataModel;
-
-  constructor(
-    private readonly sidesheet: EuiSidesheetService,
-    private readonly busyService: EuiLoadingService,
-=======
   public hasHierarchy = false;
   public canCreate: boolean;
   public busyService = new BusyService();
@@ -146,35 +102,12 @@ export class RolesOverviewComponent implements OnInit, OnDestroy, SideNavigation
   constructor(
     private readonly sidesheet: EuiSidesheetService,
     private readonly busyServiceElemental: EuiLoadingService,
->>>>>>> oned/v92
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly appConfig: AppConfigService,
     private readonly settings: SettingsService,
     private readonly logger: ClassloggerService,
     private readonly roleService: RoleService,
-<<<<<<< HEAD
-    private dataManagementService: DataManagementService,
-    private readonly metadataProvider: MetadataService,
-    private readonly translate: TranslateService,
-    private readonly ldsReplace: LdsReplacePipe,
-  ) {
-    this.route.params.subscribe(async (params) => {
-      this.ownershipInfo = {
-        TableName: params.tablename,
-        Count: params.count,
-      };
-    });
-  }
-
-  public async ngOnInit(): Promise<void> {
-
-    if (!this.ownershipInfo.TableName || this.ownershipInfo.TableName.length === 0) {
-      this.ownershipInfo = this.data;
-    }
-    try {
-      await this.metadataProvider.update([this.ownershipInfo.TableName]);
-=======
     private viewConfigService: ViewConfigService,
     private dataManagementService: DataManagementService,
     private readonly metadataProvider: MetadataService,
@@ -196,7 +129,6 @@ export class RolesOverviewComponent implements OnInit, OnDestroy, SideNavigation
     try {
       await this.metadataProvider.updateNonExisting([this.ownershipInfo.TableName]);
       this.isStructureAdmin = await this.permission.isStructAdmin();
->>>>>>> oned/v92
     } catch (error) {
       this.navigateToStartPage(error);
     }
@@ -211,47 +143,13 @@ export class RolesOverviewComponent implements OnInit, OnDestroy, SideNavigation
 
     const type = this.roleService.getType(this.ownershipInfo.TableName, true);
 
-<<<<<<< HEAD
-    this.treeDatabase = new TreeDatabaseAdaptorService(this.roleService, this.settings, this.busyService, this.ownershipInfo, type);
-=======
     this.treeDatabase = new TreeDatabaseAdaptorService(this.roleService, this.settings, this.ownershipInfo, this.busyService, type);
     await this.treeDatabase.prepare(this.roleService.getRoleEntitySchema(this.ownershipInfo.TableName), false);
->>>>>>> oned/v92
 
     if (!this.roleService.exists(this.ownershipInfo.TableName)) {
       return;
     }
     this.isAdmin = this.route.snapshot?.url[0]?.path === 'admin';
-<<<<<<< HEAD
-    setTimeout(() => { this.busyService.show(); });
-    try {
-      this.useTree = this.isAdmin && (await this.roleService.getEntitiesForTree(this.ownershipInfo.TableName, { PageSize: -1 })).Hierarchy != null;
-    } finally {
-      setTimeout(() => { this.busyService.hide(); });
-    }
-    this.navigationState = this.useTree ? {
-      // empty string: load first level
-      ParentKey: ''
-    } : {};
-    this.entitySchema = this.roleService.getRoleEntitySchema(this.ownershipInfo.TableName);
-    this.displayColumns = [
-      this.entitySchema.Columns[DisplayColumns.DISPLAY_PROPERTYNAME],
-      {
-        ColumnName: 'details',
-        Type: ValType.String,
-      },
-    ];
-
-    setTimeout(() => { this.busyService.show(); });
-    try {
-      this.dataModel = await this.roleService.getDataModel(this.ownershipInfo.TableName, this.isAdmin)
-      this.filterOptions = this.dataModel?.Filters;
-    } finally {
-      setTimeout(() => { this.busyService.hide(); });
-    }
-    await this.navigate();
-
-=======
     this.roleService.isAdmin = this.isAdmin;
 
     this.viewConfigPath = (this.isAdmin ? 'admin/role/' : 'role/') + this.ownershipInfo.TableName.toLowerCase();
@@ -282,7 +180,6 @@ export class RolesOverviewComponent implements OnInit, OnDestroy, SideNavigation
       isBusy.endBusy();
     }
     await this.navigate();
->>>>>>> oned/v92
   }
 
   public async onNavigationStateChanged(newState?: CollectionLoadParameters): Promise<void> {
@@ -307,73 +204,8 @@ export class RolesOverviewComponent implements OnInit, OnDestroy, SideNavigation
     await this.openDetails(node);
   }
 
-<<<<<<< HEAD
-  private navigateToStartPage(error?: any): void {
-    this.logger.error(this, error);
-    this.router.navigate([this.appConfig.Config.routeConfig.start], { queryParams: {} });
-  }
-
-  private async openDetails(item: IEntity): Promise<void> {
-    this.busyService.show();
-    try {
-      // Grab the interactive entity and store it in the service
-      this.roleService.setSidesheetData({
-        ownershipInfo: this.ownershipInfo,
-        entity: item,
-        isAdmin: this.isAdmin
-      });
-      await this.dataManagementService.setInteractive();
-    } finally {
-      this.busyService.hide();
-    }
-    const table = this.metadataProvider.tables[this.ownershipInfo.TableName];
-    const result = await this.sidesheet.open(RoleDetailComponent, {
-      title: this.ldsReplace.transform(await this.translate.get('#LDS#Heading Edit {0}').toPromise(),
-        table.DisplaySingular),
-      headerColour: 'blue',
-      padding: '0px',
-      width: 'max(768px, 80%)',
-      disableClose: true,
-      testId: 'role-detail-sidesheet'
-    }).afterClosed().toPromise();
-
-    if (result) {
-      await this.navigate();
-    };
-  }
-
-  private async navigate(): Promise<void> {
-    this.busyService.show();
-    try {
-      this.useTree ? await this.navigateInTree() : await this.navigateWithTable();
-    } finally {
-      this.busyService.hide();
-    }
-  }
-
-  private async navigateInTree(): Promise<void> {
-    await this.treeDatabase.prepare(
-      this.roleService.getRoleEntitySchema(this.ownershipInfo.TableName));
-  }
-
-  private async navigateWithTable(): Promise<void> {
-
-    this.dstSettings = {
-      dataSource: await this.roleService.get(this.ownershipInfo.TableName, this.isAdmin, this.navigationState),
-      entitySchema: this.entitySchema,
-      navigationState: this.navigationState,
-      displayedColumns: this.displayColumns,
-      filters: this.filterOptions,
-      dataModel: this.dataModel
-    };
-  }
-
-  public get restoreHandler(): IRoleRestoreHandler {
-    return this.roleService.targetMap.get(this.ownershipInfo.TableName)?.restore;
-=======
   public get restoreHandler(): IRoleRestoreHandler {
     return !this.isStructureAdmin && this.isAdmin ? null : this.roleService.targetMap.get(this.ownershipInfo.TableName)?.restore;
->>>>>>> oned/v92
   }
 
   public async restoreDeletedRole(): Promise<void> {
@@ -381,16 +213,6 @@ export class RolesOverviewComponent implements OnInit, OnDestroy, SideNavigation
     const context = this.isAdmin ? restoreHandler.asAdmin() : restoreHandler.asOwner();
 
     const sidesheetRef = this.sidesheet.open(RestoreComponent, {
-<<<<<<< HEAD
-      title: await this.translate.get('#LDS#Heading Restore a Deleted Role').toPromise(),
-      headerColour: 'blue',
-      padding: '0px',
-      width: 'max(768px, 80%)',
-      testId: 'role-restore-sidesheet',
-      data: {
-        isAdmin: this.isAdmin,
-        restore: context
-=======
       title: await this.translate.get('#LDS#Heading Restore Deleted Object').toPromise(),
       padding: '0px',
       width: 'max(768px, 80%)',
@@ -398,7 +220,6 @@ export class RolesOverviewComponent implements OnInit, OnDestroy, SideNavigation
       data: {
         isAdmin: this.isAdmin,
         restore: context,
->>>>>>> oned/v92
       },
     });
 
@@ -406,8 +227,6 @@ export class RolesOverviewComponent implements OnInit, OnDestroy, SideNavigation
       await this.navigate();
     });
   }
-<<<<<<< HEAD
-=======
 
   public async createNew(event: Event, entity?: IEntity): Promise<void> {
     event.stopPropagation();
@@ -545,5 +364,4 @@ export class RolesOverviewComponent implements OnInit, OnDestroy, SideNavigation
     this.viewConfig = await this.viewConfigService.getDSTExtensionChanges(this.viewConfigPath);
     this.dstSettings.viewConfig = this.viewConfig;
   }
->>>>>>> oned/v92
 }

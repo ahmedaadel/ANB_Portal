@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,78 +24,6 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-import { TestBed, fakeAsync, flush } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { configureTestSuite } from 'ng-bullet';
-import { Subject } from 'rxjs';
-
-import { AppConfigService, AuthenticationService, ISessionState } from 'qbm';
-import { UserModelService } from '../user/user-model.service';
-import { PersonAdminGuardService } from './person-admin-guard.service';
-import { QerPermissionsService } from '../admin/qer-permissions.service';
-
-@Component({
-  template: `<div>Dummy</div>`
-})
-class DummyComponent {
-}
-
-describe('PersonAdminGuardService', () => {
-  let service: PersonAdminGuardService;
-
-  const mockUserModelService = {
-    getGroups: () => {
-      return [];
-    },
-  };
-
-  const authenticationServiceStub = {
-    onSessionResponse: new Subject<ISessionState>(),
-  };
-  
-  let isPersonAdmin = false; 
-
-  const qerPermissionsServiceStub = {
-    isPersonAdmin: jasmine.createSpy('isPersonAdmin').and.callFake(() => isPersonAdmin)
-  };
-
-  configureTestSuite(() => {
-    TestBed.configureTestingModule({
-      declarations: [DummyComponent],
-      imports: [RouterTestingModule.withRoutes([
-        { path: 'dashboard', component: DummyComponent }
-      ])],
-      providers: [
-        PersonAdminGuardService,
-        {
-          provide: QerPermissionsService,
-          useValue: qerPermissionsServiceStub,
-        },
-        {
-          provide: AuthenticationService,
-          useValue: authenticationServiceStub,
-        },
-        {
-          provide: AppConfigService,
-          useValue: {
-            Config: {
-              Title: '',
-              routeConfig: {
-                start: 'dashboard'
-              }
-            }
-          }
-        },
-      ],
-    });
-  });
-
-
-  beforeEach(() => {
-    service = TestBed.inject(PersonAdminGuardService);
-=======
 import { fakeAsync, flush } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -136,7 +60,6 @@ describe('PersonAdminGuardService', () => {
 
   beforeEach(() => {
     service = MockRender(PersonAdminGuardService).point.componentInstance;
->>>>>>> oned/v92
   });
 
   it('should be created', () => {
@@ -150,31 +73,19 @@ describe('PersonAdminGuardService', () => {
       expect(val).toEqual(true);
     });
 
-<<<<<<< HEAD
-    authenticationServiceStub.onSessionResponse.next({ IsLoggedIn: true });
-=======
     QbmDefaultMocks.authServiceStub.onSessionResponse.next({ IsLoggedIn: true });
->>>>>>> oned/v92
 
     flush();
   }));
 
   it("canActivate() should return false if user doesn't have VI_4_PERSONADMIN group", fakeAsync(() => {
-<<<<<<< HEAD
-    isPersonAdmin = false; 
-=======
     isPersonAdmin = false;
->>>>>>> oned/v92
 
     service.canActivate(undefined, null).subscribe((val: boolean) => {
       expect(val).toEqual(false);
     });
 
-<<<<<<< HEAD
-    authenticationServiceStub.onSessionResponse.next({ IsLoggedIn: true });
-=======
     QbmDefaultMocks.authServiceStub.onSessionResponse.next({ IsLoggedIn: true });
->>>>>>> oned/v92
 
     flush();
   }));

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,11 +24,7 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, Input } from '@angular/core';
-=======
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
->>>>>>> oned/v92
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { imx_SessionService } from '../session/imx-session.service';
 import { KeyData } from './config-section';
@@ -44,11 +36,7 @@ import { ConfigService } from './config.service';
   templateUrl: './list-setting.component.html',
   styleUrls: ['./list-setting.component.scss']
 })
-<<<<<<< HEAD
-export class ListSettingComponent {
-=======
 export class ListSettingComponent implements OnInit, OnChanges {
->>>>>>> oned/v92
 
   constructor(private readonly session: imx_SessionService, private readonly configSvc: ConfigService) {
   }
@@ -58,13 +46,6 @@ export class ListSettingComponent implements OnInit, OnChanges {
   public validvalues: ConfigSettingValidValue[] = [];
   public hasLimitedValues: boolean;
 
-<<<<<<< HEAD
-  async ngOnInit(): Promise<void> {
-    this.hasLimitedValues = this.setting.Type == ConfigSettingType.LimitedValues;
-    if (this.hasLimitedValues) {
-      this.validvalues = await this.session.Client.admin_apiconfig_values_get(this.configSvc.appId, this.setting.Path);
-    }
-=======
   ngOnInit(): void {
     this.load();
   }
@@ -80,7 +61,6 @@ export class ListSettingComponent implements OnInit, OnChanges {
     if (this.hasLimitedValues) {
       this.validvalues = await this.session.Client.admin_apiconfig_values_get(this.configSvc.appId, this.setting.Path);
     };
->>>>>>> oned/v92
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -106,8 +86,4 @@ export class ListSettingComponent implements OnInit, OnChanges {
   trackByFn(index: any, item: any) {
     return index;
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> oned/v92

@@ -4,12 +4,6 @@
   </mat-card>
 
   <mat-card *ngIf="definition?.TableName">
-<<<<<<< HEAD
-    <mat-card-title>{{'#LDS#Columns to be included' | translate}}*</mat-card-title>
-
-    <imx-ordered-list [isReadOnly]="data.isReadonly" [addNewText]="'#LDS#Add column' | translate" [deleteText]="'#LDS#Delete' | translate"
-      [data]="definition.SelectedColumns" [dataSource]="definition.AvailableColumns"></imx-ordered-list>
-=======
     <mat-card-title>{{ '#LDS#Columns to be included' | translate }}*</mat-card-title>
 
     <imx-ordered-list
@@ -20,7 +14,6 @@
       [data]="definition.SelectedColumns"
       [dataSource]="definition.AvailableColumns"
     ></imx-ordered-list>
->>>>>>> oned/v92
   </mat-card>
 
   <ng-container *ngIf="definition?.TableName && sqlExpression">
@@ -29,26 +22,6 @@
     </eui-alert>
 
     <mat-card *ngIf="!sqlExpression.IsUnsupported">
-<<<<<<< HEAD
-      <mat-card-title>{{'#LDS#Conditions' | translate}}</mat-card-title>
-
-      <eui-alert class="helper-alert" *ngIf="sqlExpression.Expression?.Expressions.length < 1" condensed="true"
-        [colored]="true" type="info">
-        {{ ldsAllRowsInfoText | translate }}
-      </eui-alert>
-      <imx-sqlwizard *ngIf="!sqlExpression.IsUnsupported" [tableName]="definition.TableName" [apiService]="svc" [expression]="sqlExpression.Expression">
-      </imx-sqlwizard>
-
-    </mat-card>
-  </ng-container>
-</div>
-<div eui-sidesheet-actions color="white">
-  <button mat-raised-button color="primary" data-imx-identifier="report-sidesheet-button"
-    [disabled]="detailsFormGroup.invalid || isConditionInvalid() || data.isReadonly" (click)="save()">
-    {{ (data.isNew ? '#LDS#Create' : '#LDS#Save') | translate }}
-  </button>
-</div>
-=======
       <mat-card-title>{{ '#LDS#Conditions' | translate }}*</mat-card-title>
 
       <eui-alert class="helper-alert" *ngIf="sqlExpression.Expression?.Expressions.length < 1" condensed="true" [colored]="true" type="info">
@@ -64,4 +37,3 @@
     {{ (data.isNew ? '#LDS#Create' : '#LDS#Save') | translate }}
   </button>
 </div>
->>>>>>> oned/v92

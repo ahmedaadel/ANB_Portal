@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,11 +24,7 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, Input, Output, EventEmitter, SimpleChanges, OnChanges, ViewChild, OnDestroy } from '@angular/core';
-=======
 import { Component, Input, Output, EventEmitter, SimpleChanges, OnChanges, ViewChild, OnDestroy, ChangeDetectorRef } from '@angular/core';
->>>>>>> oned/v92
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 
@@ -64,8 +56,6 @@ export class DataSourcePaginatorComponent implements OnChanges, OnDestroy {
   @Input() public dst: DataSourceToolbarComponent;
 
   /**
-<<<<<<< HEAD
-=======
    * Add in first/last buttons
    */
   @Input() public showFirstLastButtons: boolean = false;
@@ -76,7 +66,6 @@ export class DataSourcePaginatorComponent implements OnChanges, OnDestroy {
   @Input() public pageSizeOptions: number[] = [20, 50, 100];
 
   /**
->>>>>>> oned/v92
    * Emits new navigation state (e.g. users clicks next/previous page button or changes the page size ).
    */
   @Output() public navigationStateChanged = new EventEmitter<CollectionLoadParameters>();
@@ -88,11 +77,6 @@ export class DataSourcePaginatorComponent implements OnChanges, OnDestroy {
   @ViewChild(MatPaginator, { static: true }) public paginator: MatPaginator;
 
   /**
-<<<<<<< HEAD
-   * List of options for the page size.
-   */
-  public pageSizeOptions = [20, 50, 100];
-=======
    *  @ignore Used internally in components template.
    *  Hides the paginator, if there is not data, a group is applied or the control is loading new content
    */
@@ -102,7 +86,6 @@ export class DataSourcePaginatorComponent implements OnChanges, OnDestroy {
   public isLoading = true;
 
   constructor (private readonly changeDetector: ChangeDetectorRef){}
->>>>>>> oned/v92
 
   /**
    * @ignore
@@ -122,8 +105,6 @@ export class DataSourcePaginatorComponent implements OnChanges, OnDestroy {
         this.dst.settings = value;
         this.setPaginator();
       }));
-<<<<<<< HEAD
-=======
 
       if(this.dst.busyService){
         this.dst.busyService.busyStateChanged.subscribe((value:boolean) =>{
@@ -133,7 +114,6 @@ export class DataSourcePaginatorComponent implements OnChanges, OnDestroy {
       } else {
         this.isLoading = false;
       }
->>>>>>> oned/v92
     }
   }
 

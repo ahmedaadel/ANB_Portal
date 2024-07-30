@@ -1,14 +1,4 @@
 <div class="imx-tab-content-body">
-<<<<<<< HEAD
-  <imx-data-source-toolbar data-imx-identifier="roles-memberships-primary-dst" #dst [settings]="dstSettings"
-    [searchBoxText]="'#LDS#Search' | translate" (navigationStateChanged)="onNavigationStateChanged($event)"
-    (search)="onSearch($event)" [options]="['search', 'filter', 'groupBy']">
-  </imx-data-source-toolbar>
-  <imx-data-table #dataTable data-imx-identifier="roles-memberships-primary-table" [dst]="dst" detailViewVisible="false"
-    mode="auto" [selectable]="false" [showSelectionInfo]="false"> </imx-data-table>
-  <imx-data-source-paginator data-imx-identifier="roles-memberships-primary-paginator" [dst]="dst">
-  </imx-data-source-paginator>
-=======
   <mat-card>
     <imx-data-source-toolbar
       data-imx-identifier="roles-memberships-primary-dst"
@@ -32,5 +22,4 @@
     </imx-data-table>
     <imx-data-source-paginator data-imx-identifier="roles-memberships-primary-paginator" [dst]="dst"> </imx-data-source-paginator>
   </mat-card>
->>>>>>> oned/v92
 </div>

@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 @import '../../../../../shared/scss/common-table.scss';
->>>>>>> oned/v92
 @mixin imx-flex-column-container {
   display: flex;
   flex-direction: column;
@@ -24,53 +21,28 @@
     display: flex;
     margin-bottom: 15px;
   }
-<<<<<<< HEAD
-
-  .alert-wrapper {
-    margin: 0 0 0 auto;
-    align-self: flex-end;
-    width: 50%;
-  }
-=======
->>>>>>> oned/v92
 }
 
 :host {
   @include imx-flex-column-container();
   overflow: hidden;
-<<<<<<< HEAD
-  height: inherit;
-=======
   height: 100%;
->>>>>>> oned/v92
   max-width: 100%;
 }
 
 .imx-pattern-page {
   background-color: inherit;
-<<<<<<< HEAD
-  @include imx-flex-column-container();
-  overflow: hidden;
-=======
  @include imx-flex-fill-control-hidden-overflow();
 
   .mat-card {
    @include imx-flex-fill-control-hidden-overflow();
   }
->>>>>>> oned/v92
 
   div.imx-table-container {
     @include imx-flex-column-container();
     overflow: hidden;
     height: inherit;
 
-<<<<<<< HEAD
-    imx-data-source-toolbar {
-      margin-bottom: 20px;
-    }
-
-=======
->>>>>>> oned/v92
     .imx-patterns-table {
       flex-grow: 1;
       overflow: auto;
@@ -78,35 +50,7 @@
   }
 
   .imx-button-bar {
-<<<<<<< HEAD
-    @include imx-flex-row-container();
-    margin-top: 20px;
-    flex: 0 0 auto;
-
-    .imx-badge {
-      background-color: inherit;
-
-      ::ng-deep .eui-badge-content {
-        font-size: 14px;
-        line-height: 14px;
-      }
-    }
-
-    .imx-selected-items {
-      margin: 0;
-      line-height: 36px;
-    }
-
-    button {
-      margin-left: 10px;
-    }
-
-    .imx-menu-spacer {
-      flex-grow: 1;
-    }
-=======
     @include imx-button-bar();
->>>>>>> oned/v92
   }
 }
 

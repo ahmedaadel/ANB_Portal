@@ -1,25 +1,12 @@
-<<<<<<< HEAD
-@use '@angular/material' as mat;
-@import "@elemental-ui/core/src/styles/_palette.scss";
-=======
 @import '@elemental-ui/core/src/styles/_palette.scss';
->>>>>>> oned/v92
 
 :host {
     display: flex;
     flex-direction: column;
     padding-top: 10px;
-<<<<<<< HEAD
-    background-color: mat.get-color-from-palette($asher-gray-palette, 800);
     padding-left: 30px;
     padding-right: 30px;
     overflow: auto;
-    margin-right: 5px;
-=======
-    padding-left: 30px;
-    padding-right: 30px;
-    overflow: auto;
->>>>>>> oned/v92
 }
 
 h2 {
@@ -66,8 +53,6 @@ h2 {
 .imx-no-filter-alert {
     margin: 30px 0px;
 }
-<<<<<<< HEAD
-=======
 
 .eui-dark-theme {
     :host {
@@ -80,4 +65,3 @@ h2 {
       background-color: $color-gray-100;
   }
 }
->>>>>>> oned/v92

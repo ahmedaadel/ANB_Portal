@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,42 +25,6 @@
  */
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { AppConfigService } from '../appConfig/appConfig.service';
-
-@Component({
-    templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss']
-})
-export class DashboardComponent implements OnInit, OnDestroy {
-
-    constructor(private readonly appConfigService: AppConfigService) {
-    }
-
-    src: EventSource;
-
-    statusData: {
-        CacheHits: number,
-        CacheMisses: number,
-        OpenSessions: number,
-        TotalSessions: number
-    };
-
-    selectedPage: string = '';
-
-    selectPage(page: string) {
-        this.selectedPage = page;
-    }
-
-    async ngOnInit() {
-    }
-
-    ngOnDestroy() {
-        if (this.src)
-            this.src.close();
-    }
-}
-=======
 import { ConfigService } from './config.service';
 
 import { Subscription } from 'rxjs';
@@ -191,4 +151,3 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (this.subscriptions.length) this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }
->>>>>>> oned/v92

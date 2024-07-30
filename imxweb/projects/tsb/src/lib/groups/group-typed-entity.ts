@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,17 +25,10 @@
  */
 
 import { IEntityColumn, WriteExtTypedEntity } from 'imx-qbm-dbts';
-<<<<<<< HEAD
-
-export class GroupTypedEntity extends WriteExtTypedEntity<any> {
-  public getColumns(showRiskIndex: boolean, propertyList: string[]): ReadonlyArray<IEntityColumn> {
-    const columns = [];
-=======
 import { CdrFactoryService } from 'qbm';
 
 export class GroupTypedEntity extends WriteExtTypedEntity<any> {
   public getColumns(showRiskIndex: boolean, propertyList: string[]): ReadonlyArray<IEntityColumn> {
->>>>>>> oned/v92
 
     // TODO: for each property, determine from dynamic entity schema (282445)
 
@@ -51,21 +40,6 @@ export class GroupTypedEntity extends WriteExtTypedEntity<any> {
       propertyList.push('RiskIndex');
     }
 
-<<<<<<< HEAD
-    for (const name of propertyList) {
-      columns.push(this.tryGetColumn(name));
-    }
-    return columns.filter(column => column != null);
-  }
-
-  private tryGetColumn(name: string): IEntityColumn {
-    try {
-      return this.GetEntity().GetColumn(name);
-    } catch {
-      return undefined;
-    }
-=======
     return propertyList.map(elem=> CdrFactoryService.tryGetColumn(this.GetEntity(),elem)).filter(elem=>elem != null);
->>>>>>> oned/v92
   }
 }

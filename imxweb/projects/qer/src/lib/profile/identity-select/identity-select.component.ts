@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-<<<<<<< HEAD
-import { FormControl } from '@angular/forms';
-=======
 import { UntypedFormControl } from '@angular/forms';
->>>>>>> oned/v92
 
 import { EuiSelectOption } from '@elemental-ui/core';
 import { IEntity } from 'imx-qbm-dbts';
@@ -44,11 +36,7 @@ import { IEntity } from 'imx-qbm-dbts';
   styleUrls: ['./identity-select.component.scss']
 })
 export class IdentitySelectComponent implements OnChanges {
-<<<<<<< HEAD
-  public readonly control = new FormControl(undefined);
-=======
   public readonly control = new UntypedFormControl(undefined);
->>>>>>> oned/v92
 
   public options: EuiSelectOption[];
 

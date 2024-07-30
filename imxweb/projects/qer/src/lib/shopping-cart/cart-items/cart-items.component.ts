@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -34,40 +30,27 @@ import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 
-<<<<<<< HEAD
-import { PortalCartitem, PortalCartitemInteractive } from 'imx-api-qer';
-=======
 import { PortalCartitem } from 'imx-api-qer';
->>>>>>> oned/v92
 import {
   DataSourceToolbarSettings,
   SnackBarService,
   ClassloggerService,
   DataTableComponent,
   ConfirmationService,
-<<<<<<< HEAD
-  ClientPropertyForTableColumns
-} from 'qbm';
-import { DisplayColumns, EntitySchema, IClientProperty, TypedEntity, ValType } from 'imx-qbm-dbts';
-=======
   ClientPropertyForTableColumns,
   LdsReplacePipe
 } from 'qbm';
 import { DisplayColumns, EntitySchema, TypedEntity, ValType, ValueStruct } from 'imx-qbm-dbts';
->>>>>>> oned/v92
 import { CartItemEditComponent } from '../cart-item-edit/cart-item-edit.component';
 import { CartItemsService } from '../cart-items.service';
 import { ShoppingCart } from '../shopping-cart';
 import { CartItemCheckStatus } from './cart-item-check-status.enum';
 import { CartItemValidationOverviewComponent } from '../cart-item-validation-overview/cart-item-validation-overview.component';
 import { CartItemCloneService } from '../cart-item-edit/cart-item-clone.service';
-<<<<<<< HEAD
-=======
 import { ExtendedEntityWrapper } from '../../parameter-data/extended-entity-wrapper.interface';
 import { Subject } from 'rxjs';
 import { CartItemEditParameter } from '../cart-item-edit/cart-item-edit-parameter.interface';
 import { UserModelService } from '../../user/user-model.service';
->>>>>>> oned/v92
 
 @Component({
   templateUrl: './cart-items.component.html',
@@ -111,13 +94,9 @@ export class CartItemsComponent implements OnInit, OnChanges {
     private readonly snackBarService: SnackBarService,
     private readonly translateService: TranslateService,
     private readonly sidesheetService: EuiSidesheetService,
-<<<<<<< HEAD
-    private readonly cartItemClone: CartItemCloneService
-=======
     private readonly cartItemClone: CartItemCloneService,
     private readonly userModelService: UserModelService,
     private readonly ldsReplace: LdsReplacePipe,
->>>>>>> oned/v92
   ) {
     this.entitySchema = cartItemsService.PortalCartitemSchema;
     this.displayedColumns = [
@@ -126,12 +105,8 @@ export class CartItemsComponent implements OnInit, OnChanges {
       {
         ColumnName: 'removeItemButton',
         Type: ValType.String,
-<<<<<<< HEAD
-        afterAdditionals: true
-=======
         afterAdditionals: true,
         untranslatedDisplay: '#LDS#Remove'
->>>>>>> oned/v92
       }
 
     ];
@@ -165,44 +140,6 @@ export class CartItemsComponent implements OnInit, OnChanges {
   }
 
   public async editCartItem(portalCartitem: PortalCartitem): Promise<void> {
-<<<<<<< HEAD
-    const entityWrapper = await this.cartItemsService.getInteractiveCartitem(
-      portalCartitem.GetEntity().GetKeys().join('')
-    );
-
-    const cartItem = entityWrapper.typedEntity;
-
-    let reloadItems = false;
-
-    const title = await this.translateService.get(
-      `${cartItem.GetEntity().GetDisplay()} - ${cartItem.UID_PersonOrdered.Column.GetDisplayValue()}`
-    ).toPromise();
-
-    const sidesheetRef = this.sidesheetService.open(
-      CartItemEditComponent,
-      {
-        title,
-        width: '700px',
-        headerColour: 'iris-blue',
-        data: {
-          entityWrapper,
-          cloneItem: this.itemCanBeCloned(cartItem) ?
-            () => {
-              reloadItems = true;
-              this.logger.trace(this, 'shopping cart must be reloaded');
-              this.cartItemClone.cloneItemForPersons({
-                personOrderedFkRelations: cartItem.UID_PersonOrdered.GetMetadata().GetFkRelations(),
-                accProduct: {
-                  DataValue: cartItem.UID_AccProduct.value,
-                  DisplayValue: cartItem.UID_AccProduct.Column.GetDisplayValue()
-                },
-                uidITShopOrg: cartItem.UID_ITShopOrg.value,
-                display: cartItem.GetEntity().GetDisplay()
-              });
-            }
-            : undefined
-        }
-=======
     this.busyService.show();
     const observable = new Subject<any>();
     const entityWrapper = await this.cartItemsService.getInteractiveCartitem(
@@ -244,7 +181,6 @@ export class CartItemsComponent implements OnInit, OnChanges {
         width: '700px',
         testId: 'cart-item-edit-sidesheet',
         data: itemEditParameter
->>>>>>> oned/v92
       });
 
 
@@ -275,12 +211,8 @@ export class CartItemsComponent implements OnInit, OnChanges {
   public async moveSelectedToCart(): Promise<void> {
     setTimeout(() => this.busyService.show());
     try {
-<<<<<<< HEAD
-      await this.cartItemsService.moveToCart(this.selectedItems);
-=======
       await this.cartItemsService.moveToCart(this.selectedItems);      
       await this.userModelService.reloadPendingItems();
->>>>>>> oned/v92
 
       this.snackBarService.open({ key: '#LDS#The selected products have been moved to your shopping cart.' });
     } finally {
@@ -292,20 +224,12 @@ export class CartItemsComponent implements OnInit, OnChanges {
   public async moveSelectedToLater(): Promise<void> {
     setTimeout(() => this.busyService.show());
     try {
-<<<<<<< HEAD
-      await this.cartItemsService.moveToLater(this.selectedItems);
-
-=======
       await this.cartItemsService.moveToLater(this.selectedItems); 
->>>>>>> oned/v92
       this.snackBarService.open({ key: '#LDS#The selected products have been moved to your Saved for Later list.' });
     } finally {
       setTimeout(() => this.busyService.hide());
       this.dataChange.emit(true);
-<<<<<<< HEAD
-=======
       await this.userModelService.reloadPendingItems();
->>>>>>> oned/v92
       if (this.cartItemsTable) {
         this.cartItemsTable.clearSelection();
       }
@@ -320,8 +244,6 @@ export class CartItemsComponent implements OnInit, OnChanges {
     this.removeRequests(this.selectedItems, false);
   }
 
-<<<<<<< HEAD
-=======
   public async editSelectedItems(): Promise<void>{
     this.busyService.show()
     let entityWrappers: ExtendedEntityWrapper<PortalCartitem>[] = [];
@@ -358,7 +280,6 @@ export class CartItemsComponent implements OnInit, OnChanges {
       }
     });
   }
->>>>>>> oned/v92
 
   public HasSelectedItems(): boolean {
     return this.selectedItems != null && this.selectedItems.length > 0;
@@ -387,13 +308,10 @@ export class CartItemsComponent implements OnInit, OnChanges {
     return this.itemsCanBeMoved(true);
   }
 
-<<<<<<< HEAD
-=======
   public itemsCanBeEdited(): boolean{
     return this.HasSelectedItems() && this.selectedItems.every(item => !item.IsNoCopyParametersPerson.value);
   }
 
->>>>>>> oned/v92
   public getCheckStatusIcon(cartItem: PortalCartitem): string {
     switch (cartItem.CheckResult.value) {
       case CartItemCheckStatus.ok:
@@ -411,22 +329,12 @@ export class CartItemsComponent implements OnInit, OnChanges {
     if (cartItem.CheckResult.value === CartItemCheckStatus.notChecked) {
       return;
     }
-<<<<<<< HEAD
-
-    this.sidesheetService.open(
-      CartItemValidationOverviewComponent,
-      {
-        title: await this.translateService.get('#LDS#Heading View Validation Results').toPromise(),
-        width: '750px',
-        headerColour: 'iris-blue',
-=======
     this.sidesheetService.open(CartItemValidationOverviewComponent,
       {
         title: await this.translateService.get('#LDS#Heading View Validation Results').toPromise(),
         subTitle: await this.getSubtitleDisplay(cartItem),
         width: '750px',
         testId: 'cart-item-validation-results-sidesheet',
->>>>>>> oned/v92
         data: {
           checkResult: this.shoppingCart.getCartItemCheckResult(cartItem),
           personOrderedDisplay: cartItem.UID_PersonOrdered.Column.GetDisplayValue(),
@@ -443,9 +351,6 @@ export class CartItemsComponent implements OnInit, OnChanges {
     }
   }
 
-<<<<<<< HEAD
-  private itemCanBeCloned(cartitem: PortalCartitemInteractive): boolean {
-=======
   private async getSubtitleDisplay(cartItem: PortalCartitem): Promise<string> {
     return this.translateService.get(
       `${cartItem.GetEntity().GetDisplay()} - ${cartItem.UID_PersonOrdered.Column.GetDisplayValue()}`
@@ -453,7 +358,6 @@ export class CartItemsComponent implements OnInit, OnChanges {
   }
 
   private itemCanBeCloned(cartitem: PortalCartitem): boolean {
->>>>>>> oned/v92
     return !this.forLater &&
       cartitem.CanCopy.value &&
       (cartitem.UID_ShoppingCartItemParent.value == null || cartitem.UID_ShoppingCartItemParent.value.length === 0) &&
@@ -536,19 +440,13 @@ export class CartItemsComponent implements OnInit, OnChanges {
         this.snackBarService.open({ key: this.forLater ? snackBarMessageWatchList : snackBarMessageShoppingCart }, '#LDS#Close');
       } finally {
         setTimeout(() => this.busyService.hide(overlayRef));
-<<<<<<< HEAD
-        this.dataChange.emit(true);
-=======
         this.dataChange.emit(true);        
         await this.userModelService.reloadPendingItems();
->>>>>>> oned/v92
 
         this.cartItemsTable?.clearSelection();
       }
     }
   }
-<<<<<<< HEAD
-=======
 
   private async createBaseCartItem(cartItems: ExtendedEntityWrapper<PortalCartitem>[]): Promise<ExtendedEntityWrapper<PortalCartitem>>{
     const baseCartItem = await this.cartItemsService.getInteractiveCartitem();
@@ -589,5 +487,4 @@ export class CartItemsComponent implements OnInit, OnChanges {
     };
     await this.cartItemsService.saveItems(cartItems);
   }
->>>>>>> oned/v92
 }

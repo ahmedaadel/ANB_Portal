@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -40,11 +36,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
-<<<<<<< HEAD
-import { DataSourceToolbarModule, DataTableModule, CdrModule, LdsReplaceModule, DataTreeModule, ExtModule, DynamicTabsModule } from 'qbm';
-=======
 import { DataSourceToolbarModule, DataTableModule, CdrModule, LdsReplaceModule, DataTreeModule, ExtModule, DynamicTabsModule, BusyIndicatorModule, HelpContextualModule } from 'qbm';
->>>>>>> oned/v92
 import { DataExplorerAccountsComponent } from '../accounts/accounts.component';
 import { AccountSidesheetComponent } from '../accounts/account-sidesheet/account-sidesheet.component';
 import { DataFiltersModule } from '../data-filters/data-filters.module';
@@ -52,10 +44,7 @@ import { NoDataModule } from '../no-data/no-data.module';
 import { GroupsModule } from '../groups/groups.module';
 import { AccountsExtComponent } from './account-ext/accounts-ext.component';
 import { TargetSystemReportComponent } from './target-system-report/target-system-report.component';
-<<<<<<< HEAD
-=======
 import { ObjectHyperviewModule } from 'qer';
->>>>>>> oned/v92
 
 @NgModule({
   declarations: [
@@ -70,10 +59,7 @@ import { ObjectHyperviewModule } from 'qer';
     CommonModule,
     FormsModule,
     GroupsModule,
-<<<<<<< HEAD
-=======
     BusyIndicatorModule,
->>>>>>> oned/v92
     ReactiveFormsModule,
     EuiCoreModule,
     EuiMaterialModule,
@@ -84,22 +70,15 @@ import { ObjectHyperviewModule } from 'qer';
     MatSidenavModule,
     MatCardModule,
     MatButtonModule,
-<<<<<<< HEAD
-=======
     ObjectHyperviewModule,
->>>>>>> oned/v92
     TranslateModule,
     DataSourceToolbarModule,
     DataTableModule,
     LdsReplaceModule,
     DataTreeModule,
     ExtModule,
-<<<<<<< HEAD
-    DynamicTabsModule
-=======
     DynamicTabsModule,
     HelpContextualModule
->>>>>>> oned/v92
   ],
   exports: [
     DataExplorerAccountsComponent,

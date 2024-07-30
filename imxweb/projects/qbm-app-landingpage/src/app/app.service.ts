@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -31,10 +27,6 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { TypedClient } from 'imx-api-qbm';
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
 import { AppConfigService, CdrRegistryService, ImxTranslationProviderService, ClassloggerService, imx_SessionService, AuthenticationService } from 'qbm';
 import { environment } from '../environments/environment';
 

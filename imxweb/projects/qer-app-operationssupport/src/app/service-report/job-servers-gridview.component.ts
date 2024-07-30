@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,13 +26,6 @@
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { OverlayRef } from '@angular/cdk/overlay';
-<<<<<<< HEAD
-import { EuiLoadingService } from '@elemental-ui/core';
-
-import { JobServersParameters, JobServersService } from './job-servers.service';
-import { DataSourceToolbarSettings, SettingsService } from 'qbm';
-
-=======
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -45,7 +34,6 @@ import { JobServersParameters, JobServersService } from './job-servers.service';
 import { DataSourceToolbarSettings, SettingsService, SnackBarService } from 'qbm';
 import { JobServersEditComponent } from './job-servers-edit/job-servers-edit.component';
 import { JobServersDetailsComponent } from './job-servers-details/job-servers-details.component';
->>>>>>> oned/v92
 @Component({
   selector: 'imx-job-servers-gridview',
   templateUrl: './job-servers-gridview.component.html',
@@ -59,25 +47,11 @@ export class JobServersGridviewComponent implements OnInit {
   @Output() public readonly jobServersChecked = new EventEmitter<boolean>();
 
   private navigationState: JobServersParameters;
-<<<<<<< HEAD
-=======
   private editableFields: string[] | undefined;
->>>>>>> oned/v92
 
   constructor(
     private gridDataService: JobServersService,
     private busyService: EuiLoadingService,
-<<<<<<< HEAD
-    private readonly settingsService: SettingsService
-  ) { }
-
-  public async ngOnInit(): Promise<void> {
-    await this.refresh();
-  }
-
-  public onSearch(keywords: string): Promise<void> {
-    return this.getData({PageSize: this.settingsService.DefaultPageSize, StartIndex: 0, search: keywords });
-=======
     private readonly settingsService: SettingsService,
     private readonly sidesheet: EuiSidesheetService,
     private readonly snackBarService: SnackBarService,
@@ -96,7 +70,6 @@ export class JobServersGridviewComponent implements OnInit {
 
   public onSearch(keywords: string): Promise<void> {
     return this.getData({ PageSize: this.settingsService.DefaultPageSize, StartIndex: 0, search: keywords });
->>>>>>> oned/v92
   }
 
   public navigationStateChanged(navigationState: JobServersParameters): Promise<void> {
@@ -104,20 +77,12 @@ export class JobServersGridviewComponent implements OnInit {
   }
 
   public async refresh(withconnection: boolean = false): Promise<void> {
-<<<<<<< HEAD
-    await this.getData({PageSize: this.settingsService.DefaultPageSize, StartIndex: 0, withconnection });
-=======
     await this.getData({ PageSize: this.settingsService.DefaultPageSize, StartIndex: 0, withconnection });
->>>>>>> oned/v92
   }
 
   private async getData(navigationState: JobServersParameters): Promise<void> {
     this.navigationState = { ...this.navigationState, ...navigationState };
 
-<<<<<<< HEAD
-    const entitySchema = this.gridDataService.OpsupportJobserversSchema;
-
-=======
     let data = await this.gridDataService.get(this.navigationState);
     let entitySchema = this.gridDataService.OpsupportJobserversSchema;
     let extraColumns = {
@@ -135,7 +100,6 @@ export class JobServersGridviewComponent implements OnInit {
       },
     };
     Object.assign(entitySchema.Columns, extraColumns);
->>>>>>> oned/v92
     const displayedColumns = [];
     displayedColumns.push(entitySchema.Columns.Ident_Server);
     if (this.navigationState.withconnection) {
@@ -145,17 +109,6 @@ export class JobServersGridviewComponent implements OnInit {
     displayedColumns.push(entitySchema.Columns.ServerWebUrl);
     displayedColumns.push(entitySchema.Columns.PhysicalServerName);
     displayedColumns.push(entitySchema.Columns.IPV4);
-<<<<<<< HEAD
-
-    let overlayRef: OverlayRef;
-    setTimeout(() => overlayRef = this.busyService.show());
-    try {
-      this.dstSettings = {
-        displayedColumns,
-        dataSource: await this.gridDataService.get(this.navigationState),
-        entitySchema,
-        navigationState: this.navigationState
-=======
     //Additional Columns added
     displayedColumns.push(entitySchema.Columns.Warning);
     displayedColumns.push(entitySchema.Columns.Details);
@@ -168,7 +121,6 @@ export class JobServersGridviewComponent implements OnInit {
         entitySchema,
         navigationState: this.navigationState,
         extendedData: data.extendedData[0],
->>>>>>> oned/v92
       };
 
       this.jobServersChecked.emit(this.navigationState.withconnection);
@@ -176,8 +128,6 @@ export class JobServersGridviewComponent implements OnInit {
       setTimeout(() => this.busyService.hide(overlayRef));
     }
   }
-<<<<<<< HEAD
-=======
   public async checkServer(data: any, event: Event) {
     event.stopPropagation();
     let overlayRef = this.busyService.show();
@@ -227,5 +177,4 @@ export class JobServersGridviewComponent implements OnInit {
       this.busyService.hide(overlayRef);
     }
   }
->>>>>>> oned/v92
 }

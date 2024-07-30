@@ -1,10 +1,6 @@
 {
  "extends": "./tsconfig.app.json",
  "compilerOptions": {
-<<<<<<< HEAD
-     "target": "es5" 
-=======
      "target": "es2020" 
->>>>>>> oned/v92
   }
 }

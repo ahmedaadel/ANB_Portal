@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -67,11 +63,7 @@ export class ParameterizedTextService {
   }
 
   private getParametersWithMatchingValue(text: ParameterizedText): ParameterReplacement[] {
-<<<<<<< HEAD
-    const re = new RegExp('(' + text.marker.start + '\\w+' + text.marker.end + ')', 'g');
-=======
     const re = new RegExp('(' + text.marker.start + '[^"]+' + text.marker.end + ')', 'g');
->>>>>>> oned/v92
     return (text.value.match(re) ?? [])
       .map(parameter => ({
         delimiter: parameter,

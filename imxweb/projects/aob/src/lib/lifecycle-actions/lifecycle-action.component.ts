@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { FormControl, ValidatorFn, AbstractControl, FormGroup } from '@angular/forms';
-=======
 import { UntypedFormControl, ValidatorFn, AbstractControl, UntypedFormGroup } from '@angular/forms';
->>>>>>> oned/v92
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -78,13 +70,8 @@ export class LifecycleActionComponent implements OnDestroy, OnInit {
 
   public publishFuture: boolean;
 
-<<<<<<< HEAD
-  public readonly publishDateForm: FormGroup;
-  public readonly datepickerFormControl: FormControl;
-=======
   public readonly publishDateForm: UntypedFormGroup;
   public readonly datepickerFormControl: UntypedFormControl;
->>>>>>> oned/v92
 
   public readonly browserCulture: string;
 
@@ -127,19 +114,11 @@ export class LifecycleActionComponent implements OnDestroy, OnInit {
     // set date to tomorrow
     this.minDate = moment(curDate);
 
-<<<<<<< HEAD
-    this.datepickerFormControl = new FormControl(this.minDate, this.validateDate(this.minDate, () => this.publishFuture));
-
-    this.publishDateForm = new FormGroup({
-      datepickerFormControl: this.datepickerFormControl,
-      whenToPublish: new FormControl('now'),
-=======
     this.datepickerFormControl = new UntypedFormControl(this.minDate, this.validateDate(this.minDate, () => this.publishFuture));
 
     this.publishDateForm = new UntypedFormGroup({
       datepickerFormControl: this.datepickerFormControl,
       whenToPublish: new UntypedFormControl('now'),
->>>>>>> oned/v92
     });
 
     this.subscriptions.push(this.publishDateForm.get('whenToPublish').valueChanges

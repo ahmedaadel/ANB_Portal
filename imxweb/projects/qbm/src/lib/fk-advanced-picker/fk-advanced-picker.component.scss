@@ -1,41 +1,15 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
-<<<<<<< HEAD
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
->>>>>>> oned/v92
 :host {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   height: 100%;
-<<<<<<< HEAD
-  background-color: $asher-gray;
-}
-
-.imx-sidesheet-content {
-  flex: 1 1 auto;
-  overflow:auto;
-=======
->>>>>>> oned/v92
 }
 
 .imx-dialog-content {
   display: flex;
   flex-direction: column;
-<<<<<<< HEAD
-  margin: 30px;
-  overflow-y: auto;
-  max-height: calc(100% - 60px);
-}
-
-.imx-dialog-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 0;
-  padding: 16px 32px;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-  background-color: $white;
-=======
   overflow-y: auto;
   height: 100%;
   eui-alert{
@@ -53,7 +27,6 @@
   display: flex;
   justify-content: flex-end;
   margin-bottom: 0;
->>>>>>> oned/v92
 
   button {
     margin-left: 10px;
@@ -74,8 +47,6 @@
   min-width: 32px;
   min-height: 32px;
 }
-<<<<<<< HEAD
-=======
 .eui-dark-theme {
   :host {
     background-color: $color-gray-80;
@@ -95,4 +66,3 @@
     }
   }
 }
->>>>>>> oned/v92

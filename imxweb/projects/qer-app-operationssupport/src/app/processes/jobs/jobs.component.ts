@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -39,19 +35,10 @@ export class JobsComponent implements OnInit {
   public failed = false;
   public isShowGraph = false;
 
-<<<<<<< HEAD
-  public gridHeight = (document.body.clientHeight - 339) + 'px';
-
-=======
->>>>>>> oned/v92
   public infoText = '#LDS#Here you can get an overview of all processes of the JobQueue. You can view them individually in a table or grouped by status in a chart. Additionally, you can handle failed processes.';
 
   constructor(private activeRoute: ActivatedRoute) { }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
   public ngOnInit(): void {
     const failed = this.activeRoute.snapshot.queryParamMap.get('failed');
 

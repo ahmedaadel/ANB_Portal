@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -34,17 +30,10 @@
 
 export { AddressbookComponent } from './lib/addressbook/addressbook.component';
 export { AddressbookModule } from './lib/addressbook/addressbook.module';
-<<<<<<< HEAD
-export { ApproverContainer } from './lib/itshop/request-info/approver-container';
-export { IRoleEntitlements } from './lib/role-management/role-entitlements/entitlement-handlers';
-export { BaseMembership } from './lib/role-management/role-memberships/membership-handlers';
-export { BaseTreeEntitlement } from './lib/role-management/role-entitlements/entitlement-handlers';
-=======
 export { FeatureConfigService } from './lib/admin/feature-config.service';
 export { QerPermissionsService } from './lib/admin/qer-permissions.service';
 export { ArchivedRequestsComponent } from './lib/archived-requests/archived-requests.component';
 export { ArchivedRequestsModule } from './lib/archived-requests/archived-requests.module';
->>>>>>> oned/v92
 export { BusinessOwnerAddOnTileComponent } from './lib/businessowner-addon-tile/businessowner-addon-tile.component';
 export { BusinessownerAddonTileModule } from './lib/businessowner-addon-tile/businessowner-addon-tile.module';
 export { BusinessOwnerOverviewTileComponent } from './lib/businessowner-overview-tile/businessowner-overview-tile.component';

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,19 +25,11 @@
  */
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-<<<<<<< HEAD
-import { FormControl } from '@angular/forms';
-=======
 import { UntypedFormControl } from '@angular/forms';
->>>>>>> oned/v92
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { TypedEntity } from 'imx-qbm-dbts';
-<<<<<<< HEAD
-import { isIE } from '../../base/user-agent-helper';
-=======
->>>>>>> oned/v92
 import { LdsReplacePipe } from '../../lds-replace/lds-replace.pipe';
 import { TypedEntitySelectionData } from './typed-entity-selection-data.interface';
 import { TypedEntitySelectorComponent } from './typed-entity-selector/typed-entity-selector.component';
@@ -54,17 +42,10 @@ import { TypedEntitySelectorComponent } from './typed-entity-selector/typed-enti
 export class TypedEntitySelectComponent implements OnInit {
   @Input() public data: TypedEntitySelectionData;
 
-<<<<<<< HEAD
-  @Output() public readonly controlCreated = new EventEmitter<FormControl>();
-  @Output() public readonly selectionChanged = new EventEmitter<TypedEntity[]>();
-
-  public readonly control = new FormControl();
-=======
   @Output() public readonly controlCreated = new EventEmitter<UntypedFormControl>();
   @Output() public readonly selectionChanged = new EventEmitter<TypedEntity[]>();
 
   public readonly control = new UntypedFormControl();
->>>>>>> oned/v92
 
   public loading = false;
 
@@ -98,15 +79,9 @@ export class TypedEntitySelectComponent implements OnInit {
       TypedEntitySelectorComponent,
       {
         title: await this.translate.get(this.data.title || this.data.valueWrapper.display).toPromise(),
-<<<<<<< HEAD
-        headerColour: 'iris-blue',
-        padding: '0',
-        width: isIE() ? '60%' : 'max(600px, 60%)',
-=======
         padding: '0',
         width: 'max(600px, 60%)',
         testId: `typed-entity-selector-${this.data.valueWrapper.name}`,
->>>>>>> oned/v92
         data: {
           getTyped: this.data.dynamicFkRelation ? undefined : this.data.getTyped,
           isMultiValue: true,

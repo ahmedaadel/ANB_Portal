@@ -26,37 +26,6 @@
 
 import { LimitedValueData, IValueMetadata, ValType } from 'imx-qbm-dbts';
 
-<<<<<<< HEAD
-export class LimitedValuesContainer {
-    public get values(): ReadonlyArray<LimitedValueData> {
-        return this.metadata ? this.metadata.GetLimitedValues() : undefined;
-    }
-
-    constructor(private metadata: IValueMetadata) { }
-
-    /**
-     * Determines, whether the limited value collection allows a null option
-     */
-    public hasNullOption(): boolean {
-        return this.metadata.GetMinLength() === 0 && !this.contains(this.getNullValue());
-    }
-
-    /**
-     * Determines, whether the value is part of the limited value range or not
-     */
-    public isNotInLimitedValueRange(value: string | number): boolean {
-        return !((value || '') === (this.getNullValue() || '')) && !this.contains(value);
-    }
-
-    // gets the value representing "null"
-    private getNullValue(): string {
-        return this.metadata.GetType() === ValType.String ? null : '0';
-    }
-
-    private contains(value: string | number): boolean {
-        return this.values && this.values.filter(v => `${v.Value}` === `${value}`).length > 0;
-    }
-=======
 /**
  * A wrapper, that encapsules limited value property functions.
  */
@@ -100,5 +69,4 @@ export class LimitedValuesContainer {
   private contains(value: string | number): boolean {
     return this.values && this.values.filter((v) => `${v.Value}` === `${value}`).length > 0;
   }
->>>>>>> oned/v92
 }

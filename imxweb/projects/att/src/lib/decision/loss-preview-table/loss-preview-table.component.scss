@@ -1,30 +1,9 @@
-<<<<<<< HEAD
-@import '@elemental-ui/core/src/styles/_palette.scss';
-
-@mixin imx-flex-row-container {
-  display: flex;
-  flex-direction: row;
-}
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
->>>>>>> oned/v92
 
 :host {
   overflow-y: auto;
   flex-grow: 1;
   height: 100%;
-<<<<<<< HEAD
-  background-color: $white;
-}
-
-.heading-wrapper {
-  @include imx-flex-row-container();
-  flex: 0 0 auto;
-
-  .helper-alert {
-    display: flex;
-    margin-bottom: 15px;
-=======
   display: flex;
   flex-direction: column;
 
@@ -52,7 +31,6 @@
 
   .helper-alert {
     display: flex;
->>>>>>> oned/v92
   }
 
   .alert-wrapper {
@@ -60,51 +38,29 @@
     margin: 0 0 0 auto;
     align-self: flex-end;
   }
-<<<<<<< HEAD
-=======
 
   .alert-wrapper--shortened {
     width: 70%;
   }
->>>>>>> oned/v92
 }
 
 th.mat-header-cell:not(:last-child), td.mat-cell:not(:last-child) {
   padding-right: 10px;
 }
 
-<<<<<<< HEAD
-tr.mat-row {
-  cursor: default;
-}
-
-=======
->>>>>>> oned/v92
 table.mat-table {
   box-shadow: none;
   padding: 1px;
 }
 .table-row-tall {
-<<<<<<< HEAD
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-.table-subtitle {
-  color: $black-4;
-=======
   padding: 5px 0;
 }
 
 .table-subtitle {
->>>>>>> oned/v92
   font-size: 80%;
 }
 
 .imx-attestation-case-loss-preview {
-<<<<<<< HEAD
-  padding: 0;
-=======
   margin: 15px 0;
   height: 100%;
   display: flex;
@@ -137,5 +93,4 @@ table.mat-table {
       color: $color-gray-10;
     }
   }
->>>>>>> oned/v92
 }

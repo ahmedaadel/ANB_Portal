@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,67 +24,6 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { SqlViewSettings } from './SqlNodeView';
-import { LogOp as _logOp, SqlExpression } from 'imx-qbm-dbts';
-import { SqlWizardApiService } from './sqlwizard-api.service';
-
-@Component({
-    templateUrl: './sqlwizard.component.html',
-    styleUrls: ['./sqlwizard.scss'],
-    selector: 'imx-sqlwizard'
-})
-export class SqlWizardComponent implements OnInit, OnChanges {
-
-    public LogOp = _logOp;
-
-    public viewSettings: SqlViewSettings;
-
-    @Input() public tableName: string;
-    @Input() public expression: SqlExpression;
-    /** Alternate API service to use. */
-    @Input() public apiService: SqlWizardApiService;
-
-    @Output() public change = new EventEmitter<any>();
-
-    constructor(private readonly apiSvc: SqlWizardApiService) {
-    }
-
-    public async ngOnInit(): Promise<void> {
-        await this.reinit();
-    }
-
-    public async addExpression(): Promise<void> {
-      await this.viewSettings.root.addChildNode();
-      this.emitChanges();
-    }
-
-    public ngOnChanges(changes: SimpleChanges): void {
-        if ((changes['expression'] && changes['expression'].currentValue !== this.expression) ||
-            (changes['tableName'] && changes['tableName'].currentValue !== this.viewSettings?.root.tableName)) {
-              this.reinit();
-        }
-    }
-
-    public emitChanges(): void {
-      this.change.emit();
-    }
-
-    private async reinit(): Promise<void> {
-        if (this.tableName && this.expression) {
-
-            var svc = this.apiService;
-            if (!svc) {
-                svc = this.apiSvc;
-            }
-            const viewSettings = new SqlViewSettings(svc, this.tableName, this.expression);
-            // first prepare, then assign to local property
-            await viewSettings.root.prepare();
-            this.viewSettings = viewSettings;
-        }
-    }
-=======
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
 import { SqlViewSettings } from './SqlNodeView';
 import { LogOp as _logOp, SqlExpression } from 'imx-qbm-dbts';
@@ -199,5 +134,4 @@ export class SqlWizardComponent implements OnInit, OnChanges, AfterViewInit {
       await this.addExpression();
     }
   }
->>>>>>> oned/v92
 }

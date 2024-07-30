@@ -31,7 +31,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { PortalAdminPerson, PortalPersonAll, PortalPersonReports, ProjectConfig, ViewConfigData } from 'imx-api-qer';
-import { CollectionLoadParameters, DataModel, DataModelProperty, DisplayColumns, EntitySchema, IClientProperty } from 'imx-qbm-dbts';
+import { CollectionLoadParameters, DataModel, DataModelProperty, DisplayColumns, EntitySchema, IClientProperty, FilterType,
+  CompareOperator, 
+  TypedEntityCollectionData} from 'imx-qbm-dbts';
 import {
   AuthenticationService,
   BusyService,
@@ -49,6 +51,7 @@ import {
   MessageDialogComponent,
   SettingsService,
   SideNavigationComponent,
+  imx_SessionService,
 } from 'qbm';
 import { QerPermissionsService } from '../admin/qer-permissions.service';
 import { ProjectConfigurationService } from '../project-configuration/project-configuration.service';
@@ -58,9 +61,9 @@ import { IdentitiesReportsService } from './identities-reports.service';
 import { IdentitiesService } from './identities.service';
 import { IdentitySidesheetComponent } from './identity-sidesheet/identity-sidesheet.component';
 // cust
-import { OutsourceIdentityComponent } from './outsource-identity/outsource-identity.component';
+// import { OutsourceIdentityComponent } from './outsource-identity/outsource-identity.component';
 import { CCC_isHROutsourceAdmin, CCC_isOutsourceAdmin } from '../admin/qer-permissions-helper';
-import { imx_SessionService } from '../../../../qbm/src/lib/session/imx-session.service';
+import { OutsourceIdentityComponent } from './outsource-identity/outsource-identity.component';
 
 @Component({
   selector: 'imx-data-explorer-identities',
@@ -119,7 +122,9 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, SideN
   private displayedColumns: IClientProperty[] = [];
   private authorityDataDeleted$: Subscription;
   private sessionResponse$: Subscription;
-
+  //cust
+  private IsOutsourceStaff:boolean; 
+  private IsOutsourceHR:boolean ;
   public busyService = new BusyService();
   private displayedInnerColumns: IClientProperty[] = [];
   private groupingInfo: DataSourceToolbarGroupData;
@@ -156,6 +161,9 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, SideN
         (this.currentUser = session.UserUid), (this.isManagerForPersons = await qerPermissionService.isPersonManager());
         this.isPersonAdmin = await qerPermissionService.isPersonAdmin();
         this.isAuditor = await qerPermissionService.isAuditor();
+
+         this.IsOutsourceStaff = await qerPermissionService.CCC_isOutsourceAdmin()
+         this. IsOutsourceHR = await qerPermissionService.CCC_isHROutsourceAdmin()
       }
     });
   }
@@ -304,7 +312,6 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, SideN
     await this.sideSheet.open(OutsourceIdentityComponent, {
       title: await this.translate.get('#LDS#Create Outsource Identity').toPromise(),
       headerColour: 'blue',
-      bodyColour: 'asher-gray',
       padding: '0px',
       width: 'max(650px, 65%)',
       disableClose: true,
@@ -373,6 +380,7 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, SideN
   }
 
   private async navigate(): Promise<void> {
+
     const isBusy = this.busyService.beginBusy();
     try {
       this.logger.debug(this, `Retrieving person list`);
@@ -399,10 +407,7 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, SideN
       // cust
       /** * apply different filter based on permission group */
    let sessionState = await this.session.getSessionState();
-   let IsOutsourceStaff:boolean = await this.qerPermissionService.CCC_isOutsourceAdmin()
-   let IsOutsourceHR:boolean = await this.qerPermissionService.CCC_isHROutsourceAdmin()
-
-      if (IsOutsourceHR ){
+      if (this.IsOutsourceHR ){
         this.navigationState.filter=[
           {
            ColumnName: "IsExternal",
@@ -419,9 +424,9 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, SideN
 
      ];
       }
-      else if (IsOutsourceStaff)
+      else if (this.IsOutsourceStaff)
       {
-        this.navigationState.filter=[
+        this.navigationState.filter = [
           {
            ColumnName: "IsExternal",
            Value1 : 1,
@@ -487,7 +492,9 @@ export class DataExplorerIdentitiesComponent implements OnInit, OnDestroy, SideN
     }
     this.logger.debug(this, `Retrieving details for admin person with id ${id}`);
 
-    return this.isAdmin ? this.identitiesService.getAdminPerson(id) : (await this.identitiesService.getPersonInteractive(id)).Data[0];
+  //cust 
+    return this.isAdmin ?  this.identitiesService.CCC_getAdminPerson(id)
+    : (await this.identitiesService.getPersonInteractive(id)).Data[0];
   }
 
   private async viewIdentity(identity: PortalAdminPerson | PortalPersonReports): Promise<void> {

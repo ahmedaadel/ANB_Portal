@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -39,10 +35,7 @@ import {
   platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing';
 import { TestHelperModule } from 'qbm';
-<<<<<<< HEAD
-=======
 import { AttDefaultMocks } from './default-mocks.spec';
->>>>>>> oned/v92
 
 declare const require: any;
 
@@ -55,7 +48,4 @@ getTestBed().initTestEnvironment(
 const context = require.context('./', true, /\.spec\.ts$/);
 // And load the modules.
 context.keys().map(context);
-<<<<<<< HEAD
-=======
 AttDefaultMocks.registerDefaultMocks();
->>>>>>> oned/v92

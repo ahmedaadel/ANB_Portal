@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,12 +24,6 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component } from "@angular/core";
-import { ImxConfig, LoadedPlugin, MethodSetInfo, PingResult, SystemInfo, UpdaterState } from 'imx-api-qbm';
-import { AppConfigService } from "../appConfig/appConfig.service";
-import { ImxTranslationProviderService } from "../translation/imx-translation-provider.service";
-=======
 import { Component, OnDestroy, OnInit, Input } from '@angular/core';
 import { ChartOptions } from 'billboard.js';
 import { ImxConfig, MethodSetInfo, PingResult, SystemInfo, UpdaterState, V2ApiClientMethodFactory } from 'imx-api-qbm';
@@ -111,22 +101,10 @@ export class StatusBuffer {
     }
   }
 }
->>>>>>> oned/v92
 
 @Component({
   selector: 'imx-status',
   templateUrl: './status.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./status.component.scss']
-})
-export class StatusComponent {
-  constructor(private readonly appConfigService: AppConfigService, private readonly translator : ImxTranslationProviderService) {
-  }
-
-  pingResult: PingResult;
-  apiProjects: MethodSetInfo[];
-  plugins: LoadedPlugin[];
-=======
   styleUrls: ['./shared.scss'],
   host: {
     '[class.loading]': '!dataReady',
@@ -145,27 +123,10 @@ export class StatusComponent implements OnInit, OnDestroy, SideNavigationCompone
 
   pingResult: PingResult;
   apiProjects: MethodSetInfo[];
->>>>>>> oned/v92
   updaterState: UpdaterState;
   systemInfo: SystemInfo;
   config: ImxConfig;
   dataReady: boolean;
-<<<<<<< HEAD
-  UpdateText : string;
-
-  UpdaterState = UpdaterState;
-
-
-  ngOnInit() {
-    this.Reload();
-  }
-
-  async Reload() {
-
-    this.UpdateText = await this.translator.Translate("#LDS#Installs updates and restarts the server.").toPromise();
-
-    // TODO add busy indicator
-=======
   UpdateText: string;
 
   UpdaterState = UpdaterState;
@@ -220,19 +181,12 @@ export class StatusComponent implements OnInit, OnDestroy, SideNavigationCompone
 
     this.UpdateText = await this.translator.Translate('#LDS#Installs updates and restarts the server.').toPromise();
 
->>>>>>> oned/v92
     const client = this.appConfigService.client;
     this.pingResult = await client.imx_ping_get();
     this.systemInfo = await client.imx_system_get();
     this.apiProjects = await client.admin_projects_get();
-<<<<<<< HEAD
-    this.plugins = await client.admin_systeminfo_plugins_get();
-    const s = await client.admin_systeminfo_software_status_get();
-    this.config = await this.appConfigService.getImxConfig();
-=======
     const s = await client.admin_systeminfo_software_status_get();
     this.config = await this.systemInfoService.getImxConfig();
->>>>>>> oned/v92
 
     this.updaterState = s.Status;
     this.dataReady = true;
@@ -241,9 +195,6 @@ export class StatusComponent implements OnInit, OnDestroy, SideNavigationCompone
   StartUpdate() {
     this.appConfigService.client.admin_systeminfo_software_update_post();
   }
-<<<<<<< HEAD
-}
-=======
 
   private async buildOptions(chart: StatusInfo2): Promise<void> {
     let seriesname = await this.translator.Translate('#LDS#Active sessions').toPromise();
@@ -298,4 +249,3 @@ export class StatusComponent implements OnInit, OnDestroy, SideNavigationCompone
     this.buildOptions(session);
   }
 }
->>>>>>> oned/v92

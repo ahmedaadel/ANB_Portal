@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,10 +26,7 @@
 
 import { Injectable } from '@angular/core';
 import { HistoryData } from 'imx-qbm-dbts';
-<<<<<<< HEAD
-=======
 import { HistoryComparisonData } from 'imx-api-qbm';
->>>>>>> oned/v92
 import { ObjectHistoryApiService, imx_SessionService } from 'qbm';
 
 @Injectable()
@@ -44,11 +37,8 @@ export class OpSupportHistoryApiService implements ObjectHistoryApiService {
   getHistoryData(table: string, uid: string): Promise<HistoryData[]> {
     return this.session.Client.opsupport_history_get(table, uid);
   }
-<<<<<<< HEAD
-=======
 
   getHistoryComparisonData(table: string, uid: string,options?: {CompareDate?: Date;}): Promise<HistoryComparisonData[]> {
     return this.session.Client.opsupport_history_comparison_get(table, uid, options);
   }
->>>>>>> oned/v92
 }

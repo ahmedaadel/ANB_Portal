@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,41 +25,6 @@
  */
 
 import { Injectable } from '@angular/core';
-<<<<<<< HEAD
-import { PortalPasswordquestions } from 'imx-api-qer';
-import { CollectionLoadParameters, EntitySchema, ExtendedTypedEntityCollection } from 'imx-qbm-dbts';
-import { QerApiService } from '../../qer-api-client.service';
-
-
-@Injectable({
-  providedIn: 'root'
-})
-export class PasswordQuestionService {
-  constructor(private readonly api: QerApiService) { }
-
-  public getSchema(): EntitySchema {
-    return this.api.typedClient.PortalPasswordquestions.GetSchema();
-  }
-
-  public async get(params?: CollectionLoadParameters): Promise<ExtendedTypedEntityCollection<PortalPasswordquestions, unknown>> {
-    return await this.api.typedClient.PortalPasswordquestions.Get(params);
-  }
-
-  public async put(item: PortalPasswordquestions): Promise<ExtendedTypedEntityCollection<PortalPasswordquestions, unknown>> {
-    return await this.api.typedClient.PortalPasswordquestions.Put(item);
-  }
-
-  public async post(item: PortalPasswordquestions): Promise<ExtendedTypedEntityCollection<PortalPasswordquestions, unknown>> {
-    return await this.api.typedClient.PortalPasswordquestions.Post(item);
-  }
-
-  public async delete(item: PortalPasswordquestions): Promise<void> {
-    await this.api.client.portal_passwordquestions_delete(item.GetEntity().GetKeys()[0]);
-  }
-
-  public create(): PortalPasswordquestions {
-    return this.api.typedClient.PortalPasswordquestions.createEntity();
-=======
 import {
   PasswordresetPasswordquestions,
   PasswordresetPasswordquestionsWrapper,
@@ -126,6 +87,5 @@ export class PasswordQuestionService {
     }
     const passwordPortalConfig = await this.api.client.passwordreset_config_get()
     return passwordPortalConfig.RequiredPasswordQuestions;
->>>>>>> oned/v92
   }
 }

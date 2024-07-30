@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,15 +24,6 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, Inject } from '@angular/core';
-import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
-
-import { ColumnDependentReference } from 'qbm';
-import { RulesViolationsApproval } from '../rules-violations-approval';
-import { RulesViolationsActionService } from '../rules-violations-action/rules-violations-action.service';
-
-=======
 import { Component, Inject, OnDestroy, OnInit, Type, ViewChild } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 
@@ -56,27 +43,12 @@ export class baseComplienceClass {
 export interface DynamicTabItem extends IExtension {
   instance: Type<baseComplienceClass>;
 }
->>>>>>> oned/v92
 /**
  * A sidesheet component to show some information about the selected rules violation.
  */
 @Component({
   selector: 'imx-rules-violations-details',
   templateUrl: './rules-violations-details.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./rules-violations-details.component.scss']
-})
-export class RulesViolationsDetailsComponent {
-
-  public cdrList: ColumnDependentReference[] = [];
-
-  constructor(
-    @Inject(EUI_SIDESHEET_DATA) public data: RulesViolationsApproval,
-    private readonly actionService: RulesViolationsActionService,
-    private readonly sideSheetRef: EuiSidesheetRef
-  ) {
-    this.cdrList = this.data.propertyInfo;
-=======
   styleUrls: ['./rules-violations-details.component.scss'],
 })
 export class RulesViolationsDetailsComponent implements OnInit, OnDestroy {
@@ -118,35 +90,20 @@ export class RulesViolationsDetailsComponent implements OnInit, OnDestroy {
         this.matTabGroup.updatePagination();
       })
     );
->>>>>>> oned/v92
   }
 
   /**
    * Opens the Approve-Sidesheet for the current selected rules violations and closes the sidesheet afterwards.
    */
   public async approve(): Promise<void> {
-<<<<<<< HEAD
-    await this.actionService.approve([this.data]);
-    return this.sideSheetRef.close(true);
-=======
     await this.actionService.approve([this.data.selectedRulesViolation]);
     return this.sidesheetRef.close(true);
->>>>>>> oned/v92
   }
 
   /**
    * Opens the Deny-Sidesheet for the current selected rules violations and closes the sidesheet afterwards.
    */
   public async deny(): Promise<void> {
-<<<<<<< HEAD
-    await this.actionService.deny([this.data]);
-    return this.sideSheetRef.close(true);
-  }
-
-  public async resolve(): Promise<void> {
-    await this.actionService.resolve(this.data);
-    return this.sideSheetRef.close(true);
-=======
     await this.actionService.deny([this.data.selectedRulesViolation]);
     return this.sidesheetRef.close(true);
   }
@@ -162,6 +119,5 @@ export class RulesViolationsDetailsComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.subscriptions$.map((sub) => sub.unsubscribe());
->>>>>>> oned/v92
   }
 }

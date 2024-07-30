@@ -687,17 +687,6 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
     this.highlightedEntity = null;
 
     if (this.columnDefs) {
-<<<<<<< HEAD
-      this.columnDefs.forEach(colDef => this.table.removeColumnDef(colDef));
-    }
-
-
-    if ((this.dst.dataSourceChanged || this.dst.shownColumnsSelectionChanged) && this.mode === 'manual') {
-      this.displayedColumns = [];
-      this.additional = (this.dst == null || this.dst.additionalColumns?.length === 0)
-        ? this.parentAdditionals : this.dst.additionalColumns;
-
-=======
       this.columnDefs.forEach((colDef) => this.table.removeColumnDef(colDef));
     }
 
@@ -708,7 +697,6 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
       this.additional = this.additional.filter((elem) =>
         this.settings?.displayedColumns?.every((disp) => disp.ColumnName !== elem.ColumnName)
       );
->>>>>>> oned/v92
       if (this.manualColumns == null && this.manualGenericColumns == null) {
         return;
       }
@@ -716,19 +704,11 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
       this.columnDefs = [];
 
       if (this.manualColumns && this.table) {
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
         let mcolumns = this.manualColumns;
         if (mcolumns.length === 0 && this.parentManualColumns) {
           mcolumns = this.parentManualColumns;
         }
-<<<<<<< HEAD
-        mcolumns.forEach(column => {
-=======
         mcolumns.forEach((column) => {
->>>>>>> oned/v92
           this.table.addColumnDef(column.columnDef);
           this.columnDefs.push(column.columnDef);
         });
@@ -739,26 +719,11 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
         if (gcolumns.length === 0 && this.parentManualGenericColumns) {
           gcolumns = this.parentManualGenericColumns;
         }
-<<<<<<< HEAD
-        gcolumns.forEach(column => {
-=======
         gcolumns.forEach((column) => {
->>>>>>> oned/v92
           this.table.addColumnDef(column.columnDef);
           this.columnDefs.push(column.columnDef);
         });
       }
-<<<<<<< HEAD
-
-    }
-
-    if (this.dst && this.dst.shownClientProperties?.filter(elem => elem != null)?.length > 0 && !this.nested) {
-      this.displayedColumns = this.dst.shownClientProperties.filter(elem => elem != null);
-    } else {
-      if (this.settings && this.settings.displayedColumns) {
-        this.displayedColumns = this.settings.displayedColumns
-          .concat(this.additional);
-=======
     }
 
     if (this.dst && this.dst.shownClientProperties?.filter((elem) => elem != null)?.length > 0 && !this.nested) {
@@ -766,21 +731,14 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
     } else {
       if (this.settings && this.settings.displayedColumns) {
         this.displayedColumns = this.settings.displayedColumns.concat(this.additional);
->>>>>>> oned/v92
       }
     }
 
     if ((this.displayedColumns == null || this.displayedColumns.length === 0) && this.entitySchema) {
       this.displayedColumns = [];
-<<<<<<< HEAD
-      for (const key in this.entitySchema.Columns) {
-        if (this.entitySchema.Columns.hasOwnProperty(key)) {
-          const element = this.entitySchema.Columns[key];
-=======
       for (const key in this.entitySchema?.Columns) {
         if (this.entitySchema?.Columns?.hasOwnProperty(key)) {
           const element = this.entitySchema?.Columns[key];
->>>>>>> oned/v92
           this.displayedColumns.push(element);
         }
       }
@@ -807,11 +765,7 @@ export class DataTableComponent<T> implements OnInit, OnChanges, AfterViewInit, 
         if (groupByChanged) {
           grouping.isExpanded = false;
         }
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> oned/v92
         if (grouping.isExpanded || skipNavigationChange) {
           const preservedGroupingFilter = grouping.navigationState.filter;
           grouping.navigationState = JSON.parse(JSON.stringify(this.settings.navigationState));

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -34,19 +30,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
-<<<<<<< HEAD
-=======
 import { MatSnackBarModule } from '@angular/material/snack-bar';
->>>>>>> oned/v92
 import { MatStepperModule } from '@angular/material/stepper';
 import { TranslateModule } from '@ngx-translate/core';
 import { EuiCoreModule } from '@elemental-ui/core';
 
-<<<<<<< HEAD
-import { DataSourceToolbarModule, DataTableModule, CdrModule  } from 'qbm';
-=======
 import { DataSourceToolbarModule, DataTableModule, CdrModule, SelectedElementsModule, HelpContextualModule  } from 'qbm';
->>>>>>> oned/v92
 
 import { PickCategoryComponent } from './pick-category.component';
 import { PickCategorySidesheetComponent } from './pick-category-sidesheet/pick-category-sidesheet.component';
@@ -70,18 +59,12 @@ import { PickCategoryCreateComponent } from './pick-category-create/pick-categor
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
-<<<<<<< HEAD
-    MatStepperModule,
-    ReactiveFormsModule,
-    TranslateModule
-=======
     MatSnackBarModule,
     MatStepperModule,
     ReactiveFormsModule,
     TranslateModule,
     SelectedElementsModule,
     HelpContextualModule,
->>>>>>> oned/v92
   ]
 })
 export class PickCategoryModule { }

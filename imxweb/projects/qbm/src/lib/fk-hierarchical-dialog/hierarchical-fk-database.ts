@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -52,11 +48,7 @@ export class HierarchicalFkDatabase extends TreeDatabase {
   private readonly builder = new TypedEntityBuilder(HierarchicalCandidate);
 
   constructor(
-<<<<<<< HEAD
-    private busyService: EuiLoadingService
-=======
     private busyLoadingService: EuiLoadingService
->>>>>>> oned/v92
   ) {
     super();
     this.canSearch = true;
@@ -77,11 +69,7 @@ export class HierarchicalFkDatabase extends TreeDatabase {
 
     let over: OverlayRef;
     if (showLoading) {
-<<<<<<< HEAD
-      setTimeout(() => over = this.busyService.show());
-=======
       setTimeout(() => over = this.busyLoadingService.show());
->>>>>>> oned/v92
     }
 
     let data: EntityCollectionData;
@@ -90,11 +78,7 @@ export class HierarchicalFkDatabase extends TreeDatabase {
       data = await this.fkTable.Get(opts);
     } finally {
       if (showLoading) {
-<<<<<<< HEAD
-        setTimeout(() => this.busyService.hide(over));
-=======
         setTimeout(() => this.busyLoadingService.hide(over));
->>>>>>> oned/v92
       }
     }
 

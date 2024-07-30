@@ -1,42 +1,10 @@
-<<<<<<< HEAD
-@import "@elemental-ui/core/src/styles/_palette.scss";
-=======
 @import "@elemental-ui/core/src/styles/_eui_palette.scss";
->>>>>>> oned/v92
 
 :host {
   display: flex;
   flex-direction: column;
   overflow: hidden;
   height: 100%;
-<<<<<<< HEAD
-}
-
-.imx-viewmode-selector {
-  display: inline;
-  font-size: 14px;
-}
-
-.imx-viewmode-dropdown {
-  margin: auto 6px;
-
-  .mat-form-field-infix {
-    width: 98px;
-    color: $black;
-    border: 0;
-  }
-
-  .mat-form-field-flex {
-    background-color: $white;
-    padding-left: 6px;
-  }
-}
-
-.imx-loader-hidden {
-  visibility: hidden;
-}
-
-=======
 
   ::ng-deep eui-date-picker {
     .mat-form-field-wrapper {
@@ -65,7 +33,6 @@
   }
 }
 
->>>>>>> oned/v92
 .imx-viewmode-content {
   flex: 1 1 auto;
   overflow: auto;
@@ -73,10 +40,6 @@
   flex-direction: column;
 }
 
-<<<<<<< HEAD
-.imx-viewmode-content-timeline {
-  overflow: auto;
-=======
 .imx-viewmode-content-controls {
   margin-bottom: 1rem;
 }
@@ -145,5 +108,4 @@ mat-button-toggle-group {
       }
     }
   }
->>>>>>> oned/v92
 }

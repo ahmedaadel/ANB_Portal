@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-:host {
-  overflow: auto;
-=======
 @import '../../../../../shared/scss/common-table.scss';
 :host {
   overflow: hidden;
->>>>>>> oned/v92
 }
 
 .data-explorer--groups > :nth-child(2) {
@@ -25,19 +20,6 @@
   > :first-child {
     flex: 1 1 auto;
   }
-<<<<<<< HEAD
-
-}
-
-.data-explorer__action-buttons {
-  display: flex;
-  flex-direction: row;
-}
-
-.imx-spacer {
-  flex: 1 1 auto;
-}
-=======
 }
 
 .imx-tab-card {
@@ -72,4 +54,3 @@
 imx-selected-elements {
   margin-left: 10px;
 }
->>>>>>> oned/v92

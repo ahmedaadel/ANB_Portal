@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -40,11 +36,7 @@ import {
   HostListener
 } from '@angular/core';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-<<<<<<< HEAD
-import { AbstractControl, FormControl } from '@angular/forms';
-=======
 import { AbstractControl, UntypedFormControl } from '@angular/forms';
->>>>>>> oned/v92
 import { Subscription } from 'rxjs';
 
 import { ClassloggerService } from '../classlogger/classlogger.service';
@@ -63,11 +55,7 @@ import { DataNavigationParameters } from './data-navigation-parameters.interface
 })
 export class SelectComponent<T> implements AfterViewInit, OnChanges, OnDestroy {
   public readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-<<<<<<< HEAD
-  public readonly chipListCtrl = new FormControl('');
-=======
   public readonly chipListCtrl = new UntypedFormControl('');
->>>>>>> oned/v92
   public dataSource: SelectDataSource;
   public autocompleteVisible = false;
 
@@ -101,11 +89,7 @@ export class SelectComponent<T> implements AfterViewInit, OnChanges, OnDestroy {
   /** Indicates if data is loading and shows/hides the spinner. */
   @Input() public loading = false;
 
-<<<<<<< HEAD
-  /** DEPRECATED: Not in use. Will be removed.
-=======
   /** @deprecated Not in use. Will be removed.
->>>>>>> oned/v92
    * The virtual page size.
    * Must be set for calculating the height of the virtual sroll container.
    */
@@ -121,11 +105,7 @@ export class SelectComponent<T> implements AfterViewInit, OnChanges, OnDestroy {
 
   @Input() public labelAutoComplete: string;
 
-<<<<<<< HEAD
-  /** DEPRECATED: Use needMoreData instead. Will be removed.
-=======
   /** @deprecated Use needMoreData instead. Will be removed.
->>>>>>> oned/v92
    * Fires when the component need new data, e.g. user scrolls to the end of the container.
    */
   @Output() public needData: EventEmitter<number> = new EventEmitter();
@@ -133,11 +113,7 @@ export class SelectComponent<T> implements AfterViewInit, OnChanges, OnDestroy {
   /** Fires when the component need new data, e.g. user scrolls to the end of the container. */
   @Output() public needMoreData: EventEmitter<DataNavigationParameters> = new EventEmitter();
 
-<<<<<<< HEAD
-  /** DEPRECATED: Will be removed.
-=======
   /** @deprecated Will be removed.
->>>>>>> oned/v92
    * Fires when the user types in the autocomplete input control.
    */
   @Output() public autocompleteValueChanged: EventEmitter<string> = new EventEmitter();

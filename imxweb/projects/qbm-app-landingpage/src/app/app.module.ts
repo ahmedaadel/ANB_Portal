@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -50,22 +46,6 @@ import {
   UserMessageModule,
   AdminModule,
   ExtModule,
-<<<<<<< HEAD
-  GlobalErrorHandler
-} from 'qbm';
-import { AppService } from './app.service';
-import { StartComponent } from './start/start.component';
-import { SwaggerComponent } from './swagger/swagger.component';
-import { environment } from '../environments/environment';
-import appConfigJson from '../appconfig.json';
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    StartComponent,
-    SwaggerComponent
-  ],
-=======
   GlobalErrorHandler,
   QbmModule,
 } from 'qbm';
@@ -77,17 +57,13 @@ import { CustomThemeModule } from 'projects/qbm/src/lib/custom-theme/custom-them
 
 @NgModule({
   declarations: [AppComponent, StartComponent],
->>>>>>> oned/v92
   imports: [
     AdminModule,
     AppRoutingModule,
     AuthenticationModule,
     BrowserAnimationsModule,
     BrowserModule,
-<<<<<<< HEAD
-=======
     CustomThemeModule,
->>>>>>> oned/v92
     EuiCoreModule,
     EuiMaterialModule,
     HttpClientModule,
@@ -96,29 +72,17 @@ import { CustomThemeModule } from 'projects/qbm/src/lib/custom-theme/custom-them
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-<<<<<<< HEAD
-        useClass: ImxTranslateLoader
-      },
-      missingTranslationHandler: {
-        provide: MissingTranslationHandler,
-        useClass: ImxMissingTranslationHandler
-      }
-=======
         useClass: ImxTranslateLoader,
       },
       missingTranslationHandler: {
         provide: MissingTranslationHandler,
         useClass: ImxMissingTranslationHandler,
       },
->>>>>>> oned/v92
     }),
     ExtModule,
     MatCardModule,
     LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.OFF }),
-<<<<<<< HEAD
-=======
     QbmModule
->>>>>>> oned/v92
   ],
   providers: [
     { provide: 'environment', useValue: environment },
@@ -127,11 +91,7 @@ import { CustomThemeModule } from 'projects/qbm/src/lib/custom-theme/custom-them
       provide: APP_INITIALIZER,
       useFactory: AppService.init,
       deps: [AppService],
-<<<<<<< HEAD
-      multi: true
-=======
       multi: true,
->>>>>>> oned/v92
     },
     {
       provide: ErrorHandler,
@@ -139,16 +99,8 @@ import { CustomThemeModule } from 'projects/qbm/src/lib/custom-theme/custom-them
     },
     AppcontainerService,
     AppConfigService,
-<<<<<<< HEAD
-    imx_SessionService
-  ],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-=======
     imx_SessionService,
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
->>>>>>> oned/v92

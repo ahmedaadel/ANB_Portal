@@ -1,22 +1,12 @@
 {
   "name": "IMX Web - AOB Library",
-<<<<<<< HEAD
-  "output": "../../documentation/aob",
-=======
   "output": "../../documentation/v92/aob",
->>>>>>> oned/v92
   "theme": "material",
   "assetsFolder": "../../compodoc/assets",
   "customLogo": "../../compodoc/assets/images/oneidentity-logo.png",
   "customFavicon": "../../compodoc/assets/images/favicon.ico",
-<<<<<<< HEAD
-  "serve": true,
-  "watch": true,
-  "coverageTest": 0
-=======
   "serve": false,
   "watch": false,
   "coverageTest": 0,
   "disableCoverage": true
->>>>>>> oned/v92
 }

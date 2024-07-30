@@ -1,6 +1,4 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
-<<<<<<< HEAD
-=======
 @import "@elemental-ui/core/src/styles/_eui_palette.scss";
 .eui-sidesheet-content {
   padding: 0;
@@ -25,7 +23,6 @@
     margin-right: 10px;
   }
 }
->>>>>>> oned/v92
 
 .imx-helper-alert {
   width: 100%;
@@ -39,8 +36,6 @@
   margin: 10px 0;
 }
 
-<<<<<<< HEAD
-=======
 .imx-tab-card {
   display: flex;
   flex-direction: column;
@@ -49,18 +44,10 @@
 }
 
 
->>>>>>> oned/v92
 .imx-account-ext {
   padding: 30px 30px 0px 30px;
 }
 
-<<<<<<< HEAD
-.imx-membership-tab {
-  flex: 1 1 auto;
-  overflow: hidden;
-  height: 100%;
-  padding: 30px;
-=======
 .imx-toggle-container{
   margin-bottom:16px;
   >* {margin-right:20px;}
@@ -120,7 +107,6 @@
       }
     }
   }
->>>>>>> oned/v92
 }
 
 @media screen and (max-width: 480px) {
@@ -150,15 +136,6 @@
   }
 }
 
-<<<<<<< HEAD
-.imx-toggle-container {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 15px;
-
-  > *:not(:last-child) {
-    margin-right: 10px;
-=======
 .eui-sidesheet-actions {
   > *:not(:first-child) {
     margin-left: 10px;
@@ -218,6 +195,5 @@
         }
       }
     }
->>>>>>> oned/v92
   }
 }

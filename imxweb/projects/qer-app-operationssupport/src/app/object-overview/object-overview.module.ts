@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -45,27 +41,16 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {
   DataSourceToolbarModule,
   DataTableModule,
-<<<<<<< HEAD
-  HyperViewModule,
-=======
->>>>>>> oned/v92
   ObjectHistoryModule,
   ObjectHistoryApiService,
   QbmModule,
 } from 'qbm';
-<<<<<<< HEAD
-import { OpsModule } from 'qer';
-import { ObjectOverviewComponent } from './object-overview.component';
-import { ObjectOverviewService } from './object-overview.service';
-import { OpSupportHistoryApiService } from './opsupport-history-api.service';
-=======
 import { ObjectHyperviewModule, ObjectHyperviewService, OpsModule } from 'qer';
 import { ObjectOverviewComponent } from './object-overview.component';
 import { ObjectOverviewService } from './object-overview.service';
 import { OpSupportHistoryApiService } from './opsupport-history-api.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { OpsHyperviewService } from '../hyperview/ops-hyperview.service';
->>>>>>> oned/v92
 
 
 @NgModule({
@@ -75,10 +60,6 @@ import { OpsHyperviewService } from '../hyperview/ops-hyperview.service';
   imports: [
     CommonModule,
     ObjectHistoryModule,
-<<<<<<< HEAD
-    HyperViewModule,
-=======
->>>>>>> oned/v92
     DataTableModule,
     DataSourceToolbarModule,
     EuiCoreModule,
@@ -86,18 +67,12 @@ import { OpsHyperviewService } from '../hyperview/ops-hyperview.service';
     MatTabsModule,
     MatButtonModule,
     MatCardModule,
-<<<<<<< HEAD
-    MatTooltipModule,
-    MatFormFieldModule,
-    MatSelectModule,
-=======
     MatProgressSpinnerModule,
     MatTooltipModule,
     MatFormFieldModule,
     MatSelectModule,
     MatTabsModule,
     ObjectHyperviewModule,
->>>>>>> oned/v92
     TranslateModule,
     MatTableModule,
     MatPaginatorModule,
@@ -108,15 +83,11 @@ import { OpsHyperviewService } from '../hyperview/ops-hyperview.service';
     {
       provide: ObjectHistoryApiService,
       useClass: OpSupportHistoryApiService
-<<<<<<< HEAD
-    },
-=======
     },    
     {
       provide: ObjectHyperviewService,
       useClass: OpsHyperviewService
     }, 
->>>>>>> oned/v92
     ObjectOverviewService
   ]
 })

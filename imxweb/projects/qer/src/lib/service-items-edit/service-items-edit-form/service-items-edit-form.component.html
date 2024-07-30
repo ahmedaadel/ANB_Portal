@@ -1,16 +1,9 @@
-<<<<<<< HEAD
-=======
 <imx-ext [id]="ServiceItemsEditFormComponent.alertExtId" [properties]="{'serviceItem': serviceItem }"></imx-ext>
->>>>>>> oned/v92
 <mat-card>
   <form [formGroup]="formGroup">
     <div *ngIf="cdrList?.length > 0" class="imx-property-container">
       <imx-cdr-editor *ngFor="let cdr of cdrList" [cdr]="cdr"
-<<<<<<< HEAD
-        [attr.data-imx-identifier]="'service-items-edit-form-cdr-' + cdr.column.ColumName"
-=======
         [attr.data-imx-identifier]="'service-items-edit-form-cdr-' + cdr.column.ColumName"        
->>>>>>> oned/v92
         (valueChange)="cdr.column.ColumnName  === 'JPegPhoto' ? onImageValueChanged($event, cdr) : void"
         (controlCreated)="cdr.column.ColumnName  === 'JPegPhoto' ? onFormControlCreated($event, cdr) : onFormControlCreated($event)">
       </imx-cdr-editor>
@@ -20,24 +13,14 @@
     </imx-service-item-tags>
 
     <mat-slide-toggle #toggle class="imx-custom-toggle" [formControl]="isInActiveFormControl"
-<<<<<<< HEAD
-      *ngIf="serviceItem && canEditProperty(serviceItem?.IsInActive?.Column?.ColumnName)"
-      (change)="onRequestableToggleChanged($event)" [disabled]="!serviceItem.IsInActive.GetMetadata().CanEdit()"
-=======
       *ngIf="serviceItem && canEditProperty('IsInActive')"
       (change)="onRequestableToggleChanged($event)" [disabled]="!getColumn('IsInActive')?.GetMetadata().CanEdit()"
->>>>>>> oned/v92
       [attr.data-imx-identifier]="'service-items-edit-form-toggle-for-column-' + serviceItem?.IsInActive?.Column?.ColumnName">
       <span [translate]="toggle.checked ? '#LDS#Requestable' : '#LDS#Not requestable'"></span>
     </mat-slide-toggle>
 
-<<<<<<< HEAD
-    <imx-owner-control [isReadOnly]="!canEditOwner" #ownerControl [column]="serviceItem?.UID_OrgRuler?.Column"
-      *ngIf="canEditProperty(serviceItem?.UID_OrgRuler?.Column?.ColumnName)"
-=======
     <imx-owner-control [isReadOnly]="!canEditOwner" #ownerControl [column]="getColumn('UID_OrgRuler')"
       *ngIf="canEditProperty('UID_OrgRuler')"
->>>>>>> oned/v92
       data-imx-identifier="service-items-edit-form-ownercontrol" (formControlCreated)="onFormControlCreated($event)">
     </imx-owner-control>
   </form>

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -41,8 +37,5 @@ export interface AttestationCaseLoadParameters extends CollectionLoadParameters 
   attestationtype?: string;
   type?: string;
   risk?: string;
-<<<<<<< HEAD
-=======
   uid_persondecision?:string;
->>>>>>> oned/v92
 }

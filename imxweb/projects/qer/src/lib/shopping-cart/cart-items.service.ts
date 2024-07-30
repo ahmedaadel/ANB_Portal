@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -32,35 +28,17 @@ import { Injectable, ErrorHandler } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 
 import { FilterData, ExtendedTypedEntityCollection, CompareOperator, FilterType, EntitySchema, TypedEntity } from 'imx-qbm-dbts';
-<<<<<<< HEAD
-import {
-  CartCheckResult,
-  CheckMode,
-  PortalCartitem,
-  RequestableProductForPerson,
-  CartItemDataRead,
-  PortalCartitemInteractive,
-} from 'imx-api-qer';
-=======
 import { CartCheckResult, CheckMode, PortalCartitem, RequestableProductForPerson, CartItemDataRead } from 'imx-api-qer';
->>>>>>> oned/v92
 import { BulkItemStatus, ClassloggerService } from 'qbm';
 import { QerApiService } from '../qer-api-client.service';
 import { ItemEditService } from '../product-selection/service-item-edit/item-edit.service';
 import { ParameterDataService } from '../parameter-data/parameter-data.service';
 import { ExtendedEntityWrapper } from '../parameter-data/extended-entity-wrapper.interface';
 import { CartItemInteractiveService } from './cart-item-edit/cart-item-interactive.service';
-<<<<<<< HEAD
-
-@Injectable()
-export class CartItemsService {
-
-=======
 import { RequestableProduct } from './requestable-product.interface';
 
 @Injectable()
 export class CartItemsService {
->>>>>>> oned/v92
   public get PortalCartitemSchema(): EntitySchema {
     return this.qerClient.typedClient.PortalCartitem.GetSchema();
   }
@@ -97,22 +75,15 @@ export class CartItemsService {
   }
 
   public async createAndPost(
-<<<<<<< HEAD
-    requestableServiceItemForPerson: RequestableProductForPerson,
-=======
     requestableServiceItemForPerson: RequestableProduct,
->>>>>>> oned/v92
     parentCartUid: string
   ): Promise<ExtendedTypedEntityCollection<PortalCartitem, CartItemDataRead>> {
     const cartItem = this.qerClient.typedClient.PortalCartitem.createEntity();
     cartItem.UID_PersonOrdered.value = requestableServiceItemForPerson.UidPerson;
     cartItem.UID_ITShopOrg.value = requestableServiceItemForPerson.UidITShopOrg;
-<<<<<<< HEAD
-=======
     if (requestableServiceItemForPerson?.UidPatternItem?.length > 0) {
       cartItem.UID_PatternItem.value = requestableServiceItemForPerson.UidPatternItem;
     }
->>>>>>> oned/v92
     if (parentCartUid) {
       cartItem.UID_ShoppingCartItemParent.value = parentCartUid;
     }
@@ -120,11 +91,7 @@ export class CartItemsService {
     return this.qerClient.typedClient.PortalCartitem.Post(cartItem);
   }
 
-<<<<<<< HEAD
-  public async addItems(requestableServiceItemsForPersons: RequestableProductForPerson[]): Promise<number> {
-=======
   public async addItems(requestableServiceItemsForPersons: RequestableProduct[]): Promise<number> {
->>>>>>> oned/v92
     const addedItems: PortalCartitem[] = [];
     const cartitemReferences: string[] = [];
     const cartItemsWithoutParams: PortalCartitem[] = [];
@@ -133,27 +100,16 @@ export class CartItemsService {
       let parentCartUid: string;
       if (requestable?.UidAccProductParent) {
         // Get parent cart ID from known cart items
-<<<<<<< HEAD
-        parentCartUid =  await this.getFromExistingCartItems(addedItems[0].UID_ShoppingCartOrder.value, requestable);
-=======
         parentCartUid = await this.getFromExistingCartItems(addedItems[0].UID_ShoppingCartOrder.value, requestable);
->>>>>>> oned/v92
       }
       const cartItemCollection = await this.createAndPost(requestable, parentCartUid);
 
       addedItems.push(cartItemCollection.Data[0]);
       // TODO: this call does not work yet. await cartItem.GetEntity().Commit(true);
-<<<<<<< HEAD
-        this.parameterDataService.hasParameters({
-          Parameters: cartItemCollection.extendedData?.Parameters,
-          index: 0,
-        })
-=======
       this.parameterDataService.hasParameters({
         Parameters: cartItemCollection.extendedData?.Parameters,
         index: 0,
       })
->>>>>>> oned/v92
         ? cartitemReferences.push(this.getKey(cartItemCollection.Data[0]))
         : cartItemsWithoutParams.push(cartItemCollection.Data[0]);
     }
@@ -168,18 +124,6 @@ export class CartItemsService {
     const allItems = (await this.getItemsForCart(cartUid)).Data;
 
     // Find all already ordered items with this UID + Person, get their parent cart uid
-<<<<<<< HEAD
-    const dupItemsParents = allItems.filter(item =>
-      item.UID_AccProduct.value + item.UID_PersonOrdered.value === requestable.UidAccProduct + requestable.UidPerson
-    ).map(item => item.UID_ShoppingCartItemParent.value);
-
-    // Find all items with the correct ParentUID + Person
-    const parentItems = allItems.filter(item =>
-      item.UID_AccProduct.value + item.UID_PersonOrdered.value === requestable.UidAccProductParent + requestable.UidPerson
-    );
-    // Here we try assuming the mandatory item is there
-    let parentItem = parentItems.find(item => !dupItemsParents.includes(this.getKey(item)));
-=======
     const dupItemsParents = allItems
       .filter((item) => item.UID_AccProduct.value + item.UID_PersonOrdered.value === requestable.UidAccProduct + requestable.UidPerson)
       .map((item) => item.UID_ShoppingCartItemParent.value);
@@ -190,7 +134,6 @@ export class CartItemsService {
     );
     // Here we try assuming the mandatory item is there
     let parentItem = parentItems.find((item) => !dupItemsParents.includes(this.getKey(item)));
->>>>>>> oned/v92
     if (parentItem) {
       return this.getKey(parentItem);
     }
@@ -198,10 +141,6 @@ export class CartItemsService {
     this.errorHandler.handleError('There is a missing mandatory item, cannot link optional item to parent. Ordering with no parent.');
   }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
   public async removeItems(cartItems: PortalCartitem[], filter?: (cartItem: PortalCartitem) => boolean): Promise<void> {
     await Promise.all(
       cartItems.map(async (cartItem) => {
@@ -240,10 +179,6 @@ export class CartItemsService {
     return this.cartItemInteractive.commitExtendedEntity(cartItemExtended);
   }
 
-<<<<<<< HEAD
-  public async getInteractiveCartitem(entityReference: string): Promise<ExtendedEntityWrapper<PortalCartitemInteractive>> {
-    return this.cartItemInteractive.getExtendedEntity(entityReference);
-=======
   public async saveItems(cartItems: ExtendedEntityWrapper<TypedEntity>[]): Promise<void> {
     for await (const cartItem of cartItems) {
       await this.cartItemInteractive.commitExtendedEntity(cartItem);
@@ -255,7 +190,6 @@ export class CartItemsService {
     callbackOnChange?: () => void
   ): Promise<ExtendedEntityWrapper<PortalCartitem>> {
     return this.cartItemInteractive.getExtendedEntity(entityReference, callbackOnChange);
->>>>>>> oned/v92
   }
 
   public getAssignmentText(cartItem: PortalCartitem): string {
@@ -288,38 +222,6 @@ export class CartItemsService {
   }
 
   private async editItems(entityReferences: string[], cartItemsWithoutParams: PortalCartitem[]): Promise<number> {
-<<<<<<< HEAD
-    setTimeout(() => this.busyIndicator.hide());
-
-    let result = entityReferences.length + cartItemsWithoutParams.length;
-
-    const cartItems = await Promise.all(entityReferences.map((entityReference) => this.getInteractiveCartitem(entityReference)));
-
-    const results = await this.itemEditService.openEditor(cartItems);
-    for (const item of results.bulkItems) {
-      try {
-        const found = cartItems.find((x) => x.typedEntity.GetEntity().GetKeys()[0] === item.entity.GetEntity().GetKeys()[0]);
-        if (item.status === BulkItemStatus.saved) {
-          await this.save(found);
-          this.logger.debug(this, `${found.typedEntity.GetEntity().GetDisplay} saved`);
-        } else {
-          await this.removeItems([found.typedEntity]);
-          result = result - 1;
-          this.logger.debug(this, `${found.typedEntity.GetEntity().GetDisplay} removed`);
-        }
-      } catch (e) {
-        this.logger.error(this, e.message);
-      }
-    }
-
-    if (!results.submit) {
-      this.logger.debug(
-        this,
-        `The user aborts this "add to cart"-action. So we have to delete all cartitems without params from shopping cart too.`
-      );
-      await this.removeItems(cartItemsWithoutParams);
-      result = result - cartItemsWithoutParams.length;
-=======
     let result = entityReferences.length + cartItemsWithoutParams.length;
     const cartItems = await Promise.all(entityReferences.map((entityReference) => this.getInteractiveCartitem(entityReference)));
 
@@ -355,7 +257,6 @@ export class CartItemsService {
       }
     } finally {
       setTimeout(() => this.busyIndicator.hide());
->>>>>>> oned/v92
     }
 
     return result;

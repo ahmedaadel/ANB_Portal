@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,31 +25,6 @@
  */
 
 import { Injectable } from '@angular/core';
-<<<<<<< HEAD
-import { Router, Route } from '@angular/router';
-
-import { PortalAdminRoleOrg, PortalPersonRolemembershipsOrg, PortalRespOrg } from 'imx-api-rmb';
-import {
-  QerApiService,
-  RoleService,
-  BaseTreeEntitlement,
-  DataExplorerRegistryService,
-  RolesOverviewComponent,
-  BaseTreeRoleRestoreHandler,
-  IdentityRoleMembershipsService
-} from 'qer';
-import { DynamicMethodService, ImxTranslationProviderService, imx_SessionService, MenuService } from 'qbm';
-import { OrgMembership } from './org-membership';
-import { RmbApiService } from './rmb-api-client.service';
-import { OrgDataModel } from './org-data-model';
-import { EntitySchema, ExtendedTypedEntityCollection, WriteExtTypedEntity, CollectionLoadParameters } from 'imx-qbm-dbts';
-import { RoleExtendedDataWrite } from 'imx-api-qer';
-
-
-@Injectable({ providedIn: 'root' })
-export class InitService {
-
-=======
 import { Route, Router } from '@angular/router';
 
 import { DynamicMethodService, ImxTranslationProviderService, imx_SessionService, MenuService, ExtService, HELP_CONTEXTUAL } from 'qbm';
@@ -82,7 +53,6 @@ import { ProjectConfig } from 'imx-api-qbm';
 
 @Injectable({ providedIn: 'root' })
 export class InitService {
->>>>>>> oned/v92
   protected readonly orgTag = 'Org';
 
   constructor(
@@ -95,33 +65,15 @@ export class InitService {
     private readonly dataExplorerRegistryService: DataExplorerRegistryService,
     private readonly menuService: MenuService,
     private readonly roleService: RoleService,
-<<<<<<< HEAD
-    private readonly identityRoleMembershipService: IdentityRoleMembershipsService
-  ) {
-  }
-=======
     private readonly identityRoleMembershipService: IdentityRoleMembershipsService,
     private readonly myResponsibilitiesRegistryService: MyResponsibilitiesRegistryService,
     private readonly extService: ExtService,
     private readonly qerPermissionsService: QerPermissionsService
   ) {}
->>>>>>> oned/v92
 
   public onInit(routes: Route[]): void {
     this.addRoutes(routes);
 
-<<<<<<< HEAD
-
-    // wrapper class for interactive methods
-    class ApiWrapper {
-
-      constructor(private getApi: {
-        GetSchema(): EntitySchema,
-        Get(): Promise<ExtendedTypedEntityCollection<WriteExtTypedEntity<RoleExtendedDataWrite>, unknown>>
-      }, private getByIdApi: {
-        Get_byid(id: string): Promise<ExtendedTypedEntityCollection<WriteExtTypedEntity<RoleExtendedDataWrite>, unknown>>
-      }) { }
-=======
     // wrapper class for interactive methods
     class ApiWrapper {
       constructor(
@@ -133,19 +85,14 @@ export class InitService {
           Get_byid(id: string): Promise<ExtendedTypedEntityCollection<WriteExtTypedEntity<RoleExtendedDataWrite>, unknown>>;
         }
       ) {}
->>>>>>> oned/v92
 
       Get(): Promise<ExtendedTypedEntityCollection<WriteExtTypedEntity<RoleExtendedDataWrite>, unknown>> {
         return this.getApi.Get();
       }
 
-<<<<<<< HEAD
-      GetSchema() { return this.getApi.GetSchema(); }
-=======
       GetSchema() {
         return this.getApi.GetSchema();
       }
->>>>>>> oned/v92
 
       Get_byid(id: string): Promise<ExtendedTypedEntityCollection<WriteExtTypedEntity<RoleExtendedDataWrite>, unknown>> {
         return this.getByIdApi.Get_byid(id);
@@ -155,13 +102,8 @@ export class InitService {
     const restore = new BaseTreeRoleRestoreHandler(
       () => this.api.client.portal_roles_Org_restore_get(),
       () => this.api.client.portal_resp_Org_restore_get(),
-<<<<<<< HEAD
-      uid => this.api.client.portal_roles_Org_restore_byid_get(uid),
-      uid => this.api.client.portal_resp_Org_restore_byid_get(uid),
-=======
       (uid) => this.api.client.portal_roles_Org_restore_byid_get(uid),
       (uid) => this.api.client.portal_resp_Org_restore_byid_get(uid),
->>>>>>> oned/v92
       (uidRole, actions) => this.api.client.portal_roles_Org_restore_byid_post(uidRole, actions),
       (uidRole, actions) => this.api.client.portal_resp_Org_restore_byid_post(uidRole, actions)
     );
@@ -173,28 +115,6 @@ export class InitService {
       respType: PortalRespOrg,
       resp: this.api.typedClient.PortalRespOrg,
       adminType: PortalAdminRoleOrg,
-<<<<<<< HEAD
-      admin: {
-        get: async (parameter: any) => this.api.client.portal_admin_role_org_get(parameter)
-      },
-      adminSchema: this.api.typedClient.PortalAdminRoleOrg.GetSchema(),
-      dataModel: new OrgDataModel(this.api),
-      interactiveResp: new ApiWrapper(
-        this.api.typedClient.PortalRespOrgInteractive,
-        this.api.typedClient.PortalRespOrgInteractive
-      ),
-      interactiveAdmin: new ApiWrapper(
-        this.api.typedClient.PortalAdminRoleOrgInteractive,
-        this.api.typedClient.PortalAdminRoleOrgInteractive,
-      ),
-      entitlements: new BaseTreeEntitlement(this.qerApi, this.session, this.dynamicMethodService, this.translator,
-        this.orgTag, e => e.GetColumn('UID_OrgRoot').GetValue()),
-      membership: new OrgMembership(this.api, this.session, this.translator),
-      restore: restore
-    });
-
-
-=======
       adminHasHierarchy: true,
       admin: {
         get: async (parameter: any) => this.api.client.portal_admin_role_org_get(parameter),
@@ -241,7 +161,6 @@ export class InitService {
       },
     });
 
->>>>>>> oned/v92
     this.identityRoleMembershipService.addTarget({
       table: this.orgTag,
       type: PortalPersonRolemembershipsOrg,
@@ -250,69 +169,13 @@ export class InitService {
         label: '#LDS#Menu Entry Business roles',
         index: 70,
       },
-<<<<<<< HEAD
-      get: async (uidPerson: string, parameter: CollectionLoadParameters) => this.api.client.portal_person_rolememberships_Org_get(
-        uidPerson, parameter),
-      withAnalysis: true
-=======
       get: async (uidPerson: string, parameter: CollectionLoadParameters) =>
         this.api.client.portal_person_rolememberships_Org_get(uidPerson, parameter),
       withAnalysis: true,
->>>>>>> oned/v92
     });
 
     this.setupMenu();
 
-<<<<<<< HEAD
-    this.dataExplorerRegistryService.registerFactory(
-      (preProps: string[], groups: string[]) => {
-        if (!this.isRoleAdmin(groups)) {
-          return;
-        }
-        return {
-          instance: RolesOverviewComponent,
-          data: {
-            TableName: this.orgTag,
-            Count: 0,
-          },
-          sortOrder: 7,
-          name: 'businessroles',
-          caption: '#LDS#Menu Entry Business roles',
-        };
-      }
-    );
-  }
-
-  private setupMenu(): void {
-    this.menuService.addMenuFactories(
-      (preProps: string[], groups: string[]) => {
-        if (!this.isRoleAdmin(groups)) {
-          return null;
-        }
-        const menu = {
-          id: 'ROOT_Data',
-          title: '#LDS#Data administration',
-          sorting: '40',
-          items: [
-            {
-              id: 'QER_DataExplorer',
-              navigationCommands: { commands: ['admin', 'dataexplorer'] },
-              title: '#LDS#Menu Entry Data Explorer',
-              sorting: '40-10',
-            },
-          ]
-        };
-
-        return menu;
-      });
-  }
-
-  private isRoleAdmin(groups: string[]): boolean {
-    return groups.find((group) => {
-      const groupName = group.toUpperCase();
-      return groupName === 'VI_4_ROLEADMIN_ADMIN';
-    }) ? true : false;
-=======
     this.dataExplorerRegistryService.registerFactory((preProps: string[], features: string[], projectConfig: ProjectConfig, groups: string[]) => {
       if (!isRoleAdmin(features) && !isRoleStatistics(features) && !isAuditor(groups)) {
         return;
@@ -365,16 +228,11 @@ export class InitService {
 
       return menu;
     });
->>>>>>> oned/v92
   }
 
   private addRoutes(routes: Route[]): void {
     const config = this.router.config;
-<<<<<<< HEAD
-    routes.forEach(route => {
-=======
     routes.forEach((route) => {
->>>>>>> oned/v92
       config.unshift(route);
     });
     this.router.resetConfig(config);

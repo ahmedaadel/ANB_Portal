@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,13 +24,8 @@
  *
  */
 
-<<<<<<< HEAD
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-=======
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
->>>>>>> oned/v92
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { Router, Routes } from '@angular/router';
@@ -54,32 +45,6 @@ import {
   MenuService,
   ObjectHistoryModule,
   RouteGuardService,
-<<<<<<< HEAD
-  SqlWizardApiService
-} from 'qbm';
-
-import { RoleDetailComponent } from './role-detail/role-detail.component';
-import { RoleEntitlementsComponent } from './role-entitlements/role-entitlements.component';
-import { RoleMainDataComponent } from './role-main-data/role-main-data.component';
-import { RolesOverviewComponent } from './roles-overview/roles-overview.component';
-import { EntitlementSelectorComponent } from './role-entitlements/entitlement-selector.component';
-import { RoleMembershipsModule } from './role-memberships/role-memberships.module';
-import { isStructAdmin } from '../admin/qer-permissions-helper';
-import { DataExplorerRegistryService } from '../data-explorer-view/data-explorer-registry.service';
-import { DynamicRoleSqlWizardService } from './dynamicrole-sqlwizard.service';
-import { CompareComponent } from './compare/compare.component';
-import { CompareItemComponent } from './compare/compare-item.component';
-import { RestoreComponent } from './restore/restore.component';
-import { SplitComponent } from './split/split.component';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatSelectModule } from '@angular/material/select';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { RollbackComponent } from './rollback/rollback.component';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatTableModule } from '@angular/material/table';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatListModule } from '@angular/material/list';
-=======
   SelectedElementsModule,
   SqlWizardApiService,
   BusyIndicatorModule,
@@ -116,7 +81,6 @@ import { RolesOverviewComponent } from './roles-overview/roles-overview.componen
 import { RollbackComponent } from './rollback/rollback.component';
 import { SplitComponent } from './split/split.component';
 import { ProjectConfig } from 'imx-api-qbm';
->>>>>>> oned/v92
 
 const routes: Routes = [
   {
@@ -139,11 +103,8 @@ const routes: Routes = [
     RollbackComponent,
     RestoreComponent,
     SplitComponent,
-<<<<<<< HEAD
-=======
     NewRoleComponent,
     RoleRecommendationsComponent,
->>>>>>> oned/v92
   ],
   imports: [
     CdrModule,
@@ -157,10 +118,7 @@ const routes: Routes = [
     FkAdvancedPickerModule,
     FormsModule,
     ObjectHistoryModule,
-<<<<<<< HEAD
-=======
     ObjectHyperviewModule,
->>>>>>> oned/v92
     LdsReplaceModule,
     MatDatepickerModule,
     MatMenuModule,
@@ -173,49 +131,29 @@ const routes: Routes = [
     ReactiveFormsModule,
     RoleMembershipsModule,
     TranslateModule,
-<<<<<<< HEAD
-    DynamicTabsModule
-=======
     DynamicTabsModule,
     SelectedElementsModule,
     StatisticsModule,
     BusyIndicatorModule,
     HelpContextualModule,
     UserMessageModule,
->>>>>>> oned/v92
   ],
   providers: [
     {
       provide: SqlWizardApiService,
-<<<<<<< HEAD
-      useClass: DynamicRoleSqlWizardService
-    },
-  ],
-  exports: [
-    RolesOverviewComponent
-  ]
-})
-export class RoleManangementModule {
-
-=======
       useClass: DynamicRoleSqlWizardService,
     },
   ],
   exports: [RolesOverviewComponent, RoleDetailComponent],
 })
 export class RoleManangementModule {
->>>>>>> oned/v92
   constructor(
     private readonly router: Router,
     private readonly menuService: MenuService,
     private readonly dataExplorerRegistryService: DataExplorerRegistryService,
-<<<<<<< HEAD
-    private readonly logger: ClassloggerService) {
-=======
     private readonly logger: ClassloggerService,
     private readonly myResponsibilitiesRegistryService: MyResponsibilitiesRegistryService
   ) {
->>>>>>> oned/v92
     this.logger.info(this, '▶︝ RoleManagement-Module loaded');
 
     const config = this.router.config;
@@ -227,21 +165,13 @@ export class RoleManangementModule {
 
     this.setupMenu();
     this.setupDataExplorer();
-<<<<<<< HEAD
-=======
     this.setupMyResponsibilitiesView();
->>>>>>> oned/v92
   }
 
   private setupDataExplorer(): void {
     this.dataExplorerRegistryService.registerFactory(
-<<<<<<< HEAD
-      (preProps: string[], groups: string[]) => {
-        if (!isStructAdmin(groups)) {
-=======
       (preProps: string[], features: string[], projectConfig: ProjectConfig, groups: string[]) => {
         if (!isRoleAdmin(features) && !isRoleStatistics(features) && !isStructStatistics(features) && !isStructAdmin(features) && !isAuditor(groups)) {
->>>>>>> oned/v92
           return;
         }
         return {
@@ -250,15 +180,6 @@ export class RoleManangementModule {
             TableName: 'Department',
             Count: 0,
           },
-<<<<<<< HEAD
-          sortOrder: 4,
-          name: 'department',
-          caption: '#LDS#Menu Entry Departments',
-        };
-      },
-      (preProps: string[], groups: string[]) => {
-        if (!isStructAdmin(groups)) {
-=======
           contextId: HELP_CONTEXTUAL.DataExplorerDepartment,
           sortOrder: 4,
           name: 'department',
@@ -267,7 +188,6 @@ export class RoleManangementModule {
       },
       (preProps: string[], features: string[], projectConfig: ProjectConfig, groups: string[]) => {
         if (!isRoleAdmin(features) && !isRoleStatistics(features) && !isStructStatistics(features) && !isStructAdmin(features) && !isAuditor(groups)) {
->>>>>>> oned/v92
           return;
         }
         return {
@@ -276,15 +196,6 @@ export class RoleManangementModule {
             TableName: 'Locality',
             Count: 0,
           },
-<<<<<<< HEAD
-          sortOrder: 5,
-          name: 'locality',
-          caption: '#LDS#Menu Entry Locations',
-        };
-      },
-      (preProps: string[], groups: string[]) => {
-        if (!isStructAdmin(groups)) {
-=======
           contextId: HELP_CONTEXTUAL.DataExplorerLocality,
           sortOrder: 5,
           name: 'locality',
@@ -293,7 +204,6 @@ export class RoleManangementModule {
       },
       (preProps: string[], features: string[], projectConfig: ProjectConfig, groups: string[]) => {
         if (!isRoleAdmin(features) && !isRoleStatistics(features) && !isStructStatistics(features) && !isStructAdmin(features) && !isAuditor(groups)) {
->>>>>>> oned/v92
           return;
         }
         return {
@@ -302,16 +212,10 @@ export class RoleManangementModule {
             TableName: 'ProfitCenter',
             Count: 0,
           },
-<<<<<<< HEAD
-          sortOrder: 6,
-          name: 'profitcenter',
-          caption: '#LDS#Menu Entry Cost centers',
-=======
           contextId: HELP_CONTEXTUAL.DataExplorerProfitCenter,
           sortOrder: 6,
           name: 'profitcenter',
           caption: '#LDS#Cost centers',
->>>>>>> oned/v92
         };
       }
     );
@@ -319,33 +223,6 @@ export class RoleManangementModule {
 
   /** This method defines the menu structure for the portal. */
   private setupMenu(): void {
-<<<<<<< HEAD
-    this.menuService.addMenuFactories(
-      (preProps: string[], groups: string[]) => {
-        // must also work if ITSHOP is disabled!
-        if (!isStructAdmin(groups)) {
-          return null;
-        }
-        const menu = {
-          id: 'ROOT_Data',
-          title: '#LDS#Data administration',
-          sorting: '40',
-          items: [
-            {
-              id: 'QER_DataExplorer',
-              navigationCommands: { commands: ['admin', 'dataexplorer'] },
-              title: '#LDS#Menu Entry Data Explorer',
-              sorting: '40-10',
-            },
-          ]
-        };
-        return menu;
-      }
-    );
-  }
-}
-
-=======
     this.menuService.addMenuFactories((preProps: string[], features: string[], projectConfig: ProjectConfig, groups: string[]) => {
       // must also work if ITSHOP is disabled!
       if (!isRoleAdmin(features) && !isRoleStatistics(features) && !isStructStatistics(features) && !isStructAdmin(features) && !isAuditor(groups)) {
@@ -416,4 +293,3 @@ export class RoleManangementModule {
     );
   }
 }
->>>>>>> oned/v92

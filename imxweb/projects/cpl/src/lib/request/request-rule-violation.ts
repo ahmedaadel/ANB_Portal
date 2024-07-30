@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -44,11 +40,7 @@ export class RequestRuleViolation implements IExtension {
   public set inputData(dstSettings: DataSourceToolbarSettings) {
     this.dstSettings = dstSettings;
 
-<<<<<<< HEAD
-    if (this.dstSettings.extendedData) {
-=======
     if (this.dstSettings?.extendedData) {
->>>>>>> oned/v92
       for (let i = 0; i < this.dstSettings.dataSource.Data.length; i++) {
         const item = this.dstSettings.dataSource.Data[i] as ItshopRequest;
         item.complianceRuleViolation = item.pwoData.WorkflowHistory.Entities.filter((wh: EntityData) =>

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -39,11 +35,7 @@ import { RouterModule } from '@angular/router';
 import { EuiMaterialModule, EuiCoreModule } from '@elemental-ui/core';
 import { TranslateModule } from '@ngx-translate/core';
 
-<<<<<<< HEAD
-import { DataSourceToolbarModule, DataTableModule, CdrModule, LdsReplaceModule, EntityColumnEditorComponent } from 'qbm';
-=======
 import { DataSourceToolbarModule, DataTableModule, CdrModule, LdsReplaceModule, EntityColumnEditorComponent, SelectedElementsModule, HelpContextualModule, TempBillboardModule } from 'qbm';
->>>>>>> oned/v92
 
 import { RunsComponent } from './runs.component';
 import { RunSidesheetComponent } from './run-sidesheet.component';
@@ -68,11 +60,7 @@ import { AttestationWrapperComponent } from './attestation/attestation-wrapper/a
     AttestationComponent,
     RunsGridComponent,
     CaseChartComponent,
-<<<<<<< HEAD
-    AttestationWrapperComponent
-=======
     AttestationWrapperComponent,
->>>>>>> oned/v92
   ],
   imports: [
     CommonModule,
@@ -90,17 +78,6 @@ import { AttestationWrapperComponent } from './attestation/attestation-wrapper/a
     MatSidenavModule,
     ReactiveFormsModule,
     LdsReplaceModule,
-<<<<<<< HEAD
-    AttestationHistoryModule
-  ],
-  exports: [
-    RunsComponent,
-    RunsGridComponent,
-    AttestationWrapperComponent
-  ]
-})
-export class AttestationRunsModule { }
-=======
     AttestationHistoryModule,
     SelectedElementsModule,
     HelpContextualModule,
@@ -109,4 +86,3 @@ export class AttestationRunsModule { }
   exports: [RunsComponent, RunsGridComponent, AttestationWrapperComponent],
 })
 export class AttestationRunsModule {}
->>>>>>> oned/v92

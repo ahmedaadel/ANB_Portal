@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -35,32 +31,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
 import { TranslateModule } from '@ngx-translate/core';
 
-<<<<<<< HEAD
-import { CdrModule, ClassloggerService, DataSourceToolbarModule, DataTableModule, MenuItem, MenuService, RouteGuardService } from 'qbm';
-=======
 import { CdrModule, ClassloggerService, DataSourceToolbarModule, DataTableModule, HELP_CONTEXTUAL, HelpContextualModule, MenuItem, MenuService, RouteGuardService } from 'qbm';
->>>>>>> oned/v92
 import { ServiceItemsEditComponent } from './service-items-edit.component';
 import { ServiceItemsEditSidesheetComponent } from './service-items-edit-sidesheet/service-items-edit-sidesheet.component';
 import { ShopAdminGuardService } from '../guards/shop-admin-guard.service';
 import { isShopAdmin } from '../admin/qer-permissions-helper';
 import { ServiceItemsEditFormModule } from './service-items-edit-form/service-items-edit-form.module';
-<<<<<<< HEAD
-=======
 import { ObjectHyperviewModule } from '../object-hyperview/object-hyperview.module';
->>>>>>> oned/v92
 
 const routes: Routes = [
   {
     path: 'admin/serviceitems',
     component: ServiceItemsEditComponent,
     canActivate: [RouteGuardService, ShopAdminGuardService],
-<<<<<<< HEAD
-=======
     data:{
       contextId: HELP_CONTEXTUAL.ServiceItems
     }
->>>>>>> oned/v92
   },
 ];
 
@@ -76,19 +62,12 @@ const routes: Routes = [
     DataTableModule,
     EuiCoreModule,
     EuiMaterialModule,
-<<<<<<< HEAD
-    ReactiveFormsModule,
-    RouterModule.forChild(routes),
-    ServiceItemsEditFormModule,
-    TranslateModule
-=======
     ObjectHyperviewModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     ServiceItemsEditFormModule,
     TranslateModule,
     HelpContextualModule,
->>>>>>> oned/v92
   ]
 })
 export class ServiceItemsEditModule {
@@ -102,29 +81,17 @@ export class ServiceItemsEditModule {
 
   private setupMenu(): void {
     this.menuService.addMenuFactories(
-<<<<<<< HEAD
-      (preProps: string[], groups: string[]) => {
-
-        const items: MenuItem[] = [];
-
-        if (isShopAdmin(groups)) {
-=======
       (preProps: string[], features: string[]) => {
 
         const items: MenuItem[] = [];
 
         if (isShopAdmin(features)) {
->>>>>>> oned/v92
           items.push(
             {
               id: 'QER_ServiceItems',
               navigationCommands: { commands: ['admin', 'serviceitems'] },
               title: '#LDS#Menu Entry Service items',
-<<<<<<< HEAD
-              sorting: '50-40',
-=======
               sorting: '60-40',
->>>>>>> oned/v92
             },
           );
         }
@@ -135,11 +102,7 @@ export class ServiceItemsEditModule {
         return {
           id: 'ROOT_Setup',
           title: '#LDS#Setup',
-<<<<<<< HEAD
-          sorting: '50',
-=======
           sorting: '60',
->>>>>>> oned/v92
           items
         };
       },

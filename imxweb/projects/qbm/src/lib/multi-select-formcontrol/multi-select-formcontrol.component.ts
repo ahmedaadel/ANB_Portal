@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -32,11 +28,7 @@ import { ListRange } from '@angular/cdk/collections';
 import { OverlayRef } from '@angular/cdk/overlay';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { AfterViewInit, ChangeDetectorRef, Component, forwardRef, Input, OnChanges, OnDestroy, ViewChild } from '@angular/core';
-<<<<<<< HEAD
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-=======
 import { ControlValueAccessor, UntypedFormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
->>>>>>> oned/v92
 import { MatSelectionListChange } from '@angular/material/list';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -72,11 +64,7 @@ export class MultiSelectFormcontrolComponent implements ControlValueAccessor, On
   public onChange: (event: IEntityColumn) => void;
   public onTouch: (event: IEntityColumn) => void;
   public entityColumn: IEntityColumn;
-<<<<<<< HEAD
-  public readonly searchControl = new FormControl();
-=======
   public readonly searchControl = new UntypedFormControl();
->>>>>>> oned/v92
   public uidReport: string;
 
   @Input() public pushMethod: 'auto' | 'manual' = 'auto';
@@ -139,18 +127,11 @@ export class MultiSelectFormcontrolComponent implements ControlValueAccessor, On
   }
 
   public async updateSelected(selection: MatSelectionListChange): Promise<void> {
-<<<<<<< HEAD
-    if (this.selectedCandidates.findIndex(elem => elem.Keys[0] === selection.option.value.Keys[0]) !== -1) {
-      return;
-    }
-    this.selectedCandidates.push(selection.option.value);
-=======
     const selectedChange: string[] = selection.options.map(option => option.value.Keys[0]);
     if (this.selectedCandidates.findIndex(elem => selectedChange.includes(elem.Keys[0])) !== -1) {
       return;
     }
     this.selectedCandidates.push(...selection.options.map(option => option.value));
->>>>>>> oned/v92
     if (this.pushMethod === 'auto') {
       await this.putNewValue();
     }

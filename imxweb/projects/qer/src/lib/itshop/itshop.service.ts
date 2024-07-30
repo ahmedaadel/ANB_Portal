@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -41,10 +37,7 @@ import {
   PortalShopServiceitems,
 } from 'imx-api-qer';
 import {
-<<<<<<< HEAD
-=======
   ApiRequestOptions,
->>>>>>> oned/v92
   CollectionLoadParameters,
   CompareOperator,
   EntityCollectionData,
@@ -57,10 +50,7 @@ import {
 } from 'imx-qbm-dbts';
 import { ParameterDataLoadParameters } from '../parameter-data/parameter-data-load-parameters.interface';
 import { QerApiService } from '../qer-api-client.service';
-<<<<<<< HEAD
-=======
 import { ServiceItemParameters } from '../new-request/new-request-product/service-item-parameters';
->>>>>>> oned/v92
 
 @Injectable({
   providedIn: 'root',
@@ -112,16 +102,10 @@ export class ItshopService {
   }
 
   public async getPeerGroupMemberships(
-<<<<<<< HEAD
-    parameters: ({ UID_PersonReference: string } | { UID_PersonPeerGroup: string }) & { UID_Person?: string } & CollectionLoadParameters
-  ): Promise<ExtendedTypedEntityCollection<PortalItshopPeergroupMemberships, ServiceItemsExtendedData>> {
-    return this.qerClient.typedClient.PortalItshopPeergroupMemberships.Get(parameters);
-=======
     parameters: (CollectionLoadParameters | ServiceItemParameters),
     requestOpts?: ApiRequestOptions
   ): Promise<ExtendedTypedEntityCollection<PortalItshopPeergroupMemberships, ServiceItemsExtendedData>> {
     return this.qerClient.typedClient.PortalItshopPeergroupMemberships.Get(parameters, requestOpts);
->>>>>>> oned/v92
   }
 
   public createTypedHistory(pwoData: PwoData): PortalItshopApproveHistory[] {

@@ -1,10 +1,6 @@
 {
   "name": "qer-app-operationssupport",
-<<<<<<< HEAD
-  "version": "9.0.0",
-=======
   "version": "9.2.1",
->>>>>>> oned/v92
   "private": true,
   "description": "One Identity Manager Operations Support Web Portal",
   "peerDependencies": {

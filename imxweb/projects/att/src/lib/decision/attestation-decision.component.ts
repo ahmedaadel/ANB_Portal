@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -40,17 +36,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { CollectionLoadParameters, CompareOperator, DataModel, FilterType, TypedEntity, ValType } from 'imx-qbm-dbts';
 import {
   AuthenticationService,
-<<<<<<< HEAD
-  DataSourceToolbarFilter,
-  DataSourceToolbarGroupData,
-  DataSourceToolbarSettings,
-=======
   BusyService,
   DataSourceToolbarFilter,
   DataSourceToolbarGroupData,
   DataSourceToolbarSettings,
   DataSourceToolbarViewConfig,
->>>>>>> oned/v92
   DataTableComponent,
   DataTableGroupedData,
   MessageDialogComponent,
@@ -66,17 +56,11 @@ import { AttestationDecisionAction, AttestationDecisionLoadParameters } from './
 import { ApiService } from '../api.service';
 import { createGroupData } from '../datamodel/datamodel-helper';
 import { AttestationFeatureGuardService } from '../attestation-feature-guard.service';
-<<<<<<< HEAD
-import { EntitlementLossDto } from 'imx-api-att';
-import { LossPreviewDialogComponent } from './loss-preview-dialog/loss-preview-dialog.component';
-import { LossPreview } from './loss-preview.interface';
-=======
 import { EntitlementLossDto, RecommendationEnum } from 'imx-api-att';
 import { LossPreviewDialogComponent } from './loss-preview-dialog/loss-preview-dialog.component';
 import { LossPreview } from './loss-preview.interface';
 import { PendingItemsType, RecommendationSidesheetComponent, UserModelService, ViewConfigService } from 'qer';
 import { ViewConfigData } from 'imx-api-qer';
->>>>>>> oned/v92
 @Component({
   templateUrl: './attestation-decision.component.html',
   styleUrls: ['./attestation-decision.component.scss'],
@@ -86,14 +70,11 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
   public selectedCases: AttestationCase[] = [];
   public userUid: string;
 
-<<<<<<< HEAD
-=======
   public hideToolbar:boolean = false;
 
   public recApprove = RecommendationEnum.Approve;
   public recDeny = RecommendationEnum.Deny;
 
->>>>>>> oned/v92
   public get canReRouteDecision(): boolean {
     return this.selectedCases.every((item) => item.canRerouteDecision(this.userUid));
   }
@@ -125,13 +106,10 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
   public groupedData: { [key: string]: DataTableGroupedData } = {};
   public allLossPreviewItems: EntitlementLossDto[];
   public lossPreview: LossPreview;
-<<<<<<< HEAD
-=======
   public hasInquiries: boolean;
   public tabIndex = 0;
   public busyService = new BusyService();
   public entitySchema = this.attestationCases.attestationApproveSchema;
->>>>>>> oned/v92
 
   private approvalThreshold: number;
   private autoRemovalScope: boolean;
@@ -144,12 +122,6 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
   private readonly subscriptions: Subscription[] = [];
   @ViewChild(DataTableComponent) private readonly table: DataTableComponent<TypedEntity>;
 
-<<<<<<< HEAD
-  constructor(
-    public readonly attestationAction: AttestationActionService,
-    private readonly attestationCases: AttestationCasesService,
-    private readonly busyService: EuiLoadingService,
-=======
   private viewConfig: DataSourceToolbarViewConfig;
   private viewConfigPath = 'attestation/approve';
 
@@ -157,7 +129,6 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
     public readonly attestationAction: AttestationActionService,
     private readonly attestationCases: AttestationCasesService,
     private readonly busyServiceElemental: EuiLoadingService,
->>>>>>> oned/v92
     private readonly sidesheet: EuiSidesheetService,
     private readonly messageService: UserMessageService,
     private readonly activatedRoute: ActivatedRoute,
@@ -165,13 +136,6 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
     private readonly translate: TranslateService,
     private readonly attService: ApiService,
     private readonly attFeatureService: AttestationFeatureGuardService,
-<<<<<<< HEAD
-    private dialog: MatDialog,
-    settingsService: SettingsService,
-    authentication: AuthenticationService
-  ) {
-    this.collectionLoadParameters = { PageSize: settingsService.DefaultPageSize, StartIndex: 0, OrderBy: 'ToSolveTill asc' };
-=======
     private viewConfigService: ViewConfigService,
     private dialog: MatDialog,
     private readonly usermodelService: UserModelService,
@@ -179,20 +143,10 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
     authentication: AuthenticationService
   ) {
     this.collectionLoadParameters = { PageSize: settingsService.DefaultPageSize, StartIndex: 0 };
->>>>>>> oned/v92
     this.navigationState = this.collectionLoadParameters;
     this.subscriptions.push(
       this.attestationAction.applied.subscribe(() => {
         this.getData();
-<<<<<<< HEAD
-        this.table.clearSelection();
-      })
-    );
-    this.subscriptions.push(authentication.onSessionResponse.subscribe((sessionState) => {
-      this.userUid = sessionState?.UserUid;
-      this.attestationCases.isChiefApproval = false;
-    }));
-=======
         this.table?.clearSelection();
       })
     );
@@ -202,7 +156,6 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
         this.attestationCases.isChiefApproval = false;
       })
     );
->>>>>>> oned/v92
 
     this.attFeatureService.getAttestationConfig().then((config) => {
       this.isUserEscalationApprover = config.IsUserInChiefApprovalTeam;
@@ -229,13 +182,6 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
   }
 
   public async ngOnInit(): Promise<void> {
-<<<<<<< HEAD
-    let busyIndicator: OverlayRef;
-    setTimeout(() => (busyIndicator = this.busyService.show()));
-
-    try {
-      const config = await this.attService.client.portal_attestation_config_get();
-=======
     let isBusy: any;
     setTimeout(() => {
       isBusy = this.busyService.beginBusy();
@@ -245,7 +191,6 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
       const pendingItems: PendingItemsType = await this.usermodelService.getPendingItems();
       this.hasInquiries = pendingItems.OpenInquiriesAttestation > 0;
       const params = await this.activatedRoute.queryParams.pipe(first()).toPromise();
->>>>>>> oned/v92
       this.approvalThreshold = config.ApprovalThreshold;
       this.autoRemovalScope = config.AutoRemovalScope;
       this.lossPreview = {
@@ -257,17 +202,6 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
           Person: '#LDS#Affected identity',
         },
       };
-<<<<<<< HEAD
-
-      await this.initDataModel();
-    } finally {
-      setTimeout(() => this.busyService.hide(busyIndicator));
-    }
-
-    await this.parseParams();
-    await this.getData();
-    this.handleDecision();
-=======
       if (params.inquiries) {
         this.tabIndex = 1;
         this.hasInquiries = true;
@@ -282,15 +216,12 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
         isBusy.endBusy();
       });
     }
->>>>>>> oned/v92
   }
 
   public ngOnDestroy(): void {
     this.subscriptions.forEach((s) => s.unsubscribe());
   }
 
-<<<<<<< HEAD
-=======
   public async updateConfig(config: ViewConfigData): Promise<void> {
     await this.viewConfigService.putViewConfig(config);
     this.viewConfig = await this.viewConfigService.getDSTExtensionChanges(this.viewConfigPath);
@@ -303,7 +234,6 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
     this.dstSettings.viewConfig = this.viewConfig;
   }
 
->>>>>>> oned/v92
   public isNewLoss(loss: EntitlementLossDto): boolean {
     return this.allLossPreviewItems.indexOf(loss) === -1 ? true : false;
   }
@@ -315,11 +245,7 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
       return;
     }
     let busyIndicator: OverlayRef;
-<<<<<<< HEAD
-    setTimeout(() => (busyIndicator = this.busyService.show()));
-=======
     setTimeout(() => (busyIndicator = this.busyServiceElemental.show()));
->>>>>>> oned/v92
     try {
       // Accumulate all losses
       this.allLossPreviewItems = [];
@@ -334,11 +260,7 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
         })
       );
     } finally {
-<<<<<<< HEAD
-      setTimeout(() => this.busyService.hide(busyIndicator));
-=======
       setTimeout(() => this.busyServiceElemental.hide(busyIndicator));
->>>>>>> oned/v92
     }
     if (this.allLossPreviewItems.length === 0) {
       // There are no losses, go ahead with handle
@@ -351,14 +273,8 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
       .open(LossPreviewDialogComponent, {
         width: this.isMobile ? '90vw' : '60vw',
         maxWidth: this.isMobile ? '90vw' : '80vw',
-<<<<<<< HEAD
-        height: '60vh',
-        maxHeight: '60vh',
-        panelClass: 'imx-loss-preview-dialog-wrapper',
-=======
         height: '70vh',
         maxHeight: '70vh',
->>>>>>> oned/v92
         data: this.lossPreview,
       })
       .afterClosed()
@@ -379,20 +295,6 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
       this.navigationState = newState;
     }
 
-<<<<<<< HEAD
-    let busyIndicator: OverlayRef;
-    setTimeout(() => (busyIndicator = this.busyService.show()));
-
-    try {
-      const dataSource = await this.attestationCases.get({
-        Escalation: this.attestationCases.isChiefApproval,
-        ...this.navigationState,
-      });
-      const entitySchema = this.attestationCases.attestationApproveSchema;
-      this.dstSettings = {
-        dataSource,
-        entitySchema,
-=======
     const isBusy = this.busyService.beginBusy();
 
     try {
@@ -405,41 +307,21 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
       this.dstSettings = {
         dataSource,
         entitySchema: this.entitySchema,
->>>>>>> oned/v92
         navigationState: this.navigationState,
         filters: this.filterOptions,
         dataModel: this.dataModel,
         groupData: this.groupData,
         displayedColumns: [
-<<<<<<< HEAD
-          entitySchema.Columns.UiText,
-          {
-            ColumnName: 'badges',
-            Type: ValType.String,
-=======
           this.entitySchema.Columns.UiText,
           {
             ColumnName: 'badges',
             Type: ValType.String,
             untranslatedDisplay: '#LDS#Badges',
->>>>>>> oned/v92
           },
           {
             ColumnName: 'decision',
             Type: ValType.String,
             afterAdditionals: true,
-<<<<<<< HEAD
-          },
-          {
-            ColumnName: 'edit',
-            Type: ValType.String,
-          },
-        ],
-        identifierForSessionStore: 'attestation-decision',
-      };
-    } finally {
-      setTimeout(() => this.busyService.hide(busyIndicator));
-=======
             untranslatedDisplay: '#LDS#Decision',
           },
           {
@@ -454,32 +336,15 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
       };
     } finally {
       isBusy.endBusy();
->>>>>>> oned/v92
     }
   }
 
   public async onGroupingChange(groupKey: string): Promise<void> {
-<<<<<<< HEAD
-    let overlayRef: OverlayRef;
-    setTimeout(() => (overlayRef = this.busyService.show()));
-=======
     const isBusy = this.busyService.beginBusy();
->>>>>>> oned/v92
 
     try {
       const groupedData = this.groupedData[groupKey];
       const navigationState = { ...groupedData.navigationState, Escalation: this.viewEscalation };
-<<<<<<< HEAD
-      groupedData.data = await this.attestationCases.get(navigationState);
-      groupedData.settings = {
-        displayedColumns: this.dstSettings.displayedColumns,
-        dataSource: groupedData.data,
-        entitySchema: this.dstSettings.entitySchema,
-        navigationState
-      };
-    } finally {
-      setTimeout(() => this.busyService.hide(overlayRef));
-=======
       groupedData.data = await this.attestationCases.get(navigationState,this.isUserEscalationApprover);
       groupedData.settings = {
         displayedColumns: this.dstSettings.displayedColumns,
@@ -490,7 +355,6 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
       };
     } finally {
       isBusy.endBusy();
->>>>>>> oned/v92
     }
   }
 
@@ -503,11 +367,7 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
     let approvers: Approvers;
 
     let busyIndicator: OverlayRef;
-<<<<<<< HEAD
-    setTimeout(() => (busyIndicator = this.busyService.show()));
-=======
     setTimeout(() => (busyIndicator = this.busyServiceElemental.show()));
->>>>>>> oned/v92
 
     try {
       attestationCaseWithPolicy = (
@@ -522,49 +382,28 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
               Value1: attestationCase.GetEntity().GetKeys()[0],
             },
           ],
-<<<<<<< HEAD
-        })
-=======
         },this.isUserEscalationApprover)
->>>>>>> oned/v92
       ).Data[0];
       // Add additional violation data to this case
       attestationCaseWithPolicy.data.CanSeeComplianceViolations = attestationCase.data.CanSeeComplianceViolations;
       attestationCaseWithPolicy.data.ComplianceViolations = attestationCase.data.ComplianceViolations;
-<<<<<<< HEAD
-=======
       attestationCaseWithPolicy.data.CanSeePolicyViolations = attestationCase.data.CanSeePolicyViolations;
       attestationCaseWithPolicy.data.PolicyViolations = attestationCase.data.PolicyViolations;
->>>>>>> oned/v92
 
       if (attestationCaseWithPolicy && !['approved', 'denied'].includes(attestationCaseWithPolicy.AttestationState.value)) {
         approvers = await this.attestationCases.getApprovers(attestationCaseWithPolicy);
       }
-<<<<<<< HEAD
-      this.lossPreview.LossPreviewItems = await this.attestationCases.getLossPreviewEntities(attestationCase);
-    } finally {
-      setTimeout(() => this.busyService.hide(busyIndicator));
-=======
       this.lossPreview.Case = attestationCase;
     } finally {
       setTimeout(() => this.busyServiceElemental.hide(busyIndicator));
->>>>>>> oned/v92
     }
 
     if (attestationCaseWithPolicy) {
       this.sidesheet.open(AttestationCaseComponent, {
         title: await this.translate.get('#LDS#Heading View Attestation Case Details').toPromise(),
-<<<<<<< HEAD
-        bodyColour: 'asher-gray',
-        headerColour: 'iris-blue',
-        panelClass: 'imx-sidesheet',
-        padding: '0',
-        width: this.lossPreview.LossPreviewItems.length > 0 ? '768px' : '700px',
-=======
         subTitle: attestationCaseWithPolicy.GetEntity().GetDisplay(),
         padding: '0px',
         width: 'max(70%,768px)',
->>>>>>> oned/v92
         testId: 'attestation-case-sidesheet',
         data: {
           case: attestationCaseWithPolicy,
@@ -573,11 +412,8 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
           autoRemovalScope: this.autoRemovalScope,
           lossPreview: this.lossPreview,
           mitigatingControlsPerViolation: this.mitigatingControlsPerViolation,
-<<<<<<< HEAD
-=======
           isInquiry: false,
           isUserEscalationApprover: this.isUserEscalationApprover,
->>>>>>> oned/v92
         },
       });
     } else {
@@ -587,10 +423,6 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
     }
   }
 
-<<<<<<< HEAD
-  private async initDataModel(): Promise<void> {
-    this.dataModel = await this.attestationCases.getDataModel();
-=======
   public async viewRecommendationDetails(attestationCase: AttestationCase): Promise<void> {
     const decision: 'approve' | 'deny' | null = await this.sidesheet
       .open(RecommendationSidesheetComponent, {
@@ -622,7 +454,6 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
         this.navigationState.OrderBy = 'ToSolveTill';
       }
     }
->>>>>>> oned/v92
 
     this.filterOptions = this.dataModel?.Filters ?? [];
 
@@ -662,10 +493,7 @@ export class AttestationDecisionComponent implements OnInit, OnDestroy {
     if (queryParams['uid_attestationcase']) {
       this.navigationState.uid_attestationcase = queryParams['uid_attestationcase'];
       this.decisionAction = AttestationDecisionAction.showcase;
-<<<<<<< HEAD
-=======
       this.hideToolbar = true;
->>>>>>> oned/v92
       return;
     }
 

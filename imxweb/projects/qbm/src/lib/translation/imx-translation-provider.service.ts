@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -37,10 +33,6 @@ import { map } from 'rxjs/operators';
 import moment from 'moment-timezone';
 
 import { TextContainer } from './text-container';
-<<<<<<< HEAD
-import { MultiLanguageCaptions } from '../base/multi-language-captions';
-=======
->>>>>>> oned/v92
 import { LdsReplacePipe } from '../lds-replace/lds-replace.pipe';
 import { AppConfigService } from '../appConfig/appConfig.service';
 
@@ -48,22 +40,9 @@ import { AppConfigService } from '../appConfig/appConfig.service';
   providedIn: 'root'
 })
 export class ImxTranslationProviderService implements ITranslationProvider {
-<<<<<<< HEAD
-  public get MultiLanguageCaptions(): MultiLanguageCaptions {
-    return this.multilanguageCaptions;
-  }
-  public get Culture(): string {
-    return this.culture;
-  }
-
-  private multilanguageTranslationDict: { [key: string]: { [key: string]: string } } = {};
-  private multilanguageCaptions: MultiLanguageCaptions;
-  private culture: string;
-=======
   private multilanguageTranslationDict: { [key: string]: { [key: string]: string } } = {};
   private culture: string;
   private cultureFormat: string;
->>>>>>> oned/v92
 
   constructor(
     private appConfig: AppConfigService,
@@ -72,10 +51,6 @@ export class ImxTranslationProviderService implements ITranslationProvider {
     private readonly dateAdapter: DateAdapter<any>
   ) {}
 
-<<<<<<< HEAD
-  public async init(culture: string = this.translateService.getBrowserCultureLang()): Promise<void> {
-    const defaultLang = this.translateService.getDefaultLang();
-=======
   public get Culture(): string {
     return this.culture;
   }
@@ -96,7 +71,6 @@ export class ImxTranslationProviderService implements ITranslationProvider {
       culture = 'en-US';
     }
     
->>>>>>> oned/v92
     if (defaultLang == null || defaultLang !== culture) {
       this.translateService.setDefaultLang(culture);
     }
@@ -104,15 +78,9 @@ export class ImxTranslationProviderService implements ITranslationProvider {
     if (this.translateService.currentLang == null || this.translateService.currentLang !== culture) {
       await this.translateService.use(culture).toPromise();
     }
-<<<<<<< HEAD
-
-    this.dateAdapter.setLocale(culture);
-    moment.locale(culture);
-=======
     this.cultureFormat = cultureFormat;
     this.dateAdapter.setLocale(this.cultureFormat);
     moment.locale(this.cultureFormat);
->>>>>>> oned/v92
 
     if (this.culture != null && this.culture === culture) {
       return;
@@ -124,21 +92,6 @@ export class ImxTranslationProviderService implements ITranslationProvider {
       cultureName: this.culture
     });
 
-<<<<<<< HEAD
-    const captions = await this.appConfig.client.imx_multilanguage_getcaptions_get({ cultureName: this.culture });
-    this.multilanguageCaptions = {
-      Timeline_ZoomIn: captions['Timeline_ZoomIn'],
-      Timeline_ZoomOut: captions['Timeline_ZoomOut'],
-      Timeline_MoveLeft: captions['Timeline_MoveLeft'],
-      Timeline_MoveRight: captions['Timeline_MoveRight'],
-      Timeline_ClusterDescription: (numOfEvents: number) => captions['Timeline_ClusterDescription'].replace('{0}', numOfEvents.toString()),
-      Timeline_ClusterTitle: (numOfEvents: number) => captions['Timeline_ClusterTitle'].replace('{0}', numOfEvents.toString()),
-      Timeline_New: 'New',
-      Timeline_CreateNewEvent: 'Create new event'
-    };
-
-=======
->>>>>>> oned/v92
     // use this translator as the default in dbts
     DefaultServiceResolver.UseTranslator(this);
 
@@ -169,19 +122,13 @@ export class ImxTranslationProviderService implements ITranslationProvider {
    * @deprecated Use the column's display from the schema.
    */
   public GetColumnDisplay(name: string, entitySchema: EntitySchema): string {
-<<<<<<< HEAD
-    const column = entitySchema.Columns[name];
-=======
     const column = entitySchema?.Columns[name];
->>>>>>> oned/v92
     if (column == null || column.Display == null) {
       return name;
     }
 
     return column.Display;
   }
-<<<<<<< HEAD
-=======
 
   public async GetCultures(): Promise<void>{
     if(Object.keys(this.multilanguageTranslationDict).length === 0){
@@ -189,5 +136,4 @@ export class ImxTranslationProviderService implements ITranslationProvider {
     }
   }
 
->>>>>>> oned/v92
 }

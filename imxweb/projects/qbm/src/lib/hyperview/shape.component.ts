@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,19 +24,12 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, Input, OnInit } from '@angular/core';
-=======
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
->>>>>>> oned/v92
 
 import { ShapeData } from 'imx-api-qbm';
 import { ModelCssService } from '../model-css/model-css.service';
 import { TableImageService } from '../table-image/table-image.service';
-<<<<<<< HEAD
-=======
 import { ShapeClickArgs } from './hyperview-types';
->>>>>>> oned/v92
 
 /**
  * The general shape component for an object.
@@ -48,18 +37,6 @@ import { ShapeClickArgs } from './hyperview-types';
 @Component({
   selector: 'imx-hyperview-shape',
   templateUrl: './shape.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./shape.component.scss']
-})
-export class ShapeComponent implements OnInit {
-  @Input() public shape: ShapeData;
-  public imageClass: string;
-
-  constructor(private readonly imageService: TableImageService, private readonly modelCssService: ModelCssService) { }
-
-  public ngOnInit(): void {
-
-=======
   styleUrls: ['./shape.component.scss'],
 })
 export class ShapeComponent implements OnInit {
@@ -71,16 +48,11 @@ export class ShapeComponent implements OnInit {
   constructor(private readonly imageService: TableImageService, private readonly modelCssService: ModelCssService) {}
 
   public ngOnInit(): void {
->>>>>>> oned/v92
     this.modelCssService.loadModelCss();
 
     this.imageClass = this.shape.ImageUid ? this.imageService.getCss(this.shape.ImageUid, true) : this.imageService.getDefaultCss(true);
   }
 
-<<<<<<< HEAD
-  public get ObjectCount(): number {
-    return (this.shape && this.shape.Elements) ? this.shape.Elements.length : -1;
-=======
   public click(): void {
     if (this.navigate && !this.isShapeLayoutMiddle) {
       this.selected?.emit({ objectKey: this.shape.ObjectKey, caption: this.shape.Caption });
@@ -93,6 +65,5 @@ export class ShapeComponent implements OnInit {
 
   public get isShapeLayoutMiddle(): boolean {
     return this.shape?.LayoutType === 'MiddleCenter';
->>>>>>> oned/v92
   }
 }

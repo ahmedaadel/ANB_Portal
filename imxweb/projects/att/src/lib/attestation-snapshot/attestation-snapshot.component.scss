@@ -1,22 +1,14 @@
-<<<<<<< HEAD
-@import '@elemental-ui/core/src/styles/_palette.scss';
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 
 :host {
   margin-top: 20px;
   display: block;
 }
->>>>>>> oned/v92
 
 .helper-alert {
   display: flex;
   margin-bottom: 20px;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
   span {
     display: block;
   }
@@ -29,20 +21,12 @@
     word-wrap: break-word;
     &.column-display {
       font-size: 12px;
-<<<<<<< HEAD
-      color: $black-9;
-=======
       color: $color-gray-40;
->>>>>>> oned/v92
       padding-bottom: 5px;
     }
   }
 }
 
-<<<<<<< HEAD
-mat-card {
-  margin-bottom: 1em;
-=======
 .mat-card {
   margin-bottom: 1em;
   height: 100%;
@@ -60,5 +44,4 @@ mat-card {
 
 .imx-snapshots {
   overflow-y: auto;
->>>>>>> oned/v92
 }

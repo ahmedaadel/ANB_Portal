@@ -1,14 +1,9 @@
 :host {
-<<<<<<< HEAD
-  width: 750px;
-  max-width: 100%;
-=======
   max-width: 100%;
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow: hidden;
->>>>>>> oned/v92
 }
 
 mat-radio-group {
@@ -31,8 +26,6 @@ mat-radio-group {
   >button {
    align-self: flex-end;
   }
-<<<<<<< HEAD
-=======
 }
 .imx-system-entitlement-stepper{
   flex: 1 1 auto;
@@ -40,5 +33,4 @@ mat-radio-group {
   overflow: auto;
   display: flex;
   flex-direction: column;
->>>>>>> oned/v92
 }

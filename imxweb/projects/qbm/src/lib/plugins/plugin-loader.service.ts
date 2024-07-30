@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -31,11 +27,7 @@
 import { Injectable, Injector, isDevMode, createNgModuleRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-<<<<<<< HEAD
-import { NodeAppInfo, PlugInLib } from 'imx-api-qbm';
-=======
 import { NodeAppInfo, PlugInInfo } from 'imx-api-qbm';
->>>>>>> oned/v92
 
 import { imx_SessionService } from '../session/imx-session.service';
 import { ClassloggerService } from '../classlogger/classlogger.service';
@@ -101,10 +93,7 @@ import * as RxjsOperators from 'rxjs/operators';
 import * as BillboardJs from 'billboard.js';
 import * as tslibModule from 'tslib';
 import * as MomentTimezone from 'moment-timezone';
-<<<<<<< HEAD
-=======
 import * as lodash from 'lodash';
->>>>>>> oned/v92
 
 declare var SystemJS: any;
 
@@ -113,11 +102,7 @@ declare var SystemJS: any;
 })
 export class PluginLoaderService {
   private appInfo: NodeAppInfo;
-<<<<<<< HEAD
-  private plugins: PlugInLib[] = [];
-=======
   private plugins: PlugInInfo[] = [];
->>>>>>> oned/v92
 
   constructor(
     private readonly session: imx_SessionService,
@@ -266,10 +251,7 @@ export class PluginLoaderService {
     SystemJS.set('billboard.js', SystemJS.newModule(BillboardJs));
     SystemJS.set('tslib', SystemJS.newModule(tslibModule));
     SystemJS.set('moment-timezone', SystemJS.newModule(MomentTimezone));
-<<<<<<< HEAD
-=======
     SystemJS.set('lodash', SystemJS.newModule(lodash));
->>>>>>> oned/v92
 
     // Our stuff
     SystemJS.set('imx-qbm-dbts', SystemJS.newModule(QBMDBTS));

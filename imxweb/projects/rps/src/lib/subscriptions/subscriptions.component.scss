@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-@import "@elemental-ui/core/src/styles/_palette.scss";
-=======
 @import '@elemental-ui/core/src/styles/_palette.scss';
 @import '../../../../../shared/scss/common-table.scss';
->>>>>>> oned/v92
 
 :host {
   display: flex;
@@ -13,11 +9,6 @@
 }
 
 imx-data-table {
-<<<<<<< HEAD
-  flex-grow: 2;
-}
-
-=======
   flex: 1 1 auto;
 }
 
@@ -25,7 +16,6 @@ imx-data-table {
   float: right;
   margin-right: 10px;
 }
->>>>>>> oned/v92
 
 :host ::ng-deep imx-data-table .mat-header-row .mat-header-cell {
   font-weight: 600;
@@ -42,14 +32,7 @@ imx-data-table {
 }
 
 .imx-table-container {
-<<<<<<< HEAD
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  height: inherit;
-=======
  @include imx-flex-fill-control-hidden-overflow();
->>>>>>> oned/v92
 }
 
 :host ::ng-deep eui-sidesheet .eui-sidesheet__content {
@@ -69,10 +52,6 @@ imx-data-table {
     overflow-y: auto;
     overflow-x: hidden;
     flex: 1 1 auto;
-<<<<<<< HEAD
-  }
-}
-=======
     display: flex;
     flex-direction: column;
   }
@@ -85,4 +64,3 @@ imx-data-table {
 .imx-button-bar {
   @include imx-button-bar();
 }
->>>>>>> oned/v92

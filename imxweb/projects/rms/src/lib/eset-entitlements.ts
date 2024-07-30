@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,27 +25,12 @@
  */
 
 import { RoleAssignmentData } from "imx-api-qer";
-<<<<<<< HEAD
-import { CollectionLoadParameters, ExtendedTypedEntityCollection, IEntity, TypedEntity } from "imx-qbm-dbts";
-=======
 import { CollectionLoadParameters, CompareOperator, ExtendedTypedEntityCollection, FilterType, IEntity, TypedEntity } from "imx-qbm-dbts";
->>>>>>> oned/v92
 import { DynamicMethodService, GenericTypedEntity, ImxTranslationProviderService } from "qbm";
 import { IRoleEntitlements } from "qer";
 import { RmsApiService } from "./rms-api-client.service";
 
 export class EsetEntitlements implements IRoleEntitlements {
-<<<<<<< HEAD
-
-  constructor(private readonly api: RmsApiService,
-    private readonly dynamicMethodSvc: DynamicMethodService,
-    protected readonly translator: ImxTranslationProviderService
-  ) { }
-
-  public async getCollection(id: string, navigationState?: CollectionLoadParameters): Promise<ExtendedTypedEntityCollection<TypedEntity, unknown>> {
-
-    return await this.api.typedClient.PortalRolesConfigEntitlementsEset.Get(id, navigationState);
-=======
   constructor(
     private readonly api: RmsApiService,
     private readonly dynamicMethodSvc: DynamicMethodService,
@@ -72,7 +53,6 @@ export class EsetEntitlements implements IRoleEntitlements {
         },
       ] : undefined,
     });
->>>>>>> oned/v92
   }
 
   getEntitlementTypes(role: IEntity): Promise<RoleAssignmentData[]> {
@@ -80,11 +60,7 @@ export class EsetEntitlements implements IRoleEntitlements {
   }
 
   public getEntitlementFkName() {
-<<<<<<< HEAD
-    return "Entitlement"; // column name in ESetHasEntitlement
-=======
     return 'Entitlement'; // column name in ESetHasEntitlement
->>>>>>> oned/v92
   }
 
   async delete(roleId: string, entity: IEntity): Promise<void> {
@@ -93,18 +69,6 @@ export class EsetEntitlements implements IRoleEntitlements {
   }
 
   public createEntitlementAssignmentEntity(role: IEntity, entlType: RoleAssignmentData): IEntity {
-<<<<<<< HEAD
-
-    const uidESet = role.GetKeys()[0];
-    const entityColl = this.dynamicMethodSvc.createEntity(this.api.apiClient, {
-      path: '/portal/roles/config/entitlements/ESet/' + uidESet,
-      type: GenericTypedEntity,
-      schemaPath: 'portal/roles/config/entitlements/ESet/{' + entlType.RoleFk + '}',
-    }, { Columns: { UID_ESet: { Value: uidESet } } });
-    return entityColl.Data[0].GetEntity();
-  }
-
-=======
     const uidESet = role.GetKeys()[0];
     const entityColl = this.dynamicMethodSvc.createEntity(
       this.api.apiClient,
@@ -117,5 +81,4 @@ export class EsetEntitlements implements IRoleEntitlements {
     );
     return entityColl.Data[0].GetEntity();
   }
->>>>>>> oned/v92
 }

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -31,11 +27,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-<<<<<<< HEAD
-import { RouteGuardService } from 'qbm';
-=======
 import { AuthenticationGuardService, LoginComponent, RouteGuardService } from 'qbm';
->>>>>>> oned/v92
 import { ObjectOverviewComponent } from './object-overview/object-overview.component';
 import { JobsComponent } from './processes/jobs/jobs.component';
 import { JournalComponent } from './journal/journal.component';
@@ -46,10 +38,7 @@ import { ServiceAvailabilityComponent } from './service-report/service-availabil
 import { ServicesInactiveComponent } from './service-report/services-inactive.component';
 import { FrozenJobsComponent } from './processes/frozen-jobs/frozen-jobs.component';
 import { JobChainsComponent } from './processes/job-chains/job-chains.component';
-<<<<<<< HEAD
-=======
 import { JobHistoryComponent } from './processes/job-history/job-history.component';
->>>>>>> oned/v92
 import { JobPerformanceComponent } from './processes/job-performance/job-performance.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SyncInformationComponent } from './sync/sync-information/sync-information.component';
@@ -57,15 +46,6 @@ import { SyncJournalComponent } from './sync/sync-journal/sync-journal.component
 import { OutstandingComponent } from 'dpr';
 import { SystemStatusRouteGuardService } from './guards/system-status-route-guard.service';
 import { OutstandingManagerGuardService } from './guards/outstanding-manager-guard.service';
-<<<<<<< HEAD
-
-const routes: Routes = [
-  {
-    path: 'start',
-    component: DashboardComponent,
-    canActivate: [RouteGuardService],
-    resolve: [RouteGuardService]
-=======
 import { ObjectsByIdComponent } from './processes/objects-by-id/objects-by-id.component';
 import { DataChangesComponent } from './data-changes/data-changes.component';
 import { DbQueueComponent } from './db-queue/db-queue.component';
@@ -82,35 +62,23 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [RouteGuardService],
     resolve: [RouteGuardService],
->>>>>>> oned/v92
   },
   {
     path: 'FrozenJobs',
     component: FrozenJobsComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
->>>>>>> oned/v92
   },
   {
     path: 'JobChainInformation',
     component: JobChainsComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
->>>>>>> oned/v92
   },
   {
     path: 'object/:table/:uid',
     component: ObjectOverviewComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
   },
   {
@@ -118,67 +86,42 @@ const routes: Routes = [
     component: ObjectOverviewComponent,
     canActivate: [RouteGuardService],
     resolve: [RouteGuardService],
->>>>>>> oned/v92
   },
   {
     path: 'jobserver/:queueName',
     component: FrozenJobsComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-  },
-=======
     resolve: [RouteGuardService],
   },
 
->>>>>>> oned/v92
   {
     path: 'outstanding',
     component: OutstandingComponent,
     canActivate: [RouteGuardService, OutstandingManagerGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
->>>>>>> oned/v92
   },
   {
     path: 'Jobs',
     component: JobsComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
->>>>>>> oned/v92
   },
   {
     path: 'journal',
     component: JournalComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
->>>>>>> oned/v92
   },
   {
     path: 'unresolvedRefs',
     component: UnresolvedRefsComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
->>>>>>> oned/v92
   },
   {
     path: 'JobPerformance',
     component: JobPerformanceComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
   },
   {
@@ -186,76 +129,47 @@ const routes: Routes = [
     component: JobHistoryComponent,
     canActivate: [RouteGuardService],
     resolve: [RouteGuardService],
->>>>>>> oned/v92
   },
   {
     path: 'SystemStatus',
     component: SystemStatusComponent,
     canActivate: [RouteGuardService, SystemStatusRouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
->>>>>>> oned/v92
   },
   {
     path: 'WebApplications',
     component: WebApplicationsComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
->>>>>>> oned/v92
   },
   {
     path: 'ServiceAvailability',
     component: ServiceAvailabilityComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
->>>>>>> oned/v92
   },
   {
     path: 'ServicesInactive',
     component: ServicesInactiveComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
->>>>>>> oned/v92
   },
   {
     path: 'SyncInformation',
     component: SyncInformationComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
->>>>>>> oned/v92
   },
   {
     path: 'SyncJournal',
     component: SyncJournalComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
->>>>>>> oned/v92
   },
   {
     path: 'SyncJournal/:uidSyncShell',
     component: SyncJournalComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-  },
-=======
     resolve: [RouteGuardService],
   },
   {
@@ -276,16 +190,11 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     resolve: [RouteGuardService],
   },
->>>>>>> oned/v92
   { path: '**', redirectTo: 'start' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true, relativeLinkResolution: 'legacy' })],
-<<<<<<< HEAD
-  exports: [RouterModule]
-=======
   exports: [RouterModule],
->>>>>>> oned/v92
 })
 export class AppRoutingModule {}

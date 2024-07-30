@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -39,11 +35,8 @@ export interface RequestHistoryLoadParameters extends CollectionLoadParameters {
   ShowEndingSoon?: string;
   person?: string;
 }
-<<<<<<< HEAD
-=======
 
 export interface ArchivedRequestHistoryLoadParameters {
   uidpersonordered?: string;
   uidpersoninserted?: string;
 }
->>>>>>> oned/v92

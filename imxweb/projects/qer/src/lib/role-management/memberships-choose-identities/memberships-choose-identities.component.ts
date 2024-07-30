@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -32,30 +28,19 @@ import { OverlayRef } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
-<<<<<<< HEAD
-
-import { CollectionLoadParameters, DataModel, DisplayColumns, EntitySchema, IClientProperty, IEntity, TypedEntity, XOrigin } from 'imx-qbm-dbts';
-=======
 import { ViewConfigData } from 'imx-api-qer';
 
 import { CollectionLoadParameters, DataModel, DisplayColumns, EntitySchema, IClientProperty, TypedEntity, XOrigin } from 'imx-qbm-dbts';
->>>>>>> oned/v92
 import {
   AuthenticationService,
   buildAdditionalElementsString,
   DataSourceToolbarSettings,
-<<<<<<< HEAD
-=======
   DataSourceToolbarViewConfig,
->>>>>>> oned/v92
   ISessionState,
   SnackBarService
 } from 'qbm';
 import { UserModelService } from '../../user/user-model.service';
-<<<<<<< HEAD
-=======
 import { ViewConfigService } from '../../view-config/view-config.service';
->>>>>>> oned/v92
 import { DataManagementService } from '../data-management.service';
 import { RoleService } from '../role.service';
 import { IdentitiesService } from './identities.service';
@@ -74,24 +59,16 @@ export class MembershipsChooseIdentitiesComponent implements OnInit {
   public displayColumns: IClientProperty[];
   public sessionState: ISessionState;
 
-<<<<<<< HEAD
-  private selection: TypedEntity[];
-  private dataModel: DataModel;
-=======
   public selection: TypedEntity[] = [];
   private dataModel: DataModel;
   private viewConfig: DataSourceToolbarViewConfig;
   private viewConfigPath = 'attestation/approve';
->>>>>>> oned/v92
   private candidatesEntitySchema: EntitySchema;
 
   constructor(
     private readonly sidesheetRef: EuiSidesheetRef,
     private readonly identityService: IdentitiesService,
-<<<<<<< HEAD
-=======
     private viewConfigService: ViewConfigService,
->>>>>>> oned/v92
     private roleService: RoleService,
     private dataManagementService: DataManagementService,
     private snackbar: SnackBarService,
@@ -111,10 +88,7 @@ export class MembershipsChooseIdentitiesComponent implements OnInit {
 
     try {
       this.dataModel = await this.roleService.getCandidatesDataModel(this.dataManagementService.entityInteractive.GetEntity().GetKeys()[0]);
-<<<<<<< HEAD
-=======
       this.viewConfig = await this.viewConfigService.getInitialDSTExtension(this.dataModel, this.viewConfigPath);
->>>>>>> oned/v92
       this.candidatesEntitySchema = this.roleService.getMembershipEntitySchema('candidates');
     }
     finally {
@@ -179,8 +153,6 @@ export class MembershipsChooseIdentitiesComponent implements OnInit {
     }
   }
 
-<<<<<<< HEAD
-=======
   public async updateConfig(config: ViewConfigData): Promise<void> {
     await this.viewConfigService.putViewConfig(config);
     this.viewConfig = await this.viewConfigService.getDSTExtensionChanges(this.viewConfigPath);
@@ -193,7 +165,6 @@ export class MembershipsChooseIdentitiesComponent implements OnInit {
     this.dstSettings.viewConfig = this.viewConfig;
   }
 
->>>>>>> oned/v92
   public getSubtitle(entity: any, properties: IClientProperty[]): string {
     return buildAdditionalElementsString(entity.GetEntity(), properties);
   }
@@ -216,11 +187,7 @@ export class MembershipsChooseIdentitiesComponent implements OnInit {
         displayedColumns: this.displayColumns,
         filters: this.dataModel.Filters,
         dataModel: this.dataModel,
-<<<<<<< HEAD
-        identifierForSessionStore: 'membership-choose-identities'
-=======
         viewConfig: this.viewConfig
->>>>>>> oned/v92
       };
     } finally {
       this.busyService.hide();

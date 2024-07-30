@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,11 +24,7 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, Input, EventEmitter, Output, TemplateRef, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
-=======
 import { Component, Input, EventEmitter, Output, TemplateRef, OnDestroy, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
->>>>>>> oned/v92
 import { SelectionChange } from '@angular/cdk/collections';
 import { Subscription } from 'rxjs';
 
@@ -48,11 +40,7 @@ import { DataTileBadge } from '../data-source-toolbar/data-tile-badge.interface'
 @Component({
   selector: 'imx-data-tiles',
   templateUrl: './data-tiles.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./data-tiles.component.scss']
-=======
   styleUrls: ['./data-tiles.component.scss'],
->>>>>>> oned/v92
 })
 export class DataTilesComponent implements OnChanges, OnDestroy {
   /**
@@ -104,11 +92,8 @@ export class DataTilesComponent implements OnChanges, OnDestroy {
    */
   @Input() public image: IClientProperty;
 
-<<<<<<< HEAD
-=======
   @Input() public selectedEntity: TypedEntity;
 
->>>>>>> oned/v92
   /**
    * If the image property of a tile is set, but does not contain a valid image, the fallbackIcon will be used.
    */
@@ -122,12 +107,7 @@ export class DataTilesComponent implements OnChanges, OnDestroy {
   /**
    * If present this text would be shown, if no items are found.  .
    */
-<<<<<<< HEAD
-  @Input() public noItemsMatchText = '#LDS#No matching data';
-
-=======
   @Input() public noItemsMatchText = '#LDS#There is no data matching your search.';
->>>>>>> oned/v92
 
   /**
    * This icon will be displayed when there is no data on the datasource (and a search is not applied)
@@ -142,10 +122,6 @@ export class DataTilesComponent implements OnChanges, OnDestroy {
    */
   @Input() public noMatchingDataIcon = 'search';
 
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
   /**
    * The width of a tile.
    */
@@ -169,27 +145,21 @@ export class DataTilesComponent implements OnChanges, OnDestroy {
    */
   @Output() public selectionChanged = new EventEmitter<TypedEntity[]>();
 
-<<<<<<< HEAD
-=======
   //When tile is unselected and if the below event exists on the consumer this event will be emitted.
   @Output() public selected = new EventEmitter();
 
->>>>>>> oned/v92
   /**
    * Event, that will fire when the user clicks on the badge.
    */
   @Output() public badgeClicked = new EventEmitter<DataTileBadge>();
 
   /**
-<<<<<<< HEAD
-=======
    * @ignore
    * internal handler for loading
    */
   public isLoading = true;
 
   /**
->>>>>>> oned/v92
    * Keeps track of the selected item in single select mode
    */
   private selectedItem: TypedEntity;
@@ -200,11 +170,8 @@ export class DataTilesComponent implements OnChanges, OnDestroy {
    */
   private subscriptions: Subscription[] = [];
 
-<<<<<<< HEAD
-=======
   constructor(private readonly changeDetector: ChangeDetectorRef){}
 
->>>>>>> oned/v92
   /**
    * @ignore Used internally.
    *
@@ -212,13 +179,6 @@ export class DataTilesComponent implements OnChanges, OnDestroy {
    */
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['dst'] && changes['dst'].currentValue) {
-<<<<<<< HEAD
-      this.subscriptions.push(this.dst.selectionChanged.subscribe((event: SelectionChange<TypedEntity>) =>
-        this.selectionChanged.emit(event.source.selected)
-      ));
-
-      this.additionalSubtitleObjects = this.dst?.additionalListElements;
-=======
       this.subscriptions.push(
         this.dst.selectionChanged.subscribe((event: SelectionChange<TypedEntity>) => this.selectionChanged.emit(event.source.selected))
       );
@@ -233,7 +193,6 @@ export class DataTilesComponent implements OnChanges, OnDestroy {
       }
       this.isLoading = this.dst?.busyService?.isBusy ?? false;
 
->>>>>>> oned/v92
     }
   }
 
@@ -242,11 +201,7 @@ export class DataTilesComponent implements OnChanges, OnDestroy {
    * Unsubscribes all listeners.
    */
   public ngOnDestroy(): void {
-<<<<<<< HEAD
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
-=======
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
->>>>>>> oned/v92
   }
 
   public isSelected(item: TypedEntity): boolean {
@@ -254,16 +209,11 @@ export class DataTilesComponent implements OnChanges, OnDestroy {
       return this.dst.isChecked(item);
     }
 
-<<<<<<< HEAD
-    return this.selectedItem &&
-      this.selectedItem.GetEntity().GetKeys().join() === item.GetEntity().GetKeys().join();
-=======
     if (this.selectedEntity) {
       this.selectedItem = this.selectedEntity;
     }
 
     return this.selectedItem && this.selectedItem.GetEntity().GetKeys().join() === item.GetEntity().GetKeys().join();
->>>>>>> oned/v92
   }
 
   /**
@@ -278,13 +228,10 @@ export class DataTilesComponent implements OnChanges, OnDestroy {
     }
   }
 
-<<<<<<< HEAD
-=======
   public onTileSelected(selected) {
     this.selected.emit(selected);
   }
 
->>>>>>> oned/v92
   public onActionSelected(action: DataTileMenuItem): void {
     this.actionSelected.emit(action);
   }

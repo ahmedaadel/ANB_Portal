@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,50 +24,6 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, Input } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
-import { configureTestSuite } from 'ng-bullet';
-
-import { clearStylesFromDOM } from 'qbm';
-import { ApprovalsComponent } from './approvals.component';
-
-@Component({
-  selector: 'imx-approvals-table',
-  template: '<p>MockApprovalsTable</p>'
-})
-class MockApprovalsTable {
-  @Input() params: any;
-}
-
-describe('Approvals', () => {
-  let component: ApprovalsComponent;
-  let fixture: ComponentFixture<ApprovalsComponent>;
-
-  configureTestSuite(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        ApprovalsComponent,
-        MockApprovalsTable
-      ],
-      providers: [
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            queryParams: {
-              subscribe: () => {}
-            }
-          }
-        }
-      ]
-    })
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ApprovalsComponent);
-    component = fixture.componentInstance;
-=======
 import { ActivatedRoute } from '@angular/router';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { MockBuilder, MockedComponentFixture, MockRender } from 'ng-mocks';
@@ -102,7 +54,6 @@ describe('Approvals', () => {
   beforeEach(() => {
     fixture = MockRender(ApprovalsComponent);
     component = fixture.point.componentInstance;
->>>>>>> oned/v92
   });
 
   afterAll(() => {

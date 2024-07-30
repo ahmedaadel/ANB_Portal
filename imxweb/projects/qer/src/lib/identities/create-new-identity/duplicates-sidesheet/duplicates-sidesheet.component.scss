@@ -1,8 +1,5 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
-<<<<<<< HEAD
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
->>>>>>> oned/v92
 
 :host {
   background-color: $asher-gray;
@@ -10,10 +7,6 @@
   .imx-table-container {
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
-    margin-top: 20px;
-=======
->>>>>>> oned/v92
     overflow: hidden;
 
     > span {
@@ -22,8 +15,6 @@
     }
   }
 }
-<<<<<<< HEAD
-=======
 
 .eui-dark-theme {
   :host {
@@ -36,4 +27,3 @@
     background-color: $color-gray-100;
   }
 }
->>>>>>> oned/v92

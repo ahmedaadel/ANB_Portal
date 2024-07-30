@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,17 +26,6 @@
 
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Injectable, ErrorHandler } from '@angular/core';
-<<<<<<< HEAD
-import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
-import { TranslateService } from '@ngx-translate/core';
-
-import { PortalApplication, PortalApplicationInteractive, PortalApplicationNew } from 'imx-api-aob';
-import {
-  TypedEntityCollectionData, CollectionLoadParameters, EntitySchema
-} from 'imx-qbm-dbts';
-import { ApiClientService, ClassloggerService, DataTileBadge, isIE, SnackBarService } from 'qbm';
-import { BehaviorSubject, Subject } from 'rxjs';
-=======
 import { EuiLoadingService, EuiSidesheetService, EuiTheme } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Subject } from 'rxjs';
@@ -48,7 +33,6 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { PortalApplication, PortalApplicationInteractive, PortalApplicationNew } from 'imx-api-aob';
 import { TypedEntityCollectionData, CollectionLoadParameters, EntitySchema } from 'imx-qbm-dbts';
 import { ApiClientService, ClassloggerService, DataTileBadge, SnackBarService } from 'qbm';
->>>>>>> oned/v92
 import { AobApiService } from '../aob-api-client.service';
 import { ApplicationCreateComponent } from './application-create/application-create.component';
 
@@ -57,11 +41,7 @@ import { ApplicationCreateComponent } from './application-create/application-cre
  * {@link ApplicationCardComponent|ApplicationCardComponent}.
  */
 @Injectable({
-<<<<<<< HEAD
-  providedIn: 'root'
-=======
   providedIn: 'root',
->>>>>>> oned/v92
 })
 export class ApplicationsService {
   public readonly onApplicationCreated = new Subject<string>();
@@ -80,8 +60,6 @@ export class ApplicationsService {
     return this.aobClient.typedClient.PortalApplication.GetSchema();
   }
 
-<<<<<<< HEAD
-=======
   private get theme(): string {
     const bodyClasses = document.body.classList;
     return bodyClasses.contains(EuiTheme.LIGHT)
@@ -93,7 +71,6 @@ export class ApplicationsService {
       : '';
   }
 
->>>>>>> oned/v92
   constructor(
     private readonly aobClient: AobApiService,
     private readonly logger: ClassloggerService,
@@ -104,30 +81,9 @@ export class ApplicationsService {
     private readonly snackbar: SnackBarService,
     private readonly busyService: EuiLoadingService
   ) {
-<<<<<<< HEAD
-    this.translateService.get('#LDS#Published').subscribe((trans: string) => this.publishedText = trans);
-    this.translateService.get('#LDS#KPI issues').subscribe((trans: string) => this.kpiErrorsText = trans);
-    this.translateService.get('#LDS#New').subscribe((trans: string) => this.newBadgeText = trans);
-
-    this.badgePublished = {
-      content: this.publishedText,
-      color: '#618f3e'
-    };
-
-    this.badgeKpiErrors = {
-      content: this.kpiErrorsText,
-      color: '#f4770b'
-    };
-
-    this.badgeNew = {
-      content: this.newBadgeText,
-      color: '#02556d'
-    };
-=======
     this.translateService.get('#LDS#Published').subscribe((trans: string) => (this.publishedText = trans));
     this.translateService.get('#LDS#KPI issues').subscribe((trans: string) => (this.kpiErrorsText = trans));
     this.translateService.get('#LDS#New').subscribe((trans: string) => (this.newBadgeText = trans));
->>>>>>> oned/v92
   }
 
   /**
@@ -142,12 +98,8 @@ export class ApplicationsService {
 
   public async reload(uidApplication: string): Promise<PortalApplicationInteractive> {
     return await this.apiProvider.request(
-<<<<<<< HEAD
-      async () => (await this.aobClient.typedClient.PortalApplicationInteractive.Get_byid(uidApplication)).Data[0]);
-=======
       async () => (await this.aobClient.typedClient.PortalApplicationInteractive.Get_byid(uidApplication)).Data[0]
     );
->>>>>>> oned/v92
   }
 
   public createNew(): PortalApplicationNew {
@@ -172,11 +124,7 @@ export class ApplicationsService {
   /**
    * Publishs the given {@link PortalApplication[]|applications} by setting IsInactive to false or an ActivationDate to the given date.
    */
-<<<<<<< HEAD
-  public async publish(application: PortalApplication, publishData: { publishFuture: boolean, date: Date }): Promise<boolean> {
-=======
   public async publish(application: PortalApplication, publishData: { publishFuture: boolean; date: Date }): Promise<boolean> {
->>>>>>> oned/v92
     if (!publishData.publishFuture) {
       await application.IsInActive.Column.PutValue(publishData.publishFuture);
     } else {
@@ -203,10 +151,7 @@ export class ApplicationsService {
    * if the application is published or has kpi issues.
    */
   public getApplicationBadges(application: PortalApplication | PortalApplicationNew): DataTileBadge[] {
-<<<<<<< HEAD
-=======
     this.updateBadges(this.theme);
->>>>>>> oned/v92
 
     if (application instanceof PortalApplicationNew) {
       this.logger.trace(this, 'Add a new badge to the badgelist.');
@@ -238,22 +183,6 @@ export class ApplicationsService {
   public async createApplication(): Promise<void> {
     const application = this.createNew();
 
-<<<<<<< HEAD
-    const result = await this.sidesheet.open(ApplicationCreateComponent, {
-      title: await this.translateService.get('#LDS#Heading Create Application').toPromise(),
-      headerColour: 'iris-blue',
-      padding: '0px',
-      width: isIE() ? '60%' : 'max(600px, 60%)',
-      disableClose: true,
-      data: {
-        application
-      }
-    }).afterClosed().toPromise();
-
-    if (result) {
-      let overlayRef: OverlayRef;
-      setTimeout(() => overlayRef = this.busyService.show());
-=======
     const result = await this.sidesheet
       .open(ApplicationCreateComponent, {
         title: await this.translateService.get('#LDS#Heading Create Application').toPromise(),
@@ -271,7 +200,6 @@ export class ApplicationsService {
     if (result) {
       let overlayRef: OverlayRef;
       setTimeout(() => (overlayRef = this.busyService.show()));
->>>>>>> oned/v92
 
       try {
         await application.GetEntity().Commit(true);
@@ -287,10 +215,6 @@ export class ApplicationsService {
     }
   }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
   public async deleteApplication(uid: string): Promise<void> {
     await this.aobClient.client.portal_application_delete(uid);
 
@@ -314,11 +238,6 @@ export class ApplicationsService {
   }
 
   private createdToday(app: PortalApplication): boolean {
-<<<<<<< HEAD
-    return app != null
-      && app.XDateInserted != null
-      && new Date(app.XDateInserted.value).toLocaleDateString() === new Date().toLocaleDateString();
-=======
     return (
       app != null && app.XDateInserted != null && new Date(app.XDateInserted.value).toLocaleDateString() === new Date().toLocaleDateString()
     );
@@ -364,6 +283,5 @@ export class ApplicationsService {
       color: newb[theme] ?? '#02556d',
       textColor: theme === EuiTheme.LIGHT ? '#ffffff' : '#000000',
     };
->>>>>>> oned/v92
   }
 }

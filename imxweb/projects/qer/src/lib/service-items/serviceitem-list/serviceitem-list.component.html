@@ -1,11 +1,7 @@
 <ng-container *ngIf="recipients?.Column?.data?.Value?.length !== 0 ; else noRecipientSelected">
   <imx-data-source-toolbar #dst [settings]="dstSettings" (search)="onSearch($event)" [keywords]="keywords"
-<<<<<<< HEAD
-    (viewSelectionChanged)="onViewSelectionChanged($event)"
-=======
     (viewSelectionChanged)="onViewSelectionChanged($event)"    
     [busyService]="busyService"
->>>>>>> oned/v92
     [options]="options" (navigationStateChanged)="getData($event)"
     data-imx-identifier="serviceitemlist-dst" [initalView]="dataSourceView.selected" [itemStatus]="status"
     [alwaysVisible]="!referenceUserUid && !uidPersonPeerGroup">
@@ -50,26 +46,6 @@
           <div subtitle data-imx-identifier="serviceitemlist-datatable-fullpath">
             {{ getSubtitle(prod,dst.additionalListElements) }}
           </div>
-<<<<<<< HEAD
-          <p *ngIf="isValueContains(prod.OrderableStatus.value, ['PERSONHASOBJECT', 'PERSONHASASSIGNMENTORDER', 'ASSIGNED'])"
-            class="imx-subtext">
-            <eui-icon icon="info"></eui-icon>
-            {{ '#LDS#This product has already been assigned to {0}.' | translate | ldsReplace:
-            recipients.Column.GetDisplayValue() }}
-          </p>
-          <p *ngIf="isValueContains(prod.OrderableStatus.value, 'ORDER')" class="imx-subtext">
-            <eui-icon icon="request"></eui-icon>
-            {{ '#LDS#This product has already been requested.' | translate }}
-          </p>
-          <p *ngIf="isValueContains(prod.OrderableStatus.value, 'NOTORDERABLE')" class="imx-subtext">
-            <eui-icon icon="error"></eui-icon>
-            {{ '#LDS#This product cannot currently be requested.' | translate }}
-          </p>
-          <p *ngIf="isValueContains(prod.OrderableStatus.value, 'CART')" class="imx-subtext">
-            <eui-icon icon="error"></eui-icon>
-            {{ '#LDS#This product is already in your shopping cart.' | translate }}
-          </p>
-=======
           <ng-container *ngIf="!patternItemsMode">
             <p *ngIf="isValueContains(prod.OrderableStatus.value, ['PERSONHASOBJECT', 'PERSONHASASSIGNMENTORDER', 'ASSIGNED'])"
               class="imx-subtext">
@@ -90,21 +66,16 @@
               {{ '#LDS#This product is already in your shopping cart.' | translate }}
             </p>
           </ng-container>
->>>>>>> oned/v92
           <ng-container *ngTemplateOutlet="peerGroupDisplay; context: { $implicit: prod }"></ng-container>
         </ng-template>
       </imx-data-table-column>
       <imx-data-table-generic-column columnName="actions" [columnLabel]="''">
         <ng-template let-prod>
-<<<<<<< HEAD
-          <button mat-button color="primary" *ngFor="let action of itemActions" (click)="emitAction(action, prod)"
-=======
           <button
             mat-stroked-button
             class="imx-margin-right"
             *ngFor="let action of itemActions"
             (click)="emitAction(action, prod)"
->>>>>>> oned/v92
             [attr.data-imx-identifier]="'serviceitemlist-datatable-row-button-' + action.name">
             {{ action.description | translate }}
           </button>

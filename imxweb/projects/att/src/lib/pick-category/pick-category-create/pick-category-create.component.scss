@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-@import "@elemental-ui/core/src/styles/_palette.scss";
-@import "../pick-category-common.scss";
-
-:host {
-  background-color: $asher-gray;
-
-  .eui-sidesheet-content {
-=======
 @import "../pick-category-common.scss";
 @import "@elemental-ui/core/src/styles/_eui_palette.scss";
 
@@ -19,7 +10,6 @@
       flex-direction: column;
       overflow: hidden;
     }
->>>>>>> oned/v92
 
     .imx-dst-selected-identities {
       display: none;
@@ -56,20 +46,12 @@
               max-height: calc(100% - 36px);
 
               imx-data-source-toolbar {
-<<<<<<< HEAD
-                background-color: $white;
-=======
                 background-color: $color-gray-0;
->>>>>>> oned/v92
               }
             }
 
             .imx-stepper-button-container {
               @include imx-flex-row-container();
-<<<<<<< HEAD
-              justify-content: end;
-=======
->>>>>>> oned/v92
               gap: 20px;
             }
           }
@@ -82,8 +64,6 @@
     }
   }
 }
-<<<<<<< HEAD
-=======
 
 .eui-dark-theme {
   :host {
@@ -128,4 +108,3 @@
     }
   }
 }
->>>>>>> oned/v92

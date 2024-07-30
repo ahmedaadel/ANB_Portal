@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -34,11 +30,8 @@ import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { ColumnDependentReference } from 'qbm';
 import { PolicyViolation } from '../policy-violation';
 import { PolicyViolationsService } from '../policy-violations.service';
-<<<<<<< HEAD
-=======
 import { ObjectInfo } from 'imx-api-pol';
 import { DbObjectKey } from 'imx-qbm-dbts';
->>>>>>> oned/v92
 
 @Component({
   selector: 'imx-policy-violations-sidesheet',
@@ -48,19 +41,6 @@ import { DbObjectKey } from 'imx-qbm-dbts';
 export class PolicyViolationsSidesheetComponent {
 
   public cdrList: ColumnDependentReference[] = [];
-<<<<<<< HEAD
-
-  public get isPending(): boolean { 
-    return this.data.State.value?.toLocaleLowerCase() === 'pending';
-  }
-
-  constructor(
-    @Inject(EUI_SIDESHEET_DATA) public data: PolicyViolation,
-    private readonly policyViolationService: PolicyViolationsService,
-    private readonly sideSheetRef: EuiSidesheetRef
-  ) {
-    this.cdrList = this.data.properties;
-=======
   public selectedHyperviewType: string;
   public selectedHyperviewUID: string;
   public selectedOption: ObjectInfo
@@ -87,18 +67,13 @@ export class PolicyViolationsSidesheetComponent {
     public readonly sideSheetRef: EuiSidesheetRef
   ) {
     this.cdrList = this.data.policyViolation.properties;
->>>>>>> oned/v92
   }
 
   /**
    * Opens the Approve-Sidesheet for the current selected rules violations and closes the sidesheet afterwards.
    */
   public async approve(): Promise<void> {
-<<<<<<< HEAD
-    await this.policyViolationService.approve([this.data]);
-=======
     await this.policyViolationService.approve([this.data.policyViolation]);
->>>>>>> oned/v92
     return this.sideSheetRef.close(true);
   }
 
@@ -106,12 +81,6 @@ export class PolicyViolationsSidesheetComponent {
    * Opens the Deny-Sidesheet for the current selected rules violations and closes the sidesheet afterwards.
    */
   public async deny(): Promise<void> {
-<<<<<<< HEAD
-    await this.policyViolationService.deny([this.data]);
-    return this.sideSheetRef.close(true);
-  }
-
-=======
     await this.policyViolationService.deny([this.data.policyViolation]);
     return this.sideSheetRef.close(true);
   }
@@ -129,5 +98,4 @@ export class PolicyViolationsSidesheetComponent {
   public onHyperviewOptionSelected(): void {
     this.setHyperviewObject(this.selectedOption)
   }
->>>>>>> oned/v92
 }

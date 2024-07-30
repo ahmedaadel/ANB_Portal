@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,10 +26,7 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
-<<<<<<< HEAD
-=======
 import { TranslateService } from '@ngx-translate/core';
->>>>>>> oned/v92
 import { PortalTargetsystemTeamsChannels } from 'imx-api-o3t';
 import { CollectionLoadParameters, DisplayColumns, EntitySchema, IClientProperty } from 'imx-qbm-dbts';
 import { ClassloggerService, DataSourceToolbarFilter, DataSourceToolbarSettings, SettingsService } from 'qbm';
@@ -60,10 +53,7 @@ export class TeamChannelsComponent implements OnInit {
     private readonly logger: ClassloggerService,
     settingsService: SettingsService,
     private readonly teamsService: TeamsService,
-<<<<<<< HEAD
-=======
     private readonly translate: TranslateService
->>>>>>> oned/v92
   ) {
     this.navigationState = { PageSize: settingsService.DefaultPageSize, StartIndex: 0 };
     this.entitySchemaTeamChannels = this.teamsService.teamChannelsSchema;
@@ -96,11 +86,7 @@ export class TeamChannelsComponent implements OnInit {
   public async onTeamChannelChanged(channel: PortalTargetsystemTeamsChannels): Promise<void> {
     this.logger.debug(this, `Selected channel changed`);
     this.logger.trace(this, `New channel selected`, channel);
-<<<<<<< HEAD
-    this.openDetailsSidesheet(channel.GetEntity().GetDisplay(), channel);
-=======
     this.openDetailsSidesheet(channel);
->>>>>>> oned/v92
   }
 
   private async navigate(): Promise<void> {
@@ -121,15 +107,6 @@ export class TeamChannelsComponent implements OnInit {
     }
   }
 
-<<<<<<< HEAD
-  private async openDetailsSidesheet(title: string, channel: PortalTargetsystemTeamsChannels): Promise<void> {
-    const sidesheetRef = this.sideSheet.open(TeamChannelDetailsComponent, {
-      title,
-      headerColour: 'green',
-      padding: '0px',
-      width: `max(650px, 60%)`,
-      icon: 'usergroup',
-=======
   private async openDetailsSidesheet(channel: PortalTargetsystemTeamsChannels): Promise<void> {
     const sidesheetRef = this.sideSheet.open(TeamChannelDetailsComponent, {
       title: await this.translate.get('#LDS#Heading View Microsoft Teams Channel Details').toPromise(),
@@ -138,7 +115,6 @@ export class TeamChannelsComponent implements OnInit {
       width: `max(650px, 60%)`,
       icon: 'usergroup',
       testId: 'teams-channel-view-team-channel-details',
->>>>>>> oned/v92
       data: channel
     });
     // After the sidesheet closes, reload the current data to refresh any changes that might have been made

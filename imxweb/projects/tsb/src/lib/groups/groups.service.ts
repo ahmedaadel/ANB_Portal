@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Injectable } from '@angular/core';
-<<<<<<< HEAD
-import { ClassloggerService } from 'qbm';
-=======
 import { ClassloggerService, DataSourceToolbarExportMethod } from 'qbm';
->>>>>>> oned/v92
 import {
   CollectionLoadParameters,
   TypedEntityCollectionData,
@@ -42,14 +34,10 @@ import {
   DataModelFilter,
   EntitySchema,
   FilterTreeData,
-<<<<<<< HEAD
-  DataModel
-=======
   DataModel,
   EntityCollectionData,
   MethodDescriptor,
   MethodDefinition
->>>>>>> oned/v92
 } from 'imx-qbm-dbts';
 import {
   PortalTargetsystemUnsGroup,
@@ -58,12 +46,8 @@ import {
   EntityWriteDataBulk,
   PortalTargetsystemUnsDirectmembers,
   PortalTargetsystemUnsNestedmembers,
-<<<<<<< HEAD
-  PortalRespUnsgroup
-=======
   PortalRespUnsgroup,
   V2ApiClientMethodFactory
->>>>>>> oned/v92
 } from 'imx-api-tsb';
 import { GroupsFilterTreeParameters, GetGroupsOptionalParameters } from './groups.models';
 import { TsbApiService } from '../tsb-api-client.service';
@@ -104,8 +88,6 @@ export class GroupsService {
     return this.tsbClient.typedClient.PortalTargetsystemUnsGroup.Get(navigationState);
   }
 
-<<<<<<< HEAD
-=======
   public exportGroups(navigationState: GetGroupsOptionalParameters): DataSourceToolbarExportMethod {
     const factory = new V2ApiClientMethodFactory();
     return {
@@ -121,13 +103,10 @@ export class GroupsService {
     }
   }
 
->>>>>>> oned/v92
   public async getGroupsResp(navigationState: GetGroupsOptionalParameters): Promise<TypedEntityCollectionData<PortalRespUnsgroup>> {
     return this.tsbClient.typedClient.PortalRespUnsgroup.Get(navigationState);
   }
 
-<<<<<<< HEAD
-=======
   public exportGroupsResp(navigationState: GetGroupsOptionalParameters): DataSourceToolbarExportMethod {
     const factory = new V2ApiClientMethodFactory();
     return {
@@ -143,7 +122,6 @@ export class GroupsService {
     }
   }
 
->>>>>>> oned/v92
   public async getGroupDetails(dbObjectKey: DbObjectKeyBase): Promise<GroupTypedEntity> {
     return this.dynamicMethod.get(GroupTypedEntity, { dbObjectKey });
   }

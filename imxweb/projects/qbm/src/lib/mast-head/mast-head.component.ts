@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,17 +25,10 @@
  */
 
 import { OverlayRef } from '@angular/cdk/overlay';
-<<<<<<< HEAD
-import { Component, OnDestroy } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { EuiLoadingService } from '@elemental-ui/core';
-=======
 import { Component, Input, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { EuiLoadingService, EuiSidesheetService, EuiTopNavigationItem } from '@elemental-ui/core';
->>>>>>> oned/v92
 import { Subscription } from 'rxjs';
 
 import { AppConfigService } from '../appConfig/appConfig.service';
@@ -48,14 +37,11 @@ import { AuthenticationService } from '../authentication/authentication.service'
 import { ISessionState } from '../session/session-state';
 import { MastHeadService } from './mast-head.service';
 import { ConfirmationService } from '../confirmation/confirmation.service';
-<<<<<<< HEAD
-=======
 import { SystemInfoService } from '../system-info/system-info.service';
 import { ConnectionComponent } from '../connection/connection.component';
 import { TranslateService } from '@ngx-translate/core';
 import { ExtService } from '../ext/ext.service';
 import { IExtension } from '../ext/extension';
->>>>>>> oned/v92
 
 /**
  * Masthead of IMX web applications. It can contain dynamic menus or buttons, emitting menus/menu itmes when selected.
@@ -122,14 +108,11 @@ import { IExtension } from '../ext/extension';
 })
 export class MastHeadComponent implements OnDestroy {
 
-<<<<<<< HEAD
-=======
   /**
    * When these {@link EuiTopNavigationItem|items} are set, the menu is displayed.
    */
   @Input() public menuItems: EuiTopNavigationItem[];
 
->>>>>>> oned/v92
   public get hasDocumentationConfig(): boolean {
     return !!this.appConfig.Config.LocalDocPath;
   }
@@ -142,10 +125,6 @@ export class MastHeadComponent implements OnDestroy {
     return this.sessionState?.IsLoggedIn;
   }
 
-<<<<<<< HEAD
-  public sessionState: ISessionState;
-  public logoUrl: string;
-=======
   public get isAppOverview(): boolean {
     return this.appConfig?.Config?.WebAppIndex === 'admin' && this.router.url === '/';
   }
@@ -158,47 +137,32 @@ export class MastHeadComponent implements OnDestroy {
   public logoUrl: string;
   public productName: string;
   public extensions: IExtension[] = [];
->>>>>>> oned/v92
 
   private readonly subscriptions: Subscription[] = [];
 
   constructor(
     public readonly appConfig: AppConfigService,
-<<<<<<< HEAD
-=======
     private readonly systemInfoService: SystemInfoService,
->>>>>>> oned/v92
     private readonly router: Router,
     private readonly dialog: MatDialog,
     private readonly confirmationService: ConfirmationService,
     private readonly busyService: EuiLoadingService,
     private readonly mastHeadService: MastHeadService,
-<<<<<<< HEAD
-    private readonly authentication: AuthenticationService
-=======
     private readonly authentication: AuthenticationService,
     private readonly sideSheetService: EuiSidesheetService,
     private readonly translate: TranslateService,
     private readonly extService: ExtService,
->>>>>>> oned/v92
   ) {
     this.subscriptions.push(this.authentication.onSessionResponse.subscribe((sessionState: ISessionState) =>
       this.sessionState = sessionState
     ));
 
     // apply custom logo from configuration
-<<<<<<< HEAD
-    this.appConfig.getImxConfig().then(config => {
-=======
     this.systemInfoService.getImxConfig().then(config => {
->>>>>>> oned/v92
       if (config.CompanyLogoUrl) {
         // make relative URL absolute if needed
         this.logoUrl = new URL(config.CompanyLogoUrl, this.appConfig.BaseUrl).href;
       }
-<<<<<<< HEAD
-    });
-=======
       const name = config.ProductName;
       if (name) {
         this.productName = name;
@@ -218,7 +182,6 @@ export class MastHeadComponent implements OnDestroy {
     if (!!extension.inputData.url) {
       this.router.navigate([extension.inputData.url]);
     }
->>>>>>> oned/v92
   }
 
   public ngOnDestroy(): void {
@@ -229,11 +192,7 @@ export class MastHeadComponent implements OnDestroy {
    * For navigating home, you know.
    */
   public goHome(): void {
-<<<<<<< HEAD
-    this.router.navigate([this.appConfig.Config.routeConfig.start], { queryParams: {} });
-=======
     if (!this.isAppOverview) this.router.navigate([this.appConfig.Config.routeConfig.start], { queryParams: {} });
->>>>>>> oned/v92
   }
 
   /**
@@ -244,8 +203,6 @@ export class MastHeadComponent implements OnDestroy {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Opens the Connection sidesheet.
    */
   public async openConnection(): Promise<void> {
@@ -261,18 +218,12 @@ export class MastHeadComponent implements OnDestroy {
   }
 
   /**
->>>>>>> oned/v92
    * Logs out and kills the session.
    */
   public async logout(): Promise<void> {
     if (await this.confirmationService.confirm({
-<<<<<<< HEAD
-      Title: '#LDS#Log off',
-      Message: '#LDS#Are you sure you want to log off?',
-=======
       Title: '#LDS#Heading Log Out',
       Message: '#LDS#Are you sure you want to log out?',
->>>>>>> oned/v92
       identifier: 'confirm-logout-'
     })) {
       let overlayRef: OverlayRef;

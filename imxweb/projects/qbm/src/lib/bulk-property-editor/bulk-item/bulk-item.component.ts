@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,40 +24,25 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { AbstractControl, FormGroup } from '@angular/forms';
-=======
 import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
->>>>>>> oned/v92
 import { MatExpansionPanel } from '@angular/material/expansion';
 
 import { BulkItem, BulkItemStatus } from './bulk-item';
 import { BulkItemIcon } from './bulk-item-icon';
-<<<<<<< HEAD
-=======
 import { CdrEditorComponent } from '../../cdr/cdr-editor/cdr-editor.component';
 import { isEqual } from 'lodash';
 import { EntityWriteDataSingle } from 'imx-qbm-dbts';
->>>>>>> oned/v92
 
 @Component({
   selector: 'imx-bulk-item',
   templateUrl: './bulk-item.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./bulk-item.component.scss']
-})
-export class BulkItemComponent implements OnInit {
-  public get icon(): BulkItemIcon { return this.icons[this.bulkItem?.status]; }
-=======
   styleUrls: ['./bulk-item.component.scss'],
 })
 export class BulkItemComponent implements OnInit {
   public get icon(): BulkItemIcon {
     return this.icons[this.bulkItem?.status];
   }
->>>>>>> oned/v92
 
   public iconStyle = {};
 
@@ -78,33 +59,16 @@ export class BulkItemComponent implements OnInit {
   @Output() public validationStateChanged = new EventEmitter<BulkItem>();
   @Output() public controlCreated: EventEmitter<AbstractControl> = new EventEmitter();
 
-<<<<<<< HEAD
-  public readonly formGroup = new FormGroup({});
-
-  private readonly icons: { [key: number]: BulkItemIcon } = {};
-=======
   public readonly formGroup = new UntypedFormGroup({});
 
   public formGroupIsPending = false;
   private diffData: EntityWriteDataSingle;
   private readonly icons: { [key: number]: BulkItemIcon } = {};
   @ViewChildren(CdrEditorComponent) private cdrEditors: QueryList<CdrEditorComponent>;
->>>>>>> oned/v92
 
   constructor() {
     this.icons[BulkItemStatus.unknown] = {
       name: 'help',
-<<<<<<< HEAD
-      color: 'grey'
-    };
-    this.icons[BulkItemStatus.skipped] = {
-      name: 'delete',
-      color: 'grey'
-    };
-    this.icons[BulkItemStatus.saved] = {
-      name: 'check',
-      color: 'green'
-=======
       color: 'grey',
     };
     this.icons[BulkItemStatus.skipped] = {
@@ -114,7 +78,6 @@ export class BulkItemComponent implements OnInit {
     this.icons[BulkItemStatus.saved] = {
       name: 'check',
       color: 'green',
->>>>>>> oned/v92
     };
   }
   public ngOnInit(): void {
@@ -125,13 +88,8 @@ export class BulkItemComponent implements OnInit {
       }
 
       this.setIconStyle();
-<<<<<<< HEAD
-      this.bulkItem.readonly = this.bulkItem.properties.every(p => p.isReadOnly());
-      this.bulkItem.mandatory = this.bulkItem.properties.some(p => p.column.GetMetadata().GetMinLength() > 0);
-=======
       this.bulkItem.readonly = this.bulkItem.properties.every((p) => p.isReadOnly());
       this.bulkItem.mandatory = this.bulkItem.properties.some((p) => p.column.GetMetadata().GetMinLength() > 0);
->>>>>>> oned/v92
     });
   }
 
@@ -157,13 +115,10 @@ export class BulkItemComponent implements OnInit {
     this.validate();
   }
 
-<<<<<<< HEAD
-=======
   public onPendingChanged(value: boolean) {
     this.formGroupIsPending = value;    
   }
 
->>>>>>> oned/v92
   public onValueChanged(): void {
     this.formGroup.updateValueAndValidity();
     if (this.bulkItem.status === BulkItemStatus.saved && !this.formGroup.valid) {
@@ -171,8 +126,6 @@ export class BulkItemComponent implements OnInit {
       this.statusUnknown.emit(this.bulkItem);
     }
 
-<<<<<<< HEAD
-=======
     const areEqual = isEqual(this.diffData, this.bulkItem.entity.GetEntity().GetDiffData());
     this.diffData = { ...this.bulkItem.entity.GetEntity().GetDiffData() };
 
@@ -182,18 +135,11 @@ export class BulkItemComponent implements OnInit {
       });
     }
 
->>>>>>> oned/v92
     this.validate();
   }
 
   public addControl(name: string, control: AbstractControl): void {
-<<<<<<< HEAD
-    setTimeout(() =>
-      this.formGroup.addControl(name, control)
-    );
-=======
     setTimeout(() => this.formGroup.addControl(name, control));
->>>>>>> oned/v92
   }
 
   private validate(): void {
@@ -203,11 +149,7 @@ export class BulkItemComponent implements OnInit {
 
   private setIconStyle(): void {
     let visible = false;
-<<<<<<< HEAD
-    this.bulkItem.properties.every(item => {
-=======
     this.bulkItem.properties.every((item) => {
->>>>>>> oned/v92
       if (item.column.GetMetadata().GetMinLength() > 0) {
         visible = true;
         return;
@@ -218,10 +160,6 @@ export class BulkItemComponent implements OnInit {
       visible = true;
     }
 
-<<<<<<< HEAD
-    visible ? this.iconStyle = {visibility: 'visible'} : this.iconStyle = {visibility: 'hidden'};
-=======
     visible ? (this.iconStyle = { visibility: 'visible' }) : (this.iconStyle = { visibility: 'hidden' });
->>>>>>> oned/v92
   }
 }

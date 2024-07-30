@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -50,19 +46,12 @@ import {
   ExtendedEntityCollectionData,
   ExtendedTypedEntityCollection,
   FilterType,
-<<<<<<< HEAD
-  GroupInfo,
-  MethodDefinition,
-} from 'imx-qbm-dbts';
-import { AppConfigService, ClassloggerService, ElementalUiConfigService } from 'qbm';
-=======
   GroupInfoData,
   MethodDefinition,
   MethodDescriptor,
   TypedEntityBuilder,
 } from 'imx-qbm-dbts';
 import { AppConfigService, ClassloggerService, DataSourceToolbarExportMethod, ElementalUiConfigService } from 'qbm';
->>>>>>> oned/v92
 import { ApiService } from '../api.service';
 import { AttestationPolicy } from './policy-list/attestation-policy';
 import { PolicyLoadParameters } from './policy-list/policy-load-parameters.interface';
@@ -103,8 +92,6 @@ export class PolicyService {
     };
   }
 
-<<<<<<< HEAD
-=======
   public exportPolicies(parameters: PolicyLoadParameters): DataSourceToolbarExportMethod {
     return {
       getMethod: (withProperties: string, PageSize?: number) => {
@@ -119,7 +106,6 @@ export class PolicyService {
     };
   }
 
->>>>>>> oned/v92
   public async getPolicyEditInteractive(uid: string): Promise<ExtendedTypedEntityCollection<PortalAttestationPolicyEditInteractive, {}>> {
     return this.api.typedClient.PortalAttestationPolicyEditInteractive.Get_byid(uid);
   }
@@ -152,9 +138,6 @@ export class PolicyService {
     policyfilter: PolicyFilter,
     parameters: CollectionLoadParameters
   ): Promise<ExtendedTypedEntityCollection<PortalAttestationFilterMatchingobjects, {}>> {
-<<<<<<< HEAD
-    return this.api.typedClient.PortalAttestationFilterMatchingobjects.Get(uidAttestatation, {
-=======
     const data = await this.getObjectsForFilterUntyped(uidAttestatation, uidPickCategory, policyfilter, parameters);
 
     return new TypedEntityBuilder(PortalAttestationFilterMatchingobjects).buildReadWriteEntities(
@@ -170,7 +153,6 @@ export class PolicyService {
     parameters: CollectionLoadParameters
   ): Promise<EntityCollectionData> {
     return this.api.client.portal_attestation_filter_matchingobjects_get(uidAttestatation, {
->>>>>>> oned/v92
       uidpickcategory: uidPickCategory,
       ...parameters,
       ...{ policyfilter },
@@ -200,25 +182,6 @@ export class PolicyService {
     return this.api.client.portal_attestation_policy_run_post(uidPolicy, input);
   }
 
-<<<<<<< HEAD
-  public canSeeAllAttestations(preProps: string[], groups: string[]): boolean {
-    return (
-      preProps.includes('ATTESTATION') && groups.some((elem) => elem === 'vi_4_ATTESTATIONADMIN_ADMIN' || elem === 'vi_4_SECURITY_OFFICER')
-    );
-  }
-
-  public canSeeAttestations(preProps: string[], groups: string[]): boolean {
-    return (
-      preProps.includes('ATTESTATION') &&
-      groups.some(
-        (elem) => elem === 'vi_4_ATTESTATIONADMIN_ADMIN' || elem === 'vi_4_SECURITY_OFFICER' || elem === 'ATT_4_ATTESTATIONADMIN_OWNER'
-      )
-    );
-  }
-
-  public async getGroupInfo(parameters: { by?: string; def?: string } & CollectionLoadParameters = {}): Promise<GroupInfo[]> {
-    const test = await this.api.client.portal_attestation_policy_group_get({ ...parameters, withcount: true });
-=======
   public canSeeAllAttestations(preProps: string[], features: string[]): boolean {
     return (
       preProps.includes('ATTESTATION') && features.some((elem) => elem === 'Portal_UI_PolicyAdmin' || elem === 'Portal_UI_PolicyOwner')
@@ -236,7 +199,6 @@ export class PolicyService {
       ...params,
       withcount: true,
     });
->>>>>>> oned/v92
     return test;
   }
 
@@ -296,15 +258,9 @@ export class PolicyService {
 
     // build a new title (shorten it, if maxlength is exceeded)
     let newTitle = `${reference.Ident_AttestationPolicy.value} (${await this.translator.get('#LDS#New').toPromise()})`;
-<<<<<<< HEAD
-    const max=entity.Ident_AttestationPolicy.GetMetadata().GetMaxLength();
-    if ( max < newTitle.length) {
-      newTitle = newTitle.substring(0,max);
-=======
     const max = entity.Ident_AttestationPolicy.GetMetadata().GetMaxLength();
     if (max < newTitle.length) {
       newTitle = newTitle.substring(0, max);
->>>>>>> oned/v92
     }
 
     entity.Ident_AttestationPolicy.value = newTitle;

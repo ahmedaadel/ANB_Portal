@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,11 +24,7 @@
  *
  */
 
-<<<<<<< HEAD
-import { ComponentFactoryResolver, ViewContainerRef, ComponentRef } from '@angular/core';
-=======
 import { ViewContainerRef, ComponentRef } from '@angular/core';
->>>>>>> oned/v92
 import * as TypeMoq from 'typemoq';
 
 import { DefaultCdrEditorProvider } from './default-cdr-editor-provider';
@@ -50,15 +42,8 @@ import { ViewPropertyDefaultComponent } from './view-property-default/view-prope
 import { clearStylesFromDOM } from '../testing/clear-styles.spec';
 
 describe('DefaultCdrEditorProvider', () => {
-<<<<<<< HEAD
-  let factoryResolverMock: TypeMoq.IMock<ComponentFactoryResolver>;
-
-  beforeEach(() => {
-    factoryResolverMock = TypeMoq.Mock.ofType<ComponentFactoryResolver>();
-=======
   beforeEach(() => {
     
->>>>>>> oned/v92
   });
 
   afterAll(() => {
@@ -66,11 +51,7 @@ describe('DefaultCdrEditorProvider', () => {
   });
 
   it('should create an instance', () => {
-<<<<<<< HEAD
-    expect(new DefaultCdrEditorProvider(factoryResolverMock.object)).toBeDefined();
-=======
     expect(new DefaultCdrEditorProvider()).toBeDefined();
->>>>>>> oned/v92
   });
 
   it('should create EditBooleanComponent for simple bool cdr', () => {
@@ -177,32 +158,17 @@ function testCreateEditor<T extends CdrEditor>(TCtor: new (...args: any[]) => T,
       const editorMock = TypeMoq.Mock.ofType<T>();
       const parentMock = TypeMoq.Mock.ofType<ViewContainerRef>();
       const childMock = createComponentMock<T>(editorMock.object);
-<<<<<<< HEAD
-      const factoryResolverMock = TypeMoq.Mock.ofType<ComponentFactoryResolver>();
-
-      parentMock.setup( p => p.createComponent(TypeMoq.It.isAny(), TypeMoq.It.isAny())).returns(() => childMock.object);
-      factoryResolverMock.setup(r => r.resolveComponentFactory(TCtor)).returns(() => null);
-
-      // Act
-      const provider = new DefaultCdrEditorProvider(factoryResolverMock.object);
-=======
 
       parentMock.setup( p => p.createComponent(TypeMoq.It.isAny(), TypeMoq.It.isAny())).returns(() => childMock.object);
 
       // Act
       const provider = new DefaultCdrEditorProvider();
->>>>>>> oned/v92
       const editor = provider.createEditor(parentMock.object, cdrMock.object);
 
       // Assert
       expect(editor === childMock.object).toBeTruthy();
       editorMock.verify(e => e.bind(cdrMock.object), TypeMoq.Times.once());
       editorMock.verify(e => e.bind(TypeMoq.It.isAny()), TypeMoq.Times.once());
-<<<<<<< HEAD
-      factoryResolverMock.verify(e => e.resolveComponentFactory(TCtor), TypeMoq.Times.once());
-      factoryResolverMock.verify(e => e.resolveComponentFactory(TypeMoq.It.isAny()), TypeMoq.Times.once());
-=======
->>>>>>> oned/v92
 }
 
 export function createComponentMock<T extends CdrEditor>(instance: T): TypeMoq.IMock<ComponentRef<T>> {

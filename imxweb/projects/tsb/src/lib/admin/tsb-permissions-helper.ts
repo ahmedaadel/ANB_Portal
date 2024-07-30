@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,8 +26,4 @@
 
 export function isTsbNameSpaceAdminBase(groups: string[]): boolean {
   return groups.find(item => item.toUpperCase() === 'TSB_4_NAMESPACEADMIN_BASE') != null;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> oned/v92

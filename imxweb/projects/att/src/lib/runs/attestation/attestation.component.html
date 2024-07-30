@@ -1,38 +1,15 @@
 <div class="imx-content">
   <div class="imx-heading-wrapper">
-<<<<<<< HEAD
-    <eui-alert *ngIf="showHelperAlert" class="imx-helper-alert" type="info" [condensed]="true" [colored]="true"
-      [dismissable]="true" (dismissed)="onHelperDismissed()">
-      <mat-spinner *ngIf="pendingAttestations?.loading" diameter="30"></mat-spinner>
-      <div *ngIf="!pendingAttestations?.loading && pendingAttestations?.infoItems" class="imx-helper-alert-infotext">
-        <span *ngFor="let infoItem of pendingAttestations.infoItems">
-          {{ infoItem.description | translate | ldsReplace:infoItem.value }}
-=======
     <eui-alert *ngIf="showHelperAlert" class="imx-helper-alert" type="info" [condensed]="true" [colored]="true" [dismissable]="true" (dismissed)="onHelperDismissed()">
       <mat-spinner *ngIf="pendingAttestations?.loading" diameter="30"></mat-spinner>
       <div *ngIf="!pendingAttestations?.loading && pendingAttestations?.infoItems" class="imx-helper-alert-infotext">
         <span *ngFor="let infoItem of pendingAttestations.infoItems">
           {{ infoItem.description | translate | ldsReplace : infoItem.value }}
->>>>>>> oned/v92
         </span>
       </div>
     </eui-alert>
   </div>
   <mat-card class="imx-attestation-history-container">
-<<<<<<< HEAD
-    <imx-attestation-history [parameters]="parameters" (selectionChanged)="onSelectionChanged($event)" [itemStatus]="itemStatus">
-    </imx-attestation-history>
-  </mat-card>
-</div>
-<div class="imx-button-bar">
-  <button data-imx-identifier="attestation-approve-selected-button" mat-stroked-button
-  (click)="attestationAction.approve(selectedCases)" [disabled]="!canDecide">
-    {{ '#LDS#Approve' | translate }}
-  </button>
-  <button data-imx-identifier="attestation-deny-selected-button" mat-stroked-button
-    (click)="attestationAction.deny(selectedCases)" [disabled]="!canDecide">
-    {{ '#LDS#Deny' | translate }}
-=======
     <imx-attestation-history [parameters]="parameters" [withAssignmentAnalysis]="withAssignmentAnalysis" (selectionChanged)="onSelectionChanged($event)" [itemStatus]="itemStatus"> </imx-attestation-history>
   </mat-card>
 </div>
@@ -48,6 +25,5 @@
   <button data-imx-identifier="attestation-approve-selected-button" mat-flat-button color="primary" (click)="attestationAction.approve(selectedCases)" [disabled]="!canDecide">
     <eui-icon icon="check"></eui-icon>
     <span translate>#LDS#Approve</span>
->>>>>>> oned/v92
   </button>
 </div>

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-@import '@elemental-ui/core/src/styles/_palette.scss';
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
->>>>>>> oned/v92
 
 li {
   max-width: 460px;
@@ -16,11 +12,7 @@ li.imx-event {
 
 li.imx-event::before {
   margin-left: -50px;
-<<<<<<< HEAD
-  background-color: $white;
-=======
   background-color: $color-gray-0;
->>>>>>> oned/v92
   height: 24px;
   width: 28px;
   content: "";
@@ -29,22 +21,14 @@ li.imx-event::before {
 }
 
 li.imx-event.imx-pending {
-<<<<<<< HEAD
-  background: linear-gradient($black-b, $black-b) no-repeat scroll 9px 0 transparent;
-=======
   background: linear-gradient($color-gray-30, $color-gray-30) no-repeat scroll 9px 0 transparent;
->>>>>>> oned/v92
   background-size: 2px 1000px;
 }
 
 li.imx-event.imx-pending::before {
   font-family: Cadence-Icon;
   font-size: 24px;
-<<<<<<< HEAD
-  color: $black-b;
-=======
   color: $color-gray-30;
->>>>>>> oned/v92
   content: "\e009";
 }
 
@@ -61,8 +45,6 @@ li.imx-event.imx-pending::before {
 .imx-approver {
   display: block;
 }
-<<<<<<< HEAD
-=======
 
 .eui-dark-theme {
   :host {
@@ -93,4 +75,3 @@ li.imx-event.imx-pending::before {
     }
   }
 }
->>>>>>> oned/v92

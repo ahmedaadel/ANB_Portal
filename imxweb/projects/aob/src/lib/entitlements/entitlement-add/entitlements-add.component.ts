@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -41,18 +37,11 @@ import {
   StorageService,
   MetadataService,
   DataSourceToolbarFilter,
-<<<<<<< HEAD
-} from 'qbm';
-import { CollectionLoadParameters, IClientProperty, EntitySchema, DisplayColumns, TypedEntity } from 'imx-qbm-dbts';
-import { EntitlementsService } from '../entitlements.service';
-import { AddEntitlementParameter, EntitlementSourceType, EntitlementsType, tryGetColumn } from '../entitlements.model';
-=======
   CdrFactoryService,
 } from 'qbm';
 import { CollectionLoadParameters, IClientProperty, EntitySchema, DisplayColumns, TypedEntity, FilterData } from 'imx-qbm-dbts';
 import { EntitlementsService } from '../entitlements.service';
 import { AddEntitlementParameter, EntitlementSourceType, EntitlementsType } from '../entitlements.model';
->>>>>>> oned/v92
 import { EntitlementSystemRoleInput } from 'imx-api-aob';
 import { SystemRoleConfigComponent } from './system-role-config/system-role-config.component';
 
@@ -96,11 +85,7 @@ export class EntitlementsAddComponent implements OnInit {
     private readonly storageService: StorageService,
     private readonly metaData: MetadataService,
     private readonly sidesheet: EuiSidesheetService,
-<<<<<<< HEAD
-    private readonly translateService: TranslateService
-=======
     private readonly translateService: TranslateService,
->>>>>>> oned/v92
   ) {
     this.selectedSourceType = data.defaultType;
     this.isSystemRolesEnabled = data.isSystemRolesEnabled;
@@ -109,11 +94,7 @@ export class EntitlementsAddComponent implements OnInit {
   }
 
   public async ngOnInit(): Promise<void> {
-<<<<<<< HEAD
-    await this.metaData.update(['ESet', 'UNSGroup', 'QERResource', 'RPSReport', 'TSBAccountDef']);
-=======
     await this.metaData.updateNonExisting(['ESet', 'UNSGroup', 'QERResource', 'RPSReport', 'TSBAccountDef']);
->>>>>>> oned/v92
 
     this.entitlementSourceTypes = [
       { entitlementsType: EntitlementsType.UnsGroup, display: this.metaData.tables.UNSGroup.Display },
@@ -148,8 +129,6 @@ export class EntitlementsAddComponent implements OnInit {
     this.sidesheetRef.close({ selection: this.selections });
   }
 
-<<<<<<< HEAD
-=======
   public async onCreateRole(): Promise<void> {
     const entitlementSystemRoleInput: EntitlementSystemRoleInput = await this.sidesheet
       .open(SystemRoleConfigComponent, {
@@ -174,24 +153,14 @@ export class EntitlementsAddComponent implements OnInit {
     this.sidesheetRef.close({ role: entitlementSystemRoleInput });
   }
 
->>>>>>> oned/v92
   public async onAddToRole(): Promise<void> {
     const entitlementSystemRoleInput: EntitlementSystemRoleInput = await this.sidesheet
       .open(SystemRoleConfigComponent, {
         title: await this.translateService.get('#LDS#Heading Merge Application Entitlements into System Role').toPromise(),
-<<<<<<< HEAD
-        headerColour: 'iris-blue',
-        bodyColour: 'asher-gray',
-        padding: '0px',
-        width: 'max(500px, 50%)',
-        testId: 'add-to-existing-role-sidesheet',
-        data: this.data.uidApplication,
-=======
         padding: '0px',
         width: 'max(500px, 50%)',
         testId: 'add-to-existing-role-sidesheet',
         data: { uid: this.data.uidApplication, createOnly: false },
->>>>>>> oned/v92
       })
       .afterClosed()
       .toPromise();
@@ -202,11 +171,7 @@ export class EntitlementsAddComponent implements OnInit {
     }
 
     const keys = this.selections
-<<<<<<< HEAD
-      .map((elem: TypedEntity) => tryGetColumn(elem, 'XObjectKey')?.GetValue())
-=======
       .map((elem: TypedEntity) => CdrFactoryService.tryGetColumn(elem.GetEntity(), 'XObjectKey')?.GetValue())
->>>>>>> oned/v92
       .filter((elem: string) => elem != null);
 
     if (keys.length < this.selections.length) {
@@ -239,14 +204,11 @@ export class EntitlementsAddComponent implements OnInit {
     this.updateCandidates();
   }
 
-<<<<<<< HEAD
-=======
   public async onFilterByTree(filters: FilterData[]): Promise<void> {
     this.navigationState.filter = filters;
     this.updateCandidates();
   }
 
->>>>>>> oned/v92
   private async useSource(type: EntitlementsType): Promise<void> {
     this.selectedSourceType = type;
     this.entitySchema = this.entitlementsProvider.candidateSchema(type);
@@ -259,11 +221,7 @@ export class EntitlementsAddComponent implements OnInit {
     }
 
     this.displayedColumns = this.getDisplayedColumnsForEntitlement(this.entitySchema, type);
-<<<<<<< HEAD
-    this.navigationState = { ...this.navigationState, ...{ StartIndex: 0, PageSize: 25 } };
-=======
     this.navigationState = { StartIndex: 0, PageSize: 25 };
->>>>>>> oned/v92
     this.highlightedEntity = null;
 
     this.updateCandidates();
@@ -282,8 +240,6 @@ export class EntitlementsAddComponent implements OnInit {
         entitySchema: this.entitySchema,
         navigationState: this.navigationState,
         filters: this.filters,
-<<<<<<< HEAD
-=======
         filterTree:
           this.selectedSourceType === EntitlementsType.UnsGroup
             ? {
@@ -295,7 +251,6 @@ export class EntitlementsAddComponent implements OnInit {
                 multiSelect: false,
               }
             : undefined,
->>>>>>> oned/v92
       };
 
       if (data == null) {

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -39,10 +35,7 @@ import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import {
-<<<<<<< HEAD
-=======
   BusyIndicatorModule,
->>>>>>> oned/v92
   CdrModule,
   ClassloggerService,
   DataSourceToolbarModule,
@@ -50,30 +43,19 @@ import {
   DataTreeModule,
   DynamicTabsModule,
   ExtModule,
-<<<<<<< HEAD
-=======
   HELP_CONTEXTUAL,
   HelpContextualModule,
->>>>>>> oned/v92
   LdsReplaceModule,
   MenuItem,
   MenuService,
   ObjectHistoryModule,
-<<<<<<< HEAD
-  RouteGuardService
-=======
   RouteGuardService,
->>>>>>> oned/v92
 } from 'qbm';
 import { DataExplorerIdentitiesComponent } from './identities.component';
 import { IdentitiesService } from './identities.service';
 import { IdentitySidesheetComponent } from './identity-sidesheet/identity-sidesheet.component';
 import { IdentitiesReportsService } from './identities-reports.service';
-<<<<<<< HEAD
-import { CCC_isHROutsourceAdmin, CCC_isOutsourceAdmin, isPersonAdmin } from '../admin/qer-permissions-helper';
-=======
-import { isAuditor, isPersonAdmin, isPersonManager } from '../admin/qer-permissions-helper';
->>>>>>> oned/v92
+import { CCC_isHROutsourceAdmin, CCC_isOutsourceAdmin, isAuditor, isPersonAdmin, isPersonManager } from '../admin/qer-permissions-helper';
 import { RiskModule } from '../risk/risk.module';
 import { DataExplorerRegistryService } from '../data-explorer-view/data-explorer-registry.service';
 import { AssignmentsComponent } from './identity-sidesheet/assignments/assignments.component';
@@ -81,33 +63,22 @@ import { IdentityRoleMembershipsModule } from './identity-sidesheet/identity-rol
 import { OrgChartModule } from '../org-chart/org-chart.module';
 import { CreateNewIdentityComponent } from './create-new-identity/create-new-identity.component';
 import { DuplicatesSidesheetComponent } from './create-new-identity/duplicates-sidesheet/duplicates-sidesheet.component';
-<<<<<<< HEAD
-import { OutsourceIdentityComponent } from './outsource-identity/outsource-identity.component';
-=======
 import { RequestHistoryModule } from '../request-history/request-history.module';
 import { ObjectHyperviewModule } from '../object-hyperview/object-hyperview.module';
 import { MyResponsibilitiesRegistryService } from '../my-responsibilities-view/my-responsibilities-registry.service';
 import { MatMenuModule } from '@angular/material/menu';
 import { ProjectConfig } from 'imx-api-qbm';
->>>>>>> oned/v92
+import { OutsourceIdentityComponent } from './outsource-identity/outsource-identity.component';
 
 const routes: Routes = [
   {
     path: 'resp/identities',
     component: DataExplorerIdentitiesComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-  }
-];
-
-
-=======
     resolve: [RouteGuardService],
   },
 ];
 
->>>>>>> oned/v92
 @NgModule({
   declarations: [
     DataExplorerIdentitiesComponent,
@@ -115,10 +86,7 @@ const routes: Routes = [
     AssignmentsComponent,
     CreateNewIdentityComponent,
     DuplicatesSidesheetComponent,
-<<<<<<< HEAD
     OutsourceIdentityComponent
-=======
->>>>>>> oned/v92
   ],
   imports: [
     CommonModule,
@@ -136,29 +104,12 @@ const routes: Routes = [
     LdsReplaceModule,
     DataTreeModule,
     ObjectHistoryModule,
-<<<<<<< HEAD
-=======
     ObjectHyperviewModule,
     RequestHistoryModule,
->>>>>>> oned/v92
     ExtModule,
     RiskModule,
     DynamicTabsModule,
     OrgChartModule,
-<<<<<<< HEAD
-    IdentityRoleMembershipsModule,
-    RouterModule.forChild(routes),
-  ],
-  providers: [
-    IdentitiesService,
-    IdentitiesReportsService
-  ],
-  exports: [DataExplorerIdentitiesComponent, OutsourceIdentityComponent],
-  entryComponents: [
-    CreateNewIdentityComponent,
-    DuplicatesSidesheetComponent
-  ]
-=======
     BusyIndicatorModule,
     IdentityRoleMembershipsModule,
     RouterModule.forChild(routes),
@@ -168,67 +119,43 @@ const routes: Routes = [
   providers: [IdentitiesService, IdentitiesReportsService],
   exports: [DataExplorerIdentitiesComponent],
   entryComponents: [CreateNewIdentityComponent, DuplicatesSidesheetComponent],
->>>>>>> oned/v92
 })
 export class IdentitiesModule {
   constructor(
     private readonly dataExplorerRegistryService: DataExplorerRegistryService,
     private readonly menuService: MenuService,
-<<<<<<< HEAD
-=======
     private readonly myResponsibilitiesRegistryService: MyResponsibilitiesRegistryService,
->>>>>>> oned/v92
     logger: ClassloggerService
   ) {
     logger.info(this, '▶️ IdentitiesModule loaded');
     this.init();
-<<<<<<< HEAD
-=======
     this.setupMyResponsibilitiesView();
->>>>>>> oned/v92
     this.setupMenu();
   }
 
   private setupMenu(): void {
     this.menuService.addMenuFactories(
-<<<<<<< HEAD
-      (preProps: string[], groups: string[]) => {
-
-        const items: MenuItem[] = [];
-        if ((preProps.includes('ITSHOP') &&  CCC_isOutsourceAdmin(groups)) || (preProps.includes('ITSHOP') &&  CCC_isHROutsourceAdmin(groups))) {
-=======
       (preProps: string[], features: string[], projectConfig: ProjectConfig, groups: string[]) => {
 
         const items: MenuItem[] = [];
-        if (preProps.includes('ITSHOP') && (isPersonAdmin(features) || isAuditor(groups))) {
->>>>>>> oned/v92
+        if ((preProps.includes('ITSHOP') &&  CCC_isOutsourceAdmin(groups)) || (preProps.includes('ITSHOP') &&  CCC_isHROutsourceAdmin(groups))) {
           items.push(
             {
               id: 'QER_DataExplorer',
               navigationCommands: { commands: ['admin', 'dataexplorer'] },
-<<<<<<< HEAD
-              title: '#LDS#Data Explorer',
-=======
               title: '#LDS#Menu Entry Data Explorer',
->>>>>>> oned/v92
               sorting: '40-10',
+              
             },
           );
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
         if (items.length === 0) {
           return null;
         }
         return {
           id: 'ROOT_Data',
-<<<<<<< HEAD
+          //cust
           title: '#LDS#Identity Management',
-=======
-          title: '#LDS#Data administration',
->>>>>>> oned/v92
           sorting: '40',
           items
         };
@@ -238,26 +165,15 @@ export class IdentitiesModule {
 
   private init(): void {
 
-<<<<<<< HEAD
-    this.dataExplorerRegistryService.registerFactory((preProps: string[], groups: string[]) => {
-      if (!(CCC_isOutsourceAdmin(groups) || CCC_isHROutsourceAdmin(groups))  ) {
-=======
     this.dataExplorerRegistryService.registerFactory((preProps: string[], features: string[], projectConfig: ProjectConfig, groups: string[]) => {
-      if (!isPersonAdmin(features) && !isAuditor(groups)) {
->>>>>>> oned/v92
+      if (! ( CCC_isOutsourceAdmin(groups) || CCC_isHROutsourceAdmin(groups) )  ) {
         return;
       }
       return {
         instance: DataExplorerIdentitiesComponent,
         sortOrder: 1,
-<<<<<<< HEAD
-        name: 'Outsource ',
-        caption: '#LDS#Outsource',
-        icon: 'contactinfo'
-        
-=======
         name: 'identities',
-        caption: '#LDS#Identities',
+        caption: '#LDS#Identities Management',
         icon: 'contactinfo',
         contextId: HELP_CONTEXTUAL.DataExplorerIdentities
       };
@@ -275,7 +191,6 @@ export class IdentitiesModule {
         name: 'identities',
         caption: '#LDS#Identities',
         contextId: HELP_CONTEXTUAL.MyResponsibilitiesIdentities
->>>>>>> oned/v92
       };
     });
   }

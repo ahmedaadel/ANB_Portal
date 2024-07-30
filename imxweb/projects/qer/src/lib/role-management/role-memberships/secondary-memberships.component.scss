@@ -1,15 +1,10 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
-<<<<<<< HEAD
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
->>>>>>> oned/v92
 :host {
   display: flex;
   flex-direction: column;
   overflow: hidden;
   flex: 1 1 auto;
-<<<<<<< HEAD
-=======
 
   eui-icon {
     font-size: 14px;
@@ -19,14 +14,11 @@
   .imx-tab-content-body {
     padding: 0;
   }
->>>>>>> oned/v92
 }
 
 .spaced-badge {
   margin-right: 1em;
 }
-<<<<<<< HEAD
-=======
 
 .helper-alert ::ng-deep > div {
   margin-bottom: 20px;
@@ -77,4 +69,3 @@ imx-selected-elements {
     }
   }
 }
->>>>>>> oned/v92

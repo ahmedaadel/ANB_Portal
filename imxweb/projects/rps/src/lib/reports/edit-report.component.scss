@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 @import '../../../../../shared/scss/common-table.scss';
->>>>>>> oned/v92
 @mixin imx-flex-column-container {
   display: flex;
   flex-direction: column;
@@ -35,12 +32,6 @@
 :host {
   @include imx-flex-column-container();
   overflow: hidden;
-<<<<<<< HEAD
-  height: inherit;
-  max-width: 100%;
-}
-
-=======
   height: 100%;
   max-width: 100%;
 }
@@ -50,30 +41,19 @@
   margin: 3px;
 }
 
->>>>>>> oned/v92
 .imx-reports-page {
   background-color: inherit;
   @include imx-flex-column-container();
   overflow: hidden;
-<<<<<<< HEAD
-=======
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
->>>>>>> oned/v92
 
   div.imx-table-container {
     @include imx-flex-column-container();
     overflow: hidden;
     height: inherit;
-<<<<<<< HEAD
-
-    imx-data-source-toolbar {
-      margin-bottom: 20px;
-    }
-=======
     flex: 1 1 auto;
->>>>>>> oned/v92
 
     .imx-reports-table {
       flex-grow: 1;
@@ -82,42 +62,7 @@
   }
 
   .imx-button-bar {
-<<<<<<< HEAD
-    @include imx-flex-row-container();
-    margin-top: 20px;
-    flex: 0 0 auto;
-
-    .imx-badge {
-      background-color: inherit;
-
-      ::ng-deep .eui-badge-content {
-        font-size: 14px;
-        line-height: 14px;
-      }
-    }
-
-    .imx-selected-items {
-      margin: 0;
-      display: flex;
-      align-items: center;
-      flex: 1 1 auto;
-      margin-bottom: 5px;
-
-      .imx-badge {
-        margin-left: 10px;
-      }
-    }
-
-    button {
-      margin-left: 10px;
-    }
-
-    .flex-grow {
-      flex-grow: 1;
-    }
-=======
     @include imx-button-bar();
->>>>>>> oned/v92
   }
 }
 

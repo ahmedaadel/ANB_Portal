@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Pipe, PipeTransform, Injectable } from '@angular/core';
-<<<<<<< HEAD
-import { TranslateService } from '@ngx-translate/core';
-=======
 import { ImxTranslationProviderService } from '../translation/imx-translation-provider.service';
->>>>>>> oned/v92
 
 @Injectable({
   providedIn: 'root'
@@ -46,15 +38,9 @@ export class LocalizedDatePipe implements PipeTransform {
   private readonly currentCulture: string;
 
   constructor(
-<<<<<<< HEAD
-    private readonly translateService: TranslateService,
-  ) {
-    this.currentCulture = this.translateService.currentLang;
-=======
     private readonly translationProviderService: ImxTranslationProviderService,
   ) {
     this.currentCulture = this.translationProviderService.CultureFormat;
->>>>>>> oned/v92
   }
 
   public transform(value: string | Date): string {

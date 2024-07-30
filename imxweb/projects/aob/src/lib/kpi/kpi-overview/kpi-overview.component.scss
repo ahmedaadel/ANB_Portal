@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-@import '@elemental-ui/core/src/styles/_eui_palette.scss';
-
-:host{
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-=======
 @use '@angular/material' as mat;
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 
@@ -16,7 +8,6 @@
   .mat-card > .mat-card-actions:last-child {
     margin-bottom: 0;
   }
->>>>>>> oned/v92
 }
 
 .imx-kpi-site {
@@ -32,47 +23,22 @@
 li {
   list-style-type: none;
   margin: 0 10px 10px 0;
-<<<<<<< HEAD
-
-  .mat-card {
-    width: 340px;
-    height: 68px;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-
-    :nth-child(1n) {
-      align-self: center;
-    }
-  }
-=======
->>>>>>> oned/v92
 }
 
 .mat-card {
   padding: 5px 10px;
-<<<<<<< HEAD
-=======
   width: 340px;
   height: 68px;
   display: flex;
->>>>>>> oned/v92
 }
 
 h2 {
   font-size: 20px;
-<<<<<<< HEAD
-  color: $color-gray-30;
-=======
->>>>>>> oned/v92
   margin-bottom: 8px;
 }
 
 p {
   font-size: 14px;
-<<<<<<< HEAD
-  color: $color-gray-80;
-=======
->>>>>>> oned/v92
   margin-top: 0;
 }
 
@@ -103,17 +69,6 @@ h4 {
 }
 
 .imx-kpi-content {
-<<<<<<< HEAD
-  grid-column: 2;
-  margin-bottom: 0px;
-}
-
-.imx-kpi-tile-actions {
-  margin: 0;
-  margin-top: -5px;
-  padding: 0;
-  grid-column: 3;
-=======
   flex: 1 1 auto;
   align-self: center;
   margin-bottom: 0;
@@ -129,7 +84,6 @@ h4 {
   align-items: center;
   margin: 0 5px 0 0;
   padding: 0;
->>>>>>> oned/v92
 }
 
 .imx-pass,
@@ -138,26 +92,13 @@ h4 {
   font-size: 24px;
   line-height: 38px;
   font-weight: 900;
-<<<<<<< HEAD
-  grid-column: 1;
-=======
   margin: 0 20px 0 0px;
   align-self: center;
->>>>>>> oned/v92
 }
 
 .imx-kpi-list {
   display: flex;
   flex-wrap: wrap;
-<<<<<<< HEAD
-
-  > li > .mat-card {
-    display: flex;
-    height: 100%;
-    justify-content: space-between;
-  }
-=======
->>>>>>> oned/v92
 }
 
 .imx-kpi-view {
@@ -175,10 +116,6 @@ h4 {
   margin: 0px 0 10px;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
 .imx-title-text {
   text-align: center;
   margin: 0 24px 0 60px;
@@ -193,44 +130,15 @@ h4 {
 .imx-aob-kpi-empty {
   display: flex;
   flex-direction: column;
-<<<<<<< HEAD
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-=======
   justify-content: center;
   align-items: center;
   flex: 1 1 auto;
->>>>>>> oned/v92
 
   h2 {
     font-weight: 600;
   }
 }
 
-<<<<<<< HEAD
-:host {
-  .imx-kpi-site {
-    background-color: $color-gray-2;
-    }
-
-  .imx-aob-kpi-empty {
-    background-color: $color-gray-2;
-    color: $color-gray-50;
-  }
-
-  .imx-pass {
-    color: $color-green-60;
-  }
-
-  .imx-fail {
-    color: $color-red-60;
-  }
-}
-
-
-::ng-deep .kpi-overview-modal {
-=======
 .eui-light-theme {
   :host {
     li {
@@ -252,7 +160,6 @@ h4 {
 }
 
 ::ng-deep .eui-light-theme .kpi-overview-modal {
->>>>>>> oned/v92
   .imx-title-text {
     color: $color-gray-80;
   }
@@ -265,8 +172,6 @@ h4 {
     color: $color-red-60;
   }
 }
-<<<<<<< HEAD
-=======
 
 .eui-dark-theme {
   :host {
@@ -339,4 +244,3 @@ h4 {
     color: $color-red-60;
   }
 }
->>>>>>> oned/v92

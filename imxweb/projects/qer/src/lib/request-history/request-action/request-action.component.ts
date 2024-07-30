@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Component, Inject, OnDestroy } from '@angular/core';
-<<<<<<< HEAD
-import { AbstractControl, FormGroup } from '@angular/forms';
-=======
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
->>>>>>> oned/v92
 import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
 
@@ -51,11 +43,7 @@ export class RequestActionComponent implements OnDestroy {
   public readonly requestsDst: DataSourceToolbarSettings;
   public readonly serviceItemEntitySchema: EntitySchema;
   public readonly entitySchema: EntitySchema;
-<<<<<<< HEAD
-  public readonly formGroup = new FormGroup({});
-=======
   public readonly formGroup = new UntypedFormGroup({});
->>>>>>> oned/v92
   public invalidProlongationDate = false;
   public invalidUnsubscriptionDate = false;
 

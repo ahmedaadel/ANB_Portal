@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -39,11 +35,8 @@ import {
   CdrModule,
   ClassloggerService,
   DataTreeWrapperModule,
-<<<<<<< HEAD
-=======
   HELP_CONTEXTUAL,
   HelpContextualModule,
->>>>>>> oned/v92
   MenuItem,
   MenuService,
   RouteGuardService
@@ -52,28 +45,18 @@ import {
 import { ServiceCategoriesComponent } from './service-categories.component';
 import { ServiceCategoryComponent } from './service-category.component';
 import { ServiceItemsModule } from '../service-items/service-items.module';
-<<<<<<< HEAD
-import { ShopAdminGuardService } from '../guards/shop-admin-guard.service';
-import { isShopAdmin } from '../admin/qer-permissions-helper';
-=======
 import { isShopAdmin, isShopStatistics } from '../admin/qer-permissions-helper';
 import { ShopGuardService } from '../guards/shop-guard.service';
->>>>>>> oned/v92
 
 const routes: Routes = [
   {
     path: 'configuration/servicecategories',
     component: ServiceCategoriesComponent,
-<<<<<<< HEAD
-    canActivate: [RouteGuardService, ShopAdminGuardService],
-    resolve: [RouteGuardService]
-=======
     canActivate: [RouteGuardService, ShopGuardService],
     resolve: [RouteGuardService],
     data:{
       contextId: HELP_CONTEXTUAL.ServiceCategories
     }
->>>>>>> oned/v92
   }
 ];
 
@@ -91,12 +74,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     TranslateModule,
-<<<<<<< HEAD
-    ServiceItemsModule
-=======
     ServiceItemsModule,
     HelpContextualModule,
->>>>>>> oned/v92
   ]
 })
 export class ServiceCategoriesModule {
@@ -104,39 +83,23 @@ export class ServiceCategoriesModule {
   constructor(
     private readonly menuService: MenuService,
     logger: ClassloggerService) {
-<<<<<<< HEAD
-    logger.info(this, '▶️ ServiceCategoriesModule loaded');
-=======
     logger.info(this, '▶︝ ServiceCategoriesModule loaded');
->>>>>>> oned/v92
     this.setupMenu();
   }
 
   private setupMenu(): void {
     this.menuService.addMenuFactories(
-<<<<<<< HEAD
-      (preProps: string[], groups: string[]) => {
-
-        const items: MenuItem[] = [];
-
-        if (isShopAdmin(groups)) {
-=======
       (preProps: string[], features: string[]) => {
 
         const items: MenuItem[] = [];
 
         if (isShopAdmin(features) || isShopStatistics(features)) {
->>>>>>> oned/v92
           items.push(
             {
               id: 'QER_Setup_Servicecategories',
               route: 'configuration/servicecategories',
               title: '#LDS#Menu Entry Service categories',
-<<<<<<< HEAD
-              sorting: '50-30'
-=======
               sorting: '60-30'
->>>>>>> oned/v92
             }
           );
         }
@@ -147,11 +110,7 @@ export class ServiceCategoriesModule {
         return {
           id: 'ROOT_Setup',
           title: '#LDS#Setup',
-<<<<<<< HEAD
-          sorting: '50',
-=======
           sorting: '60',
->>>>>>> oned/v92
           items
         };
       },

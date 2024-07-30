@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -33,19 +29,11 @@ import { EuiLoadingService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PortalDynamicgroup } from 'imx-api-qer';
 import { SqlWizardExpression, WriteExtTypedEntity, SqlExpression, isExpressionInvalid, LogOp } from 'imx-qbm-dbts';
-<<<<<<< HEAD
-import { BaseCdr, ColumnDependentReference, ConfirmationService } from 'qbm';
-import { QerApiService } from '../../qer-api-client.service';
-import { RoleService } from '../role.service';
-import _ from 'lodash';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-=======
 import { BaseCdr, BaseReadonlyCdr, ColumnDependentReference, ConfirmationService } from 'qbm';
 import { QerApiService } from '../../qer-api-client.service';
 import { RoleService } from '../role.service';
 import _ from 'lodash';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
->>>>>>> oned/v92
 import { DataManagementService } from '../data-management.service';
 
 @Component({
@@ -55,11 +43,7 @@ import { DataManagementService } from '../data-management.service';
 })
 export class DynamicRoleComponent implements OnInit {
   constructor(
-<<<<<<< HEAD
-    formBuilder: FormBuilder,
-=======
     formBuilder: UntypedFormBuilder,
->>>>>>> oned/v92
     private readonly apiService: QerApiService,
     private readonly roleService: RoleService,
     private dataManagementService: DataManagementService,
@@ -68,22 +52,13 @@ export class DynamicRoleComponent implements OnInit {
     private readonly confirmSvc: ConfirmationService,
     private readonly busyService: EuiLoadingService
   ) {
-<<<<<<< HEAD
-    this.formGroup = new FormGroup({ formArray: formBuilder.array([]) });
-=======
     this.formGroup = new UntypedFormGroup({ formArray: formBuilder.array([]) });
->>>>>>> oned/v92
   }
 
   @Input() uidDynamicGroup: string;
 
-<<<<<<< HEAD
-  get formArray(): FormArray {
-    return this.formGroup.get('formArray') as FormArray;
-=======
   get formArray(): UntypedFormArray {
     return this.formGroup.get('formArray') as UntypedFormArray;
->>>>>>> oned/v92
   }
 
   public dynamicGroup: PortalDynamicgroup;
@@ -95,13 +70,6 @@ export class DynamicRoleComponent implements OnInit {
   public showHelperAlert = true;
   public exprHasntChanged = true;
   public cdrsHaventChanged = true;
-<<<<<<< HEAD
-  public readonly formGroup: FormGroup;
-  public cdrList: ColumnDependentReference[] = [];
-  public busy = true;
-
-  public async ngOnInit(): Promise<void> {
-=======
   public readonly formGroup: UntypedFormGroup;
   public cdrList: ColumnDependentReference[] = [];
   public busy = true;
@@ -112,7 +80,6 @@ export class DynamicRoleComponent implements OnInit {
     if (!this.canEdit) {
       this.LdsNoDynamicRole = '#LDS#Currently, no identities automatically become members through a dynamic role.';
     }
->>>>>>> oned/v92
     await this.loadDynamicRole();
     this.resetState();
   }
@@ -137,21 +104,11 @@ export class DynamicRoleComponent implements OnInit {
         }
         await this.dynamicGroup.GetEntity().Commit(true);
       } else {
-<<<<<<< HEAD
-        const e = <WriteExtTypedEntity<{ NewDynamicRole: SqlExpression }>>(
-          this.dataManagementService.entityInteractive
-        );
-        e.extendedData = { NewDynamicRole: this.sqlExpression.Expression };
-        await e.GetEntity().Commit(true);
-        this.uidDynamicGroup = e.GetEntity().GetColumn('UID_DynamicGroup').GetValue();
-        await this.loadDynamicRole();
-=======
         const e = <WriteExtTypedEntity<{ NewDynamicRole: SqlExpression }>>this.dataManagementService.entityInteractive;
         e.extendedData = { NewDynamicRole: this.sqlExpression.Expression };
         await e.GetEntity().Commit(true);
         this.uidDynamicGroup = e.GetEntity().GetColumn('UID_DynamicGroup').GetValue();
         await this.loadDynamicRole(false);
->>>>>>> oned/v92
       }
     } finally {
       await this.dataManagementService.setInteractive();
@@ -233,35 +190,11 @@ export class DynamicRoleComponent implements OnInit {
     );
   }
 
-<<<<<<< HEAD
-  private async loadDynamicRole(): Promise<void> {
-=======
   private async loadDynamicRole(initialLoading = true): Promise<void> {
->>>>>>> oned/v92
     try {
       this.busy = true;
       if (this.uidDynamicGroup) {
         const data = await this.apiService.typedClient.PortalDynamicgroupInteractive.Get(this.uidDynamicGroup);
-<<<<<<< HEAD
-
-        this.dynamicGroup = data.Data[0];
-        this.sqlExpression = data.extendedData.Expressions[0];
-        // Set "" to undefined so the cdr and data dirty states make sense
-        this.sqlExpression?.Expression?.Expressions?.map((exp) => {
-          if (exp.Value === '') {
-            exp.Value = undefined;
-          }
-        });
-        // Sometimes the logOp is not set. Initalize it here
-        if (this.sqlExpression?.Expression && !this.sqlExpression?.Expression?.LogOperator) {
-          this.sqlExpression.Expression.LogOperator = LogOp.AND;
-        }
-
-        this.cdrList = [
-          new BaseCdr(this.dynamicGroup.UID_DialogSchedule.Column),
-          new BaseCdr(this.dynamicGroup.IsCalculateImmediately.Column),
-        ];
-=======
         this.dynamicGroup = data.Data[0];
         if (initialLoading) {
           this.sqlExpression = data.extendedData.Expressions[0];
@@ -283,7 +216,6 @@ export class DynamicRoleComponent implements OnInit {
               new BaseReadonlyCdr(this.dynamicGroup.UID_DialogSchedule.Column),
               new BaseReadonlyCdr(this.dynamicGroup.IsCalculateImmediately.Column),
             ];
->>>>>>> oned/v92
       }
     } finally {
       this.busy = false;
@@ -291,13 +223,9 @@ export class DynamicRoleComponent implements OnInit {
   }
 
   private hasValuesSet(sqlExpression: SqlExpression, checkCurrent: boolean = false): boolean {
-<<<<<<< HEAD
-    const current = !checkCurrent || (sqlExpression.Value != null && Object.keys(sqlExpression.Value).length > 0);
-=======
     const current =
       !checkCurrent ||
       (sqlExpression.Value != null && (Object.keys(sqlExpression.Value).length > 0 || typeof sqlExpression.Value === 'boolean'));
->>>>>>> oned/v92
 
     if (sqlExpression.Expressions?.length > 0) {
       return current && sqlExpression.Expressions.every((elem) => this.hasValuesSet(elem, true));

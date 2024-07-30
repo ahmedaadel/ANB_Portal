@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -35,11 +31,7 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { QerApiService } from '../../qer-api-client.service';
 import { UiActionData } from 'imx-api-qer';
 import { RollebackService } from './rollback.service';
-<<<<<<< HEAD
-import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-=======
 import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
->>>>>>> oned/v92
 import { ComparisonItem, RollbackItem } from './rollback-item';
 import { RollbackItemBuilder } from './rollback-item-builder';
 import { IClientProperty } from 'imx-qbm-dbts';
@@ -59,35 +51,20 @@ export class RollbackComponent implements OnInit {
   public dstSettings: DataSourceToolbarSettings;
   public ldsChangesQueued = '#LDS#The object has been successfully reset. It may take some time for the changes to take effect.';
   public dateCdr: ColumnDependentReference;
-<<<<<<< HEAD
-  public dateForm = new FormGroup({}, this.workaroundValidator());
-  public comparisonForm = new FormGroup({
-    helperInput: new FormControl(undefined, Validators.required),
-=======
   public dateForm = new UntypedFormGroup({}, this.workaroundValidator());
   public comparisonForm = new UntypedFormGroup({
     helperInput: new UntypedFormControl(undefined, Validators.required),
->>>>>>> oned/v92
   });
   public selected: RollbackItem[] = [];
 
   public entitySchema = RollbackItem.GetEntitySchema();
 
-<<<<<<< HEAD
-  public ldsNoChanges = '#LDS#No changes during selected time period.';
-
-  public ldsActionList = '#LDS#The following actions will be taken to roll back the role to the previous state.';
-
-  public ldsSelectItems =
-    '#LDS#The following properties have changed. Select the properties that you want to roll back to the previous state.';
-=======
   public ldsNoChanges = '#LDS#There were no changes during the selected period.';
 
   public ldsActionList = '#LDS#The following actions will be performed to reset the object to the previous state.';
 
   public ldsSelectItems =
     '#LDS#The following properties have changed in the selected period. Select the properties you want to reset to the previous state.';
->>>>>>> oned/v92
 
   private rollbackbuilder = new RollbackItemBuilder();
   private calculateCompareItems = true;
@@ -98,10 +75,6 @@ export class RollbackComponent implements OnInit {
   constructor(
     private readonly sidesheetRef: EuiSidesheetRef,
     private readonly snackbar: SnackBarService,
-<<<<<<< HEAD
-    private readonly api: QerApiService,
-=======
->>>>>>> oned/v92
     private readonly busyService: EuiLoadingService,
     private readonly metadata: MetadataService,
     private readonly rollbackService: RollebackService,
@@ -155,11 +128,7 @@ export class RollbackComponent implements OnInit {
     this.comparisonItems = [];
     try {
       this.comparisonItems = (
-<<<<<<< HEAD
-        await this.api.client.portal_history_comparison_get(this.data.tableName, this.data.uid, {
-=======
         await this.rollbackService.getHistoryComparison(this.data.tableName, this.data.uid, {
->>>>>>> oned/v92
           CompareDate: this.dateCdr.column.GetValue(),
         })
       )
@@ -198,11 +167,7 @@ export class RollbackComponent implements OnInit {
   public async execute(): Promise<void> {
     const overlay = this.busyService.show();
     try {
-<<<<<<< HEAD
-      await this.api.client.portal_history_rollback_post(
-=======
       await this.rollbackService.rollback(
->>>>>>> oned/v92
         this.data.tableName,
         this.data.uid,
         {
@@ -249,11 +214,7 @@ export class RollbackComponent implements OnInit {
     this.uidActions = [];
     const overlay = this.busyService.show();
     try {
-<<<<<<< HEAD
-      this.actions = await this.api.client.portal_history_rollback_get(this.data.tableName, this.data.uid, {
-=======
       this.actions = await this.rollbackService.getRollbackActions(this.data.tableName, this.data.uid, {
->>>>>>> oned/v92
         CompareDate: this.dateCdr.column.GetValue(),
         CompareId: this.selected.map((s) => s.Id.value).reduce((a, b) => a + ',' + b),
       });

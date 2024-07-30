@@ -4,31 +4,6 @@
       <mat-card *ngFor="let appContainer of apps">
         <mat-card-content>
           <mat-card-title>
-<<<<<<< HEAD
-            <a href='{{ appContainer.link }}'>
-              {{ appContainer.app.DisplayName }}
-            </a>
-          </mat-card-title>
-          <p *ngIf='appContainer.app.Description'>{{ appContainer.app.Description }}
-          </p>
-        </mat-card-content>
-      </mat-card>
-      <mat-card role="Administration">
-        <mat-card-content>
-          <mat-card-title>
-            <a routerLink="swagger-ui">
-              {{'#LDS#Heading API Documentation' | translate}}
-            </a>
-          </mat-card-title>
-          <p>{{ '#LDS#Here you can read about all supported GET, POST, PUT, and DELETE API methods and the model settings. Additionally, you can test the various methods with specific parameters.' | translate }}</p>
-        </mat-card-content>
-      </mat-card>
-      <mat-card role="Administration">
-        <mat-card-content>
-          <mat-card-title>
-            <a routerLink="login">
-              {{'#LDS#Heading Administration Portal' | translate}}
-=======
             <a href="{{ appContainer.link }}">
               {{ appContainer.app.DisplayName }}
             </a>
@@ -41,7 +16,6 @@
           <mat-card-title>
             <a routerLink="login">
               {{ '#LDS#Heading Administration Portal' | translate }}
->>>>>>> oned/v92
             </a>
           </mat-card-title>
           <p>{{ '#LDS#Here you can configure your HTML applications. Additionaly, you can reset your changes to default settings.' | translate }}</p>

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -37,11 +33,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 
-<<<<<<< HEAD
-import { DataSourceToolbarModule, DataTableModule, CdrModule  } from 'qbm';
-=======
 import { DataSourceToolbarModule, DataTableModule, CdrModule, SelectedElementsModule, HelpContextualModule  } from 'qbm';
->>>>>>> oned/v92
 import { AttestationHistoryComponent } from './attestation-history.component';
 import { AttestationHistoryService } from './attestation-history.service';
 import { AttestationHistoryDetailsComponent } from './attestation-history-details/attestation-history-details.component';
@@ -49,24 +41,17 @@ import { AttestationDecisionModule } from '../decision/attestation-decision.modu
 import { AttestationHistoryWrapperComponent } from './attestation-history-wrapper.component';
 import { AttestationDisplayModule } from '../attestation-display/attestation-display.module';
 import { AttestationSnapshotModule } from '../attestation-snapshot/attestation-snapshot.module';
-<<<<<<< HEAD
-=======
 import {AttestationHistoryFilterComponent} from './attestation-history-filter/attestation-history-filter.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MyAttestationCasesComponent } from './my-attestation-cases/my-attestation-cases.component';
->>>>>>> oned/v92
 
 @NgModule({
   declarations: [
     AttestationHistoryComponent,
     AttestationHistoryDetailsComponent,
-<<<<<<< HEAD
-    AttestationHistoryWrapperComponent
-=======
     AttestationHistoryWrapperComponent,
     AttestationHistoryFilterComponent,
     MyAttestationCasesComponent,
->>>>>>> oned/v92
   ],
   exports: [AttestationHistoryComponent],
   imports: [
@@ -79,18 +64,6 @@ import { MyAttestationCasesComponent } from './my-attestation-cases/my-attestati
     MatCardModule,
     MatMenuModule,
     MatTabsModule,
-<<<<<<< HEAD
-    TranslateModule,
-    EuiCoreModule,
-    AttestationDecisionModule,
-    AttestationDisplayModule
-  ],
-  providers: [
-    AttestationHistoryService
-  ]
-})
-export class AttestationHistoryModule { }
-=======
     MatIconModule,
     TranslateModule,
     EuiCoreModule,
@@ -103,4 +76,3 @@ export class AttestationHistoryModule { }
   providers: [AttestationHistoryService],
 })
 export class AttestationHistoryModule {}
->>>>>>> oned/v92

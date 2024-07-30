@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { UserService } from '../user/user.service';
-=======
 import { OpSupportUserService } from 'qer';
->>>>>>> oned/v92
 
 @Component({
   templateUrl: './dashboard.component.html',
@@ -43,11 +35,7 @@ export class DashboardComponent implements OnInit {
 
   public isOperationsSupporter: boolean;
 
-<<<<<<< HEAD
-  constructor(private readonly userService: UserService) {
-=======
   constructor(private readonly userService: OpSupportUserService) {
->>>>>>> oned/v92
   }
 
   public async ngOnInit() {

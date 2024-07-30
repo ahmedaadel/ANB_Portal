@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,17 +25,10 @@
  */
 
 import { Component, Input, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { AbstractControl, FormGroup } from '@angular/forms';
-
-import { RulesViolationsAction } from '../rules-violations-action.interface';
-import { ColumnDependentReference } from 'qbm/public_api';
-=======
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 
 import { RulesViolationsAction } from '../rules-violations-action.interface';
 import { ColumnDependentReference } from 'qbm';
->>>>>>> oned/v92
 
 /**
  * @ignore since this is only an internal component.
@@ -67,11 +56,7 @@ export class RulesViolationsMultiActionComponent implements OnInit {
    *
    * The form group to which the necessary form fields will be added.
    */
-<<<<<<< HEAD
-  @Input() public formGroup: FormGroup;
-=======
   @Input() public formGroup: UntypedFormGroup;
->>>>>>> oned/v92
 
   /**
    * @ignore since this is only public because of databinding to the template

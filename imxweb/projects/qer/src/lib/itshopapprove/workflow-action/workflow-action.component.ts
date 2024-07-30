@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Component, Inject } from '@angular/core';
-<<<<<<< HEAD
-import { FormGroup } from '@angular/forms';
-=======
 import { UntypedFormGroup } from '@angular/forms';
->>>>>>> oned/v92
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 
 import { WorkflowActionEdit } from './workflow-action-edit.interface';
@@ -58,22 +50,14 @@ import { WorkflowActionEdit } from './workflow-action-edit.interface';
  */
 @Component({
   selector: 'imx-workflow-action',
-<<<<<<< HEAD
-  templateUrl: './workflow-action.component.html'
-=======
   templateUrl: './workflow-action.component.html',
   styleUrls: ['./workflow-action.component.scss']
->>>>>>> oned/v92
 })
 export class WorkflowActionComponent {
   /**
    * The form group to which the created form controls will be added.
    */
-<<<<<<< HEAD
-  public readonly formGroup = new FormGroup({});
-=======
   public readonly formGroup = new UntypedFormGroup({});
->>>>>>> oned/v92
 
   /**
    * Creates a new WorkflowActionComponent

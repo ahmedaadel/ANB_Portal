@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,19 +26,6 @@
 
 import { Injectable } from '@angular/core';
 
-<<<<<<< HEAD
-import { CollectionLoadParameters, EntitySchema, ExtendedTypedEntityCollection } from 'imx-qbm-dbts';
-import { GlobalDelegationInput, PortalDelegable, PortalDelegations, PortalDelegationsGlobalRoleclasses } from 'imx-api-qer';
-
-import { QerApiService } from '../qer-api-client.service';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DelegationService {
-
-  constructor(private readonly qerApiService: QerApiService) { }
-=======
 import {
   CollectionLoadParameters,
   EntitySchema,
@@ -61,7 +44,6 @@ export class DelegationService {
     private readonly qerApiService: QerApiService,
     private readonly entityService: EntityService,
   ) {}
->>>>>>> oned/v92
 
   public getDelegationSchema(): EntitySchema {
     return this.qerApiService.typedClient.PortalDelegations.GetSchema();
@@ -71,16 +53,11 @@ export class DelegationService {
     return this.qerApiService.typedClient.PortalDelegations.createEntity();
   }
 
-<<<<<<< HEAD
-  public async getDelegatableItems(uidUser: string, uidRecipient: string, parameter: CollectionLoadParameters)
-    : Promise<ExtendedTypedEntityCollection<PortalDelegable, unknown>> {
-=======
   public async getDelegatableItems(
     uidUser: string,
     uidRecipient: string,
     parameter: CollectionLoadParameters
   ): Promise<ExtendedTypedEntityCollection<PortalDelegable, unknown>> {
->>>>>>> oned/v92
     return this.qerApiService.typedClient.PortalDelegable.Get(uidUser, uidRecipient, parameter);
   }
 
@@ -92,8 +69,6 @@ export class DelegationService {
     return (await this.qerApiService.typedClient.PortalDelegationsGlobalRoleclasses.Get(uidUser, { PageSize: 1024 })).Data;
   }
 
-<<<<<<< HEAD
-=======
   public buildSenderCdr(entity: PortalDelegations) {
     const schema = this.getDelegationSchema();
     const fkProviderItems = this.qerApiService.client.getFkProviderItems('portal/delegations').map((item) => ({
@@ -112,7 +87,6 @@ export class DelegationService {
     return new BaseCdr(column);
   }
 
->>>>>>> oned/v92
   public async commitDelegations(reference: PortalDelegations, objectKeys: string[]): Promise<void> {
     reference.ObjectKeyDelegated.value = objectKeys[0];
 
@@ -124,25 +98,14 @@ export class DelegationService {
           if (!key.startsWith('__') && reference[key].GetMetadata().CanEdit()) {
             await element[key].Column.PutValueStruct({
               DataValue: reference[key].value,
-<<<<<<< HEAD
-              DisplayValue: reference[key].Column.GetDisplayValue()
-=======
               DisplayValue: reference[key].Column.GetDisplayValue(),
->>>>>>> oned/v92
             });
           }
         }
         element.ObjectKeyDelegated.value = objectKey;
-<<<<<<< HEAD
-        await element.GetEntity().Commit(true);
-      }
-    }
-    await reference.GetEntity().Commit(true);
-=======
         await element.GetEntity().Commit(false);
       }
     }
     await reference.GetEntity().Commit(false);
->>>>>>> oned/v92
   }
 }

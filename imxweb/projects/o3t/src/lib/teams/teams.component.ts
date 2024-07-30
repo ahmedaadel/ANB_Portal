@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,10 +26,7 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
-<<<<<<< HEAD
-=======
 import { TranslateService } from '@ngx-translate/core';
->>>>>>> oned/v92
 import { PortalTargetsystemTeams } from 'imx-api-o3t';
 import { CollectionLoadParameters, DisplayColumns, EntitySchema, IClientProperty } from 'imx-qbm-dbts';
 import { ClassloggerService, DataSourceToolbarFilter, DataSourceToolbarSettings, SettingsService } from 'qbm';
@@ -60,10 +53,7 @@ export class TeamsComponent implements OnInit {
     private readonly logger: ClassloggerService,
     settingsService: SettingsService,
     private readonly teamsService: TeamsService,
-<<<<<<< HEAD
-=======
     private readonly translate: TranslateService
->>>>>>> oned/v92
   ) {
     this.navigationState = { PageSize: settingsService.DefaultPageSize, StartIndex: 0 };
     this.entitySchemaTeams = this.teamsService.teamsSchema;
@@ -97,12 +87,7 @@ export class TeamsComponent implements OnInit {
     this.logger.debug(this, `Selected team changed`);
     this.logger.trace(this, `New team selected`, team);
 
-<<<<<<< HEAD
-    const title = team.GetEntity().GetDisplay();
-    this.openDetailsSidesheet(title, team);
-=======
     this.openDetailsSidesheet(team);
->>>>>>> oned/v92
   }
 
   private async navigate(): Promise<void> {
@@ -123,15 +108,6 @@ export class TeamsComponent implements OnInit {
     }
   }
 
-<<<<<<< HEAD
-  private async openDetailsSidesheet(title: string, data: PortalTargetsystemTeams): Promise<void> {
-    const sidesheetRef = this.sideSheet.open(TeamDetailsComponent, {
-      title,
-      headerColour: 'green',
-      padding: '0px',
-      width: `max(650px, ${this.sidesheetWidth})`,
-      icon: 'usergroup',
-=======
   private async openDetailsSidesheet( data: PortalTargetsystemTeams): Promise<void> {
     const sidesheetRef = this.sideSheet.open(TeamDetailsComponent, {
       title: await this.translate.get('#LDS#Heading View Microsoft Teams Team Details').toPromise(),
@@ -140,7 +116,6 @@ export class TeamsComponent implements OnInit {
       width: `max(650px, ${this.sidesheetWidth})`,
       icon: 'usergroup',
       testId: 'teams-view-team-details',
->>>>>>> oned/v92
       data
     });
     sidesheetRef.afterClosed().subscribe(() => this.navigate());

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -42,12 +38,9 @@ import {
   DataTableComponent,
   DataSourceWrapper,
   ConfirmationService,
-<<<<<<< HEAD
-=======
   HelpContextualComponent,
   HelpContextualService,
   HELP_CONTEXTUAL
->>>>>>> oned/v92
 } from 'qbm';
 import { PickCategoryCreateComponent } from './pick-category-create/pick-category-create.component';
 import { PickCategorySidesheetComponent } from './pick-category-sidesheet/pick-category-sidesheet.component';
@@ -72,12 +65,8 @@ export class PickCategoryComponent implements OnInit, OnDestroy {
     private readonly confirmationService: ConfirmationService,
     private readonly translate: TranslateService,
     private readonly messageService: UserMessageService,
-<<<<<<< HEAD
-    private readonly logger: ClassloggerService
-=======
     private readonly logger: ClassloggerService,
     private readonly helpContextualService: HelpContextualService
->>>>>>> oned/v92
   ) {
 
     const entitySchema = this.pickCategoryService.pickcategorySchema;
@@ -86,16 +75,7 @@ export class PickCategoryComponent implements OnInit, OnDestroy {
       state => this.pickCategoryService.getPickCategories(state),
       [
         entitySchema.Columns[DisplayColumns.DISPLAY_PROPERTYNAME],
-<<<<<<< HEAD
-        entitySchema.Columns.IsManual,
-        {
-          ColumnName: 'viewDetailsButton',
-          Type: ValType.String,
-          afterAdditionals: true
-        }
-=======
         entitySchema.Columns.IsManual
->>>>>>> oned/v92
       ],
       entitySchema
     );
@@ -131,28 +111,18 @@ export class PickCategoryComponent implements OnInit, OnDestroy {
 
   public async viewDetails(pickCategory: PortalPickcategory): Promise<void> {
     if (pickCategory) {
-<<<<<<< HEAD
-      const result = await this.sideSheet.open(PickCategorySidesheetComponent, {
-        title: await this.translate.get('#LDS#Heading Edit Sample').toPromise(),
-        headerColour: 'iris-blue',
-=======
       this.helpContextualService.setHelpContextId(HELP_CONTEXTUAL.AttestationPreselectionEdit)
       const result = await this.sideSheet.open(PickCategorySidesheetComponent, {
         title: await this.translate.get('#LDS#Heading Edit Sample').toPromise(),
         subTitle: pickCategory.GetEntity().GetDisplay(),
->>>>>>> oned/v92
         panelClass: 'imx-sidesheet',
         padding: '0',
         width: '600px',
         testId: 'pickCategory-details-sidesheet',
         data: {
           pickCategory
-<<<<<<< HEAD
-        }
-=======
         },
         headerComponent: HelpContextualComponent
->>>>>>> oned/v92
       }).afterClosed().toPromise();
 
       if (result) {
@@ -183,18 +153,6 @@ export class PickCategoryComponent implements OnInit, OnDestroy {
     this.logger.trace(this, 'new pick category created', newPickCategory);
 
     if (newPickCategory) {
-<<<<<<< HEAD
-      const result = await this.sideSheet.open(PickCategoryCreateComponent, {
-        title: await this.translate.get('#LDS#Heading Create Sample').toPromise(),
-        headerColour: 'iris-blue',
-        panelClass: 'imx-sidesheet',
-        padding: '0',
-        width: '700px',
-        testId: 'pickCategory-details-sidesheet',
-        data: {
-          pickCategory: newPickCategory
-        }
-=======
 
       this.helpContextualService.setHelpContextId(HELP_CONTEXTUAL.AttestationPreselectionCreate)
       const result = await this.sideSheet.open(PickCategoryCreateComponent, {
@@ -208,7 +166,6 @@ export class PickCategoryComponent implements OnInit, OnDestroy {
           pickCategory: newPickCategory
         },
         headerComponent: HelpContextualComponent
->>>>>>> oned/v92
       }).afterClosed().toPromise();
 
       if (result?.create) {

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -111,15 +107,6 @@ export class FrozenJobsComponent implements OnInit {
     this.snackbarService.dismiss();
     const opts: EuiSidesheetConfig = {
       title: await this.translator.get('#LDS#Heading View Process Details').toPromise(),
-<<<<<<< HEAD
-      bodyColour: 'asher-gray',
-      headerColour: 'purple',
-      padding: '1em',
-      width: '60%',
-      icon: 'reboot',
-      data: {
-        UID_Tree: job.UID_Tree.value
-=======
       subTitle: job.JobChainName.Column.GetDisplayValue(),
       width: 'max(1000px, 80%)',
       icon: 'reboot',
@@ -127,7 +114,6 @@ export class FrozenJobsComponent implements OnInit {
       data: {
         UID_Tree: job.UID_Tree.value,
         load: (startId:string) => {return this.jobService.getTreeData(startId)}
->>>>>>> oned/v92
       },
     };
     this.sideSheet.open(SingleFrozenJobComponent, opts)

@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-<div class="imx-approvals-sidesheet">
-  <imx-requestinfo [request]="data.pwo">
-    <ng-container info>
-      <eui-alert *ngIf="data.itShopConfig.ApprovalThreshold !== 0 && hasPeerGroupAnalysis && data.pwo.PeerGroupFactor.value !== -1"
-        class="helper-alert" type="info" condensed="true" [colored]="true" [dismissable]="true">
-=======
 <div eui-sidesheet-content>
   <imx-requestinfo [request]="data.pwo" [isApproval]="true">
     <ng-container info>
@@ -16,7 +9,6 @@
         [colored]="true"
         [dismissable]="true"
       >
->>>>>>> oned/v92
         <span *ngIf="data.pwo.PeerGroupFactor.value >= data.itShopConfig.ApprovalThreshold" translate>
           #LDS#Based on the peer group analysis, it is recommended that you approve this request.
         </span>
@@ -26,75 +18,19 @@
       </eui-alert>
     </ng-container>
   </imx-requestinfo>
-<<<<<<< HEAD
-
-  <div class="imx-button-bar">
-    <!-- TODO #241926
-=======
 </div>
 <div eui-sidesheet-actions>
   <!-- TODO #241926
->>>>>>> oned/v92
     <button mat-stroked-button data-imx-identifier="approvals-sidesheet-button-accept-termsofuse"
       *ngIf="approvalsService?.selectedPwo.MustApproveTermsOfUse.Value" (click)="acceptTermsOfUse()">
       {{TermsOfUseCaption}}
     </button> -->
-<<<<<<< HEAD
-    <!-- TODO #ADO FD 250607
-    <button mat-stroked-button *ngIf="data?.pwo?.CanAskForHelp?.value"
-    data-imx-identifier="approvals-sidesheet-button-ask-for-help"
-    title="{{'#LDS#Send inquiry for this request to another identity' | translate}}" (click)="askForHelp()" >
-    {{'#LDS#Send inquiry' | translate}}
-  </button> -->
-    <!-- TODO later
-=======
   <!-- TODO later
->>>>>>> oned/v92
     <button mat-stroked-button *ngIf="data?.itShopConfig?.VI_ITShop_ApproverCanSeeShoppingCartOrder"
     data-imx-identifier="approvals-sidesheet-button-show-entire-request"
     title="{{'#LDS#Show entire request with which this product was requested' | translate}}" (click)="showEntireRequest()">
     {{'#LDS#Show entire request' | translate}}
   </button> -->
-<<<<<<< HEAD
-    <button mat-stroked-button data-imx-identifier="approvals-sidesheet-button-approve"
-      (click)="actionService.approve([data.pwo])"> {{ '#LDS#Approve' | translate }}</button>
-    <button mat-stroked-button data-imx-identifier="approvals-sidesheet-button-deny"
-      (click)="actionService.deny([data.pwo])"> {{ '#LDS#Deny' | translate }}</button>
-    <button mat-stroked-button *ngIf="data.pwo.canRerouteDecision(currentUserId)"
-      data-imx-identifier="approvals-sidesheet-button-reroute-decision"
-      title="{{'#LDS#Reroutes the approval for this request' | translate}}"
-      (click)="actionService.directDecisions([data.pwo], currentUserId)">
-      {{'#LDS#Reroute approval' | translate}}</button>
-    <button mat-stroked-button *ngIf="data.pwo.canAddApprover(currentUserId)"
-      data-imx-identifier="approvals-sidesheet-button-add-approver"
-      title="{{'#LDS#Adds an additional approver for this request' | translate}}"
-      (click)="actionService.addAdditionalApprovers([data.pwo])">
-      {{'#LDS#Add approver' | translate}}</button>
-    <button mat-stroked-button *ngIf="data.pwo.canDelegateDecision(currentUserId)"
-      data-imx-identifier="approvals-sidesheet-button-delegate-approval"
-      title="{{'#LDS#Delegates the approval for this request to another identity' | translate}}"
-      (click)="actionService.delegateDecisions([data.pwo])">
-      {{'#LDS#Delegate approval' | translate}}
-    </button>
-    <button mat-stroked-button *ngIf="canDenyApproval()" data-imx-identifier="approvals-sidesheet-button-deny-approval"
-      title="{{'#LDS#Rejects the approval for this request and sends it back to the original approver' | translate}}"
-      (click)="actionService.denyDecisions([data.pwo])">
-      {{'#LDS#Reject approval' | translate}}
-    </button>
-    <button mat-stroked-button *ngIf="data.pwo.canWithdrawAdditionalApprover(currentUserId)"
-      data-imx-identifier="approvals-sidesheet-button-withdraw--additional-approver"
-      title="{{ '#LDS#Withdraws the additional approver for this request' | translate }}"
-      (click)="actionService.withDrawApprover([data.pwo])">
-      {{ '#LDS#Withdraw additional approver' | translate }}
-    </button>
-
-  <button mat-stroked-button *ngIf="data.pwo.canEscalateDecision"
-    data-imx-identifier="approvals-sidesheet-button-escalate-approval"
-    title="{{ '#LDS#Escalates the approval for this request' | translate }}" (click)="actionService.escalateDecisions([data.pwo])">
-    {{'#LDS#Escalate approval' | translate}}
-  </button>
-    <!-- TODO later
-=======
 
   <ng-container *ngIf="!data.fromInquiry">
     <button mat-stroked-button data-imx-identifier="approvals-sidesheet-button-approve" (click)="actionService.approve([data.pwo])">{{ '#LDS#Approve' | translate }}</button>
@@ -196,14 +132,9 @@
     {{ '#LDS#Reply to inquiry' | translate }}
   </button>
   <!-- TODO later
->>>>>>> oned/v92
     <button mat-stroked-button
     data-imx-identifier="approvals-sidesheet-button-change-priority"
     title="{{'#LDS#Changes the priority for this request' | translate}}" (click)="modifyPriority()">
     {{'#LDS#Change priority' | translate}}
   </button> -->
-<<<<<<< HEAD
-  </div>
-=======
->>>>>>> oned/v92
 </div>

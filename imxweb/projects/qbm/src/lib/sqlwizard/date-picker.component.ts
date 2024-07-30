@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,50 +25,14 @@
  */
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-<<<<<<< HEAD
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { DateDiffUnit } from 'imx-qbm-dbts';
-import { SqlNodeView } from './SqlNodeView';
-import { DateDiffOption, SqlWizardService } from './sqlwizard.service';
-=======
 import { DateDiffUnit } from 'imx-qbm-dbts';
 import { SqlNodeView } from './SqlNodeView';
 import { DateDiffOption, SqlWizardService } from './sqlwizard.service';
 import { FormControl, FormGroup, ValidatorFn } from '@angular/forms';
->>>>>>> oned/v92
 
 @Component({
   templateUrl: './date-picker.component.html',
   styleUrls: ['./sqlwizard.scss'],
-<<<<<<< HEAD
-  selector: 'imx-sqlwizard-datepicker'
-})
-export class DatePickerComponent implements OnInit {
-  public absoluteError = false;
-
-
-  get diffUnit(): DateDiffUnit {
-    return this.diffValue.TimeUnit;
-  }
-
-  set diffUnit(d: DateDiffUnit) {
-    this.diffValue.TimeUnit = d;
-  }
-  get relative(): boolean {
-    return this._relative;
-  }
-  set relative(val: boolean) {
-    this._relative = val;
-    this.expr.Data.Value = val ? this.diffValue : null;
-  }
-
-  @Input() public expr: SqlNodeView;
-  @Output() changes = new EventEmitter<any>();
-
-  public diffValue: {
-    Difference?: number,
-    TimeUnit?: DateDiffUnit
-=======
   selector: 'imx-sqlwizard-datepicker',
 })
 export class DatePickerComponent implements OnInit {
@@ -82,15 +42,10 @@ export class DatePickerComponent implements OnInit {
   public diffValue: {
     Difference?: number;
     TimeUnit?: DateDiffUnit;
->>>>>>> oned/v92
   } = {};
 
   public diffUnits: DateDiffOption[];
 
-<<<<<<< HEAD
-  private _relative = false;
-
-=======
   private datepickerValidator: ValidatorFn = (form: FormGroup) => {
     if (form.get('relative').value) {
       if (
@@ -113,29 +68,11 @@ export class DatePickerComponent implements OnInit {
     },
     [this.datepickerValidator]
   );
->>>>>>> oned/v92
   constructor(svc: SqlWizardService) {
     this.diffUnits = svc.getDateDiffUnits();
   }
 
   public ngOnInit(): void {
-<<<<<<< HEAD
-    if (this.expr.Data.Value && this.expr.Data.Value.TimeUnit) {
-      this._relative = true;
-      this.diffValue = this.expr.Data.Value;
-    }
-  }
-
-  public emitChanges(): void {
-    this.changes.emit();
-  }
-
-  public onAbsoluteChange(date: MatDatepickerInputEvent<Date>): void {
-    this.absoluteError = !date.value ? true : false;
-    if (!this.absoluteError) {
-      this.emitChanges();
-    }
-=======
     if (this.expr.Data.Value && this.expr.Data.Value.Difference) {
       this.form.controls.relative.setValue(true);
       this.form.controls.difference.setValue(this.expr.Data.Value.Difference);
@@ -166,6 +103,5 @@ export class DatePickerComponent implements OnInit {
 
   public get isRelative(): boolean {
     return this.form.controls.relative.value;
->>>>>>> oned/v92
   }
 }

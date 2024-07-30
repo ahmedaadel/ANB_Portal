@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -41,10 +37,7 @@ import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
 
 import { DataTilesComponent } from './data-tiles.component';
 import { DataTileComponent } from './data-tile.component';
-<<<<<<< HEAD
-=======
 import { BusyIndicatorModule } from '../busy-indicator/busy-indicator.module';
->>>>>>> oned/v92
 
 @NgModule({
   declarations: [
@@ -60,12 +53,8 @@ import { BusyIndicatorModule } from '../busy-indicator/busy-indicator.module';
     MatButtonModule,
     MatMenuModule,
     MatBadgeModule,
-<<<<<<< HEAD
-    TranslateModule
-=======
     TranslateModule,
     BusyIndicatorModule
->>>>>>> oned/v92
   ],
   exports: [ DataTilesComponent ],
 })

@@ -88,39 +88,26 @@ export abstract class EditorBase<T = any> implements CdrEditor, OnDestroy {
 
   public constructor(protected readonly logger: ClassloggerService, protected readonly errorHandler?: ErrorHandler) {}
 
-<<<<<<< HEAD
-=======
   /**
    * Unsubscribes all events, as soon as the component is destroyed.
    */
->>>>>>> oned/v92
   public ngOnDestroy(): void {
     this.subscribers.forEach((s) => s.unsubscribe());
   }
 
-<<<<<<< HEAD
-=======
   /**
    * If an error occured, it returns its message
    */
->>>>>>> oned/v92
   public get validationErrorMessage(): string {
     if (this.control.errors?.['generalError']) {
       return this.lastError.toString();
     }
-<<<<<<< HEAD
-  }
-
-  /**
-   * Binds a column dependent reference to the component
-=======
     return undefined;
   }
 
   /**
    * Binds a column dependent reference to the component, by setting the control value and subscribing to the events,
    * the CDR or the ColumnContainer emits 
->>>>>>> oned/v92
    * @param cdref a column dependent reference
    */
   public bind(cdref: ColumnDependentReference): void {
@@ -131,8 +118,6 @@ export abstract class EditorBase<T = any> implements CdrEditor, OnDestroy {
 
       this.subscribers.push(this.control.valueChanges.subscribe(async (value) => this.writeValue(value)));
 
-<<<<<<< HEAD
-=======
       if (cdref.minlengthSubject) {
         this.subscribers.push(
           cdref.minlengthSubject.subscribe((elem) => {
@@ -141,7 +126,6 @@ export abstract class EditorBase<T = any> implements CdrEditor, OnDestroy {
         );
       }
 
->>>>>>> oned/v92
       // bind to entity change event
       this.subscribers.push(
         this.columnContainer.subscribe(() => {
@@ -162,8 +146,6 @@ export abstract class EditorBase<T = any> implements CdrEditor, OnDestroy {
         })
       );
 
-<<<<<<< HEAD
-=======
       this.subscribers.push(
         this.updateRequested.subscribe(() => {
           setTimeout(() => {
@@ -177,20 +159,12 @@ export abstract class EditorBase<T = any> implements CdrEditor, OnDestroy {
         })
       );
 
->>>>>>> oned/v92
       this.logger.trace(this, 'Control initialized');
     } else {
       this.logger.error(this, 'The Column Dependent Reference is undefined');
     }
   }
 
-<<<<<<< HEAD
-  private setControlValue(): void {
-    this.control.setValue(this.columnContainer.value, { emitEvent: false });
-    if (this.columnContainer.isValueRequired && this.columnContainer.canEdit) {
-      this.logger.debug(this, `A value for column "${this.columnContainer.name}" is required`);
-      this.control.setValidators(Validators.required);
-=======
   /**
    * Updates the value of the form control as well as its validators.
    */
@@ -205,16 +179,11 @@ export abstract class EditorBase<T = any> implements CdrEditor, OnDestroy {
       this.control.setValidators(Validators.required);
     } else {
       this.control.setValidators(null);
->>>>>>> oned/v92
     }
   }
 
   /**
-<<<<<<< HEAD
-   * updates the value for the CDR
-=======
    * Updates the value for the CDR and writes them back to the column.
->>>>>>> oned/v92
    * @param value the new value
    */
   private async writeValue(value: any): Promise<void> {
@@ -241,11 +210,7 @@ export abstract class EditorBase<T = any> implements CdrEditor, OnDestroy {
     } finally {
       this.isBusy = false;
       this.isWriting = false;
-<<<<<<< HEAD
-      if (this.control.value !== this.columnContainer.value) {
-=======
       if (!this.control.hasError('generalError') && this.control.value !== this.columnContainer.value) {
->>>>>>> oned/v92
         this.control.setValue(this.columnContainer.value, { emitEvent: false });
         this.logger.debug(this, 'form control value is set to', this.control.value);
       }

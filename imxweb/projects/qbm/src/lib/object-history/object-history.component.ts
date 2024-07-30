@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,19 +24,6 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { OverlayRef } from '@angular/cdk/overlay';
-import { EuiLoadingService } from '@elemental-ui/core';
-import { TranslateService } from '@ngx-translate/core';
-
-import { ObjectHistoryEvent } from 'imx-qbm-dbts';
-import { ObjectHistoryService, ObjectHistoryParameters } from './object-history.service';
-
-import { DateAdapter } from '@angular/material/core';
-import moment from 'moment-timezone';
-=======
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -56,7 +39,6 @@ import { DateAdapter } from '@angular/material/core';
 import moment from 'moment-timezone';
 import { Subscription } from 'rxjs';
 import { ExtendedObjectHistoryEvent, TimelineDateTimeFilter } from '../timeline/timeline';
->>>>>>> oned/v92
 
 class ViewMode {
   public value: string;
@@ -68,14 +50,6 @@ class ViewMode {
 @Component({
   selector: 'imx-object-history',
   templateUrl: './object-history.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./object-history.component.scss']
-})
-export class ObjectHistoryComponent implements OnInit {
-  public get viewModeTimeline(): string {
-    return 'Timeline';
-  }
-=======
   styleUrls: ['./object-history.component.scss'],
 })
 export class ObjectHistoryComponent implements OnInit, OnDestroy {
@@ -84,31 +58,10 @@ export class ObjectHistoryComponent implements OnInit, OnDestroy {
   @Input() public objectUid: string;
   @Input() public showTitle = true;
 
->>>>>>> oned/v92
   public get viewModeGrid(): string {
     return 'Grid';
   }
 
-<<<<<<< HEAD
-  public viewModeValue: string;
-  public historyData: ObjectHistoryEvent[] = [];
-  public viewModes: ViewMode[] = [];
-
-  @Input() objectType: string;
-  @Input() objectUid: string;
-  @Input() viewMode: 'Timeline' | 'Grid';
-  @Input() showTitle: boolean = true;
-
-  private parameters: ObjectHistoryParameters;
-
-  public get effectiveViewMode(): string {
-    // the viewMode passed as an input takes precedence
-    if (this.viewMode) {
-      return this.viewMode;
-    }
-    return this.viewModeValue;
-  }
-=======
   public get viewModeStateOverview(): string {
     return 'State Overview';
   }
@@ -151,7 +104,6 @@ export class ObjectHistoryComponent implements OnInit, OnDestroy {
   public momentToday = moment();
 
   private subscriptions: Subscription[] = [];
->>>>>>> oned/v92
 
   constructor(
     private translate: TranslateService,
@@ -159,23 +111,6 @@ export class ObjectHistoryComponent implements OnInit, OnDestroy {
     private busyService: EuiLoadingService,
     private historyService: ObjectHistoryService,
     private dateAdapter: DateAdapter<any>
-<<<<<<< HEAD
-  ) { }
-
-  public async ngOnInit(): Promise<void> {
-
-    this.addViewMode(this.viewModeTimeline, '#LDS#Timeline');
-    this.addViewMode(this.viewModeGrid, '#LDS#Table');
-    this.viewModeValue = this.viewModeTimeline;
-
-    this.parameters = {
-      table: this.objectType || this.activatedRoute.snapshot.paramMap.get('table'),
-      uid: this.objectUid || this.activatedRoute.snapshot.paramMap.get('uid')
-    };
-
-    await this.refresh();
-
-=======
   ) {}
 
   public async ngOnInit(): Promise<void> {
@@ -193,7 +128,6 @@ export class ObjectHistoryComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
->>>>>>> oned/v92
   }
 
   public setLocale(locale: string): void {
@@ -201,15 +135,6 @@ export class ObjectHistoryComponent implements OnInit, OnDestroy {
     this.dateAdapter.setLocale(locale);
   }
 
-<<<<<<< HEAD
-  public async refresh(): Promise<void> {
-    let overlayRef: OverlayRef;
-    setTimeout(() => overlayRef = this.busyService.show());
-    try {
-      this.historyData = (await this.historyService.get(this.parameters));
-    } catch {
-      this.historyData = [];
-=======
   public setTimeline(): void {
     this.subscriptions.push(
       this.timelineFromDateFormControl.valueChanges.subscribe((date) => {
@@ -282,7 +207,6 @@ export class ObjectHistoryComponent implements OnInit, OnDestroy {
       this.historyData = [];
       this.stateOverviewItems = [];
       this.historyComparisonData = [];
->>>>>>> oned/v92
     } finally {
       setTimeout(() => this.busyService.hide(overlayRef));
     }
@@ -294,8 +218,6 @@ export class ObjectHistoryComponent implements OnInit, OnDestroy {
     viewMode.display = await this.translate.get(displayKey).toPromise();
     this.viewModes.push(viewMode);
   }
-<<<<<<< HEAD
-=======
 
   private resetTimelineForm(): void {
     this.timelineFromDateFormControl.reset();
@@ -326,5 +248,4 @@ export class ObjectHistoryComponent implements OnInit, OnDestroy {
       return fromValidation && toValidation;
     });
   }
->>>>>>> oned/v92
 }

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,16 +26,10 @@
 
 import { Injectable } from '@angular/core';
 import { Router, Route } from '@angular/router';
-<<<<<<< HEAD
-
-import { ExtService, MenuItem, MenuService } from 'qbm';
-import { isExceptionApprover } from './admin/permissions-helper';
-=======
 import { NotificationRegistryService } from 'qer';
 
 import { ExtService, MenuItem, MenuService } from 'qbm';
 import { isQERPolicyAdmin, isQERPolicyOwner } from './admin/permissions-helper';
->>>>>>> oned/v92
 import { DashboardPluginComponent } from './dashboard-plugin/dashboard-plugin.component';
 
 @Injectable({ providedIn: 'root' })
@@ -47,10 +37,7 @@ export class InitService {
   constructor(
     private readonly extService: ExtService,
     private readonly menuService: MenuService,
-<<<<<<< HEAD
-=======
     private readonly notificationService: NotificationRegistryService,
->>>>>>> oned/v92
     private readonly router: Router
   ) {
     this.setupMenu();
@@ -60,8 +47,6 @@ export class InitService {
     this.addRoutes(routes);
 
     this.extService.register('Dashboard-SmallTiles', { instance: DashboardPluginComponent });
-<<<<<<< HEAD
-=======
 
     // Register handler for policy notifications
     this.notificationService.registerRedirectNotificationHandler({
@@ -69,7 +54,6 @@ export class InitService {
       message: '#LDS#There are new policy violations for which you can grant or deny exceptions.',
       route: 'compliance/policyviolations/approve'
     });
->>>>>>> oned/v92
   }
 
   private addRoutes(routes: Route[]): void {
@@ -81,13 +65,8 @@ export class InitService {
   }
 
   private setupMenu(): void {
-<<<<<<< HEAD
-    this.menuService.addMenuFactories((preProps: string[], groups: string[]) => {
-      if (!preProps.includes('COMPLIANCE') || !isExceptionApprover(groups)) {
-=======
     this.menuService.addMenuFactories((preProps: string[], features: string[]) => {
       if (!preProps.includes('COMPLIANCE') || (!isQERPolicyAdmin(features) && !isQERPolicyOwner(features))) {
->>>>>>> oned/v92
         return null;
       }
 
@@ -97,15 +76,12 @@ export class InitService {
         sorting: '25',
         items: [
           {
-<<<<<<< HEAD
-=======
             id: 'POL_Policies',
             route: 'compliance/policies',
             title: '#LDS#Menu Entry Company policies',
             sorting: '20-10',
           },
           {
->>>>>>> oned/v92
             id: 'POL_policy-violations',
             route: 'compliance/policyviolations',
             title: '#LDS#Menu Entry Policy violations',

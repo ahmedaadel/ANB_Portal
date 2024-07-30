@@ -1,8 +1,4 @@
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
 :host {
   display: flex;
   flex-direction: column;
@@ -10,32 +6,16 @@
   height: 100%;
 
   .mat-tab-group {
-<<<<<<< HEAD
-    padding-top: 20px;
-
-    ::ng-deep .mat-tab-header {
-      background-color: transparent;
-      border-bottom: 0px;
-    }
-
-    ::ng-deep .mat-tab-label {
-      background-color: $color-gray-0;
-=======
     width: 100%;
 
     ::ng-deep .mat-tab-header {
       margin: 0 20px;
->>>>>>> oned/v92
     }
   }
 
   .imx-dirty-indicator {
     margin-right: 10px;
-<<<<<<< HEAD
-    color: $color-orange-60
-=======
     color: $color-orange-60;
->>>>>>> oned/v92
   }
 }
 
@@ -43,10 +23,6 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-<<<<<<< HEAD
-}
-
-=======
 
   .imx-mat-tab-content-body {
     height: 100%;
@@ -92,4 +68,3 @@
     }
   }
 }
->>>>>>> oned/v92

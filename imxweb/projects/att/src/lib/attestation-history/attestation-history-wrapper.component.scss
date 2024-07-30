@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 @import '../../../../../shared/scss/common-table.scss';
 
->>>>>>> oned/v92
 :host {
   display: flex;
   flex-direction: column;
@@ -10,17 +7,6 @@
   height: inherit;
 }
 
-<<<<<<< HEAD
-.imx-button-bar {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
-
-  > button {
-    margin-left: 5px;
-  }
-}
-=======
 .imx-history-card {
  @include imx-flex-fill-control-hidden-overflow();
 
@@ -36,4 +22,3 @@
 .imx-button-bar {
   @include imx-button-bar();
 }
->>>>>>> oned/v92

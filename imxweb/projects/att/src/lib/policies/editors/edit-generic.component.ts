@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -47,34 +43,21 @@ export class EditGenericComponent implements OnChanges {
 
   @Output() public valueChanged = new EventEmitter<FilterChangedArgument>();
 
-<<<<<<< HEAD
-  constructor(private readonly logger: ClassloggerService, private readonly metaData: MetadataService) {}
-
-  public async ngOnChanges(): Promise<void>{
-=======
   constructor(
     private readonly logger: ClassloggerService,
     private readonly metaData: MetadataService,
   ) {}
 
   public async ngOnChanges(): Promise<void> {
->>>>>>> oned/v92
     const tableName = this.filterElementModel.getTableName();
     if (tableName == null) {
       this.cdr = new BaseCdr(this.filterElementModel.columnForFilter);
     } else {
-<<<<<<< HEAD
-      await this.metaData.update([this.filterElementModel.getTableName()]);
-      this.cdr = new BaseCdr(this.filterElementModel.columnForFilter,
-        this.metaData.tables[this.filterElementModel.getTableName()]
-          .Columns[this.filterElementModel.getColumnName()].Display);
-=======
       await this.metaData.updateNonExisting([this.filterElementModel.getTableName()]);
       this.cdr = new BaseCdr(
         this.filterElementModel.columnForFilter,
         this.metaData.tables[this.filterElementModel.getTableName()].Columns[this.filterElementModel.getColumnName()].Display,
       );
->>>>>>> oned/v92
     }
   }
 

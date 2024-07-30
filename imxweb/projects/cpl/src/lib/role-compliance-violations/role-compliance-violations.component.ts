@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -37,16 +33,9 @@ import { RoleComplianceViolationsService } from './role-compliance-violations.se
 
 @Component({
   templateUrl: './role-compliance-violations.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./role-compliance-violations.component.scss']
-})
-export class RoleComplianceViolationsComponent implements OnInit {
-
-=======
   styleUrls: ['./role-compliance-violations.component.scss'],
 })
 export class RoleComplianceViolationsComponent implements OnInit {
->>>>>>> oned/v92
   public tablename: string;
   public uidRole: string;
   public dstSettings: DataSourceToolbarSettings;
@@ -60,44 +49,11 @@ export class RoleComplianceViolationsComponent implements OnInit {
     dataProvider: DynamicTabDataProviderDirective,
     private readonly entityService: RoleComplianceViolationsWrapperService,
     private readonly roleComplianceViolationService: RoleComplianceViolationsService,
-<<<<<<< HEAD
-    private readonly metaDataService: MetadataService
-=======
     private readonly metaDataService: MetadataService,
->>>>>>> oned/v92
   ) {
     this.tablename = dataProvider.data.tablename;
     this.uidRole = dataProvider.data.entity.GetKeys()[0];
     this.entitySchema = this.entityService.roleComplianceEntitySchema;
-<<<<<<< HEAD
-    this.displayedColumns = [
-      this.entitySchema.Columns.RuleName,
-      this.entitySchema.Columns.ObjectDisplay
-    ];
-
-    // tslint:disable:max-line-length
-    switch ((this.tablename ?? '').toLowerCase()) {
-      case 'aerole' :
-        this.keyDescription = '#LDS#Here you can get an overview of all entitlements assigned to this application role that may violate a compliance rule.';
-        break;
-      case 'department' :
-        this.keyDescription = '#LDS#Here you can get an overview of all entitlements assigned to this department that may violate a compliance rule.';
-        break;
-      case 'locality' :
-        this.keyDescription = '#LDS#Here you can get an overview of all entitlements assigned to this location that may violate a compliance rule.';
-        break;
-      case 'profitcenter' :
-        this.keyDescription = '#LDS#Here you can get an overview of all entitlements assigned to this cost center that may violate a compliance rule.';
-        break;
-      case 'eset' :
-        this.keyDescription = '#LDS#Here you can get an overview of all entitlements assigned to this system role that may violate a compliance rule.';
-        break;
-      case 'org' :
-        this.keyDescription = '#LDS#Here you can get an overview of all entitlements assigned to this business role that may violate a compliance rule.';
-        break;
-      default :
-        this.keyDescription = '#LDS#Here you can get an overview of all entitlements assigned to this object that may violate a compliance rule.';
-=======
     this.displayedColumns = [this.entitySchema.Columns.RuleName, this.entitySchema.Columns.ObjectDisplay];
 
     // tslint:disable:max-line-length
@@ -129,18 +85,13 @@ export class RoleComplianceViolationsComponent implements OnInit {
       default:
         this.keyDescription =
           '#LDS#Here you can get an overview of all entitlements assigned to this object that may violate a compliance rule.';
->>>>>>> oned/v92
         break;
     }
     // tslint:enable:max-line-length
   }
 
   public async ngOnInit(): Promise<void> {
-<<<<<<< HEAD
-    await this.metaDataService.update([this.tablename]);
-=======
     await this.metaDataService.updateNonExisting([this.tablename]);
->>>>>>> oned/v92
     await this.getData();
   }
 
@@ -152,11 +103,7 @@ export class RoleComplianceViolationsComponent implements OnInit {
         displayedColumns: this.displayedColumns,
         dataSource: this.entityService.build(data.Violations),
         entitySchema: this.entityService.roleComplianceEntitySchema,
-<<<<<<< HEAD
-        navigationState: {}
-=======
         navigationState: {},
->>>>>>> oned/v92
       };
     } finally {
       this.roleComplianceViolationService.handleCloseLoader();

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,11 +26,7 @@
 
 import { Injectable } from '@angular/core';
 
-<<<<<<< HEAD
-import { TypedEntityCollectionData, EntitySchema, CollectionLoadParameters } from 'imx-qbm-dbts';
-=======
 import { TypedEntityCollectionData, EntitySchema, CollectionLoadParameters, TypedEntity } from 'imx-qbm-dbts';
->>>>>>> oned/v92
 import { imx_SessionService } from 'qbm';
 import { OpsupportQueueFrozenjobs } from 'imx-api-qbm';
 

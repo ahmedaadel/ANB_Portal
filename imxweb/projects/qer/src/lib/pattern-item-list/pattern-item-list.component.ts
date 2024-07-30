@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -43,10 +39,7 @@ import {
   ValType,
 } from 'imx-qbm-dbts';
 import {
-<<<<<<< HEAD
-=======
   ClientPropertyForTableColumns,
->>>>>>> oned/v92
   DataSourceToolbarComponent,
   DataSourceToolbarSettings,
   DataTileBadge,
@@ -77,26 +70,11 @@ export class PatternItemListComponent implements AfterViewInit, OnChanges, OnDes
   public filterType: PatternItemListFilterType = PatternItemListFilterType.All;
   public readonly entitySchema: EntitySchema;
   public DisplayColumns = DisplayColumns;
-<<<<<<< HEAD
-  public displayedColumns: IClientProperty[];
-=======
   public displayedColumns: ClientPropertyForTableColumns[];
->>>>>>> oned/v92
 
   public filterTypes = [
     {
       type: PatternItemListFilterType.All,
-<<<<<<< HEAD
-      display: '#LDS#All request templates'
-    },
-    {
-      type: PatternItemListFilterType.Public,
-      display: '#LDS#Public request templates'
-    },
-    {
-      type: PatternItemListFilterType.Private,
-      display: '#LDS#Private request templates'
-=======
       display: '#LDS#All product bundles'
     },
     {
@@ -106,18 +84,12 @@ export class PatternItemListComponent implements AfterViewInit, OnChanges, OnDes
     {
       type: PatternItemListFilterType.Private,
       display: '#LDS#Private product bundles'
->>>>>>> oned/v92
     }
   ];
 
   public badgeContent = {
-<<<<<<< HEAD
-    isPublic: '#LDS#Public request template',
-    isPrivate: '#LDS#Private request template',
-=======
     isPublic: '#LDS#Public product bundle',
     isPrivate: '#LDS#Private product bundle',
->>>>>>> oned/v92
   };
   public readonly status = {
     getBadges: (prod: PortalItshopPatternRequestable): DataTileBadge[] => {
@@ -156,20 +128,13 @@ export class PatternItemListComponent implements AfterViewInit, OnChanges, OnDes
       this.entitySchema.Columns[DisplayColumns.DISPLAY_PROPERTYNAME],
       {
         ColumnName: 'badges',
-<<<<<<< HEAD
-        Type: ValType.String
-=======
         Type: ValType.String,
         untranslatedDisplay: '#LDS#Type'
->>>>>>> oned/v92
       },
       {
         ColumnName: 'actions',
         Type: ValType.String,
-<<<<<<< HEAD
-=======
         untranslatedDisplay: '#LDS#Actions'
->>>>>>> oned/v92
       },
     ];
   }
@@ -293,14 +258,10 @@ export class PatternItemListComponent implements AfterViewInit, OnChanges, OnDes
 
       try {
         const items = await this.patternItemService.getServiceItems(patternRequestable ?? item.typedEntity as PortalItshopPatternRequestable);
-<<<<<<< HEAD
-        this.handleAction.emit({ serviceItems: items, name: item.name });
-=======
         this.handleAction.emit({ 
           serviceItems: items, 
           patternItem: patternRequestable ?? item.typedEntity as PortalItshopPatternRequestable,
           name: item.name });
->>>>>>> oned/v92
       } finally {
         setTimeout(() => {
           this.busyService.hide(overlayRef);

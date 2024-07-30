@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,22 +26,13 @@
 
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-<<<<<<< HEAD
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { EuiDownloadOptions, EuiLoadingService, EuiSidesheetRef, EuiSidesheetService, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
-=======
 import { UntypedFormGroup, UntypedFormBuilder, UntypedFormArray } from '@angular/forms';
 import { EuiDownloadOptions, EuiLoadingService, EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
->>>>>>> oned/v92
 
 import {
   ColumnDependentReference,
   BaseCdr, ClassloggerService,
   SystemInfoService,
-<<<<<<< HEAD
-  TabControlHelper,
-=======
->>>>>>> oned/v92
   SnackBarService,
   ElementalUiConfigService,
   ConfirmationService,
@@ -79,13 +66,8 @@ export class GroupSidesheetComponent implements OnInit {
     return this.sidesheetData.isAdmin;
   }
 
-<<<<<<< HEAD
-  public readonly serviceItemFormGroup: FormGroup;
-  public readonly detailsFormGroup: FormGroup;
-=======
   public readonly serviceItemFormGroup: UntypedFormGroup;
   public readonly detailsFormGroup: UntypedFormGroup;
->>>>>>> oned/v92
   public cdrList: ColumnDependentReference[] = [];
   public isRequestable: boolean;
   public parameters: { objecttable: string; objectuid: string; };
@@ -102,20 +84,12 @@ export class GroupSidesheetComponent implements OnInit {
   public dynamicTabs: TabItem[] = [];
 
   constructor(
-<<<<<<< HEAD
-    formBuilder: FormBuilder,
-=======
     formBuilder: UntypedFormBuilder,
->>>>>>> oned/v92
     public groups: GroupsService,
     @Inject(EUI_SIDESHEET_DATA) private readonly sidesheetData: GroupSidesheetData,
     private readonly logger: ClassloggerService,
     private readonly busyService: EuiLoadingService,
     private readonly snackbar: SnackBarService,
-<<<<<<< HEAD
-    private readonly sidesheet: EuiSidesheetService,
-=======
->>>>>>> oned/v92
     private readonly elementalUiConfigService: ElementalUiConfigService,
     private readonly systemInfoService: SystemInfoService,
     private readonly reports: GroupsReportsService,
@@ -136,13 +110,8 @@ export class GroupSidesheetComponent implements OnInit {
       }
     });
 
-<<<<<<< HEAD
-    this.detailsFormGroup = new FormGroup({ formArray: formBuilder.array([]) });
-    this.serviceItemFormGroup = new FormGroup({ formArray: formBuilder.array([]) });
-=======
     this.detailsFormGroup = new UntypedFormGroup({ formArray: formBuilder.array([]) });
     this.serviceItemFormGroup = new UntypedFormGroup({ formArray: formBuilder.array([]) });
->>>>>>> oned/v92
 
     this.isRequestable = sidesheetData.groupServiceItem != null && !sidesheetData.groupServiceItem.IsInActive.value;
 
@@ -183,18 +152,6 @@ export class GroupSidesheetComponent implements OnInit {
     return isAad;
   }
 
-<<<<<<< HEAD
-  get formArray(): FormArray {
-    return this.detailsFormGroup.get('formArray') as FormArray;
-  }
-
-  get siFormArray(): FormArray {
-    return this.serviceItemFormGroup.get('formArray') as FormArray;
-  }
-
-  public cancel(): void {
-    this.sidesheet.close();
-=======
   get formArray(): UntypedFormArray {
     return this.detailsFormGroup.get('formArray') as UntypedFormArray;
   }
@@ -205,7 +162,6 @@ export class GroupSidesheetComponent implements OnInit {
 
   public cancel(): void {
     this.sidesheetRef.close();
->>>>>>> oned/v92
   }
 
   public async createServiceItem(): Promise<void> {
@@ -260,16 +216,6 @@ export class GroupSidesheetComponent implements OnInit {
   }
 
   private async setup(): Promise<void> {
-<<<<<<< HEAD
-    /**
-     * Resolve an issue where the mat-tab navigation arrows could appear on first load
-     */
-    setTimeout(() => {
-      TabControlHelper.triggerResizeEvent();
-    });
-
-=======
->>>>>>> oned/v92
     let overlayRef: OverlayRef;
     setTimeout(() => overlayRef = this.busyService.show());
     try {
@@ -293,11 +239,7 @@ export class GroupSidesheetComponent implements OnInit {
 
 
   private async saveChanges(
-<<<<<<< HEAD
-    formGroup: FormGroup,
-=======
     formGroup: UntypedFormGroup,
->>>>>>> oned/v92
     objectToSave: TypedEntity,
     confirmationText: string,
     reloadServiceItem: boolean = false

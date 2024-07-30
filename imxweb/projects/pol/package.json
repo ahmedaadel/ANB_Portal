@@ -1,10 +1,6 @@
 {
   "name": "pol",
-<<<<<<< HEAD
-  "version": "9.0.0",
-=======
   "version": "9.2.1",
->>>>>>> oned/v92
   "private": true,
   "bundledDependencies": [
     "imx-api-pol"

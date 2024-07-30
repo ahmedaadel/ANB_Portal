@@ -1,19 +1,11 @@
-<<<<<<< HEAD
-@import "@elemental-ui/core/src/styles/_palette.scss";
-=======
 @import "@elemental-ui/core/src/styles/_eui_palette.scss";
->>>>>>> oned/v92
 
 :host {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   height: 100%;
-<<<<<<< HEAD
-  background-color: $asher-gray;
-=======
   background-color: $color-gray-2;
->>>>>>> oned/v92
 
   imx-data-table {
     flex-grow: 2;
@@ -23,10 +15,7 @@
 .eui-sidesheet-content {
   display: flex;
   flex-direction: column;
-<<<<<<< HEAD
-=======
   flex: 1 1 auto;
->>>>>>> oned/v92
 }
 
 h2 {
@@ -43,11 +32,7 @@ h2 {
   flex-direction: column;
   margin: 0px;
   overflow-y: auto;
-<<<<<<< HEAD
-  max-height: calc(100% - 140px);
-=======
   flex: 1 1 auto;
->>>>>>> oned/v92
 }
 :host ::ng-deep imx-data-table .mat-row .mat-cell {
   padding: 0 10px;
@@ -65,11 +50,7 @@ h2 {
   margin-bottom: 0;
   padding: 16px 32px;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
-<<<<<<< HEAD
-  background-color: $white;
-=======
   background-color: $color-gray-0;
->>>>>>> oned/v92
 
   button {
     margin-left: 10px;
@@ -117,11 +98,7 @@ imx-data-table {
     }
     div[subtitle] {
       font-size: smaller;
-<<<<<<< HEAD
-      color: $black-9;
-=======
       color: $color-gray-40;
->>>>>>> oned/v92
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -133,15 +110,10 @@ imx-data-table {
   font-size: large;
 }
 
-<<<<<<< HEAD
-.mat-stroked-button {
-  align-self: flex-start;
-=======
 .eui-sidesheet-actions {
   .mat-stroked-button {
     align-self: flex-start;
   }
->>>>>>> oned/v92
 }
 
 .mat-toolbar {
@@ -159,11 +131,7 @@ imx-data-table {
 }
 
 .mat-toolbar {
-<<<<<<< HEAD
-  color: $black;
-=======
   color: $color-gray-100;
->>>>>>> oned/v92
 }
 
 .imx-toolbar-spacer {
@@ -185,8 +153,6 @@ imx-data-table {
     font-weight: 600;
   }
 }
-<<<<<<< HEAD
-=======
 
 .imx-sample-data-info {
   text-align: center;
@@ -254,4 +220,3 @@ imx-data-table {
     }
   }
 }
->>>>>>> oned/v92

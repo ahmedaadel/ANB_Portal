@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,22 +24,6 @@
  *
  */
 
-<<<<<<< HEAD
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
-import { AbstractControl, FormGroup } from '@angular/forms';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
-
-import { ColumnDependentReference, DataSourceToolbarSettings, MetadataService, SnackBarService } from 'qbm';
-import { RoleCompareItem, RoleCompareItems, UiActionData } from 'imx-api-qer';
-import { DbObjectKey, IClientProperty, ValType } from 'imx-qbm-dbts';
-import { CompareService } from './compare.service';
-import { RoleService } from '../role.service';
-import { DataManagementService } from '../data-management.service';
-import { CompareItemBuilder } from './compare-item-builder';
-import { CompareItem } from './compare-item';
-
-=======
 import { EuiLoadingService, EuiSidesheetRef } from '@elemental-ui/core';
 
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
@@ -61,7 +41,6 @@ import { CompareItem } from './compare-item';
 import { DataManagementService } from '../data-management.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
->>>>>>> oned/v92
 /** Compares two roles, with the option of merging the two roles into one. */
 @Component({
   templateUrl: './compare.component.html',
@@ -72,18 +51,11 @@ export class CompareComponent implements OnInit {
   public roleType: string;
   public uidRole: string;
 
-<<<<<<< HEAD
-  public compareItems: RoleCompareItems | null = null;
-  public mergeActions: UiActionData[] | undefined = undefined;
-  public mergePreventingReason: string | null;
-  public uidActions: string[] | undefined = undefined;
-=======
   public compareItems: RoleCompareItems;
   public mergeActions: UiActionData[] = [];
 
   public mergePreventingReason: string;
   public uidActions: string[] = undefined;
->>>>>>> oned/v92
 
   public cdrList: ColumnDependentReference[] = [];
 
@@ -95,11 +67,7 @@ export class CompareComponent implements OnInit {
     { ColumnName: 'other', Type: ValType.String },
   ];
 
-<<<<<<< HEAD
-  public readonly roleForm = new FormGroup({});
-=======
   public readonly roleForm = new UntypedFormGroup({});
->>>>>>> oned/v92
 
   public noChangesText = '#LDS#There are no actions that can be performed.';
 
@@ -138,11 +106,7 @@ export class CompareComponent implements OnInit {
   }
 
   public resetElements(): void {
-<<<<<<< HEAD
-    this.compareItems = null;
-=======
     this.compareItems = undefined;
->>>>>>> oned/v92
     this.mergeActions = undefined;
     this.uidActions = undefined;
   }
@@ -157,11 +121,7 @@ export class CompareComponent implements OnInit {
     }
   }
 
-<<<<<<< HEAD
-  public addControl(group: FormGroup, name: string, control: AbstractControl): void {
-=======
   public addControl(group: UntypedFormGroup, name: string, control: AbstractControl): void {
->>>>>>> oned/v92
     group.addControl(name, control);
     this.cdref.detectChanges();
   }
@@ -197,18 +157,11 @@ export class CompareComponent implements OnInit {
         return;
       }
       const key = DbObjectKey.FromXml(keyXml);
-<<<<<<< HEAD
-      const items = await this.compareService.getCompares(this.roleType, this.uidRole, key);
-
-      this.compareItems = items;
-      const dataSource = this.compareItemBuilder.build(this.compareItemBuilder.buildEntityCollectionData(this.compareItems.Items as RoleCompareItem[]));
-=======
 
       const items = await this.compareService.getCompares(this.roleType, this.uidRole, key);
 
       this.compareItems = items;
       const dataSource = this.compareItemBuilder.build(this.compareItemBuilder.buildEntityCollectionData(this.compareItems.Items));
->>>>>>> oned/v92
       this.dstSettings = {
         dataSource,
         entitySchema: CompareItem.GetEntitySchema(),
@@ -235,10 +188,7 @@ export class CompareComponent implements OnInit {
         return;
       }
       const key = DbObjectKey.FromXml(keyXml);
-<<<<<<< HEAD
-=======
 
->>>>>>> oned/v92
       const actions = await this.compareService.getMergeActions(this.roleType, this.uidRole, key);
 
       if (actions.Actions) {
@@ -246,13 +196,8 @@ export class CompareComponent implements OnInit {
       } else {
         this.mergeActions = [];
       }
-<<<<<<< HEAD
-      this.mergePreventingReason = actions.MergePreventionReason as string;
-      this.uidActions = this.mergeActions.filter((a) => a.IsActive).map((a) => a.Id) as string[];
-=======
       this.mergePreventingReason = actions.MergePreventionReason;
       this.uidActions = this.mergeActions.filter((a) => a.IsActive).map((a) => a.Id);
->>>>>>> oned/v92
     } finally {
       this.busyService.hide(overlay);
     }

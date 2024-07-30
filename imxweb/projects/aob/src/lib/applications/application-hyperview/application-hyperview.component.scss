@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-@use '@angular/material' as mat;
-@import '@elemental-ui/core/src/styles/_palette.scss';
-
-.imx-hyperview-site {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: mat.get-color-from-palette($asher-gray-palette, 100);
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 :host {
   background-color: transparent;
@@ -30,5 +20,4 @@
   :host {
     background-color: $color-gray-100;
   }
->>>>>>> oned/v92
 }

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<div eui-sidesheet-content color="white">
-  <form [formGroup]="formGroup" class="imx-request-content">
-=======
 <ng-container *ngIf="!data.withGuidance || data.requests.length > 1; else tabView">
   <div eui-sidesheet-content>
     <ng-container *ngTemplateOutlet="decisionContent"></ng-container>
@@ -50,7 +46,6 @@
 
 <ng-template #decisionContent>
   <form [formGroup]="formGroup">
->>>>>>> oned/v92
     <ng-container *ngIf="data.customValidation">
       <mat-error *ngIf="formGroup?.invalid">
         {{ data.customValidation.message | translate }}
@@ -64,13 +59,4 @@
       <imx-workflow-single-action [formGroup]="formGroup" [data]="data"></imx-workflow-single-action>
     </ng-container>
   </form>
-<<<<<<< HEAD
-</div>
-<div eui-sidesheet-actions color="white">
-  <button data-imx-identifier="workflow-action-button-save" mat-raised-button color="primary" (click)="sideSheetRef.close(true)" *ngIf="formGroup" [disabled]="formGroup.invalid">
-    {{ '#LDS#Save' | translate }}
-  </button>
-</div>
-=======
 </ng-template>
->>>>>>> oned/v92

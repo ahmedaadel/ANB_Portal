@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,42 +25,22 @@
  */
 
 import { Component, Input, OnChanges } from '@angular/core';
-<<<<<<< HEAD
-import { OverlayRef } from '@angular/cdk/overlay';
-import { EuiLoadingService } from '@elemental-ui/core';
-
-import { ClassloggerService } from 'qbm';
-=======
 
 
 import { BusyService, ClassloggerService } from 'qbm';
->>>>>>> oned/v92
 import { ShapeData } from 'imx-api-qer';
 import { ApplicationHyperviewService } from './application-hyperview.service';
 
 @Component({
   selector: 'imx-application-hyperview',
   templateUrl: './application-hyperview.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./application-hyperview.component.scss']
-=======
   styleUrls: ['./application-hyperview.component.scss'],
->>>>>>> oned/v92
 })
 export class ApplicationHyperviewComponent implements OnChanges {
   public shapes: ShapeData[];
 
   @Input() public uidApplication: string;
 
-<<<<<<< HEAD
-  constructor(private classlogger: ClassloggerService,
-              private readonly busyService: EuiLoadingService,
-              private hyperviewprovider: ApplicationHyperviewService) { }
-
-  public async ngOnChanges(): Promise<void> {
-    let overlayRef: OverlayRef;
-    setTimeout(() => overlayRef = this.busyService.show());
-=======
   public busyService = new BusyService();
   public isLoading = false;
 
@@ -74,7 +50,6 @@ export class ApplicationHyperviewComponent implements OnChanges {
 
   public async ngOnChanges(): Promise<void> {
     const isBusy = this.busyService.beginBusy();
->>>>>>> oned/v92
     try {
       this.shapes = await this.hyperviewprovider.get(this.uidApplication);
       if (this.shapes) {
@@ -84,15 +59,7 @@ export class ApplicationHyperviewComponent implements OnChanges {
         this.classlogger.error(this, 'ShapeData[] is undefined');
       }
     } finally {
-<<<<<<< HEAD
-      setTimeout(() => this.busyService.hide(overlayRef));
-    }
-  }
-
-
-=======
       isBusy.endBusy();
     }
   }
->>>>>>> oned/v92
 }

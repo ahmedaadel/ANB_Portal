@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Component, EventEmitter, OnDestroy } from '@angular/core';
-<<<<<<< HEAD
-import { FormControl, Validators } from '@angular/forms';
-=======
 import { UntypedFormControl, Validators } from '@angular/forms';
->>>>>>> oned/v92
 import { Subscription } from 'rxjs';
 
 import { UrlValidatorService } from './url-validator.service';
@@ -41,17 +33,6 @@ import { CdrEditor, ValueHasChangedEventArg } from '../cdr-editor.interface';
 import { ColumnDependentReference } from '../column-dependent-reference.interface';
 import { EntityColumnContainer } from '../entity-column-container';
 
-<<<<<<< HEAD
-@Component({
-  selector: 'imx-edit-url',
-  templateUrl: './edit-url.component.html',
-  styleUrls: ['./edit-url.component.scss']
-})
-export class EditUrlComponent implements CdrEditor, OnDestroy {
-  public readonly control = new FormControl('', { updateOn: 'blur' });
-
-  public readonly columnContainer = new EntityColumnContainer<string>();
-=======
 /**
  * Provides a {@link CdrEditor | CDR editor} for editing / viewing url columns.
  * 
@@ -76,20 +57,11 @@ export class EditUrlComponent implements CdrEditor, OnDestroy {
   /**
    * Event that is emitted, after a value has been changed.
    */
->>>>>>> oned/v92
   public readonly valueHasChanged = new EventEmitter<ValueHasChangedEventArg>();
 
   private readonly subscribers: Subscription[] = [];
   private isWriting = false;
 
-<<<<<<< HEAD
-  constructor(private readonly urlValidator: UrlValidatorService) { }
-
-  public ngOnDestroy(): void {
-    this.subscribers.forEach(s => s.unsubscribe());
-  }
-
-=======
   /**   *
    * Creates a new EditUrlComponent
    * @param urlValidator The {@link UrlValidatorService} used for validation.
@@ -108,7 +80,6 @@ export class EditUrlComponent implements CdrEditor, OnDestroy {
    * Subscribes to subjects from the column dependent reference and its container.
    * @param cdref a column dependent reference
    */
->>>>>>> oned/v92
   public bind(cdref: ColumnDependentReference): void {
     if (cdref && cdref.column) {
       this.columnContainer.init(cdref);
@@ -120,19 +91,6 @@ export class EditUrlComponent implements CdrEditor, OnDestroy {
         validators.push(Validators.required);
       }
 
-<<<<<<< HEAD
-      this.subscribers.push(this.columnContainer.subscribe(() => {
-        if (this.isWriting) { return; }
-        if (this.control.value !== this.columnContainer.value) {
-          this.control.setValue(this.columnContainer.value, { emitEvent: false });
-        }
-        this.valueHasChanged.emit({ value: this.control.value });
-      }));
-
-      this.control.setValidators(validators);
-
-      this.subscribers.push(this.control.valueChanges.subscribe(async value => this.writeValue(value)));
-=======
       if (cdref.minlengthSubject) {
         this.subscribers.push(
           cdref.minlengthSubject.subscribe((elem) => {
@@ -161,7 +119,6 @@ export class EditUrlComponent implements CdrEditor, OnDestroy {
       this.control.setValidators(validators);
 
       this.subscribers.push(this.control.valueChanges.subscribe(async (value) => this.writeValue(value)));
->>>>>>> oned/v92
     }
   }
 

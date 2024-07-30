@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -169,11 +165,7 @@ export class IdentityRoleMembershipsService {
           type: 'CU'
         }
       ),
-<<<<<<< HEAD
-      withAnalysis: true
-=======
       withAnalysis: false
->>>>>>> oned/v92
     });
   }
 }

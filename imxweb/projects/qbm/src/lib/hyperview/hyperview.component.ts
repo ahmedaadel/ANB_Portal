@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,9 +24,6 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, ViewChild, ElementRef, Input, AfterViewChecked, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
-=======
 import {
   Component,
   ViewChild,
@@ -46,18 +39,12 @@ import {
   ViewChildren,
   Output,
 } from '@angular/core';
->>>>>>> oned/v92
 
 import { Connectors } from './connectors';
 import { Connector } from './connector';
 import { HyperviewLayoutHierarchical } from './hyperview-layout-hierarchical';
 import { HyperviewLayoutVertical } from './hyperview-layout-vertical';
 import { HyperviewLayoutHorizontal } from './hyperview-layout-horizontal';
-<<<<<<< HEAD
-import { HyperViewLayout, HvSettings, HvElement, ShapeClickArgs, toPixelString } from './hyperview-types';
-import { ShapeData } from 'imx-api-qbm';
-import { ClassloggerService } from '../classlogger/classlogger.service';
-=======
 import {
   HyperViewLayout,
   HvSettings,
@@ -71,7 +58,6 @@ import {
 import { ShapeData } from 'imx-api-qbm';
 import { ClassloggerService } from '../classlogger/classlogger.service';
 import { Subscription } from 'rxjs';
->>>>>>> oned/v92
 
 export enum ShapeType {
   ListShape,
@@ -86,34 +72,6 @@ export enum ShapeType {
 @Component({
   selector: 'imx-hyperview',
   templateUrl: './hyperview.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./hyperview.component.scss']
-})
-export class HyperviewComponent implements AfterViewChecked {
-
-  private get mainElem(): HTMLElement {
-    return this.elRef.nativeElement;
-  }
-  public static connectorsCssClass = 'connectors';
-
-  public connectors: Connectors;
-
-  // required to make the function and the enum available in the component :-/
-  public toPixelString = toPixelString;
-  public ShapeType = ShapeType;
-
-  @ViewChild('elements', { static: true }) public elRef: ElementRef;
-
-  @Input() public layout: 'Hierarchical' | 'Vertical' | 'Horizontal';
-
-  @Input() public shapes: ShapeData[];
-
-  @Input() public fontSize: 'inherit' | 'medium' | 'small' | 'x-small' | 'large' = 'inherit';
-
-  @Output() public selected: EventEmitter<ShapeClickArgs> = new EventEmitter();
-
-  private settings: HvSettings;
-=======
   styleUrls: ['./hyperview.component.scss'],
 })
 export class HyperviewComponent implements AfterViewInit, OnDestroy, AfterViewChecked {
@@ -153,17 +111,10 @@ export class HyperviewComponent implements AfterViewInit, OnDestroy, AfterViewCh
   private baseScale = 1;
   private baseTransformWidth = 0;
   private subscriptions$: Subscription[] = [];
->>>>>>> oned/v92
 
   /**
    * Creates a new hyperview component.
    */
-<<<<<<< HEAD
-  constructor(
-    private changeDetectorRef: ChangeDetectorRef,
-    private logger: ClassloggerService
-  ) { }
-=======
   constructor(private changeDetectorRef: ChangeDetectorRef, private logger: ClassloggerService, private renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
@@ -198,7 +149,6 @@ export class HyperviewComponent implements AfterViewInit, OnDestroy, AfterViewCh
       this.setupLayout();
     }
   }
->>>>>>> oned/v92
 
   /**
    * Returns the {@link ShapeType|type} for the given {@link ShapeData|shape}.
@@ -215,68 +165,27 @@ export class HyperviewComponent implements AfterViewInit, OnDestroy, AfterViewCh
   }
 
   /**
-<<<<<<< HEAD
-   * Returns the effive color for the given {@link ShapeData|shape}.
-=======
    * Returns the effective color for the given {@link ShapeData|shape}.
->>>>>>> oned/v92
    * @param shape the shape for determining the effective color
    */
   public GetShapeEffectiveColor(shape: ShapeData): string {
     let color = shape.ElementColor || '';
     if (color.length === 8) {
       // strip alpha component
-<<<<<<< HEAD
-      color = color.substr(2, 6);
-=======
       color = color.substring(2);
->>>>>>> oned/v92
     }
     // return a valid CSS hex value
     return '#' + color;
   }
 
-<<<<<<< HEAD
-  /**
-   * Returns the {@link Connector|connectors} array.
-   */
-  public getConnectors(): Connector[] {
-    return this.connectors.connectorList.filter((connector: Connector) => !connector.isHidden);
-  }
-
-  /**
-   * Returns the width of the hyperview determining by the maximum x-value of the connectors.
-   */
-  public getWidth(): string {
-    return toPixelString(this.connectors.maxValue.X);
-  }
-
-  /**
-   * Returns the height of the hyperview determining by the maximum y-value of the connectors.
-   */
-  public getHeight(): string {
-    return toPixelString(this.connectors.maxValue.Y);
-  }
-
-  public ngAfterViewChecked(): void {
-    this.settings = this.buildSettings();
-
-=======
   public setupLayout(): void {
     this.settings = this.buildSettings();
->>>>>>> oned/v92
     if (this.settings.elements == null || this.settings.elements.length === 0) {
       this.logger.trace(this, 'Hyperview: Nothing to do. Aborting...');
       return;
     }
 
     const layouter = this.buildLayouter();
-<<<<<<< HEAD
-
-    layouter.layout();
-
-    this.connectors = new Connectors(layouter.getConnectorProvider().getConnectors(this.settings));
-=======
     const layoutResult = layouter.layout();
     this.connectors = new Connectors(layouter.getConnectorProvider().getConnectors(this.settings)).connectorList.filter(
       (connector) => !connector.isHidden
@@ -326,7 +235,6 @@ export class HyperviewComponent implements AfterViewInit, OnDestroy, AfterViewCh
     this.renderer.setStyle(this.rootElem.nativeElement, 'transform', `scale(${this.baseScale})`);
     this.renderer.setStyle(this.rootElem.nativeElement, 'left', `${this.baseTransformWidth}px`);
     this.renderer.setAttribute(this.rootElem.nativeElement, 'att-relative-x', `${this.baseTransformWidth}`);
->>>>>>> oned/v92
     this.changeDetectorRef.detectChanges();
   }
 
@@ -360,22 +268,6 @@ export class HyperviewComponent implements AfterViewInit, OnDestroy, AfterViewCh
    */
   private getElements(): HvElement[] {
     const res: HvElement[] = [];
-<<<<<<< HEAD
-
-    for (const node of Array.from(this.mainElem.childNodes)) {
-      const element = node as HTMLElement;
-      if (!element.style || element.style.display === 'none') {
-        continue;
-      }
-      const layout = element.getAttribute('imx-layout');
-      const position = layout !== 'Center'
-        ? layout
-        : 'MiddleCenter';
-      res.push({ position, element });
-    }
-
-    this.logger.trace(this, `using ${res.length} elements for hyperview, out of ${this.mainElem.childNodes.length} DOM nodes`);
-=======
     this.changeDetectorRef.detectChanges();
     for (const shp of this.shapeList) {
       const element = shp.nativeElement;
@@ -392,25 +284,13 @@ export class HyperviewComponent implements AfterViewInit, OnDestroy, AfterViewCh
     }
 
     this.logger.trace(this, `using ${res.length} elements for hyperview, out of ${this.shapeList.length} DOM nodes`);
->>>>>>> oned/v92
     return res;
   }
 
   private buildSettings(): HvSettings {
-<<<<<<< HEAD
-    // TODO: implemente for checking if phone device const isPhoneDevice = this.deviceState.isPhoneDevice();
-    return {
-      enforceVerticalLayout: false,
-      // use tablet mode only when vertical layout is not used anyway
-      elements: this.getElements()
-    };
-  }
-
-=======
     return {
       enforceVerticalLayout: false,
       elements: this.getElements(),
     };
   }
->>>>>>> oned/v92
 }

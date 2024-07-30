@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-@import "@elemental-ui/core/src/styles/_palette.scss";
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 @import '@elemental-ui/core/src/styles/_palette.scss';
->>>>>>> oned/v92
 
 :host {
   height: 100%;
@@ -42,11 +38,7 @@
 
         .snavigation-side-content {
           flex: 1;
-<<<<<<< HEAD
-          padding: 32px;
-=======
           padding: 20px;
->>>>>>> oned/v92
           padding-bottom: 16px;
 
           .snavigation-side-heading {
@@ -57,16 +49,9 @@
           }
 
           .snavigation-item {
-<<<<<<< HEAD
-            margin: 0 -32px;
-            padding: 10px 32px;
-            display: flex;
-            color: #0073CF;
-=======
             margin: 0 -20px;
             padding: 10px 20px;
             display: flex;
->>>>>>> oned/v92
             align-items: center;
             justify-content: flex-start;
             cursor: pointer;
@@ -78,12 +63,9 @@
 
             & > span {
               flex: 1;
-<<<<<<< HEAD
-=======
               overflow: hidden;
               text-overflow: ellipsis;
               white-space: nowrap;
->>>>>>> oned/v92
             }
 
             &:hover:not(.snavigation-item--selected) {
@@ -91,11 +73,7 @@
             }
 
             &.snavigation-item--selected {
-<<<<<<< HEAD
-              background-color:#0073CF;
-=======
               background-color: $iris-blue;
->>>>>>> oned/v92
               color: $white;
             }
           }
@@ -104,11 +82,7 @@
     }
 
     .mat-sidenav-content {
-<<<<<<< HEAD
-      padding: 32px;
-=======
       padding: 20px;
->>>>>>> oned/v92
       position: relative;
       display: flex;
       flex-direction: column;
@@ -163,8 +137,6 @@
     }
   }
 }
-<<<<<<< HEAD
-=======
 .eui-dark-theme {
   :host {
     .snavigation .mat-sidenav-container{
@@ -184,4 +156,3 @@
     }
   }
 }
->>>>>>> oned/v92

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,13 +24,6 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-import { EuiDownloadOptions } from '@elemental-ui/core';
-
-import { ElementalUiConfigService } from 'qbm';
-import { AccountsReportsService } from '../accounts/accounts-reports.service';
-=======
 import { Component, Injector, OnInit } from '@angular/core';
 import { EuiDownloadDirective, EuiDownloadOptions } from '@elemental-ui/core';
 
@@ -43,7 +32,6 @@ import { QerPermissionsService } from 'qer';
 import { AccountsReportsService } from '../accounts/accounts-reports.service';
 import { HttpClient } from '@angular/common/http';
 import { Overlay } from '@angular/cdk/overlay';
->>>>>>> oned/v92
 
 @Component({
   selector: 'imx-report-button-ext',
@@ -54,15 +42,6 @@ export class ReportButtonExtComponent implements OnInit {
   public downloadOptions: EuiDownloadOptions;
 
   public referrer: string;
-<<<<<<< HEAD
-
-  constructor(
-    private readonly elementalUiConfigService: ElementalUiConfigService,
-    private readonly service: AccountsReportsService
-  ) { }
-
-  public ngOnInit(): void {
-=======
   public isAvailable: boolean;
 
   constructor(
@@ -75,7 +54,6 @@ export class ReportButtonExtComponent implements OnInit {
   ) { }
 
   public async ngOnInit(): Promise<void> {
->>>>>>> oned/v92
     const url = this.service.accountsOwnedByManagedReport(30, this.referrer);
 
     this.downloadOptions = {
@@ -83,8 +61,6 @@ export class ReportButtonExtComponent implements OnInit {
       url
     };
   }
-<<<<<<< HEAD
-=======
 
   public viewReport():void{
     const directive = new EuiDownloadDirective(null, this.http, this.overlay, this.injector);
@@ -94,5 +70,4 @@ export class ReportButtonExtComponent implements OnInit {
     };
     directive.onClick();
   }
->>>>>>> oned/v92
 }

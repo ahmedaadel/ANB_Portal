@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -33,18 +29,11 @@ import { Injectable } from '@angular/core';
 
 import { imx_SessionService } from 'qbm';
 import { SystemStatusInformation } from './system-status-information.interface';
-<<<<<<< HEAD
-
-@Injectable()
-export class SystemStatusService {
-  constructor(private session: imx_SessionService) { }
-=======
 import { OpSupportUserService } from 'qer';
 
 @Injectable()
 export class SystemStatusService {
   constructor(private session: imx_SessionService, private readonly userService: OpSupportUserService) { }
->>>>>>> oned/v92
 
   public getStatus(): Observable<SystemStatusInformation> {
     return from(this.get());
@@ -66,10 +55,6 @@ export class SystemStatusService {
   }
 
   public async isSystemAdmin(): Promise<boolean> {
-<<<<<<< HEAD
-    return (await this.session.Client.opsupport_usergroups_get()).some(role => role.Name === 'VID_BaseData_SystemStop_EditRights');
-=======
     return (await this.userService.getGroups()).some(role => role.Name === 'VID_BaseData_SystemStop_EditRights');
->>>>>>> oned/v92
   }
 }

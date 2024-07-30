@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,21 +25,14 @@
  */
 
 import { Component, Inject, OnDestroy } from '@angular/core';
-<<<<<<< HEAD
-import { FormGroup } from '@angular/forms';
-=======
 import { UntypedFormGroup } from '@angular/forms';
->>>>>>> oned/v92
 import { EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
 
 import { PortalApplicationNew } from 'imx-api-aob';
 import { IEntityColumn, IWriteValue, ValueStruct } from 'imx-qbm-dbts';
 import { BaseCdr, ColumnDependentReference, ConfirmationService } from 'qbm';
-<<<<<<< HEAD
-=======
 import { TranslateService } from '@ngx-translate/core';
->>>>>>> oned/v92
 
 @Component({
   selector: 'imx-application-create',
@@ -51,11 +40,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./application-create.component.scss']
 })
 export class ApplicationCreateComponent implements OnDestroy {
-<<<<<<< HEAD
-  public readonly form = new FormGroup({});
-=======
   public readonly form = new UntypedFormGroup({});
->>>>>>> oned/v92
 
   public name: ColumnDependentReference;
   public readonly description: ColumnDependentReference;
@@ -70,10 +55,7 @@ export class ApplicationCreateComponent implements OnDestroy {
   constructor(
     @Inject(EUI_SIDESHEET_DATA) data: { application: PortalApplicationNew; },
     private readonly sidesheetRef: EuiSidesheetRef,
-<<<<<<< HEAD
-=======
     private readonly translateService: TranslateService,
->>>>>>> oned/v92
     confirmation: ConfirmationService
   ) {
     this.imageColumn = data.application.JPegPhoto.Column;
@@ -86,14 +68,6 @@ export class ApplicationCreateComponent implements OnDestroy {
     this.serviceCategory = new class {
       public get hint(): string {
         return this.property.value?.length > 0 ? '' :
-<<<<<<< HEAD
-          '#LDS#If you do not select a service category, a service category with the same name as the application is created and assigned.';
-      }
-      public readonly column = this.property.Column;
-      constructor(private readonly property: IWriteValue<string>) {}
-      public readonly isReadOnly = () => !this.property.GetMetadata().CanEdit();
-    }(data.application.UID_AccProductGroup);
-=======
         this.translateService.instant('#LDS#If you do not select a service category, a service category with the same name as the application is created and assigned.');
       }
       public readonly column = this.property.Column;
@@ -103,7 +77,6 @@ export class ApplicationCreateComponent implements OnDestroy {
       ) {}
       public readonly isReadOnly = () => !this.property.GetMetadata().CanEdit();
     }(data.application.UID_AccProductGroup, this.translateService);
->>>>>>> oned/v92
 
     this.manager = new BaseCdr(data.application.UID_PersonHead.Column);
 

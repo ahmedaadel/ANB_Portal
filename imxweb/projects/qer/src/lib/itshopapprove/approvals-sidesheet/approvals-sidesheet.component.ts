@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,47 +24,27 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, ViewEncapsulation, Inject, OnDestroy } from '@angular/core';
-import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
-import { Subscription } from 'rxjs';
-
-import { ITShopConfig, PortalItshopApproveHistory } from 'imx-api-qer';
-=======
 import { Component, ViewEncapsulation, Inject, OnDestroy, OnInit } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
 
 import { ITShopConfig } from 'imx-api-qer';
->>>>>>> oned/v92
 import { AuthenticationService } from 'qbm';
 import { Approval } from '../approval';
 import { WorkflowActionService } from '../workflow-action/workflow-action.service';
 import { ItshopService } from '../../itshop/itshop.service';
-<<<<<<< HEAD
-=======
 import { QerPermissionsService } from '../../admin/qer-permissions.service';
->>>>>>> oned/v92
 
 @Component({
   selector: 'imx-approvals-sidesheet',
   templateUrl: './approvals-sidesheet.component.html',
   styleUrls: ['./approvals-sidesheet.component.scss'],
-<<<<<<< HEAD
-  encapsulation: ViewEncapsulation.None,
-})
-export class ApprovalsSidesheetComponent implements OnDestroy {
-  public readonly hasPeerGroupAnalysis: boolean;
-
-  public currentUserId: string;
-=======
 })
 export class ApprovalsSidesheetComponent implements OnDestroy, OnInit {
   public readonly hasPeerGroupAnalysis: boolean;
 
   public currentUserId: string;
   public isChiefApprover:boolean;
->>>>>>> oned/v92
 
   private readonly subscriptions: Subscription[] = [];
 
@@ -77,20 +53,13 @@ export class ApprovalsSidesheetComponent implements OnDestroy, OnInit {
     public readonly data: {
       pwo: Approval;
       itShopConfig: ITShopConfig;
-<<<<<<< HEAD
-=======
       fromInquiry: boolean;
->>>>>>> oned/v92
     },
     public readonly actionService: WorkflowActionService,
     private readonly sideSheetRef: EuiSidesheetRef,
     itshop: ItshopService,
-<<<<<<< HEAD
-    authentication: AuthenticationService
-=======
     authentication: AuthenticationService,
     private readonly permission: QerPermissionsService
->>>>>>> oned/v92
   ) {
     this.subscriptions.push(this.actionService.applied.subscribe(() => this.sideSheetRef.close()));
     this.subscriptions.push(authentication.onSessionResponse.subscribe((state) => (this.currentUserId = state.UserUid)));
@@ -102,12 +71,9 @@ export class ApprovalsSidesheetComponent implements OnDestroy, OnInit {
       );
     }
   }
-<<<<<<< HEAD
-=======
   public async  ngOnInit(): Promise<void> {
     this.isChiefApprover = await this.permission.isCancelPwO();
   }
->>>>>>> oned/v92
 
   public ngOnDestroy(): void {
     this.subscriptions.forEach((s) => s.unsubscribe());
@@ -133,14 +99,6 @@ export class ApprovalsSidesheetComponent implements OnDestroy, OnInit {
     return this.data.pwo.canDenyApproval(this.currentUserId);
   }
 
-<<<<<<< HEAD
-  public askForHelp(): void {
-    // TODO later
-    // this.dialog.open(QueryPersonComponent);
-  }
-
-=======
->>>>>>> oned/v92
   public showEntireRequest(): void {
     /* TODO later
     RedirectFormModule({ "ScriptItemUID": "RedirectForm1", "ID": "VI_ITShop_PWOOverviewForShoppingCartOrder" }, () => {

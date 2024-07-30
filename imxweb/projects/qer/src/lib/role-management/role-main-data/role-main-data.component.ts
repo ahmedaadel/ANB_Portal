@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,20 +25,12 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { AbstractControl, FormGroup } from '@angular/forms';
-=======
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
->>>>>>> oned/v92
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { TypedEntity } from 'imx-qbm-dbts';
-<<<<<<< HEAD
-import { BaseCdr, ColumnDependentReference, SnackBarService } from 'qbm';
-=======
 import { ColumnDependentReference, SnackBarService, CdrFactoryService } from 'qbm';
->>>>>>> oned/v92
 import { ProjectConfigurationService } from '../../project-configuration/project-configuration.service';
 import { CompareComponent } from '../compare/compare.component';
 import { DataManagementService } from '../data-management.service';
@@ -60,14 +48,9 @@ export class RoleMainDataComponent implements OnInit {
   public editableFields: string[];
 
   public properties: ColumnDependentReference[] = [];
-<<<<<<< HEAD
-  public readonly formGroup = new FormGroup({});
-  public canCompare: boolean;
-=======
   public readonly formGroup = new UntypedFormGroup({});
   public canCompare: boolean;
   public canEdit: boolean;
->>>>>>> oned/v92
 
   private entity: TypedEntity;
   public canSplitRole: boolean;
@@ -79,13 +62,9 @@ export class RoleMainDataComponent implements OnInit {
     private readonly busyService: EuiLoadingService,
     private readonly sidesheet: EuiSidesheetService,
     private readonly translateService: TranslateService,
-<<<<<<< HEAD
-    private snackbar: SnackBarService) {
-=======
     private readonly cdrfactoryService: CdrFactoryService,
     private snackbar: SnackBarService) {
       this.canEdit = roleService.canEdit;
->>>>>>> oned/v92
     this.formGroup.valueChanges.subscribe(() => {
       this.formGroup.dirty || this.formGroup.invalid ? this.dataManagementService.mainDataDirty(true) : this.dataManagementService.mainDataDirty(false);
     });
@@ -136,36 +115,15 @@ export class RoleMainDataComponent implements OnInit {
   }
 
   private setCdrs(): void {
-<<<<<<< HEAD
-    if (this.properties.length > 0) {
-      this.properties = [];
-    }
-
-    let cdr: ColumnDependentReference;
-    const entity = this.entity.GetEntity();
-    const schema = entity.GetSchema();
-    for (const columnName of this.editableFields) {
-      if (schema.Columns[columnName]) {
-        cdr = new BaseCdr(entity.GetColumn(columnName));
-        this.properties.push(cdr);
-      }
-    }
-=======
        const entity = this.entity.GetEntity();
     this.properties = this.cdrfactoryService.buildCdrFromColumnList(entity,this.editableFields);
  
->>>>>>> oned/v92
   }
 
   public async openCompareSidesheet(): Promise<void> {
     this.sidesheet.open(CompareComponent, {
       title: await this.translateService.get('#LDS#Heading Compare and Merge').toPromise(),
-<<<<<<< HEAD
-      headerColour: 'iris-blue',
-      bodyColour: 'asher-gray',
-=======
       subTitle: this.entity.GetEntity().GetDisplay(),
->>>>>>> oned/v92
       padding: '0px',
       width: 'max(600px, 60%)',
       testId: 'role-main-data-compare-sidesheet',
@@ -175,14 +133,8 @@ export class RoleMainDataComponent implements OnInit {
   public async openRollbackSidesheet(): Promise<void> {
     const entity = this.entity.GetEntity();
     this.sidesheet.open(RollbackComponent, {
-<<<<<<< HEAD
-      title: await this.translateService.get('#LDS#Heading Rollback to a previous state').toPromise(),
-      headerColour: 'iris-blue',
-      bodyColour: 'asher-gray',
-=======
       title: await this.translateService.get('#LDS#Heading Reset to Previous State').toPromise(),
       subTitle:  this.entity.GetEntity().GetDisplay(),
->>>>>>> oned/v92
       padding: '0px',
       width: 'max(600px, 60%)',
       testId: 'role-main-data-rollback-sidesheet',
@@ -196,12 +148,7 @@ export class RoleMainDataComponent implements OnInit {
   public async splitRole(): Promise<void> {
     await this.sidesheet.open(SplitComponent, {
       title: await this.translateService.get('#LDS#Heading Split').toPromise(),
-<<<<<<< HEAD
-      headerColour: 'iris-blue',
-      bodyColour: 'asher-gray',
-=======
       subTitle: this.entity.GetEntity().GetDisplay(),
->>>>>>> oned/v92
       padding: '0px',
       width: 'max(600px, 60%)',
       testId: 'role-main-data-split-sidesheet',

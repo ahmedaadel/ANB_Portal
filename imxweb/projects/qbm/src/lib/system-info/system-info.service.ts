@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -31,37 +27,17 @@
 import { Injectable } from '@angular/core';
 
 import { imx_SessionService } from '../session/imx-session.service';
-<<<<<<< HEAD
-import { SystemInfo } from 'imx-api-qbm';
-
-/** Service that provides system info.
- *  The service sends only one request per session,
- *  the retrieved data is cached.
-=======
 import { ImxConfig, SystemInfo } from 'imx-api-qbm';
 import { CachedPromise } from 'imx-qbm-dbts';
 import { CacheService } from '../cache/cache.service';
 
 /** Service that provides system info.
  *  The service sends only one request per session, the retrieved data is cached.
->>>>>>> oned/v92
  */
 @Injectable({
   providedIn: 'root'
 })
 export class SystemInfoService {
-<<<<<<< HEAD
-  private systemInfo: SystemInfo;
-
-  constructor(private readonly session: imx_SessionService) { }
-
-  public async get(): Promise<SystemInfo> {
-    if (this.systemInfo == null) {
-      this.systemInfo = await this.session.Client.imx_system_get();
-    }
-
-    return this.systemInfo;
-=======
   private systemInfo: CachedPromise<SystemInfo>;
   private _imxConfig: CachedPromise<ImxConfig>;
 
@@ -77,6 +53,5 @@ export class SystemInfoService {
   /** Returns the cached ImxConfig object. */
   public getImxConfig(): Promise<ImxConfig> {
     return this._imxConfig.get();
->>>>>>> oned/v92
   }
 }

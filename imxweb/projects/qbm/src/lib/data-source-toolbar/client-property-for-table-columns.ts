@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -40,13 +36,10 @@ export interface ClientPropertyForTableColumns extends IClientProperty{
    * Marks, whether the property should be displayed on the far right side of a table or not
    */
   afterAdditionals?: boolean;
-<<<<<<< HEAD
-=======
 
 
   /**
    * Gets/Sets an untranslated display, that can be displayed, if the property 'Display' is not set
    */
   untranslatedDisplay?: string;
->>>>>>> oned/v92
 }

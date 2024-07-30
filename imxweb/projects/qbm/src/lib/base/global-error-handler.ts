@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -40,17 +36,11 @@ export class GlobalErrorHandler implements ErrorHandler {
   private messageService: UserMessageService;
   private logger: ClassloggerService;
 
-<<<<<<< HEAD
-  constructor(private injector: Injector, private readonly errorService: ErrorService) { }
-
-  private get target() { return this.errorService.target; }
-=======
   constructor(private injector: Injector, private readonly errorService: ErrorService) {}
 
   private get target() {
     return this.errorService.target;
   }
->>>>>>> oned/v92
 
   public handleError(error: any): void {
     this.checkInjectedServices();
@@ -62,21 +52,13 @@ export class GlobalErrorHandler implements ErrorHandler {
         this.messageService.subject.next({
           text: error.message.substring(0, error.message.indexOf('\n')).replace('Uncaught (in promise):', ''),
           target: this.target,
-<<<<<<< HEAD
-          type: 'error'
-=======
           type: 'error',
->>>>>>> oned/v92
         });
       } else {
         this.messageService.subject.next({
           text: error.toString(),
           target: this.target,
-<<<<<<< HEAD
-          type: 'error'
-=======
           type: 'error',
->>>>>>> oned/v92
         });
       }
     } else {
@@ -84,25 +66,18 @@ export class GlobalErrorHandler implements ErrorHandler {
         // TODO: do we really want the full error JSON shown to the user?
         text: JSON.stringify(error),
         target: this.target,
-<<<<<<< HEAD
-        type: 'error'
-=======
         type: 'error',
->>>>>>> oned/v92
       });
     }
 
     this.logger.error(this, error);
   }
 
-<<<<<<< HEAD
-=======
   public resetMessage(): void {
     this.checkInjectedServices();
     this.messageService.subject.next(undefined);
   }
 
->>>>>>> oned/v92
   private async handleHttpErrorResponse(error: HttpErrorResponse): Promise<void> {
     const body = error.error;
     var response: any;
@@ -116,12 +91,7 @@ export class GlobalErrorHandler implements ErrorHandler {
         response = JSON.parse(t);
         // assume that the body of the response is of the ExceptionData type defined by the API
         text = (<any>response[0])?.Message;
-<<<<<<< HEAD
-      }
-      catch {
-=======
       } catch {
->>>>>>> oned/v92
         // Cannot parse as JSON? ignore
       }
     }
@@ -129,11 +99,7 @@ export class GlobalErrorHandler implements ErrorHandler {
     this.messageService.subject.next({
       text: text,
       target: this.target,
-<<<<<<< HEAD
-      type: 'error'
-=======
       type: 'error',
->>>>>>> oned/v92
     });
   }
 

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Component } from '@angular/core';
-<<<<<<< HEAD
-import { FormControl } from '@angular/forms';
-=======
 import { UntypedFormControl } from '@angular/forms';
->>>>>>> oned/v92
 import { EditorBase } from '../editor-base';
 
 @Component({
@@ -42,9 +34,5 @@ import { EditorBase } from '../editor-base';
   styleUrls: ['./view-property-default.component.scss']
 })
 export class ViewPropertyDefaultComponent extends EditorBase<string> {
-<<<<<<< HEAD
-  public readonly control = new FormControl(undefined);
-=======
   public readonly control = new UntypedFormControl(undefined);
->>>>>>> oned/v92
 }

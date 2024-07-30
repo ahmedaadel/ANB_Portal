@@ -1,8 +1,5 @@
 @import '@elemental-ui/core/src/styles/_palette.scss';
-<<<<<<< HEAD
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
->>>>>>> oned/v92
 
 :host {
   display: flex;
@@ -15,26 +12,12 @@ form {
   overflow: auto;
 }
 
-<<<<<<< HEAD
-.imx-button-bar {
-  align-self: end;
-  margin-top: 20px;
-}
-
-=======
->>>>>>> oned/v92
 .imx-tab-content {
   display: flex;
   flex-direction: column;
   height: 100%;
 
   .imx-tab-content-body {
-<<<<<<< HEAD
-    flex: 1 1 auto;
-    padding: 32px;
-    overflow: hidden;
-=======
->>>>>>> oned/v92
     display: flex;
     .mat-card {
       flex: 1 1 auto;
@@ -48,19 +31,6 @@ form {
     overflow: auto;
     padding-right: 10px;
   }
-<<<<<<< HEAD
-
-  .imx-action-buttons {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: $white;
-    padding: 16px 32px;
-    margin: 16px 32px;
-
-    button {
-      margin-left: 1em;
-=======
 }
 
 .eui-sidesheet-actions {
@@ -83,7 +53,6 @@ form {
   :host {
     .imx-tab-content .imx-action-buttons {
       background-color: $color-gray-90;
->>>>>>> oned/v92
     }
   }
 }

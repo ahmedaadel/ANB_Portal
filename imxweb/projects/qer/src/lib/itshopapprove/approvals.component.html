@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-<h1 class="mat-headline">{{ '#LDS#Heading Pending Requests' | translate }}</h1>
-<p class="imx-description">
-   {{ '#LDS#You can approve or deny the following requests.' | translate }}
-</p>
-<imx-approvals-table [params]="params"></imx-approvals-table>
-=======
 <imx-busy-indicator *ngIf="!viewReady"></imx-busy-indicator>
 
 <div class="heading-wrapper" *ngIf="viewReady">
@@ -31,4 +24,3 @@
   <imx-approvals-table *ngIf="!hasInquiries" [params]="params"></imx-approvals-table>
 
 </div>
->>>>>>> oned/v92

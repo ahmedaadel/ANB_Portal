@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,11 +24,7 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, Input, EventEmitter } from '@angular/core';
-=======
 import { Component, EventEmitter, Input, Output } from '@angular/core';
->>>>>>> oned/v92
 
 import { ShapeData, ShapeListEntry } from 'imx-api-qbm';
 import { ShapeClickArgs } from './hyperview-types';
@@ -41,27 +33,6 @@ import { ShapeClickArgs } from './hyperview-types';
  * A shape component that lists all {@link ShapeListEntry|elements}.
  */
 @Component({
-<<<<<<< HEAD
-    selector: 'imx-hyperview-listshape',
-    templateUrl: './listshape.component.html',
-    styleUrls: ['./listshape.component.scss']
-})
-export class ListShapeComponent {
-
-    @Input() public shape: ShapeData;
-
-    @Input() public selected: EventEmitter<ShapeClickArgs> = new EventEmitter();
-
-    /**
-     * Emit selection event for this {@link ShapeListEntry|element}.
-     * @param elem the element the user clicked
-     */
-    public click(elem: ShapeListEntry): void {
-        if (this.selected.observers.length > 0) {
-            this.selected.emit({ objectKey: elem.ObjectKey });
-        }
-    }
-=======
   selector: 'imx-hyperview-listshape',
   templateUrl: './listshape.component.html',
   styleUrls: ['./listshape.component.scss'],
@@ -87,5 +58,4 @@ export class ListShapeComponent {
   public onChangeContentSize(): void {
     this.changeShapeSize.emit();
   }
->>>>>>> oned/v92
 }

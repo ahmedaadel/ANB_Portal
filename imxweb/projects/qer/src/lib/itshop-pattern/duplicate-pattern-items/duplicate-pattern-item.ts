@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,40 +24,15 @@
  *
  */
 
-<<<<<<< HEAD
-import { ExceptionData, RequestableProductForPerson } from 'imx-api-qer';
-
-/**
- * Class representing the service items that could not be added to the itshop pattern.
- */
-export class DuplicatePatternItem implements RequestableProductForPerson {
-
-  // tslint:disable-next-line: variable-name
-  public readonly UidITShopOrg: string;
-=======
 /**
  * Class representing the service items that could not be added to the itshop pattern.
  */
 export class DuplicatePatternItem {
->>>>>>> oned/v92
 
   // tslint:disable-next-line: variable-name
   public readonly Display: string;
 
-<<<<<<< HEAD
-  // tslint:disable-next-line: variable-name
-  public readonly DisplayRecipient: string;
-
-  public readonly error: string;
-
-  constructor(product: RequestableProductForPerson, public readonly errorMessage: ExceptionData) {
-    this.UidITShopOrg = product.UidITShopOrg;
-    this.Display = product.Display;
-    this.DisplayRecipient = product.DisplayRecipient;
-    this.error = errorMessage.Message;
-=======
   constructor(display: string) {
     this.Display = display;
->>>>>>> oned/v92
   }
 }

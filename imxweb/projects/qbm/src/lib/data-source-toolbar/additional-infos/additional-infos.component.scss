@@ -1,9 +1,6 @@
 @use '@angular/material' as mat;
 @import '@elemental-ui/core/src/styles/_palette.scss';
-<<<<<<< HEAD
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
->>>>>>> oned/v92
 
 :host{
   display:flex;
@@ -106,8 +103,6 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-<<<<<<< HEAD
-=======
 .eui-dark-theme {
   :host {
     .example-list {
@@ -139,4 +134,3 @@
     }
   }
 }
->>>>>>> oned/v92

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-@import "@elemental-ui/core/src/styles/_palette.scss";
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
->>>>>>> oned/v92
 
 :host {
   margin-top: 10px;
@@ -70,10 +66,6 @@
     flex-direction: row;
 
     .imx-candidate-display {
-<<<<<<< HEAD
-      color: $black-3;
-=======
->>>>>>> oned/v92
       font-size: 14px;
       line-height: 14px;
       flex: 1;
@@ -81,16 +73,6 @@
       overflow: hidden;
       width: 100vw;
     }
-<<<<<<< HEAD
-
-    .imx-candidate-longdisplay {
-      color: $black-9;
-      font-size: 12px;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-=======
->>>>>>> oned/v92
   }
 }
 
@@ -99,19 +81,13 @@
 }
 
 mat-list-item:hover {
-<<<<<<< HEAD
-  background-color: $asher-gray;
-=======
   background-color: $color-gray-2;
->>>>>>> oned/v92
 }
 
 eui-icon {
   cursor: pointer;
 }
 
-<<<<<<< HEAD
-=======
 mat-form-field {
   button {
     eui-icon {
@@ -121,7 +97,6 @@ mat-form-field {
   }
 }
 
->>>>>>> oned/v92
 
 @media only screen and (max-width: 1024px) {
   :host > div {

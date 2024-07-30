@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -35,11 +31,7 @@ import { EuiLoadingService, EuiSidesheetConfig, EuiSidesheetService } from '@ele
 import { OpsupportQueueJobs, ReactivateJobMode } from 'imx-api-qbm';
 import { OpsupportQueueJobsParameters, QueueJobsService } from '../queue-jobs.service';
 import { SnackBarService, TextContainer, DataSourceToolbarSettings, DataSourceToolbarFilter, SettingsService, ClientPropertyForTableColumns } from 'qbm';
-<<<<<<< HEAD
-import { CollectionLoadParameters, CompareOperator, DataModel, EntitySchema, FilterType, IClientProperty, ValType } from 'imx-qbm-dbts';
-=======
 import { CollectionLoadParameters, CompareOperator, DataModel, EntitySchema, FilterType, ValType } from 'imx-qbm-dbts';
->>>>>>> oned/v92
 import { SingleFrozenJobComponent } from '../../frozen-jobs/single-frozen-job.component';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -50,10 +42,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./jobs-gridview.component.scss'],
 })
 export class JobsGridviewComponent implements OnInit {
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
   public dstSettings: DataSourceToolbarSettings;
   public readonly entitySchemaJobs: EntitySchema;
   public selectedJobs: OpsupportQueueJobs[] = [];
@@ -61,12 +49,6 @@ export class JobsGridviewComponent implements OnInit {
   public readonly itemStatus = {
     enabled: (item: OpsupportQueueJobs): boolean => {
       return this.isFrozen(item);
-<<<<<<< HEAD
-    }
-  };
-
-  @Input() public preselectFailed = false;
-=======
     },
   };
 
@@ -74,7 +56,6 @@ export class JobsGridviewComponent implements OnInit {
   @Input() public proccessId: string;
   @Input() public withActions: boolean = true;
   @Input() public noData: string;
->>>>>>> oned/v92
 
   private navigationState: CollectionLoadParameters;
   private readonly displayedColumns: ClientPropertyForTableColumns[];
@@ -97,14 +78,6 @@ export class JobsGridviewComponent implements OnInit {
       {
         ColumnName: 'actions',
         Type: ValType.String,
-<<<<<<< HEAD
-        afterAdditionals: true
-      }
-    ];
-
-    this.navigationState = {
-      StartIndex: 0, PageSize: settings.DefaultPageSize,
-=======
         afterAdditionals: true,
         untranslatedDisplay: '#LDS#Retry',
       },
@@ -113,23 +86,11 @@ export class JobsGridviewComponent implements OnInit {
     this.navigationState = {
       StartIndex: 0,
       PageSize: settings.DefaultPageSize,
->>>>>>> oned/v92
       filter: [
         {
           ColumnName: 'IsRootJob',
           Type: FilterType.Compare,
           CompareOp: CompareOperator.Equal,
-<<<<<<< HEAD
-          Value1: true
-        }
-      ]
-    };
-  }
-
-  public async ngOnInit(): Promise<void> {
-    let overlayRef: OverlayRef;
-    setTimeout(() => overlayRef = this.busyService.show());
-=======
           Value1: true,
         },
       ],
@@ -146,7 +107,6 @@ export class JobsGridviewComponent implements OnInit {
   public async ngOnInit(): Promise<void> {
     let overlayRef: OverlayRef;
     setTimeout(() => (overlayRef = this.busyService.show()));
->>>>>>> oned/v92
     try {
       this.filters = await this.jobService.getFilters();
       this.dataModel = await this.jobService.getDataModel();
@@ -154,22 +114,15 @@ export class JobsGridviewComponent implements OnInit {
       setTimeout(() => this.busyService.hide(overlayRef));
     }
     if (this.preselectFailed) {
-<<<<<<< HEAD
-      const indexActive = this.filters.findIndex(elem => elem.Name === 'state');
-=======
       const indexActive = this.filters.findIndex((elem) => elem.Name === 'state');
->>>>>>> oned/v92
       if (indexActive > -1) {
         this.filters[indexActive].InitialValue = 'failed';
         this.navigationState.state = 'failed';
       }
     }
-<<<<<<< HEAD
-=======
     if (this.proccessId) {
       this.navigationState.genprocid = this.proccessId;
     }
->>>>>>> oned/v92
     this.getData(this.navigationState);
   }
 
@@ -178,14 +131,9 @@ export class JobsGridviewComponent implements OnInit {
   }
 
   public isFrozen(job: OpsupportQueueJobs): boolean {
-<<<<<<< HEAD
-    return job.CombinedStatus &&
-      (job.CombinedStatus.value.toUpperCase() === 'FROZEN' || job.CombinedStatus.value.toUpperCase() === 'OVERLIMIT');
-=======
     return (
       job.CombinedStatus && (job.CombinedStatus.value.toUpperCase() === 'FROZEN' || job.CombinedStatus.value.toUpperCase() === 'OVERLIMIT')
     );
->>>>>>> oned/v92
   }
 
   public itemsAreSelected(): boolean {
@@ -195,21 +143,6 @@ export class JobsGridviewComponent implements OnInit {
   public async viewDetails(job: OpsupportQueueJobs): Promise<void> {
     const opts: EuiSidesheetConfig = {
       title: await this.translator.get('#LDS#Heading Process Overview').toPromise(),
-<<<<<<< HEAD
-      bodyColour: 'asher-gray',
-      headerColour: 'purple',
-      padding: '1em',
-      width: '60%',
-      icon: 'reboot',
-      data: {
-        UID_Tree: job.UID_Tree.value
-      },
-    };
-
-    this.sideSheet.open(SingleFrozenJobComponent, opts)
-      // After the sidesheet closes, reload the current data to refresh any changes that might have been made
-      .afterClosed().subscribe(() => this.getData(this.navigationState));
-=======
       subTitle: job.JobChainName.Column.GetDisplayValue() + ' ' + job.XDateInserted.Column.GetDisplayValue(),
       width: 'max(1000px, 80%)',
       icon: 'reboot',
@@ -227,7 +160,6 @@ export class JobsGridviewComponent implements OnInit {
       // After the sidesheet closes, reload the current data to refresh any changes that might have been made
       .afterClosed()
       .subscribe(() => this.getData(this.navigationState));
->>>>>>> oned/v92
   }
 
   public retryJob(job: OpsupportQueueJobs): void {
@@ -236,14 +168,10 @@ export class JobsGridviewComponent implements OnInit {
 
   public retrySelectedJobs(): void {
     if (this.itemsAreSelected()) {
-<<<<<<< HEAD
-      this.retryJobs(this.selectedJobs, ReactivateJobMode.Reactivate, { key: '#LDS#{0} processes are retrying.', parameters: [this.selectedJobs.length] });
-=======
       this.retryJobs(this.selectedJobs, ReactivateJobMode.Reactivate, {
         key: '#LDS#{0} processes are retrying.',
         parameters: [this.selectedJobs.length],
       });
->>>>>>> oned/v92
     }
   }
 
@@ -257,41 +185,21 @@ export class JobsGridviewComponent implements OnInit {
   }
 
   public refresh(): void {
-<<<<<<< HEAD
-    this.getData({ StartIndex: 0 });
-=======
     if (this.proccessId) {
       this.navigationState.genprocid = this.proccessId;
     }
     this.getData({ StartIndex: 0, genprocid: this.proccessId });
->>>>>>> oned/v92
   }
 
   public async getData(navigationState: OpsupportQueueJobsParameters): Promise<void> {
     this.navigationState = {
-<<<<<<< HEAD
-      ...navigationState, ...{
-=======
       ...navigationState,
       ...{
->>>>>>> oned/v92
         filter: [
           {
             ColumnName: 'IsRootJob',
             Type: FilterType.Compare,
             CompareOp: CompareOperator.Equal,
-<<<<<<< HEAD
-            Value1: true
-          }
-        ]
-      }
-    };
-
-    let overlayRef: OverlayRef;
-    setTimeout(() => overlayRef = this.busyService.show());
-    try {
-      const queuedJobs = await this.jobService.Get(navigationState);
-=======
             Value1: true,
           },
         ],
@@ -302,7 +210,6 @@ export class JobsGridviewComponent implements OnInit {
     setTimeout(() => (overlayRef = this.busyService.show()));
     try {
       const queuedJobs = await this.jobService.Get(this.navigationState);
->>>>>>> oned/v92
 
       this.dstSettings = {
         displayedColumns: this.displayedColumns,
@@ -311,13 +218,7 @@ export class JobsGridviewComponent implements OnInit {
         navigationState: this.navigationState,
         filters: this.filters,
         dataModel: this.dataModel,
-<<<<<<< HEAD
-        identifierForSessionStore: 'jobs-gridview'
       };
-
-=======
-      };
->>>>>>> oned/v92
     } finally {
       setTimeout(() => this.busyService.hide(overlayRef));
     }
@@ -325,13 +226,6 @@ export class JobsGridviewComponent implements OnInit {
 
   private async retryJobs(jobs: OpsupportQueueJobs[], mode: ReactivateJobMode, message: TextContainer): Promise<void> {
     let overlayRef: OverlayRef;
-<<<<<<< HEAD
-    setTimeout(() => overlayRef = this.busyService.show());
-    let success = false;
-
-    try {
-      await this.jobService.Retry(mode, jobs.map((job: OpsupportQueueJobs) => job.UID_Job.value));
-=======
     setTimeout(() => (overlayRef = this.busyService.show()));
     let success = false;
 
@@ -340,7 +234,6 @@ export class JobsGridviewComponent implements OnInit {
         mode,
         jobs.map((job: OpsupportQueueJobs) => job.UID_Job.value)
       );
->>>>>>> oned/v92
       success = true;
     } finally {
       setTimeout(() => this.busyService.hide(overlayRef));

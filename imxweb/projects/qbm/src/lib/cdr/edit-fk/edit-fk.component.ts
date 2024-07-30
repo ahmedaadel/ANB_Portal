@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -50,7 +46,7 @@ import { imx_SessionService } from '../../session/imx-session.service';
 import { QbmApiClientService } from '../../QbmClonedServices/apiClient/qbm-api-client.service';
 import { QbmPermissionsService } from '../../QbmClonedServices/permissions/qbm-api-client.service';
 
-import { CollectionLoadParameters, DbObjectKey, IForeignKeyInfo, ValueStruct } from 'imx-qbm-dbts';
+import { CollectionLoadParameters, DbObjectKey, IForeignKeyInfo, ValueStruct,  CompareOperator,FilterType } from 'imx-qbm-dbts';
 import { MetadataService } from '../../base/metadata.service';
 import { ClassloggerService } from '../../classlogger/classlogger.service';
 import { Candidate } from '../../fk-advanced-picker/candidate.interface';
@@ -498,7 +494,7 @@ export class EditFkComponent implements CdrEditor, AfterViewInit, OnDestroy, OnI
     if (this.selectedTable) {
       // cust
       await this.CCC_CustomPropertiesInitializer()
-      if (this.selectedTable.ColumnName == "UID_Person"&& !this.isHr) {
+      if (this.selectedTable.ColumnName == "UID_Person" && ! this.isHr) {
         newState.filter = 
         [
           {

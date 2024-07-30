@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -40,12 +36,6 @@ export class ApplyConfigSidesheetComponent {
 
   constructor(private readonly configSvc: ConfigService,
     private readonly sideSheetRef: EuiSidesheetRef,
-<<<<<<< HEAD
-  ) { }
-
-  public isGlobal: boolean = false;
-
-=======
   ) { 
     this.isGlobal = !configSvc.supportsLocalCustomization;
   }
@@ -56,7 +46,6 @@ export class ApplyConfigSidesheetComponent {
     return this.configSvc.supportsLocalCustomization;
   }
 
->>>>>>> oned/v92
   public submit() {
     this.configSvc.submit(this.isGlobal);
     this.sideSheetRef.close();
@@ -66,11 +55,8 @@ export class ApplyConfigSidesheetComponent {
 
   public LdsApplyGlobally = '#LDS#Use this setting if you want to apply the configuration changes globally. The changes are stored in the global configuration file and distributed to all API servers.';
 
-<<<<<<< HEAD
-=======
   public LdsApplyLocallyNotPossible = '#LDS#This option has been disabled by your administrator.';
 
->>>>>>> oned/v92
   public get pendingChanges(): string[][] {
     return this.configSvc.getPendingChanges();
   }

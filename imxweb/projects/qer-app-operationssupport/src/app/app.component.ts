@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,18 +25,6 @@
  */
 
 import { OverlayRef } from '@angular/cdk/overlay';
-<<<<<<< HEAD
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
-import { EuiLoadingService } from '@elemental-ui/core';
-import { Subscription } from 'rxjs';
-
-import { MenuItem, AuthenticationService, ISessionState, MenuService, SettingsService, imx_SessionService, SplashService } from 'qbm';
-import { FeatureConfigService } from 'qer';
-import { UserService } from './user/user.service';
-import { FeatureConfig } from 'imx-api-qer';
-import { isOutstandingManager } from './permissions/permissions-helper';
-=======
 import { Component, OnInit, OnDestroy, ErrorHandler } from '@angular/core';
 import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, EventType } from '@angular/router';
 import { EuiLoadingService, EuiTheme, EuiThemeService, EuiTopNavigationItem } from '@elemental-ui/core';
@@ -61,7 +45,6 @@ import { FeatureConfig, ProfileSettings } from 'imx-api-qer';
 import { isOutstandingManager } from './permissions/permissions-helper';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
->>>>>>> oned/v92
 
 @Component({
   selector: 'imx-root',
@@ -69,20 +52,12 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-<<<<<<< HEAD
-  public menuItems: MenuItem[];
-=======
   public menuItems: EuiTopNavigationItem[];
->>>>>>> oned/v92
   public isLoggedIn = false;
   public hideMenu = false;
   public hideUserMessage = false;
   public showPageContent = true;
-<<<<<<< HEAD
-
-=======
   private routerStatus: EventType;
->>>>>>> oned/v92
   private readonly subscriptions: Subscription[] = [];
 
   constructor(
@@ -94,9 +69,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly splash: SplashService,
     sessionService: imx_SessionService,
     settings: SettingsService,
-<<<<<<< HEAD
-    userModelService: UserService
-=======
     userModelService: OpSupportUserService,
     private dialog: MatDialog,
     private qerClient: QerApiService,
@@ -104,7 +76,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly errorHandler: ErrorHandler,
     private readonly translationProvider: ImxTranslationProviderService,
     private readonly translateService: TranslateService
->>>>>>> oned/v92
   ) {
     this.subscriptions.push(
       this.authentication.onSessionResponse.subscribe(async (sessionState: ISessionState) => {
@@ -112,19 +83,13 @@ export class AppComponent implements OnInit, OnDestroy {
           // Needs to close here when there is an error on sessionState
           splash.close();
         } else {
-<<<<<<< HEAD
-          if (sessionState.IsLoggedOut) {
-=======
           if (sessionState.IsLoggedOut && this.routerStatus !== EventType.NavigationEnd) {
->>>>>>> oned/v92
             this.showPageContent = false;
           }
         }
 
         this.isLoggedIn = sessionState.IsLoggedIn;
         if (this.isLoggedIn) {
-<<<<<<< HEAD
-=======
           const isUseProfileLangChecked = (await this.qerClient.v2Client.opsupport_profile_get()).UseProfileLanguage ?? false;
           // Set session culture if isUseProfileLangChecked is true, set browser culture otherwise
           if (isUseProfileLangChecked) {
@@ -134,7 +99,6 @@ export class AppComponent implements OnInit, OnDestroy {
             await this.translationProvider.init(browserCulture);
           }
 
->>>>>>> oned/v92
           // Close the splash screen that opened in app service initialisation
           // Needs to close here when running in containers (auth skipped)
           splash.close();
@@ -144,9 +108,6 @@ export class AppComponent implements OnInit, OnDestroy {
           settings.DefaultPageSize = conf.DefaultPageSize;
 
           const groupInfo = await userModelService.getGroups();
-<<<<<<< HEAD
-          this.menuItems = this.menuService.getMenuItems([], groupInfo.map(group => group.Name), true);
-=======
           this.menuItems = await this.menuService.getMenuItems(
             [],
             groupInfo.map((group) => group.Name),
@@ -154,7 +115,6 @@ export class AppComponent implements OnInit, OnDestroy {
           );
 
           this.applyProfileSettings();
->>>>>>> oned/v92
         }
       })
     );
@@ -176,34 +136,14 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((s) => s.unsubscribe());
   }
 
-<<<<<<< HEAD
-=======
   public async openSettingsDialog(): Promise<void> {
     this.dialog.open(SettingsComponent, { minWidth: '600px' });
   }
 
->>>>>>> oned/v92
   private setupRouter(): void {
     let overlayRef: OverlayRef;
 
     this.router.events.subscribe((event: RouterEvent) => {
-<<<<<<< HEAD
-      switch (true) {
-        case event instanceof NavigationStart:
-          this.hideUserMessage = true;
-
-          if (this.isLoggedIn && event.url === '/') {
-            // show the splash screen, when the user logs out!
-            this.splash.init({ applicationName: 'Operations Support Web Portal' });
-          }
-          break;
-        case event instanceof NavigationEnd:
-        case event instanceof NavigationCancel:
-        case event instanceof NavigationError:
-          this.hideUserMessage = false;
-          this.hideMenu = event.url === '/';
-          this.showPageContent = true;
-=======
       if (event instanceof NavigationStart) {
         this.routerStatus = event.type;
         this.hideUserMessage = true;
@@ -217,7 +157,6 @@ export class AppComponent implements OnInit, OnDestroy {
         this.routerStatus = event.type;
         this.hideMenu = event.url === '/';
         this.showPageContent = true;
->>>>>>> oned/v92
       }
     });
   }
@@ -252,14 +191,6 @@ export class AppComponent implements OnInit, OnDestroy {
           items: [
             {
               id: 'OpsWeb_Processes_Processes',
-<<<<<<< HEAD
-              title: '#LDS#Processes',
-              route: 'Jobs',
-            },
-            {
-              id: 'OpsWeb_Processes_ProcessSteps',
-              title: '#LDS#Process steps',
-=======
               title: '#LDS#Menu Entry Processes',
               route: 'Jobs',
             },
@@ -271,16 +202,10 @@ export class AppComponent implements OnInit, OnDestroy {
             {
               id: 'OpsWeb_Processes_ProcessSteps',
               title: '#LDS#Menu Entry Process steps per process',
->>>>>>> oned/v92
               route: 'JobChainInformation',
             },
             {
               id: 'OpsWeb_Processes_Performance',
-<<<<<<< HEAD
-              title: '#LDS#Performance',
-              route: 'JobPerformance',
-            },
-=======
               title: '#LDS#Menu Entry Performance',
               route: 'JobPerformance',
             },
@@ -308,7 +233,6 @@ export class AppComponent implements OnInit, OnDestroy {
               title: '#LDS#Menu Entry DBQueue',
               route: 'DbQueue',
             },
->>>>>>> oned/v92
           ],
         };
         return menu;
@@ -320,15 +244,6 @@ export class AppComponent implements OnInit, OnDestroy {
         const menu = {
           id: 'OpsWeb_ROOT_Synchronization',
           title: '#LDS#Synchronization',
-<<<<<<< HEAD
-          sorting: '30',
-          items: [
-            {
-              id: 'OpsWeb_Synchronization_UnresolvedReferences',
-              title: '#LDS#Unresolved references',
-              route: 'unresolvedRefs',
-              sorting: '30-10',
-=======
           sorting: '40',
           items: [
             {
@@ -336,7 +251,6 @@ export class AppComponent implements OnInit, OnDestroy {
               title: '#LDS#Menu Entry Unresolved references',
               route: 'unresolvedRefs',
               sorting: '40-10',
->>>>>>> oned/v92
             },
           ],
         };
@@ -346,25 +260,15 @@ export class AppComponent implements OnInit, OnDestroy {
             id: 'OpsWeb_Synchronization_OutstandingObjects',
             title: '#LDS#Menu Entry Outstanding objects',
             route: 'outstanding',
-<<<<<<< HEAD
-            sorting: '30-20',
-=======
             sorting: '40-20',
->>>>>>> oned/v92
           });
         }
 
         menu.items.push({
           id: 'OpsWeb_Synchronization_SyncInformation',
-<<<<<<< HEAD
-          title: '#LDS#Synchronization',
-          route: 'SyncInformation',
-          sorting: '30-30',
-=======
           title: '#LDS#Menu Entry Synchronization',
           route: 'SyncInformation',
           sorting: '40-30',
->>>>>>> oned/v92
         });
         return menu;
       },
@@ -374,29 +278,16 @@ export class AppComponent implements OnInit, OnDestroy {
         }
         const menu = {
           id: 'OpsWeb_ROOT_System',
-<<<<<<< HEAD
-          sorting: '40',
-=======
           sorting: '50',
->>>>>>> oned/v92
           title: '#LDS#System',
           items: [
             {
               id: 'OpsWeb_System_Database',
-<<<<<<< HEAD
-              title: '#LDS#Database log',
-=======
               title: '#LDS#Menu Entry Database log',
->>>>>>> oned/v92
               route: 'journal',
             },
             {
               id: 'OpsWeb_System_WebApplications',
-<<<<<<< HEAD
-              title: '#LDS#Web applications',
-              route: 'WebApplications',
-            },
-=======
               title: '#LDS#Menu Entry Web applications',
               route: 'WebApplications',
             },
@@ -405,18 +296,13 @@ export class AppComponent implements OnInit, OnDestroy {
               title: '#LDS#Menu Entry Operation history',
               route: 'DataChanges',
             },
->>>>>>> oned/v92
           ],
         };
 
         if (featureConfig?.EnableSystemStatus) {
           menu.items.unshift({
             id: 'OpsWeb_System_SystemStatus',
-<<<<<<< HEAD
-            title: '#LDS#System status',
-=======
             title: '#LDS#Menu Entry System status',
->>>>>>> oned/v92
             route: 'SystemStatus',
           });
         }
@@ -426,8 +312,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     return null;
   }
-<<<<<<< HEAD
-=======
 
   private async applyProfileSettings() {
     try {
@@ -439,5 +323,4 @@ export class AppComponent implements OnInit, OnDestroy {
       this.errorHandler.handleError(error);
     }
   }
->>>>>>> oned/v92
 }

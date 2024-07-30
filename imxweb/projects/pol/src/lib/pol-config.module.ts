@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -37,48 +33,29 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { EuiCoreModule } from '@elemental-ui/core';
 
-<<<<<<< HEAD
-import { ClassloggerService, RouteGuardService } from 'qbm';
-=======
 import { ClassloggerService, HELP_CONTEXTUAL, RouteGuardService } from 'qbm';
->>>>>>> oned/v92
 import { InitService } from './init.service';
 import { TilesModule } from 'qer';
 import { DashboardPluginComponent } from './dashboard-plugin/dashboard-plugin.component';
 import { PolicyViolationsComponent } from './policy-violations/policy-violations.component';
-<<<<<<< HEAD
-import { PolicyViolationsModule } from './policy-violations/policy-violations.module';
-import { PolicyViolationApproverGuardService } from './guards/policy-violation-approver-guard.service';
-=======
 import { PoliciesModule } from './policies/policies.module';
 import { PolicyViolationsModule } from './policy-violations/policy-violations.module';
 import { PoliciesComponent } from './policies/policies.component';
 import { PolicyAdminGuardService } from './guards/policy-admin-guard.service';
->>>>>>> oned/v92
 
 const routes: Routes = [
   {
     path: 'compliance/policyviolations/approve',
     component: PolicyViolationsComponent,
-<<<<<<< HEAD
-    canActivate: [RouteGuardService, PolicyViolationApproverGuardService],
-    resolve: [RouteGuardService]
-=======
     canActivate: [RouteGuardService, PolicyAdminGuardService],
     resolve: [RouteGuardService],
     data:{
       contextId: HELP_CONTEXTUAL.CompliancePolicyViolations
     }
->>>>>>> oned/v92
   },
   {
     path: 'compliance/policyviolations',
     component: PolicyViolationsComponent,
-<<<<<<< HEAD
-    canActivate: [RouteGuardService, PolicyViolationApproverGuardService],
-    resolve: [RouteGuardService]
-  }
-=======
     canActivate: [RouteGuardService, PolicyAdminGuardService],
     resolve: [RouteGuardService],
     data:{
@@ -94,7 +71,6 @@ const routes: Routes = [
       contextId: HELP_CONTEXTUAL.CompanyPolicies
     }
   },
->>>>>>> oned/v92
 ];
 
 @NgModule({
@@ -109,12 +85,8 @@ const routes: Routes = [
     MatListModule,
     TranslateModule,
     EuiCoreModule,
-<<<<<<< HEAD
-    PolicyViolationsModule
-=======
     PoliciesModule,
     PolicyViolationsModule,
->>>>>>> oned/v92
   ]
 })
 export class PolConfigModule {

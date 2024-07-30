@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-@import "@elemental-ui/core/src/styles/_palette.scss";
-=======
 @import '@elemental-ui/core/src/styles/_palette.scss';
 @import '../../../../../shared/scss/common-table.scss';
->>>>>>> oned/v92
 
 div[subtitle] {
   font-size: smaller;
@@ -17,21 +13,15 @@ div[subtitle] {
   height: inherit;
 }
 
-<<<<<<< HEAD
-=======
 .mat-card {
   @include imx-flex-fill-control-hidden-overflow();
   margin: 3px;
 }
 
->>>>>>> oned/v92
 .imx-table-container {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-<<<<<<< HEAD
-  height: inherit;
-=======
   flex: 1 1 auto;
 }
 
@@ -51,5 +41,4 @@ div[subtitle] {
     align-self: center;
     margin-left: 15px;
   }
->>>>>>> oned/v92
 }

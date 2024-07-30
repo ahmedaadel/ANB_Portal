@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-<imx-badge-tile data-imx-identifier="start-tile-att-approvals" [caption]="'#LDS#Heading Pending Attestations' | translate"
-  *ngIf="attEnabled && 0 < pendingItems?.OpenAttestation" [value]="pendingItems?.OpenAttestation" [identifier]="'att-approvals'"
-  (actionClick)="router.navigate(['attestation', 'decision'])">
-=======
 <imx-badge-tile
   data-imx-identifier="start-tile-att-approvals"
   [caption]="'#LDS#Heading Pending Attestations' | translate"
@@ -20,7 +15,6 @@
   [identifier]="'att-inquiries'"
   (actionClick)="goToAttestationInquiries()"
 >
->>>>>>> oned/v92
 </imx-badge-tile>
 
 <!--

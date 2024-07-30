@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,11 +26,7 @@
 
 import { Injectable } from '@angular/core';
 
-<<<<<<< HEAD
-import { ExtendedTypedEntityCollection, EntitySchema, DataModel } from 'imx-qbm-dbts';
-=======
 import { ExtendedTypedEntityCollection, EntitySchema, DataModel, MethodDescriptor, EntityCollectionData, MethodDefinition, ApiRequestOptions } from 'imx-qbm-dbts';
->>>>>>> oned/v92
 import {
   PortalItshopApproveRequests,
   OtherApproverInput,
@@ -43,25 +35,14 @@ import {
   PwoExtendedData,
   RecallDecisionInput,
   ReasonInput,
-<<<<<<< HEAD
-  DenyDecisionInput
-=======
   DenyDecisionInput,
   PwoQueryInput,
   V2ApiClientMethodFactory,
->>>>>>> oned/v92
 } from 'imx-api-qer';
 import { Approval } from './approval';
 import { QerApiService } from '../qer-api-client.service';
 import { ApprovalsLoadParameters } from './approvals-load-parameters';
 import { ItshopRequestService } from '../itshop/itshop-request.service';
-<<<<<<< HEAD
-
-@Injectable()
-export class ApprovalsService {
-
-  constructor(private readonly apiService: QerApiService, private readonly itshopRequest: ItshopRequestService) { }
-=======
 import { DataSourceToolbarExportMethod } from 'qbm';
 
 @Injectable()
@@ -69,7 +50,6 @@ export class ApprovalsService {
   public abortController = new AbortController();
 
   constructor(private readonly apiService: QerApiService, private readonly itshopRequest: ItshopRequestService) {}
->>>>>>> oned/v92
 
   public get PortalItshopApproveRequestsSchema(): EntitySchema {
     return this.apiService.typedClient.PortalItshopApproveRequests.GetSchema();
@@ -83,24 +63,6 @@ export class ApprovalsService {
     this.itshopRequest.isChiefApproval = val;
   }
 
-<<<<<<< HEAD
-  public async get(parameters: ApprovalsLoadParameters):
-    Promise<ExtendedTypedEntityCollection<Approval, PwoExtendedData>> {
-    const collection = await this.apiService.typedClient.PortalItshopApproveRequests.Get({
-      Escalation: this.isChiefApproval,
-      ...parameters
-    });
-    return {
-      tableName: collection.tableName,
-      totalCount: collection.totalCount,
-      Data: collection.Data.map((element, index) =>
-        this.itshopRequest.createRequestApprovalItem(
-          element,
-          { ...collection.extendedData, ...{ index } }
-        )
-      ),
-      extendedData: collection.extendedData
-=======
   public abortCall(): void {
     this.abortController.abort();
     this.abortController = new AbortController();
@@ -137,7 +99,6 @@ export class ApprovalsService {
         }
         return new MethodDefinition(method);
       },
->>>>>>> oned/v92
     };
   }
 
@@ -157,8 +118,6 @@ export class ApprovalsService {
     await this.apiService.client.portal_itshop_revokeadditional_post(this.getUidPwo(pwo), approver);
   }
 
-<<<<<<< HEAD
-=======
   public async askForHelp(pwo: PortalItshopApproveRequests, para: PwoQueryInput): Promise<void> {
     await this.apiService.client.portal_itshop_query_post(this.getUidPwo(pwo), para);
   }
@@ -170,7 +129,6 @@ export class ApprovalsService {
     return this.apiService.client.portal_itshop_resetreservation_post(this.getUidPwo(pwo), reason);
   }
 
->>>>>>> oned/v92
   public async addApprover(pwo: PortalItshopApproveRequests, approver: OtherApproverInput): Promise<any> {
     await this.apiService.client.portal_itshop_additional_post(this.getUidPwo(pwo), approver);
   }
@@ -195,13 +153,10 @@ export class ApprovalsService {
     await this.apiService.client.portal_itshop_decide_post(this.getUidPwo(pwo), decision);
   }
 
-<<<<<<< HEAD
-=======
   public async answerQuestion(pwo: PortalItshopApproveRequests, answerInput: string): Promise<void> {
     return this.apiService.client.portal_itshop_answerquery_post(this.getUidPwo(pwo), { Reason: answerInput });
   }
 
->>>>>>> oned/v92
   private getUidPwo(pwo: PortalItshopApproveRequests): string {
     return pwo.GetEntity().GetKeys()[0];
   }

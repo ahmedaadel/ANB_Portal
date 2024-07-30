@@ -1,9 +1,5 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
-<<<<<<< HEAD
-
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
->>>>>>> oned/v92
 eui-alert {
   margin-bottom: 1em;
   display: block;
@@ -34,23 +30,8 @@ eui-alert {
   margin-bottom: 10px;
 }
 
-<<<<<<< HEAD
-.eui-sidesheet-content{
-  overflow: hidden;
-}
-
 .imx-stepper-card{
   height: 100%;
-  display: flex;
-
-  .imx-stepper-content {
-    overflow: auto;
-    flex: 1 1 auto;
-  }
-=======
-.imx-stepper-card{
-  height: 100%;
->>>>>>> oned/v92
 }
 
 .imx-step-button,
@@ -60,8 +41,6 @@ eui-alert {
     margin-right: 10px;
   }
 }
-<<<<<<< HEAD
-=======
 
 .eui-dark-theme{
   :host{
@@ -80,4 +59,3 @@ eui-alert {
     }
   }
 }
->>>>>>> oned/v92

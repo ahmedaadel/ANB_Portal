@@ -1,36 +1,20 @@
 <!-- Limited Values-->
 <mat-form-field appearance="outline" class="operand" *ngIf="expr.Property.LimitedValues">
   <mat-label>{{ '#LDS#Value' | translate }}</mat-label>
-<<<<<<< HEAD
-  <mat-select [(ngModel)]="value" data-imx-identifier="single-value-select-limvalue" (change)="emitChanges()">
-    <mat-option *ngFor="let lv of expr.Property.LimitedValues" [value]="lv.Value">
-      {{lv.Description}}
-=======
   <mat-select [(ngModel)]="value" data-imx-identifier="single-value-select-limvalue" (selectionChange)="emitChanges()">
     <mat-option *ngFor="let lv of expr.Property.LimitedValues" [value]="lv.Value">
       {{ lv.Description }}
->>>>>>> oned/v92
     </mat-option>
   </mat-select>
 </mat-form-field>
 
 <ng-container *ngIf="expr.Property.SelectionTables">
-<<<<<<< HEAD
-  <imx-cdr-editor [cdr]="cdr" class="auto-flex">
-  </imx-cdr-editor>
-=======
   <imx-cdr-editor [cdr]="cdr" class="auto-flex" (valueChange)="emitChanges()"> </imx-cdr-editor>
->>>>>>> oned/v92
 </ng-container>
 
 <ng-container [ngSwitch]="expr.Property.Type" *ngIf="!expr.Property.LimitedValues && !expr.Property.SelectionTables">
   <div *ngSwitchCase="ValType.Bool" class="operand">
-<<<<<<< HEAD
-    <mat-slide-toggle data-imx-identifier="single-value-toggle" [(ngModel)]="value" (change)="emitChanges()">{{ '#LDS#Property is activated' | translate }}
-    </mat-slide-toggle>
-=======
     <mat-slide-toggle data-imx-identifier="single-value-toggle" [(ngModel)]="value" (change)="emitChanges()">{{ '#LDS#Property is activated' | translate }} </mat-slide-toggle>
->>>>>>> oned/v92
   </div>
   <div *ngSwitchCase="ValType.Date" class="operand">
     <imx-sqlwizard-datepicker [expr]="expr" (change)="emitChanges()"></imx-sqlwizard-datepicker>
@@ -38,16 +22,6 @@
   <div *ngSwitchCase="ValType.Int" class="operand">
     <mat-form-field appearance="outline">
       <mat-label>{{ '#LDS#Value' | translate }}</mat-label>
-<<<<<<< HEAD
-      <input matInput type="number" [(ngModel)]="value" (change)="emitChanges()">
-    </mat-form-field>
-  </div>
-  <div *ngSwitchDefault class="operand">
-
-    <mat-form-field class="flex-grow" appearance="outline">
-      <mat-label>{{ '#LDS#Value' | translate }}</mat-label>
-      <input matInput type="text" [(ngModel)]="value" data-imx-identifier="single-value-input-value" (change)="emitChanges()">
-=======
       <input matInput type="text" [formControl]="integerFormControl" />
       <mat-error *ngIf="integerFormControl.errors"> {{ '#LDS#WD_InputInvalidInteger' | translate | ldsReplace : integerFormControl.value }}</mat-error>
     </mat-form-field>
@@ -63,7 +37,6 @@
     <mat-form-field class="flex-grow" appearance="outline">
       <mat-label>{{ '#LDS#Value' | translate }}</mat-label>
       <input matInput type="text" [(ngModel)]="value" data-imx-identifier="single-value-input-value" (change)="emitChanges()" />
->>>>>>> oned/v92
     </mat-form-field>
   </div>
 </ng-container>

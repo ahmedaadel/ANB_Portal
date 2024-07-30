@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -43,18 +39,12 @@ import {
   ClassloggerService,
   DataSourceToolbarModule,
   DataTableModule,
-<<<<<<< HEAD
-  MenuItem,
-  MenuService,
-  RouteGuardService,
-=======
   HELP_CONTEXTUAL,
   HelpContextualModule,
   MenuItem,
   MenuService,
   RouteGuardService,
   SelectedElementsModule,
->>>>>>> oned/v92
   UserMessageModule
 } from 'qbm';
 import { ItshopPatternComponent } from './itshop-pattern.component';
@@ -65,24 +55,17 @@ import { ServiceItemsModule } from '../service-items/service-items.module';
 import { DuplicatePatternItemsComponent } from './duplicate-pattern-items/duplicate-pattern-items.component';
 import { UserModule } from '../user/user.module';
 import { ItshopPatternGuardService } from '../guards/itshop-pattern-guard.service';
-<<<<<<< HEAD
-=======
 import { ItshopPatternItemEditComponent } from './itshop-pattern-item-edit/itshop-pattern-item-edit.component';
->>>>>>> oned/v92
 
 const routes: Routes = [
   {
     path: 'itshop/requesttemplates',
     component: ItshopPatternComponent,
     canActivate: [RouteGuardService, ItshopPatternGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
     data:{
       contextId: HELP_CONTEXTUAL.RequestTemplates
     }
->>>>>>> oned/v92
   }
 ];
 
@@ -92,12 +75,8 @@ const routes: Routes = [
     ItshopPatternSidesheetComponent,
     ItshopPatternCreateSidesheetComponent,
     ItshopPatternAddProductsComponent,
-<<<<<<< HEAD
-    DuplicatePatternItemsComponent
-=======
     DuplicatePatternItemsComponent,
     ItshopPatternItemEditComponent
->>>>>>> oned/v92
   ],
   imports: [
     CdrModule,
@@ -112,13 +91,9 @@ const routes: Routes = [
     TranslateModule,
     RouterModule.forChild(routes),
     UserMessageModule,
-<<<<<<< HEAD
-    UserModule
-=======
     UserModule,
     SelectedElementsModule,
     HelpContextualModule,
->>>>>>> oned/v92
   ]
 })
 export class ItshopPatternModule {
@@ -133,11 +108,7 @@ export class ItshopPatternModule {
 
   private setupMenu(): void {
     this.menuService.addMenuFactories(
-<<<<<<< HEAD
-      (preProps: string[], groups: string[], projectConfig: QerProjectConfig & ProjectConfig) => {
-=======
       (preProps: string[], features: string[], projectConfig: QerProjectConfig & ProjectConfig) => {
->>>>>>> oned/v92
         const items: MenuItem[] = [];
         const requestTemplatesEnabled = projectConfig.ITShopConfig.VI_ITShop_ProductSelectionFromTemplate;
 
@@ -148,11 +119,7 @@ export class ItshopPatternModule {
               navigationCommands: {
                 commands: ['itshop', 'requesttemplates']
               },
-<<<<<<< HEAD
-              title: '#LDS#Menu Entry Request templates',
-=======
               title: '#LDS#Menu Entry Product bundles',
->>>>>>> oned/v92
               sorting: '10-50',
             }
           );

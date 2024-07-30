@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-@import '@elemental-ui/core/src/styles/_palette.scss';
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
->>>>>>> oned/v92
 
 .imx-hyperview-shape-header {
   display: flex;
@@ -23,10 +19,7 @@
 .imx-shape-header-info {
   overflow: hidden;
   margin-right: 30px;
-<<<<<<< HEAD
-=======
   width:100%;
->>>>>>> oned/v92
 }
 
 .imx-hyperview-shape-content {
@@ -35,26 +28,10 @@
   overflow-y: auto;
 }
 
-<<<<<<< HEAD
-.imx-hyperview-header {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  color: $asher-gray;
-  font-weight: bold;
-  font-size: 14px;
-  text-align: left;
-}
-
-=======
->>>>>>> oned/v92
 .imx-hyperview-caption {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-<<<<<<< HEAD
-  color: $asher-gray;
-=======
   font-weight: bold;
   font-size: 14px;
   text-align: left;
@@ -67,13 +44,10 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
->>>>>>> oned/v92
   font-style: italic;
   font-size: 12px;
   font-weight: 400;
 }
-<<<<<<< HEAD
-=======
 
 // Theming
 
@@ -85,4 +59,3 @@
 .imx-hyperview-header {
   color: $color-gray-2;
 }
->>>>>>> oned/v92

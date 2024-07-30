@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -31,11 +27,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OverlayRef } from '@angular/cdk/overlay';
 import { EuiLoadingService } from '@elemental-ui/core';
-<<<<<<< HEAD
-import { OpsupportDbObjectService, imx_SessionService } from 'qbm';
-=======
 import { imx_SessionService, OpsupportDbObjectService } from 'qbm';
->>>>>>> oned/v92
 import { ObjectOverviewContainer } from './objectOverviewContainer';
 import { PasscodeService } from './passcode.service';
 
@@ -61,11 +53,7 @@ export class ObjectOverviewPersonComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
-<<<<<<< HEAD
-    this.isPasswordResetAllowed = (await this.session.Client.opsupport_usergroups_get()).some(role => role.Name === 'QER_4_PasswordHelpdesk');
-=======
     this.isPasswordResetAllowed = (await this.session.Client.opsupport_usergroups_get()).some(role => role.Name === 'QER_4_PasswordHelpdesk');   
->>>>>>> oned/v92
   }
 
   get uidPerson(): string {

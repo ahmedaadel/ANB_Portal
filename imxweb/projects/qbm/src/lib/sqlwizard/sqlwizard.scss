@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 @import '@elemental-ui/core/src/styles/_palette.scss';
 
 
->>>>>>> oned/v92
 .column-selector {
   flex-grow: 1;
   padding-top: 0.25em;
@@ -19,10 +16,6 @@
 }
 
 li {
-<<<<<<< HEAD
-  padding: 0;
-=======
->>>>>>> oned/v92
   margin: 0;
 }
 
@@ -31,21 +24,14 @@ li {
   flex-grow: 1;
   flex-shrink: 1;
   align-items: center;
-<<<<<<< HEAD
-=======
 
   .mat-slide-toggle {
     margin-top: 10px;
   }
->>>>>>> oned/v92
 }
 
 .expression {
   display: flex;
-<<<<<<< HEAD
-  padding: 0 1em;
-=======
->>>>>>> oned/v92
 }
 
 .logical-operator {
@@ -65,20 +51,9 @@ li {
   flex-wrap: wrap;
 }
 
-<<<<<<< HEAD
-.add-expression-row {
-  margin: 0.5em 0;
-  display: flex;
-}
-
-.remove-btn {
-  margin-left: 1em;
-  margin-top: 0.25em;
-=======
 .remove-btn {
   display: flex;
   align-items: center;
->>>>>>> oned/v92
 }
 
 .date-diff-value {
@@ -87,8 +62,6 @@ li {
 
 .relative-date {
   display: flex;
-<<<<<<< HEAD
-=======
   flex-wrap: wrap;
   align-items: baseline;
   .mat-error {
@@ -149,7 +122,6 @@ li {
 
 .imx-spacer {
   flex: 1 1 auto;
->>>>>>> oned/v92
 }
 
 mat-radio-button {
@@ -179,8 +151,6 @@ imx-sqlwizard-singlevalue {
 .auto-flex {
   flex: auto;
 }
-<<<<<<< HEAD
-=======
 
 // Theme
 .eui-light-theme {
@@ -247,4 +217,3 @@ imx-sqlwizard-singlevalue {
     }
   }
 }
->>>>>>> oned/v92

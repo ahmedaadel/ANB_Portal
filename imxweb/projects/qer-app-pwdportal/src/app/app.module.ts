@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,27 +25,6 @@
  */
 
 import { HttpClientModule } from '@angular/common/http';
-<<<<<<< HEAD
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule, APP_INITIALIZER, ErrorHandler } from '@angular/core';
-import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
-import { TranslateModule, TranslateLoader, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
-
-import {
-  ImxTranslateLoader,
-  ImxMissingTranslationHandler,
-  MastHeadModule,
-  MenuModule,
-  UserMessageModule,
-  GlobalErrorHandler,
-  Paginator,
-  LdsReplacePipe,
-  QbmModule,
-  AuthenticationModule
-} from 'qbm';
-=======
 import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -72,25 +47,10 @@ import {
   UserMessageModule,
 } from 'qbm';
 import { environment } from '../environments/environment';
->>>>>>> oned/v92
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 import { MatPaginatorIntl } from '@angular/material/paginator';
-<<<<<<< HEAD
-import {
-  PasswordModule,
-  QaLoginModule,
-  PasscodeLoginModule,
-} from 'qer';
-import { environment } from '../environments/environment';
-import appConfigJson from '../appconfig.json';
-
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-=======
 import { PasswordModule, QaLoginModule, PasscodeLoginModule, ProfileModule, QerModule } from 'qer';
 import appConfigJson from '../appconfig.json';
 import { PwdSqlWizardApiService } from './pwd-sql-wizard-api.service';
@@ -101,7 +61,6 @@ export function getBaseHref(): string {
 }
 @NgModule({
   declarations: [AppComponent],
->>>>>>> oned/v92
   imports: [
     AppRoutingModule,
     AuthenticationModule,
@@ -114,22 +73,6 @@ export function getBaseHref(): string {
     MastHeadModule,
     MenuModule,
     QaLoginModule,
-<<<<<<< HEAD
-    QbmModule,
-    PasscodeLoginModule,
-    PasswordModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useClass: ImxTranslateLoader
-      },
-      missingTranslationHandler: {
-        provide: MissingTranslationHandler,
-        useClass: ImxMissingTranslationHandler
-      }
-    }),
-    UserMessageModule
-=======
     QerModule,
     PasscodeLoginModule,
     PasswordModule,
@@ -146,7 +89,6 @@ export function getBaseHref(): string {
     }),
     UserMessageModule,
     ProfileModule,
->>>>>>> oned/v92
   ],
   providers: [
     { provide: 'environment', useValue: environment },
@@ -155,34 +97,15 @@ export function getBaseHref(): string {
       provide: APP_INITIALIZER,
       useFactory: AppService.init,
       deps: [AppService],
-<<<<<<< HEAD
-      multi: true
-    },
-    {
-      provide: ErrorHandler,
-      useClass: GlobalErrorHandler
-=======
       multi: true,
     },
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandler,
->>>>>>> oned/v92
     },
     {
       provide: MatPaginatorIntl,
       useFactory: Paginator.Create,
-<<<<<<< HEAD
-      deps: [
-        TranslateService,
-        LdsReplacePipe
-      ]
-    }
-  ],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-=======
       deps: [TranslateService, LdsReplacePipe],
     },
     {
@@ -197,4 +120,3 @@ export class AppModule { }
   bootstrap: [AppComponent],
 })
 export class AppModule {}
->>>>>>> oned/v92

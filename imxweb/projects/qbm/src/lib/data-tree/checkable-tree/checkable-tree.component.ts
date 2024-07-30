@@ -45,12 +45,13 @@ import { QbmApiClientService } from '../../QbmClonedServices/apiClient/qbm-api-c
 import { imx_SessionService } from '../../session/imx-session.service';
 import { QbmPermissionsService } from '../../QbmClonedServices/permissions/qbm-api-client.service';
 
-import { CollectionLoadParameters, IEntity } from 'imx-qbm-dbts';
+import { CollectionLoadParameters, IEntity  , CompareOperator,
+  FilterType} from 'imx-qbm-dbts';
 import { ClassloggerService } from '../../classlogger/classlogger.service';
 import { SnackBarService } from '../../snackbar/snack-bar.service';
 import { TreeDatabase } from '../tree-database';
 import { TreeDatasource } from '../tree-datasource';
-import { TreeNode } from '../tree-node';
+import { TreeNode, TreeNodeInfo } from '../tree-node';
 
 @Component({
   selector: 'imx-checkable-tree',
@@ -150,18 +151,18 @@ export class CheckableTreeComponent implements OnChanges, AfterViewInit, OnDestr
     ColumnName = changes['database'].currentValue.fkTable.ColumnName
    } 
     
-    if (ColumnName =="UID_Department" &&! this.isHr){
+    if (ColumnName =="UID_Department" && ! this.isHr){
       this.navigationState.filter = [
-        {
-          ColumnName: "UID_Department",
-          Value1: this.uid_Department,
-          CompareOp: CompareOperator.Equal,
-          Type: FilterType.Compare
-        },
         {
           ColumnName: "treelevel",
           Value1: 0,
           CompareOp: CompareOperator.NotEqual,
+          Type: FilterType.Compare
+        },
+        {
+          ColumnName: "UID_Department",
+          Value1: this.uid_Department,
+          CompareOp: CompareOperator.Equal,
           Type: FilterType.Compare
         }
       ]
@@ -173,7 +174,8 @@ export class CheckableTreeComponent implements OnChanges, AfterViewInit, OnDestr
           Value1: 0,
           CompareOp: CompareOperator.NotEqual,
           Type: FilterType.Compare
-        }]
+        }
+      ]
     }
     this.checklistSelection = new SelectionModel<TreeNode>(this.withMultiSelect);
     if (changes['navigationState']) {
@@ -277,16 +279,20 @@ export class CheckableTreeComponent implements OnChanges, AfterViewInit, OnDestr
   }
 
   /** @ignore gets the level of a tree node */
-  public getLevel = (node: TreeNode): number => node.level;
+  public getLevel = (node: TreeNode): number => 0 ;//node.level;
 
   /** returns true, if the node has childnodes */
   public isExpandable(node: TreeNode): boolean {
-    return node.expandable;
+    return false ;
+    // node.expandable;
   }
 
   public isExpanded(entity: IEntity): boolean {
+
+    return false ;
+    
     const node = this.getNode(entity);
-    return this.treeControl.isExpanded(node);
+     return this.treeControl.isExpanded(node);
   }
 
   public getEntityById(id: string): IEntity {
@@ -295,6 +301,8 @@ export class CheckableTreeComponent implements OnChanges, AfterViewInit, OnDestr
   }
 
   public hasChildren(entity: IEntity): boolean {
+
+    return false 
     return this.isExpandable(this.getNode(entity));
   }
 

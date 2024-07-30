@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -35,11 +31,8 @@ export class OutstandingObjectEntity extends TypedEntity {
   public readonly ObjectKey: IReadValue<string> = this.GetEntityValue('ObjectKey');
   public readonly Display: IReadValue<string> = this.GetEntityValue('Display');
   public readonly CanPublish: IReadValue<boolean> = this.GetEntityValue('CanPublish');
-<<<<<<< HEAD
-=======
   public readonly CanDelete: IReadValue<boolean> = this.GetEntityValue('CanDelete');
   public readonly CanDeleteRestrictionReason: IReadValue<string> = this.GetEntityValue("CanDeleteRestrictionReason");
   public readonly CanPublishRestrictionReason: IReadValue<string> = this.GetEntityValue("CanPublishRestrictionReason");
->>>>>>> oned/v92
 
 }

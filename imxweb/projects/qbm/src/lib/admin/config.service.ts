@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -36,10 +32,7 @@ import { ConfirmationService } from '../confirmation/confirmation.service';
 import { imx_SessionService } from '../session/imx-session.service';
 import { SnackBarService } from '../snackbar/snack-bar.service';
 import { ConfigSection, KeyData } from './config-section';
-<<<<<<< HEAD
-=======
 import { Subject } from 'rxjs';
->>>>>>> oned/v92
 
 @Injectable()
 export class ConfigService {
@@ -56,13 +49,6 @@ export class ConfigService {
   /** view model for the sections */
   public sectionsFiltered: ConfigSection[] = [];
 
-<<<<<<< HEAD
-  canAddAnyConfigKey = false;
-
-  public readonly filter: {
-    customized?: boolean,
-    keywords?: string
-=======
   /** paths that can be deleted */
   public deletableKeys: KeyData[] = [];
 
@@ -75,7 +61,6 @@ export class ConfigService {
   public readonly filter: {
     customized?: boolean,
     keywords?: string[]
->>>>>>> oned/v92
   } = {};
 
   private pendingChanges: {
@@ -113,15 +98,12 @@ export class ConfigService {
     await this.session.Client.admin_apiconfigsingle_post(this.appId, path);
   }
 
-<<<<<<< HEAD
-=======
   public async deleteKey(path: string): Promise<void> {
     const payload = {};
     payload[path] = null;
     await this.session.Client.admin_apiconfig_post(this.appId, payload);
   }
 
->>>>>>> oned/v92
   public getLocalCustomizations(): string[][] {
     var result: string[][] = [];
 
@@ -167,10 +149,7 @@ export class ConfigService {
     // reload all to get the effective value. there is no good way to get just
     // the new effective value of the changed key.
     this.load();
-<<<<<<< HEAD
-=======
     this.submitChanges.next();
->>>>>>> oned/v92
   }
 
   public async revertAll(isGlobal: boolean): Promise<void> {
@@ -202,10 +181,7 @@ export class ConfigService {
     }
     this.pendingChanges = {};
     this.load();
-<<<<<<< HEAD
-=======
     this.submitChanges.next();
->>>>>>> oned/v92
     const key = isGlobal
       ? '#LDS#Your changes have been successfully saved. The changes apply to all API Server instances connected to the software update process. It may take some time for the changes to take effect.'
       : '#LDS#Your changes have been successfully saved. The changes only apply to this API Server and will be lost when you restart the server.';
@@ -219,16 +195,6 @@ export class ConfigService {
     this.sections = [];
     this.sectionsFiltered = [];
 
-<<<<<<< HEAD
-    const configNodes = await this.session.Client.admin_apiconfig_get(this.appId);
-
-    var canAdd = false;
-    const result: ConfigSection[] = [];
-    for (const topLevelNode of configNodes) {
-      const keyData: KeyData[] = [];
-      const settingsSupportingAdd: KeyData[] = [];
-      this.flatten(keyData, topLevelNode, '', [], settingsSupportingAdd);
-=======
     const data = await this.session.Client.admin_apiconfig_get(this.appId);
     this.supportsLocalCustomization = data.SupportsLocalCustomization;
     const deletablePaths = data.Added;
@@ -241,7 +207,6 @@ export class ConfigService {
       const keyData: KeyData[] = [];
       const settingsSupportingAdd: KeyData[] = [];
       this.flatten(keyData, topLevelNode, '', [], settingsSupportingAdd, deletablePaths, supportingDelete);
->>>>>>> oned/v92
       if (settingsSupportingAdd.length > 0)
         canAdd = true;
 
@@ -255,24 +220,16 @@ export class ConfigService {
     this.sections = result;
     this.search();
     this.canAddAnyConfigKey = canAdd;
-<<<<<<< HEAD
-=======
     this.deletableKeys = supportingDelete;
->>>>>>> oned/v92
   }
 
   public async search(): Promise<void> {
     const keywords = this.filter.keywords;
     let result = this.sections;
     if (keywords || this.filter.customized) {
-<<<<<<< HEAD
-      result = result
-        .map(d => this.matchesSection(d, keywords, this.filter.customized))
-=======
       const lcKeywords = keywords != null ? keywords.map(k => k.toLowerCase()) : null;
       result = result
         .map(d => this.matchesSection(d, lcKeywords, this.filter.customized))
->>>>>>> oned/v92
         .filter(d => d.Keys.length > 0);
     }
 
@@ -285,11 +242,7 @@ export class ConfigService {
     }
   }
 
-<<<<<<< HEAD
-  private flatten(keyData: KeyData[], node: ConfigNodeData, path: string, displayPath: string[], settingsSupportingAdd: KeyData[]): void {
-=======
   private flatten(keyData: KeyData[], node: ConfigNodeData, path: string, displayPath: string[], settingsSupportingAdd: KeyData[], deletablePaths: string[], supportingDelete: KeyData[]): void {
->>>>>>> oned/v92
 
     const thisPath = path + node.Key;
     for (const n of node.Settings) {
@@ -308,26 +261,6 @@ export class ConfigService {
 
     }
 
-<<<<<<< HEAD
-    if (node.CanAddSetting) {
-      settingsSupportingAdd.push({
-        Name: node.Name,
-        Key: node.Key,
-        Description: node.Description,
-        Type: ConfigSettingType.None,
-        DisplayPath: [...displayPath],
-        Path: thisPath,
-        searchTerms: []
-      });
-    }
-
-    for (const n of node.Children) {
-      this.flatten(keyData, n, thisPath + '/', [...displayPath, n.Name], settingsSupportingAdd);
-    }
-  }
-
-  private matchesSection(section: ConfigSection, keywords: string, onlyCustomized: boolean): ConfigSection {
-=======
     function buildNode() : KeyData {
       return {
           Name: node.Name,
@@ -354,26 +287,17 @@ export class ConfigService {
   }
 
   private matchesSection(section: ConfigSection, keywords: string[], onlyCustomized: boolean): ConfigSection {
->>>>>>> oned/v92
     const matching = section.Keys.filter(d => this.matches(d, keywords, onlyCustomized));
 
     return new ConfigSection(section.Title, section.Description, matching, section.SettingsSupportingAdd);
   }
 
-<<<<<<< HEAD
-  private matches(d: KeyData, keywords: string, onlyCustomized: boolean): boolean {
-=======
   private matches(d: KeyData, keywords: string[], onlyCustomized: boolean): boolean {
->>>>>>> oned/v92
     if (onlyCustomized && !d.HasCustomGlobalValue && !d.HasCustomLocalValue) {
       return false;
     }
 
-<<<<<<< HEAD
-    if (!keywords || d.searchTerms.filter(n => n?.includes(keywords)).length > 0) {
-=======
     if (!keywords || d.searchTerms.some(searchTerm => keywords.every(keyword => searchTerm?.includes(keyword)))) {
->>>>>>> oned/v92
       return true;
     }
 

@@ -1,9 +1,6 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
-<<<<<<< HEAD
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 
->>>>>>> oned/v92
 
 :host {
   overflow: hidden;
@@ -53,17 +50,11 @@
   flex-direction: column;
   flex: 1 1 auto;
   overflow-y: auto;
-<<<<<<< HEAD
-  padding: 32px;
-=======
->>>>>>> oned/v92
 
   .imx-rule-violation-table-container {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
-=======
     flex: 1 1 auto;
   }
 }
@@ -81,6 +72,5 @@
     .imx-card-header {
       background-color: $color-gray-100;
     }
->>>>>>> oned/v92
   }
 }

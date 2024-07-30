@@ -66,6 +66,14 @@
               text-overflow: ellipsis;
               white-space: nowrap;
             }
+            &:hover:not(.snavigation-item--selected) {
+              background-color: #0073CF; // Updated color
+            }
+
+            &.snavigation-item--selected {
+              background-color: #0073CF; // Updated color
+              color: $color-gray-0;
+            }
           }
         }
       }
@@ -143,11 +151,14 @@
             }
 
             &:hover:not(.snavigation-item--selected) {
-              background-color: rgba($color-blue-40, 0.5);
+              //cust
+              background-color: #0073CF; // Updated color
+              // background-color: rgba($color-blue-40, 0.5);
             }
 
             &.snavigation-item--selected {
-              background-color: $color-blue-60;
+              background-color: #0073CF; // Updated color
+              // background-color: $color-blue-60;
               color: $color-gray-0;
             }
           }

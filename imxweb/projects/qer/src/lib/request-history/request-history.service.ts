@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,15 +26,6 @@
 
 import { Injectable } from '@angular/core';
 
-<<<<<<< HEAD
-import { EntitySchema, ExtendedTypedEntityCollection, DataModel } from 'imx-qbm-dbts';
-import { RequestHistoryLoadParameters } from './request-history-load-parameters.interface';
-import { PortalItshopRequests, ProlongationInput, PwoExtendedData, PwoUnsubscribeInput, PwoUnsubscribeResult } from 'imx-api-qer';
-import { ItshopRequest } from './itshop-request';
-import { ItshopRequestData } from '../itshop/request-info/itshop-request-data';
-import { QerApiService } from '../qer-api-client.service';
-import { DataSourceToolbarFilter } from 'qbm';
-=======
 import {
   EntitySchema,
   ExtendedTypedEntityCollection,
@@ -61,29 +48,20 @@ import { ItshopRequest } from './itshop-request';
 import { ItshopRequestData } from '../itshop/request-info/itshop-request-data';
 import { QerApiService } from '../qer-api-client.service';
 import { DataSourceToolbarExportMethod, DataSourceToolbarFilter } from 'qbm';
->>>>>>> oned/v92
 import { ItshopRequestService } from '../itshop/itshop-request.service';
 
 @Injectable()
 export class RequestHistoryService {
-<<<<<<< HEAD
-  constructor(private readonly qerClient: QerApiService, private readonly itshopRequest: ItshopRequestService) { }
-=======
   constructor(private readonly qerClient: QerApiService, private readonly itshopRequest: ItshopRequestService) {}
->>>>>>> oned/v92
 
   public get PortalItshopRequestsSchema(): EntitySchema {
     return this.qerClient.typedClient.PortalItshopRequests.GetSchema();
   }
 
-<<<<<<< HEAD
-  public async getRequests(userUid: string, parameters: RequestHistoryLoadParameters): Promise<ExtendedTypedEntityCollection<ItshopRequest, PwoExtendedData>> {
-=======
   public async getRequests(
     userUid: string,
     parameters: RequestHistoryLoadParameters
   ): Promise<ExtendedTypedEntityCollection<ItshopRequest, PwoExtendedData>> {
->>>>>>> oned/v92
     const collection = await this.qerClient.typedClient.PortalItshopRequests.Get(parameters);
 
     return {
@@ -92,8 +70,6 @@ export class RequestHistoryService {
       extendedData: collection.extendedData,
       Data: collection.Data.map((element, index) => {
         const requestData = new ItshopRequestData({ ...collection.extendedData, ...{ index } });
-<<<<<<< HEAD
-=======
         const parameterColumns = this.itshopRequest.createParameterColumns(element.GetEntity(), requestData.parameters);
         return new ItshopRequest(element.GetEntity(), requestData.pwoData, parameterColumns, userUid);
       }),
@@ -128,24 +104,17 @@ export class RequestHistoryService {
       extendedData: collection.extendedData,
       Data: collection.Data.map((element, index) => {
         const requestData = new ItshopRequestData({ ...collection.extendedData, ...{ index } });
->>>>>>> oned/v92
         const parameterColumns = this.itshopRequest.createParameterColumns(
           element.GetEntity(),
           requestData.parameters
         );
-<<<<<<< HEAD
-        return new ItshopRequest(element.GetEntity(), requestData.pwoData, parameterColumns, userUid);
-=======
         const request = new ItshopRequest(element.GetEntity(), requestData.pwoData, parameterColumns, userUid);
         request.isArchived = true;
         return request
->>>>>>> oned/v92
       })
     };
   }
 
-<<<<<<< HEAD
-=======
   // TODO 409926: This api endpoint needs collection load + withProps to be used
   // public exportArchivedRequests(userUid: string, recipientId: string, parameters: ArchivedRequestHistoryLoadParameters): DataSourceToolbarExportMethod {
   //   const factory = new V2ApiClientMethodFactory();
@@ -163,7 +132,6 @@ export class RequestHistoryService {
   //   }
   // }
 
->>>>>>> oned/v92
   public async getFilterOptions(userUid: string, filterPresets: { [name: string]: string } = {}): Promise<DataSourceToolbarFilter[]> {
     return (await this.getDataModel(userUid)).Filters.map((option: DataSourceToolbarFilter) => {
       option.InitialValue = filterPresets[option.Name];
@@ -184,35 +152,6 @@ export class RequestHistoryService {
   }
 
   public async cancelRequest(pwo: PortalItshopRequests, reason: string): Promise<void> {
-<<<<<<< HEAD
-    return this.qerClient.client.portal_itshop_cancel_post(this.getUidPwo(pwo),
-      { Reason: reason });
-  }
-
-  public async recallQuery(pwo: PortalItshopRequests, reason: string): Promise<void> {
-    return this.qerClient.client.portal_itshop_recallquery_post(this.getUidPwo(pwo),
-      { Reason: reason });
-  }
-
-  public async recallDecision(pwo: PortalItshopRequests, reason: string): Promise<void> {
-    return this.qerClient.client.portal_itshop_recalldecision_post(this.getUidPwo(pwo),
-      { Reason: reason });
-  }
-
-  public async resetReservation(pwo: PortalItshopRequests, reason: string): Promise<void> {
-    return this.qerClient.client.portal_itshop_resetreservation_post(this.getUidPwo(pwo),
-      { Reason: reason });
-  }
-
-  public async revokeDelegation(pwo: PortalItshopRequests, reason: string): Promise<void> {
-    return this.qerClient.client.portal_itshop_revokedelegation_post(this.getUidPwo(pwo),
-      { Reason: reason });
-  }
-
-  public async revokeAdditionalApprover(pwo: PortalItshopRequests, reason: string): Promise<void> {
-    return this.qerClient.client.portal_itshop_revokeadditional_post(this.getUidPwo(pwo),
-      { Reason: reason });
-=======
     return this.qerClient.client.portal_itshop_cancel_post(this.getUidPwo(pwo), { Reason: reason });
   }
 
@@ -234,7 +173,6 @@ export class RequestHistoryService {
 
   public async revokeAdditionalApprover(pwo: PortalItshopRequests, reason: string): Promise<void> {
     return this.qerClient.client.portal_itshop_revokeadditional_post(this.getUidPwo(pwo), { Reason: reason });
->>>>>>> oned/v92
   }
 
   public async escalateDecision(pwo: PortalItshopRequests, reason: string): Promise<void> {
@@ -244,8 +182,6 @@ export class RequestHistoryService {
   private getUidPwo(pwo: PortalItshopRequests): string {
     return pwo.GetEntity().GetKeys()[0];
   }
-<<<<<<< HEAD
-=======
 
   public async copyRequest(pwo: PortalItshopRequests): Promise<PortalCartitem> {
     const item = this.qerClient.typedClient.PortalCartitem.createEntity({
@@ -261,5 +197,4 @@ export class RequestHistoryService {
 
     return item;
   }
->>>>>>> oned/v92
 }

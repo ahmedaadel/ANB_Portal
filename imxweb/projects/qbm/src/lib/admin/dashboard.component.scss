@@ -1,9 +1,6 @@
 @import '@elemental-ui/core/src/styles/_palette.scss';
-<<<<<<< HEAD
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 @import '../../../../../shared/scss/side-navigation.scss';
->>>>>>> oned/v92
 
 :host {
   height: 100%;
@@ -90,10 +87,7 @@
     .mat-sidenav-content {
       padding: 32px;
       position: relative;
-<<<<<<< HEAD
-=======
       display: flex;
->>>>>>> oned/v92
 
       &.snavigation--backdrop-showing {
         overflow: hidden;
@@ -142,11 +136,6 @@
         }
       }
     }
-<<<<<<< HEAD
-
-    .mat-sidenav-content {
-      padding: 16px;
-=======
   }
 }
 
@@ -171,7 +160,6 @@
         border-top: 1px solid $color-gray-0;
         border-bottom: 1px solid $color-gray-0;
       }
->>>>>>> oned/v92
     }
   }
 }

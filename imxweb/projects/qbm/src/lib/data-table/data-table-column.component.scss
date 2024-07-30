@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-@import '@elemental-ui/core/src/styles/_palette.scss';
-
-td.mat-cell,
-th.mat-header-cell {
-=======
 @import "@elemental-ui/core/src/styles/_palette.scss";
 @import "@elemental-ui/core/src/styles/_eui_palette.scss";
 
 .imx-table-column {
->>>>>>> oned/v92
   padding-right: 15px;
 }
 
@@ -30,8 +23,6 @@ td.mat-cell ::ng-deep div[subtitle] {
     max-width: 250px;
   }
 }
-<<<<<<< HEAD
-=======
 
 .eui-dark-theme {
   :host {
@@ -50,4 +41,3 @@ td.mat-cell ::ng-deep div[subtitle] {
     }
   }
 }
->>>>>>> oned/v92

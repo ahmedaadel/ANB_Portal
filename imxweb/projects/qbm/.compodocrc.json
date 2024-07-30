@@ -1,24 +1,14 @@
 {
   "name": "IMX Web - QBM Library",
-<<<<<<< HEAD
-  "output": "../../documentation/qbm",
-=======
   "output": "../../documentation/v92/qbm",
->>>>>>> oned/v92
   "assetsFolder": "../../compodoc/assets",
   "theme": "material",
   "customLogo": "../../compodoc/assets/images/oneidentity-logo.png",
   "customFavicon": "../../compodoc/assets/images/favicon.ico",
-<<<<<<< HEAD
-  "serve": true,
-  "watch": true,
-  "coverageTest": 0
-=======
   "serve": false,
   "watch": false,
   "coverageTest": 0,
   "disableCoverage": true,
   "includes": "./additionalDocumentation",
   "includesName": "Additional documentation"
->>>>>>> oned/v92
 }

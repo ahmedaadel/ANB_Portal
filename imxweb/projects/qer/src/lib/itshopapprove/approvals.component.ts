@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,32 +26,15 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-<<<<<<< HEAD
-=======
 import { first } from 'rxjs/operators';
 
 import { PendingItemsType } from '../user/pending-items-type.interface';
 import { UserModelService } from '../user/user-model.service';
 import { HELP_CONTEXTUAL, HelpContextualValues } from 'qbm';
->>>>>>> oned/v92
 
 @Component({
   templateUrl: './approvals.component.html',
   selector: 'imx-itshop-approvals',
-<<<<<<< HEAD
-  styleUrls: ['./approvals.component.scss']
-})
-export class ApprovalsComponent implements OnInit {
-  public params: Params = {};
-
-  constructor(private readonly activatedRoute: ActivatedRoute) { }
-
-  public async ngOnInit(): Promise<void> {
-    this.activatedRoute.queryParams.subscribe(params => {
-      // Make keys lowercase
-      const result = {};
-      for (const [key, value] of Object.entries(params)) {
-=======
   styleUrls: ['./approvals.component.scss'],
 })
 export class ApprovalsComponent implements OnInit {
@@ -76,14 +55,10 @@ export class ApprovalsComponent implements OnInit {
       const queryParams = await this.activatedRoute.queryParams.pipe(first()).toPromise();
       const result = {};
       for (const [key, value] of Object.entries(queryParams)) {
->>>>>>> oned/v92
         result[key.toLowerCase()] = value;
       }
 
       this.params = result;
-<<<<<<< HEAD
-    });
-=======
 
       if (this.params.inquiries) {
         this.tabIndex = 1;
@@ -99,6 +74,5 @@ export class ApprovalsComponent implements OnInit {
     }else{
       return HELP_CONTEXTUAL.PendingRequestInquiries;
     }
->>>>>>> oned/v92
   }
 }

@@ -1,26 +1,7 @@
-<<<<<<< HEAD
-@import '@elemental-ui/core/src/styles/_palette.scss';
-
-.data-explorer {
-  &.data-explorer--accounts {
-    .data-explorer-card-header {
-      border: 1px solid rgba($corbin-orange, 0.6);
-
-      .data-explorer-card-header-bg {
-        background-color: $corbin-pastel;
-
-        .eui-icon {
-          color: rgba($corbin-orange, 0.6);
-        }
-      }
-    }
-
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 @import '../../../../../shared/scss/common-table.scss';
 .data-explorer {
   &.data-explorer--accounts {
->>>>>>> oned/v92
     > :nth-child(2) {
       flex: 0 0 auto;
     }
@@ -31,19 +12,6 @@
       overflow: hidden;
       flex: 1 1 auto;
     }
-<<<<<<< HEAD
-
-    ::ng-deep .data-explorer-table {
-      .mat-row:hover {
-        background-color: rgba($corbin-pastel, 0.2) !important;
-      }
-    }
-  }
-}
-div[subtitle] {
-  font-size: smaller;
-  color: $black-9;
-=======
   }
 }
 
@@ -59,7 +27,6 @@ div[subtitle] {
 div[subtitle] {
   font-size: smaller;
   color: $color-gray-40;
->>>>>>> oned/v92
 }
 
 .imx-ellipse-column {
@@ -68,15 +35,6 @@ div[subtitle] {
   overflow: hidden;
 }
 
-<<<<<<< HEAD
-
-.data-explorer-bottom-button-row {
-  display: flex;
-  flex-direction: row;
-  align-items: end;
-  margin-top: 15px;
-  align-self: end;
-=======
 .data-explorer-bottom-button-row {
   display: flex;
   flex-direction: row;
@@ -100,5 +58,4 @@ div[subtitle] {
       background-color: $color-gray-100;
     }
   }
->>>>>>> oned/v92
 }

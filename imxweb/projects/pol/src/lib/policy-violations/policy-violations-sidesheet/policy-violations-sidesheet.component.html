@@ -1,26 +1,3 @@
-<<<<<<< HEAD
-<div eui-sidesheet-content>
-  <mat-card>
-    <div class="imx-state-caption">
-      {{ data?.State?.GetMetadata()?.GetDisplay() }}
-    </div>
-    <eui-badge [color]="data?.stateBadge?.color" *ngIf="data?.State?.value">
-      {{data?.stateBadge?.caption | translate}}
-    </eui-badge>
-    <imx-cdr-editor *ngFor="let cdr of cdrList" [cdr]="cdr"></imx-cdr-editor>
-  </mat-card>
-</div>
-<div eui-sidesheet-actions color="white" *ngIf="isPending" >
-  <button mat-stroked-button (click)="approve()"
-    data-imx-identifier="policy-violations-table-row-button-approve">
-    {{ '#LDS#Grant exception' | translate }}
-  </button>
-  <button mat-stroked-button (click)="deny()"
-    data-imx-identifier="policy-violations-table-row-button-deny">
-    {{ '#LDS#Deny exception' | translate }}
-  </button>
-</div>
-=======
 <mat-tab-group *ngIf="data?.isMControlPerViolation; else singleElement">
   <mat-tab [label]="'#LDS#Heading Information' | translate">
     <ng-container *ngTemplateOutlet="singleContent"></ng-container>
@@ -83,4 +60,3 @@
     </button>
   </div>
 </ng-template>
->>>>>>> oned/v92

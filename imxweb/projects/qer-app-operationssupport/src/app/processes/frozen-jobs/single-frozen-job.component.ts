@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,24 +25,6 @@
  */
 
 import { Component, Inject, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { MatDialog } from '@angular/material/dialog';
-import { TranslateService } from '@ngx-translate/core';
-
-import { QueueTreeService } from './queue-tree.service';
-import { OpsupportQueueTree, ReactivateJobMode } from 'imx-api-qbm';
-import { ImxTranslationProviderService, SnackBarService, MessageDialogComponent } from 'qbm';
-import { EuiLoadingService, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
-import { OverlayRef } from '@angular/cdk/overlay';
-
-@Component({
-  templateUrl: './single-frozen-job.component.html',
-  styleUrls: ['./single-frozen-job.component.scss']
-})
-export class SingleFrozenJobComponent implements OnInit {
-  public get BackTitle(): string { return this.backTitle; }
-  public get Display(): string { return this.jobDisplay; }
-=======
 import { TranslateService } from '@ngx-translate/core';
 import { EuiLoadingService, EuiSidesheetService, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { OverlayRef } from '@angular/cdk/overlay';
@@ -68,17 +46,10 @@ export class SingleFrozenJobComponent implements OnInit {
   public get Display(): string {
     return this.jobDisplay;
   }
->>>>>>> oned/v92
 
   private jobDisplay: string;
   private backTitle = '';
 
-<<<<<<< HEAD
-  constructor(
-    @Inject(EUI_SIDESHEET_DATA) public readonly data: { UID_Tree: string; },
-    public queueService: QueueTreeService,
-    private dialogService: MatDialog,
-=======
   public affectedObjects: OpsupportQueueJobaffects[] = [];
   public operations: HistoryOperationsData;
   public genprocid: string;
@@ -93,19 +64,12 @@ export class SingleFrozenJobComponent implements OnInit {
     },
     public queueService: QueueTreeService,
     private sidesheet: EuiSidesheetService,
->>>>>>> oned/v92
     private translate: TranslateService,
     private busyService: EuiLoadingService,
     private translationProvider: ImxTranslationProviderService,
     private snackbarService: SnackBarService
   ) {
     // TODO (TFS 805984): Use ngx-translate get and ldsReplace direct
-<<<<<<< HEAD
-    this.translationProvider.Translate({ key: '#LDS#Frozen process steps' }).subscribe((value: string) =>
-      this.translationProvider.Translate({ key: '#LDS#Go back to {0}', parameters: [`"${value}"`] }).subscribe((composedValue: string) =>
-        this.backTitle = composedValue)
-    );
-=======
     this.translationProvider
       .Translate({ key: '#LDS#Frozen process steps' })
       .subscribe((value: string) =>
@@ -114,7 +78,6 @@ export class SingleFrozenJobComponent implements OnInit {
           .subscribe((composedValue: string) => (this.backTitle = composedValue))
       );
     this.queueService.load = data.load;
->>>>>>> oned/v92
   }
 
   public ReactivateJobMode = ReactivateJobMode;
@@ -122,15 +85,6 @@ export class SingleFrozenJobComponent implements OnInit {
   public mode: ReactivateJobMode = -1;
 
   public async ngOnInit(): Promise<void> {
-<<<<<<< HEAD
-    return this.loadView(this.data.UID_Tree);
-  }
-
-  public async reactivate(): Promise<void> {
-    const key = this.mode == ReactivateJobMode.Reactivate
-      ? '#LDS#Process "{0}" is retrying.'
-      : '#LDS#Your changes are being processed.';
-=======
     try {
       this.busy = true;
       await this.loadView(this.data.UID_Tree);
@@ -142,24 +96,16 @@ export class SingleFrozenJobComponent implements OnInit {
 
   public async reactivate(): Promise<void> {
     const key = this.mode == ReactivateJobMode.Reactivate ? '#LDS#Process "{0}" is retrying.' : '#LDS#Your changes are being processed.';
->>>>>>> oned/v92
 
     this.snackbarService.open({ key: key, parameters: [this.Display] });
 
     let overlayRef: OverlayRef;
-<<<<<<< HEAD
-    setTimeout(() => overlayRef = this.busyService.show());
-=======
     setTimeout(() => (overlayRef = this.busyService.show()));
->>>>>>> oned/v92
     try {
       await this.queueService.Reactivate(this.mode);
       await this.loadView();
     } finally {
       setTimeout(() => this.busyService.hide(overlayRef));
-<<<<<<< HEAD
-      await this.loadView();
-=======
     }
   }
 
@@ -169,7 +115,6 @@ export class SingleFrozenJobComponent implements OnInit {
       await this.loadView();
     } finally {
       this.busyReload = false;
->>>>>>> oned/v92
     }
   }
 
@@ -177,25 +122,6 @@ export class SingleFrozenJobComponent implements OnInit {
     if (startUid) {
       this.queueService.startUid = startUid;
     }
-<<<<<<< HEAD
-    let overlayRef: OverlayRef;
-    setTimeout(() => overlayRef = this.busyService.show());
-    try {
-      const processTree = await this.queueService.LoadItems();
-      const root = processTree.find((el: OpsupportQueueTree) => el.IsRootJob.value);
-      if (root) {
-        this.queueService.SetRoot(root);
-        this.jobDisplay = root.JobChainName.Column.GetDisplayValue();
-        this.queueService.ExpandAll();
-      }
-    } finally {
-      setTimeout(() => this.busyService.hide(overlayRef));
-    }
-  }
-
-  public timeAccessor(data: OpsupportQueueTree, index: number): string {
-    const date = new Date(data.XDateUpdated.value);
-=======
 
     const processTree = await this.queueService.LoadItems();
     const root = processTree.find((el: TypedEntity) => this.getColumn(el, 'IsRootJob').GetValue);
@@ -218,20 +144,11 @@ export class SingleFrozenJobComponent implements OnInit {
 
   public timeAccessor(data: TypedEntity, index: number): string {
     const date = new Date(this.getColumn(data, 'XDateUpdated')?.GetValue() ?? this.getColumn(data, 'XDateInserted')?.GetValue());
->>>>>>> oned/v92
     const opt: any = { month: 'long', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
 
     return index === 0 ? '' : new Intl.DateTimeFormat(this.translate.currentLang, opt).format(date);
   }
 
-<<<<<<< HEAD
-  public displayAccessor(data: OpsupportQueueTree, index: number): string {
-    return index === 0 ? this.Display : data.UID_JobOrigin.Column.GetDisplayValue();
-  }
-
-  public hasProgress(item: OpsupportQueueTree): boolean {
-    return item.IsRootJob.value;
-=======
   public displayAccessor(data: TypedEntity, index: number): string {
     return index === 0
       ? this.Display
@@ -240,7 +157,6 @@ export class SingleFrozenJobComponent implements OnInit {
 
   public hasProgress(item: TypedEntity): boolean {
     return this.getColumn(item, 'IsRootJob').GetValue();
->>>>>>> oned/v92
   }
 
   public getTotalSteps(): number {
@@ -251,22 +167,6 @@ export class SingleFrozenJobComponent implements OnInit {
     return this.queueService.GetCompleteSteps();
   }
 
-<<<<<<< HEAD
-  public isFrozen(dataItem: OpsupportQueueTree): boolean {
-    return dataItem.Ready2EXE.value.toUpperCase() === 'FROZEN' ||
-      dataItem.Ready2EXE.value.toUpperCase() === 'OVERLIMIT';
-  }
-
-  public showMessage(dataItem: OpsupportQueueTree): void {
-    this.dialogService.open(MessageDialogComponent, {
-      data: {
-        ShowOk: true,
-        Title: dataItem.ErrorMessages.GetMetadata().GetDisplay(),
-        Message: dataItem.ErrorMessages.Column.GetDisplayValue()
-      },
-      panelClass: 'imx-messageDialog'
-    });
-=======
   public isFrozen(dataItem: TypedEntity): boolean {
     return this.getColumn(dataItem, 'Ready2EXE')?.GetValue().toUpperCase() === 'FROZEN' || this.getColumn(dataItem, 'Ready2EXE')?.GetValue().toUpperCase() === 'OVERLIMIT' || this.getColumn(dataItem, 'WasError')?.GetValue();
   }
@@ -282,14 +182,11 @@ export class SingleFrozenJobComponent implements OnInit {
       })
       .afterClosed()
       .toPromise();
->>>>>>> oned/v92
   }
 
   public getColumnDisplay(name: string): string {
     return this.queueService.QueueTreeEntitySchema.Columns[name].Display;
   }
-<<<<<<< HEAD
-=======
 
   public getValue(entity: TypedEntity, name: string): any {
     return this.getColumn(entity, name).GetValue() ?? '';
@@ -298,5 +195,4 @@ export class SingleFrozenJobComponent implements OnInit {
   public getColumn(entity: TypedEntity, name: string): IEntityColumn {
     return CdrFactoryService.tryGetColumn(entity.GetEntity(), name);
   }
->>>>>>> oned/v92
 }

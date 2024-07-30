@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,11 +24,7 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-=======
 import { Component, EventEmitter, Input, Output } from '@angular/core';
->>>>>>> oned/v92
 import { SqlNodeView } from './SqlNodeView';
 import { SqlColumnTypes, ValType as _valType } from 'imx-qbm-dbts';
 

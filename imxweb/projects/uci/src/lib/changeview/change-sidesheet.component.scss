@@ -1,19 +1,11 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
-<<<<<<< HEAD
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
->>>>>>> oned/v92
 
 :host {
   display: flex;
   flex-direction: column;
   overflow: auto;
   height: 100%;
-<<<<<<< HEAD
-  padding: 1em;
-  background-color: $asher-gray;
-=======
->>>>>>> oned/v92
 }
 
 .mat-card {
@@ -32,8 +24,6 @@
 .button-bar button:not(:last-child) {
   margin-right: 1em;
 }
-<<<<<<< HEAD
-=======
 
 .eui-dark-theme {
   :host {
@@ -46,4 +36,3 @@
     background-color: $color-gray-100;
   }
 }
->>>>>>> oned/v92

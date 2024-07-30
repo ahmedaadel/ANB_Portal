@@ -31,24 +31,6 @@ import { ColumnDependentReference } from './column-dependent-reference.interface
 import { CdrEditor } from './cdr-editor.interface';
 import { EditFkComponent } from './edit-fk/edit-fk.component';
 import { EditFkMultiComponent } from './edit-fk/edit-fk-multi.component';
-<<<<<<< HEAD
-import { ViewPropertyDefaultComponent } from './view-property-default/view-property-default.component';
-
-export class FkCdrEditorProvider implements CdrEditorProvider {
-
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
-
-  public createEditor(parent: ViewContainerRef, cdref: ColumnDependentReference): ComponentRef<CdrEditor> {
-    if (this.hasFkRelations(cdref)) {
-      const isReadonly = cdref.isReadOnly() || !cdref.column.GetMetadata().CanEdit();
-      if (isReadonly) {
-        return this.createBound(ViewPropertyDefaultComponent, parent, cdref);
-      } else {
-        return cdref.column.GetMetadata().IsMultiValue() ?
-          this.createBound(EditFkMultiComponent, parent, cdref) :
-          this.createBound(EditFkComponent, parent, cdref);
-      }
-=======
 
 /**
  * A special provider for foreign key columns.
@@ -70,17 +52,11 @@ export class FkCdrEditorProvider implements CdrEditorProvider {
       return cdref.column.GetMetadata().IsMultiValue()
         ? this.createBound(EditFkMultiComponent, parent, cdref)
         : this.createBound(EditFkComponent, parent, cdref);
->>>>>>> oned/v92
     }
 
     return null;
   }
 
-<<<<<<< HEAD
-  private createBound<T extends CdrEditor>(tCtor: new (...args: any[]) => T, parent: ViewContainerRef, cdref: ColumnDependentReference)
-    : ComponentRef<CdrEditor> {
-    const result = parent.createComponent(this.componentFactoryResolver.resolveComponentFactory(tCtor));
-=======
   /**
    * @ignore only used internally.
    * Creates the component and binds its value.
@@ -91,19 +67,15 @@ export class FkCdrEditorProvider implements CdrEditorProvider {
     cdref: ColumnDependentReference
   ): ComponentRef<CdrEditor> {
     const result = parent.createComponent(type);
->>>>>>> oned/v92
     result.instance.bind(cdref);
     return result;
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Determines, if there are fk relations present or not.
    * @param cdref The column dependent reference, that needs to be checked
    * @returns 
    */
->>>>>>> oned/v92
   private hasFkRelations(cdref: ColumnDependentReference): boolean {
     const fkRelations = cdref.column.GetMetadata().GetFkRelations();
     if (fkRelations == null) {

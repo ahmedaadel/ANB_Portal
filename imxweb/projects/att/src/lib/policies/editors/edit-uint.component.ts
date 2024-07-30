@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-<<<<<<< HEAD
-import { FormControl, Validators } from '@angular/forms';
-=======
 import { UntypedFormControl, Validators } from '@angular/forms';
->>>>>>> oned/v92
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
@@ -46,11 +38,7 @@ import { FilterElementModel } from './filter-element-model';
 })
 export class EditUintComponent implements OnInit, OnDestroy {
 
-<<<<<<< HEAD
-  public control: FormControl;
-=======
   public control: UntypedFormControl;
->>>>>>> oned/v92
   @Input() public filterElementModel: FilterElementModel;
   @Input() public identifier: string;
   @Input() public testId = '';
@@ -60,11 +48,7 @@ export class EditUintComponent implements OnInit, OnDestroy {
   private valueChangedSubscription: Subscription;
 
   constructor(private readonly translateService: TranslateService) {
-<<<<<<< HEAD
-    this.control = new FormControl(undefined, { updateOn: 'blur', validators: Validators.min(0) });
-=======
     this.control = new UntypedFormControl(undefined, { updateOn: 'blur', validators: Validators.min(0) });
->>>>>>> oned/v92
   }
 
   public ngOnInit(): void {

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -54,50 +50,6 @@ import { DatePickerComponent } from './date-picker.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { SingleValueComponent } from './single-value.component';
 import { CdrModule } from '../cdr/cdr.module';
-<<<<<<< HEAD
-
-@NgModule({
-    imports: [
-        CommonModule,
-        CdrModule,
-        EuiCoreModule,
-        EuiMaterialModule,
-        FormsModule,
-        TranslateModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatDatepickerModule,
-        MatSelectModule,
-        MatCheckboxModule,
-        MatInputModule,
-        MatListModule,
-        MatFormFieldModule,
-        MatOptionModule,
-        MatRadioModule,
-        MatSlideToggleModule,
-        MatButtonToggleModule,
-    ],
-    declarations: [
-        SqlWizardComponent,
-        ColumnSelectionComponent,
-        DatePickerComponent,
-        SimpleExpressionComponent,
-        SingleExpressionComponent,
-        SingleValueComponent,
-        TableSelectionComponent,
-        WhereClauseExpressionComponent,
-    ],
-    providers: [
-        SqlWizardService
-    ],
-    exports: [
-        SqlWizardComponent,
-    ]
-})
-export class SqlWizardModule {
-
-}
-=======
 import { LdsReplaceModule } from '../lds-replace/lds-replace.module';
 
 @NgModule({
@@ -136,4 +88,3 @@ import { LdsReplaceModule } from '../lds-replace/lds-replace.module';
   exports: [SqlWizardComponent],
 })
 export class SqlWizardModule {}
->>>>>>> oned/v92

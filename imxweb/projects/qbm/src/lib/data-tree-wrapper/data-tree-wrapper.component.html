@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-<imx-data-source-toolbar #dst data-imx-identifier="data-tree-wrapper-data-source-toolbar-for-tree"
-  [alwaysVisible]="true" [settings]="dstSettings" [options]="['search', 'filter', 'groupBy', 'filterTree']" [searchBoxText]="'#LDS#Search' | translate" (navigationStateChanged)="onTreeNavigationStateChanged($event)"
-  (search)="onTreeSearch($event)">
-</imx-data-source-toolbar>
-
-<imx-data-tree #tree [navigationState]="navigationStateTree" [emptyNodeCaption]="emptyNodeCaption" data-imx-identifier="data-tree-wrapper-data-tree"
-  [database]="database" [selectedEntities]="selectedEntities" [noDataText]="noDataText" [noDataIcon]="noDataIcon"
-  [withMultiSelect]="withMultiSelect" [withSelectedNodeHighlight]="withSelectedNodeHighlight" (nodeSelected)="nodeSelected.emit($event)"
-  (checkedNodesChanged)="checkedNodesChanged.emit()">
-  <ng-template let-entity>
-    <ng-container *ngTemplateOutlet="templateRef; context: {$implicit:  entity}">
-    </ng-container>
-=======
 <imx-data-source-toolbar
   #dst
   data-imx-identifier="data-tree-wrapper-data-source-toolbar-for-tree"
@@ -45,6 +31,5 @@
 >
   <ng-template let-entity>
     <ng-container *ngTemplateOutlet="templateRef; context: { $implicit: entity }"> </ng-container>
->>>>>>> oned/v92
   </ng-template>
 </imx-data-tree>

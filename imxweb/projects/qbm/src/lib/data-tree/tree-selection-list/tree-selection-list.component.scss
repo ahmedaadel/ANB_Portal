@@ -1,17 +1,10 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
-<<<<<<< HEAD
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 
->>>>>>> oned/v92
 :host {
   display: flex;
   flex-direction: column;
   height: 100%;
-<<<<<<< HEAD
-  background-color: $asher-gray;
-=======
->>>>>>> oned/v92
 }
 
 h2 {
@@ -26,11 +19,7 @@ h2 {
 }
 
 .imx-dialog-content {
-<<<<<<< HEAD
-  margin: 30px;
-=======
   height: 100%;
->>>>>>> oned/v92
   overflow: auto;
 }
 
@@ -38,8 +27,6 @@ h2 {
   height: 100%;
   overflow: auto;
 }
-<<<<<<< HEAD
-=======
 
 .eui-dark-theme {
   :host {
@@ -52,4 +39,3 @@ h2 {
     background-color: $color-gray-100;
   }
 }
->>>>>>> oned/v92

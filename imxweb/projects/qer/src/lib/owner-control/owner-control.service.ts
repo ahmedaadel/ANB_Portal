@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -53,11 +49,7 @@ export class OwnerControlService {
       new DisplayBuilder(this.translate)
     ).GetColumn(property.ColumnName);
 
-<<<<<<< HEAD
-    return readonly ? new BaseReadonlyCdr(entityColumn,'#LDS#Identity') : new BaseCdr(entityColumn,'#LDS#Identity');
-=======
     return readonly ? new BaseReadonlyCdr(entityColumn, '#LDS#Identity') : new BaseCdr(entityColumn, '#LDS#Identity');
->>>>>>> oned/v92
   }
 
   private createGroupOwnerPersonProperty(): IClientProperty {
@@ -70,11 +62,6 @@ export class OwnerControlService {
     return {
       ColumnName: fkRelation.ChildColumnName,
       Type: ValType.String,
-<<<<<<< HEAD
-      Description: 'Identity',
-      IsValidColumnForFiltering: true,
-=======
->>>>>>> oned/v92
       FkRelation: fkRelation,
     };
   }

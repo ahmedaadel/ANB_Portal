@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,40 +24,13 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-=======
 import { Component, OnInit } from '@angular/core';
->>>>>>> oned/v92
 import { EuiSidesheetConfig, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { NewUserComponent } from './new-user.component';
 
 @Component({
-<<<<<<< HEAD
-  templateUrl: './open-sidesheet.component.html',
-  styleUrls: ['./open-sidesheet.component.scss']
-})
-export class OpenSidesheetComponent {
-
-  constructor(
-    private readonly sidesheet: EuiSidesheetService,
-    private readonly translate: TranslateService) { }
-
-  public async openSidesheet(): Promise<void> {
-    const config: EuiSidesheetConfig = {
-      title: await this.translate.get('#LDS#Heading Create New Account').toPromise(),
-      width: '650px',
-      panelClass: 'imx-sidesheet',
-      headerColour: 'blue',
-      bodyColour: 'asher-gray',
-      padding: '0px',
-      disableClose: true,
-      testId: 'register-new-user',
-    };
-    this.sidesheet.open(NewUserComponent, config);
-=======
   template: '',
   styleUrls: ['./open-sidesheet.component.scss']
 })
@@ -81,6 +50,5 @@ export class OpenSidesheetComponent implements OnInit{
     testId: 'register-new-user',
   };
   this.sidesheet.open(NewUserComponent, config);
->>>>>>> oned/v92
   }
 }

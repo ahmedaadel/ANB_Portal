@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-<imx-data-source-toolbar #dst [options]="['search', 'filter', 'groupBy', 'settings']" [settings]="dstSettings" [itemStatus]="itemStatus"
-  (search)="onSearch($event)" (navigationStateChanged)="getData($event)" data-imx-identifier="attestation-history-dst">
-</imx-data-source-toolbar>
-<imx-data-table [dst]="dst" [detailViewVisible]="false" mode="manual" [selectable]="true"
-  (selectionChanged)="selectionChanged.emit($event)" data-imx-identifier="attestation-history-datatable"
-  [groupData]="groupedData" (groupDataChanged)="onGroupingChange($event)">
-  <imx-data-table-column [entityColumn]="entitySchema.Columns.UiText"
-    data-imx-identifier="attestation-history-table-column-attestationHistoryCaseDisplay">
-=======
 <imx-data-source-toolbar
   #dst
   [options]="['search', 'sort', 'filter', 'groupBy', 'settings']"
@@ -37,37 +27,11 @@
   (groupDataChanged)="onGroupingChange($event)"
 >
   <imx-data-table-column [entityColumn]="entitySchema.Columns.UiText" data-imx-identifier="attestation-history-table-column-attestationHistoryCaseDisplay">
->>>>>>> oned/v92
     <ng-template let-item>
       <imx-attestation-display [additionalColumns]="dst.additionalListElements" [attestation]="item"></imx-attestation-display>
     </ng-template>
   </imx-data-table-column>
 
-<<<<<<< HEAD
-  <imx-data-table-column [entityColumn]="entitySchema?.Columns.AttestationState"
-    columnLabel="">
-    <ng-template let-item>
-      <div class="imx-badge-container">
-        <div>
-          <eui-badge color="red" *ngIf="item.AttestationState.value === 'denied'">
-            {{ item.AttestationState.Column.GetDisplayValue() }}
-          </eui-badge>
-        </div>
-        <div>
-          <eui-badge color="green" *ngIf="item.AttestationState.value === 'approved'">
-            {{ item.AttestationState.Column.GetDisplayValue() }}
-          </eui-badge>
-        </div>
-        <div>
-          <eui-badge *ngIf="item.isPending">
-            {{ item.AttestationState.Column.GetDisplayValue() }}
-          </eui-badge>
-        </div>
-        <div>
-          <eui-badge color="red" *ngIf="item.RiskIndex.value > 0">
-            {{ item.RiskIndex.GetMetadata().GetDisplay() + ": " + item.RiskIndex.Column.GetDisplayValue() }}
-          </eui-badge>
-=======
   <imx-data-table-column [entityColumn]="entitySchema?.Columns.AttestationState" columnLabel="">
     <ng-template let-item>
       <div class="imx-icons-container">
@@ -86,25 +50,10 @@
         <div class="table-icon table-icon--alert" *ngIf="item.RiskIndex.value > 0">
           <eui-icon icon="piechart" size="m"></eui-icon>
           {{ item.RiskIndex.GetMetadata().GetDisplay() + ': ' + item.RiskIndex.Column.GetDisplayValue() }}
->>>>>>> oned/v92
         </div>
       </div>
     </ng-template>
   </imx-data-table-column>
-<<<<<<< HEAD
-
-  <imx-data-table-generic-column columnName="viewDetailsButton">
-    <ng-template let-prod>
-      <button mat-button color="primary" (click)="viewDetails(prod)"
-        data-imx-identifier="attestation-history-button-view-details">
-        {{'#LDS#Details' | translate}}
-      </button>
-    </ng-template>
-  </imx-data-table-generic-column>
-</imx-data-table>
-<imx-data-source-paginator *ngIf="!dstSettings?.groupData?.currentGrouping"
-  data-imx-identifier="attestation-history-paginator" [dst]="dst"></imx-data-source-paginator>
-=======
   <imx-data-table-generic-column columnName="actions" *ngIf="withAssignmentAnalysis">
     <ng-template let-case> 
       <button mat-button color="primary" *ngIf="case?.UID_Person?.value && case?.ObjectKeyBase?.value && case?.SupportsAssignmentAnalysis?.value" (click)="viewAssignmentAnalysis($event,case)">{{ '#LDS#View assignment analysis' | translate }}</button>
@@ -112,4 +61,3 @@
   </imx-data-table-generic-column>
 </imx-data-table>
 <imx-data-source-paginator data-imx-identifier="attestation-history-paginator" [dst]="dst"></imx-data-source-paginator>
->>>>>>> oned/v92

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -50,11 +46,7 @@ describe('DataModelHelper', () => {
           { IsGroupable: true, Property: { Type: ValType.String, ColumnName: 'some columnName' } }
         ] as DataModelProperty[]
       },
-<<<<<<< HEAD
-      __ => Promise.resolve([]),
-=======
       __ => Promise.resolve({ TotalCount: 0 }),
->>>>>>> oned/v92
       ['some columnName excluded']
     );
 
@@ -70,11 +62,7 @@ describe('DataModelHelper', () => {
           { Options: [{ Value: 'option1' }] }
         ]
       },
-<<<<<<< HEAD
-      __ => Promise.resolve([])
-=======
       __ => Promise.resolve({ TotalCount: 0 })
->>>>>>> oned/v92
     );
 
     expect(groupData.groups.length).toEqual(1);
@@ -90,11 +78,7 @@ describe('DataModelHelper', () => {
           { Options: [{ Value: 'option2' }] }
         ]
       },
-<<<<<<< HEAD
-      __ => Promise.resolve([])
-=======
       __ => Promise.resolve({ TotalCount: 0 })
->>>>>>> oned/v92
     );
 
     expect(groupData.groups.length).toEqual(0);
@@ -115,11 +99,7 @@ describe('DataModelHelper', () => {
           { Options: [{ Value: 'option1' }] }
         ]
       },
-<<<<<<< HEAD
-      __ => Promise.resolve([])
-=======
       __ => Promise.resolve({ TotalCount: 0 })
->>>>>>> oned/v92
     );
 
     expect(groupData.groups.length).toEqual(2);
@@ -139,11 +119,7 @@ describe('DataModelHelper', () => {
           { Options: [{ Value: 'option2' }] }
         ]
       },
-<<<<<<< HEAD
-      __ => Promise.resolve([])
-=======
       __ => Promise.resolve({ TotalCount: 0 })
->>>>>>> oned/v92
     );
 
     expect(groupData.groups.length).toEqual(1);

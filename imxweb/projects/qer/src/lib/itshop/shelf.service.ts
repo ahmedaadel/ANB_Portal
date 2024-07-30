@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -141,16 +137,9 @@ export class ShelfService {
     // show side sheet for multishelf objects
     const sidesheetRef = this.sideSheet.open(ShelfSelectionComponent, {
       title: await this.translate.get('#LDS#Heading Select Shelf').toPromise(),
-<<<<<<< HEAD
-      headerColour: 'blue',
-      bodyColour: 'asher-gray',
-      padding: '0px',
-      width: 'max(500px, 50%)',
-=======
       padding: '0px',
       width: 'max(500px, 50%)',
       testId: 'shelf-selection-sidesheet',
->>>>>>> oned/v92
       data: ssos,
     });
     const sidesheetResult: ShelfSelectionObject[] = await sidesheetRef.afterClosed().toPromise();

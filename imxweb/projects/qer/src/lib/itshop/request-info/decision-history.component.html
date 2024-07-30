@@ -37,11 +37,7 @@
   <div *ngIf="approverContainer">
     <li data-imx-identifier="decision-step-is-calculating" class="imx-event imx-pending" *ngIf="approverContainer.approverNow.length === 0 && approverContainer.isInWorkflow">
       <mat-card>
-<<<<<<< HEAD
-        {{ '#LDS#The next decision step is currently being calculated. The request might also be waiting on a pending decision of another request.' | translate }}
-=======
         {{ '#LDS#The next approval step is currently being calculated. The request might also be waiting on a pending approval decision of another request.' | translate }}
->>>>>>> oned/v92
       </mat-card>
     </li>
     <li
@@ -52,14 +48,6 @@
       <mat-card>
         <mat-card-header>
           <mat-card-title>
-<<<<<<< HEAD
-            {{ '#LDS#The following employees are currently entitled to approve this request.' | translate }}
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <div *ngFor="let pnow of approverNow[0].data" class="imx-approver">
-            {{ pnow.Columns.UID_PersonHead.DisplayValue }}
-=======
             {{ '#LDS#The following identities are currently entitled to approve this request.' | translate }}
           </mat-card-title>
         </mat-card-header>
@@ -75,7 +63,6 @@
                 {{ pnow.Columns.UID_PersonHead.DisplayValue }}
               </div>
             </div>
->>>>>>> oned/v92
           </div>
         </mat-card-content>
       </mat-card>
@@ -88,24 +75,12 @@
       <mat-card>
         <mat-card-header>
           <mat-card-title>
-<<<<<<< HEAD
-            {{ '#LDS#The following employees are entitled to approve this request after the current workflow step.' | translate }}
-=======
             {{ '#LDS#The following identities are entitled to approve this request after the current aproval step.' | translate }}
->>>>>>> oned/v92
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <div *ngFor="let approvalStep of approverFuture">
             <div step>
-<<<<<<< HEAD
-              <span caption translate>#LDS#Approval step</span>
-              <span class="imx-spacing"> - </span>
-              <span>{{ approvalStep.display }}</span>
-            </div>
-            <div approver *ngFor="let pnext of approvalStep.data" class="imx-approver">
-              {{ pnext.Columns.UID_PersonHead.DisplayValue }}
-=======
               <div step-caption>
                 <span caption translate>#LDS#Approval step</span>
                 <span class="imx-spacing"> - </span>
@@ -114,7 +89,6 @@
               <div approver *ngFor="let pnext of approvalStep.data" class="imx-approver">
                 {{ pnext.Columns.UID_PersonHead.DisplayValue }}
               </div>
->>>>>>> oned/v92
             </div>
           </div>
         </mat-card-content>

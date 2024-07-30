@@ -1,14 +1,5 @@
 
 @import "@elemental-ui/core/src/styles/_palette.scss";
-<<<<<<< HEAD
-
-.governance-sidesheet {
-  ::ng-deep .eui-alert {
-    margin-bottom: 15px;
-  }
-}
-
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 
 
@@ -60,7 +51,6 @@
   flex-direction: column;
 }
 
->>>>>>> oned/v92
 .mat-checkbox {
   display: flex;
   margin-bottom: 15px;
@@ -87,8 +77,6 @@
   }
 }
 
-<<<<<<< HEAD
-=======
 .eui-dark-theme {
   :host {
     ::ng-deep .mat-tab-group {
@@ -108,4 +96,3 @@
     }
   }
 }
->>>>>>> oned/v92

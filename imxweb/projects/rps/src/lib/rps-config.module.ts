@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,35 +26,24 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-<<<<<<< HEAD
-import { RouteGuardService } from 'qbm';
-=======
 import { HELP_CONTEXTUAL, RouteGuardService } from 'qbm';
->>>>>>> oned/v92
 
 import { InitService } from './init.service';
 import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 import { EditReportComponent } from './reports/edit-report.component';
 import { EditReportModule } from './reports/edit-report.module';
 import { ReportButtonModule } from './report-button/report-button.module';
-<<<<<<< HEAD
-=======
 import {StatisticReportButtonModule} from './statistic-report-button/statistic-report-button.module';
->>>>>>> oned/v92
 
 const routes: Routes = [
   {
     path: 'reports',
     component: EditReportComponent,
     canActivate: [RouteGuardService],
-<<<<<<< HEAD
-    resolve: [RouteGuardService]
-=======
     resolve: [RouteGuardService],
     data:{
       contextId: HELP_CONTEXTUAL.Reports
     }
->>>>>>> oned/v92
   }
 ];
 
@@ -67,10 +52,7 @@ const routes: Routes = [
     EditReportModule,
     SubscriptionsModule,
     ReportButtonModule,
-<<<<<<< HEAD
-=======
     StatisticReportButtonModule,
->>>>>>> oned/v92
     RouterModule.forChild(routes)
   ]
 })

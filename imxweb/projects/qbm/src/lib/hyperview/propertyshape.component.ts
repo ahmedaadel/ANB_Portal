@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -40,27 +36,13 @@ import { EntityColumnData } from 'imx-qbm-dbts';
 @Component({
   selector: 'imx-hyperview-propertyshape',
   templateUrl: './propertyshape.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./propertyshape.component.scss']
-})
-export class PropertyShapeComponent {
-
-=======
   styleUrls: ['./propertyshape.component.scss'],
 })
 export class PropertyShapeComponent {
->>>>>>> oned/v92
   @Input() public shape: ShapeData;
 
   @Input() public selected: EventEmitter<ShapeClickArgs> = new EventEmitter();
 
-<<<<<<< HEAD
-  public click(): void {
-    this.selected.emit({ objectKey: this.shape.ObjectKey });
-  }
-
-=======
->>>>>>> oned/v92
   public GetPropertyDisplayValue(property: EntityColumnData): string {
     return property.DisplayValue != null ? property.DisplayValue : property.Value;
   }

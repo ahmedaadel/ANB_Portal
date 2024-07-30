@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -31,50 +27,16 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-<<<<<<< HEAD
-import { PortalPersonReports, UserConfig, UserGroupInfo } from 'imx-api-qer';
-import { PendingItemsType } from './pending-items-type.interface';
-import { QerApiService } from '../qer-api-client.service';
-=======
 import { PortalPersonReports, UserConfig, UserFeatureInfo, UserGroupInfo } from 'imx-api-qer';
 import { PendingItemsType } from './pending-items-type.interface';
 import { QerApiService } from '../qer-api-client.service';
 import { CacheService, SettingsService } from 'qbm';
 import { CachedPromise } from 'imx-qbm-dbts';
->>>>>>> oned/v92
 
 @Injectable()
 export class UserModelService {
   public onPendingItemsChange = new Subject<PendingItemsType>();
 
-<<<<<<< HEAD
-  constructor(private qerClient: QerApiService) { }
-
-  public async getUserConfig(): Promise<UserConfig> {
-    return this.qerClient.client.portal_person_config_get();
-  }
-
-  public async getPendingItems(): Promise<PendingItemsType> {
-    return this.qerClient.client.portal_pendingitems_get();
-  }
-
-  public async reloadPendingItems(): Promise<void> {
-    const pendingItems = await this.getPendingItems();
-    this.onPendingItemsChange.next(pendingItems);
-  }
-
-  public async getGroups(): Promise<UserGroupInfo[]> {
-    return this.qerClient.client.portal_usergroups_get();
-  }
-
-  public async getDirectReports(): Promise<PortalPersonReports[]> {
-    const userGroups = await this.getGroups();
-    if (userGroups.find(group => group.Name === 'VI_4_ALLMANAGER')) {
-      return (await this.qerClient.typedClient.PortalPersonReports.Get({
-        OnlyDirect: true,
-        PageSize: 10000
-      })).Data;
-=======
   // The cached promises cache the results of often needed API requests.
   // The CacheService takes care of flushing the cache when re-authenticating.
   private pendingItemsCache: CachedPromise<PendingItemsType>;
@@ -118,7 +80,6 @@ export class UserModelService {
           uidperson,
         })
       ).Data;
->>>>>>> oned/v92
     }
     return [];
   }

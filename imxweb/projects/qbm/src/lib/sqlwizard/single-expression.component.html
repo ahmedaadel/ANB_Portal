@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-<!-- operator can only be one per level -->
-<div class="logical-operator" *ngIf="!first">
-    <a (click)="toggleLogOperator()" data-imx-identifier="single-expr-a-logical">
-        {{(expr.Parent.Data.LogOperator == LogOp.OR ? "#LDS#Condition_Or" : "#LDS#Condition_And")|translate}} </a>
-</div>
-
-=======
->>>>>>> oned/v92
 <div class="expression">
     <imx-sqlwizard-simpleexpression class="flex flex-grow" [expr]="expr" *ngIf="expr.isSimple()" (change)="emitChanges()">
     </imx-sqlwizard-simpleexpression>
@@ -15,11 +6,7 @@
     <div class="remove-btn">
         <button (click)="removeExpression()" data-imx-identifier="single-expr-button-remove"
             *ngIf="expr.canRemove()" mat-icon-button [attr.aria-label]="'#LDS#Delete' | translate">
-<<<<<<< HEAD
-            <eui-icon icon="delete"></eui-icon>
-=======
             <eui-icon icon="close" size="s"></eui-icon>
->>>>>>> oned/v92
         </button>
     </div>
 </div>

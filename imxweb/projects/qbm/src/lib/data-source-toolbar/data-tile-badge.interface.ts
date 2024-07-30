@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,11 +24,6 @@
  *
  */
 
-<<<<<<< HEAD
-export interface DataTileBadge {
-  content: string;
-  color: string;
-=======
 /**
  * Defines badge properties, that can be used to add a badge to a {@link DataTileComponent | data tile}
  */
@@ -52,5 +43,4 @@ export interface DataTileBadge {
    * The text color of the badge
    */
   textColor?: string;
->>>>>>> oned/v92
 }

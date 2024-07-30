@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -33,11 +29,7 @@ import { OverlayRef } from '@angular/cdk/overlay';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { Subscription } from 'rxjs';
 import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnDestroy, ViewChild } from '@angular/core';
-<<<<<<< HEAD
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-=======
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
->>>>>>> oned/v92
 import { MatSelectionListChange } from '@angular/material/list';
 import { MatRadioChange } from '@angular/material/radio';
 import { EuiLoadingService, EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
@@ -52,11 +44,7 @@ import { SystemRoleConfigService } from './system-role-config.service';
 })
 export class SystemRoleConfigComponent implements AfterViewInit, OnDestroy {
 
-<<<<<<< HEAD
-  public readonly form: FormGroup;
-=======
   public readonly form: UntypedFormGroup;
->>>>>>> oned/v92
   public type: 'new' | 'existing' = 'new';
   public selectedRole: string;
 
@@ -70,22 +58,14 @@ export class SystemRoleConfigComponent implements AfterViewInit, OnDestroy {
 
 
   constructor(
-<<<<<<< HEAD
-    @Inject(EUI_SIDESHEET_DATA) private data: string,
-=======
     @Inject(EUI_SIDESHEET_DATA) public readonly data: { uid: string, createOnly: boolean },
->>>>>>> oned/v92
     private readonly sidesheetRef: EuiSidesheetRef,
     private readonly busyService: EuiLoadingService,
     private readonly addToExistingProvider: SystemRoleConfigService,
     private readonly settingsService: SettingsService,
     private readonly changeDetectorRef: ChangeDetectorRef,
   ) {
-<<<<<<< HEAD
-    this.form = new FormGroup({ name: new FormControl(undefined, Validators.required) });
-=======
     this.form = new UntypedFormGroup({ name: new UntypedFormControl(undefined, Validators.required) });
->>>>>>> oned/v92
   }
 
   public async ngAfterViewInit(): Promise<void> {
@@ -150,20 +130,13 @@ export class SystemRoleConfigComponent implements AfterViewInit, OnDestroy {
     let overlayRef: OverlayRef;
     setTimeout(() => overlayRef = this.busyService.show());
     try {
-<<<<<<< HEAD
-      this.candidates = (await this.addToExistingProvider.getExistingRoles(this.data, newState))
-=======
       this.candidates = (await this.addToExistingProvider.getExistingRoles(this.data.uid, newState))
->>>>>>> oned/v92
         .Data;
     } finally {
       setTimeout(() => this.busyService.hide(overlayRef));
     }
   }
 
-<<<<<<< HEAD
-=======
   public LdsAddOrCreate = '#LDS#Here you can merge the application entitlements into a new system role or add the application entitlements to an existing system role. The system role will then be assigned to the application as an application entitlement.';
 
->>>>>>> oned/v92
 }

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -46,13 +42,9 @@ import {
   ClassloggerService,
   MenuService,
   MenuItem,
-<<<<<<< HEAD
-  ParameterizedTextModule
-=======
   ParameterizedTextModule,
   HELP_CONTEXTUAL,
   HelpContextualModule
->>>>>>> oned/v92
 } from 'qbm';
 import { ShoppingCartComponent } from './shopping-cart.component';
 import { ShoppingCartForLaterComponent } from './shopping-cart-for-later/shopping-cart-for-later.component';
@@ -76,38 +68,26 @@ const routes: Routes = [
   {
     path: 'shoppingcart',
     component: ShoppingCartComponent,
-<<<<<<< HEAD
-    canActivate: [RouteGuardService, RequestsFeatureGuardService]
-=======
     canActivate: [RouteGuardService, RequestsFeatureGuardService],
     data:{
       contextId: HELP_CONTEXTUAL.ShoppingCart
     }
->>>>>>> oned/v92
   },
   {
     path: 'shoppingcart/later',
     component: ShoppingCartForLaterComponent,
-<<<<<<< HEAD
-    canActivate: [RouteGuardService, RequestsFeatureGuardService]
-=======
     canActivate: [RouteGuardService, RequestsFeatureGuardService],
     data:{
       contextId: HELP_CONTEXTUAL.ShoppingCartForLater
     }
->>>>>>> oned/v92
   },
   {
     path: 'shoppingcart/empty',
     component: ShoppingCartEmptyComponent,
-<<<<<<< HEAD
-    canActivate: [RouteGuardService, RequestsFeatureGuardService]
-=======
     canActivate: [RouteGuardService, RequestsFeatureGuardService],
     data:{
       contextId: HELP_CONTEXTUAL.ShoppingCartEmpty
     }
->>>>>>> oned/v92
   },
 ];
 
@@ -142,12 +122,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     TranslateModule,
     ShoppingCartValidationDetailModule,
-<<<<<<< HEAD
-    UserModule
-=======
     UserModule,
     HelpContextualModule,
->>>>>>> oned/v92
   ],
   providers: [
     CartItemLogicService,
@@ -165,11 +141,7 @@ export class ShoppingCartModule {
 
   private setupMenu(): void {
     this.menuService.addMenuFactories(
-<<<<<<< HEAD
-      (preProps: string[], groups: string[]) => {
-=======
       (preProps: string[], features: string[]) => {
->>>>>>> oned/v92
 
         const items: MenuItem[] = [];
 

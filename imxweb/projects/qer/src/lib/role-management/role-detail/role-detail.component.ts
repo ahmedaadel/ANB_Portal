@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -114,24 +110,6 @@ export class RoleDetailComponent implements OnInit, OnDestroy {
     this.defaultClickHandler = this.tabs._handleClick;
     this.tabs._handleClick = async (tab, header, index) => {
       const isNewTab = index !== this.tabs.selectedIndex;
-<<<<<<< HEAD
-      if (!isNewTab) {
-        return;
-      }
-      if (this.leavingWithDirty()) {
-        if (await this.confirm.confirmLeaveWithUnsavedChanges(null, null, true)) {
-          // Need to reload the interactive entity to discard old data
-          this.busyService.show();
-          try {
-            this.dataManagementService.autoMembershipDirty(false);
-            this.dataManagementService.mainDataDirty(false);
-            await this.dataManagementService.setInteractive();
-          } finally {
-            this.busyService.hide();
-          }
-        }
-      }
-=======
       if (!isNewTab) return;
 
       if (this.leavingWithDirty()) {
@@ -149,7 +127,6 @@ export class RoleDetailComponent implements OnInit, OnDestroy {
         }
       }
 
->>>>>>> oned/v92
       this.defaultClickHandler.apply(this.tabs, [tab, header, index]);
     };
   }
@@ -164,31 +141,14 @@ export class RoleDetailComponent implements OnInit, OnDestroy {
     return leavingMainWithDirty || leavingMemWithDirty;
   }
 
-<<<<<<< HEAD
-  public async checkConfirmation(): Promise<boolean> {
-    // Check if we leave maindata or membership with dirty data, assumes position of 0 and 1 resp.
-    const leavingMainWithDirty = this.tabs.selectedIndex === 0 && !this.canClose;
-    const leavingMemWithDirty = this.tabs.selectedIndex === 1 && !this.autoMembershipsValid;
-    let resp = true;
-    if (leavingMainWithDirty || leavingMemWithDirty) {
-      resp = await this.confirm.confirmLeaveWithUnsavedChanges(null, null, true);
-    }
-    return resp;
-  }
-
-=======
->>>>>>> oned/v92
   public canHaveMemberships(): boolean {
     return this.roleService.canHaveMemberships();
   }
 
-<<<<<<< HEAD
-=======
   public canHaveStatistics(): boolean {
     return this.roleService.canHaveStatistics();
   }
 
->>>>>>> oned/v92
   public canHaveEntitlements(): boolean {
     return this.roleService.canHaveEntitlements();
   }

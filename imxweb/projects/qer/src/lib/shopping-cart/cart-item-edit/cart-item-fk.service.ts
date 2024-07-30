@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -31,11 +27,7 @@
 import { Injectable } from '@angular/core';
 
 import { ParameterData } from 'imx-qbm-dbts';
-<<<<<<< HEAD
-import { FkProviderItem, InteractiveEntityWriteData } from 'imx-qbm-dbts';
-=======
 import { FkProviderItem, IFkCandidateProvider, InteractiveEntityWriteData } from 'imx-qbm-dbts';
->>>>>>> oned/v92
 import { QerApiService } from '../../qer-api-client.service';
 
 @Injectable({
@@ -47,55 +39,6 @@ export class CartItemFkService {
   public getFkProviderItemsInteractive(
     interactiveEntity: { InteractiveEntityWriteData: InteractiveEntityWriteData },
     parameterData: ParameterData
-<<<<<<< HEAD
-  ): FkProviderItem[] {
-    if (parameterData.Property.FkRelation) {
-      return [
-        this.getFkProviderItemInteractive(interactiveEntity, parameterData.Property.ColumnName, parameterData.Property.FkRelation.ParentTableName)
-      ];
-    }
-
-    if (parameterData.Property.ValidReferencedTables) {
-      return parameterData.Property.ValidReferencedTables.map(parentTableRef =>
-        this.getFkProviderItemInteractive(interactiveEntity, parameterData.Property.ColumnName, parentTableRef.TableName)
-      );
-    }
-
-    return [];
-  }
-
-  private getFkProviderItemInteractive(
-    interactiveEntity: { InteractiveEntityWriteData: InteractiveEntityWriteData },
-    columnName: string,
-    fkTableName: string
-  ): FkProviderItem {
-    return {
-      columnName,
-      fkTableName,
-      parameterNames: [
-        'OrderBy',
-        'StartIndex',
-        'PageSize',
-        'filter',
-        'search'
-      ],
-      load: async (__, parameters?) => {
-        return this.qerClient.client.portal_cartitem_interactive_parameter_candidates_post(
-          columnName,
-          fkTableName,
-          interactiveEntity.InteractiveEntityWriteData,
-          parameters
-        );
-      },
-      getDataModel: async () => ({}),
-      getFilterTree: async (__, parentkey) => {
-        return this.qerClient.client.portal_cartitem_interactive_parameter_candidates_filtertree_post(
-          columnName, fkTableName, interactiveEntity.InteractiveEntityWriteData, { parentkey: parentkey }
-        );
-      }
-    };
-  }
-=======
   ): IFkCandidateProvider {
     
     const qerClient = this.qerClient;
@@ -152,5 +95,4 @@ export class CartItemFkService {
     };
   }
 
->>>>>>> oned/v92
 }

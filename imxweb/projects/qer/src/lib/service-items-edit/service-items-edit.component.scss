@@ -18,37 +18,12 @@
 .heading-wrapper {
   @include imx-flex-row-container();
   flex: 0 0 auto;
-<<<<<<< HEAD
-
-  .helper-alert {
-    display: flex;
-    margin-bottom: 15px;
-  }
-
-  .alert-wrapper {
-    margin: 0 0 0 auto;
-    align-self: flex-end;
-    width: 50%;
-  }
-=======
->>>>>>> oned/v92
 }
 
 .imx-service-items-page {
   background-color: inherit;
   @include imx-flex-column-container();
   overflow: hidden;
-<<<<<<< HEAD
-
-  div.imx-table-container {
-    @include imx-flex-column-container();
-    overflow: hidden;
-    height: inherit;
-
-    imx-data-source-toolbar {
-      margin-bottom: 20px;
-    }
-=======
   flex: 1 1 auto;
 
   .mat-card.imx-table-container {
@@ -57,7 +32,6 @@
     flex: 1 1 auto;
     margin-right: 3px;
     margin-bottom: 3px;
->>>>>>> oned/v92
 
     .imx-pickcategory-table {
       flex-grow: 1;

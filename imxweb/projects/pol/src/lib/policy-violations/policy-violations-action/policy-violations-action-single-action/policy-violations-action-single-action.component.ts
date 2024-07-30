@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Component, Input, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { AbstractControl, FormGroup } from '@angular/forms';
-=======
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
->>>>>>> oned/v92
 
 import { ColumnDependentReference } from 'qbm';
 import { PolicyViolation } from '../../policy-violation';
@@ -65,11 +57,7 @@ export class PolicyViolationsActionSingleActionComponent implements OnInit {
    *
    * The form group to which the necessary form fields will be added.
    */
-<<<<<<< HEAD
-  @Input() public formGroup: FormGroup;
-=======
   @Input() public formGroup: UntypedFormGroup;
->>>>>>> oned/v92
 
   /**
    * @ignore since this is only public because of databinding to the template

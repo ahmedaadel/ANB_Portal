@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-@import "@elemental-ui/core/src/styles/_palette.scss";
-
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
->>>>>>> oned/v92
 :host {
   display: flex;
   flex-direction: column;
@@ -17,12 +12,6 @@
   height: 100%;
 
   .imx-tab-content-body {
-<<<<<<< HEAD
-    flex: 1;
-    padding: 32px;
-    overflow: hidden;
-=======
->>>>>>> oned/v92
     display: flex;
     flex-direction: column;
 
@@ -30,31 +19,6 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-<<<<<<< HEAD
-    }
-  }
-
-  .imx-action-buttons {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: $white;
-    padding: 16px 32px;
-    margin: 16px 32px;
-
-    .imx-selected-items {
-      justify-self: flex-start;
-      margin: 0;
-      line-height: 36px;
-    }
-
-    > :not(:last-child){
-      margin-right: 5px;
-    }
-
-    .imx-menu-spacer {
-      flex-grow: 1;
-=======
       flex: 1 1 auto;
     }
   }
@@ -75,17 +39,11 @@
     eui-icon {
       font-size: 14px;
       margin-right: 4px;
->>>>>>> oned/v92
     }
   }
 }
 
 .imx-subtext {
-<<<<<<< HEAD
-  color: $black-6;
-  font-size: smaller;
-}
-=======
   color: $color-gray-40;
   font-size: smaller;
 }
@@ -118,4 +76,3 @@
     }
   }
 }
->>>>>>> oned/v92

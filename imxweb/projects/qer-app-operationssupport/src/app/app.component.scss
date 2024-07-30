@@ -17,17 +17,6 @@
   overflow: hidden;
   height: inherit;
   margin: 40px 60px;
-<<<<<<< HEAD
-  flex: 1 1 auto;
-
-  @media #{$IMX_Mediaquery_Smartphone} {
-    margin: 10px 15px;
-  }
-  @media #{$IMX_Mediaquery_SmallDesktops} {
-    margin: 20px 30px;
-  }
-}
-=======
 
   &--full-page {
     margin: 0;
@@ -66,4 +55,3 @@
     }
   }
 }
->>>>>>> oned/v92

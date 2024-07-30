@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,15 +26,6 @@
 
 import { Injectable } from '@angular/core';
 import { Router, Route } from '@angular/router';
-<<<<<<< HEAD
-import { IdentityRoleMembershipsService, ShoppingCartValidationDetailService } from 'qer';
-
-import { ExtService, MenuItem, MenuService, TabItem } from 'qbm';
-
-import { DashboardPluginComponent } from './dashboard-plugin/dashboard-plugin.component';
-import { CartItemComplianceCheckComponent } from './item-validator/cart-item-compliance-check/cart-item-compliance-check.component';
-import { isCiso, isRuleOwner } from './rules/admin/permissions-helper';
-=======
 import { IdentityRoleMembershipsService, NotificationRegistryService, ShoppingCartValidationDetailService } from 'qer';
 
 import { ExtService, MenuItem, MenuService, TabItem} from 'qbm';
@@ -46,18 +33,11 @@ import { ExtService, MenuItem, MenuService, TabItem} from 'qbm';
 import { DashboardPluginComponent } from './dashboard-plugin/dashboard-plugin.component';
 import { CartItemComplianceCheckComponent } from './item-validator/cart-item-compliance-check/cart-item-compliance-check.component';
 import { isRuleStatistics } from './rules/admin/permissions-helper';
->>>>>>> oned/v92
 import { RequestRuleViolation } from './request/request-rule-violation';
 import { RequestRuleViolationDetail } from './request/request-rule-violation-detail';
 import { RoleComplianceViolationsService } from './role-compliance-violations/role-compliance-violations.service';
 import { RoleComplianceViolationsComponent } from './role-compliance-violations/role-compliance-violations.component';
-<<<<<<< HEAD
-import { PortalPersonRolemembershipsNoncompliance } from 'imx-api-cpl';
 import { ApiService } from './api.service';
-import { CollectionLoadParameters } from 'imx-qbm-dbts';
-=======
-import { ApiService } from './api.service';
->>>>>>> oned/v92
 import { IdentityRuleViolationsComponent } from './identity-rule-violations/identity-rule-violations.component';
 
 @Injectable({ providedIn: 'root' })
@@ -68,10 +48,7 @@ export class InitService {
     private readonly menuService: MenuService,
     private readonly api: ApiService,
     private readonly cplService: RoleComplianceViolationsService,
-<<<<<<< HEAD
-=======
     private readonly notificationService: NotificationRegistryService,
->>>>>>> oned/v92
     private readonly validationDetailService: ShoppingCartValidationDetailService,
     private readonly identityRoleMembershipService: IdentityRoleMembershipsService
   ) {
@@ -104,8 +81,6 @@ export class InitService {
       }, sortOrder: 20
     } as TabItem);
     this.validationDetailService.register(CartItemComplianceCheckComponent, 'CartItemComplianceCheck');
-<<<<<<< HEAD
-=======
 
     // Register handler for compliance notifications
     this.notificationService.registerRedirectNotificationHandler({
@@ -114,7 +89,6 @@ export class InitService {
       route: 'compliance/rulesviolations/approve'
     });
 
->>>>>>> oned/v92
   }
 
   private async checkCompliances(referrer: any): Promise<boolean> {
@@ -139,23 +113,14 @@ export class InitService {
   }
 
   private setupMenu(): void {
-<<<<<<< HEAD
-    this.menuService.addMenuFactories((preProps: string[], groups: string[]) => {
-      if (!preProps.includes('COMPLIANCE') || (!isCiso(groups) && !isRuleOwner(groups))) {
-=======
     this.menuService.addMenuFactories((preProps: string[], features: string[]) => {
       if (!preProps.includes('COMPLIANCE') || !isRuleStatistics(features)) {
->>>>>>> oned/v92
         return null;
       }
 
       const items = [];
 
-<<<<<<< HEAD
-      if (isCiso(groups) || isRuleOwner(groups)) {
-=======
       if (isRuleStatistics(features)) {
->>>>>>> oned/v92
         items.push({
           id: 'CPL_Compliance_Rules',
           route: 'compliance/rules',

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,31 +25,12 @@
  */
 
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-<<<<<<< HEAD
-import { MatSnackBar } from '@angular/material/snack-bar';
-=======
->>>>>>> oned/v92
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { PortalRolesEntitlements, RoleAssignmentData } from 'imx-api-qer';
 import { CollectionLoadParameters, DbObjectKey, DisplayColumns, EntitySchema, IClientProperty, TypedEntity, XOrigin } from 'imx-qbm-dbts';
 
-<<<<<<< HEAD
-import { ConfirmationService, DataSourceToolbarSettings, DataTableComponent, imx_SessionService, MetadataService } from 'qbm';
-import { QerApiService } from '../../qer-api-client.service';
-import { DataManagementService } from '../data-management.service';
-import { RoleService } from '../role.service';
-import { EntitlementSelectorComponent, SelectedEntitlement } from './entitlement-selector.component';
-
-@Component({
-  selector: 'imx-role-entitlements',
-  templateUrl: './role-entitlements.component.html',
-  styleUrls: ['./role-entitlements.component.scss', '../sidesheet.scss']
-})
-export class RoleEntitlementsComponent implements OnInit, AfterViewInit {
-
-=======
 import { BusyService, ConfirmationService, DataSourceToolbarSettings, DataTableComponent, MetadataService, SnackBarService } from 'qbm';
 import { RoleRecommendationsComponent } from './role-recommendations/role-recommendations.component';
 import { DataManagementService } from '../data-management.service';
@@ -67,7 +44,6 @@ import { RoleEntitlementActionService } from './role-entitlement-action.service'
   styleUrls: ['./role-entitlements.component.scss', '../sidesheet.scss'],
 })
 export class RoleEntitlementsComponent implements OnInit, AfterViewInit {
->>>>>>> oned/v92
   get isMobile(): boolean {
     return document.body.offsetWidth <= 768;
   }
@@ -77,46 +53,12 @@ export class RoleEntitlementsComponent implements OnInit, AfterViewInit {
   public DisplayColumns = DisplayColumns;
   public displayColumns: IClientProperty[];
   public entitlementTypes: Map<string, string>;
-<<<<<<< HEAD
-=======
   public canEdit: boolean;
->>>>>>> oned/v92
 
   @ViewChild('dataTable') public dataTable: DataTableComponent<TypedEntity>;
 
   public readonly itemStatus = {
     enabled: (item: PortalRolesEntitlements): boolean => {
-<<<<<<< HEAD
-      return (item.GetEntity().GetColumn('XOrigin').GetValue() & XOrigin.Direct) > 0
-        || item.GetEntity().GetColumn('IsRequestCancellable').GetValue();
-    }
-  };
-  private selectedEntities: TypedEntity[] = [];
-
-  constructor(
-    private readonly busyService: EuiLoadingService,
-    private readonly qerApiService: QerApiService,
-    private readonly roleService: RoleService,
-    private dataManagementService: DataManagementService,
-    private readonly confirmationService: ConfirmationService,
-    private readonly snackbar: MatSnackBar,
-    private readonly sidesheet: EuiSidesheetService,
-    private readonly metadata: MetadataService,
-    private readonly translate: TranslateService,
-    private readonly session: imx_SessionService,
-  ) { }
-
-  public ngOnInit(): void {
-    this.entitySchema = PortalRolesEntitlements.GetEntitySchema();
-  }
-
-  public async ngAfterViewInit(): Promise<void> {
-
-    this.displayColumns = [
-      this.entitySchema.Columns[DisplayColumns.DISPLAY_PROPERTYNAME],
-      this.entitySchema.Columns.XOrigin,
-      this.entitySchema.Columns.XDateInserted
-=======
       return (
         (item.GetEntity().GetColumn('XOrigin').GetValue() & XOrigin.Direct) > 0 ||
         item.GetEntity().GetColumn('IsRequestCancellable').GetValue()
@@ -154,7 +96,6 @@ export class RoleEntitlementsComponent implements OnInit, AfterViewInit {
       this.entitySchema.Columns[DisplayColumns.DISPLAY_PROPERTYNAME],
       this.entitySchema.Columns.XOrigin,
       this.entitySchema.Columns.XDateInserted,
->>>>>>> oned/v92
     ];
     await this.navigate();
   }
@@ -164,10 +105,6 @@ export class RoleEntitlementsComponent implements OnInit, AfterViewInit {
     return validUntil.toLocaleDateString();
   }
 
-<<<<<<< HEAD
-  // TODO: Does the table support search?
-=======
->>>>>>> oned/v92
   public async onSearch(keywords: string): Promise<void> {
     this.navigationState.StartIndex = 0;
     this.navigationState.search = keywords;
@@ -179,45 +116,23 @@ export class RoleEntitlementsComponent implements OnInit, AfterViewInit {
   }
 
   public async onSelectEntitlements(): Promise<void> {
-<<<<<<< HEAD
-    this.busyService.show();
-=======
     this.busyServiceElemental.show();
->>>>>>> oned/v92
     const entity = this.dataManagementService.entityInteractive.GetEntity();
     let entitlementTypes: RoleAssignmentData[];
     try {
       entitlementTypes = await this.roleService.getEntitlementTypes(entity);
     } finally {
-<<<<<<< HEAD
-      this.busyService.hide();
-    }
-    const selectedValues = await this.sidesheet.open(EntitlementSelectorComponent,
-      {
-        title: await this.translate.get('#LDS#Heading Request Entitlements').toPromise(),
-        headerColour: 'iris-blue',
-        bodyColour: 'asher-gray',
-=======
       this.busyServiceElemental.hide();
     }
     const selectedValues = await this.sidesheet
       .open(EntitlementSelectorComponent, {
         title: await this.translate.get('#LDS#Heading Request Entitlements').toPromise(),
         subTitle: entity.GetDisplay(),
->>>>>>> oned/v92
         padding: '0px',
         width: 'max(600px, 60%)',
         testId: 'role-entitlements-new-sidesheet',
         data: {
           entitlementTypes: entitlementTypes,
-<<<<<<< HEAD
-          roleEntity: entity
-        }
-      }
-    ).afterClosed().toPromise();
-    if (selectedValues) {
-      this.processEntitlementSelections(selectedValues);
-=======
           roleEntity: entity,
         },
       })
@@ -232,7 +147,6 @@ export class RoleEntitlementsComponent implements OnInit, AfterViewInit {
       }
 
       this.snackbar.open({ key: '#LDS#The entitlement assignments have been successfully added to your shopping cart.' }, '#LDS#Close');
->>>>>>> oned/v92
     }
   }
 
@@ -255,35 +169,6 @@ export class RoleEntitlementsComponent implements OnInit, AfterViewInit {
       return false;
     }
 
-<<<<<<< HEAD
-    return this.selectedEntities.findIndex(item => ! this.canDelete(item)) < 0;
-  }
-
-  public async onDeleteEntitlements(): Promise<void> {
-    if (await this.confirmationService.confirm({
-      Title: '#LDS#Heading Remove Entitlements',
-      Message: '#LDS#Are you sure you want to remove the selected entitlements?'
-    })) {
-      this.busyService.show();
-      try {
-        const entity = this.dataManagementService.entityInteractive.GetEntity();
-        for (const selectedEntity of this.selectedEntities) {
-          if (this.isDirectAssignment(selectedEntity)) {
-            await this.roleService.removeEntitlements(entity.GetKeys().join(','), selectedEntity.GetEntity());
-          }
-
-          if (this.isRequestCancellable(selectedEntity)) {
-            await this.roleService.unsubscribe(selectedEntity);
-          }
-
-        }
-
-      } finally {
-        this.busyService.hide();
-        this.dataTable.clearSelection();
-        this.openSnackbar('#LDS#The entitlements have been successfully removed. It may take some time for the changes to take effect.',
-          '#LDS#Close');
-=======
     return this.selectedEntities.findIndex((item) => !this.canDelete(item)) < 0;
   }
 
@@ -304,7 +189,6 @@ export class RoleEntitlementsComponent implements OnInit, AfterViewInit {
           { key: '#LDS#The entitlements have been successfully removed. It may take some time for the changes to take effect.' },
           '#LDS#Close'
         );
->>>>>>> oned/v92
         await this.navigate();
       }
     }
@@ -318,40 +202,6 @@ export class RoleEntitlementsComponent implements OnInit, AfterViewInit {
     return !item.GetEntity().GetColumn('XIsInEffect').GetValue();
   }
 
-<<<<<<< HEAD
-  private async processEntitlementSelections(selectedEntities: SelectedEntitlement[]): Promise<void> {
-    const overlay = this.busyService.show();
-    try {
-      const entity = this.dataManagementService.entityInteractive.GetEntity();
-      for (const selectedEntity of selectedEntities) {
-        const newCartItem = this.qerApiService.typedClient.PortalCartitem.createEntity();
-
-        // i.e. "<Key><T>Org</T><P>4ee782c2-a518-42d3-8d38-73b0d287b7e6</P></Key>"
-        newCartItem.RoleMembership.value = entity.GetColumn('XObjectKey').GetValue();
-
-        // i.e. "OrgHasADSGroup|<Key><T>ADSGroup</T><P>468fa7aa-26d8-4c81-8944-a00146014ece</P></Key>"
-        newCartItem.EntitlementData.value = selectedEntity.assignmentType.AssignTable + '|' + selectedEntity.entity.GetColumn('XObjectKey').GetValue();
-
-        newCartItem.UID_PersonOrdered.value = this.session.SessionState.UserUid;
-        await newCartItem.GetEntity().Commit(false);
-      }
-
-    } finally {
-      this.busyService.hide(overlay);
-    }
-
-    this.openSnackbar('#LDS#The entitlement assignments have been successfully added to your shopping cart.', '#LDS#Close');
-  }
-
-  private openSnackbar(message: string, action: string): void {
-    this.translate.get([message, action]).subscribe((translations: any[]) => {
-      this.snackbar.open(translations[message], translations[action], { duration: 10000 });
-    });
-  }
-
-  private async navigate(): Promise<void> {
-    this.busyService.show();
-=======
   public async onShowRecommendations(): Promise<any> {
     const entity = this.dataManagementService.entityInteractive.GetEntity();
     const result: RoleRecommendationResultItem[] = await this.sidesheet
@@ -412,24 +262,15 @@ export class RoleEntitlementsComponent implements OnInit, AfterViewInit {
 
   private async navigate(): Promise<void> {
     const isBusy = this.busyService.beginBusy();
->>>>>>> oned/v92
     try {
       const entity = this.dataManagementService.entityInteractive.GetEntity();
       const ds = await this.roleService.getEntitlements({
         id: entity.GetKeys().join(','),
-<<<<<<< HEAD
-        navigationState: this.navigationState
-      });
-      this.entitlementTypes = new Map();
-
-      ds.Data.forEach(async item => {
-=======
         navigationState: this.navigationState,
       });
       this.entitlementTypes = new Map();
 
       ds.Data.forEach(async (item) => {
->>>>>>> oned/v92
         this.entitlementTypes.set(item.GetEntity().GetKeys().toString(), await this.getTypeDescription(item));
       });
 
@@ -439,14 +280,8 @@ export class RoleEntitlementsComponent implements OnInit, AfterViewInit {
         navigationState: this.navigationState,
         displayedColumns: this.displayColumns,
       };
-<<<<<<< HEAD
-
-    } finally {
-      this.busyService.hide();
-=======
     } finally {
       isBusy.endBusy();
->>>>>>> oned/v92
     }
   }
 
@@ -457,28 +292,16 @@ export class RoleEntitlementsComponent implements OnInit, AfterViewInit {
   private isDirectAssignment(entity: TypedEntity): boolean {
     const xorigin = entity.GetEntity().GetColumn('XOrigin').GetValue() as XOrigin;
     // tslint:disable-next-line:no-bitwise
-<<<<<<< HEAD
-    return xorigin && (XOrigin.Direct === (XOrigin.Direct & xorigin));
-=======
     return xorigin && XOrigin.Direct === (XOrigin.Direct & xorigin);
->>>>>>> oned/v92
   }
 
   private isDynamicAssignment(entity: TypedEntity): boolean {
     const xorigin = entity.GetEntity().GetColumn('XOrigin').GetValue() as XOrigin;
     // tslint:disable-next-line:no-bitwise
-<<<<<<< HEAD
-    return xorigin && (XOrigin.Dynamic === (XOrigin.Dynamic & xorigin));
-=======
     return xorigin && XOrigin.Dynamic === (XOrigin.Dynamic & xorigin);
->>>>>>> oned/v92
   }
 
   private isRequestCancellable(entity: TypedEntity): boolean {
     return true === entity.GetEntity().GetColumn('IsRequestCancellable')?.GetValue();
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
 }

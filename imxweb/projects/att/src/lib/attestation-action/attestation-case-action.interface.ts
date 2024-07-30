@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -37,14 +33,11 @@ export interface AttestationCaseAction {
    */
   typedEntity: TypedEntity;
 
-<<<<<<< HEAD
-=======
   /**
    * a Property for storing the extended Data
    */
   data: any;
 
->>>>>>> oned/v92
   uiData?: AttestationCaseUiData;
 
   /**

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-<<<<<<< HEAD
-import { FormControl } from '@angular/forms';
-=======
 import { UntypedFormControl } from '@angular/forms';
->>>>>>> oned/v92
 import { EuiSelectOption } from '@elemental-ui/core';
 import { FilterProperty, LogOp, SqlExpression } from 'imx-qbm-dbts';
 import { SqlNodeView } from './SqlNodeView';
@@ -56,11 +48,7 @@ export class ColumnSelectionComponent implements OnInit, OnChanges {
     public dataReady = false;
     public options: EuiSelectOption[] = [];
 
-<<<<<<< HEAD
-    public formControl = new FormControl();
-=======
     public formControl = new UntypedFormControl();
->>>>>>> oned/v92
 
     private lastSelected;
 

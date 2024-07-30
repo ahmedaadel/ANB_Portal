@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -36,25 +32,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
-<<<<<<< HEAD
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
-import { TranslateModule, TranslateLoader, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
-
-import {
-  CdrRegistryService,
-  GlobalErrorHandler,
-  ImxTranslateLoader,
-  ImxMissingTranslationHandler,
-  MastHeadModule,
-  MenuModule,
-  LdsReplacePipe,
-  Paginator,
-  UserMessageModule,
-  QbmModule,
-  AuthenticationModule,
-  ObjectHistoryApiService,
-  ObjectHistoryModule
-=======
 import { MissingTranslationHandler, TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
@@ -72,41 +49,10 @@ import {
   ObjectHistoryModule,
   Paginator,
   UserMessageModule,
->>>>>>> oned/v92
 } from 'qbm';
 import {
   AddressbookModule,
   ApprovalsModule,
-<<<<<<< HEAD
-  IdentitiesModule,
-  DelegationModule,
-  ObjectSheetModule,
-  ObjectsheetPersonModule,
-  ProductSelectionModule,
-  QerModule,
-  QpmIntegrationModule,
-  RequestHistoryModule,
-  ServiceCategoriesModule,
-  ServiceItemsEditModule,
-  ShoppingCartModule,
-  ProfileModule,
-  RequestConfigModule,
-  RoleManangementModule,
-  ItshopPatternModule
-} from 'qer';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AppService } from './app.service';
-import { environment } from '../environments/environment';
-import appConfigJson from '../appconfig.json';
-import { PortalHistoryService } from './portal-history.service';
-
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-=======
   ArchivedRequestsModule,
   DelegationModule,
   IdentitiesModule,
@@ -152,7 +98,6 @@ export function getBaseHref(): string {
 }
 @NgModule({
   declarations: [AppComponent],
->>>>>>> oned/v92
   imports: [
     AppRoutingModule,
     AuthenticationModule,
@@ -162,32 +107,13 @@ export function getBaseHref(): string {
     EuiMaterialModule,
     HttpClientModule,
     IdentitiesModule,
-<<<<<<< HEAD
-=======
     ResourcesModule,
->>>>>>> oned/v92
     LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.OFF }),
     MatDialogModule,
     MatTabsModule,
     MastHeadModule,
     MenuModule,
     AddressbookModule,
-<<<<<<< HEAD
-    QbmModule,
-    QerModule,
-    ProfileModule,
-    RoleManangementModule,
-    QpmIntegrationModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useClass: ImxTranslateLoader
-      },
-      missingTranslationHandler: {
-        provide: MissingTranslationHandler,
-        useClass: ImxMissingTranslationHandler
-      }
-=======
     QerModule,
     ProfileModule,
     RoleManangementModule,
@@ -203,26 +129,17 @@ export function getBaseHref(): string {
         provide: MissingTranslationHandler,
         useClass: ImxMissingTranslationHandler,
       },
->>>>>>> oned/v92
     }),
     UserMessageModule,
     DelegationModule,
     ShoppingCartModule,
     ObjectHistoryModule,
-<<<<<<< HEAD
-    ObjectSheetModule,
-    ObjectsheetPersonModule,
-=======
->>>>>>> oned/v92
     ProductSelectionModule,
     ApprovalsModule,
     ItshopPatternModule,
     RequestConfigModule,
     RequestHistoryModule,
     ServiceCategoriesModule,
-<<<<<<< HEAD
-    ServiceItemsEditModule
-=======
     ServiceItemsEditModule,
     NewRequestModule,
     RiskConfigModule,
@@ -236,7 +153,6 @@ export function getBaseHref(): string {
     SourceDetectiveModule,
     RoleMembershipsModule,
     TeamResponsibilitiesModule
->>>>>>> oned/v92
   ],
   providers: [
     { provide: 'environment', useValue: environment },
@@ -245,17 +161,6 @@ export function getBaseHref(): string {
       provide: APP_INITIALIZER,
       useFactory: AppService.init,
       deps: [AppService],
-<<<<<<< HEAD
-      multi: true
-    },
-    {
-      provide: ErrorHandler,
-      useClass: GlobalErrorHandler
-    },
-    {
-      provide: ObjectHistoryApiService,
-      useClass: PortalHistoryService
-=======
       multi: true,
     },
     {
@@ -269,23 +174,10 @@ export function getBaseHref(): string {
     {
       provide: ObjectHyperviewService,
       useClass: PortalHyperviewService
->>>>>>> oned/v92
     },
     {
       provide: MatPaginatorIntl,
       useFactory: Paginator.Create,
-<<<<<<< HEAD
-      deps: [
-        TranslateService,
-        LdsReplacePipe
-      ]
-    },
-    CdrRegistryService
-  ],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-=======
       deps: [TranslateService, LdsReplacePipe],
     },
     {
@@ -297,4 +189,3 @@ export class AppModule { }
   bootstrap: [AppComponent],
 })
 export class AppModule {}
->>>>>>> oned/v92

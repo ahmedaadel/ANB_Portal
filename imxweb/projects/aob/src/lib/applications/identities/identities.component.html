@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-=======
 <div class="imx-identities-content">
 
->>>>>>> oned/v92
 <imx-data-source-toolbar #dst
   data-imx-identifier="identity-dst"
   [options]="['search', 'selectedViewGroup']"
   [settings]="dstSettings"
-<<<<<<< HEAD
-=======
   [busyService]="busyService"
->>>>>>> oned/v92
   [initalView]="selectedView"
   (search)="onSearch($event)"
   (viewSelectionChanged)="onViewSelectionChanged($event)"
@@ -45,7 +39,4 @@
   [titleObject]="entitySchema?.Columns[DisplayColumns.DISPLAY_PROPERTYNAME]"
   [subtitleObject]="entitySchema?.Columns['DefaultEmailAddress']"></imx-data-tiles>
 <imx-data-source-paginator [dst]="dst" data-imx-identifier="identity-paginator"></imx-data-source-paginator>
-<<<<<<< HEAD
-=======
 </div>
->>>>>>> oned/v92

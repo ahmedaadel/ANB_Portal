@@ -5,15 +5,6 @@
             "Name": "AttConfigModule"
         }
     ],
-<<<<<<< HEAD
-    "arc-app-certaccess": [
-        {
-            "Container": "att",
-            "Name": "AttConfigModule"
-        }
-    ],
-=======
->>>>>>> oned/v92
     "qer-app-pwdportal": [
         {
             "Container": "att",

@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Component, ErrorHandler, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-<<<<<<< HEAD
-import { FormGroup } from '@angular/forms';
-=======
 import { UntypedFormGroup } from '@angular/forms';
->>>>>>> oned/v92
 import { MatTab } from '@angular/material/tabs';
 import { EuiLoadingService } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
@@ -48,26 +40,19 @@ import {
   ISessionState,
   SnackBarService,
   TabItem,
-<<<<<<< HEAD
-  ExtService
-=======
   ExtService,
   HelpContextualValues,
   HELP_CONTEXTUAL
->>>>>>> oned/v92
 } from 'qbm';
 import { IEntity } from 'imx-qbm-dbts';
 import { ProjectConfigurationService } from '../project-configuration/project-configuration.service';
 import { MailInfoType, MailSubscriptionService } from './mailsubscription.service';
 import { PersonService } from '../person/person.service';
-<<<<<<< HEAD
-=======
 import { SecurityKeysService } from './security-keys/security-keys.service';
 import { TranslateService } from '@ngx-translate/core';
 import { QerApiService } from '../qer-api-client.service';
 import { ProfileSettings } from 'imx-api-qer';
 import { QerPermissionsService } from '../admin/qer-permissions.service';
->>>>>>> oned/v92
 
 @Component({
   templateUrl: './profile.component.html',
@@ -76,18 +61,6 @@ import { QerPermissionsService } from '../admin/qer-permissions.service';
 export class ProfileComponent implements OnInit, OnDestroy {
 
   @ViewChild('passwordQuestionTab') public set passwordTab (tab: MatTab) {
-<<<<<<< HEAD
-    if(tab) { // initially setter gets called with undefined
-      this.passwordQuestionTab = tab;
-      if (this.hasPasswordQuestionsParam) {        
-        this.activatePassordQuestionTab();                
-      }       
-    }
-  }
-
-  public get userUid(): string { return (this.selectedIdentity?.GetKeys() ?? []).join(''); }
-  public dynamicTabs: TabItem[] = [];  
-=======
     if(tab && !this.passwordQuestionTab) { // initially setter gets called with undefined
       this.passwordQuestionTab = tab;
       if (this.hasPasswordQuestionsParam) {
@@ -103,28 +76,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private authenticatedUid: string;
 
   public dynamicTabs: TabItem[] = [];
->>>>>>> oned/v92
   public tabIndex = 0;
   public identities: IEntity[];
   public selectedIdentity: IEntity;
   public mailInfo: MailInfoType[] = [];
   public mailToBeUnsubscribed: MailInfoType;
   public hasMailSubscriptions: boolean;
-<<<<<<< HEAD
-  public form: FormGroup;
-  public cdrList: ColumnDependentReference[] = [];
-  public canManagePasswordQuestions: boolean;
-  public readonly confirmChange = {
-    check: () => this.form.pristine || this.confirmation.confirmLeaveWithUnsavedChanges()
-  };
-
-  public LdsMultipleIdentities = '#LDS#Here you can manage personal data, organizational information, and location information of the selected identity.';
-  public LdsSingleIdentities = '#LDS#Here you can manage your personal data, organizational information, and location information and change the language of the user interface.';
-
-  private columns: string[];
-  private readonly subscriptions: Subscription[] = [];
-  private passwordQuestionTab: MatTab;
-=======
   public form: UntypedFormGroup;
   public cdrList: ColumnDependentReference[] = [];
   public canManageSecurityKeys: boolean = false;
@@ -142,7 +99,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private hints: { [id: string]: string } = {};
   private passwordQuestionTab: MatTab;
   private readonly subscriptions: Subscription[] = [];
->>>>>>> oned/v92
   private hasPasswordQuestionsParam = false;
 
   constructor(
@@ -157,23 +113,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
     private readonly tabService: ExtService,
-<<<<<<< HEAD
-    private readonly confirmation: ConfirmationService
-=======
     private readonly securityKeysService: SecurityKeysService,
     private readonly translateService: TranslateService,
     private readonly confirmation: ConfirmationService,
     private readonly permissions: QerPermissionsService,
     private readonly qerClient: QerApiService,
->>>>>>> oned/v92
   ) {
     this.subscriptions.push(this.authentication.onSessionResponse.subscribe(async (sessionState: ISessionState) => {
       if (sessionState.IsLoggedIn) {
         this.load(sessionState.UserUid);
-<<<<<<< HEAD
-=======
         this.authenticatedUid = sessionState.UserUid;
->>>>>>> oned/v92
       }
     }));
   }
@@ -188,10 +137,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     let overlayRef: OverlayRef;
     setTimeout(() => overlayRef = this.busy.show());
     try {
-<<<<<<< HEAD
-      const projectConfig = await this.projectConfig.getConfig();
-      this.canManagePasswordQuestions = projectConfig.PasswordConfig.VI_MyData_MyPassword_Visibility;
-=======
       // Security keys can only be managed for the identity that is also authenticated.
       this.canManageSecurityKeys = this.authenticatedUid && (await this.securityKeysService.canManageSecurityKeys());
 
@@ -206,7 +151,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         : '#LDS#Select the language in which you want to receive emails.').toPromise();
       this.hints["UID_DialogCultureFormat"] = await this.translateService.get('#LDS#Select the language you want to use for date and number formats.')
         .toPromise();
->>>>>>> oned/v92
     } finally {
       setTimeout(() => this.busy.hide(overlayRef));
     }
@@ -222,9 +166,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     try {
       await this.selectedIdentity.Commit(true);
 
-<<<<<<< HEAD
-      if (this.form.get('UID_DialogCulture')?.dirty || this.form.get('UID_DialogCultureFormat')?.dirty) {
-=======
       if (this.useProfileCulture && (this.form.get('UID_DialogCulture')?.dirty || this.form.get('UID_DialogCultureFormat')?.dirty)) {
         let profileSettings: ProfileSettings;
         profileSettings = await this.qerClient.client.portal_profile_get();
@@ -232,7 +173,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         profileSettings.UseProfileLanguage = (this.form.get('UID_DialogCulture')?.value || this.form.get('UID_DialogCultureFormat')?.value) !== undefined;
         await this.qerClient.client.portal_profile_post(profileSettings);
 
->>>>>>> oned/v92
         this.document.defaultView.location.reload();
         return;
       }
@@ -282,17 +222,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
     return this.load(userUid);
   }
 
-<<<<<<< HEAD
-  private async load(userUid: string): Promise<void> {
-    this.form = new FormGroup({});
-=======
   public get selectedContextId(): HelpContextualValues{
     return this.identities?.length> 1 ? HELP_CONTEXTUAL.ProfileMultipleIdentities : HELP_CONTEXTUAL.Profile;
   }
 
   private async load(userUid: string): Promise<void> {
     this.form = new UntypedFormGroup({});
->>>>>>> oned/v92
 
     let overlayRef: OverlayRef;
     setTimeout(() => overlayRef = this.busy.show());
@@ -312,14 +247,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         return {
           column,
           isReadOnly: () => !column.GetMetadata().CanEdit(),
-<<<<<<< HEAD
-          hint: {
-            UID_DialogCulture: '#LDS#Select the language in which you want to display the Web Portal.',
-            UID_DialogCultureFormat: '#LDS#Select the language you want to use for date and number formats.'
-          }[columnName]
-=======
           hint: this.hints[columnName]
->>>>>>> oned/v92
         };
       });
 
@@ -333,15 +261,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   private async activatePassordQuestionTab(): Promise<void> {
-<<<<<<< HEAD
-    setTimeout(() => this.tabIndex = this.passwordQuestionTab.position);  
-  }
-  
-=======
     setTimeout(() => this.tabIndex = this.passwordQuestionTab.position);
   }
 
->>>>>>> oned/v92
   /**
    * Checks the route param if it's the password-questions param.
    * @param param route param to check
@@ -349,9 +271,5 @@ export class ProfileComponent implements OnInit, OnDestroy {
    */
   private checkPasswordQuestionsParam(param: string): void {
     this.hasPasswordQuestionsParam = param === 'profile-password-questions';
-<<<<<<< HEAD
-  } 
-=======
   }
->>>>>>> oned/v92
 }

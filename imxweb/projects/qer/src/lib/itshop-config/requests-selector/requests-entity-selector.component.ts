@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,18 +24,11 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EntityCollectionData, FkProviderItem, IEntity, TypedEntity } from 'imx-qbm-dbts';
-import { MetadataService } from 'qbm';
-=======
 import { Component, Inject, OnInit } from '@angular/core';
 import { EUI_SIDESHEET_DATA, EuiSidesheetRef } from '@elemental-ui/core';
 
 import { EntityCollectionData, FkProviderItem, IEntity, TypedEntity } from 'imx-qbm-dbts';
 import { BusyService, MetadataService } from 'qbm';
->>>>>>> oned/v92
 import { IRequestableEntitlementType } from '../irequestable-entitlement-type';
 import { RequestableEntitlementTypeService } from '../requestable-entitlement-type.service';
 import { RequestsService } from '../requests.service';
@@ -47,39 +36,6 @@ import { RequestsService } from '../requests.service';
 @Component({
   selector: 'imx-requests-selector',
   templateUrl: './requests-entity-selector.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./requests-entity-selector.component.scss']
-})
-export class RequestsEntitySelectorComponent {
-
-  public selectedItems: TypedEntity[] = [];
-
-  private empty: EntityCollectionData = {
-    TotalCount: 0,
-    Entities: []
-  };
-
-  constructor(
-    public readonly dialogRef: MatDialogRef<RequestsEntitySelectorComponent, string[]>,
-    @Inject(MAT_DIALOG_DATA) private sidesheetData: {
-      shelfId: string;
-    },
-    public readonly requestsService: RequestsService,
-    metadata: MetadataService,
-    requestTypeService: RequestableEntitlementTypeService,
-  ) {
-    requestsService.selectedEntitlementType = null;
-    this.ReinitData();
-
-    const rtypes = requestTypeService.GetTypes();
-    rtypes.then(async t => {
-      for (const type of t) {
-        const display = (await metadata.GetTableMetadata(type.getTableName())).Display;
-        this.displays.set(type.getTableName(), display);
-      }
-      this.types = t.sort((a, b) => (this.displays.get(a.getTableName()) > this.displays.get(b.getTableName()) ? 1 : -1));
-    });
-=======
   styleUrls: ['../request-config-sidesheet-common.scss'],
 })
 export class RequestsEntitySelectorComponent implements OnInit {
@@ -117,7 +73,6 @@ export class RequestsEntitySelectorComponent implements OnInit {
     } finally {
       isBusy.endBusy();
     }
->>>>>>> oned/v92
   }
 
   public types: IRequestableEntitlementType[];
@@ -138,43 +93,27 @@ export class RequestsEntitySelectorComponent implements OnInit {
   /** Sets the data object to trigger the changes event on the Fk candidate selector*/
   private ReinitData() {
     this.data = {
-<<<<<<< HEAD
-      get: parameters => {
-=======
       get: (parameters) => {
->>>>>>> oned/v92
         if (!this.fk) {
           return this.empty;
         }
         return this.fk.load(this.fkEntity, { ...parameters, ...{ UID_ITShopOrg: this.sidesheetData.shelfId } });
       },
-<<<<<<< HEAD
-      GetFilterTree: parentKey => {
-=======
       GetFilterTree: (parentKey) => {
->>>>>>> oned/v92
         if (!this.fk) {
           return { Elements: [] };
         }
         return this.fk.getFilterTree(this.fkEntity, parentKey);
       },
-<<<<<<< HEAD
-      isMultiValue: true
-=======
       isMultiValue: true,
->>>>>>> oned/v92
     };
   }
 
   public async optionSelected(newType: IRequestableEntitlementType) {
     this.fkEntity = newType.createAssignmentEntity(this.sidesheetData.shelfId).GetEntity();
     const property = newType.getSchema().Columns[newType.getFkColumnName()];
-<<<<<<< HEAD
-    this.fk = this.fkEntity.GetFkCandidateProvider()
-=======
     this.fk = this.fkEntity
       .GetFkCandidateProvider()
->>>>>>> oned/v92
       .getProviderItem(property.FkRelation.ParentColumnName, property.FkRelation.ParentTableName);
     this.ReinitData();
     this.selectedItems = [];
@@ -192,8 +131,4 @@ export class RequestsEntitySelectorComponent implements OnInit {
     });
     this.dialogRef.close(selectedValues);
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
 }

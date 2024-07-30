@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,22 +26,14 @@
 
 import { Injectable } from '@angular/core';
 
-<<<<<<< HEAD
-import { UserService } from '../user/user.service';
-=======
 import { OpSupportUserService } from 'qer';
->>>>>>> oned/v92
 import { isOutstandingManager } from './permissions-helper';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PermissionsService {
-<<<<<<< HEAD
-  constructor(private readonly userService: UserService) { }
-=======
   constructor(private readonly userService: OpSupportUserService) { }
->>>>>>> oned/v92
 
   public async isOutstandingManager(): Promise<boolean> {
     return isOutstandingManager((await this.userService.getGroups()).map(group => group.Name));

@@ -1,22 +1,10 @@
-<<<<<<< HEAD
-@import "@elemental-ui/core/src/styles/_palette.scss";
-
-=======
 @import "@elemental-ui/core/src/styles/_eui_palette.scss";
->>>>>>> oned/v92
 :host {
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow: hidden;
 
-<<<<<<< HEAD
-  .mat-tab-group{
-    height: 100%;
-  }
-  ::ng-deep .mat-tab-labels {
-    background-color: $white;
-=======
   .hidden {
     display: none;
   }
@@ -41,26 +29,11 @@
         flex-direction: column;
       }
     }
->>>>>>> oned/v92
   }
 
   ::ng-deep .eui-alert {
     margin-bottom: 20px;
   }
-<<<<<<< HEAD
-}
-
-.imx-request-information, .imx-request-item-detail, .imx-request-history {
-  margin: 20px;
-  overflow: auto;
-}
-
-.imx-request-properties {
-  margin: 0 20px 20px 20px;
-  overflow: auto;
-}
-
-=======
 
   .imx-additional-info {
     margin: 0 20px 20px;
@@ -125,4 +98,3 @@
     }
   }
 }
->>>>>>> oned/v92

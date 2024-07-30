@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,15 +26,6 @@
 
 import { Component, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { Overlay } from '@angular/cdk/overlay';
-<<<<<<< HEAD
-import { EuiLoadingService } from '@elemental-ui/core';
-
-import { PortalApplication, PortalApplicationNew } from 'imx-api-aob';
-import { CollectionLoadParameters, FilterType, CompareOperator, TypedEntityCollectionData } from 'imx-qbm-dbts';
-import { ClassloggerService, DataSourceToolbarSettings, DataTileBadge, DataTilesComponent, SettingsService } from 'qbm';
-import { ApplicationsService } from '../applications.service';
-import { UserModelService } from 'qer';
-=======
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 
@@ -49,7 +36,6 @@ import { ApplicationsService } from '../applications.service';
 import { UserModelService } from 'qer';
 import { AobPermissionsService } from '../../permissions/aob-permissions.service';
 
->>>>>>> oned/v92
 
 /**
  * This component shows a  list of {@link PortalApplication[]|applications} each in an
@@ -58,11 +44,7 @@ import { AobPermissionsService } from '../../permissions/aob-permissions.service
 @Component({
   selector: 'imx-application-navigation',
   templateUrl: './application-navigation.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./application-navigation.component.scss']
-=======
   styleUrls: ['./application-navigation.component.scss'],
->>>>>>> oned/v92
 })
 export class ApplicationNavigationComponent implements OnInit {
   public dstSettings: DataSourceToolbarSettings;
@@ -72,19 +54,6 @@ export class ApplicationNavigationComponent implements OnInit {
   public hideCustomToolbar = true;
   public filterKpiChecked = false;
   public isAdmin = false;
-<<<<<<< HEAD
-
-  @Output() public readonly dataSourceChanged =
-    new EventEmitter<{ keywords?: string; dataSource: TypedEntityCollectionData<PortalApplication> }>();
-  @Output() public readonly applicationSelected = new EventEmitter<string>();
-
-  public readonly status = {
-    getBadges: (application: PortalApplication | PortalApplicationNew): DataTileBadge[] => this.appService.getApplicationBadges(application)
-  };
-
-  private navigationState: CollectionLoadParameters & {
-    filterkpi?: boolean
-=======
   public selectedEntity: TypedEntity;
   public loadingSubject: Subject<boolean>;
 
@@ -113,7 +82,6 @@ export class ApplicationNavigationComponent implements OnInit {
 
   private navigationState: CollectionLoadParameters & {
     filterkpi?: boolean;
->>>>>>> oned/v92
   };
 
   @ViewChild('tiles', { static: true }) private readonly tiles: DataTilesComponent;
@@ -121,26 +89,6 @@ export class ApplicationNavigationComponent implements OnInit {
   constructor(
     private logger: ClassloggerService,
     private readonly appService: ApplicationsService,
-<<<<<<< HEAD
-    private readonly busyService: EuiLoadingService,
-    private readonly settingsService: SettingsService,
-    private readonly userService: UserModelService,
-    private readonly applicationsProvider: ApplicationsService,
-    public overlay: Overlay) {
-  }
-
-  public async ngOnInit(): Promise<void> {
-    this.isAdmin = (await this.userService.getGroups()).some(ug => ug.Name === 'AOB_4_AOB_Admin');
-
-    this.applicationsProvider.applicationRefresh.subscribe((res) => {
-      if(res){ 
-        return this.getData();
-      }
-    })
-    return this.getData({ PageSize: this.settingsService.DefaultPageSize, StartIndex: 0 });
-  }
-
-=======
     private readonly settingsService: SettingsService,
     private readonly userService: UserModelService,
     private readonly route: ActivatedRoute,
@@ -166,16 +114,12 @@ export class ApplicationNavigationComponent implements OnInit {
    * Emits the applicationSelected event, if the selected tile changes
    * @param selection the {@link PortalApplication | application} that is selected
    */
->>>>>>> oned/v92
   public async onSelectionChanged(selection: PortalApplication[]): Promise<void> {
     const app = selection[0];
     if (app) {
       this.applicationSelected.emit(app.UID_AOBApplication.value);
     }
   }
-<<<<<<< HEAD
-
-=======
   /**
    * Emits the applicationSelected event, if the selected tile changes
    * @param selection the {@link PortalApplication | application} that is selected
@@ -189,18 +133,13 @@ export class ApplicationNavigationComponent implements OnInit {
    * @param newState the load parameter for the api call
    * @param keywords possible search parameter
    */
->>>>>>> oned/v92
   public async getData(newState?: CollectionLoadParameters, keywords?: string): Promise<void> {
     if (newState) {
       this.navigationState = newState;
     }
 
-<<<<<<< HEAD
-    const overlayRef = this.busyService.show();
-=======
     const isBusy = this.busyService.beginBusy();
     this.loadingSubject?.next(true);
->>>>>>> oned/v92
     try {
       const dataSource = await this.appService.get(this.navigationState);
 

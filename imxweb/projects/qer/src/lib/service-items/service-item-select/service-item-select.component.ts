@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,20 +25,12 @@
  */
 
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-<<<<<<< HEAD
-import { FormControl } from '@angular/forms';
-=======
 import { UntypedFormControl } from '@angular/forms';
->>>>>>> oned/v92
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { TypedEntity } from 'imx-qbm-dbts';
-<<<<<<< HEAD
-import { isIE, LdsReplacePipe } from 'qbm';
-=======
 import { LdsReplacePipe } from 'qbm';
->>>>>>> oned/v92
 import { ServiceItemsSelectorComponent } from '../service-items-selector/service-items-selector.component';
 import { TypedEntitySelectionData } from './typed-entity-selection-data.interface';
 
@@ -54,19 +42,11 @@ import { TypedEntitySelectionData } from './typed-entity-selection-data.interfac
 export class ServiceItemSelectComponent implements OnChanges {
   @Input() data: TypedEntitySelectionData;
 
-<<<<<<< HEAD
-  @Output() public readonly controlCreated = new EventEmitter<FormControl>();
-
-  public readonly imxIdentifier = 'imx-service-item-select';
-
-  public readonly control = new FormControl();
-=======
   @Output() public readonly controlCreated = new EventEmitter<UntypedFormControl>();
 
   public readonly imxIdentifier = 'imx-service-item-select';
 
   public readonly control = new UntypedFormControl();
->>>>>>> oned/v92
 
   public readonly columnContainer = {
     display: '',
@@ -94,17 +74,10 @@ export class ServiceItemSelectComponent implements OnChanges {
     const selection = await this.sidesheet.open(
       ServiceItemsSelectorComponent,
       {
-<<<<<<< HEAD
-        title: await this.translate.get(this.data.title || this.data.display).toPromise(),
-        headerColour: 'iris-blue',
-        padding: '0',
-        width: isIE() ? '60%' : 'max(600px, 60%)',
-=======
         title: await this.translate.get(this.data.title).toPromise(),
         subTitle: this.data.parent.GetEntity().GetDisplay(),
         padding: '0',
         width: 'max(600px, 60%)',
->>>>>>> oned/v92
         data: {
           getTyped: this.data.getTyped,
           isMultiValue: true,

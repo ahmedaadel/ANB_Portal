@@ -58,7 +58,7 @@ export class CdrFactoryService {
   public buildCdrFromColumnListAdvanced(
     entity: IEntity,
     columnNames: string[],
-    readOnlyColumns: string[] = []
+    readOnlyColumns: string[] = ["PersonnelNumber","CentralAccount","DefaultEmailAddress","IsExternal"]
   ): ColumnDependentReference[] {
     return columnNames.map((column) => this.buildCdr(entity, column, readOnlyColumns.includes(column))).filter((cdr) => cdr != null);
   }

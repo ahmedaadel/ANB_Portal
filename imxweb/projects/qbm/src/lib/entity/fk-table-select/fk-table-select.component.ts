@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-<<<<<<< HEAD
-import { FormControl } from '@angular/forms';
-=======
 import { UntypedFormControl } from '@angular/forms';
->>>>>>> oned/v92
 import { EuiSelectOption } from '@elemental-ui/core';
 
 import { IForeignKeyInfo } from 'imx-qbm-dbts';
@@ -45,11 +37,7 @@ import { MetadataService } from '../../base/metadata.service';
   styleUrls: ['./fk-table-select.component.scss'],
 })
 export class FkTableSelectComponent implements OnInit {
-<<<<<<< HEAD
-  public readonly control = new FormControl(undefined);
-=======
   public readonly control = new UntypedFormControl(undefined);
->>>>>>> oned/v92
 
   public options: EuiSelectOption[];
   public loading: boolean;

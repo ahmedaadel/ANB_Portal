@@ -1,32 +1,15 @@
-<<<<<<< HEAD
-@import '@elemental-ui/core/src/styles/_palette.scss';
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 
->>>>>>> oned/v92
 li {
   list-style-type: none;
   margin-bottom: 5px;
   margin-left: 0;
   padding-left: 0;
-<<<<<<< HEAD
-  > a,a:active,a:focus,a:hover,a:link,visited {
-    color: $white;
-  }
-=======
->>>>>>> oned/v92
 }
 
 a {
   display: block;
   word-break: break-all;
-<<<<<<< HEAD
-}
-
-a:hover, a:focus {
-  background-color: rgba(255,255,255,.2);
-  text-decoration: none;
-=======
   text-indent: -1em;
   padding-left: 1em;
 }
@@ -46,5 +29,4 @@ li {
 
 a:hover, a:focus {
   background-color: rgba($color: $color-gray-100, $alpha: 0.2);
->>>>>>> oned/v92
 }

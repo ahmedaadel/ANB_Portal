@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -31,36 +27,21 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EntitlementLossDto } from 'imx-api-att';
 import { LossPreview } from '../loss-preview.interface';
-<<<<<<< HEAD
-=======
 import { AttestationCasesService } from '../attestation-cases.service';
->>>>>>> oned/v92
 
 @Component({
   selector: 'imx-loss-preview-table',
   templateUrl: './loss-preview-table.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./loss-preview-table.component.scss']
-})
-export class LossPreviewTableComponent implements OnInit {
-
-  @Input() public lossPreview: LossPreview;
-  @Input() public showTitle = false;
-=======
   styleUrls: ['./loss-preview-table.component.scss'],
 })
 export class LossPreviewTableComponent implements OnInit {
   @Input() public lossPreview: LossPreview;
   @Input() public showTitle = false;
   public isLoading = false;
->>>>>>> oned/v92
   public lossPreviewItems: EntitlementLossDto[];
   public lossPreviewHeaders: string[];
   public lossPreviewDisplayKeys: EntitlementLossDto;
 
-<<<<<<< HEAD
-  public ngOnInit(): void {
-=======
   constructor(private caseService: AttestationCasesService) {}
 
   public async ngOnInit(): Promise<void> {
@@ -68,13 +49,10 @@ export class LossPreviewTableComponent implements OnInit {
       // If we pass in the case, then we still need to grab the loss items
       await this.loadData();
     }
->>>>>>> oned/v92
     this.lossPreviewItems = this.lossPreview.LossPreviewItems;
     this.lossPreviewHeaders = this.lossPreview.LossPreviewHeaders;
     this.lossPreviewDisplayKeys = this.lossPreview.LossPreviewDisplayKeys;
   }
-<<<<<<< HEAD
-=======
 
   public async loadData(): Promise<void> {
     this.isLoading = true;
@@ -84,5 +62,4 @@ export class LossPreviewTableComponent implements OnInit {
       this.isLoading = false;
     }
   }
->>>>>>> oned/v92
 }

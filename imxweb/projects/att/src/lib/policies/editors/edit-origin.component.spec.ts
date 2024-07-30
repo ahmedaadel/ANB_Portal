@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,21 +24,6 @@
  *
  */
 
-<<<<<<< HEAD
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { configureTestSuite } from 'ng-bullet';
-import { LoggerTestingModule } from 'ngx-logger/testing';
-
-import { ParmOpt } from 'imx-api-att';
-import { clearStylesFromDOM } from 'qbm';
-import { EditOriginComponent } from './edit-origin.component';
-import { FilterElementColumnService } from './filter-element-column.service';
-import { FilterElementModel } from './filter-element-model';
-=======
 import { ParmOpt } from 'imx-api-att';
 import { ClassloggerService, clearStylesFromDOM } from 'qbm';
 import { EditOriginComponent } from './edit-origin.component';
@@ -50,7 +31,6 @@ import { FilterElementColumnService } from './filter-element-column.service';
 import { FilterElementModel } from './filter-element-model';
 import { MockBuilder, MockedComponentFixture, MockRender } from 'ng-mocks';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
->>>>>>> oned/v92
 
 
 function buildFilterModel(config: ParmOpt[], value: string): FilterElementModel {
@@ -65,28 +45,6 @@ function buildFilterModel(config: ParmOpt[], value: string): FilterElementModel 
 
 describe('EditOriginComponent', () => {
     let component: EditOriginComponent;
-<<<<<<< HEAD
-    let fixture: ComponentFixture<EditOriginComponent>;
-
-    configureTestSuite(() => {
-        TestBed.configureTestingModule({
-            imports: [
-                MatFormFieldModule,
-                MatInputModule,
-                ReactiveFormsModule,
-                NoopAnimationsModule,
-                LoggerTestingModule
-            ],
-            declarations: [
-                EditOriginComponent
-            ]
-        });
-    });
-
-    beforeEach(() => {
-        fixture = TestBed.createComponent(EditOriginComponent);
-        component = fixture.componentInstance;
-=======
     let fixture: MockedComponentFixture<EditOriginComponent>;
 
     beforeEach(() => {
@@ -103,7 +61,6 @@ describe('EditOriginComponent', () => {
     beforeEach(() => {
         fixture = MockRender(EditOriginComponent)
         component = fixture.point.componentInstance;
->>>>>>> oned/v92
         fixture.detectChanges();
     });
 

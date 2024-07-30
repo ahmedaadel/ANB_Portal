@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -31,35 +27,22 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-<<<<<<< HEAD
-import { ClassloggerService } from 'qbm';
-=======
 import { ClassloggerService, DataSourceToolbarExportMethod } from 'qbm';
->>>>>>> oned/v92
 import {
   CollectionLoadParameters,
   TypedEntityCollectionData,
   FilterType,
   CompareOperator,
   EntityCollectionData,
-<<<<<<< HEAD
-  GroupInfo,
-=======
   GroupInfoData,
->>>>>>> oned/v92
   DataModel,
   EntitySchema,
   ExtendedTypedEntityCollection,
   FilterData,
-<<<<<<< HEAD
-} from 'imx-qbm-dbts';
-import { PortalPersonReports, PortalPersonReportsInteractive, PortalPersonAll, PortalAdminPerson, PortalPersonUid } from 'imx-api-qer';
-=======
   MethodDefinition,
   MethodDescriptor,
 } from 'imx-qbm-dbts';
 import { PortalPersonReports, PortalPersonAll, PortalAdminPerson, PortalPersonUid, ViewConfigData, V2ApiClientMethodFactory } from 'imx-api-qer';
->>>>>>> oned/v92
 import { QerApiService } from '../qer-api-client.service';
 import { QerPermissionsService } from '../admin/qer-permissions.service';
 import { DuplicateCheckParameter } from './create-new-identity/duplicate-check-parameter.interface';
@@ -69,10 +52,7 @@ export class IdentitiesService {
 
   public authorityDataDeleted: Subject<string> = new Subject();
 
-<<<<<<< HEAD
-=======
 
->>>>>>> oned/v92
   constructor(
     private readonly qerClient: QerApiService,
     private readonly logger: ClassloggerService,
@@ -94,10 +74,7 @@ export class IdentitiesService {
     return this.qerClient.typedClient.PortalAdminPerson.GetSchema();
   }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> oned/v92
   public getAttestationHelperAlertDescription(count: { total: number; forUser: number; }): { description: string; value?: any; }[] {
     // #LDS#There are currently no pending attestation cases.
 
@@ -126,7 +103,21 @@ export class IdentitiesService {
     this.logger.trace('Navigation state', navigationState);
     return this.qerClient.typedClient.PortalAdminPerson.Get(navigationState);
   }
-
+  //cust 
+  public async CCC_getAdminPerson(id: string): Promise<PortalAdminPerson> {
+    const getPersonNavigationState: CollectionLoadParameters = {
+      filter: [
+        {
+          ColumnName: 'UID_Person',
+          Type: FilterType.Compare,
+          CompareOp: CompareOperator.Equal,
+          Value1: id,
+        },
+      ],
+    };
+    this.logger.debug(this, `Retrieving admin person with Id ${id}`);
+    return (await this.qerClient.typedClient.PortalAdminPerson.Get(getPersonNavigationState)).Data[0];
+  }
   /**
    * Retrieves details of a person.
    * @param id Id of the person to retrieve
@@ -139,8 +130,6 @@ export class IdentitiesService {
     return (await this.qerClient.typedClient.PortalPersonUid.Get(uid, navigationState)).Data[0];
   }
 
-<<<<<<< HEAD
-=======
   public exportAdminPerson(navigationState?: CollectionLoadParameters): DataSourceToolbarExportMethod {
     const factory = new V2ApiClientMethodFactory();
     return {
@@ -171,7 +160,6 @@ export class IdentitiesService {
     }
   }
 
->>>>>>> oned/v92
   /**
    * Gets the reports (directly/indirectly subordinated identities) of a person.
    *
@@ -186,11 +174,7 @@ export class IdentitiesService {
     return this.qerClient.typedClient.PortalPersonReports.Get(navigationState);
   }
 
-<<<<<<< HEAD
-  public async getGroupedAllPerson(columns: string, navigationState: CollectionLoadParameters): Promise<GroupInfo[]> {
-=======
   public async getGroupedAllPerson(columns: string, navigationState: CollectionLoadParameters): Promise<GroupInfoData> {
->>>>>>> oned/v92
     this.logger.debug(this, `Retrieving person list`);
     this.logger.trace('Navigation state', navigationState);
 
@@ -220,29 +204,12 @@ export class IdentitiesService {
    * @returns Details of admin person.
    */
   public async getAdminPerson(id: string): Promise<PortalAdminPerson> {
-<<<<<<< HEAD
-    const getPersonNavigationState: CollectionLoadParameters = {
-      filter: [
-        {
-          ColumnName: 'UID_Person',
-          Type: FilterType.Compare,
-          CompareOp: CompareOperator.Equal,
-          Value1: id,
-        },
-      ],
-    };
-    this.logger.debug(this, `Retrieving admin person with Id ${id}`);
-    return (await this.qerClient.typedClient.PortalAdminPerson.Get(getPersonNavigationState)).Data[0];
-  }
-
-  public async getPersonInteractive(uid: string): Promise<TypedEntityCollectionData<PortalPersonReportsInteractive>> {
-=======
     this.logger.debug(this, `Retrieving admin person with Id ${id}`);
     return (await this.qerClient.typedClient.PortalAdminPersonInteractive.Get_byid(id)).Data[0];
+    
   }
 
   public async getPersonInteractive(uid: string): Promise<TypedEntityCollectionData<PortalPersonReports>> {
->>>>>>> oned/v92
     return this.qerClient.typedClient.PortalPersonReportsInteractive.Get_byid(uid);
   }
 
@@ -262,11 +229,7 @@ export class IdentitiesService {
     return this.qerClient.client.portal_admin_person_delete(id);
   }
 
-<<<<<<< HEAD
-  public async createEmptyEntity(): Promise<PortalPersonReportsInteractive> {
-=======
   public async createEmptyEntity(): Promise<PortalPersonReports> {
->>>>>>> oned/v92
     return (await this.qerClient.typedClient.PortalPersonReportsInteractive.Get()).Data[0];
   }
 

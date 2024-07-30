@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,11 +24,6 @@
  *
  */
 
-<<<<<<< HEAD
-export interface NumberError {
-  invalidInteger?: boolean;
-  rangeMin?: boolean;
-=======
 /**
  * Represents an error state, that can be caused by a number value.
  */
@@ -50,6 +41,5 @@ export interface NumberError {
   /**
    * Indicates, that the value is out of the upper bound.
    */
->>>>>>> oned/v92
   rangeMax?: boolean;
 }

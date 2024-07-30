@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,13 +25,8 @@
  */
 
 import { OverlayRef } from '@angular/cdk/overlay';
-<<<<<<< HEAD
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-=======
 import { Component, OnInit, Inject, OnDestroy, ViewChild, ViewContainerRef, ChangeDetectorRef } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
->>>>>>> oned/v92
 import { EuiLoadingService, EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 import { Subscription } from 'rxjs';
 
@@ -43,8 +34,6 @@ import { TypedEntity } from 'imx-qbm-dbts';
 import { PortalCartitem } from 'imx-api-qer';
 import { TermsOfUseService } from './terms-of-use.service';
 import { Approval } from '../itshopapprove/approval';
-<<<<<<< HEAD
-=======
 import { BusyService, ExtService } from 'qbm';
 import { AuthenticationFactors } from '../admin/authentication-factors.interface';
 
@@ -60,7 +49,6 @@ interface AuthForm {
 interface TosForm {
   acceptTermsOfUseFormCtrl: FormControl<boolean>;
 }
->>>>>>> oned/v92
 
 /**
  * A component for viewing and accepting all {@link PortalTermsofuse|terms of use} related to a
@@ -69,85 +57,15 @@ interface TosForm {
  */
 @Component({
   templateUrl: './terms-of-use-accept.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./terms-of-use-accept.component.scss']
-})
-export class TermsOfUseAcceptComponent implements OnInit, OnDestroy {
-=======
   styleUrls: ['./terms-of-use-accept.component.scss'],
 })
 export class TermsOfUseAcceptComponent implements OnInit, OnDestroy {
   @ViewChild('authFormControls', { static: true, read: ViewContainerRef }) private authFormControls: ViewContainerRef;
->>>>>>> oned/v92
 
   /** Does accepting terms without any authentication */
   public withoutAuthenticaton: boolean;
 
   /** The  {@link FormGroup} for accepting the terms of use */
-<<<<<<< HEAD
-  public termsOfUseFormGroup: FormGroup;
-
-  /** The  {@link FormGroup} for the authentication */
-  public authenticationFormGroup: FormGroup;
-
-  public get items(): TypedEntity[] {
-    return this.data.acceptCartItems && this.data.cartItems?.length > 0
-      ? this.data.cartItems
-      : this.data.approvalItems;
-  }
-
-  public ldsAcceptCartItemsInfoText = '#LDS#One or more products in your shopping cart require that you accept the terms of use before proceeding.';
-  public ldsAcceptApprovalItemsInfoText = '#LDS#One or more requests require that you accept the terms of use before proceeding.';
-  public ldsItemsHeading: string;
-
-  private closeClickSubscription: Subscription;
-
-  constructor(
-    @Inject(EUI_SIDESHEET_DATA) public readonly data: {
-      acceptCartItems: boolean,
-      cartItems: PortalCartitem[],
-      approvalItems: Approval[]
-    },
-    public readonly sidesheetRef: EuiSidesheetRef,
-    private readonly termsOfUseService: TermsOfUseService,
-    private readonly busyService: EuiLoadingService,
-    private readonly formBuilder: FormBuilder
-  ) {
-
-    this.closeClickSubscription = this.sidesheetRef.closeClicked().subscribe(async () => {
-      this.sidesheetRef.close(false);
-    });
-  }
-
-  public async ngOnInit(): Promise<void> {
-
-    this.ldsItemsHeading = this.data.acceptCartItems ? '#LDS#Related products' : '#LDS#Related requests';
-    
-    let overlayRef: OverlayRef;
-    setTimeout(() => overlayRef = this.busyService.show());
-
-    try {
-      this.termsOfUseFormGroup = this.formBuilder.group({
-        acceptTermsOfUseFormCtrl: ['', Validators.required]
-      });
-      this.authenticationFormGroup = this.formBuilder.group({
-      });
-
-
-      const authProvider = await this.termsOfUseService.getStepUpAuthenticationProvider();
-      this.withoutAuthenticaton = authProvider === 'NoAuth';
-    } finally {
-      setTimeout(() => this.busyService.hide(overlayRef));
-    }
-  }
-
-  public ngOnDestroy(): void {
-    this.closeClickSubscription?.unsubscribe();
-  }
-
-  public cancel(): void {
-    this.sidesheetRef.close(false);
-=======
   public termsOfUseFormGroup = new FormGroup<TosForm>({
     acceptTermsOfUseFormCtrl: new FormControl<boolean>(null, Validators.required),
   });
@@ -244,41 +162,18 @@ export class TermsOfUseAcceptComponent implements OnInit, OnDestroy {
    */
   public cancel(): void {
     this.sidesheetRef.close({});
->>>>>>> oned/v92
   }
 
   /**
    * Accept the terms of use without any authentication.
    */
-<<<<<<< HEAD
-  public async acceptWithoutAuthentication(): Promise<void> {
-    this.data.cartItems && this.data.cartItems.length > 0
-      ? await this.acceptCartItemsWithoutAuthentication()
-      : await this.acceptApprovalItemsWithoutAuthentication();
-=======
   public async accept(): Promise<void> {
     this.data.cartItems && this.data.cartItems.length > 0 ? await this.acceptCartItems() : await this.acceptApprovalItems();
->>>>>>> oned/v92
   }
 
   /**
    * Accept the terms of use of the current UIDs of approval items without any authentication.
    */
-<<<<<<< HEAD
-  private async acceptApprovalItemsWithoutAuthentication(): Promise<void> {
-    let overlayRef: OverlayRef;
-    setTimeout(() => overlayRef = this.busyService.show());
-
-    try {
-      for (const item of this.data.approvalItems) {
-        await this.termsOfUseService.acceptApprovalItemsWithoutAuthentication((item.GetEntity().GetKeys()[0]));
-      }
-    } finally {
-      setTimeout(() => this.busyService.hide(overlayRef));
-    }
-
-    this.sidesheetRef.close(true);
-=======
   private async acceptApprovalItems(): Promise<void> {
     let overlayRef: OverlayRef;
     setTimeout(() => (overlayRef = this.euiBusyService.show()));
@@ -292,27 +187,11 @@ export class TermsOfUseAcceptComponent implements OnInit, OnDestroy {
     }
 
     this.sidesheetRef.close({ isChecked: true, isAuthenticated: this.authenticationFormGroup.valid });
->>>>>>> oned/v92
   }
 
   /**
    * Accept the terms of use of the current UIDs of cart items without any authentication.
    */
-<<<<<<< HEAD
-  private async acceptCartItemsWithoutAuthentication(): Promise<void> {
-    let overlayRef: OverlayRef;
-    setTimeout(() => overlayRef = this.busyService.show());
-
-    try {
-      for (const item of this.data.cartItems) {
-        await this.termsOfUseService.acceptCartItemsWithoutAuthentication((item.GetEntity().GetKeys()[0]));
-      }
-    } finally {
-      setTimeout(() => this.busyService.hide(overlayRef));
-    }
-
-    this.sidesheetRef.close(true);
-=======
   private async acceptCartItems(): Promise<void> {
     let overlayRef: OverlayRef;
     setTimeout(() => (overlayRef = this.euiBusyService.show()));
@@ -353,6 +232,5 @@ export class TermsOfUseAcceptComponent implements OnInit, OnDestroy {
       this.subscriptions.push(componentRef.formControl.valueChanges.subscribe((value) => (this.isAuthenticated = value)));
       this.authenticationFormGroup.controls.authenticator.push(componentRef.formControl);
     }
->>>>>>> oned/v92
   }
 }

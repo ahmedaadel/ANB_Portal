@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -42,16 +38,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
-<<<<<<< HEAD
-
-import { LdsReplaceModule, DataSourceToolbarModule, DataTableModule, CdrModule, ClassloggerModule } from 'qbm';
-import { UserModule } from 'qer';
-=======
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { LdsReplaceModule, DataSourceToolbarModule, DataTableModule, CdrModule, ClassloggerModule, HelpContextualModule, DataTreeWrapperModule } from 'qbm';
 import { UserModule, StatisticsModule } from 'qer';
->>>>>>> oned/v92
 import { EditNameComponent } from './editors/edit-name.component';
 import { EditGenericComponent } from './editors/edit-generic.component';
 import { EditOriginComponent } from './editors/edit-origin.component';
@@ -69,10 +59,7 @@ import { SelectedObjectsComponent } from './selected-objects/selected-objects.co
 import { PolicyDetailsComponent } from './policy-details/policy-details.component';
 import { AttestationRunsModule } from '../runs/attestation-runs.module';
 
-<<<<<<< HEAD
-=======
 
->>>>>>> oned/v92
 @NgModule({
     imports: [
         CdrModule,
@@ -89,10 +76,7 @@ import { AttestationRunsModule } from '../runs/attestation-runs.module';
         MatButtonModule,
         MatDialogModule,
         MatRadioModule,
-<<<<<<< HEAD
-=======
         MatProgressSpinnerModule,
->>>>>>> oned/v92
         MatCheckboxModule,
         MatSlideToggleModule,
         MatMenuModule,
@@ -100,15 +84,11 @@ import { AttestationRunsModule } from '../runs/attestation-runs.module';
         TranslateModule,
         UserModule,
         ClassloggerModule,
-<<<<<<< HEAD
-        AttestationRunsModule
-=======
         AttestationRunsModule,
         LdsReplaceModule,
         StatisticsModule,
         HelpContextualModule,
         DataTreeWrapperModule,
->>>>>>> oned/v92
     ],
     declarations: [
         EditGenericComponent,

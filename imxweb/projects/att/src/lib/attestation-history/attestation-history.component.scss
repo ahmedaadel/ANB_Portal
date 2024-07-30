@@ -1,30 +1,12 @@
-<<<<<<< HEAD
-=======
 @import '../../../../../shared/scss/common-table.scss';
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 
->>>>>>> oned/v92
 :host {
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-<<<<<<< HEAD
-.imx-badge-container {
-  > div {
-    display: table-cell;
-
-    > .eui-badge {
-      margin: 0 5px;
-
-      ::ng-deep .eui-badge-content {
-        white-space: nowrap;
-      }
-    }
-  }
-}
-=======
 .imx-icons-container {
   padding-right: 15px;
   .table-icon {
@@ -67,7 +49,6 @@
   }
 }
 
->>>>>>> oned/v92
 imx-data-table {
   flex-grow: 2;
 }
@@ -78,8 +59,6 @@ imx-data-table {
     flex-grow: 1;
   }
 }
-<<<<<<< HEAD
-=======
 
 .imx-button-column {
   @include imx-button-column-right();
@@ -117,4 +96,3 @@ imx-data-table {
     }
   }
 }
->>>>>>> oned/v92

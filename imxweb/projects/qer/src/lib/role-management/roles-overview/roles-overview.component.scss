@@ -1,19 +1,12 @@
 @import '@elemental-ui/core/src/styles/_palette.scss';
-<<<<<<< HEAD
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 @import '../../../../../../shared/scss/common-table.scss';
->>>>>>> oned/v92
 
 :host {
   display: flex;
   flex-direction: column;
   height: 100vh;
-<<<<<<< HEAD
-  overflow: auto;
-=======
   overflow: hidden;
->>>>>>> oned/v92
 }
 
 imx-data-table {
@@ -25,41 +18,22 @@ imx-data-table {
   color: $black-b;
 }
 
-<<<<<<< HEAD
-.data-explorer-card-header {
-=======
 ::ng-deep .data-explorer-card-header {
->>>>>>> oned/v92
   background-color: $white;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   z-index: 100;
-<<<<<<< HEAD
-  border: 1px solid rgba($iris-blue, 0.6);
-=======
   border: 1px solid rgba($color-blue-60, 0.6);
->>>>>>> oned/v92
   margin-bottom: 20px;
 
   .data-explorer-card-header-bg {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-<<<<<<< HEAD
-    background-color: $iris-pastel;
-=======
     background-color: $color-blue-20;
->>>>>>> oned/v92
     padding: 10px 24px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-<<<<<<< HEAD
-
-    .eui-icon {
-      color: rgba($aspen-green, 0.6);
-      margin-right: 10px;
-    }
-=======
     height: 45px;
 
     .eui-icon {
@@ -71,7 +45,6 @@ imx-data-table {
         margin-right: 0;
       }
     }
->>>>>>> oned/v92
 
     & > span {
       font-size: 20px;
@@ -79,8 +52,6 @@ imx-data-table {
   }
 }
 
-<<<<<<< HEAD
-=======
 .imx-page-card {
   display: flex;
   flex-direction: column;
@@ -88,7 +59,6 @@ imx-data-table {
   overflow: hidden;
 }
 
->>>>>>> oned/v92
 .imx-data-tree-container {
   overflow: hidden;
   background-color: $white;
@@ -99,12 +69,6 @@ imx-data-table {
   .imx-create-button {
     margin-top: 20px;
     display: flex;
-<<<<<<< HEAD
-    justify-content: end;
-  }
-}
-
-=======
     justify-content: flex-end;
   }
 }
@@ -113,7 +77,6 @@ imx-data-table {
   margin-top: 16px;
 }
 
->>>>>>> oned/v92
 .imx-card-content {
   display: flex;
   flex-direction: column;
@@ -122,13 +85,6 @@ imx-data-table {
 }
 
 .data-explorer-bottom-button-row {
-<<<<<<< HEAD
-  display: flex;
-  flex-direction: row;
-  align-items: end;
-  margin-top: 15px;
-  align-self: end;
-=======
   @include imx-button-bar();
 }
 
@@ -176,5 +132,4 @@ imx-data-table {
       }
     }
   }
->>>>>>> oned/v92
 }

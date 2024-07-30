@@ -1,53 +1,11 @@
-<<<<<<< HEAD
-@import '@elemental-ui/core/src/styles/_palette.scss';
-
-.request-config-sidesheet {
-  background-color: $asher-gray;
-  height: 100%;
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 
 :host {
   flex: 1 1 auto;
->>>>>>> oned/v92
   display: flex;
   flex-direction: column;
   overflow: hidden;
 
-<<<<<<< HEAD
-  &__tab-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  &__tab-content-body {
-    flex: 1;
-    padding: 32px;
-    overflow: auto;
-
-    &.no-padding {
-      padding: 0;
-    }
-
-    .helper-alert {
-      display: flex;
-      margin-bottom: 20px;
-
-
-      span {
-        display: block;
-      }
-    }
-  }
-
-  &__action-buttons {
-    display: flex;
-    justify-content: flex-end;
-    background-color: $white;
-    padding: 16px 32px;
-    margin: 16px 32px;
-=======
   .helper-alert {
     display: flex;
     margin-bottom: 20px;
@@ -86,7 +44,6 @@
       font-size: 14px;
       margin-right: 4px;
     }
->>>>>>> oned/v92
 
     .justify-start {
       margin-right: auto;
@@ -101,18 +58,10 @@
     }
 
     .help-icon {
-<<<<<<< HEAD
-      color: $iris-blue;
-=======
->>>>>>> oned/v92
       font-size: 16px;
       margin-left: 5px;
       cursor: auto;
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
   }
 
   ::ng-deep .mat-tab-group {
@@ -120,37 +69,11 @@
 
     .mat-tab-header {
       padding: 0 32px;
-<<<<<<< HEAD
-      background-color: $white;
-=======
->>>>>>> oned/v92
     }
 
     .mat-tab-body-wrapper {
       height: 100%;
     }
-<<<<<<< HEAD
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .request-config-sidesheet {
-    &__tab-content {
-      display: block;
-    }
-
-    &__action-buttons {
-      flex-direction: column-reverse;
-
-      button {
-        width: 100%;
-        margin-bottom: 10px;
-        margin-right: 0;
-      }
-
-      .justify-start {
-        margin-right: 0;
-=======
 
     .mat-tab-body-content {
       display: flex;
@@ -211,7 +134,6 @@
     .eui-sidesheet-actions {
       .help-icon {
         color: $color-blue-40;
->>>>>>> oned/v92
       }
     }
   }

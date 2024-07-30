@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,10 +25,7 @@
  */
 
 import {
-<<<<<<< HEAD
-=======
   ApiRequestOptions,
->>>>>>> oned/v92
   CollectionLoadParameters, DataModel, DisplayColumns, EntitySchema, ExtendedTypedEntityCollection, IClientProperty, TypedEntity
 } from 'imx-qbm-dbts';
 import { DataModelWrapper } from './data-model/data-model-wrapper.interface';
@@ -53,11 +46,7 @@ export class DataSourceWrapper<TEntity extends TypedEntity = TypedEntity, TExten
   private readonly groupData: DataSourceToolbarGroupData;
 
   constructor(
-<<<<<<< HEAD
-    private readonly getData: (parameters: CollectionLoadParameters) => Promise<ExtendedTypedEntityCollection<TEntity, TExtendedData>>,
-=======
     private readonly getData: (parameters: CollectionLoadParameters, requestOpts?: ApiRequestOptions) => Promise<ExtendedTypedEntityCollection<TEntity, TExtendedData>>,
->>>>>>> oned/v92
     private readonly displayedColumns: ClientPropertyForTableColumns[],
     private readonly entitySchema: EntitySchema,
     dataModelWrapper?: DataModelWrapper,
@@ -72,21 +61,13 @@ export class DataSourceWrapper<TEntity extends TypedEntity = TypedEntity, TExten
     }
   }
 
-<<<<<<< HEAD
-  public async getDstSettings(parameters?: CollectionLoadParameters): Promise<DataSourceToolbarSettings> {
-=======
   public async getDstSettings(parameters?: CollectionLoadParameters, requestOpts?: ApiRequestOptions ): Promise<DataSourceToolbarSettings> {
->>>>>>> oned/v92
     this.parameters = {
       ...this.parameters,
       ...parameters
     };
 
-<<<<<<< HEAD
-    const dataSource = await this.getData(this.parameters);
-=======
     const dataSource = await this.getData(this.parameters, requestOpts);
->>>>>>> oned/v92
 
     this.extendedData = dataSource?.extendedData;
 
@@ -98,30 +79,18 @@ export class DataSourceWrapper<TEntity extends TypedEntity = TypedEntity, TExten
         navigationState: this.parameters,
         filters: this.filterOptions,
         groupData: this.groupData,
-<<<<<<< HEAD
-        dataModel: this.dataModel,
-        identifierForSessionStore: this.identifier
-=======
         dataModel: this.dataModel
->>>>>>> oned/v92
       };
     }
 
     return undefined;
   }
 
-<<<<<<< HEAD
-  public async getGroupDstSettings(parameters: CollectionLoadParameters): Promise<DataSourceToolbarSettings> {
-    return {
-      displayedColumns: this.displayedColumns,
-      dataSource: await this.getData(parameters),
-=======
   public async getGroupDstSettings(parameters: CollectionLoadParameters, requestOpts?: ApiRequestOptions): Promise<DataSourceToolbarSettings> {
     return {
       displayedColumns: this.displayedColumns,
       dataModel: this.dataModel,
       dataSource: await this.getData(parameters, requestOpts),
->>>>>>> oned/v92
       entitySchema: this.entitySchema,
       navigationState: parameters
     };
@@ -133,13 +102,6 @@ export class DataSourceWrapper<TEntity extends TypedEntity = TypedEntity, TExten
       parameters => dataModelWrapper.getGroupInfo({
         ...parameters,
         ...this.getGroupingFilterOptionParameters(dataModelWrapper.groupingFilterOptions),
-<<<<<<< HEAD
-        ...{
-          StartIndex: 0,
-          PageSize: this.parameters?.PageSize
-        },
-=======
->>>>>>> oned/v92
       }),
       dataModelWrapper.groupingExcludedColumns
     );

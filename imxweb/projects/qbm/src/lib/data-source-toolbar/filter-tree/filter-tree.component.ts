@@ -75,15 +75,6 @@ export class FilterTreeComponent implements OnInit {
   }
 
   public onCheckedNodesChanged(): void {
-<<<<<<< HEAD
-    if (!this.data.filterTreeParameter.multiSelect) { return; }
-    this.currentlySelectedFilter = this.tree.selectedEntities;
-  }
-
-  public onNodeSelected(entity: IEntity): void {
-    if (this.data.filterTreeParameter.multiSelect) { return; }
-    this.currentlySelectedFilter = entity ? [entity] : [];
-=======
     if (!this.data.filterTreeParameter.multiSelect) {
       return;
     }
@@ -95,7 +86,6 @@ export class FilterTreeComponent implements OnInit {
       return;
     }
     this.currentlySelectedFilter = entity ? [new FilterTreeDialogResultArg(entity)] : [];
->>>>>>> oned/v92
     this.submitValues();
   }
 

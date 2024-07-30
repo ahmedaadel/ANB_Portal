@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -43,11 +39,7 @@ import { PrimaryMembershipsComponent } from './primary-memberships.component';
 import { RemoveMembershipComponent } from './remove-membership.component';
 import { RoleMembershipsComponent } from './role-memberships.component';
 import { SecondaryMembershipsComponent } from './secondary-memberships.component';
-<<<<<<< HEAD
-import { SqlWizardModule } from 'qbm';
-=======
 import { SqlWizardModule, SelectedElementsModule } from 'qbm';
->>>>>>> oned/v92
 import { DynamicRoleComponent } from './dynamic-role.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -79,10 +71,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     DataTreeModule,
     SourceDetectiveModule,
     SqlWizardModule,
-<<<<<<< HEAD
-=======
     SelectedElementsModule
->>>>>>> oned/v92
   ],
   exports: [
     RoleMembershipsComponent

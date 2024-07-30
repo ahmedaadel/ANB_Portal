@@ -1,13 +1,7 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
-<<<<<<< HEAD
-
-.data-explorer {
-
-=======
 @import "@elemental-ui/core/src/styles/_eui_palette.scss";
 
 .data-explorer {
->>>>>>> oned/v92
   ::ng-deep .imx-data-table-selection-info {
     display: none;
   }
@@ -18,44 +12,26 @@
     }
   }
 
-<<<<<<< HEAD
-=======
   imx-data-source-toolbar {
     flex: 0 0 auto;
   }
 
->>>>>>> oned/v92
   .data-explorer-card-header {
     background-color: $white;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     z-index: 100;
-<<<<<<< HEAD
-    border: 1px solid rgba($aspen-green, 0.6);
-=======
     border: 1px solid rgba($color-blue-60, 0.6);
->>>>>>> oned/v92
     margin-bottom: 20px;
 
     .data-explorer-card-header-bg {
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
-<<<<<<< HEAD
-      background-color: $aspen-pastel;
-=======
       background-color: $color-blue-20;
->>>>>>> oned/v92
       padding: 10px 24px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-<<<<<<< HEAD
-
-      .eui-icon {
-        color: rgba($aspen-green, 0.6);
-        margin-right: 10px;
-      }
-=======
       height: 45px;
 
       .eui-icon {
@@ -67,7 +43,6 @@
           margin-right: 0;
         }
       }
->>>>>>> oned/v92
 
       & > span {
         font-size: 20px;
@@ -86,11 +61,7 @@
 
     .mat-row:hover {
       cursor: pointer;
-<<<<<<< HEAD
-      background-color: rgba($aspen-pastel, 0.2) !important;
-=======
       background-color: rgba($color-blue-20, 0.2) !important;
->>>>>>> oned/v92
     }
 
     .mat-checkbox-disabled {
@@ -131,18 +102,10 @@
       margin-right: auto;
     }
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
 }
 
 @media screen and (max-width: 480px) {
   .data-explorer {
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
     &__action-buttons-wrapper {
       bottom: -15px;
     }
@@ -162,28 +125,15 @@
       }
 
       .mat-raised-button {
-<<<<<<< HEAD
-        width: 100%;;
-      }
-    }
-
-=======
         width: 100%;
       }
     }
->>>>>>> oned/v92
   }
 }
 
 @media screen and (max-width: 320px) {
   .data-explorer {
-<<<<<<< HEAD
-
     &__action-buttons {
-
-=======
-    &__action-buttons {
->>>>>>> oned/v92
       .mat-slide-toggle {
         margin-top: 15px;
         margin-bottom: 25px;
@@ -191,8 +141,6 @@
     }
   }
 }
-<<<<<<< HEAD
-=======
 .eui-dark-theme {
   .data-explorer {
     .data-explorer-card-header {
@@ -217,4 +165,3 @@
     }
   }
 }
->>>>>>> oned/v92

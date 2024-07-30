@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -33,19 +29,12 @@ import { ErrorHandler, Injectable } from '@angular/core';
 import { EuiLoadingService } from '@elemental-ui/core';
 
 import { PortalItshopPatternAdmin, PortalItshopPatternItem, PortalItshopPatternPrivate } from 'imx-api-qer';
-<<<<<<< HEAD
-import { CollectionLoadParameters, CompareOperator, EntitySchema, ExtendedTypedEntityCollection, FilterType } from 'imx-qbm-dbts';
-
-import { ClassloggerService, SnackBarService } from 'qbm';
-import { QerApiService } from '../qer-api-client.service';
-=======
 import { CollectionLoadParameters, CompareOperator, EntitySchema, ExtendedTypedEntityCollection, FilterType, FkProviderItem, IFkCandidateProvider, InteractiveEntityWriteData, ParameterData, TypedEntity } from 'imx-qbm-dbts';
 
 import { ClassloggerService, SnackBarService } from 'qbm';
 import { ExtendedEntityWrapper } from '../parameter-data/extended-entity-wrapper.interface';
 import { QerApiService } from '../qer-api-client.service';
 import { RequestParametersService } from '../shopping-cart/cart-item-edit/request-parameters.service';
->>>>>>> oned/v92
 
 @Injectable({
   providedIn: 'root'
@@ -57,10 +46,7 @@ export class ItshopPatternService {
 
   constructor(
     private readonly qerClient: QerApiService,
-<<<<<<< HEAD
-=======
     private readonly requestParametersService: RequestParametersService,
->>>>>>> oned/v92
     private readonly logger: ClassloggerService,
     private readonly busyService: EuiLoadingService,
     private readonly errorHandler: ErrorHandler,
@@ -145,11 +131,7 @@ export class ItshopPatternService {
     this.handleOpenLoader();
     try {
       await this.qerClient.v2Client.portal_itshop_pattern_copy_post(uid);
-<<<<<<< HEAD
-      this.snackBar.open({ key: '#LDS#The copy of the request template has been successfully created.' });
-=======
       this.snackBar.open({ key: '#LDS#The copy of the product bundle has been successfully created.' });
->>>>>>> oned/v92
       reload = true;
     } finally {
       this.handleCloseLoader();
@@ -162,33 +144,20 @@ export class ItshopPatternService {
    * @param selectedPatterns the list of itshop pattern that should be delete.
    * @returns true if at least on pattern was successfully deleted.
    */
-<<<<<<< HEAD
-  public async delete(selectedPatterns: PortalItshopPatternPrivate[]): Promise<boolean> {
-=======
   public async delete(selectedPatterns: PortalItshopPatternPrivate[], adminMode?: boolean): Promise<boolean> {
->>>>>>> oned/v92
     let deleteCount = 0;
     this.handleOpenLoader();
     try {
       for (const pattern of selectedPatterns) {
-<<<<<<< HEAD
-        if (await this.tryDelete(pattern.GetEntity().GetKeys()[0])) {
-=======
         if (await this.tryDelete(pattern.GetEntity().GetKeys()[0], adminMode)) {
->>>>>>> oned/v92
           deleteCount++;
         }
       }
 
       if (deleteCount > 0) {
         const message = deleteCount > 1
-<<<<<<< HEAD
-          ? '#LDS#The selected request templates have been successfully deleted.'
-          : '#LDS#The request template has been successfully deleted.';
-=======
           ? '#LDS#The selected product bundles have been successfully deleted.'
           : '#LDS#The product bundle has been successfully deleted.';
->>>>>>> oned/v92
         this.snackBar.open({ key: message });
       }
     } finally {
@@ -199,11 +168,7 @@ export class ItshopPatternService {
 
   /**
    * Deletes a list of {@link PortalItshopPatternItem} from a {@link PortalItshopPatternPrivate} on the server
-<<<<<<< HEAD
-   * @param selectedPatterns the list of itshop pattern that should be delete.
-=======
    * @param selectedPatternItems the list of itshop pattern that should be delete.
->>>>>>> oned/v92
    * @returns true if at least on pattern was successfully deleted.
    */
   public async deleteProducts(selectedPatternItems: PortalItshopPatternItem[]): Promise<boolean> {
@@ -215,19 +180,13 @@ export class ItshopPatternService {
           deleteCount++;
         }
       }
-<<<<<<< HEAD
-      this.snackBar.open({ key: '#LDS#The selected products have been successfully removed from the request template.' });
-=======
       this.snackBar.open({ key: '#LDS#The selected products have been successfully removed from the product bundle.' });
->>>>>>> oned/v92
     } finally {
       this.handleCloseLoader();
     }
     return deleteCount > 0;
   }
 
-<<<<<<< HEAD
-=======
   public async save(patternItemExtended: ExtendedEntityWrapper<TypedEntity>): Promise<void> {
     return this.commitExtendedEntity(patternItemExtended);
   }
@@ -322,7 +281,6 @@ export class ItshopPatternService {
   }
 
 
->>>>>>> oned/v92
   /**
    * Toogle the IsPublicPattern value of a {@link PortalItshopPatternPrivate} and commit the changes to the server
    * @param uid the uid of itshop pattern that should be toggled.
@@ -337,13 +295,8 @@ export class ItshopPatternService {
       if (await this.tryCommit(pattern)) {
         reload = true;
         const message = pattern.IsPublicPattern.value
-<<<<<<< HEAD
-          ? '#LDS#The request template has been shared successfully. The request template is now available for all users.'
-          : '#LDS#Sharing of the request template has been successfully undone. The request template is now only available for yourself.';
-=======
           ? '#LDS#The product bundle has been shared successfully. The product bundle is now available for all users.'
           : '#LDS#Sharing of the product bundle has been successfully undone. The product bundle is now only available for yourself.';
->>>>>>> oned/v92
         this.snackBar.open({ key: message });
       }
     } finally {
@@ -364,19 +317,11 @@ export class ItshopPatternService {
       }
       const message = shouldBePublic
         ? (commitCount === 1
-<<<<<<< HEAD
-          ? '#LDS#The request template has been shared successfully. The request template is now available for all users.'
-          : '#LDS#The request templates have been shared successfully. {0} request templates are now available for all users.')
-        : (commitCount === 1
-          ? '#LDS#Sharing of the request template has been successfully undone. The request template is now only available for yourself.'
-          : '#LDS#Sharing of the request templates has been successfully undone. {0} request templates are now only available for yourself.'
-=======
           ? '#LDS#The product bundle has been shared successfully. The product bundle is now available for all users.'
           : '#LDS#The product bundles have been shared successfully. {0} product bundles are now available for all users.')
         : (commitCount === 1
           ? '#LDS#Sharing of the product bundle has been successfully undone. The product bundle is now only available for yourself.'
           : '#LDS#Sharing of the product bundles has been successfully undone. {0} product bundles are now only available for yourself.'
->>>>>>> oned/v92
         );
       this.snackBar.open({ key: message, parameters: [commitCount] });
     } finally {
@@ -412,11 +357,6 @@ export class ItshopPatternService {
     return false;
   }
 
-<<<<<<< HEAD
-  private async tryDelete(uid: string): Promise<boolean> {
-    try {
-      await this.qerClient.v2Client.portal_itshop_pattern_private_delete(uid);
-=======
   private async tryDelete(uid: string, adminMode?: boolean): Promise<boolean> {
     try {
       if (adminMode) {
@@ -424,7 +364,6 @@ export class ItshopPatternService {
       } else {
         await this.qerClient.typedClient.PortalItshopPatternPrivate.Delete(uid);
       }
->>>>>>> oned/v92
       return true;
     } catch (error) {
       this.errorHandler.handleError(error);
@@ -434,11 +373,7 @@ export class ItshopPatternService {
 
   private async tryDeleteProducts(uid: string): Promise<boolean> {
     try {
-<<<<<<< HEAD
-      await this.qerClient.v2Client.portal_itshop_pattern_item_delete(uid);
-=======
       await this.qerClient.typedClient.PortalItshopPatternItem.Delete(uid); 
->>>>>>> oned/v92
       return true;
     } catch (error) {
       this.errorHandler.handleError(error);

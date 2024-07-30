@@ -1,15 +1,10 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
-<<<<<<< HEAD
-
-.imx-data-source-toolbar-container {
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 
 .imx-data-source-toolbar-container {
   display: flex;
   flex-direction: column;
   
->>>>>>> oned/v92
   .imx-data-source-toolbar {
     display: flex;
     overflow: hidden;
@@ -45,15 +40,12 @@
     }
   }
 
-<<<<<<< HEAD
-=======
   .imx-chip-container {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
   }
 
->>>>>>> oned/v92
   .imx-data-source-selected-filters {
     display: block;
     margin: 10px 5px;
@@ -67,23 +59,12 @@
 
       .eui-icon {
         &.remove {
-<<<<<<< HEAD
-          color: $black-6;
-          opacity: 0.3;
-=======
->>>>>>> oned/v92
           font-size: 18px;
           margin-right: -10px;
         }
       }
 
       span.tag-name {
-<<<<<<< HEAD
-        color: $black-3;
-        font-size: 13px;
-        white-space: nowrap;
-      }
-=======
         font-size: 13px;
         white-space: nowrap;
       }
@@ -100,15 +81,12 @@
           color: $color-gray-0;
         }
       }
->>>>>>> oned/v92
     }
   }
 }
 
 .mat-menu-panel {
 
-<<<<<<< HEAD
-=======
   &.imx-sort-menu {
     max-width: 40vw;
 
@@ -131,7 +109,6 @@
     }
   }
 
->>>>>>> oned/v92
 
   &.imx-filters-menu {
     padding: 0 8px;
@@ -207,8 +184,6 @@
   }
 }
 
-<<<<<<< HEAD
-=======
 .dst-saved-config-menu {
   .dst-saved-config-menu-item {
     display: flex;
@@ -220,7 +195,6 @@
   }
 }
 
->>>>>>> oned/v92
 .cdk-overlay-pane .mat-select-panel .mat-option {
   line-height: normal;
   height: 100%;
@@ -239,8 +213,6 @@
   color: $corbin-orange;
 }
 
-<<<<<<< HEAD
-=======
 // Theming
 imx-data-source-toolbar {
   .themed-style .imx-data-source-toolbar-middle {
@@ -392,7 +364,6 @@ imx-data-source-toolbar {
   }
 }
 
->>>>>>> oned/v92
 
 @media only screen and (max-width: 768px) {
   .imx-data-source-toolbar-container {

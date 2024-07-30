@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -34,36 +30,20 @@ import { EuiLoadingService, EuiSidesheetRef, EuiSidesheetService, EUI_SIDESHEET_
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-<<<<<<< HEAD
-import { PortalShopCategories, PortalShopServiceitems, QerProjectConfig, RequestableProductForPerson } from 'imx-api-qer';
-import { EntityValue, IWriteValue, LocalProperty, MultiValue } from 'imx-qbm-dbts';
-
-import { AuthenticationService, BaseCdr, ColumnDependentReference, DataTileMenuItem, EntityService } from 'qbm';
-
-import { ShelfService } from '../../itshop/shelf.service';
-=======
 import { PortalShopCategories, PortalShopServiceitems, QerProjectConfig } from 'imx-api-qer';
 import { EntityValue, IWriteValue, LocalProperty } from 'imx-qbm-dbts';
 
 import { AuthenticationService, BaseCdr, ColumnDependentReference, DataTileMenuItem, EntityService } from 'qbm';
 
->>>>>>> oned/v92
 import { PersonService } from '../../person/person.service';
 import { ProductDetailsSidesheetComponent } from '../../product-selection/product-details-sidesheet/product-details-sidesheet.component';
 import { CategoryTreeComponent } from '../../product-selection/servicecategory-list/category-tree.component';
 import { ProjectConfigurationService } from '../../project-configuration/project-configuration.service';
 import { QerApiService } from '../../qer-api-client.service';
-<<<<<<< HEAD
-import { ServiceItemsService } from '../../service-items/service-items.service';
-import { ServiceitemListComponent } from '../../service-items/serviceitem-list/serviceitem-list.component';
-import { UserModelService } from '../../user/user-model.service';
-import { ItshopPatternCreateService } from '../itshop-pattern-create-sidesheet/itshop-pattern-create.service';
-=======
 import { ServiceitemListComponent } from '../../service-items/serviceitem-list/serviceitem-list.component';
 import { UserModelService } from '../../user/user-model.service';
 import { ItshopPatternCreateService } from '../itshop-pattern-create-sidesheet/itshop-pattern-create.service';
 import { PatternItemCandidate } from '../pattern-item-candidate.interface';
->>>>>>> oned/v92
 
 /**
  * Component that shows the service catalog with service items, which the user can added to the itshop pattern.
@@ -85,11 +65,7 @@ export class ItshopPatternAddProductsComponent implements OnInit, OnDestroy {
   public canRequestForSomebodyElse: boolean;
   public recipientType: 'self' | 'others' = 'self';
 
-<<<<<<< HEAD
-  public description = '#LDS#To add products to this request template, select products that are available to you. You can also select another identity to view products available to that identity.';
-=======
   public description = '#LDS#Here you can add products to this product bundle that are available for you. You can also select another identity to view the products available for that identity.';
->>>>>>> oned/v92
 
   public serviceItemActions: DataTileMenuItem[] = [
     {
@@ -118,11 +94,6 @@ export class ItshopPatternAddProductsComponent implements OnInit, OnDestroy {
     private readonly qerClient: QerApiService,
     private readonly sidesheet: EuiSidesheetService,
     private readonly sideSheetRef: EuiSidesheetRef,
-<<<<<<< HEAD
-    private readonly shelfService: ShelfService,
-    private readonly serviceItemsProvider: ServiceItemsService,
-=======
->>>>>>> oned/v92
     private readonly translate: TranslateService,
     private readonly userModelService: UserModelService,
     authentication: AuthenticationService
@@ -158,16 +129,9 @@ export class ItshopPatternAddProductsComponent implements OnInit, OnDestroy {
   public async requestDetails(item: PortalShopServiceitems): Promise<void> {
     await this.sidesheet.open(ProductDetailsSidesheetComponent, {
       title: await this.translate.get('#LDS#Heading View Product Details').toPromise(),
-<<<<<<< HEAD
-      padding: '0px',
-      width: 'max(700px, 60%)',
-      headerColour: 'iris-blue',
-      bodyColour: 'asher-gray',
-=======
       subTitle: item.GetEntity().GetDisplay(),
       padding: '0px',
       width: 'max(700px, 60%)',
->>>>>>> oned/v92
       testId: 'product-details-sidesheet',
       data: {
         item,
@@ -177,51 +141,6 @@ export class ItshopPatternAddProductsComponent implements OnInit, OnDestroy {
   }
 
   public async addTemplateItem(serviceItems: PortalShopServiceitems[]): Promise<void> {
-<<<<<<< HEAD
-    if (this.recipients) {
-      const recipientsUids = MultiValue.FromString(this.recipients.value).GetValues();
-      const recipientsDisplays = MultiValue.FromString(this.recipients.Column.GetDisplayValue()).GetValues();
-
-      if (serviceItems && serviceItems.length > 0) {
-        setTimeout(() => this.busyIndicator.show());
-        let serviceItemsForPersons: RequestableProductForPerson[];
-        try {
-          serviceItemsForPersons = await this.serviceItemsProvider.getServiceItemsForPersons(
-            serviceItems,
-            recipientsUids.map((uid, index) => ({
-              DataValue: uid,
-              DisplayValue: recipientsDisplays[index]
-            }))
-          );
-        } finally {
-          setTimeout(() => this.busyIndicator.hide());
-        }
-        if (serviceItemsForPersons && serviceItemsForPersons.length > 0) {
-          const hasItems = await this.shelfService.setShops(serviceItemsForPersons);
-          if (hasItems) {
-            setTimeout(() => this.busyIndicator.show());
-            try {
-              const cartItemUids = serviceItemsForPersons.map(item => item.UidAccProduct);
-              const assignedPatterns = await this.patternCreateService.assignItemsToPattern(
-                cartItemUids, serviceItemsForPersons, this.data.shoppingCartPatternUid);
-              if (assignedPatterns > 0) {
-                this.sideSheetRef.close(assignedPatterns);
-              }
-            } finally {
-              setTimeout(() => this.busyIndicator.hide());
-            }
-          }
-        }
-      }
-    }
-  }
-
-  public openCategoryTree(): void {
-    const sidesheetRef = this.sidesheet.open(CategoryTreeComponent, {
-      title: this.qerClient.typedClient.PortalShopCategories.GetSchema().DisplaySingular,
-      width: '600px',
-      headerColour: 'iris-blue',
-=======
     const newPatternItems = serviceItems.map(item => { 
       return { 
         uidAccProduct: item.GetEntity().GetKeys()[0], 
@@ -245,7 +164,6 @@ export class ItshopPatternAddProductsComponent implements OnInit, OnDestroy {
     const sidesheetRef = this.sidesheet.open(CategoryTreeComponent, {
       title: await this.translate.get('#LDS#Heading Select Service Category').toPromise(),
       width: '600px',
->>>>>>> oned/v92
       testId: 'categorytree-sidesheet',
       data: {
         selectedServiceCategory: this.selectedCategory,

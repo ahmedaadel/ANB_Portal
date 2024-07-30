@@ -111,11 +111,8 @@ import { isConfigDefault, isDefaultId } from './data-source-toolbar-view-config-
   encapsulation: ViewEncapsulation.None,
 })
 export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy {
-<<<<<<< HEAD
-=======
   @ViewChild('savedConfigsTrigger') savedConfigsTrigger: MatMenuTrigger;
 
->>>>>>> oned/v92
   public get numOfSelectedItems(): number {
     return this.selection.selected.length;
   }
@@ -124,10 +121,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
     return this.internalDataSource.data.filter((item) => this.itemStatus.enabled(item)).length;
   }
 
-<<<<<<< HEAD
-  public get additionalColumns(): IClientProperty[] {
-    return this.columnOptions?.additionalColumns.concat(this.columnOptions.selectedOptionals) ?? [];
-=======
   // Unique-ify this array to not cause problems with adding/removing properties
   public get additionalColumns(): IClientProperty[] {
     const additionalColumns = this.columnOptions?.additionalColumns.concat(this.columnOptions.selectedOptionals) ?? [];
@@ -135,28 +128,20 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
       const key = column.ColumnName.toLocaleLowerCase();
       return !this.has(key) && this.add(key);
     }, new Set());
->>>>>>> oned/v92
   }
 
   public readonly selectionChanged = new Subject<SelectionChange<TypedEntity>>();
 
-<<<<<<< HEAD
-=======
   /**
    * BusyService for handling the busy state of the toolbar
    */
   @Input() public busyService: BusyService;
 
->>>>>>> oned/v92
   @Input() public additionalPropertiesForNavigation: string[] = [];
 
   /**
    * List of toolbar options, that should be visible.
-<<<<<<< HEAD
-   * Values: 'search', 'filter', 'groupBy', 'settings', 'selectedViewGroup', 'filterTree'.
-=======
    * Values: 'search', 'sort, 'filter', 'groupBy', 'settings', 'selectedViewGroup', 'filterTree', 'filterWizard'.
->>>>>>> oned/v92
    */
   @Input() public get options(): string[] {
     return Array.from(this.optionset);
@@ -166,8 +151,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Sort functionality
    */
   public sortWarningThreshold: number;
@@ -216,7 +199,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
   }
 
   /**
->>>>>>> oned/v92
    * @ignore Used internally in components template.
    * Collaborates with the 'options' input field.
    */
@@ -257,8 +239,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
   @Input() public isDataSourceLocal = false;
 
   /**
-<<<<<<< HEAD
-=======
    * Sets the columns to search over. If not set, all string-type columns will be considered in a search.
    */
   @Input() public localSearchColumns: string[];
@@ -269,7 +249,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
   @Input() public useThemedStyle: boolean = false;
 
   /**
->>>>>>> oned/v92
    * @ignore Reserved for future use.
    * List of views attached to a DST object.
    */
@@ -281,8 +260,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
 
   @Input() public alwaysVisible = false;
 
-<<<<<<< HEAD
-=======
   @Input() public showClearFilterOption = true;
 
   @Input() public disableSearch = false;
@@ -290,7 +267,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
 
   @Input() public isRegex: boolean = false;
 
->>>>>>> oned/v92
   /**
    * Keywords for search.
    * (Optional)
@@ -315,8 +291,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
   @Input() public preSelection: TypedEntity[] = [];
 
   /**
-<<<<<<< HEAD
-=======
    * an optional search api to handle search cancelling when necessary, results will be wihin the observable searchResults$
    */
   @Input() searchApi?: () => Observable<any>;
@@ -332,7 +306,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
   @Input() disableFilterWizard: boolean = false;
 
   /**
->>>>>>> oned/v92
    * @ignore Reserved for future use.
    * List of icons that will represent an view from the 'views' Input list.
    */
@@ -421,12 +394,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
   }
 
   /**
-<<<<<<< HEAD
-   * Used internally to manage the current search term
-   * This will be triggered by a value change listner that fires just after a user stops typing
-   */
-  public searchControl = new FormControl();
-=======
    * Used for saving/loading configs
    */
 
@@ -663,7 +630,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
    * This will be triggered by a value change listner that fires just after a user stops typing
    */
   public searchControl = new FormControl<string>('');
->>>>>>> oned/v92
 
   /**
    * Internal subscription used to subscribe to and watch for changes on the `searchControl`
@@ -671,14 +637,11 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
   public valueChanges$: Subscription;
 
   /**
-<<<<<<< HEAD
-=======
    * External Observable to subscribe to in combination to the searchApi input
    */
   public searchResults$: Observable<any>;
 
   /**
->>>>>>> oned/v92
    * @ignore Used internally in components template.
    * Works along side the 'hiddenFilters' input field.
    */
@@ -700,14 +663,11 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
   public selectedFilters: DataSourceToolbarSelectedFilter[] = [];
 
   /**
-<<<<<<< HEAD
-=======
    * The list of search terms currently applied
    */
   public searchTerms: DataSourceToolbarSelectedFilter[] = [];
 
   /**
->>>>>>> oned/v92
    * The number of filter options considered to be the threshold before we use
    * a different template control better suited to support rendering multiple options
    */
@@ -727,15 +687,12 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
    * An indicator used to determine, if viewSettings could be applied
    */
   public hasViewSettings = false;
-<<<<<<< HEAD
-=======
   public get canExport(): boolean {
     return !!this.settings?.exportMethod?.getMethod;
   }
   public get canSave(): boolean {
     return !!this.settings?.viewConfig;
   }
->>>>>>> oned/v92
 
   /**
    * short description, which data type the filter tree filters
@@ -745,9 +702,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
   /**
    * The currently selected filter data
    */
-<<<<<<< HEAD
-  public currentFilterData: IEntity[] = [];
-=======
   public currentFilterData: FilterTreeSelectionArg[] = [];
 
   /**
@@ -759,7 +713,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
    * Filter wizard SQL expressions
    */
   public filterWizardExpression: SqlWizardExpression;
->>>>>>> oned/v92
 
   /**
    * @ignore Used internally.
@@ -768,8 +721,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
    */
   private localDataSource: TypedEntityCollectionData<TypedEntity>;
 
-<<<<<<< HEAD
-=======
   /**
    * @ignore Used internally.
    * Filters the data source with these arguments locally.
@@ -785,7 +736,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
     keywords: '',
   };
 
->>>>>>> oned/v92
   /** Marker that prevents the emitting of a selectionChanged event, when items are preselected */
   private isUpdatingPreselection = false;
 
@@ -801,29 +751,15 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
   private columnSubscriptions: Subscription[] = [];
 
   /**
-<<<<<<< HEAD
-=======
    * Uniqe id for each data-source-toolbar component
    */
   private id: string;
 
   /**
->>>>>>> oned/v92
    * @ignore Used internally in components template.
    * Selection model that handles single and multiple selection in the data table.
    * Visually selections are represented by chekcboxes, which can be checked/unchecked.
    */
-<<<<<<< HEAD
-  private readonly selection = new SelectionModelWrapper();
-
-  /**
-   * Inject the 'translateProvider' for use in the template.
-   */
-  constructor(
-    public readonly dialog: MatDialog,
-    private readonly injector: Injector
-  ) {
-=======
   public readonly selection = new SelectionModelWrapper();
 
   public selectedFilterType: FilterTypeIdentifier;
@@ -841,7 +777,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
   ) {
     if (!this.id) this.id = uuid();
 
->>>>>>> oned/v92
     this.subscriptions.push(
       this.selection.changed.subscribe((event: SelectionChange<TypedEntity>) => {
         if (!this.isUpdatingPreselection) {
@@ -849,8 +784,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
         }
       })
     );
-<<<<<<< HEAD
-=======
 
     this.subscriptions.push(
       this.filterService.navigationStateChanged.subscribe((event: selectedFiltersParams) => {
@@ -864,7 +797,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
         this.selectedFilterType = filterType as FilterTypeIdentifier;
       })
     );
->>>>>>> oned/v92
   }
 
   /**
@@ -873,17 +805,10 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
    */
   public get showDataSourceToolbar(): boolean {
     // When there is an active search or filtering, the toolbar should always be displayed
-<<<<<<< HEAD
-    if (this.alwaysVisible || this.searchCurrenltyApplied || this.filtersCurrentlyApplied) {
-      return true;
-    }
-    return this.dataSourceHasData;
-=======
     if (this.alwaysVisible || this.searchCurrenltyApplied || this.filtersCurrentlyApplied || this.filterWizardExpression) {
       return true;
     }
     return this.searchCurrenltyApplied || this.filtersCurrentlyApplied || this.dataSourceHasData;
->>>>>>> oned/v92
   }
 
   public get dataSourceHasData(): boolean {
@@ -895,11 +820,7 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
   }
 
   public get searchCurrenltyApplied(): boolean {
-<<<<<<< HEAD
-    return this.settings?.navigationState?.search?.length > 0;
-=======
     return this.settings?.navigationState?.search?.length > 0 || this.searchTerms.length > 0;
->>>>>>> oned/v92
   }
 
   public get filtersCurrentlyApplied(): boolean {
@@ -943,21 +864,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
           setTimeout(() => this.navigateLocalDataSource(this.settings));
         }
 
-<<<<<<< HEAD
-        // We only want to do this if this is the initial load...
-        if (this.isInitialLoad) {
-          this.setInitialFilterValues();
-        }
-
-        const filterItems = this.settings?.filterTree?.filterMethode ? await this.settings.filterTree?.filterMethode('') : { Elements: [] };
-        this.hasFilterTree = this.settings.filterTree && filterItems?.Elements?.length > 0;
-
-        if (this.settings?.dataModel) {
-          this.initColumnOptions();
-          this.hasViewSettings = this.columnOptions?.hasOptionalColumns;
-          this.updateEntitySchema();
-          this.settings.dataSource.Data.forEach((elem) => elem.GetEntity().ApplySchema(this.settings.entitySchema));
-=======
         const defaultSavedConfig = this.settings?.viewConfig?.viewConfigs?.find(
           (config) => this.isConfigDefault(config) && !this.isDefaultId(config)
         );
@@ -978,22 +884,16 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
           this.hasViewSettings = this.columnOptions?.hasOptionalColumns;
           this.updateEntitySchema();
           this.settings.dataSource?.Data?.forEach((elem) => elem.GetEntity().ApplySchema(this.settings.entitySchema));
->>>>>>> oned/v92
         } else {
           this.hasViewSettings = false;
         }
 
-<<<<<<< HEAD
-        this.filterType = filterItems?.Description;
-        this.internalDataSource = new MatTableDataSource<TypedEntity>(this.settings.dataSource.Data);
-=======
         this.filterType = this.filterTreeItems?.Description;
         this.internalDataSource = new MatTableDataSource<TypedEntity>(this.settings.dataSource?.Data);
         if (this.isDataSourceLocal && (this.searchCurrenltyApplied || this.filtersCurrentlyApplied)) {
           // We need to apply a filter still over the local data since it was skipped earlier. Do so now.
           this.localFilter();
         }
->>>>>>> oned/v92
         this.dataSourceChanged.emit(this.settings.dataSource);
       }
 
@@ -1002,17 +902,12 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
 
     if (changes['preSelection'] && changes['preSelection'].currentValue) {
       this.isUpdatingPreselection = true;
-<<<<<<< HEAD
-=======
 
->>>>>>> oned/v92
       setTimeout(() => {
         this.preSelection.forEach((item) => this.selection.checked(item));
         this.isUpdatingPreselection = false;
       });
     }
-<<<<<<< HEAD
-=======
 
     if (changes['searchApi'] && this.searchApi) {
       // We have changed the input search API, so we need to change the observable
@@ -1026,7 +921,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
     if (changes['disableSearch']) {
       this.searchControl = new FormControl<string>({ value: '', disabled: this.disableSearch });
     }
->>>>>>> oned/v92
   }
 
   /**
@@ -1038,21 +932,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
     });
   }
 
-<<<<<<< HEAD
-  /**
-   * @ignore Used internally in components template.
-   * Open the selection dialog
-   */
-  public showSelectedItems(): void {
-    this.dialog.open(SelectionListComponent, {
-      width: '600px',
-      height: '600px',
-      data: this.selection.selected,
-    });
-  }
-
-=======
->>>>>>> oned/v92
   public numOfSelectedItemsOnPage(): number {
     return this.internalDataSource.data.filter((item) => this.selection.isSelected(item)).length;
   }
@@ -1156,8 +1035,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
     }
     this.updateNavigateStateWithFilters();
   }
-<<<<<<< HEAD
-=======
   /**
    * @ignore Used internally.
    * Is called internally when a filter is removed from selected filters.
@@ -1170,7 +1047,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
     }
     this.removeSelectedFilter(settingsFilter, true, optionValue, selectedFilter);
   }
->>>>>>> oned/v92
 
   /**
    * @ignore Used internally.
@@ -1234,8 +1110,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
   }
 
   /**
-<<<<<<< HEAD
-=======
    * @ignore Used internally
    * Manages the sort ascending toggle control
    */
@@ -1322,27 +1196,18 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
   }
 
   /**
->>>>>>> oned/v92
    * @ignore Used internally.
    * Is called internally when the clear all filters menu option is clicked
    * Clears all selected filter values and updates and emits the new navigationState
    */
-<<<<<<< HEAD
-  public clearFilters(): void {
-=======
   public clearFilters(emit = true): void {
->>>>>>> oned/v92
     this.settings.filters?.forEach((filter) => (filter.CurrentValue = undefined));
     const containsCustomFilters = this.selectedFiltersContainsCustomFilters();
     if (containsCustomFilters) {
       this.customSelectedFilterRemoved.emit();
     }
     this.selectedFilters = [];
-<<<<<<< HEAD
-    this.updateNavigateStateWithFilters();
-=======
     this.updateNavigateStateWithFilters(emit);
->>>>>>> oned/v92
   }
 
   /**
@@ -1402,17 +1267,12 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
       .afterClosed()
       .toPromise();
     if (filterdata) {
-<<<<<<< HEAD
-      this.currentFilterData = filterdata;
-      this.filterTreeSelectionChanged.emit(this.currentFilterData.map((filter) => filter.GetColumn('Filter').GetValue()));
-=======
       //Get all filter, that were not associaed with the tree filter
       const otherFilter = (this.settings.navigationState.filter ?? []).filter(
         (elem) => elem.ColumnName !== filterdata[0].filter.ColumnName && elem.ColumnName !== this.currentFilterData[0].filter.ColumnName
       );
       this.currentFilterData = filterdata;
       this.filterTreeSelectionChanged.emit(this.currentFilterData.map((filter) => filter.filter).concat(otherFilter)); // combine the two filter again
->>>>>>> oned/v92
     }
   }
 
@@ -1426,12 +1286,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
 
   /**
    *  @ignore Used internally.
-<<<<<<< HEAD
-   *  Resets additional columns and additional list elements
-   */
-  public resetView(): void {
-    this.columnOptions?.resetView();
-=======
    *  Resets the view and the tree filter, used in template
    */
   public async resetViewAndTree(): Promise<void> {
@@ -1480,17 +1334,11 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
       this.navigationStateChanged.emit(this.settings.navigationState);
     }
     return true;
->>>>>>> oned/v92
   }
 
   /**
    * clears the tree filter and emits the filterTreeSelectionChanged event
    */
-<<<<<<< HEAD
-  public clearTreeFilter(): void {
-    this.currentFilterData = [];
-    this.filterTreeSelectionChanged.emit([]);
-=======
   public clearTreeFilter(emit = true): void {
     const currentTree: FilterData = this.currentFilterData[0]?.filter;
     this.currentFilterData = [];
@@ -1499,25 +1347,17 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
         this.settings.navigationState.filter?.filter((elem) => elem.ColumnName != currentTree.ColumnName)
       );
     }
->>>>>>> oned/v92
   }
 
   /**
    * @ignore Used internally in components template.
    * Will be called when user presses the search button.
-<<<<<<< HEAD
-=======
    *
    * If isDataSourceLocal is true then a 'settingsChanged signal is emitted isntead of a search signal.
->>>>>>> oned/v92
    */
   public onSearch(keywords: string): void {
     if (this.settings && this.settings.navigationState) {
       this.settings.navigationState.StartIndex = 0;
-<<<<<<< HEAD
-    }
-    this.search.emit(keywords);
-=======
       this.settings.navigationState.search = keywords;
     }
     if (this.isDataSourceLocal) {
@@ -1527,7 +1367,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
     } else {
       this.search.emit(keywords);
     }
->>>>>>> oned/v92
   }
 
   /**
@@ -1538,10 +1377,7 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
     this.settings.groupData.currentGrouping = {
       display: (groupCategory?.property.Display ? groupCategory.property.Display + ' - ' : '') + this.getGroupColumnDisplay(group),
       getData: group.getData,
-<<<<<<< HEAD
-=======
       navigationState: group.navigationState,
->>>>>>> oned/v92
     };
     this.settingsChanged.emit(this.settings);
   }
@@ -1551,30 +1387,17 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
    * Will be called by the clear grouping menu item is clicked
    * Removes any grouping currently applied and emits the settings changed event
    */
-<<<<<<< HEAD
-  public clearGroupedBy(): void {
-    this.settings.groupData.currentGrouping = undefined;
-    this.settingsChanged.emit(this.settings);
-=======
   public clearGroupedBy(emit = true): void {
     this.settings.groupData.currentGrouping = undefined;
     if (emit) {
       this.settingsChanged.emit(this.settings);
     }
->>>>>>> oned/v92
   }
 
   /**
    * @ignore Used internally in components template.
    * Used to convert the groupBy column api value into a display friendly format
    */
-<<<<<<< HEAD
-  public getGroupColumnDisplay(group: DataSourceToolBarGroup): string {   
-    return group.property.Display ?? this.entitySchema.Columns[group.property.Property.ColumnName]?.Display ?? group.property.Property.Display;
-  }
-
-  
-=======
   public getGroupColumnDisplay(group: DataSourceToolBarGroup): string {
     return (
       group.property.Display ?? this.entitySchema.Columns[group.property.Property.ColumnName]?.Display ?? group.property.Property.Display
@@ -1638,26 +1461,17 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
       this.navigationStateChanged.next(this.settings.navigationState);
     }
   }
->>>>>>> oned/v92
 
   /**
    * @ignore Used internally
    * inits the view settings and adds additional columns to the entity schema
    */
-<<<<<<< HEAD
-  private initColumnOptions(): void {
-=======
   private initColumnOptions(config?: DSTViewConfig): void {
->>>>>>> oned/v92
     if (this.columnOptions && this.columnOptions.settings.dataModel === this.settings.dataModel) {
       return;
     }
 
-<<<<<<< HEAD
-    this.columnOptions = new ColumnOptions(this.settings, this.injector);
-=======
     this.columnOptions = new ColumnOptions(this.settings, this.injector, config);
->>>>>>> oned/v92
 
     if (this.columnSubscriptions.length > 0) {
       this.columnSubscriptions.forEach((sub) => sub.unsubscribe());
@@ -1693,8 +1507,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
     const newSchema = this.columnOptions.updateEntitySchema();
     this.settings.entitySchema = newSchema;
     this.entitySchema = newSchema;
-<<<<<<< HEAD
-=======
     if (this.isDataSourceLocal) {
       this.setLocalSearchSchema();
     }
@@ -1717,7 +1529,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
       }
       this.localFilterState.searchColumns = stringColumns;
     }
->>>>>>> oned/v92
   }
 
   /**
@@ -1751,32 +1562,13 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
    * Sets the local datasource. If this datasource is used depends on the setting of the 'isDataSourceLocal' input field.
    */
   private setLocalDataSource(settings: DataSourceToolbarSettings): void {
-<<<<<<< HEAD
-=======
     this.setLocalSearchSchema();
->>>>>>> oned/v92
     this.localDataSource = Object.assign({}, settings.dataSource);
   }
 
   /**
    * @ignore Used internally.
    * If 'isDataSourceLocal' is set to true, navigation and pagination will be handled internally by DST.
-<<<<<<< HEAD
-   */
-  private navigateLocalDataSource(settings: DataSourceToolbarSettings): void {
-    const tmpDataSource = this.settings.dataSource;
-    tmpDataSource.Data = this.localDataSource.Data.slice(
-      settings.navigationState.StartIndex,
-      settings.navigationState.StartIndex + settings.navigationState.PageSize
-    );
-
-    this.settings = {
-      dataSource: tmpDataSource,
-      displayedColumns: settings.displayedColumns,
-      entitySchema: settings.entitySchema,
-      navigationState: settings.navigationState,
-    };
-=======
    * Checks if we have a filter set, if so then we take the filtered data and otherwise the original dataset
    */
   private navigateLocalDataSource(settings: DataSourceToolbarSettings): void {
@@ -1801,19 +1593,11 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
       ...settings,
     };
 
->>>>>>> oned/v92
     this.settingsChanged.emit(this.settings);
   }
 
   /**
    * @ignore Used internally
-<<<<<<< HEAD
-   * Sets any initial values for the supplied filters and makes a call to update the navigation state
-   * Also marks the 'isInitialLoad' property to false to ensure this only happens on the initial load
-   * of the component
-   */
-  private setInitialFilterValues(): void {
-=======
    * Checks, if there is a tree filter defined in the config.
    * If a tree filter is defined, it initializes the currentFilterData object and adds the parameter to the navigation.
    * @param config the configuration, that should be loaded.
@@ -1862,7 +1646,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
    */
   private setInitialFilterValues(): void {
     // Here we prefer the saved default config over emiting the init
->>>>>>> oned/v92
     this.settings.filters?.forEach((filter) => {
       const initialValue = filter.InitialValue;
       if (initialValue) {
@@ -1873,12 +1656,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
         }
       }
     });
-<<<<<<< HEAD
-    this.isInitialLoad = false;
-    // We only need to update the state if there were filters applied
-    if (this.selectedFilters.length > 0) {
-      this.updateNavigateStateWithFilters();
-=======
 
     this.applyConfig(this.settings?.viewConfig?.viewConfigs?.find((config) => this.isDefaultId(config)));
   }
@@ -1911,7 +1688,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
         this.isDescending = dir.trim().toLocaleLowerCase() === this.descArg.trim();
         this.ascendingSortControl.reset(this.isDescending);
       }
->>>>>>> oned/v92
     }
   }
 
@@ -1929,8 +1705,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
     }
   }
 
-<<<<<<< HEAD
-=======
   public clearSearch(): void {
     if (this.keywords == null) {
       this.keywords = '';
@@ -1938,7 +1712,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
     this.searchControl?.setValue(this.keywords);
   }
 
->>>>>>> oned/v92
   /**
    * @ignore Used internally
    * Initialises the value for the search control and sets up the on valueChanges subscription
@@ -1949,11 +1722,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
     }
     this.searchControl.setValue(this.keywords);
     this.valueChanges$ = this.searchControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value) => {
-<<<<<<< HEAD
-      this.onSearch(value);
-    });
-
-=======
       if (this.isRedundant(value)) {
         delete this.settings.navigationState.search;
         return;
@@ -1969,14 +1737,11 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
       );
     }
 
->>>>>>> oned/v92
     if (this.keywords.length > 0) {
       this.onSearch(this.keywords);
     }
   }
 
-<<<<<<< HEAD
-=======
   public isRedundant(value: string): boolean {
     // Prevent redundant api call from adding search to searchterm list
     return (
@@ -2043,18 +1808,13 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
     this.navigationStateChanged.emit(this.settings.navigationState);
   }
 
->>>>>>> oned/v92
   /**
    * @ignore Used internally
    * Attempts to find an existing selected filter matching the given name.
    * Returns the index or -1 if no match was found
    */
   private findSelectedFilterIndex(filterName: string, optionValue?: string): number {
-<<<<<<< HEAD
-    let index;
-=======
     let index: number;
->>>>>>> oned/v92
     if (optionValue) {
       index = this.selectedFilters.map((f) => f.filter.Name + f.selectedOption.Value).indexOf(filterName + optionValue);
     } else {
@@ -2088,19 +1848,6 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
    * @ignore Used internally
    * Loops over the filters and adds any selected filters to the navigation state
    * as query parameters, and emits a navigationStateChanged event to let calling code know of the change
-<<<<<<< HEAD
-   */
-  private updateNavigateStateWithFilters(): void {
-    this.settings.filters?.forEach((filter) => {
-      if (filter.CurrentValue) {
-        this.settings.navigationState[filter.Name] = filter.CurrentValue;
-      } else {
-        delete this.settings.navigationState[filter.Name];
-      }
-    });
-    this.settings.navigationState.StartIndex = 0;
-    this.navigationStateChanged.emit(this.settings.navigationState);
-=======
    *
    * If the datasource is local, will apply the filters here and emit a settingsChanged signal instead of a navigationStateChanged
    */
@@ -2189,6 +1936,5 @@ export class DataSourceToolbarComponent implements OnChanges, OnInit, OnDestroy 
       icon: 'export',
       data: this.settings,
     });
->>>>>>> oned/v92
   }
 }

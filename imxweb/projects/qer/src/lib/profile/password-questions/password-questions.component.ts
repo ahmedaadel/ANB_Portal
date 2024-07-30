@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,20 +24,6 @@
  *
  */
 
-<<<<<<< HEAD
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatAccordion } from '@angular/material/expansion';
-import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
-import { TranslateService } from '@ngx-translate/core';
-import { PortalPasswordquestions, UserConfig } from 'imx-api-qer';
-import { CollectionLoadParameters, ExtendedTypedEntityCollection } from 'imx-qbm-dbts';
-import { ConfirmationService, LdsReplacePipe, SnackBarService } from 'qbm';
-import { UserModelService } from '../../user/user-model.service';
-import { CreatePasswordQuestionComponent } from './create-password-question.component';
-import { PasswordQuestionService } from './password-question.service';
-import { checkMatchValidator } from './password-questions-validator';
-=======
 import { Component, ErrorHandler, Input, OnInit } from '@angular/core';
 import { EuiLoadingService, EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -51,7 +33,6 @@ import { BusyService, ConfirmationService, DataSourceToolbarSettings, DataSource
 import { UserModelService } from '../../user/user-model.service';
 import { PasswordQuestionService, PasswordQuestionType } from './password-question.service';
 import { PasswordQuestionsSidesheetComponent } from './password-questions-sidesheet/password-questions-sidesheet.component';
->>>>>>> oned/v92
 
 @Component({
   selector: 'imx-password-questions',
@@ -59,29 +40,13 @@ import { PasswordQuestionsSidesheetComponent } from './password-questions-sidesh
   styleUrls: ['./password-questions.component.scss'],
 })
 export class PasswordQuestionsComponent implements OnInit {
-<<<<<<< HEAD
-  public PwdQuestionMode = PwdQuestionMode;
-  public userConfig: UserConfig;
-  public items: ExtendedTypedEntityCollection<PortalPasswordquestions, unknown>;
-  public fgs: FormGroup[] = [];
-=======
   @Input() public passwordQuestionType: PasswordQuestionType = 'passwordreset';
   public items: ExtendedTypedEntityCollection<PortalPasswordquestions, unknown>;
->>>>>>> oned/v92
   public navigationState: CollectionLoadParameters = {
     PageSize: 1000,
     StartIndex: 0,
   };
   public totalCount = 0;
-<<<<<<< HEAD
-
-  @ViewChild(MatAccordion) public accordion: MatAccordion;
-
-  constructor(
-    private readonly api: PasswordQuestionService,
-    private readonly userService: UserModelService,
-    private readonly fb: FormBuilder,
-=======
   public dstWrapper: DataSourceWrapper<PortalPasswordquestions>;
   public dstSettings: DataSourceToolbarSettings;
   public selectedQuestions: PortalPasswordquestions[] = [];
@@ -93,127 +58,11 @@ export class PasswordQuestionsComponent implements OnInit {
   constructor(
     private readonly passwordQuestionService: PasswordQuestionService,
     private readonly errorHandler: ErrorHandler,
->>>>>>> oned/v92
     private readonly sidesheetService: EuiSidesheetService,
     private readonly snackbar: SnackBarService,
     private readonly confirmation: ConfirmationService,
     private readonly translate: TranslateService,
     private readonly ldsReplace: LdsReplacePipe,
-<<<<<<< HEAD
-    private readonly busy: EuiLoadingService,
-  ) {
-  }
-
-  public async ngOnInit(): Promise<void> {
-    this.userConfig = await this.userService.getUserConfig();
-    await this.getData();
-  }
-
-  public async getData(): Promise<void> {
-    this.busy.show();
-
-    try {
-      this.items = await this.api.get(this.navigationState);
-      this.totalCount = this.items.totalCount;
-
-      this.fgs = [];
-      this.items.Data.forEach((item) => {
-        const fg = this.fb.group(
-          {
-            question: [item.GetEntity().GetColumn('PasswordQuery').GetDisplayValue(), Validators.required],
-            answer: ['', Validators.required],
-            retypeAnswer: ['', Validators.required],
-            id: [item.GetEntity().GetKeys()[0]],
-            mode: PwdQuestionMode.View,
-            item: item,
-          },
-          {
-            validator: checkMatchValidator('answer', 'retypeAnswer'),
-          }
-        );
-
-        this.fgs.push(fg);
-      });
-    } finally {
-      this.busy.hide();
-    }
-  }
-
-  public async onSubmit(fg: FormGroup, index: number): Promise<void> {
-    const selectedItem = this.items.Data[index];
-    selectedItem.GetEntity().GetColumn('PasswordQuery').PutValue(fg.get('question').value);
-    selectedItem.GetEntity().GetColumn('PasswordAnswer').PutValue(fg.get('answer').value);
-
-    this.busy.show();
-
-    try {
-      await this.api.put(selectedItem);
-      this.snackbar.open({ key: '#LDS#The password question has been successfully saved.' });
-      this.onCancel(fg);
-    } finally {
-      this.busy.hide();
-    }
-  }
-
-  public onEdit(fg: FormGroup): void {
-    fg.get('mode').setValue(PwdQuestionMode.Edit);
-  }
-
-  public onCancel(fg: FormGroup): void {
-    fg.get('mode').setValue(PwdQuestionMode.View);
-    fg.get('answer').setValue('');
-    fg.get('retypeAnswer').setValue('');
-    fg.markAsPristine();
-  }
-
-  public async onCreate(): Promise<void> {
-    const sidesheetRef = this.sidesheetService.open(CreatePasswordQuestionComponent, {
-      title: await this.translate.get('#LDS#Heading Create Password Question').toPromise(),
-      disableClose: true,
-      width: '600px',
-      headerColour: 'blue',
-      padding: '0px',
-    });
-
-    sidesheetRef.afterClosed().subscribe(async () => {
-      await this.getData();
-    });
-  }
-
-  public async onDelete(index: number): Promise<void> {
-    const message =
-      this.totalCount <= this.userConfig.RequiredPasswordQuestions
-        ? this.ldsReplace.transform(
-          await this.translate.get(
-            '#LDS#If you delete this password question, you no longer have enough password questions and must create a new password question. You need at least {0} active password questions. Are you sure you want to delete this password question?'
-          ).toPromise(),
-          this.userConfig.RequiredPasswordQuestions
-        )
-        : await this.translate.get(
-          '#LDS#Are you sure you want to delete this password question?')
-          .toPromise();
-
-    if (await this.confirmation.confirm({
-      Title: '#LDS#Heading Delete Password Question',
-      Message: message
-    })) {
-      this.busy.show();
-
-      try {
-        await this.api.delete(this.items.Data[index]);
-        this.snackbar.open({ key: '#LDS#The password question has been successfully deleted.' });
-      } finally {
-        this.busy.hide();
-        this.getData();
-      }
-    }
-  }
-}
-
-export enum PwdQuestionMode {
-  View,
-  Edit,
-=======
     private readonly busy: EuiLoadingService
   ) {}
 
@@ -370,5 +219,4 @@ export enum PwdQuestionMode {
     '#LDS#If you delete these password questions, you no longer have enough password questions and must create a new password question. You need at least {0} active password questions. Are you sure you want to delete these password questions?';
   private ldsDeleteSnackbarMessageSingle = '#LDS#The password question has been successfully deleted.';
   private ldsDeleteSnackbarMessageMultiple = '#LDS#The password questions have been successfully deleted.';
->>>>>>> oned/v92
 }

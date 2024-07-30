@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Component, Inject, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-=======
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
->>>>>>> oned/v92
 import { EuiLoadingService, EuiSidesheetRef, EUI_SIDESHEET_DATA } from '@elemental-ui/core';
 
 import { TypedEntity, XOrigin } from 'imx-qbm-dbts';
@@ -52,17 +44,6 @@ export class RemoveMembershipComponent implements OnInit {
     return !this.formAbortRequested.value && !this.formExcludeDynamic.value && !this.formDeleteDirect.value;
   }
 
-<<<<<<< HEAD
-  public dynamicExclusionForm: FormGroup;
-
-  public formAbortRequested: FormControl;
-  public formExcludeDynamic: FormControl;
-  public formDeleteDirect: FormControl;
-  public withCheckboxes: boolean
-
-  constructor(
-    private formBuilder: FormBuilder,
-=======
   public dynamicExclusionForm: UntypedFormGroup;
 
   public formAbortRequested: UntypedFormControl;
@@ -72,7 +53,6 @@ export class RemoveMembershipComponent implements OnInit {
 
   constructor(
     private formBuilder: UntypedFormBuilder,
->>>>>>> oned/v92
     @Inject(EUI_SIDESHEET_DATA)
     public readonly data: {
       nonDeletableMemberships: TypedEntity[];
@@ -94,15 +74,9 @@ export class RemoveMembershipComponent implements OnInit {
 
 
   public ngOnInit(): void {
-<<<<<<< HEAD
-    this.formExcludeDynamic = new FormControl(this.data.countDynamic > 0);
-    this.formAbortRequested = new FormControl(this.data.countRequested > 0);
-    this.formDeleteDirect = new FormControl(this.data.countDirect > 0);
-=======
     this.formExcludeDynamic = new UntypedFormControl(this.data.countDynamic > 0);
     this.formAbortRequested = new UntypedFormControl(this.data.countRequested > 0);
     this.formDeleteDirect = new UntypedFormControl(this.data.countDirect > 0);
->>>>>>> oned/v92
 
     this.dynamicExclusionForm = this.formBuilder.group({
       excludeDynamic: this.formExcludeDynamic,
@@ -120,12 +94,8 @@ export class RemoveMembershipComponent implements OnInit {
       for (const selectedEntity of this.data.selectedEntities) {
         const xorigin = selectedEntity.GetEntity().GetColumn('XOrigin').GetValue();
 
-<<<<<<< HEAD
-        if (this.formDeleteDirect.value &&
-=======
         if (
           this.formDeleteDirect.value &&
->>>>>>> oned/v92
           // is it a direct assignment?
           (XOrigin.Direct & xorigin) === XOrigin.Direct
         ) {

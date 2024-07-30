@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-<<<<<<< HEAD
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-=======
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
->>>>>>> oned/v92
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
@@ -47,15 +39,9 @@ import { FilterElementModel } from './filter-element-model';
 })
 export class EditThresholdComponent implements OnInit, OnDestroy {
 
-<<<<<<< HEAD
-  public readonly riskIndexForm: FormGroup;
-  public readonly lowerControl: FormControl;
-  public readonly upperControl: FormControl;
-=======
   public readonly riskIndexForm: UntypedFormGroup;
   public readonly lowerControl: UntypedFormControl;
   public readonly upperControl: UntypedFormControl;
->>>>>>> oned/v92
 
   @Input() public filterElementModel: FilterElementModel;
   @Input() public identifier: string;
@@ -66,15 +52,9 @@ export class EditThresholdComponent implements OnInit, OnDestroy {
   private valueChangedSubscription: Subscription;
 
   constructor(private readonly translateService: TranslateService) {
-<<<<<<< HEAD
-    this.lowerControl = new FormControl(undefined, { updateOn: 'blur', validators: [Validators.min(0), Validators.max(1)] });
-    this.upperControl = new FormControl(undefined, { updateOn: 'blur', validators: [Validators.min(0), Validators.max(1)] });
-    this.riskIndexForm = new FormGroup({
-=======
     this.lowerControl = new UntypedFormControl(undefined, { updateOn: 'blur', validators: [Validators.min(0), Validators.max(1)] });
     this.upperControl = new UntypedFormControl(undefined, { updateOn: 'blur', validators: [Validators.min(0), Validators.max(1)] });
     this.riskIndexForm = new UntypedFormGroup({
->>>>>>> oned/v92
       lowerBounds: this.lowerControl,
       upperBounds: this.upperControl
     });

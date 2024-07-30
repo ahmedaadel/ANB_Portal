@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-<div eui-sidesheet-content color="white">
-=======
 <div eui-sidesheet-content >
->>>>>>> oned/v92
   <form [formGroup]="formGroup" class="imx-policy-violation-content">
     <p *ngIf="data.description">{{ data.description | translate }}</p>
     <ng-container *ngIf="data.policyViolations.length > 1">
@@ -13,11 +9,7 @@
     </ng-container>
   </form>
 </div>
-<<<<<<< HEAD
-<div eui-sidesheet-actions color="white">
-=======
 <div eui-sidesheet-actions >
->>>>>>> oned/v92
   <button data-imx-identifier="policy-violation-action-button-save" mat-raised-button color="primary" (click)="sideSheetRef.close(true)" *ngIf="formGroup" [disabled]="formGroup.invalid">
     {{ '#LDS#Save' | translate }}
   </button>

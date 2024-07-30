@@ -1,27 +1,14 @@
-<<<<<<< HEAD
-@import '@elemental-ui/core/src/styles/_palette.scss';
-
-:host {
-  height: 100%;
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 @import '../../../../../shared/scss/common-table.scss';
 
 :host {
   display: flex;
   flex-direction: column;
->>>>>>> oned/v92
   overflow: hidden;
 }
 
 .mat-card {
-<<<<<<< HEAD
-  display: flex;
-  flex-direction: column;
-  height: inherit;
-=======
  @include imx-flex-fill-control-hidden-overflow();
->>>>>>> oned/v92
 }
 
 .imx-list {
@@ -29,13 +16,6 @@
   margin-bottom: 10px;
 }
 
-<<<<<<< HEAD
-.imx-list mat-list-option .imx-list-item-subtitle
-{
-  font-size: smaller;
-  font-style: italic;
-  color: $black_9;
-=======
 .imx-list mat-list-option .imx-list-item-subtitle {
   font-size: smaller;
   font-style: italic;
@@ -63,5 +43,4 @@
     color: $color-gray-0;
   }
 }
->>>>>>> oned/v92
 }

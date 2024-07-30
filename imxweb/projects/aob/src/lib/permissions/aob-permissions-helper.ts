@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,19 +24,10 @@
  *
  */
 
-<<<<<<< HEAD
-export function isAobApplicationOwner(groups: string[]): boolean {
-  return groups.find(item => item.toUpperCase() === 'AOB_4_AOBAPP_OWNER') != null;
-}
-
-export function isAobApplicationAdmin(groups: string[]): boolean {
-  return groups.find(item => item.toUpperCase() === 'AOB_4_AOB_ADMIN') != null;
-=======
 export function isAobApplicationOwner(features: string[]): boolean {
   return features.find(item => item === 'Portal_UI_ApplicationOwner') != null;
 }
 
 export function isAobApplicationAdmin(features: string[]): boolean {
   return features.find(item => item === 'Portal_UI_ApplicationAdmin') != null;
->>>>>>> oned/v92
 }

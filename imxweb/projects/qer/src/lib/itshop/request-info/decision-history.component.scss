@@ -1,9 +1,5 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
-<<<<<<< HEAD
-
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
->>>>>>> oned/v92
 :host {
   display: flex;
   flex-direction: column;
@@ -148,14 +144,10 @@ li.imx-event {
   display: block;
 }
 
-<<<<<<< HEAD
-div[step]{
-=======
 div[step] {
   margin-bottom: 16px;
 }
 div[step-caption]{
->>>>>>> oned/v92
   margin-bottom: 10px;
   span[caption]{
     font-weight: 600;
@@ -165,9 +157,6 @@ div[step-caption]{
 
 div[approver] {
   margin-left: 10px;
-<<<<<<< HEAD
-}
-=======
 }
 
 .eui-dark-theme {
@@ -185,4 +174,3 @@ div[approver] {
     }
   }
 }
->>>>>>> oned/v92

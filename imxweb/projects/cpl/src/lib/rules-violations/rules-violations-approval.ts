@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -30,29 +26,14 @@
 
 import { TranslateService } from '@ngx-translate/core';
 
-<<<<<<< HEAD
-import { BaseCdr, ColumnDependentReference } from 'qbm';
-import { PortalRulesViolations } from 'imx-api-cpl';
-=======
 import { PortalRulesViolations } from 'imx-api-cpl';
 import { BaseCdr } from 'qbm';
->>>>>>> oned/v92
 
 /**
  * Class thats extends the {@link PortalRulesViolations} with some additional properties that are needed for
  * the components in the approval context.
  */
 export class RulesViolationsApproval extends PortalRulesViolations {
-<<<<<<< HEAD
-
-  /**
-   * The color and the caption depending on the value of the state of a {@link PortalRulesViolations}.
-   */
-  public get stateBadge(): { color: 'blue' | 'orange' | 'green', caption: string } {
-    return {
-      color: this.stateBadgeColor,
-      caption: this.stateCaption
-=======
   /**
    * The color and the caption depending on the value of the state of a {@link PortalRulesViolations}.
    */
@@ -60,18 +41,13 @@ export class RulesViolationsApproval extends PortalRulesViolations {
     return {
       color: this.stateBadgeColor,
       caption: this.stateCaption,
->>>>>>> oned/v92
     };
   }
 
   /**
    * The property list depending on the value of the state of a {@link PortalRulesViolations}.
    */
-<<<<<<< HEAD
-  public readonly propertyInfo: ColumnDependentReference[];
-=======
   public readonly propertyInfo: BaseCdr[];
->>>>>>> oned/v92
 
   private stateBadgeColor: 'blue' | 'orange' | 'green';
   private stateCaption: string;
@@ -87,41 +63,6 @@ export class RulesViolationsApproval extends PortalRulesViolations {
     this.initStateBadge();
   }
 
-<<<<<<< HEAD
-  private initPropertyInfo(): ColumnDependentReference[] {
-    const properties: any =
-      [
-        this.UID_Person,
-        this.UID_NonCompliance
-      ];
-
-    if (this.hasRiskIndex) {
-      properties.push(
-        this.RiskIndexCalculated,
-        this.RiskIndexReduced,
-      );
-    }
-
-    if (this.State.value !== 'pending') {
-
-      properties.push(
-        this.DecisionDate,
-        this.UID_PersonDecisionMade,
-        this.DecisionReason,
-        this.UID_QERJustification
-      );
-    }
-
-    if (this.State.value === 'approved') {
-      properties.push(
-        this.ExceptionValidUntil
-      );
-    }
-
-    return properties
-      .filter(property => property.value != null && property.value !== '')
-      .map(property => new BaseCdr(property.Column));
-=======
   private initPropertyInfo(): BaseCdr[] {
     const properties: any = [this.UID_Person, this.UID_NonCompliance];
 
@@ -138,7 +79,6 @@ export class RulesViolationsApproval extends PortalRulesViolations {
     }
 
     return properties.filter((property) => property.value != null && property.value !== '').map((property) => new BaseCdr(property.Column));
->>>>>>> oned/v92
   }
 
   private async initStateBadge(): Promise<void> {
@@ -156,8 +96,4 @@ export class RulesViolationsApproval extends PortalRulesViolations {
         this.stateCaption = await this.translate.get('#LDS#Approval decision pending').toPromise();
     }
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> oned/v92
 }

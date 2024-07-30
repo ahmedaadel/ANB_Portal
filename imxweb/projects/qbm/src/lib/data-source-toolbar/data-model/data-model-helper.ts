@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,49 +24,19 @@
  *
  */
 
-<<<<<<< HEAD
-import { DataModel, DataModelFilterOption, GroupInfo } from 'imx-qbm-dbts';
-=======
 import { CollectionLoadParameters, DataModel, DataModelFilterOption, GroupInfo, GroupInfoData } from 'imx-qbm-dbts';
->>>>>>> oned/v92
 import { DataSourceToolBarGroup, DataSourceToolbarGroupData } from '../data-source-toolbar-groups.interface';
 import { GroupInfoLoadParameters } from './group-info-load-parameters.interface';
 
 export function createGroupData(
   dataModel: DataModel,
-<<<<<<< HEAD
-  getGroupInfo: (parameters: GroupInfoLoadParameters) => Promise<GroupInfo[]>,
-=======
   getGroupInfo: (parameters: GroupInfoLoadParameters) => Promise<GroupInfoData>,
->>>>>>> oned/v92
   excludedColumns?: string[]
 ): DataSourceToolbarGroupData {
   const groups = [];
   const groupingCategories = [];
 
   if (dataModel.Properties) {
-<<<<<<< HEAD
-    dataModel.Properties
-      .filter(p => p.IsGroupable && p.Property && !excludedColumns?.includes(p.Property.ColumnName))
-      .forEach(property =>
-        groups.push({
-          property,
-          getData: async () => (await getGroupInfo({ by: property.Property.ColumnName }))
-            .filter(item => item.Count > 0)
-        })
-      );
-  }
-
-  if (dataModel.GroupInfo?.length === 1) {
-    dataModel.GroupInfo[0].Options.forEach(option =>
-      groups.push(getDataSourceToolBarGroup(option, getGroupInfo))
-    );
-  } else {
-    dataModel.GroupInfo?.forEach(property =>
-      groupingCategories.push({
-        property,
-        groups: property.Options.map(option => getDataSourceToolBarGroup(option, getGroupInfo))
-=======
     dataModel.Properties.filter((p) => p.IsGroupable && p.Property && !excludedColumns?.includes(p.Property.ColumnName)).forEach(
       (property) =>
         groups.push({
@@ -89,7 +55,6 @@ export function createGroupData(
       groupingCategories.push({
         property,
         groups: property.Options.map((option) => getDataSourceToolBarGroup(option, getGroupInfo)),
->>>>>>> oned/v92
       })
     );
   }
@@ -103,18 +68,6 @@ export function createGroupData(
 
 function getDataSourceToolBarGroup(
   option: DataModelFilterOption,
-<<<<<<< HEAD
-  getGroupInfo: (parameters: GroupInfoLoadParameters) => Promise<GroupInfo[]>
-): DataSourceToolBarGroup {
-  return {
-    property: option,
-    getData: async () => (await getGroupInfo({ def: option.Value }))
-      .filter(item => item.Count > 0)
-      .map(item => {
-        setFilterDisplay(item);
-        return item;
-      })
-=======
   getGroupInfo: (parameters: GroupInfoLoadParameters) => Promise<GroupInfoData>
 ): DataSourceToolBarGroup {
   return {
@@ -127,18 +80,12 @@ function getDataSourceToolBarGroup(
       });
       return data;
     },
->>>>>>> oned/v92
   };
 }
 
 function setFilterDisplay(item: GroupInfo): void {
-<<<<<<< HEAD
-  item.Display.forEach(display =>
-    item.Filters.forEach(filter => {
-=======
   item.Display.forEach((display) =>
     item.Filters.forEach((filter) => {
->>>>>>> oned/v92
       if (filter.Value1 != null) {
         display.Display = display.Display.replace(`%${filter.ColumnName}%`, filter.Value1);
       }

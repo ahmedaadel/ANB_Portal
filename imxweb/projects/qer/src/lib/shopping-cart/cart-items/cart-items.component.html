@@ -34,11 +34,7 @@
         </imx-data-table-column>
         <imx-data-table-column *ngIf="!forLater" [entityColumn]="entitySchema?.Columns.CheckResult" [align]="'center'" [width]="'150px'">
           <ng-template let-cartItem>
-<<<<<<< HEAD
-            <button mat-flat-button *ngIf="cartItem.CheckResult.value !== CartItemCheckStatus.notChecked"
-=======
             <button mat-stroked-button *ngIf="cartItem.CheckResult.value !== CartItemCheckStatus.notChecked"
->>>>>>> oned/v92
               class="imx-validation-button"
               (click)="showValidationOverview(cartItem)"
               [color]="setValidationOverviewButtonColor(cartItem)"
@@ -52,11 +48,7 @@
         <imx-data-table-column [entityColumn]="entitySchema?.Columns[DisplayColumns.DISPLAY_LONG_PROPERTYNAME]"
             columnLabel="{{'#LDS#Actions' | translate}}" [align]="'center'">
             <ng-template let-cartItem>
-<<<<<<< HEAD
-                <button mat-flat-button
-=======
                 <button mat-stroked-button
->>>>>>> oned/v92
                   [attr.data-imx-identifier]="'cartitem-button-edit-' + cartItem.UID_AccProduct.Column.GetDisplayValue()"
                   (click)="editCartItem(cartItem)">
                   {{'#LDS#Edit' | translate }}</button>
@@ -64,12 +56,6 @@
         </imx-data-table-column>
         <imx-data-table-generic-column columnName="removeItemButton" [columnLabel]="''">
           <ng-template let-cartItem>
-<<<<<<< HEAD
-            <button mat-flat-button *ngIf="cartItem.UID_ShoppingCartItemParent.value == null || cartItem.UID_ShoppingCartItemParent.value === '' || cartItem.IsOptionalChild.value" 
-              class="imx-remove-button"
-              [attr.data-imx-identifier]="'cartitem-button-remove-' + cartItem.UID_AccProduct.Column.GetDisplayValue()"
-              (click)="removeHighlightedItem(cartItem)">
-=======
             <button mat-stroked-button
               color="warn"
               *ngIf="cartItem.UID_ShoppingCartItemParent.value == null || cartItem.UID_ShoppingCartItemParent.value === '' || cartItem.IsOptionalChild.value"
@@ -77,7 +63,6 @@
               [attr.data-imx-identifier]="'cartitem-button-remove-' + cartItem.UID_AccProduct.Column.GetDisplayValue()"
               (click)="removeHighlightedItem(cartItem)">
               <eui-icon icon="delete"></eui-icon>
->>>>>>> oned/v92
               {{ removeButtonLabel }}</button>
           </ng-template>
         </imx-data-table-generic-column>

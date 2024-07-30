@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -37,19 +33,12 @@ import { TreeNodeResultParameter } from '../../data-tree/tree-node-result-parame
 import { FilterTreeEntityWrapperService } from './filter-tree-entity-wrapper.service';
 
 export class FilterTreeDatabase extends TreeDatabase {
-<<<<<<< HEAD
-=======
   
->>>>>>> oned/v92
 
   constructor(
     private readonly entityWrapper: FilterTreeEntityWrapperService,
     private readonly getFilterTree: (parentkey: string) => Promise<FilterTreeData>,
-<<<<<<< HEAD
-    private readonly busyService: EuiLoadingService
-=======
     private readonly busyLoadingService: EuiLoadingService
->>>>>>> oned/v92
   ) {
     super();
   }
@@ -57,22 +46,14 @@ export class FilterTreeDatabase extends TreeDatabase {
   public async getData(showLoading: boolean, parameters: CollectionLoadParameters = {}): Promise<TreeNodeResultParameter> {
     let entities: IEntity[];
     if (showLoading) {
-<<<<<<< HEAD
-      setTimeout(() => this.busyService.show());
-=======
       setTimeout(() => this.busyLoadingService.show());
->>>>>>> oned/v92
     }
 
     try {
       entities = this.entityWrapper.convertToEntities(await this.getFilterTree(parameters.ParentKey), parameters['parentDisplay']);
     } finally {
       if (showLoading) {
-<<<<<<< HEAD
-        setTimeout(() => this.busyService.hide());
-=======
         setTimeout(() => this.busyLoadingService.hide());
->>>>>>> oned/v92
       }
     }
 

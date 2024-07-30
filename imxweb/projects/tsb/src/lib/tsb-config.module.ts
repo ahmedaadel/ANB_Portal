@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -35,14 +31,8 @@ import { MatListModule } from '@angular/material/list';
 import { Routes, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-<<<<<<< HEAD
-import { CdrModule, RouteGuardService, TileModule } from 'qbm';
-import { BusinessownerOverviewTileModule, BusinessownerAddonTileModule } from 'qer';
-import { UnsGroupObjectSheetComponent } from './objectsheet-unsgroup/unsgroup.component';
-=======
 import { CdrModule, HELP_CONTEXTUAL, RouteGuardService, TileModule } from 'qbm';
 import { BusinessownerOverviewTileModule, BusinessownerAddonTileModule } from 'qer';
->>>>>>> oned/v92
 import { ClaimGroupComponent } from './claim-group/claim-group.component';
 import { InitService } from './init.service';
 import { AccountsModule } from './accounts/accounts.module';
@@ -55,14 +45,10 @@ const routes: Routes = [
   {
     path: 'claimgroup',
     component: ClaimGroupComponent,
-<<<<<<< HEAD
-    canActivate: [RouteGuardService]
-=======
     canActivate: [RouteGuardService],
     data:{
       contextId: HELP_CONTEXTUAL.ClaimGroup
     }
->>>>>>> oned/v92
   },
   {
     path: 'resp/UNSGroup',
@@ -74,10 +60,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-<<<<<<< HEAD
-    UnsGroupObjectSheetComponent,
-=======
->>>>>>> oned/v92
   ],
   imports: [
     AccountsModule,

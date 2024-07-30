@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -32,11 +28,7 @@ import { Injectable } from '@angular/core';
 import { EuiSidesheetService } from '@elemental-ui/core';
 import { TranslateService } from '@ngx-translate/core';
 
-<<<<<<< HEAD
-import { PortalCartitemInteractive } from 'imx-api-qer';
-=======
 import { PortalCartitem } from 'imx-api-qer';
->>>>>>> oned/v92
 import { BaseCdr, BulkItem, BulkItemStatus } from 'qbm';
 import { ExtendedEntityWrapper } from '../../parameter-data/extended-entity-wrapper.interface';
 import { ServiceItemEditComponent } from './service-item-edit.component';
@@ -50,11 +42,7 @@ export class ItemEditService {
     private readonly translateService: TranslateService
   ) { }
 
-<<<<<<< HEAD
-  public async openEditor(cartItems: ExtendedEntityWrapper<PortalCartitemInteractive>[])
-=======
   public async openEditor(cartItems: ExtendedEntityWrapper<PortalCartitem>[])
->>>>>>> oned/v92
     : Promise<{ submit: boolean, bulkItems: BulkItem[] }> {
     const bulkItems = cartItems.map(cartItem => ({
       entity: cartItem.typedEntity,
@@ -68,17 +56,9 @@ export class ItemEditService {
       {
         title: await this.translateService.get('#LDS#Heading Request Details').toPromise(),
         width: '750px',
-<<<<<<< HEAD
-        headerColour: 'iris-blue',
-        bodyColour: 'asher-gray',
-        padding: '0px',
-        data: bulkItems,
-        testId: 'service-item-edit-sidesheet',
-=======
         padding: '0px',
         data: bulkItems,
         testId: 'new-request-service-item-edit-sidesheet',
->>>>>>> oned/v92
         disableClose: true,
       }).afterClosed().toPromise();
 

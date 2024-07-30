@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,11 +25,7 @@
  */
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-<<<<<<< HEAD
-import { AbstractControl, FormGroup } from '@angular/forms';
-=======
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
->>>>>>> oned/v92
 
 import { PortalApplication } from 'imx-api-aob';
 import { BaseCdr } from 'qbm';
@@ -44,11 +36,7 @@ import { BaseCdr } from 'qbm';
   styleUrls: ['./authentication-root.component.scss']
 })
 export class AuthenticationRootComponent implements OnInit {
-<<<<<<< HEAD
-  public readonly form = new FormGroup({}, __ => {
-=======
   public readonly form = new UntypedFormGroup({}, __ => {
->>>>>>> oned/v92
     if (this.application == null) {
       return null;
     }

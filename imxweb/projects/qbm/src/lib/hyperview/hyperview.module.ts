@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -31,24 +27,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatBadgeModule } from '@angular/material/badge';
-<<<<<<< HEAD
-=======
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EuiCoreModule } from '@elemental-ui/core';
->>>>>>> oned/v92
 
 import { HyperviewComponent } from './hyperview.component';
 import { PropertyShapeComponent } from './propertyshape.component';
 import { ListShapeComponent } from './listshape.component';
 import { SimpleShapeComponent } from './simpleshape.component';
 import { ShapeComponent } from './shape.component';
-<<<<<<< HEAD
-=======
 import { ZoomPanDirective } from './zoom-pan.directive';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
->>>>>>> oned/v92
 
 @NgModule({
     declarations: [
@@ -56,13 +46,6 @@ import { MatButtonModule } from '@angular/material/button';
         PropertyShapeComponent,
         ListShapeComponent,
         SimpleShapeComponent,
-<<<<<<< HEAD
-        ShapeComponent
-    ],
-    imports: [
-        CommonModule,
-        MatBadgeModule
-=======
         ShapeComponent,
         ZoomPanDirective
     ],
@@ -73,7 +56,6 @@ import { MatButtonModule } from '@angular/material/button';
         MatBadgeModule,
         TranslateModule,
         MatButtonModule,
->>>>>>> oned/v92
     ],
     exports: [
         HyperviewComponent

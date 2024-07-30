@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,15 +24,8 @@
  *
  */
 
-<<<<<<< HEAD
-import { OverlayRef } from '@angular/cdk/overlay';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { EuiLoadingService } from '@elemental-ui/core';
-=======
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
->>>>>>> oned/v92
 
 import { UserConfig, ProjectConfig, QerProjectConfig } from 'imx-api-qer';
 import { UserModelService } from '../../user/user-model.service';
@@ -44,10 +33,7 @@ import { PendingItemsType } from '../../user/pending-items-type.interface';
 import { ProjectConfigurationService } from '../../project-configuration/project-configuration.service';
 import { imx_SessionService, SystemInfoService } from 'qbm';
 import { SystemInfo } from 'imx-api-qbm';
-<<<<<<< HEAD
-=======
 import { DashboardService } from './dashboard.service';
->>>>>>> oned/v92
 
 @Component({
   templateUrl: './start.component.html',
@@ -64,63 +50,37 @@ export class StartComponent implements OnInit {
 
   constructor(
     public readonly router: Router,
-<<<<<<< HEAD
-    private readonly busyService: EuiLoadingService,
-    private readonly userModelSvc: UserModelService,
-    private readonly systemInfoService: SystemInfoService,
-    private readonly sessionService: imx_SessionService,
-=======
     private readonly dashboardService: DashboardService,
     private readonly userModelSvc: UserModelService,
     private readonly systemInfoService: SystemInfoService,
     private readonly sessionService: imx_SessionService,
     private readonly detectRef: ChangeDetectorRef,
->>>>>>> oned/v92
     private readonly projectConfigurationService: ProjectConfigurationService
   ) {}
 
   public async ngOnInit(): Promise<void> {
-<<<<<<< HEAD
-    let overlayRef: OverlayRef;
-    setTimeout(() => (overlayRef = this.busyService.show()));
-=======
     this.dashboardService.busyStateChanged.subscribe(busy => {
       this.viewReady = !busy;
       this.detectRef.detectChanges();
     });
     const busy = this.dashboardService.beginBusy();
->>>>>>> oned/v92
     try {
       this.userConfig = await this.userModelSvc.getUserConfig();
       this.pendingItems = await this.userModelSvc.getPendingItems();
       this.projectConfig = await this.projectConfigurationService.getConfig();
       this.systemInfo = await this.systemInfoService.get();
       this.userUid = (await this.sessionService.getSessionState()).UserUid;
-<<<<<<< HEAD
-      this.viewReady = true;
-    } finally {
-      setTimeout(() => this.busyService.hide(overlayRef));
-=======
     } finally {
       busy.endBusy();
->>>>>>> oned/v92
     }
   }
 
   public ShowPasswordTile(): boolean {
-<<<<<<< HEAD
-    return this.userConfig.ShowPasswordTile;
-  }
-
-  public ShowPasswordMgmtTile(): boolean {
-    return this.projectConfig.PasswordConfig.VI_MyData_MyPassword_Visibility && !!this.projectConfig.PasswordConfig.PasswordMgmtUrl;
-=======
     return this.userConfig?.ShowPasswordTile;
   }
 
   public ShowPasswordMgmtTile(): boolean {
     return this.projectConfig?.PasswordConfig.VI_MyData_MyPassword_Visibility && !!this.projectConfig?.PasswordConfig.PasswordMgmtUrl;
->>>>>>> oned/v92
   }
 
   public GoToMyPassword(): void {
@@ -128,11 +88,7 @@ export class StartComponent implements OnInit {
   }
 
   public GoToPasswordMgmtWeb(): void {
-<<<<<<< HEAD
-    this.router.navigate(['/externalRedirect', { externalUrl: this.projectConfig.PasswordConfig.PasswordMgmtUrl }]);
-=======
     this.router.navigate(['/externalRedirect', { externalUrl: this.projectConfig?.PasswordConfig.PasswordMgmtUrl }]);
->>>>>>> oned/v92
   }
 
   public GoToShoppingCart(): void {
@@ -140,11 +96,7 @@ export class StartComponent implements OnInit {
   }
 
   public GoToProductSelection(): void {
-<<<<<<< HEAD
-    this.router.navigate(['productselection']);
-=======
     this.router.navigate(['newrequest']);
->>>>>>> oned/v92
   }
 
   public GoToItshopApprovals(): void {
@@ -152,11 +104,7 @@ export class StartComponent implements OnInit {
   }
 
   public GoToItShopApprovalInquiries(): void {
-<<<<<<< HEAD
-    this.router.navigate(['itshop', 'answerquestions']);
-=======
     this.router.navigate(['itshop', 'approvals'], {queryParams: {inquiries:true}});
->>>>>>> oned/v92
   }
 
   public GoToMyProcesses(): void {
@@ -164,11 +112,7 @@ export class StartComponent implements OnInit {
   }
 
   public ShowQpmIntegration(): boolean {
-<<<<<<< HEAD
-    return !!this.projectConfig.PasswordConfig.QpmBaseUrl;
-=======
     return !!this.projectConfig?.PasswordConfig.QpmBaseUrl;
->>>>>>> oned/v92
   }
 
   public GoToQpm(): void {
@@ -188,11 +132,7 @@ export class StartComponent implements OnInit {
   }
 
   public GetCountProductsinShoppingCart(): number {
-<<<<<<< HEAD
-    return this.pendingItems.CountProductsInShoppingCart;
-=======
     return this.pendingItems?.CountProductsInShoppingCart;
->>>>>>> oned/v92
   }
 
   public GetCountInRequestHistory(): number {
@@ -200,19 +140,11 @@ export class StartComponent implements OnInit {
   }
 
   public GetCountPendingRequests(): number {
-<<<<<<< HEAD
-    return this.pendingItems.OpenPWO;
-  }
-
-  public GetCountRequestInquiries(): number {
-    return this.pendingItems.OpenInquiries;
-=======
     return this.pendingItems?.OpenPWO;
   }
 
   public GetCountRequestInquiries(): number {
     return this.pendingItems?.OpenInquiries;
->>>>>>> oned/v92
   }
 
   public GetCountNewProcesses(): number {

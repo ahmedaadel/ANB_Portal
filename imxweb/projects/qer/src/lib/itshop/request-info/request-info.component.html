@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-<mat-tab-group>
-  <mat-tab [label]="'#LDS#Information' | translate">
-=======
 <imx-busy-indicator *ngIf="isLoading"></imx-busy-indicator>
 <mat-tab-group [ngClass]="{ hidden: isLoading }">
   <mat-tab [label]="'#LDS#Heading Information' | translate">
->>>>>>> oned/v92
     <div class="imx-request-information">
       <ng-content select="[info]"></ng-content>
     </div>
@@ -13,10 +8,6 @@
       <imx-cdr-editor *ngFor="let cdr of propertyInfo" [cdr]="cdr"></imx-cdr-editor>
       <imx-cdr-editor *ngFor="let cdr of parameters" [cdr]="cdr"></imx-cdr-editor>
     </mat-card>
-<<<<<<< HEAD
-  </mat-tab>
-  <mat-tab [label]="'#LDS#Workflow' | translate">
-=======
     <mat-accordion class="imx-additional-info mat-elevation-z0" *ngIf="serviceItem" >
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -31,7 +22,6 @@
     </mat-accordion>
   </mat-tab>
   <mat-tab [label]="'#LDS#Heading Workflow' | translate">
->>>>>>> oned/v92
     <div class="imx-request-history">
       <mat-card>
         <imx-decision-history [approverContainer]="approverContainer" [workflow]="workflow"></imx-decision-history>
@@ -39,47 +29,21 @@
     </div>
   </mat-tab>
 
-<<<<<<< HEAD
-  <mat-tab [label]="'#LDS#Heading Product Details' | translate">
-    <div *ngIf="serviceItem" class="imx-request-item-detail">
-      <imx-service-item-detail [projectConfig]="projectConfig" [serviceItem]="serviceItem"></imx-service-item-detail>
-    </div>
-    <div *ngIf="isRoleAssignment" class="imx-request-item-detail">
-=======
   <mat-tab *ngIf="isRoleAssignment" [label]="'#LDS#Heading Entitlements' | translate">
     <div class="imx-request-entitlements">
->>>>>>> oned/v92
       <imx-product-entitlements [uidAccProduct]="request.UID_AccProduct.value"></imx-product-entitlements>
     </div>
   </mat-tab>
 
-<<<<<<< HEAD
-  <mat-tab [label]="'#LDS#Heading Compliance Violations' | translate" *ngIf="extensions && extensions.length > 0">
-    <ng-template matTabContent><imx-ext [id]="ruleViolationDetailId" [properties]="{'pwoId': request.GetEntity().GetKeys()[0], 'request': request}"></imx-ext></ng-template>
-  </mat-tab>
-
-
-=======
   <mat-tab [label]="'#LDS#Heading Rule Violations' | translate" *ngIf="extensions && extensions.length > 0 && !request.isArchived">
     <ng-template matTabContent
       ><imx-ext [id]="ruleViolationDetailId" [properties]="{ pwoId: request.GetEntity().GetKeys()[0], request: request, isApproval: isApproval }"></imx-ext
     ></ng-template>
   </mat-tab>
 
->>>>>>> oned/v92
   <!-- TODO later
   <ObjectSwitchContainer [ActionType]="ObjectView" [EnableNavigation]="true"
       [SourceObject]="PersonWantsOrg"></ObjectSwitchContainer>
 -->
 
-<<<<<<< HEAD
-  <!-- TODO later
-<mat-tab *ngIf="PersonWantsOrg.UID_OrgRequested.value" [label]="'#LDS#Entitlements' | translate">
-    <ng-template matTabContent>
-        <QER_EntitlementList [UidOrg]="PersonWantsOrg.UID_OrgRequested.value"></QER_EntitlementList>
-    </ng-template>
-</mat-tab>
--->
-=======
->>>>>>> oned/v92
 </mat-tab-group>

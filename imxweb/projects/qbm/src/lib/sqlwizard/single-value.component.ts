@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -29,9 +25,6 @@
  */
 
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-<<<<<<< HEAD
-import { FkProviderItem, IClientProperty, MetaTableRelationData, SqlColumnTypes, SqlTable, ValType, ValType as _valType } from 'imx-qbm-dbts';
-=======
 import {
   FkProviderItem,
   IClientProperty,
@@ -41,30 +34,19 @@ import {
   ValType,
   ValType as _valType,
 } from 'imx-qbm-dbts';
->>>>>>> oned/v92
 import { Subscription } from 'rxjs';
 import { BaseCdr } from '../cdr/base-cdr';
 import { EntityService } from '../entity/entity.service';
 import { SqlNodeView } from './SqlNodeView';
 import { SqlWizardApiService } from './sqlwizard-api.service';
-<<<<<<< HEAD
-=======
 import { FormControl, Validators } from '@angular/forms';
->>>>>>> oned/v92
 
 @Component({
   selector: 'imx-sqlwizard-singlevalue',
   styleUrls: ['./sqlwizard.scss'],
-<<<<<<< HEAD
-  templateUrl: './single-value.component.html'
-})
-export class SingleValueComponent implements OnInit, OnDestroy {
-
-=======
   templateUrl: './single-value.component.html',
 })
 export class SingleValueComponent implements OnInit, OnDestroy {
->>>>>>> oned/v92
   public get selectedTable() {
     return this._selectedTable;
   }
@@ -79,30 +61,14 @@ export class SingleValueComponent implements OnInit, OnDestroy {
   }
 
   get value() {
-<<<<<<< HEAD
-    if (this.mode == 'array') {
-      return this.expr.Data.Value[this.index];
-    }
-    else {
-=======
     if (this.mode == 'array' && this.expr.Data.Value) {
       return this.expr.Data.Value[this.index];
     } else {
->>>>>>> oned/v92
       return this.expr.Data.Value;
     }
   }
 
   set value(val) {
-<<<<<<< HEAD
-    if (this.mode == 'array') {
-      this.expr.Data.Value[this.index] = val;
-    }
-    else {
-      this.expr.Data.Value = val;
-    }
-  }
-=======
     if (this.mode == 'array' && this.expr.Data.Value) {
       this.expr.Data.Value[this.index] = val;
     } else {
@@ -128,7 +94,6 @@ export class SingleValueComponent implements OnInit, OnDestroy {
     }
   }
 
->>>>>>> oned/v92
   @Input() public expr: SqlNodeView;
   @Input() public mode: 'array' | 'single' = 'single';
   @Input() public index: number;
@@ -137,14 +102,6 @@ export class SingleValueComponent implements OnInit, OnDestroy {
 
   public ValType = _valType;
   public ColumnType = SqlColumnTypes;
-<<<<<<< HEAD
-
-  public cdr: BaseCdr;
-
-  private _selectedTable: SqlTable;
-  private _fkRelation: MetaTableRelationData = {
-    IsMemberRelation: false
-=======
   public cdr: BaseCdr;
   public doubleFormControl = new FormControl(null, Validators.pattern(/^[+-]?\d+(\.\d+)?$/));
   public integerFormControl = new FormControl(null, Validators.pattern(/^[+-]?\d+$/));
@@ -152,40 +109,16 @@ export class SingleValueComponent implements OnInit, OnDestroy {
   private _selectedTable: SqlTable;
   private _fkRelation: MetaTableRelationData = {
     IsMemberRelation: false,
->>>>>>> oned/v92
   };
   private _fkProviderItem: FkProviderItem = {
     columnName: 'dummycolumn',
     fkTableName: 'not_set',
-<<<<<<< HEAD
-    parameterNames: [
-      'OrderBy',
-      'StartIndex',
-      'PageSize',
-      'filter',
-      'search'
-    ],
-=======
     parameterNames: ['OrderBy', 'StartIndex', 'PageSize', 'filter', 'search'],
->>>>>>> oned/v92
     load: async (_, parameters = {}) => this.sqlWizardApi.getCandidates(this._fkRelation.ParentTableName, parameters),
     getFilterTree: async () => ({ Elements: [] }),
     getDataModel: async () => ({}),
   };
 
-<<<<<<< HEAD
-  constructor(private readonly entityService: EntityService,
-    private readonly sqlWizardApi: SqlWizardApiService) { }
-
-  private subscriptions: Subscription[] = [];
-
-  public ngOnInit(): void {
-    this.subscriptions.push(this.expr.columnChanged.subscribe(_ => {
-      this.buildCdr();
-    }));
-
-    this.buildCdr();
-=======
   private subscriptions: Subscription[] = [];
 
   constructor(private readonly entityService: EntityService, private readonly sqlWizardApi: SqlWizardApiService) {}
@@ -203,7 +136,6 @@ export class SingleValueComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     for (var s of this.subscriptions) s.unsubscribe();
->>>>>>> oned/v92
   }
 
   public emitChanges(): void {
@@ -211,42 +143,16 @@ export class SingleValueComponent implements OnInit, OnDestroy {
   }
 
   private buildCdr() {
-<<<<<<< HEAD
-
-    const tables = this.expr.Property.SelectionTables;
-    if (tables && tables.length > 0) {
-      this.selectedTable = tables[0];
-    }
-    else {
-=======
     const tables = this.expr.Property.SelectionTables;
     if (tables && tables.length > 0) {
       this.selectedTable = tables[0];
     } else {
->>>>>>> oned/v92
       this.selectedTable = null;
     }
 
     const property: IClientProperty = {
       ColumnName: 'dummycolumn',
       Type: ValType.String,
-<<<<<<< HEAD
-      FkRelation: this._fkRelation
-    };
-
-    // Handle display for array and single values, if null do nothing
-    const displayValue = this.expr.Data.DisplayValues ? ( this.mode === 'single' ? this.expr.Data.DisplayValues[0] : this.expr.Data.DisplayValues[this.index]) : null;
-
-    const column = this.entityService.createLocalEntityColumn(property, [this._fkProviderItem], {
-      Value: this.value,
-      DisplayValue: displayValue
-    });
-
-    // when the CDR value changes, write back to the SQL wizard data structure
-    column.ColumnChanged.subscribe(() => {
-      this.value = column.GetValue();
-      this.emitChanges();
-=======
       FkRelation: this._fkRelation,
     };
 
@@ -270,18 +176,10 @@ export class SingleValueComponent implements OnInit, OnDestroy {
         this.value = column.GetValue();
         this.emitChanges();
       }, 0);
->>>>>>> oned/v92
     });
     this.cdr = new BaseCdr(column, '#LDS#Value');
   }
 
-<<<<<<< HEAD
-  public ngOnDestroy(): void {
-    for (var s of this.subscriptions)
-      s.unsubscribe();
-  }
-}
-=======
   private onFormValueChanges(): void {
     this.subscriptions.push(
       this.doubleFormControl.valueChanges.subscribe((value) => {
@@ -306,4 +204,3 @@ export class SingleValueComponent implements OnInit, OnDestroy {
   }
 }
 
->>>>>>> oned/v92

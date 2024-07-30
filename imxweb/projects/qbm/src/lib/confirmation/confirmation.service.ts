@@ -9,11 +9,7 @@
  * those terms.
  *
  *
-<<<<<<< HEAD
- * Copyright 2022 One Identity LLC.
-=======
  * Copyright 2023 One Identity LLC.
->>>>>>> oned/v92
  * ALL RIGHTS RESERVED.
  *
  * ONE IDENTITY LLC. MAKES NO REPRESENTATIONS OR
@@ -28,11 +24,7 @@
  *
  */
 
-<<<<<<< HEAD
-import { Injectable } from '@angular/core';
-=======
 import { Injectable, NgZone } from '@angular/core';
->>>>>>> oned/v92
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -40,25 +32,18 @@ import { MessageDialogResult } from '../message-dialog/message-dialog-result.enu
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 import { MessageParameter } from '../message-dialog/message-parameter.interface';
 
-<<<<<<< HEAD
-=======
 import { LdsReplacePipe } from '../lds-replace/lds-replace.pipe';
 
->>>>>>> oned/v92
 @Injectable({
   providedIn: 'root',
 })
 export class ConfirmationService {
-<<<<<<< HEAD
-  constructor(private readonly dialogService: MatDialog, private readonly translate: TranslateService) { }
-=======
   constructor(
     private readonly dialogService: MatDialog,
     private readonly translate: TranslateService,
     private readonly pipe: LdsReplacePipe,
     private readonly zone: NgZone,
   ) {}
->>>>>>> oned/v92
 
   public async confirmLeaveWithUnsavedChanges(title?: string, message?: string, disableClose?: boolean): Promise<boolean> {
     const dialogRef = this.dialogService.open(MessageDialogComponent, {
@@ -70,24 +55,6 @@ export class ConfirmationService {
           .toPromise(),
       },
       panelClass: 'imx-messageDialog',
-<<<<<<< HEAD
-      disableClose: disableClose
-    });
-    return (await dialogRef.beforeClosed().toPromise()) === MessageDialogResult.YesResult ? true : false;
-  }
-
-  public async confirm(data: MessageParameter): Promise<boolean> {
-    const dialogRef = this.dialogService.open(MessageDialogComponent, {
-      data: {
-        ShowYesNo: true,
-        Title: await this.translate.get(data.Title).toPromise(),
-        Message: await this.translate.get(data.Message).toPromise(),
-        identifier: data.identifier
-      },
-      panelClass: 'imx-messageDialog',
-    });
-    return (await dialogRef.afterClosed().toPromise()) === MessageDialogResult.YesResult ? true : false;
-=======
       disableClose: disableClose,
     });
     return (await dialogRef.beforeClosed().toPromise()) === MessageDialogResult.YesResult;
@@ -127,22 +94,13 @@ export class ConfirmationService {
       panelClass: 'imx-messageDialog',
     });
     return (await dialogRef.afterClosed().toPromise()) === MessageDialogResult.YesResult;
->>>>>>> oned/v92
   }
 
   // Damit es bis "Pull Request 38432: 299557-imxweb-confirmdialogs-with-yes-no-buttons" funktioniert
   public async confirmDelete(title?: string, message?: string): Promise<boolean> {
     return this.confirm({
       Title: title || '#LDS#Heading Delete Object',
-<<<<<<< HEAD
-      Message: message || '#LDS#Are you sure you want to delete the object?'
-    });
-  }
-}
-
-=======
       Message: message || '#LDS#Are you sure you want to delete the object?',
     });
   }
 }
->>>>>>> oned/v92

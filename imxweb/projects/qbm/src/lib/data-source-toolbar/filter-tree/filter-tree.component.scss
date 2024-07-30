@@ -1,20 +1,13 @@
 @import "@elemental-ui/core/src/styles/_palette.scss";
-<<<<<<< HEAD
-=======
 @import '@elemental-ui/core/src/styles/_eui_palette.scss';
 
->>>>>>> oned/v92
 :host {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
   overflow: hidden;
   height: 100%;
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> oned/v92
   ::ng-deep .mat-list-base {
     .mat-list-item.imx-list-item {
       height: auto;
@@ -57,9 +50,6 @@
 .imx-selected-item-element {
   margin: 5px 0;
 }
-<<<<<<< HEAD
-
-=======
 .mat-dialog-actions{
   padding-bottom: 16px;
 }
@@ -79,4 +69,3 @@
     }
   }
 }
->>>>>>> oned/v92

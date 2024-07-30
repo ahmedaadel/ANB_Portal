@@ -11,19 +11,11 @@
 	<ng-container *ngIf="!busy">
     <eui-alert>{{ldsText| translate}}</eui-alert>
 		<div class="button-bar">
-<<<<<<< HEAD
-			<button mat-raised-button *ngIf="hasFormat && !hasProblems" (click)="ReSendMail()">{{'#LDS#Send confirmation email again' |
-				translate}}
-			</button>
-
-			<button mat-raised-button color="primary" *ngIf="data?.ApprovalState == 1" (click)="ConfirmEMail()">
-=======
 			<button mat-raised-button *ngIf="hasFormat && !hasProblems" (click)="resendMail()">{{'#LDS#Send confirmation email again' |
 				translate}}
 			</button>
 
 			<button mat-raised-button color="primary" *ngIf="data?.ApprovalState == 1" (click)="confirmEMail()">
->>>>>>> oned/v92
 				{{'#LDS#Confirm email address' | translate}}
 			</button>
 		</div>

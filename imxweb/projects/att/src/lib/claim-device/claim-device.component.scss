@@ -13,21 +13,7 @@ mat-radio-group {
 }
 
 .imx-owner-assigned {
-<<<<<<< HEAD
-  display: flex;
-  flex-direction: column;
-
-  >*:not(:last-child) {
-    margin-bottom: 10px;
-  }
-
-  >button {
-   align-self: flex-end;
-  }
-}
-=======
   > *:not(:last-child) {
     margin-bottom: 10px;
   }
 }
->>>>>>> oned/v92
